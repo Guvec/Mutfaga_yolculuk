@@ -1,27 +1,23 @@
-MESLEKI OYUNLAR — GELISTIRILMIS SURUM
+MESLEKİ OYUNLAR — ANDROID DÜZENİ 5
+02.11.2026
 
-1. ZIP dosyasını bilgisayarınızda ayıklayın.
-2. GitHub'da guvec/Mutfaga_yolculuk deposunu açın.
-3. Add file > Upload files seçin.
-4. Ayıklanan klasörün İÇİNDEKİ js, css, content ve assets klasörlerini; index.html, sw.js, manifest.json ve simge dosyalarını birlikte sürükleyin. ZIP dosyasını veya dış klasörü yüklemeyin.
-5. Commit changes ile kaydedin. Mevcut dosyaları silmeniz gerekmez.
-6. GitHub Pages yayını tamamlanınca siteyi Ctrl+F5 ile yenileyin.
+Yükleme:
+1. ZIP dosyasını ayıklayın.
+2. GitHub deposunda Add file > Upload files seçin.
+3. js, css, content, assets klasörlerini ve index.html, sw.js, manifest.json, icon-192.png, icon-512.png dosyalarını birlikte yükleyin. Dış klasörü veya ZIP dosyasını yüklemeyin.
+4. Commit changes ile kaydedin. Önceki dosyaları silmeyin.
+5. GitHub Pages yayını bitince siteyi Ctrl+F5 ile yenileyin.
 
-İçerik:
-- Ana eşleştirmelerde 12 görsel + 12 doğru ad + 6 çeldirici korunur.
-- Mutfak araçları 10 takım, baharatlar 11 takımdır.
-- 95 mutfak sorusuna gerekçeli açıklama eklendi.
-- 132 baharat/mutfak malzemesi kartına açıklama eklendi.
-- Bulaşık ve atık bölümünde artık 13 çoktan seçmeli soru vardır.
-- Öğrenme için 4/6 görsellik hazırlık çalışmaları öğretmen alanındadır.
-- İlk ve son yanıt, deneme sayısı, ipucu kullanımı ve yanıtlanmayanlar ayrı kaydedilir.
-- Tahtada yalnız toplam etkin süre kullanılır; sahte kart süreleri üretilmez.
-- Ayrıntılar Kullanımını öğren bölümünden açılır.
-- Bağımsız denemede puan ve açıklamalar çalışma bitince görünür.
-- Ses ayarlarından Türkçe ses seçilebilir, hız değiştirilebilir ve ses durdurulabilir. Yeni konuşma önceki okumayı keser.
+SES_DENEMELERI klasörü yalnız iki yeni sesi dinlemek içindir. Oyun çalışması için yüklenmesi gerekmez. Oyunlara hazır ses kaydı henüz bağlanmamıştır.
 
-Ses: Bu paket hazır insan sesi/MP3 içermez. Cihazın sunduğu Türkçe sesleri kullanır; doğallık cihaza göre değişir. Test ortamında Türkçe ses bulunmadığından sesin duyumsal kalitesi doğrulanamadı. Ses yoksa yazılı içerikle devam edilebilir.
+Bu sürümde:
+- Görsel konu kartları, yenilenmiş renkler ve daha okunaklı başlıklar
+- Küçük ekranda seçilen görselin yanında açılan ad paneli
+- 12 görsel ve toplam 18 ad korunur; 6 ad çeldiricidir
+- Kaydırılabilir ad listesi, büyük dokunma alanları ve açık kapatma düğmesi
+- Dikey/yatay telefon ekranlarına uyum ve tablet düzeni
+- İlerleme çubuğu, kısa geri bildirim ve isteğe bağlı ayrıntılı bilgi
+- Önceki açıklama, yanıt kaydı, süre ve ses kontrolü düzeltmeleri korunur
+- Vazgeçilen altı ek etkinlik bu pakette bulunmaz
 
-Çevrimdışı: Site HTTPS üzerinden açıldıktan sonra Ses ayarları > Dersleri çevrimdışı kullanıma hazırla seçilebilir. Bütün görsellerin hazır olduğu mesajı görülmeden tam hazırlık tamamlanmış sayılmaz. Tarayıcı sonradan kayıtlı verileri silebilir.
-
-Öğrenme sınırı: Yerleri değiştirerek tekrar, farklı araç modelini tanıma kanıtı değildir. Gerçek araçlar ve farklı fotoğraflarla genelleme öğretmen tarafından ayrıca çalışılır. Bu paket yeni alternatif model fotoğrafları üretmez.
+Siteye bu konuşmadan doğrudan yükleme yapılmadı; bu ZIP elle yükleme içindir.

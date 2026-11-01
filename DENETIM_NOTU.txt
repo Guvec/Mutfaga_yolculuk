@@ -1,15 +1,17 @@
-Yapılan kontroller
-- JavaScript dosyalarının ve service worker dosyasının sözdizimi
-- 10 mutfak, 11 baharat ve 1 bulaşık takımında 12 görsel/18 farklı ad/6 çeldirici
-- Her takımda doğru eşleştirmelerin puanlanması
-- Yanlış ilk yanıt ve düzeltmenin ayrı kaydı
-- Bağımsız denemede erken açıklama ve puanın gizlenmesi
-- Erken bitirmede yanıtlanmayanların ayrı gösterilmesi
-- 4 kartlık hazırlık çalışması
-- Açıklamaların boş olmaması ve tüm resim dosyalarının bulunması
-- Ses kuyruğu yerine yeni konuşmanın öncekini kesmesi (yapay konuşma motoruyla işlev testi)
-- Service worker kurulum ve çevrimdışı hazırlık akışı (yalıtılmış işlev testi)
-- Tarayıcıda menü, öğretmen seçenekleri, dinamik yönerge, doğru eşleştirme, kısa/ayrıntılı bilgi, ses ayarları ve yeni atık sorularına geçiş
+DENETİM — ANDROID DÜZENİ 5
 
-Sınırlılıklar
-Gerçek telefon/tablette dokunma, cihazlara göre Türkçe ses kalitesi ve yayındaki HTTPS ortamında uçtan uca çevrimdışı çalışma bu paket tesliminde doğrulanmadı. Kullanılan puanlar öğrenmenin veya bağımsız uygulamanın tek kanıtı değildir. Yeni sorular kaynak belgenin atık yönetimi bölümünden uyarlanmıştır.
+Geçen işlev testleri:
+- 10 mutfak, 11 baharat ve 1 bulaşık takımında 12/18 yapısı ve doğru puanlama
+- İlk/son yanıt, deneme, ipucu ve yarım bırakılan soruların kaydı
+- Bağımsız denemede puanın gizlenmesi
+- Tekrarlanan bitirmede kayıtların çoğalmaması
+- Telefon ad panelinin açılması, seçim ve kapanma akışı
+- JavaScript sözdizimi, görsel yolları ve ZIP dosya bütünlüğü
+
+Tarayıcıda kontrol edilen CSS ekran boyutları:
+320 × 640, 360 × 800, 393 × 852, 412 × 915, 740 × 360, 800 × 1100.
+Bu ekranlarda eşleştirme sayfasında yatay taşma görülmedi; ölçülen görünür düğmeler 48 × 48 pikselden küçük değildi.
+320 piksel genişlikte seçilen görsel ad panelinde kaldı; uzun liste kendi alanında kaydırılabildi. Doğru eşleştirmede panel kapandı ve puan arttı.
+
+Sınırlar:
+Bu kontroller tarayıcıda farklı iframe ekran ölçüleriyle yapıldı. Fiziksel Android cihaz, TalkBack ve gerçek cihazın tarayıcı çubuğu hareketleri ayrıca denenmelidir. Yapay seslerin doğallığı dinleyici onayıyla değerlendirilmelidir.

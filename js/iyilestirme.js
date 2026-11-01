@@ -52,3 +52,18 @@ const U_VOICESET=voiceSettings;
 voiceSettings=function(){U_VOICESET();const box=document.querySelector('#ov .modal');if(box)box.insertAdjacentHTML('beforeend','<hr><button class="btn" onclick="prepareOffline()">Dersleri çevrimdışı kullanıma hazırla</button><p id="offlineStatus" role="status">İlk hazırlıkta internet bağlantısı gerekir.</p>');};
 const U_STATS=statsHtml;
 statsHtml=function(){if(st.op==='mcq'&&st.practice==='check'&&st.screen!=='summary'&&st.sess)return '<div class="stats"><span class="chip">Yanıtlanan '+st.sess.qs.length+' / '+(st.contentItems||[]).length+'</span></div>';return U_STATS();};
+
+// Küçük ekranda seçilen görsel adların yanında da görünür.
+const LAST_TAPIMG=tapImg,LAST_TAPNAME=tapName;
+function narrowScreen(){return typeof window.matchMedia==='function'&&window.matchMedia('(max-width: 759px)').matches;}
+function scrollBoardArea(id){if(!narrowScreen())return;const area=document.getElementById(id);if(area&&area.scrollIntoView)area.scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'});}
+tapImg=function(id){LAST_TAPIMG(id);};
+tapName=function(i){LAST_TAPNAME(i);};
+// Aynı bitirme isteği iki kere gelirse yanıtlanmayan satırlar çoğaltılmaz.
+const LAST_FINISH=finish;
+finish=function(){if(st.sess&&st.sess.finalized){st.screen='summary';render();return;}LAST_FINISH();if(st.sess){st.sess.finalized=true;saveProgress();}};
+// Ses düğmesi metinleri her yeni ekran çiziminde yenilenir; oturum boyunca birikmez.
+const LAST_RENDER=render;
+render=function(){if(typeof SES!=='undefined')SES.sira=[];LAST_RENDER();};
+// Hazırlık başlatılamadığında kullanıcı sonsuz süre beklemez.
+prepareOffline=function(){const status=document.getElementById('offlineStatus');if(!('serviceWorker' in navigator)){if(status)status.textContent='Bu tarayıcı çevrimdışı hazırlığı desteklemiyor.';return;}if(status)status.textContent='Hazırlık başlatılıyor. İnternet bağlantısını açık tut.';let ended=false;const timeout=setTimeout(()=>{if(!ended){ended=true;const p=document.getElementById('offlineStatus');if(p)p.textContent='Hazırlık başlatılamadı. Siteyi internet bağlantısıyla yeniden açıp tekrar deneyebilirsin.';}},12000);navigator.serviceWorker.ready.then(r=>{if(ended)return;clearTimeout(timeout);ended=true;if(!r.active)throw Error('Worker unavailable');r.active.postMessage({type:'CACHE_LESSONS'});const p=document.getElementById('offlineStatus');if(p)p.textContent='Görseller indiriliyor. Hazırlık tamamlanana kadar bağlantıyı açık tut.';}).catch(()=>{clearTimeout(timeout);ended=true;const p=document.getElementById('offlineStatus');if(p)p.textContent='Hazırlık başlatılamadı. Çevrimiçi devam edebilirsin.';});};
