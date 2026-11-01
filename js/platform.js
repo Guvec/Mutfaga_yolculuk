@@ -3,9 +3,9 @@
 const SUBJECTS = [
   {id:'baharat', name:'Baharat ve Aromatikler', desc:'11 takım · Her takımda 12 görsel ve 18 ad.'},
   {id:'kuver', name:'Kuver', desc:'Basit kuver ve tabldot kuver çalışmaları.'},
-  {id:'mutfak-araclari', name:'Mutfak Araçları', desc:'Araçları tanıma ve eşleştirme.'},
+  {id:'mutfak-araclari', name:'Mutfak Araçları', desc:'120 araç · 10 takım · Her takımda 12 görsel ve 18 ad.'},
   {id:'beslenme-ilkeleri', name:'Beslenme İlkeleri', desc:'Besinler ve beslenme çalışmaları.'},
-  {id:'bulasik-makinesi-temizligi', name:'Bulaşık Makinesi Temizliği', desc:'Temizlik ve işlem sırası çalışmaları.'}
+  {id:'bulasik-makinesi-temizligi', name:'Bulaşık Yıkama ve Atık Yönetimi', desc:'Elde yıkama, makinede yıkama ve atıkları ayırma.'}
 ];
 const CONTENT = Object.create(null);
 const OLD_RENDER = render, OLD_NEWQ = newQ, OLD_START = startSession, OLD_RESOLVE = resolve;

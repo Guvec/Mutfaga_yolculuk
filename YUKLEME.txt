@@ -1,0 +1,13 @@
+MUTFAK ARAÇLARI + BULAŞIK YIKAMA VE ATIK YÖNETİMİ
+
+Bu paket mevcut guvec/Mutfaga_yolculuk deposu için bir güncellemedir.
+
+1. ZIP dosyasını bilgisayarda ayıklayın.
+2. GitHub deposunda Add file > Upload files seçin.
+3. Ayıklanan klasörün İÇİNDEKİ assets, content, css, js klasörlerini ve index.html, sw.js dosyalarını birlikte sürükleyin. ZIP dosyasını veya dış klasörü yüklemeyin.
+4. Commit changes ile kaydedin.
+5. Yayın tamamlanınca siteyi Ctrl+F5 ile yenileyin.
+
+Eski dosyaları silmeyin. Baharat, kuver ve beslenme içerikleri mevcut depodan kullanılmaya devam eder. Bu paket tek başına bütün sitenin yedeği değildir.
+
+İçerik: 120 araç, 10 eşleştirme takımı, takım başına 12 görsel + 6 çeldirici; 95 güncel mutfak sorusu; bulaşık bölümünde 12 görsel + 6 çeldirici ve 9 kaynak çoktan seçmeli sorusu. Sözlü görevler ve atölye uygulamaları otomatik puanlamaya dönüştürülmemiştir.

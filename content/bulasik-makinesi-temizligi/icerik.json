@@ -1,5 +1,461 @@
 {
- "questions": [],
- "matches": [],
- "words": []
+  "questions": [
+    {
+      "id": "b-bd-1-1",
+      "prompt": "Bulaşık makinesine hangi ürün konur?",
+      "choices": [
+        {
+          "id": "A",
+          "text": "Bulaşık makinesi deterjanı"
+        },
+        {
+          "id": "B",
+          "text": "Sıvı el sabunu"
+        },
+        {
+          "id": "C",
+          "text": "Yüzey temizleyici"
+        },
+        {
+          "id": "D",
+          "text": "Elde bulaşık deterjanı"
+        }
+      ],
+      "correct": "A",
+      "group": "1. Bölüm",
+      "chapter": 1,
+      "explanation": "Yalnız bulaşık makinesi için uygun deterjan kullanılır.",
+      "source": {
+        "file": "Bulaşık Yıkama ve Atık Yönetimi.docx",
+        "question": "1"
+      }
+    },
+    {
+      "id": "b-bd-1-2",
+      "prompt": "Yıkamadan önce hangi bulaşık eldiveni seçilir?",
+      "choices": [
+        {
+          "id": "A",
+          "text": "İçi ıslak olan"
+        },
+        {
+          "id": "B",
+          "text": "Parmağı yırtık olan"
+        },
+        {
+          "id": "C",
+          "text": "İçi kuru ve sağlam olan"
+        },
+        {
+          "id": "D",
+          "text": "Dışı yağlı olan"
+        }
+      ],
+      "correct": "C",
+      "group": "1. Bölüm",
+      "chapter": 1,
+      "explanation": "Eldivenin sağlam ve içinin kuru olması gerekir.",
+      "source": {
+        "file": "Bulaşık Yıkama ve Atık Yönetimi.docx",
+        "question": "2"
+      }
+    },
+    {
+      "id": "b-bd-2-1",
+      "prompt": "Kaplamalı tava hangi araçla yıkanır?",
+      "choices": [
+        {
+          "id": "A",
+          "text": "Metal bulaşık teli"
+        },
+        {
+          "id": "B",
+          "text": "Yumuşak bulaşık süngeri"
+        },
+        {
+          "id": "C",
+          "text": "Sert metal kazıyıcı"
+        },
+        {
+          "id": "D",
+          "text": "Sert kıllı fırça"
+        }
+      ],
+      "correct": "B",
+      "group": "2. Bölüm",
+      "chapter": 2,
+      "explanation": "Yüzeyi çizmeyen ve üreticinin uygun gördüğü araç seçilir.",
+      "source": {
+        "file": "Bulaşık Yıkama ve Atık Yönetimi.docx",
+        "question": "1"
+      }
+    },
+    {
+      "id": "b-bd-2-2",
+      "prompt": "Durulama neden yapılır?",
+      "choices": [
+        {
+          "id": "A",
+          "text": "Kabı bezle kurulamak için"
+        },
+        {
+          "id": "B",
+          "text": "Yemek artıklarını ıslatmak için"
+        },
+        {
+          "id": "C",
+          "text": "Yeni deterjan eklemek için"
+        },
+        {
+          "id": "D",
+          "text": "Deterjanı suyla uzaklaştırmak için"
+        }
+      ],
+      "correct": "D",
+      "group": "2. Bölüm",
+      "chapter": 2,
+      "explanation": "Durulamada temiz su kullanılarak deterjan ve gevşeyen kirler uzaklaştırılır.",
+      "source": {
+        "file": "Bulaşık Yıkama ve Atık Yönetimi.docx",
+        "question": "2"
+      }
+    },
+    {
+      "id": "b-bd-2-3",
+      "prompt": "Yıkama suyu kirlenmiş. Ne yapılır?",
+      "choices": [
+        {
+          "id": "A",
+          "text": "Suya deterjan eklenir."
+        },
+        {
+          "id": "B",
+          "text": "Aynı suyla devam edilir."
+        },
+        {
+          "id": "C",
+          "text": "Kirli su değiştirilir."
+        },
+        {
+          "id": "D",
+          "text": "Suya temiz su eklenir."
+        }
+      ],
+      "correct": "C",
+      "group": "2. Bölüm",
+      "chapter": 2,
+      "explanation": "Kirlenen yıkama suyu değiştirilir; yalnız su veya deterjan eklemek yeterli değildir.",
+      "source": {
+        "file": "Bulaşık Yıkama ve Atık Yönetimi.docx",
+        "question": "3"
+      }
+    },
+    {
+      "id": "b-bd-3-1",
+      "prompt": "Makine kapalı ve soğuk. Püskürtme kolu kepçeye takılıyor. Ne yapılır?",
+      "choices": [
+        {
+          "id": "A",
+          "text": "Kepçe yerinde bırakılır."
+        },
+        {
+          "id": "B",
+          "text": "Kepçe aşağı bastırılır."
+        },
+        {
+          "id": "C",
+          "text": "Kepçenin yeri değiştirilir."
+        },
+        {
+          "id": "D",
+          "text": "Makine hemen çalıştırılır."
+        }
+      ],
+      "correct": "C",
+      "group": "3. Bölüm",
+      "chapter": 3,
+      "explanation": "Kepçe, püskürtme kolunun yolunu açacak biçimde yeniden yerleştirilir.",
+      "source": {
+        "file": "Bulaşık Yıkama ve Atık Yönetimi.docx",
+        "question": "1"
+      }
+    },
+    {
+      "id": "b-bd-3-2",
+      "prompt": "Deterjan tableti konmadan önce eller nasıl hazırlanır?",
+      "choices": [
+        {
+          "id": "A",
+          "text": "Yıkanır ve kurulanır."
+        },
+        {
+          "id": "B",
+          "text": "Yalnız suyla ıslatılır."
+        },
+        {
+          "id": "C",
+          "text": "Islak bezle silinir."
+        },
+        {
+          "id": "D",
+          "text": "Yıkamadan eldiven giyilir."
+        }
+      ],
+      "correct": "A",
+      "group": "3. Bölüm",
+      "chapter": 3,
+      "explanation": "Deterjan tableti konmadan önce eller yıkanır ve tamamen kurulanır.",
+      "source": {
+        "file": "Bulaşık Yıkama ve Atık Yönetimi.docx",
+        "question": "2"
+      }
+    },
+    {
+      "id": "b-bd-4-2",
+      "prompt": "Temizlik ürünü nerede saklanır?",
+      "choices": [
+        {
+          "id": "A",
+          "text": "Boş su şişesinde"
+        },
+        {
+          "id": "B",
+          "text": "Kendi etiketli ambalajında"
+        },
+        {
+          "id": "C",
+          "text": "Boş yemek kabında"
+        },
+        {
+          "id": "D",
+          "text": "Etiketsiz bir şişede"
+        }
+      ],
+      "correct": "B",
+      "group": "4. Bölüm",
+      "chapter": 4,
+      "explanation": "Ürünün kimliği ve uyarıları korunur.",
+      "source": {
+        "file": "Bulaşık Yıkama ve Atık Yönetimi.docx",
+        "question": "2"
+      }
+    },
+    {
+      "id": "b-bd-4-3",
+      "prompt": "Gaz kokusu alan öğrenci ne yapar?",
+      "choices": [
+        {
+          "id": "A",
+          "text": "Uzaklaşıp öğretmene bildirir."
+        },
+        {
+          "id": "B",
+          "text": "Cihazı çalıştırıp kontrol eder."
+        },
+        {
+          "id": "C",
+          "text": "Düğmeleri açıp kapatır."
+        },
+        {
+          "id": "D",
+          "text": "Kokunun kaynağını arar."
+        }
+      ],
+      "correct": "A",
+      "group": "4. Bölüm",
+      "chapter": 4,
+      "explanation": "Öğrenci müdahale etmez ve güvenli uzaklaşır.",
+      "source": {
+        "file": "Bulaşık Yıkama ve Atık Yönetimi.docx",
+        "question": "3"
+      }
+    }
+  ],
+  "matches": [
+    {
+      "id": "bulasik-1",
+      "set": 1,
+      "prompt": "Görsele uygun adı bulunuz.",
+      "image": "assets/bulasik-guncel/arac-6.jpg",
+      "imageAlt": "Adı veya türü sorulan nesnenin fotoğrafı.",
+      "answer": "Bulaşık eldiveni",
+      "explanation": "Ne için kullanılır? Yıkama sırasında ellerin deterjanla temasını azaltmak için kullanılır.\nNasıl kullanılır? İçi kuru ve yırtıksız eldiven giyilir. Yiyecek hazırlamaya geçerken bulaşık eldiveni çıkarılır ve eller yıkanır.",
+      "source": {
+        "file": "Bulaşık Yıkama ve Atık Yönetimi.docx",
+        "card": 1
+      }
+    },
+    {
+      "id": "bulasik-2",
+      "set": 1,
+      "prompt": "Görsele uygun adı bulunuz.",
+      "image": "assets/bulasik-guncel/arac-7.jpg",
+      "imageAlt": "Adı veya türü sorulan nesnenin fotoğrafı.",
+      "answer": "Bulaşık süngeri",
+      "explanation": "Ne için kullanılır? Uygun kapların yüzeyindeki kiri uzaklaştırmak için kullanılır.\nNasıl kullanılır? Yüzeye uygun sünger seçilir. Süngerin kalın ve yumuşak yüzü yıkama için kullanılır. İnce ve pürüzlü yüzü serttir. Sert yüz kaplamalı tavada ve camda kullanılmaz.",
+      "source": {
+        "file": "Bulaşık Yıkama ve Atık Yönetimi.docx",
+        "card": 2
+      }
+    },
+    {
+      "id": "bulasik-3",
+      "set": 1,
+      "prompt": "Görsele uygun adı bulunuz.",
+      "image": "assets/bulasik-guncel/arac-8.jpg",
+      "imageAlt": "Adı veya türü sorulan nesnenin fotoğrafı.",
+      "answer": "Bulaşık fırçası",
+      "explanation": "Ne için kullanılır? Kapların içini ve ulaşılması güç yerleri temizlemek için kullanılır.\nNasıl kullanılır? Fırça sapından tutulur. Kabın içi, yüzeye uygun fırçayla ovalanır. Kılları bozulmuş fırça yenisiyle değiştirilir.",
+      "source": {
+        "file": "Bulaşık Yıkama ve Atık Yönetimi.docx",
+        "card": 3
+      }
+    },
+    {
+      "id": "bulasik-4",
+      "set": 1,
+      "prompt": "Görsele uygun adı bulunuz.",
+      "image": "assets/bulasik-guncel/arac-9.jpg",
+      "imageAlt": "Adı veya türü sorulan nesnenin fotoğrafı.",
+      "answer": "Kurulama rafı",
+      "explanation": "Ne için kullanılır? Temiz bulaşığın suyunun süzülmesi ve kuruması için kullanılır.\nNasıl kullanılır? Temiz bulaşıklar dengeli ve aralıklı dizilir. Rafın altında biriken su boşaltılır.",
+      "source": {
+        "file": "Bulaşık Yıkama ve Atık Yönetimi.docx",
+        "card": 4
+      }
+    },
+    {
+      "id": "bulasik-5",
+      "set": 1,
+      "prompt": "Görsele uygun adı bulunuz.",
+      "image": "assets/bulasik-guncel/arac-10.jpg",
+      "imageAlt": "Adı veya türü sorulan nesnenin fotoğrafı.",
+      "answer": "Silikon spatula",
+      "explanation": "Ne için kullanılır? Tabakta ve kapta kalan yemek artıklarını yıkamadan önce sıyırmak için kullanılır.\nNasıl kullanılır? Spatula sapından tutulur. Artıklar silikon uçla çöp kabına veya organik atık kabına sıyrılır. Silikon uç yüzeyi çizmez; bu yüzden kaplamalı tavada da kullanılır. Kullanımdan sonra yıkanıp kurutulur.",
+      "source": {
+        "file": "Bulaşık Yıkama ve Atık Yönetimi.docx",
+        "card": 5
+      }
+    },
+    {
+      "id": "bulasik-6",
+      "set": 1,
+      "prompt": "Görsele uygun adı bulunuz.",
+      "image": "assets/bulasik-guncel/arac-11.jpg",
+      "imageAlt": "Adı veya türü sorulan nesnenin fotoğrafı.",
+      "answer": "Mutfak termometresi",
+      "explanation": "Ne için kullanılır? Yıkama suyunun sıcaklığını ölçmek için kullanılır.\nNasıl kullanılır? Termometrenin ucu suya daldırılır. Ekrandaki sayı okunur. Yıkama suyunun sıcaklığı, ürünün kullanım bilgisine göre öğretmen tarafından belirlenir. Kullanımdan sonra ucu yıkanır ve kurulanır.",
+      "source": {
+        "file": "Bulaşık Yıkama ve Atık Yönetimi.docx",
+        "card": 6
+      }
+    },
+    {
+      "id": "bulasik-7",
+      "set": 1,
+      "prompt": "Görsele uygun adı bulunuz.",
+      "image": "assets/bulasik-guncel/arac-64.jpg",
+      "imageAlt": "Adı veya türü sorulan nesnenin fotoğrafı.",
+      "answer": "Pedallı çöp kovası",
+      "explanation": "Ne için kullanılır? Uygun atıkların kapaklı bir kovada toplanması için kullanılır.\nNasıl kullanılır? Pedala ayakla basılarak kapak açılır. Kova dolunca torbası değiştirilir; taşarsa kapak kapanmaz, koku oluşur ve haşere gelir.",
+      "source": {
+        "file": "Bulaşık Yıkama ve Atık Yönetimi.docx",
+        "card": 7
+      }
+    },
+    {
+      "id": "bulasik-8",
+      "set": 1,
+      "prompt": "Görsele uygun adı bulunuz.",
+      "image": "assets/bulasik-guncel/atik-0.jpg",
+      "imageAlt": "Adı veya türü sorulan nesnenin fotoğrafı.",
+      "answer": "Kâğıt ve karton",
+      "explanation": "Temiz karton kutu kâğıt ve karton atığıdır.",
+      "source": {
+        "file": "Bulaşık Yıkama ve Atık Yönetimi.docx",
+        "card": 8
+      }
+    },
+    {
+      "id": "bulasik-9",
+      "set": 1,
+      "prompt": "Görsele uygun adı bulunuz.",
+      "image": "assets/bulasik-guncel/atik-1.jpg",
+      "imageAlt": "Adı veya türü sorulan nesnenin fotoğrafı.",
+      "answer": "Plastik",
+      "explanation": "Boş plastik şişe plastik atıktır.",
+      "source": {
+        "file": "Bulaşık Yıkama ve Atık Yönetimi.docx",
+        "card": 9
+      }
+    },
+    {
+      "id": "bulasik-10",
+      "set": 1,
+      "prompt": "Görsele uygun adı bulunuz.",
+      "image": "assets/bulasik-guncel/atik-2.jpg",
+      "imageAlt": "Adı veya türü sorulan nesnenin fotoğrafı.",
+      "answer": "Cam",
+      "explanation": "Boş ve sağlam cam kavanoz cam ambalajdır.",
+      "source": {
+        "file": "Bulaşık Yıkama ve Atık Yönetimi.docx",
+        "card": 10
+      }
+    },
+    {
+      "id": "bulasik-11",
+      "set": 1,
+      "prompt": "Görsele uygun adı bulunuz.",
+      "image": "assets/bulasik-guncel/atik-3.jpg",
+      "imageAlt": "Adı veya türü sorulan nesnenin fotoğrafı.",
+      "answer": "Metal",
+      "explanation": "Boş konserve kutusu metal atıktır.",
+      "source": {
+        "file": "Bulaşık Yıkama ve Atık Yönetimi.docx",
+        "card": 11
+      }
+    },
+    {
+      "id": "bulasik-12",
+      "set": 1,
+      "prompt": "Görsele uygun adı bulunuz.",
+      "image": "assets/bulasik-guncel/atik-4.jpg",
+      "imageAlt": "Adı veya türü sorulan nesnenin fotoğrafı.",
+      "answer": "Organik atık",
+      "explanation": "Sebze kabukları organik atıktır.",
+      "source": {
+        "file": "Bulaşık Yıkama ve Atık Yönetimi.docx",
+        "card": 12
+      }
+    }
+  ],
+  "words": [],
+  "groups": [
+    {
+      "label": "1. Bölüm",
+      "chapter": 1
+    },
+    {
+      "label": "2. Bölüm",
+      "chapter": 2
+    },
+    {
+      "label": "3. Bölüm",
+      "chapter": 3
+    },
+    {
+      "label": "4. Bölüm",
+      "chapter": 4
+    }
+  ],
+  "distractors": {
+    "1": [
+      "Fırın eldiveni",
+      "Tek kullanımlık eldiven",
+      "Un eleği",
+      "Kepçe",
+      "Bitkisel atık yağ",
+      "Tekstil"
+    ]
+  }
 }
