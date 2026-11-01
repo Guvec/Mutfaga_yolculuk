@@ -1,0 +1,2076 @@
+{
+  "questions": [],
+  "matches": [
+    {
+      "id": "bh-01-01",
+      "set": 1,
+      "prompt": "Görselin doğru adını seç.",
+      "image": "assets/baharat/t01_01.jpg",
+      "imageAlt": "Besin fotoğrafı",
+      "answer": "PUL BİBER",
+      "hint": "Görselin rengini, biçimini ve yapısını incele.",
+      "explanation": "",
+      "source": {
+        "file": "Baharat_12_Gorsel_18_Ad.docx",
+        "page": 1,
+        "card": 1
+      }
+    },
+    {
+      "id": "bh-01-02",
+      "set": 1,
+      "prompt": "Görselin doğru adını seç.",
+      "image": "assets/baharat/t01_02.jpg",
+      "imageAlt": "Besin fotoğrafı",
+      "answer": "SUMAK",
+      "hint": "Görselin rengini, biçimini ve yapısını incele.",
+      "explanation": "",
+      "source": {
+        "file": "Baharat_12_Gorsel_18_Ad.docx",
+        "page": 1,
+        "card": 2
+      }
+    },
+    {
+      "id": "bh-01-03",
+      "set": 1,
+      "prompt": "Görselin doğru adını seç.",
+      "image": "assets/baharat/t01_03.jpg",
+      "imageAlt": "Besin fotoğrafı",
+      "answer": "İSOT",
+      "hint": "Görselin rengini, biçimini ve yapısını incele.",
+      "explanation": "",
+      "source": {
+        "file": "Baharat_12_Gorsel_18_Ad.docx",
+        "page": 1,
+        "card": 3
+      }
+    },
+    {
+      "id": "bh-01-04",
+      "set": 1,
+      "prompt": "Görselin doğru adını seç.",
+      "image": "assets/baharat/t01_04.jpg",
+      "imageAlt": "Besin fotoğrafı",
+      "answer": "KARABİBER",
+      "hint": "Görselin rengini, biçimini ve yapısını incele.",
+      "explanation": "",
+      "source": {
+        "file": "Baharat_12_Gorsel_18_Ad.docx",
+        "page": 1,
+        "card": 4
+      }
+    },
+    {
+      "id": "bh-01-05",
+      "set": 1,
+      "prompt": "Görselin doğru adını seç.",
+      "image": "assets/baharat/t01_05.jpg",
+      "imageAlt": "Besin fotoğrafı",
+      "answer": "KIRMIZI TOZ BİBER",
+      "hint": "Görselin rengini, biçimini ve yapısını incele.",
+      "explanation": "",
+      "source": {
+        "file": "Baharat_12_Gorsel_18_Ad.docx",
+        "page": 1,
+        "card": 5
+      }
+    },
+    {
+      "id": "bh-01-06",
+      "set": 1,
+      "prompt": "Görselin doğru adını seç.",
+      "image": "assets/baharat/t01_06.jpg",
+      "imageAlt": "Besin fotoğrafı",
+      "answer": "YENİBAHAR",
+      "hint": "Görselin rengini, biçimini ve yapısını incele.",
+      "explanation": "",
+      "source": {
+        "file": "Baharat_12_Gorsel_18_Ad.docx",
+        "page": 1,
+        "card": 6
+      }
+    },
+    {
+      "id": "bh-01-07",
+      "set": 1,
+      "prompt": "Görselin doğru adını seç.",
+      "image": "assets/baharat/t01_07.jpg",
+      "imageAlt": "Besin fotoğrafı",
+      "answer": "BEYAZ BİBER",
+      "hint": "Görselin rengini, biçimini ve yapısını incele.",
+      "explanation": "",
+      "source": {
+        "file": "Baharat_12_Gorsel_18_Ad.docx",
+        "page": 1,
+        "card": 7
+      }
+    },
+    {
+      "id": "bh-01-08",
+      "set": 1,
+      "prompt": "Görselin doğru adını seç.",
+      "image": "assets/baharat/t01_08.jpg",
+      "imageAlt": "Besin fotoğrafı",
+      "answer": "PEMBE BİBER",
+      "hint": "Görselin rengini, biçimini ve yapısını incele.",
+      "explanation": "",
+      "source": {
+        "file": "Baharat_12_Gorsel_18_Ad.docx",
+        "page": 1,
+        "card": 8
+      }
+    },
+    {
+      "id": "bh-01-09",
+      "set": 1,
+      "prompt": "Görselin doğru adını seç.",
+      "image": "assets/baharat/t01_09.jpg",
+      "imageAlt": "Besin fotoğrafı",
+      "answer": "SİÇUAN BİBERİ",
+      "hint": "Görselin rengini, biçimini ve yapısını incele.",
+      "explanation": "",
+      "source": {
+        "file": "Baharat_12_Gorsel_18_Ad.docx",
+        "page": 1,
+        "card": 9
+      }
+    },
+    {
+      "id": "bh-01-10",
+      "set": 1,
+      "prompt": "Görselin doğru adını seç.",
+      "image": "assets/baharat/t01_10.jpg",
+      "imageAlt": "Besin fotoğrafı",
+      "answer": "KİMYON",
+      "hint": "Görselin rengini, biçimini ve yapısını incele.",
+      "explanation": "",
+      "source": {
+        "file": "Baharat_12_Gorsel_18_Ad.docx",
+        "page": 1,
+        "card": 10
+      }
+    },
+    {
+      "id": "bh-01-11",
+      "set": 1,
+      "prompt": "Görselin doğru adını seç.",
+      "image": "assets/baharat/t01_11.jpg",
+      "imageAlt": "Besin fotoğrafı",
+      "answer": "KÖRİ",
+      "hint": "Görselin rengini, biçimini ve yapısını incele.",
+      "explanation": "",
+      "source": {
+        "file": "Baharat_12_Gorsel_18_Ad.docx",
+        "page": 1,
+        "card": 11
+      }
+    },
+    {
+      "id": "bh-01-12",
+      "set": 1,
+      "prompt": "Görselin doğru adını seç.",
+      "image": "assets/baharat/t01_12.jpg",
+      "imageAlt": "Besin fotoğrafı",
+      "answer": "TARÇIN",
+      "hint": "Görselin rengini, biçimini ve yapısını incele.",
+      "explanation": "",
+      "source": {
+        "file": "Baharat_12_Gorsel_18_Ad.docx",
+        "page": 1,
+        "card": 12
+      }
+    },
+    {
+      "id": "bh-02-01",
+      "set": 2,
+      "prompt": "Görselin doğru adını seç.",
+      "image": "assets/baharat/t02_01.jpg",
+      "imageAlt": "Besin fotoğrafı",
+      "answer": "KİŞNİŞ TOHUMU",
+      "hint": "Görselin rengini, biçimini ve yapısını incele.",
+      "explanation": "",
+      "source": {
+        "file": "Baharat_12_Gorsel_18_Ad.docx",
+        "page": 3,
+        "card": 1
+      }
+    },
+    {
+      "id": "bh-02-02",
+      "set": 2,
+      "prompt": "Görselin doğru adını seç.",
+      "image": "assets/baharat/t02_02.jpg",
+      "imageAlt": "Besin fotoğrafı",
+      "answer": "HARDAL TOHUMU",
+      "hint": "Görselin rengini, biçimini ve yapısını incele.",
+      "explanation": "",
+      "source": {
+        "file": "Baharat_12_Gorsel_18_Ad.docx",
+        "page": 3,
+        "card": 2
+      }
+    },
+    {
+      "id": "bh-02-03",
+      "set": 2,
+      "prompt": "Görselin doğru adını seç.",
+      "image": "assets/baharat/t02_03.jpg",
+      "imageAlt": "Besin fotoğrafı",
+      "answer": "SUSAM",
+      "hint": "Görselin rengini, biçimini ve yapısını incele.",
+      "explanation": "",
+      "source": {
+        "file": "Baharat_12_Gorsel_18_Ad.docx",
+        "page": 3,
+        "card": 3
+      }
+    },
+    {
+      "id": "bh-02-04",
+      "set": 2,
+      "prompt": "Görselin doğru adını seç.",
+      "image": "assets/baharat/t02_04.jpg",
+      "imageAlt": "Besin fotoğrafı",
+      "answer": "REZENE TOHUMU",
+      "hint": "Görselin rengini, biçimini ve yapısını incele.",
+      "explanation": "",
+      "source": {
+        "file": "Baharat_12_Gorsel_18_Ad.docx",
+        "page": 3,
+        "card": 4
+      }
+    },
+    {
+      "id": "bh-02-05",
+      "set": 2,
+      "prompt": "Görselin doğru adını seç.",
+      "image": "assets/baharat/t02_05.jpg",
+      "imageAlt": "Besin fotoğrafı",
+      "answer": "ÇÖREK OTU",
+      "hint": "Görselin rengini, biçimini ve yapısını incele.",
+      "explanation": "",
+      "source": {
+        "file": "Baharat_12_Gorsel_18_Ad.docx",
+        "page": 3,
+        "card": 5
+      }
+    },
+    {
+      "id": "bh-02-06",
+      "set": 2,
+      "prompt": "Görselin doğru adını seç.",
+      "image": "assets/baharat/t02_06.jpg",
+      "imageAlt": "Besin fotoğrafı",
+      "answer": "ÇEMEN",
+      "hint": "Görselin rengini, biçimini ve yapısını incele.",
+      "explanation": "",
+      "source": {
+        "file": "Baharat_12_Gorsel_18_Ad.docx",
+        "page": 3,
+        "card": 6
+      }
+    },
+    {
+      "id": "bh-02-07",
+      "set": 2,
+      "prompt": "Görselin doğru adını seç.",
+      "image": "assets/baharat/t02_07.jpg",
+      "imageAlt": "Besin fotoğrafı",
+      "answer": "MAHLEP",
+      "hint": "Görselin rengini, biçimini ve yapısını incele.",
+      "explanation": "",
+      "source": {
+        "file": "Baharat_12_Gorsel_18_Ad.docx",
+        "page": 3,
+        "card": 7
+      }
+    },
+    {
+      "id": "bh-02-08",
+      "set": 2,
+      "prompt": "Görselin doğru adını seç.",
+      "image": "assets/baharat/t02_08.jpg",
+      "imageAlt": "Besin fotoğrafı",
+      "answer": "KAKULE",
+      "hint": "Görselin rengini, biçimini ve yapısını incele.",
+      "explanation": "",
+      "source": {
+        "file": "Baharat_12_Gorsel_18_Ad.docx",
+        "page": 3,
+        "card": 8
+      }
+    },
+    {
+      "id": "bh-02-09",
+      "set": 2,
+      "prompt": "Görselin doğru adını seç.",
+      "image": "assets/baharat/t02_09.jpg",
+      "imageAlt": "Besin fotoğrafı",
+      "answer": "HAŞHAŞ TOHUMU",
+      "hint": "Görselin rengini, biçimini ve yapısını incele.",
+      "explanation": "",
+      "source": {
+        "file": "Baharat_12_Gorsel_18_Ad.docx",
+        "page": 3,
+        "card": 9
+      }
+    },
+    {
+      "id": "bh-02-10",
+      "set": 2,
+      "prompt": "Görselin doğru adını seç.",
+      "image": "assets/baharat/t02_10.jpg",
+      "imageAlt": "Besin fotoğrafı",
+      "answer": "ANASON",
+      "hint": "Görselin rengini, biçimini ve yapısını incele.",
+      "explanation": "",
+      "source": {
+        "file": "Baharat_12_Gorsel_18_Ad.docx",
+        "page": 3,
+        "card": 10
+      }
+    },
+    {
+      "id": "bh-02-11",
+      "set": 2,
+      "prompt": "Görselin doğru adını seç.",
+      "image": "assets/baharat/t02_11.jpg",
+      "imageAlt": "Besin fotoğrafı",
+      "answer": "YILDIZ ANASON",
+      "hint": "Görselin rengini, biçimini ve yapısını incele.",
+      "explanation": "",
+      "source": {
+        "file": "Baharat_12_Gorsel_18_Ad.docx",
+        "page": 3,
+        "card": 11
+      }
+    },
+    {
+      "id": "bh-02-12",
+      "set": 2,
+      "prompt": "Görselin doğru adını seç.",
+      "image": "assets/baharat/t02_12.jpg",
+      "imageAlt": "Besin fotoğrafı",
+      "answer": "KARANFİL",
+      "hint": "Görselin rengini, biçimini ve yapısını incele.",
+      "explanation": "",
+      "source": {
+        "file": "Baharat_12_Gorsel_18_Ad.docx",
+        "page": 3,
+        "card": 12
+      }
+    },
+    {
+      "id": "bh-03-01",
+      "set": 3,
+      "prompt": "Görselin doğru adını seç.",
+      "image": "assets/baharat/t03_01.jpg",
+      "imageAlt": "Besin fotoğrafı",
+      "answer": "TAZE YEŞİL FESLEĞEN",
+      "hint": "Görselin rengini, biçimini ve yapısını incele.",
+      "explanation": "",
+      "source": {
+        "file": "Baharat_12_Gorsel_18_Ad.docx",
+        "page": 5,
+        "card": 1
+      }
+    },
+    {
+      "id": "bh-03-02",
+      "set": 3,
+      "prompt": "Görselin doğru adını seç.",
+      "image": "assets/baharat/t03_02.jpg",
+      "imageAlt": "Besin fotoğrafı",
+      "answer": "TAZE BİBERİYE",
+      "hint": "Görselin rengini, biçimini ve yapısını incele.",
+      "explanation": "",
+      "source": {
+        "file": "Baharat_12_Gorsel_18_Ad.docx",
+        "page": 5,
+        "card": 2
+      }
+    },
+    {
+      "id": "bh-03-03",
+      "set": 3,
+      "prompt": "Görselin doğru adını seç.",
+      "image": "assets/baharat/t03_03.jpg",
+      "imageAlt": "Besin fotoğrafı",
+      "answer": "TAZE KEKİK",
+      "hint": "Görselin rengini, biçimini ve yapısını incele.",
+      "explanation": "",
+      "source": {
+        "file": "Baharat_12_Gorsel_18_Ad.docx",
+        "page": 5,
+        "card": 3
+      }
+    },
+    {
+      "id": "bh-03-04",
+      "set": 3,
+      "prompt": "Görselin doğru adını seç.",
+      "image": "assets/baharat/t03_04.jpg",
+      "imageAlt": "Besin fotoğrafı",
+      "answer": "TARHUN",
+      "hint": "Görselin rengini, biçimini ve yapısını incele.",
+      "explanation": "",
+      "source": {
+        "file": "Baharat_12_Gorsel_18_Ad.docx",
+        "page": 5,
+        "card": 4
+      }
+    },
+    {
+      "id": "bh-03-05",
+      "set": 3,
+      "prompt": "Görselin doğru adını seç.",
+      "image": "assets/baharat/t03_05.jpg",
+      "imageAlt": "Besin fotoğrafı",
+      "answer": "ROKA",
+      "hint": "Görselin rengini, biçimini ve yapısını incele.",
+      "explanation": "",
+      "source": {
+        "file": "Baharat_12_Gorsel_18_Ad.docx",
+        "page": 5,
+        "card": 5
+      }
+    },
+    {
+      "id": "bh-03-06",
+      "set": 3,
+      "prompt": "Görselin doğru adını seç.",
+      "image": "assets/baharat/t03_06.jpg",
+      "imageAlt": "Besin fotoğrafı",
+      "answer": "MERCANKÖŞK",
+      "hint": "Görselin rengini, biçimini ve yapısını incele.",
+      "explanation": "",
+      "source": {
+        "file": "Baharat_12_Gorsel_18_Ad.docx",
+        "page": 5,
+        "card": 6
+      }
+    },
+    {
+      "id": "bh-03-07",
+      "set": 3,
+      "prompt": "Görselin doğru adını seç.",
+      "image": "assets/baharat/t03_07.jpg",
+      "imageAlt": "Besin fotoğrafı",
+      "answer": "ADAÇAYI",
+      "hint": "Görselin rengini, biçimini ve yapısını incele.",
+      "explanation": "",
+      "source": {
+        "file": "Baharat_12_Gorsel_18_Ad.docx",
+        "page": 5,
+        "card": 7
+      }
+    },
+    {
+      "id": "bh-03-08",
+      "set": 3,
+      "prompt": "Görselin doğru adını seç.",
+      "image": "assets/baharat/t03_08.jpg",
+      "imageAlt": "Besin fotoğrafı",
+      "answer": "MAYDANOZ",
+      "hint": "Görselin rengini, biçimini ve yapısını incele.",
+      "explanation": "",
+      "source": {
+        "file": "Baharat_12_Gorsel_18_Ad.docx",
+        "page": 5,
+        "card": 8
+      }
+    },
+    {
+      "id": "bh-03-09",
+      "set": 3,
+      "prompt": "Görselin doğru adını seç.",
+      "image": "assets/baharat/t03_09.jpg",
+      "imageAlt": "Besin fotoğrafı",
+      "answer": "TAZE NANE",
+      "hint": "Görselin rengini, biçimini ve yapısını incele.",
+      "explanation": "",
+      "source": {
+        "file": "Baharat_12_Gorsel_18_Ad.docx",
+        "page": 5,
+        "card": 9
+      }
+    },
+    {
+      "id": "bh-03-10",
+      "set": 3,
+      "prompt": "Görselin doğru adını seç.",
+      "image": "assets/baharat/t03_10.jpg",
+      "imageAlt": "Besin fotoğrafı",
+      "answer": "KUZUKULAĞI",
+      "hint": "Görselin rengini, biçimini ve yapısını incele.",
+      "explanation": "",
+      "source": {
+        "file": "Baharat_12_Gorsel_18_Ad.docx",
+        "page": 5,
+        "card": 10
+      }
+    },
+    {
+      "id": "bh-03-11",
+      "set": 3,
+      "prompt": "Görselin doğru adını seç.",
+      "image": "assets/baharat/t03_11.jpg",
+      "imageAlt": "Besin fotoğrafı",
+      "answer": "MELİSA (OĞUL OTU)",
+      "hint": "Görselin rengini, biçimini ve yapısını incele.",
+      "explanation": "",
+      "source": {
+        "file": "Baharat_12_Gorsel_18_Ad.docx",
+        "page": 5,
+        "card": 11
+      }
+    },
+    {
+      "id": "bh-03-12",
+      "set": 3,
+      "prompt": "Görselin doğru adını seç.",
+      "image": "assets/baharat/t03_12.jpg",
+      "imageAlt": "Besin fotoğrafı",
+      "answer": "TAZE DEREOTU",
+      "hint": "Görselin rengini, biçimini ve yapısını incele.",
+      "explanation": "",
+      "source": {
+        "file": "Baharat_12_Gorsel_18_Ad.docx",
+        "page": 5,
+        "card": 12
+      }
+    },
+    {
+      "id": "bh-04-01",
+      "set": 4,
+      "prompt": "Görselin doğru adını seç.",
+      "image": "assets/baharat/t04_01.jpg",
+      "imageAlt": "Besin fotoğrafı",
+      "answer": "KURU NANE",
+      "hint": "Görselin rengini, biçimini ve yapısını incele.",
+      "explanation": "",
+      "source": {
+        "file": "Baharat_12_Gorsel_18_Ad.docx",
+        "page": 7,
+        "card": 1
+      }
+    },
+    {
+      "id": "bh-04-02",
+      "set": 4,
+      "prompt": "Görselin doğru adını seç.",
+      "image": "assets/baharat/t04_02.jpg",
+      "imageAlt": "Besin fotoğrafı",
+      "answer": "TAZE NANE",
+      "hint": "Görselin rengini, biçimini ve yapısını incele.",
+      "explanation": "",
+      "source": {
+        "file": "Baharat_12_Gorsel_18_Ad.docx",
+        "page": 7,
+        "card": 2
+      }
+    },
+    {
+      "id": "bh-04-03",
+      "set": 4,
+      "prompt": "Görselin doğru adını seç.",
+      "image": "assets/baharat/t04_03.jpg",
+      "imageAlt": "Besin fotoğrafı",
+      "answer": "KURU KEKİK",
+      "hint": "Görselin rengini, biçimini ve yapısını incele.",
+      "explanation": "",
+      "source": {
+        "file": "Baharat_12_Gorsel_18_Ad.docx",
+        "page": 7,
+        "card": 3
+      }
+    },
+    {
+      "id": "bh-04-04",
+      "set": 4,
+      "prompt": "Görselin doğru adını seç.",
+      "image": "assets/baharat/t04_04.jpg",
+      "imageAlt": "Besin fotoğrafı",
+      "answer": "TAZE KEKİK",
+      "hint": "Görselin rengini, biçimini ve yapısını incele.",
+      "explanation": "",
+      "source": {
+        "file": "Baharat_12_Gorsel_18_Ad.docx",
+        "page": 7,
+        "card": 4
+      }
+    },
+    {
+      "id": "bh-04-05",
+      "set": 4,
+      "prompt": "Görselin doğru adını seç.",
+      "image": "assets/baharat/t04_05.jpg",
+      "imageAlt": "Besin fotoğrafı",
+      "answer": "KURU DEREOTU",
+      "hint": "Görselin rengini, biçimini ve yapısını incele.",
+      "explanation": "",
+      "source": {
+        "file": "Baharat_12_Gorsel_18_Ad.docx",
+        "page": 7,
+        "card": 5
+      }
+    },
+    {
+      "id": "bh-04-06",
+      "set": 4,
+      "prompt": "Görselin doğru adını seç.",
+      "image": "assets/baharat/t04_06.jpg",
+      "imageAlt": "Besin fotoğrafı",
+      "answer": "TAZE DEREOTU",
+      "hint": "Görselin rengini, biçimini ve yapısını incele.",
+      "explanation": "",
+      "source": {
+        "file": "Baharat_12_Gorsel_18_Ad.docx",
+        "page": 7,
+        "card": 6
+      }
+    },
+    {
+      "id": "bh-04-07",
+      "set": 4,
+      "prompt": "Görselin doğru adını seç.",
+      "image": "assets/baharat/t04_07.jpg",
+      "imageAlt": "Besin fotoğrafı",
+      "answer": "TAZE MOR REYHAN",
+      "hint": "Görselin rengini, biçimini ve yapısını incele.",
+      "explanation": "",
+      "source": {
+        "file": "Baharat_12_Gorsel_18_Ad.docx",
+        "page": 7,
+        "card": 7
+      }
+    },
+    {
+      "id": "bh-04-08",
+      "set": 4,
+      "prompt": "Görselin doğru adını seç.",
+      "image": "assets/baharat/t04_08.jpg",
+      "imageAlt": "Besin fotoğrafı",
+      "answer": "KURU MOR REYHAN",
+      "hint": "Görselin rengini, biçimini ve yapısını incele.",
+      "explanation": "",
+      "source": {
+        "file": "Baharat_12_Gorsel_18_Ad.docx",
+        "page": 7,
+        "card": 8
+      }
+    },
+    {
+      "id": "bh-04-09",
+      "set": 4,
+      "prompt": "Görselin doğru adını seç.",
+      "image": "assets/baharat/t04_09.jpg",
+      "imageAlt": "Besin fotoğrafı",
+      "answer": "KURU YEŞİL FESLEĞEN",
+      "hint": "Görselin rengini, biçimini ve yapısını incele.",
+      "explanation": "",
+      "source": {
+        "file": "Baharat_12_Gorsel_18_Ad.docx",
+        "page": 7,
+        "card": 9
+      }
+    },
+    {
+      "id": "bh-04-10",
+      "set": 4,
+      "prompt": "Görselin doğru adını seç.",
+      "image": "assets/baharat/t04_10.jpg",
+      "imageAlt": "Besin fotoğrafı",
+      "answer": "TAZE YEŞİL FESLEĞEN",
+      "hint": "Görselin rengini, biçimini ve yapısını incele.",
+      "explanation": "",
+      "source": {
+        "file": "Baharat_12_Gorsel_18_Ad.docx",
+        "page": 7,
+        "card": 10
+      }
+    },
+    {
+      "id": "bh-04-11",
+      "set": 4,
+      "prompt": "Görselin doğru adını seç.",
+      "image": "assets/baharat/t04_11.jpg",
+      "imageAlt": "Besin fotoğrafı",
+      "answer": "KURU BİBERİYE",
+      "hint": "Görselin rengini, biçimini ve yapısını incele.",
+      "explanation": "",
+      "source": {
+        "file": "Baharat_12_Gorsel_18_Ad.docx",
+        "page": 7,
+        "card": 11
+      }
+    },
+    {
+      "id": "bh-04-12",
+      "set": 4,
+      "prompt": "Görselin doğru adını seç.",
+      "image": "assets/baharat/t04_12.jpg",
+      "imageAlt": "Besin fotoğrafı",
+      "answer": "NORİ",
+      "hint": "Görselin rengini, biçimini ve yapısını incele.",
+      "explanation": "",
+      "source": {
+        "file": "Baharat_12_Gorsel_18_Ad.docx",
+        "page": 7,
+        "card": 12
+      }
+    },
+    {
+      "id": "bh-05-01",
+      "set": 5,
+      "prompt": "Görselin doğru adını seç.",
+      "image": "assets/baharat/t05_01.jpg",
+      "imageAlt": "Besin fotoğrafı",
+      "answer": "KURU GÜL TAÇ YAPRAĞI",
+      "hint": "Görselin rengini, biçimini ve yapısını incele.",
+      "explanation": "",
+      "source": {
+        "file": "Baharat_12_Gorsel_18_Ad.docx",
+        "page": 9,
+        "card": 1
+      }
+    },
+    {
+      "id": "bh-05-02",
+      "set": 5,
+      "prompt": "Görselin doğru adını seç.",
+      "image": "assets/baharat/t05_02.jpg",
+      "imageAlt": "Besin fotoğrafı",
+      "answer": "KUŞBURNU",
+      "hint": "Görselin rengini, biçimini ve yapısını incele.",
+      "explanation": "",
+      "source": {
+        "file": "Baharat_12_Gorsel_18_Ad.docx",
+        "page": 9,
+        "card": 2
+      }
+    },
+    {
+      "id": "bh-05-03",
+      "set": 5,
+      "prompt": "Görselin doğru adını seç.",
+      "image": "assets/baharat/t05_03.jpg",
+      "imageAlt": "Besin fotoğrafı",
+      "answer": "IHLAMUR",
+      "hint": "Görselin rengini, biçimini ve yapısını incele.",
+      "explanation": "",
+      "source": {
+        "file": "Baharat_12_Gorsel_18_Ad.docx",
+        "page": 9,
+        "card": 3
+      }
+    },
+    {
+      "id": "bh-05-04",
+      "set": 5,
+      "prompt": "Görselin doğru adını seç.",
+      "image": "assets/baharat/t05_04.jpg",
+      "imageAlt": "Besin fotoğrafı",
+      "answer": "VANİLYA",
+      "hint": "Görselin rengini, biçimini ve yapısını incele.",
+      "explanation": "",
+      "source": {
+        "file": "Baharat_12_Gorsel_18_Ad.docx",
+        "page": 9,
+        "card": 4
+      }
+    },
+    {
+      "id": "bh-05-05",
+      "set": 5,
+      "prompt": "Görselin doğru adını seç.",
+      "image": "assets/baharat/t05_05.jpg",
+      "imageAlt": "Besin fotoğrafı",
+      "answer": "SAFRAN",
+      "hint": "Görselin rengini, biçimini ve yapısını incele.",
+      "explanation": "",
+      "source": {
+        "file": "Baharat_12_Gorsel_18_Ad.docx",
+        "page": 9,
+        "card": 5
+      }
+    },
+    {
+      "id": "bh-05-06",
+      "set": 5,
+      "prompt": "Görselin doğru adını seç.",
+      "image": "assets/baharat/t05_06.jpg",
+      "imageAlt": "Besin fotoğrafı",
+      "answer": "LAVANTA",
+      "hint": "Görselin rengini, biçimini ve yapısını incele.",
+      "explanation": "",
+      "source": {
+        "file": "Baharat_12_Gorsel_18_Ad.docx",
+        "page": 9,
+        "card": 6
+      }
+    },
+    {
+      "id": "bh-05-07",
+      "set": 5,
+      "prompt": "Görselin doğru adını seç.",
+      "image": "assets/baharat/t05_07.jpg",
+      "imageAlt": "Besin fotoğrafı",
+      "answer": "HİBİSKUS",
+      "hint": "Görselin rengini, biçimini ve yapısını incele.",
+      "explanation": "",
+      "source": {
+        "file": "Baharat_12_Gorsel_18_Ad.docx",
+        "page": 9,
+        "card": 7
+      }
+    },
+    {
+      "id": "bh-05-08",
+      "set": 5,
+      "prompt": "Görselin doğru adını seç.",
+      "image": "assets/baharat/t05_08.jpg",
+      "imageAlt": "Besin fotoğrafı",
+      "answer": "KELEBEK BEZELYESİ ÇİÇEĞİ",
+      "hint": "Görselin rengini, biçimini ve yapısını incele.",
+      "explanation": "",
+      "source": {
+        "file": "Baharat_12_Gorsel_18_Ad.docx",
+        "page": 9,
+        "card": 8
+      }
+    },
+    {
+      "id": "bh-05-09",
+      "set": 5,
+      "prompt": "Görselin doğru adını seç.",
+      "image": "assets/baharat/t05_09.jpg",
+      "imageAlt": "Besin fotoğrafı",
+      "answer": "PAPATYA",
+      "hint": "Görselin rengini, biçimini ve yapısını incele.",
+      "explanation": "",
+      "source": {
+        "file": "Baharat_12_Gorsel_18_Ad.docx",
+        "page": 9,
+        "card": 9
+      }
+    },
+    {
+      "id": "bh-05-10",
+      "set": 5,
+      "prompt": "Görselin doğru adını seç.",
+      "image": "assets/baharat/t05_10.jpg",
+      "imageAlt": "Besin fotoğrafı",
+      "answer": "MEYAN KÖKÜ",
+      "hint": "Görselin rengini, biçimini ve yapısını incele.",
+      "explanation": "",
+      "source": {
+        "file": "Baharat_12_Gorsel_18_Ad.docx",
+        "page": 9,
+        "card": 10
+      }
+    },
+    {
+      "id": "bh-05-11",
+      "set": 5,
+      "prompt": "Görselin doğru adını seç.",
+      "image": "assets/baharat/t05_11.jpg",
+      "imageAlt": "Besin fotoğrafı",
+      "answer": "LİMON OTU",
+      "hint": "Görselin rengini, biçimini ve yapısını incele.",
+      "explanation": "",
+      "source": {
+        "file": "Baharat_12_Gorsel_18_Ad.docx",
+        "page": 9,
+        "card": 11
+      }
+    },
+    {
+      "id": "bh-05-12",
+      "set": 5,
+      "prompt": "Görselin doğru adını seç.",
+      "image": "assets/baharat/t05_12.jpg",
+      "imageAlt": "Besin fotoğrafı",
+      "answer": "PANDAN YAPRAĞI",
+      "hint": "Görselin rengini, biçimini ve yapısını incele.",
+      "explanation": "",
+      "source": {
+        "file": "Baharat_12_Gorsel_18_Ad.docx",
+        "page": 9,
+        "card": 12
+      }
+    },
+    {
+      "id": "bh-06-01",
+      "set": 6,
+      "prompt": "Görselin doğru adını seç.",
+      "image": "assets/baharat/t06_01.jpg",
+      "imageAlt": "Besin fotoğrafı",
+      "answer": "ZERDEÇAL",
+      "hint": "Görselin rengini, biçimini ve yapısını incele.",
+      "explanation": "",
+      "source": {
+        "file": "Baharat_12_Gorsel_18_Ad.docx",
+        "page": 11,
+        "card": 1
+      }
+    },
+    {
+      "id": "bh-06-02",
+      "set": 6,
+      "prompt": "Görselin doğru adını seç.",
+      "image": "assets/baharat/t06_02.jpg",
+      "imageAlt": "Besin fotoğrafı",
+      "answer": "ZENCEFİL",
+      "hint": "Görselin rengini, biçimini ve yapısını incele.",
+      "explanation": "",
+      "source": {
+        "file": "Baharat_12_Gorsel_18_Ad.docx",
+        "page": 11,
+        "card": 2
+      }
+    },
+    {
+      "id": "bh-06-03",
+      "set": 6,
+      "prompt": "Görselin doğru adını seç.",
+      "image": "assets/baharat/t06_03.jpg",
+      "imageAlt": "Besin fotoğrafı",
+      "answer": "ÇEMEN",
+      "hint": "Görselin rengini, biçimini ve yapısını incele.",
+      "explanation": "",
+      "source": {
+        "file": "Baharat_12_Gorsel_18_Ad.docx",
+        "page": 11,
+        "card": 3
+      }
+    },
+    {
+      "id": "bh-06-04",
+      "set": 6,
+      "prompt": "Görselin doğru adını seç.",
+      "image": "assets/baharat/t06_04.jpg",
+      "imageAlt": "Besin fotoğrafı",
+      "answer": "MAHLEP",
+      "hint": "Görselin rengini, biçimini ve yapısını incele.",
+      "explanation": "",
+      "source": {
+        "file": "Baharat_12_Gorsel_18_Ad.docx",
+        "page": 11,
+        "card": 4
+      }
+    },
+    {
+      "id": "bh-06-05",
+      "set": 6,
+      "prompt": "Görselin doğru adını seç.",
+      "image": "assets/baharat/t06_05.jpg",
+      "imageAlt": "Besin fotoğrafı",
+      "answer": "KAKAO",
+      "hint": "Görselin rengini, biçimini ve yapısını incele.",
+      "explanation": "",
+      "source": {
+        "file": "Baharat_12_Gorsel_18_Ad.docx",
+        "page": 11,
+        "card": 5
+      }
+    },
+    {
+      "id": "bh-06-06",
+      "set": 6,
+      "prompt": "Görselin doğru adını seç.",
+      "image": "assets/baharat/t06_06.jpg",
+      "imageAlt": "Besin fotoğrafı",
+      "answer": "MISIR UNU",
+      "hint": "Görselin rengini, biçimini ve yapısını incele.",
+      "explanation": "",
+      "source": {
+        "file": "Baharat_12_Gorsel_18_Ad.docx",
+        "page": 11,
+        "card": 6
+      }
+    },
+    {
+      "id": "bh-06-07",
+      "set": 6,
+      "prompt": "Görselin doğru adını seç.",
+      "image": "assets/baharat/t06_07.jpg",
+      "imageAlt": "Besin fotoğrafı",
+      "answer": "BEYAZ BİBER",
+      "hint": "Görselin rengini, biçimini ve yapısını incele.",
+      "explanation": "",
+      "source": {
+        "file": "Baharat_12_Gorsel_18_Ad.docx",
+        "page": 11,
+        "card": 7
+      }
+    },
+    {
+      "id": "bh-06-08",
+      "set": 6,
+      "prompt": "Görselin doğru adını seç.",
+      "image": "assets/baharat/t06_08.jpg",
+      "imageAlt": "Besin fotoğrafı",
+      "answer": "SARIMSAK TOZU",
+      "hint": "Görselin rengini, biçimini ve yapısını incele.",
+      "explanation": "",
+      "source": {
+        "file": "Baharat_12_Gorsel_18_Ad.docx",
+        "page": 11,
+        "card": 8
+      }
+    },
+    {
+      "id": "bh-06-09",
+      "set": 6,
+      "prompt": "Görselin doğru adını seç.",
+      "image": "assets/baharat/t06_09.jpg",
+      "imageAlt": "Besin fotoğrafı",
+      "answer": "SOĞAN TOZU",
+      "hint": "Görselin rengini, biçimini ve yapısını incele.",
+      "explanation": "",
+      "source": {
+        "file": "Baharat_12_Gorsel_18_Ad.docx",
+        "page": 11,
+        "card": 9
+      }
+    },
+    {
+      "id": "bh-06-10",
+      "set": 6,
+      "prompt": "Görselin doğru adını seç.",
+      "image": "assets/baharat/t06_10.jpg",
+      "imageAlt": "Besin fotoğrafı",
+      "answer": "YULAF UNU",
+      "hint": "Görselin rengini, biçimini ve yapısını incele.",
+      "explanation": "",
+      "source": {
+        "file": "Baharat_12_Gorsel_18_Ad.docx",
+        "page": 11,
+        "card": 10
+      }
+    },
+    {
+      "id": "bh-06-11",
+      "set": 6,
+      "prompt": "Görselin doğru adını seç.",
+      "image": "assets/baharat/t06_11.jpg",
+      "imageAlt": "Besin fotoğrafı",
+      "answer": "MATCHA",
+      "hint": "Görselin rengini, biçimini ve yapısını incele.",
+      "explanation": "",
+      "source": {
+        "file": "Baharat_12_Gorsel_18_Ad.docx",
+        "page": 11,
+        "card": 11
+      }
+    },
+    {
+      "id": "bh-06-12",
+      "set": 6,
+      "prompt": "Görselin doğru adını seç.",
+      "image": "assets/baharat/t06_12.jpg",
+      "imageAlt": "Besin fotoğrafı",
+      "answer": "KIRMIZI PANCAR TOZU",
+      "hint": "Görselin rengini, biçimini ve yapısını incele.",
+      "explanation": "",
+      "source": {
+        "file": "Baharat_12_Gorsel_18_Ad.docx",
+        "page": 11,
+        "card": 12
+      }
+    },
+    {
+      "id": "bh-07-01",
+      "set": 7,
+      "prompt": "Görselin doğru adını seç.",
+      "image": "assets/baharat/t07_01.jpg",
+      "imageAlt": "Besin fotoğrafı",
+      "answer": "DOMATES SALÇASI",
+      "hint": "Görselin rengini, biçimini ve yapısını incele.",
+      "explanation": "",
+      "source": {
+        "file": "Baharat_12_Gorsel_18_Ad.docx",
+        "page": 13,
+        "card": 1
+      }
+    },
+    {
+      "id": "bh-07-02",
+      "set": 7,
+      "prompt": "Görselin doğru adını seç.",
+      "image": "assets/baharat/t07_02.jpg",
+      "imageAlt": "Besin fotoğrafı",
+      "answer": "BİBER SALÇASI",
+      "hint": "Görselin rengini, biçimini ve yapısını incele.",
+      "explanation": "",
+      "source": {
+        "file": "Baharat_12_Gorsel_18_Ad.docx",
+        "page": 13,
+        "card": 2
+      }
+    },
+    {
+      "id": "bh-07-03",
+      "set": 7,
+      "prompt": "Görselin doğru adını seç.",
+      "image": "assets/baharat/t07_03.jpg",
+      "imageAlt": "Besin fotoğrafı",
+      "answer": "KURU DOMATES",
+      "hint": "Görselin rengini, biçimini ve yapısını incele.",
+      "explanation": "",
+      "source": {
+        "file": "Baharat_12_Gorsel_18_Ad.docx",
+        "page": 13,
+        "card": 3
+      }
+    },
+    {
+      "id": "bh-07-04",
+      "set": 7,
+      "prompt": "Görselin doğru adını seç.",
+      "image": "assets/baharat/t07_04.jpg",
+      "imageAlt": "Besin fotoğrafı",
+      "answer": "DEMİRHİNDİ",
+      "hint": "Görselin rengini, biçimini ve yapısını incele.",
+      "explanation": "",
+      "source": {
+        "file": "Baharat_12_Gorsel_18_Ad.docx",
+        "page": 13,
+        "card": 4
+      }
+    },
+    {
+      "id": "bh-07-05",
+      "set": 7,
+      "prompt": "Görselin doğru adını seç.",
+      "image": "assets/baharat/t07_05.jpg",
+      "imageAlt": "Besin fotoğrafı",
+      "answer": "ZEYTİNYAĞI",
+      "hint": "Görselin rengini, biçimini ve yapısını incele.",
+      "explanation": "",
+      "source": {
+        "file": "Baharat_12_Gorsel_18_Ad.docx",
+        "page": 13,
+        "card": 5
+      }
+    },
+    {
+      "id": "bh-07-06",
+      "set": 7,
+      "prompt": "Görselin doğru adını seç.",
+      "image": "assets/baharat/t07_06.jpg",
+      "imageAlt": "Besin fotoğrafı",
+      "answer": "KEÇİBOYNUZU PEKMEZİ",
+      "hint": "Görselin rengini, biçimini ve yapısını incele.",
+      "explanation": "",
+      "source": {
+        "file": "Baharat_12_Gorsel_18_Ad.docx",
+        "page": 13,
+        "card": 6
+      }
+    },
+    {
+      "id": "bh-07-07",
+      "set": 7,
+      "prompt": "Görselin doğru adını seç.",
+      "image": "assets/baharat/t07_07.jpg",
+      "imageAlt": "Besin fotoğrafı",
+      "answer": "ÜZÜM PEKMEZİ",
+      "hint": "Görselin rengini, biçimini ve yapısını incele.",
+      "explanation": "",
+      "source": {
+        "file": "Baharat_12_Gorsel_18_Ad.docx",
+        "page": 13,
+        "card": 7
+      }
+    },
+    {
+      "id": "bh-07-08",
+      "set": 7,
+      "prompt": "Görselin doğru adını seç.",
+      "image": "assets/baharat/t07_08.jpg",
+      "imageAlt": "Besin fotoğrafı",
+      "answer": "NAR EKŞİSİ",
+      "hint": "Görselin rengini, biçimini ve yapısını incele.",
+      "explanation": "",
+      "source": {
+        "file": "Baharat_12_Gorsel_18_Ad.docx",
+        "page": 13,
+        "card": 8
+      }
+    },
+    {
+      "id": "bh-07-09",
+      "set": 7,
+      "prompt": "Görselin doğru adını seç.",
+      "image": "assets/baharat/t07_09.jpg",
+      "imageAlt": "Besin fotoğrafı",
+      "answer": "SUMAK EKŞİSİ",
+      "hint": "Görselin rengini, biçimini ve yapısını incele.",
+      "explanation": "",
+      "source": {
+        "file": "Baharat_12_Gorsel_18_Ad.docx",
+        "page": 13,
+        "card": 9
+      }
+    },
+    {
+      "id": "bh-07-10",
+      "set": 7,
+      "prompt": "Görselin doğru adını seç.",
+      "image": "assets/baharat/t07_10.jpg",
+      "imageAlt": "Besin fotoğrafı",
+      "answer": "HAŞHAŞ EZMESİ",
+      "hint": "Görselin rengini, biçimini ve yapısını incele.",
+      "explanation": "",
+      "source": {
+        "file": "Baharat_12_Gorsel_18_Ad.docx",
+        "page": 13,
+        "card": 10
+      }
+    },
+    {
+      "id": "bh-07-11",
+      "set": 7,
+      "prompt": "Görselin doğru adını seç.",
+      "image": "assets/baharat/t07_11.jpg",
+      "imageAlt": "Besin fotoğrafı",
+      "answer": "HARDAL SOSU",
+      "hint": "Görselin rengini, biçimini ve yapısını incele.",
+      "explanation": "",
+      "source": {
+        "file": "Baharat_12_Gorsel_18_Ad.docx",
+        "page": 13,
+        "card": 11
+      }
+    },
+    {
+      "id": "bh-07-12",
+      "set": 7,
+      "prompt": "Görselin doğru adını seç.",
+      "image": "assets/baharat/t07_12.jpg",
+      "imageAlt": "Besin fotoğrafı",
+      "answer": "TAHİN",
+      "hint": "Görselin rengini, biçimini ve yapısını incele.",
+      "explanation": "",
+      "source": {
+        "file": "Baharat_12_Gorsel_18_Ad.docx",
+        "page": 13,
+        "card": 12
+      }
+    },
+    {
+      "id": "bh-08-01",
+      "set": 8,
+      "prompt": "Görselin doğru adını seç.",
+      "image": "assets/baharat/t08_01.jpg",
+      "imageAlt": "Besin fotoğrafı",
+      "answer": "NAR TANELERİ",
+      "hint": "Görselin rengini, biçimini ve yapısını incele.",
+      "explanation": "",
+      "source": {
+        "file": "Baharat_12_Gorsel_18_Ad.docx",
+        "page": 15,
+        "card": 1
+      }
+    },
+    {
+      "id": "bh-08-02",
+      "set": 8,
+      "prompt": "Görselin doğru adını seç.",
+      "image": "assets/baharat/t08_02.jpg",
+      "imageAlt": "Besin fotoğrafı",
+      "answer": "PORTAKAL KABUĞU RENDESİ",
+      "hint": "Görselin rengini, biçimini ve yapısını incele.",
+      "explanation": "",
+      "source": {
+        "file": "Baharat_12_Gorsel_18_Ad.docx",
+        "page": 15,
+        "card": 2
+      }
+    },
+    {
+      "id": "bh-08-03",
+      "set": 8,
+      "prompt": "Görselin doğru adını seç.",
+      "image": "assets/baharat/t08_03.jpg",
+      "imageAlt": "Besin fotoğrafı",
+      "answer": "MİSKET LİMONU",
+      "hint": "Görselin rengini, biçimini ve yapısını incele.",
+      "explanation": "",
+      "source": {
+        "file": "Baharat_12_Gorsel_18_Ad.docx",
+        "page": 15,
+        "card": 3
+      }
+    },
+    {
+      "id": "bh-08-04",
+      "set": 8,
+      "prompt": "Görselin doğru adını seç.",
+      "image": "assets/baharat/t08_04.jpg",
+      "imageAlt": "Besin fotoğrafı",
+      "answer": "LİMON KABUĞU RENDESİ",
+      "hint": "Görselin rengini, biçimini ve yapısını incele.",
+      "explanation": "",
+      "source": {
+        "file": "Baharat_12_Gorsel_18_Ad.docx",
+        "page": 15,
+        "card": 4
+      }
+    },
+    {
+      "id": "bh-08-05",
+      "set": 8,
+      "prompt": "Görselin doğru adını seç.",
+      "image": "assets/baharat/t08_05.jpg",
+      "imageAlt": "Besin fotoğrafı",
+      "answer": "TURNA YEMİŞİ",
+      "hint": "Görselin rengini, biçimini ve yapısını incele.",
+      "explanation": "",
+      "source": {
+        "file": "Baharat_12_Gorsel_18_Ad.docx",
+        "page": 15,
+        "card": 5
+      }
+    },
+    {
+      "id": "bh-08-06",
+      "set": 8,
+      "prompt": "Görselin doğru adını seç.",
+      "image": "assets/baharat/t08_06.jpg",
+      "imageAlt": "Besin fotoğrafı",
+      "answer": "MUSKAT",
+      "hint": "Görselin rengini, biçimini ve yapısını incele.",
+      "explanation": "",
+      "source": {
+        "file": "Baharat_12_Gorsel_18_Ad.docx",
+        "page": 15,
+        "card": 6
+      }
+    },
+    {
+      "id": "bh-08-07",
+      "set": 8,
+      "prompt": "Görselin doğru adını seç.",
+      "image": "assets/baharat/t08_07.jpg",
+      "imageAlt": "Besin fotoğrafı",
+      "answer": "KURU ÜZÜM",
+      "hint": "Görselin rengini, biçimini ve yapısını incele.",
+      "explanation": "",
+      "source": {
+        "file": "Baharat_12_Gorsel_18_Ad.docx",
+        "page": 15,
+        "card": 7
+      }
+    },
+    {
+      "id": "bh-08-08",
+      "set": 8,
+      "prompt": "Görselin doğru adını seç.",
+      "image": "assets/baharat/t08_08.jpg",
+      "imageAlt": "Besin fotoğrafı",
+      "answer": "KURU KAYISI",
+      "hint": "Görselin rengini, biçimini ve yapısını incele.",
+      "explanation": "",
+      "source": {
+        "file": "Baharat_12_Gorsel_18_Ad.docx",
+        "page": 15,
+        "card": 8
+      }
+    },
+    {
+      "id": "bh-08-09",
+      "set": 8,
+      "prompt": "Görselin doğru adını seç.",
+      "image": "assets/baharat/t08_09.jpg",
+      "imageAlt": "Besin fotoğrafı",
+      "answer": "KURU DUT",
+      "hint": "Görselin rengini, biçimini ve yapısını incele.",
+      "explanation": "",
+      "source": {
+        "file": "Baharat_12_Gorsel_18_Ad.docx",
+        "page": 15,
+        "card": 9
+      }
+    },
+    {
+      "id": "bh-08-10",
+      "set": 8,
+      "prompt": "Görselin doğru adını seç.",
+      "image": "assets/baharat/t08_10.jpg",
+      "imageAlt": "Besin fotoğrafı",
+      "answer": "HURMA",
+      "hint": "Görselin rengini, biçimini ve yapısını incele.",
+      "explanation": "",
+      "source": {
+        "file": "Baharat_12_Gorsel_18_Ad.docx",
+        "page": 15,
+        "card": 10
+      }
+    },
+    {
+      "id": "bh-08-11",
+      "set": 8,
+      "prompt": "Görselin doğru adını seç.",
+      "image": "assets/baharat/t08_11.jpg",
+      "imageAlt": "Besin fotoğrafı",
+      "answer": "KURU İNCİR",
+      "hint": "Görselin rengini, biçimini ve yapısını incele.",
+      "explanation": "",
+      "source": {
+        "file": "Baharat_12_Gorsel_18_Ad.docx",
+        "page": 15,
+        "card": 11
+      }
+    },
+    {
+      "id": "bh-08-12",
+      "set": 8,
+      "prompt": "Görselin doğru adını seç.",
+      "image": "assets/baharat/t08_12.jpg",
+      "imageAlt": "Besin fotoğrafı",
+      "answer": "KEÇİBOYNUZU",
+      "hint": "Görselin rengini, biçimini ve yapısını incele.",
+      "explanation": "",
+      "source": {
+        "file": "Baharat_12_Gorsel_18_Ad.docx",
+        "page": 15,
+        "card": 12
+      }
+    },
+    {
+      "id": "bh-09-01",
+      "set": 9,
+      "prompt": "Görselin doğru adını seç.",
+      "image": "assets/baharat/t09_01.jpg",
+      "imageAlt": "Besin fotoğrafı",
+      "answer": "DOLMALIK FISTIK",
+      "hint": "Görselin rengini, biçimini ve yapısını incele.",
+      "explanation": "",
+      "source": {
+        "file": "Baharat_12_Gorsel_18_Ad.docx",
+        "page": 17,
+        "card": 1
+      }
+    },
+    {
+      "id": "bh-09-02",
+      "set": 9,
+      "prompt": "Görselin doğru adını seç.",
+      "image": "assets/baharat/t09_02.jpg",
+      "imageAlt": "Besin fotoğrafı",
+      "answer": "HİNDİSTAN CEVİZİ RENDESİ",
+      "hint": "Görselin rengini, biçimini ve yapısını incele.",
+      "explanation": "",
+      "source": {
+        "file": "Baharat_12_Gorsel_18_Ad.docx",
+        "page": 17,
+        "card": 2
+      }
+    },
+    {
+      "id": "bh-09-03",
+      "set": 9,
+      "prompt": "Görselin doğru adını seç.",
+      "image": "assets/baharat/t09_03.jpg",
+      "imageAlt": "Besin fotoğrafı",
+      "answer": "BADEM",
+      "hint": "Görselin rengini, biçimini ve yapısını incele.",
+      "explanation": "",
+      "source": {
+        "file": "Baharat_12_Gorsel_18_Ad.docx",
+        "page": 17,
+        "card": 3
+      }
+    },
+    {
+      "id": "bh-09-04",
+      "set": 9,
+      "prompt": "Görselin doğru adını seç.",
+      "image": "assets/baharat/t09_04.jpg",
+      "imageAlt": "Besin fotoğrafı",
+      "answer": "ANTEP FISTIĞI",
+      "hint": "Görselin rengini, biçimini ve yapısını incele.",
+      "explanation": "",
+      "source": {
+        "file": "Baharat_12_Gorsel_18_Ad.docx",
+        "page": 17,
+        "card": 4
+      }
+    },
+    {
+      "id": "bh-09-05",
+      "set": 9,
+      "prompt": "Görselin doğru adını seç.",
+      "image": "assets/baharat/t09_05.jpg",
+      "imageAlt": "Besin fotoğrafı",
+      "answer": "CEVİZ",
+      "hint": "Görselin rengini, biçimini ve yapısını incele.",
+      "explanation": "",
+      "source": {
+        "file": "Baharat_12_Gorsel_18_Ad.docx",
+        "page": 17,
+        "card": 5
+      }
+    },
+    {
+      "id": "bh-09-06",
+      "set": 9,
+      "prompt": "Görselin doğru adını seç.",
+      "image": "assets/baharat/t09_06.jpg",
+      "imageAlt": "Besin fotoğrafı",
+      "answer": "YER FISTIĞI",
+      "hint": "Görselin rengini, biçimini ve yapısını incele.",
+      "explanation": "",
+      "source": {
+        "file": "Baharat_12_Gorsel_18_Ad.docx",
+        "page": 17,
+        "card": 6
+      }
+    },
+    {
+      "id": "bh-09-07",
+      "set": 9,
+      "prompt": "Görselin doğru adını seç.",
+      "image": "assets/baharat/t09_07.jpg",
+      "imageAlt": "Besin fotoğrafı",
+      "answer": "FINDIK",
+      "hint": "Görselin rengini, biçimini ve yapısını incele.",
+      "explanation": "",
+      "source": {
+        "file": "Baharat_12_Gorsel_18_Ad.docx",
+        "page": 17,
+        "card": 7
+      }
+    },
+    {
+      "id": "bh-09-08",
+      "set": 9,
+      "prompt": "Görselin doğru adını seç.",
+      "image": "assets/baharat/t09_08.jpg",
+      "imageAlt": "Besin fotoğrafı",
+      "answer": "KAJU",
+      "hint": "Görselin rengini, biçimini ve yapısını incele.",
+      "explanation": "",
+      "source": {
+        "file": "Baharat_12_Gorsel_18_Ad.docx",
+        "page": 17,
+        "card": 8
+      }
+    },
+    {
+      "id": "bh-09-09",
+      "set": 9,
+      "prompt": "Görselin doğru adını seç.",
+      "image": "assets/baharat/t09_09.jpg",
+      "imageAlt": "Besin fotoğrafı",
+      "answer": "KESTANE",
+      "hint": "Görselin rengini, biçimini ve yapısını incele.",
+      "explanation": "",
+      "source": {
+        "file": "Baharat_12_Gorsel_18_Ad.docx",
+        "page": 17,
+        "card": 9
+      }
+    },
+    {
+      "id": "bh-09-10",
+      "set": 9,
+      "prompt": "Görselin doğru adını seç.",
+      "image": "assets/baharat/t09_10.jpg",
+      "imageAlt": "Besin fotoğrafı",
+      "answer": "KETEN TOHUMU",
+      "hint": "Görselin rengini, biçimini ve yapısını incele.",
+      "explanation": "",
+      "source": {
+        "file": "Baharat_12_Gorsel_18_Ad.docx",
+        "page": 17,
+        "card": 10
+      }
+    },
+    {
+      "id": "bh-09-11",
+      "set": 9,
+      "prompt": "Görselin doğru adını seç.",
+      "image": "assets/baharat/t09_11.jpg",
+      "imageAlt": "Besin fotoğrafı",
+      "answer": "SUSAM",
+      "hint": "Görselin rengini, biçimini ve yapısını incele.",
+      "explanation": "",
+      "source": {
+        "file": "Baharat_12_Gorsel_18_Ad.docx",
+        "page": 17,
+        "card": 11
+      }
+    },
+    {
+      "id": "bh-09-12",
+      "set": 9,
+      "prompt": "Görselin doğru adını seç.",
+      "image": "assets/baharat/t09_12.jpg",
+      "imageAlt": "Besin fotoğrafı",
+      "answer": "ÇÖREK OTU",
+      "hint": "Görselin rengini, biçimini ve yapısını incele.",
+      "explanation": "",
+      "source": {
+        "file": "Baharat_12_Gorsel_18_Ad.docx",
+        "page": 17,
+        "card": 12
+      }
+    },
+    {
+      "id": "bh-10-01",
+      "set": 10,
+      "prompt": "Görselin doğru adını seç.",
+      "image": "assets/baharat/t10_01.jpg",
+      "imageAlt": "Besin fotoğrafı",
+      "answer": "DEFNE YAPRAĞI",
+      "hint": "Görselin rengini, biçimini ve yapısını incele.",
+      "explanation": "",
+      "source": {
+        "file": "Baharat_12_Gorsel_18_Ad.docx",
+        "page": 19,
+        "card": 1
+      }
+    },
+    {
+      "id": "bh-10-02",
+      "set": 10,
+      "prompt": "Görselin doğru adını seç.",
+      "image": "assets/baharat/t10_02.jpg",
+      "imageAlt": "Besin fotoğrafı",
+      "answer": "MUSKAT",
+      "hint": "Görselin rengini, biçimini ve yapısını incele.",
+      "explanation": "",
+      "source": {
+        "file": "Baharat_12_Gorsel_18_Ad.docx",
+        "page": 19,
+        "card": 2
+      }
+    },
+    {
+      "id": "bh-10-03",
+      "set": 10,
+      "prompt": "Görselin doğru adını seç.",
+      "image": "assets/baharat/t10_03.jpg",
+      "imageAlt": "Besin fotoğrafı",
+      "answer": "TAZE SOĞAN",
+      "hint": "Görselin rengini, biçimini ve yapısını incele.",
+      "explanation": "",
+      "source": {
+        "file": "Baharat_12_Gorsel_18_Ad.docx",
+        "page": 19,
+        "card": 3
+      }
+    },
+    {
+      "id": "bh-10-04",
+      "set": 10,
+      "prompt": "Görselin doğru adını seç.",
+      "image": "assets/baharat/t10_04.jpg",
+      "imageAlt": "Besin fotoğrafı",
+      "answer": "TAZE ACI BİBER",
+      "hint": "Görselin rengini, biçimini ve yapısını incele.",
+      "explanation": "",
+      "source": {
+        "file": "Baharat_12_Gorsel_18_Ad.docx",
+        "page": 19,
+        "card": 4
+      }
+    },
+    {
+      "id": "bh-10-05",
+      "set": 10,
+      "prompt": "Görselin doğru adını seç.",
+      "image": "assets/baharat/t10_05.jpg",
+      "imageAlt": "Besin fotoğrafı",
+      "answer": "KURU ACI BİBER",
+      "hint": "Görselin rengini, biçimini ve yapısını incele.",
+      "explanation": "",
+      "source": {
+        "file": "Baharat_12_Gorsel_18_Ad.docx",
+        "page": 19,
+        "card": 5
+      }
+    },
+    {
+      "id": "bh-10-06",
+      "set": 10,
+      "prompt": "Görselin doğru adını seç.",
+      "image": "assets/baharat/t10_06.jpg",
+      "imageAlt": "Besin fotoğrafı",
+      "answer": "KAPARİ",
+      "hint": "Görselin rengini, biçimini ve yapısını incele.",
+      "explanation": "",
+      "source": {
+        "file": "Baharat_12_Gorsel_18_Ad.docx",
+        "page": 19,
+        "card": 6
+      }
+    },
+    {
+      "id": "bh-10-07",
+      "set": 10,
+      "prompt": "Görselin doğru adını seç.",
+      "image": "assets/baharat/t10_07.jpg",
+      "imageAlt": "Besin fotoğrafı",
+      "answer": "KURU SOĞAN",
+      "hint": "Görselin rengini, biçimini ve yapısını incele.",
+      "explanation": "",
+      "source": {
+        "file": "Baharat_12_Gorsel_18_Ad.docx",
+        "page": 19,
+        "card": 7
+      }
+    },
+    {
+      "id": "bh-10-08",
+      "set": 10,
+      "prompt": "Görselin doğru adını seç.",
+      "image": "assets/baharat/t10_08.jpg",
+      "imageAlt": "Besin fotoğrafı",
+      "answer": "SARIMSAK",
+      "hint": "Görselin rengini, biçimini ve yapısını incele.",
+      "explanation": "",
+      "source": {
+        "file": "Baharat_12_Gorsel_18_Ad.docx",
+        "page": 19,
+        "card": 8
+      }
+    },
+    {
+      "id": "bh-10-09",
+      "set": 10,
+      "prompt": "Görselin doğru adını seç.",
+      "image": "assets/baharat/t10_09.jpg",
+      "imageAlt": "Besin fotoğrafı",
+      "answer": "KIRMIZI SOĞAN",
+      "hint": "Görselin rengini, biçimini ve yapısını incele.",
+      "explanation": "",
+      "source": {
+        "file": "Baharat_12_Gorsel_18_Ad.docx",
+        "page": 19,
+        "card": 9
+      }
+    },
+    {
+      "id": "bh-10-10",
+      "set": 10,
+      "prompt": "Görselin doğru adını seç.",
+      "image": "assets/baharat/t10_10.jpg",
+      "imageAlt": "Besin fotoğrafı",
+      "answer": "KİŞNİŞ YAPRAĞI",
+      "hint": "Görselin rengini, biçimini ve yapısını incele.",
+      "explanation": "",
+      "source": {
+        "file": "Baharat_12_Gorsel_18_Ad.docx",
+        "page": 19,
+        "card": 10
+      }
+    },
+    {
+      "id": "bh-10-11",
+      "set": 10,
+      "prompt": "Görselin doğru adını seç.",
+      "image": "assets/baharat/t10_11.jpg",
+      "imageAlt": "Besin fotoğrafı",
+      "answer": "TERE",
+      "hint": "Görselin rengini, biçimini ve yapısını incele.",
+      "explanation": "",
+      "source": {
+        "file": "Baharat_12_Gorsel_18_Ad.docx",
+        "page": 19,
+        "card": 11
+      }
+    },
+    {
+      "id": "bh-10-12",
+      "set": 10,
+      "prompt": "Görselin doğru adını seç.",
+      "image": "assets/baharat/t10_12.jpg",
+      "imageAlt": "Besin fotoğrafı",
+      "answer": "SİYAH SARIMSAK",
+      "hint": "Görselin rengini, biçimini ve yapısını incele.",
+      "explanation": "",
+      "source": {
+        "file": "Baharat_12_Gorsel_18_Ad.docx",
+        "page": 19,
+        "card": 12
+      }
+    },
+    {
+      "id": "bh-11-01",
+      "set": 11,
+      "prompt": "Görselin doğru adını seç.",
+      "image": "assets/baharat/t11_01.jpg",
+      "imageAlt": "Besin fotoğrafı",
+      "answer": "ELMA SİRKESİ",
+      "hint": "Görselin rengini, biçimini ve yapısını incele.",
+      "explanation": "",
+      "source": {
+        "file": "Baharat_12_Gorsel_18_Ad.docx",
+        "page": 21,
+        "card": 1
+      }
+    },
+    {
+      "id": "bh-11-02",
+      "set": 11,
+      "prompt": "Görselin doğru adını seç.",
+      "image": "assets/baharat/t11_02.jpg",
+      "imageAlt": "Besin fotoğrafı",
+      "answer": "ÜZÜM SİRKESİ",
+      "hint": "Görselin rengini, biçimini ve yapısını incele.",
+      "explanation": "",
+      "source": {
+        "file": "Baharat_12_Gorsel_18_Ad.docx",
+        "page": 21,
+        "card": 2
+      }
+    },
+    {
+      "id": "bh-11-03",
+      "set": 11,
+      "prompt": "Görselin doğru adını seç.",
+      "image": "assets/baharat/t11_03.jpg",
+      "imageAlt": "Besin fotoğrafı",
+      "answer": "SOYA SOSU",
+      "hint": "Görselin rengini, biçimini ve yapısını incele.",
+      "explanation": "",
+      "source": {
+        "file": "Baharat_12_Gorsel_18_Ad.docx",
+        "page": 21,
+        "card": 3
+      }
+    },
+    {
+      "id": "bh-11-04",
+      "set": 11,
+      "prompt": "Görselin doğru adını seç.",
+      "image": "assets/baharat/t11_04.jpg",
+      "imageAlt": "Besin fotoğrafı",
+      "answer": "KEÇİBOYNUZU PEKMEZİ",
+      "hint": "Görselin rengini, biçimini ve yapısını incele.",
+      "explanation": "",
+      "source": {
+        "file": "Baharat_12_Gorsel_18_Ad.docx",
+        "page": 21,
+        "card": 4
+      }
+    },
+    {
+      "id": "bh-11-05",
+      "set": 11,
+      "prompt": "Görselin doğru adını seç.",
+      "image": "assets/baharat/t11_05.jpg",
+      "imageAlt": "Besin fotoğrafı",
+      "answer": "TEREYAĞI",
+      "hint": "Görselin rengini, biçimini ve yapısını incele.",
+      "explanation": "",
+      "source": {
+        "file": "Baharat_12_Gorsel_18_Ad.docx",
+        "page": 21,
+        "card": 5
+      }
+    },
+    {
+      "id": "bh-11-06",
+      "set": 11,
+      "prompt": "Görselin doğru adını seç.",
+      "image": "assets/baharat/t11_06.jpg",
+      "imageAlt": "Besin fotoğrafı",
+      "answer": "BAL",
+      "hint": "Görselin rengini, biçimini ve yapısını incele.",
+      "explanation": "",
+      "source": {
+        "file": "Baharat_12_Gorsel_18_Ad.docx",
+        "page": 21,
+        "card": 6
+      }
+    },
+    {
+      "id": "bh-11-07",
+      "set": 11,
+      "prompt": "Görselin doğru adını seç.",
+      "image": "assets/baharat/t11_07.jpg",
+      "imageAlt": "Besin fotoğrafı",
+      "answer": "ESMER ŞEKER",
+      "hint": "Görselin rengini, biçimini ve yapısını incele.",
+      "explanation": "",
+      "source": {
+        "file": "Baharat_12_Gorsel_18_Ad.docx",
+        "page": 21,
+        "card": 7
+      }
+    },
+    {
+      "id": "bh-11-08",
+      "set": 11,
+      "prompt": "Görselin doğru adını seç.",
+      "image": "assets/baharat/t11_08.jpg",
+      "imageAlt": "Besin fotoğrafı",
+      "answer": "TUZ",
+      "hint": "Görselin rengini, biçimini ve yapısını incele.",
+      "explanation": "",
+      "source": {
+        "file": "Baharat_12_Gorsel_18_Ad.docx",
+        "page": 21,
+        "card": 8
+      }
+    },
+    {
+      "id": "bh-11-09",
+      "set": 11,
+      "prompt": "Görselin doğru adını seç.",
+      "image": "assets/baharat/t11_09.jpg",
+      "imageAlt": "Besin fotoğrafı",
+      "answer": "KAYA TUZU",
+      "hint": "Görselin rengini, biçimini ve yapısını incele.",
+      "explanation": "",
+      "source": {
+        "file": "Baharat_12_Gorsel_18_Ad.docx",
+        "page": 21,
+        "card": 9
+      }
+    },
+    {
+      "id": "bh-11-10",
+      "set": 11,
+      "prompt": "Görselin doğru adını seç.",
+      "image": "assets/baharat/t11_10.jpg",
+      "imageAlt": "Besin fotoğrafı",
+      "answer": "LİMON TUZU",
+      "hint": "Görselin rengini, biçimini ve yapısını incele.",
+      "explanation": "",
+      "source": {
+        "file": "Baharat_12_Gorsel_18_Ad.docx",
+        "page": 21,
+        "card": 10
+      }
+    },
+    {
+      "id": "bh-11-11",
+      "set": 11,
+      "prompt": "Görselin doğru adını seç.",
+      "image": "assets/baharat/t11_11.jpg",
+      "imageAlt": "Besin fotoğrafı",
+      "answer": "DAMLA SAKIZI",
+      "hint": "Görselin rengini, biçimini ve yapısını incele.",
+      "explanation": "",
+      "source": {
+        "file": "Baharat_12_Gorsel_18_Ad.docx",
+        "page": 21,
+        "card": 11
+      }
+    },
+    {
+      "id": "bh-11-12",
+      "set": 11,
+      "prompt": "Görselin doğru adını seç.",
+      "image": "assets/baharat/t11_12.jpg",
+      "imageAlt": "Besin fotoğrafı",
+      "answer": "ALTIN VARAK",
+      "hint": "Görselin rengini, biçimini ve yapısını incele.",
+      "explanation": "",
+      "source": {
+        "file": "Baharat_12_Gorsel_18_Ad.docx",
+        "page": 21,
+        "card": 12
+      }
+    }
+  ],
+  "words": [],
+  "distractors": {
+    "1": [
+      "SARIMSAK TOZU",
+      "KAKAO",
+      "ZENCEFİL",
+      "KIRMIZI PANCAR TOZU",
+      "ZERDEÇAL",
+      "MATCHA"
+    ],
+    "2": [
+      "KURU KEKİK",
+      "PEMBE BİBER",
+      "DAMLA SAKIZI",
+      "DOLMALIK FISTIK",
+      "KETEN TOHUMU",
+      "SİÇUAN BİBERİ"
+    ],
+    "3": [
+      "KURU BİBERİYE",
+      "DEFNE YAPRAĞI",
+      "TAZE MOR REYHAN",
+      "TERE",
+      "KİŞNİŞ YAPRAĞI",
+      "LİMON OTU"
+    ],
+    "4": [
+      "LAVANTA",
+      "DEFNE YAPRAĞI",
+      "PAPATYA",
+      "LİMON OTU",
+      "TAZE BİBERİYE",
+      "PANDAN YAPRAĞI"
+    ],
+    "5": [
+      "KURU MOR REYHAN",
+      "KURU YEŞİL FESLEĞEN",
+      "KARANFİL",
+      "ZENCEFİL",
+      "DEFNE YAPRAĞI",
+      "YILDIZ ANASON"
+    ],
+    "6": [
+      "KARABİBER",
+      "KIRMIZI TOZ BİBER",
+      "YENİBAHAR",
+      "KİMYON",
+      "KÖRİ",
+      "TARÇIN"
+    ],
+    "7": [
+      "BAL",
+      "ELMA SİRKESİ",
+      "TEREYAĞI",
+      "ÜZÜM SİRKESİ",
+      "ESMER ŞEKER",
+      "SOYA SOSU"
+    ],
+    "8": [
+      "DEMİRHİNDİ",
+      "KUŞBURNU",
+      "KESTANE",
+      "VANİLYA",
+      "KURU LİMON",
+      "KURU DOMATES"
+    ],
+    "9": [
+      "HARDAL TOHUMU",
+      "KAKULE",
+      "KİŞNİŞ TOHUMU",
+      "REZENE TOHUMU",
+      "HAŞHAŞ TOHUMU",
+      "ANASON"
+    ],
+    "10": [
+      "PUL BİBER",
+      "KIRMIZI TOZ BİBER",
+      "TAZE NANE",
+      "SARIMSAK TOZU",
+      "MAYDANOZ",
+      "SOĞAN TOZU"
+    ],
+    "11": [
+      "HAŞHAŞ EZMESİ",
+      "ÜZÜM PEKMEZİ",
+      "HARDAL SOSU",
+      "SUMAK EKŞİSİ",
+      "TAHİN",
+      "NAR EKŞİSİ"
+    ]
+  }
+}

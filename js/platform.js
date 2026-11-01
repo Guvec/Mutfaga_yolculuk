@@ -1,6 +1,7 @@
 /* Konu verileri oyun motorlarından ayrıdır. GitHub Pages üzerinde derleme gerekmez. */
 'use strict';
 const SUBJECTS = [
+  {id:'baharat', name:'Baharat ve Aromatikler', desc:'11 takım · Her takımda 12 görsel ve 18 ad.'},
   {id:'kuver', name:'Kuver', desc:'Basit kuver ve tabldot kuver çalışmaları.'},
   {id:'mutfak-araclari', name:'Mutfak Araçları', desc:'Araçları tanıma ve eşleştirme.'},
   {id:'beslenme-ilkeleri', name:'Beslenme İlkeleri', desc:'Besinler ve beslenme çalışmaları.'},
@@ -9,7 +10,7 @@ const SUBJECTS = [
 const CONTENT = Object.create(null);
 const OLD_RENDER = render, OLD_NEWQ = newQ, OLD_START = startSession, OLD_RESOLVE = resolve;
 const OLD_QUIZ = quizHtml, OLD_ITEM = itemImg;
-VERSION='Sürüm · 30.10.2026'; // Her yüklemede tarih güncellenir.
+VERSION='Sürüm · 01.11.2026'; // Her yüklemede tarih güncellenir.
 st.subject='kuver'; st.practice='learn';
 LEVELS={
   1:{name:'Basit Kuver', items:['yemek_catali','yemek_bicagi','pecete','corba_kasigi','su_bardagi']},
@@ -169,7 +170,7 @@ render=function(){
     // Kuver parçaları Adını Bul ve Mutfak Araçları eşleştirmesinde zaten çalışılır; Kuver'de ayrı eşleştirme yok.
     // Kelime Kartları, 12'li eşleştirmenin tekrarı olduğu için menüden kaldırıldı.
     if(st.subject!=='kuver')h+=menuButton('Eşleştirme','12 görseli doğru adla eşleştir.',"pickContent('match')");
-    h+=menuButton('Çoktan Seçmeli Sorular','Bu konuya ait sorular.',"pickContent('mcq')")+'</div></div>';
+    if(st.subject!=='baharat')h+=menuButton('Çoktan Seçmeli Sorular','Bu konuya ait sorular.',"pickContent('mcq')")+'</div></div>';
   }else if(st.screen==='level')h=topBar('Kuveri Kur')+'<div class="wrap"><h1>Kuver seç</h1><div class="list">'+menuButton('Basit Kuver','6 parça · Kuver tabağı masada hazır.',"pickLevel(1)")+menuButton('Tabldot Kuver','10 parça · Gönderdiğin örnek düzene göre.',"pickLevel(3)")+'</div></div>';
   else if(st.screen==='mode')h=topBar('Çalışma biçimi')+'<div class="wrap"><h1>Nasıl çalışalım?</h1><div class="list">'+menuButton('Öğreniyorum','İpucu ve ikinci deneme ile çalış.',"choosePractice('learn')")+menuButton('Kendimi Deniyorum','Her soruyu bir kez yanıtla. Sonra açıklamayı incele.',"choosePractice('check')")+'</div><p class="note">Her oturumda 1 mola hakkın var.</p></div>';
   else if(st.screen==='content'){

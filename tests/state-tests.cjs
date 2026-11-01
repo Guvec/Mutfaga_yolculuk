@@ -6,7 +6,7 @@ const doc={hidden:false,activeElement:null,addEventListener(){},getElementById:e
 const env={console,document:doc,window:{scrollTo(){}},localStorage:{getItem:k=>store.get(k),setItem:(k,v)=>store.set(k,v)},navigator:{},location:{protocol:'http:',hostname:'test'},fetch:async url=>({ok:true,json:async()=>JSON.parse(fs.readFileSync(path.join(root,url),'utf8'))}),setTimeout,clearTimeout,URL,Date,Math,JSON};vm.createContext(env);
 for(const file of ['js/core.js','js/platform.js','js/eslestirme.js','js/sorular.js','js/ses.js'])vm.runInContext(fs.readFileSync(path.join(root,file),'utf8'),env,{filename:file});
 const run=s=>vm.runInContext(s,env),html=()=>el('app').innerHTML;
-(async()=>{await run('loadContent()');assert.equal(run('VERSION'),'Sürüm · 30.10.2026');assert(html().includes('Sürüm · 30.10.2026'));run('guest()');for(const t of ['Kuver','Mutfak Araçları','Beslenme İlkeleri','Bulaşık Makinesi Temizliği'])assert(html().includes(t));run("openSubject('kuver');pickOp('kur')");assert(html().includes('Basit Kuver'));assert(html().includes('Tabldot Kuver'));assert(!html().includes('Tam Kuver'));run("pickLevel(1);choosePractice('learn')");assert.equal(run('LEVELS[st.lvl].items.length'),5);
+(async()=>{await run('loadContent()');assert.equal(run('VERSION'),'Sürüm · 01.11.2026');assert(html().includes('Sürüm · 01.11.2026'));run('guest()');for(const t of ['Kuver','Mutfak Araçları','Beslenme İlkeleri','Bulaşık Makinesi Temizliği'])assert(html().includes(t));run("openSubject('kuver');pickOp('kur')");assert(html().includes('Basit Kuver'));assert(html().includes('Tabldot Kuver'));assert(!html().includes('Tam Kuver'));run("pickLevel(1);choosePractice('learn')");assert.equal(run('LEVELS[st.lvl].items.length'),5);
 run("answer(LEVELS[1].items.find(k=>k!==st.q.key))");assert(html().includes('Birlikte tekrar deneyelim'));run('askBreak();startBreak()');assert.equal(run('st.brk'),1);assert.equal(run('st.t0'),0);el('bGo').onclick();run('answer(st.q.key)');assert.equal(run('st.sess.fix'),1);assert.equal(run('st.sess.s'),5);
 for(let i=1;i<5;i++)run('nextQ();answer(st.q.key)');run('nextQ()');assert.equal(run('st.kDone'),true);assert(!html().includes('class="done-photo"'));assert(html().includes('basit kuver örneği'));assert.equal(run('st.sess.s'),45);
 run("st.lvl=3;st.practice='check';startSession()");for(let i=0;i<9;i++){assert.equal((html().match(/onclick="answer\('/g)||[]).length,9);run('answer(st.q.key);nextQ()');}assert.equal(run('st.kDone'),true);assert.equal(run('st.sess.s'),90);assert(html().includes('tabldot-kuver-referans.png'));assert.equal(run('st.sess.variant'),'tabldot');
@@ -86,5 +86,17 @@ run("tapName(st.board.names.indexOf(st.board.items[0].answer))");assert(run("SPO
 run("SPOKEN.length=0;tapImg(st.board.items[0].id)");assert(run("SPOKEN[0].startsWith(sesMetin(sesAd(st.board.items[0].answer)))"),'eşlenmiş görsel okunur');
 run("pickContent('mcq');pickGroup(0)");assert(run("SPOKEN.at(-1).startsWith(sesMetin(st.q.prompt))"));assert(run("SPOKEN.at(-1).includes('A, ')"));assert(html().includes('class="spk"'));
 run("sesAcKapa();SPOKEN.length=0;answer(st.q.correct)");assert.equal(run('SPOKEN.length'),0,'ses kapalıyken okunmaz');run('sesAcKapa()');
+
+// Baharat: 11 bağımsız takım; altı çeldirici kontrol bitene kadar kullanılabilir.
+for(let n=1;n<=11;n++){
+ run("openSubject('baharat');pickContent('match');startContent("+n+");startBoard('check')");
+ assert.equal(run('st.board.items.length'),12);assert.equal(run('st.board.names.length'),18);
+ assert.equal(run('new Set(st.board.names).size'),18);assert.equal(run('st.board.extra'),6);
+ const its=run('st.board.items');for(const it of its)assert(fs.existsSync(path.join(root,it.image)));
+ run("st.board.items.forEach(it=>tryPair(it.id,it.answer));checkBoard()");assert.equal(run('st.sess.ok'),12);assert.equal(run('st.sess.bad'),0);
+ run("startBoard('check');tryPair(st.board.items[0].id,boardDistractors(st.contentSet,st.board.items)[0]);st.board.items.slice(1).forEach(it=>tryPair(it.id,it.answer));checkBoard()");assert.equal(run('st.sess.ok'),11);assert.equal(run('st.sess.bad'),1);
+ run("startBoard('learn');tryPair(st.board.items[0].id,boardDistractors(st.contentSet,st.board.items)[0]);tryPair(st.board.items[0].id,st.board.items[0].answer)");assert.equal(run('st.sess.fix'),1);
+}
+console.log('PASS: Baharat 11 takım × 12 görsel / 18 benzersiz ad / 6 çeldirici / doğru ve yanlış yanıt / öğrenme ve bağımsız deneme.');
 console.log('PASS: Sesli okuma / 18 ad tahtası / ');
 console.log('PASS: Mutfak Araçları 211 soru / 22 konu / Mutfak Araçları 11 takım × 12 görsel-ad tahtası (öğrenme + toplu kontrol) / Menü / basit ve tabldot / 1 mola / +5 düzeltme / 5 ve 9 parça / sabit bağımsız hedefler / 10 benzersiz tanıma sorusu / tek yanıt / rapor / soru-kart motorları / kaynak izi / misafir-kayıt / JSON doğrulama.');})().catch(e=>{console.error(e);process.exit(1)});
