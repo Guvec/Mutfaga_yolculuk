@@ -4,7 +4,7 @@ const SUBJECTS = [
   {id:'baharat', name:'Baharat ve Aromatikler', desc:'11 takım · Her takımda 12 görsel ve 18 ad.'},
   {id:'kuver', name:'Kuver', desc:'Basit kuver ve tabldot kuver çalışmaları.'},
   {id:'mutfak-araclari', name:'Mutfak Araçları', desc:'120 araç · 10 takım · Her takımda 12 görsel ve 18 ad.'},
-  {id:'beslenme-ilkeleri', name:'Beslenme İlkeleri', desc:'Besinler ve beslenme çalışmaları.'},
+  {id:'beslenme-ilkeleri', name:'Beslenme İlkeleri', desc:'Hazırlanıyor.'},
   {id:'bulasik-makinesi-temizligi', name:'Bulaşık Yıkama ve Atık Yönetimi', desc:'Elde yıkama, makinede yıkama ve atıkları ayırma.'}
 ];
 const CONTENT = Object.create(null);
@@ -76,6 +76,7 @@ tableHtml=function(){
 };
 answer=function(v){
   if(st.done||st.tries>=2||!st.q||st.inBreak||st.modalOpen)return;
+  if(st.op!=='kur'&&st.op!=='ad'){const c=st.q.choices.find(x=>x.id===v);st.q.responses=st.q.responses||[];st.q.responses.push({answer:v,text:c?(c.text||c.id+' seçeneği'):v,at:Math.round(elapsed()*10)/10,correct:v===st.q.correct});}
   const right=st.op==='kur'?v===st.q.key:st.op==='ad'?v===st.q.ans:v===st.q.correct;
   if(right){resolve(st.tries===0?1:2);return;}
   st.tries++;st.wrong.push(v);
@@ -93,7 +94,7 @@ resolve=function(r){
   }
   const q=st.q,s=tStop();st.done=true;st.res=r;
   if(r===1){st.sess.ok++;st.sess.s+=10;}else if(r===2){st.sess.fix++;st.sess.s+=5;}else st.sess.bad++;
-  st.sess.qs.push({q:q.set&&q.source&&q.source.card?q.set+'. takım, '+q.source.card+'. kart':q.prompt,a:q.correctText,r,s,hintUsed:st.tries>0,source:q.source});
+  st.sess.qs.push({selectedAnswer:(q.responses||[]).at(-1)?.text||null,firstAnswer:(q.responses||[])[0]?.text||null,attempts:q.responses||[],attemptCount:(q.responses||[]).length,assessment:st.practice==='check',q:q.set&&q.source&&q.source.card?q.set+'. takım, '+q.source.card+'. kart':q.prompt,a:q.correctText,r,s,hintUsed:st.practice!=='check'&&st.tries>0,source:q.source});
   st.lastRes={cls:r===1?'ok':'fix',head:r===1?'Doğru! +10 puan':r===2?'Düzelttin! +5 puan':'Doğru yanıt: '+q.correctText,text:q.explanation||''};saveProgress();render();
 };
 quizHtml=function(){
@@ -126,7 +127,7 @@ function pickContent(op){st.op=op;st.practice='learn';st.contentSet=null;if(type
 function startContent(setNo){
   if(setNo!==undefined)st.contentSet=setNo;
   const all=contentArr(),arr=st.contentSet&&all.some(x=>x.set)?all.filter(x=>x.set===st.contentSet):all;
-  st.contentItems=shuffle(arr);st.contentIndex=0;st.brk=0;st.kDone=false;st.done=false;st.inBreak=false;
+  st.contentItems=shuffle(arr);st.q=null;st.contentIndex=0;st.brk=0;st.kDone=false;st.done=false;st.inBreak=false;
   st.sess={id:Date.now(),p:st.guest?'Misafir':st.prof,t:new Date().toISOString(),op:st.op,subject:st.subject,practice:'learn',set:st.contentSet||undefined,s:0,ok:0,fix:0,bad:0,br:0,qs:[]};
   st.savedMsg=st.guest?'Misafir oturumu: sonuçlar kaydedilmiyor.':'';contentNext();st.screen='quiz';render();
 }
@@ -146,7 +147,7 @@ function contentNext(){
   let choices,correct,correctText;
   if(st.op==='mcq'){choices=q.choices.map(c=>({...c}));correct=q.correct;const cc=choices.find(c=>c.id===correct);correctText=q.group?(cc.image?cc.id+' seçeneği':cc.id+') '+cc.text):cc.text;}
   else{choices=cardChoices(q);correct=q.id;correctText=q.answer;}
-  st.q={...q,choices,correct,correctText};tStart();
+  st.q={...q,choices,correct,correctText,responses:[]};tStart();
 }
 const CORE_NEXT=nextQ;
 nextQ=function(){if(st.op==='kur'||st.op==='ad')CORE_NEXT();else{contentNext();render();}};
@@ -163,7 +164,7 @@ function contentQuizHTML(){
 render=function(){
   let h=null;
   if(st.screen==='welcome')h='<div class="welcome"><img src="assets/acilis-kolaj.jpg" alt="Tabldot kuver, çorba tenceresi, çırpma teli ve bulaşık makinesi"><h1>Mesleki Oyunlar</h1><p class="sub">Yiyecek ve İçecek Hizmetleri</p><button class="btn pri start" onclick="go(\'profiles\')">Başlayalım</button><p class="ver">'+VERSION+'</p></div>';
-  else if(st.screen==='home')h=topBar('Konu klasörleri')+'<div class="wrap"><h1>Ne çalışalım?</h1><p class="sub">Bir konu seç.</p><div class="list">'+SUBJECTS.map(s=>menuButton(s.name,s.desc,"openSubject('"+s.id+"')")).join('')+(st.guest?'':menuButton('Çalışma Geçmişim','Son 14 günün sonuçları.',"go('history')"))+'</div></div>';
+  else if(st.screen==='home')h=topBar('Konu klasörleri')+'<div class="wrap"><h1>Ne çalışalım?</h1><p class="sub">Bir konu seç.</p><div class="list">'+SUBJECTS.map(s=>s.id==='beslenme-ilkeleri'?'<div class="menu-btn preparing" aria-disabled="true"><b>'+esc(s.name)+'</b><span>Hazırlanıyor</span></div>':menuButton(s.name,s.desc,"openSubject('"+s.id+"')")).join('')+(st.guest?'':menuButton('Çalışma Geçmişim','Son 14 günün sonuçları.',"go('history')"))+'</div></div>';
   else if(st.screen==='subject'){
     h=topBar(subjectName())+'<div class="wrap"><h1>'+subjectName()+'</h1><div class="list">';
     if(st.subject==='kuver')h+=menuButton('Kuveri Kur','Basit kuver veya tabldot kuver.',"pickOp('kur')")+menuButton('Adını Bul','Kuver parçalarını tanı.',"pickOp('ad')");
@@ -185,7 +186,7 @@ render=function(){
   }
   if(h!==null)document.getElementById('app').innerHTML=h;else OLD_RENDER();
   if(st.screen==='summary'){
-    const c=st.sess;document.querySelector('.rep').insertAdjacentHTML('beforeend','<section class="card"><h2>Sonuç özeti</h2><p>İlk denemede doğru: '+c.ok+' · İkinci denemede: '+c.fix+' · Yanıtı gösterilen: '+c.bad+'</p><p class="note">'+(c.practice==='check'?'Bağımsız deneme':'İpucu içerebilen öğrenme çalışması')+'.'+(c.op==='kur'?' Ekranda yer seçimi, atölyede bağımsız kuver açma becerisinden ayrı değerlendirilir.':'')+'</p><div class="report-scroll"><table><thead><tr><th>Soru / Parça</th><th>Doğru yanıt</th><th>Sonuç</th></tr></thead><tbody>'+c.qs.map(q=>'<tr><td>'+esc(q.q)+'</td><td>'+esc(q.a)+'</td><td>'+(q.r===1?'İlk denemede':q.r===2?'İkinci denemede':'Yanıt gösterildi')+'</td></tr>').join('')+'</tbody></table></div></section>');
+    const c=st.sess;document.querySelector('.rep').insertAdjacentHTML('beforeend','<section class="card"><h2>Sonuç özeti</h2><p>İlk denemede doğru: '+c.ok+' · İkinci denemede: '+c.fix+' · Yanlış / yanıt gösterilen: '+c.bad+'</p><p class="note">'+(c.practice==='check'?'Bağımsız deneme':'İpucu içerebilen öğrenme çalışması')+'.'+(c.op==='kur'?' Ekranda yer seçimi, atölyede bağımsız kuver açma becerisinden ayrı değerlendirilir.':'')+'</p><div class="report-scroll"><table><thead><tr><th>Soru / Parça</th><th>Doğru yanıt</th><th>Sonuç</th></tr></thead><tbody>'+c.qs.map(q=>'<tr><td>'+esc(q.q)+'</td><td>'+esc(q.a)+'</td><td>'+(q.r===null?'Yanıtlanmadı':q.r===1?'İlk denemede':q.r===2?'İpucundan sonra':'Yanlış / yanıt gösterildi')+'</td></tr>').join('')+'</tbody></table></div></section>');
   }
   document.querySelectorAll('.msg').forEach(e=>{e.setAttribute('role','status');e.setAttribute('aria-live','polite');});
   const nameInput=document.getElementById('pname');if(nameInput)nameInput.setAttribute('aria-label','Takma ad');
@@ -204,13 +205,13 @@ render();loadContent();
 // Aynı kapsamda bulunan eski kuver service worker'ının eski index.html sunmasını önler.
 if('serviceWorker' in navigator&&(location.protocol==='https:'||location.hostname==='localhost')){
   // Her açılışta yeni sürüm denetlenir.
-  navigator.serviceWorker.register('sw.js').then(r=>{try{r.update();}catch(e){}}).catch(()=>{});
+  navigator.serviceWorker.register('sw.js').then(r=>r.update().catch(()=>{})).catch(()=>{});
 }
 // Uzun PDF soru metinlerinin görsel raporda yan yana taşmasını önler.
 drawReport=function(r){
   const W=1080,c=document.createElement('canvas');c.width=W;let x=c.getContext('2d');x.font='22px Arial';
   const cols=[{x:40,w:320},{x:380,w:320},{x:720,w:190},{x:930,w:110}];
-  const rows=r.qs.map((q,i)=>{const lines=[wrapText(x,(i+1)+'. '+q.q,cols[0].w),wrapText(x,q.a,cols[1].w),wrapText(x,q.r===1?'İlk denemede':q.r===2?'İkinci denemede':'Yanıt gösterildi',cols[2].w),[fmtS(q.s)]];return{q,lines,height:Math.max(...lines.map(a=>a.length))*29+22};});
+  const rows=r.qs.map((q,i)=>{const lines=[wrapText(x,(i+1)+'. '+q.q,cols[0].w),wrapText(x,q.a,cols[1].w),wrapText(x,q.r===null?'Yanıtlanmadı':q.r===1?'İlk denemede':q.r===2?'İpucundan sonra':'Yanlış / yanıt gösterildi',cols[2].w),[fmtS(q.s)]];return{q,lines,height:Math.max(...lines.map(a=>a.length))*29+22};});
   x.font='28px Arial';const category=wrapText(x,catName(r),W-80),top=190+category.length*36;
   c.height=top+180+rows.reduce((a,b)=>a+b.height,0)+100;x=c.getContext('2d');
   x.fillStyle='#fff';x.fillRect(0,0,W,c.height);x.fillStyle=C.teal;x.fillRect(0,0,W,top);

@@ -1,122 +1,58 @@
-/* 12'li eşleştirme tahtası: okuldaki kâğıt oyunun ekrandaki karşılığı.
-   Bir takımın 12 görseli ve 18 ad kartı birlikte görünür: 12 doğru ad + 6 sabit çeldirici (eleme ile bulunmasın diye).
-   Ad kartına dokununca ad sesli okunur; görselin adı, eşleşmeden önce okunmaz (cevabı vermemek için).
-   Öğreniyorum: her eşleşme hemen denetlenir, yanlışta ipucu ve ikinci deneme vardır.
-   Kendimi Deniyorum: 12 eşleşme bitince "Kontrol et" ile toplu bakılır; tek deneme. */
+/* Öğrenme ile bağımsız deneme ayrı kaydedilir. Süreler cevap yazılırken değil,
+   etkin çalışma süresinden alınır. Tahtada bağımsız kart süresi türetilmez. */
 'use strict';
 const BOARD_PREV_START=startContent,BOARD_PREV_RENDER=render,BOARD_PREV_BACK=back;
-/* Kural: bütün eşleştirmeler 12'li tahtayla oynanır. Kartlarda takım (set) yoksa sıralarına göre 12'li takımlara bölünür. */
-function boardSetsFill(){const a=contentArr();if(st.op!=='match'||!a.length||a.some(x=>x.set))return;a.forEach((x,i)=>{x.set=Math.floor(i/12)+1;if(!x.source)x.source={};if(!x.source.card)x.source.card=i%12+1;});}
+function boardSetsFill(){const a=contentArr();if(st.op!=='match'||!a.length||a.some(x=>x.set))return;a.forEach((x,i)=>{x.set=Math.floor(i/12)+1;x.source=x.source||{};x.source.card=i%12+1;});}
 function boardActive(){boardSetsFill();return st.op==='match'&&contentSets().length>0;}
-startContent=function(setNo){
-  if(!boardActive())return BOARD_PREV_START(setNo);
-  if(setNo!==undefined){st.contentSet=setNo;go('boardmode');return;}
-  startBoard(st.practice||'learn');
-};
+startContent=function(setNo){if(!boardActive())return BOARD_PREV_START(setNo);if(setNo!==undefined){st.contentSet=setNo;go('boardmode');return;}startBoard(st.practice||'learn');};
 back=function(){if(st.screen==='boardmode'){go('content');return;}BOARD_PREV_BACK();};
-function startBoard(practice){
-  st.practice=practice;
-  const items=contentArr().filter(x=>x.set===st.contentSet).slice().sort((a,b)=>(a.source&&b.source?a.source.card-b.source.card:0));
-  const dis=boardDistractors(st.contentSet,items);
-  st.board={items,names:shuffle(items.map(x=>x.answer).concat(dis)),extra:dis.length,pair:{},sel:null,selName:null,tries:{},res:{},checked:false,last:Date.now()};
-  st.brk=0;st.kDone=false;st.done=false;st.inBreak=false;st.lastRes=null;
-  st.sess={id:Date.now(),p:st.guest?'Misafir':st.prof,t:new Date().toISOString(),op:'match',subject:st.subject,practice,set:st.contentSet,s:0,ok:0,fix:0,bad:0,br:0,qs:[]};
-  st.savedMsg=st.guest?'Misafir oturumu: sonuçlar kaydedilmiyor.':'';
-  st.lastRes={cls:'',head:boardIntro(items.length,dis.length),text:'',intro:true};
-  tStart();st.screen='board';render();window.scrollTo(0,0);
+function boardDistractors(n,items){const on=new Set(items.map(x=>x.answer));return [...new Set((getData().distractors||{})[String(n)]||[])].filter(x=>!on.has(x));}
+function boardIntro(n,e){return n+' görsel var. '+(n+e)+' ad arasından her görselin adını bul. '+e+' ad kullanılmayacak.';}
+function startBoard(practice,size,variant){
+ st.practice=practice;let items=contentArr().filter(x=>x.set===st.contentSet).slice().sort((a,b)=>(a.source.card||0)-(b.source.card||0));
+ const full=items.slice();size=practice==='check'?12:(size||12);if(variant)items=shuffle(items);items=items.slice(0,size);
+ let dis=boardDistractors(st.contentSet,full);if(size<12)dis=full.filter(x=>!items.includes(x)).map(x=>x.answer).concat(dis).slice(0,Math.min(3,size));
+ if(items.length===12&&dis.length!==6)throw Error('Takımda altı farklı çeldirici gerekir.');
+ st.board={items,names:shuffle(items.map(x=>x.answer).concat(dis)),extra:dis.length,pair:{},sel:null,selName:null,tries:{},res:{},attempts:{},responseTime:{},checked:false,size,variant:!!variant};
+ st.brk=0;st.kDone=false;st.done=false;st.inBreak=false;st.lastRes={cls:'',head:boardIntro(items.length,dis.length),text:'Bir görsel seç.',intro:true};
+ st.sess={id:Date.now(),p:st.guest?'Misafir':st.prof,t:new Date().toISOString(),op:'match',subject:st.subject,practice,set:st.contentSet,s:0,ok:0,fix:0,bad:0,br:0,total:items.length,qs:[],preparation:size<12};
+ st.savedMsg=st.guest?'Misafir oturumu: sonuçlar kaydedilmiyor.':'';tStart();st.screen='board';render();window.scrollTo(0,0);
 }
-/* Ölçme için: her takımda görseli olmayan sabit çeldirici adlar (öğretmen onaylı liste, icerik.json > distractors). */
-function boardDistractors(setNo,items){const d=getData().distractors||{},on=new Set(items.map(x=>x.answer));return (d[String(setNo)]||[]).filter(n=>!on.has(n));}
-function boardIntro(n,extra){return extra?'Bu takımda '+n+' görsel ve '+(n+extra)+' ad var. '+extra+' adın görseli yok. Her görsele doğru adı bul.':'Bu takımda '+n+' görsel ve '+n+' ad var. Her görsele doğru adı bul.';}
 function boardItem(id){return st.board.items.find(x=>x.id===id);}
-function boardUsed(name){return Object.values(st.board.pair).includes(name);}
-function boardRow(it,r){
-  const now=Date.now(),s=Math.round((now-st.board.last)/100)/10;st.board.last=now;
-  st.board.res[it.id]=r;
-  if(r===1){st.sess.ok++;st.sess.s+=10;}else if(r===2){st.sess.fix++;st.sess.s+=5;}else st.sess.bad++;
-  st.sess.qs.push({q:it.set+'. takım, '+it.source.card+'. kart',a:it.answer,r,s,hintUsed:r===2,source:it.source});
-}
-function boardFinished(){
-  st.kDone=true;st.run=false;st.t0=0;saveProgress();
-}
+function boardUsed(n){return Object.values(st.board.pair).includes(n);}
 function boardIntroClose(){if(st.lastRes&&st.lastRes.intro)st.lastRes=null;}
+function boardRow(it,r){
+ const b=st.board,attempts=b.attempts[it.id]||[];b.res[it.id]=r;
+ if(r===1){st.sess.ok++;st.sess.s+=10;}else if(r===2){st.sess.fix++;st.sess.s+=5;}else st.sess.bad++;
+ st.sess.qs.push({q:it.set+'. takım, '+it.source.card+'. kart: '+it.answer,a:it.answer,r,s:null,timeScope:'board',responseAt:b.responseTime[it.id]??null,selectedAnswer:attempts.length?attempts.at(-1).answer:null,firstAnswer:attempts.length?attempts[0].answer:null,attempts:attempts.slice(),attemptCount:attempts.length,hintUsed:st.practice==='learn'&&attempts.some(x=>!x.correct),source:it.source,assessment:st.practice==='check'});
+}
+function boardFinished(){st.sess.duration=tStop();st.kDone=true;saveProgress();}
 function tapImg(id){
-  const b=st.board;boardIntroClose();if(st.kDone||st.inBreak||st.modalOpen||b.checked)return;
-  if(st.practice==='learn'&&b.res[id]!==undefined){const it=boardItem(id);sesSoyle(sesAd(it.answer)+'. '+(it.explanation||''));return;}
-  if(st.practice==='check'&&b.pair[id]&&!b.selName){delete b.pair[id];b.sel=id;render();return;}
-  if(b.selName){tryPair(id,b.selName);return;}
-  b.sel=b.sel===id?null:id;render();
+ const b=st.board;if(st.kDone||st.inBreak||st.modalOpen||b.checked)return;boardIntroClose();
+ if(st.practice==='learn'&&b.res[id]!==undefined){sesSoyle(boardItem(id).answer+'. '+boardItem(id).explanation);return;}
+ if(b.selName){tryPair(id,b.selName);return;}
+ if(st.practice==='check'&&b.pair[id])delete b.pair[id];b.sel=b.sel===id?null:id;render();
 }
-function tapName(i){
-  boardIntroClose();const b=st.board,name=b.names[i];if(st.kDone||st.inBreak||st.modalOpen||b.checked||boardUsed(name))return;
-  sesSoyle(sesAd(name));
-  if(b.sel){tryPair(b.sel,name);return;}
-  b.selName=b.selName===name?null:name;render();
-}
+function tapName(i){const b=st.board,n=b.names[i];if(st.kDone||st.inBreak||st.modalOpen||b.checked||boardUsed(n))return;boardIntroClose();sesSoyle(sesAd(n));if(b.sel){tryPair(b.sel,n);return;}b.selName=b.selName===n?null:n;render();}
 function tryPair(id,name){
-  const b=st.board,it=boardItem(id);b.sel=null;b.selName=null;
-  if(st.practice==='check'){
-    b.pair[id]=name;st.lastRes=null;
-    if(Object.keys(b.pair).length===b.items.length)st.lastRes={cls:'',head:b.items.length+' görselin hepsi eşlendi.',text:'Kontrol etmeden önce değiştirmek istediğin görsele dokun.'};
-    render();return;
-  }
-  if(name===it.answer){
-    const r=(b.tries[id]||0)===0?1:2;b.pair[id]=name;boardRow(it,r);
-    st.lastRes={cls:r===1?'ok':'fix',head:(r===1?'Doğru! +10 puan':'Düzelttin! +5 puan')+' · '+it.answer,text:it.explanation||''};
-  }else{
-    b.tries[id]=(b.tries[id]||0)+1;
-    if(b.tries[id]>=2){b.pair[id]=it.answer;boardRow(it,0);st.lastRes={cls:'fix',head:'Bu görselin adı: '+it.answer,text:it.explanation||''};}
-    else st.lastRes={cls:'fix',head:'Bu eşleşme doğru değil. Birlikte tekrar deneyelim.',text:it.hint||'Görseli ve adları yeniden incele.'};
-  }
-  if(Object.keys(b.res).length===b.items.length){boardFinished();st.lastRes={cls:'ok',head:'Çalışma tamamlandı.',text:b.items.length+' görseli eşledin.'};}
-  render();
+ const b=st.board,it=boardItem(id);if(!it||b.checked||st.kDone||boardUsed(name)||b.res[id]!==undefined||!b.names.includes(name))return;
+ b.sel=null;b.selName=null;const at=Math.round(elapsed()*10)/10;(b.attempts[id]||(b.attempts[id]=[])).push({answer:name,correct:name===it.answer,at});b.responseTime[id]=at;
+ if(st.practice==='check'){b.pair[id]=name;st.lastRes=null;render();return;}
+ if(name===it.answer){const r=(b.tries[id]||0)?2:1;b.pair[id]=name;boardRow(it,r);st.lastRes={cls:'ok',head:'Bu araç: '+it.answer,text:it.explanation||'',detail:it.detail||''};}
+ else{b.tries[id]=(b.tries[id]||0)+1;if(b.tries[id]>=2){b.pair[id]=it.answer;boardRow(it,0);st.lastRes={cls:'fix',head:'Doğru ad: '+it.answer,text:it.explanation||'',detail:it.detail||''};}else st.lastRes={cls:'fix',head:'Henüz eşleşmedi.',text:it.hint||'Biçimini ve kullanım yerini düşün.'};}
+ if(Object.keys(b.res).length===b.items.length){boardFinished();st.lastRes.text+=' Çalışma tamamlandı. Açıklamayı okuduktan sonra raporu açabilirsin.';}render();
 }
-function checkBoard(){
-  const b=st.board;if(b.checked||Object.keys(b.pair).length<b.items.length)return;
-  b.checked=true;b.items.forEach(it=>boardRow(it,b.pair[it.id]===it.answer?1:0));
-  boardFinished();
-  st.lastRes={cls:'ok',head:'Kontrol edildi: '+st.sess.ok+' / '+b.items.length+' doğru.',text:st.sess.bad?'Kırmızı kartların altında doğru ad yazıyor.':'Hepsi doğru.'};
-  render();
-}
-function zoomImg(id){
-  const it=boardItem(id),ov=document.getElementById('ov');st.modalOpen=true;pauseT();
-  ov.innerHTML='<div class="modal zoom" role="dialog" aria-modal="true" aria-label="Büyük görsel"><img src="'+esc(it.image)+'" alt="'+esc(it.imageAlt||'Araç fotoğrafı')+'"><button class="btn pri" id="zClose">Kapat</button></div>';
-  ov.className='on';const c=document.getElementById('zClose');c.onclick=closeModal;c.focus();
-}
-function boardModeHTML(){
-  const its=contentArr().filter(x=>x.set===st.contentSet),ex=boardDistractors(st.contentSet,its).length,intro=boardIntro(its.length,ex);
-  return topBar(subjectName()+' · '+st.contentSet+'. takım')+'<div class="wrap"><h1>Nasıl çalışalım?</h1><p class="card board-intro">'+sesDugme(intro)+esc(intro)+'</p><div class="list">'+
-    menuButton('Öğreniyorum','Her eşleşme hemen denetlenir. Yanlışta ipucu ve ikinci deneme var.',"startBoard('learn')")+
-    menuButton('Kendimi Deniyorum','Bütün görselleri eşle, sonra Kontrol et düğmesine dokun.',"startBoard('check')")+
-    '</div><p class="note">Her oturumda 1 mola hakkın var.</p></div>';
-}
+function checkBoard(){const b=st.board;if(b.checked||Object.keys(b.pair).length<b.items.length)return;b.checked=true;b.items.forEach(it=>boardRow(it,b.pair[it.id]===it.answer?1:0));boardFinished();st.lastRes={cls:st.sess.bad?'fix':'ok',head:st.sess.ok+' / '+b.items.length+' doğru.',text:'Yanıtların kaydedildi. Yanlış eşleşmelerin altında doğru adları inceleyebilirsin.'};render();}
+function zoomImg(id){const it=boardItem(id),ov=document.getElementById('ov');st.modalOpen=true;pauseT();sesSus();ov.innerHTML='<div class="modal zoom" role="dialog" aria-modal="true" aria-label="Büyük görsel"><img src="'+esc(it.image)+'" alt="Araç fotoğrafı"><button class="btn pri" id="zClose">Kapat</button></div>';ov.className='on';document.getElementById('zClose').onclick=closeModal;document.getElementById('zClose').focus();}
+function boardModeHTML(){const its=contentArr().filter(x=>x.set===st.contentSet);return topBar(subjectName()+' · '+st.contentSet+'. takım')+'<div class="wrap"><h1>Nasıl çalışalım?</h1><p class="card">'+sesDugme(boardIntro(its.length,6))+esc(boardIntro(its.length,6))+'</p><div class="list">'+menuButton('Öğreniyorum','Yanlışta ipucu verilir. Her yanıttan sonra açıklama açılır.',"startBoard('learn',12)")+menuButton('Kendimi Deniyorum','12 görsel ve 18 ad. Yanıtlar en sonda kontrol edilir.',"startBoard('check',12)")+'</div><details class="card"><summary>Öğretmen için hazırlık çalışmaları</summary><p>Bu kısa çalışmalar, 12 görsellik değerlendirmeyle karşılaştırılmaz.</p><div class="row"><button class="btn" onclick="startBoard(\'learn\',4)">4 görselle hazırlan</button><button class="btn" onclick="startBoard(\'learn\',6)">6 görselle hazırlan</button><button class="btn" onclick="startBoard(\'learn\',12,true)">Yerleri değiştirerek tekrar et</button></div><p>Farklı fotoğrafla ve gerçek araçla tanıma ayrıca çalışılır. Yer değiştirme, farklı araç modelini tanıma kanıtı değildir.</p></details></div>';}
 function boardHTML(){
-  const b=st.board,done=Object.keys(st.practice==='check'?b.pair:b.res).length;
-  let h=topBar(subjectName()+' · Eşleştirme · '+st.contentSet+'. takım',true)+'<div class="wrap board-wrap">';
-  h+='<div class="stats"><span class="chip">Eşlenen <b>'+done+' / '+b.items.length+'</b></span><span class="chip">Ad kartı <b>'+b.names.length+'</b></span>'+(st.practice==='learn'||b.checked?'<span class="chip">Puan <b>'+st.sess.s+'</b></span>':'')+'</div>';
-  if(!st.kDone)h+='<p class="board-help">'+(b.selName?'<b>'+esc(b.selName)+'</b> seçildi. Şimdi görsele dokun.':b.sel?'Görsel seçildi. Şimdi doğru ada dokun.':'Önce bir görsele, sonra doğru ada dokun. Ada dokununca ad okunur.')+'</p>';
-  h+='<div class="board"><div class="board-imgs">';
-  b.items.forEach((it,i)=>{
-    const r=b.res[it.id],nm=b.pair[it.id],sel=b.sel===it.id;
-    let cls='bimg'+(sel?' sel':'')+(r===1||r===2?' ok':'')+(r===0?(st.practice==='check'?' bad':' shown'):'');
-    let lbl=nm?esc(nm):'&nbsp;';
-    if(b.checked&&r===0)lbl='<s>'+esc(nm)+'</s><br>'+esc(it.answer);
-    h+='<div class="'+cls+'"><button class="bimg-btn" aria-pressed="'+sel+'" aria-label="'+(i+1)+'. görsel'+(nm?', eşlenen ad: '+esc(nm):'')+'" onclick="tapImg(\''+it.id+'\')"><img src="'+esc(it.image)+'" alt=""></button>'+
-      '<button class="zoom-btn" aria-label="'+(i+1)+'. görseli büyüt" onclick="zoomImg(\''+it.id+'\')">⤢</button><div class="blbl">'+lbl+'</div></div>';
-  });
-  h+='</div><div class="board-side">'+msgHtml()+'<div class="board-names">';
-  b.names.forEach((n,i)=>{if(boardUsed(n)||st.kDone)return;h+='<button class="bname'+(b.selName===n?' sel':'')+'" aria-pressed="'+(b.selName===n)+'" onclick="tapName('+i+')">'+esc(n)+'</button>';});
-  h+='</div>';
-  if(st.practice==='check'&&!b.checked)h+='<button class="btn pri" onclick="checkBoard()"'+(done<b.items.length?' disabled':'')+'>Kontrol et</button>';
-  if(st.kDone)h+='<button class="btn pri" onclick="finish()">Raporu Gör</button><button class="btn" onclick="startBoard(st.practice)">Bu takımı yeniden oyna</button>';
-  h+='</div></div>'+footHtml()+'</div>';
-  return h;
+ const b=st.board,done=Object.keys(st.practice==='check'?b.pair:b.res).length;let h=topBar(subjectName()+' · '+st.contentSet+'. takım',true)+'<div class="wrap board-wrap"><div class="stats"><span class="chip">Eşlenen '+done+' / '+b.items.length+'</span><span class="chip">Ad kartı '+b.names.length+'</span>'+(st.practice==='learn'||b.checked?'<span class="chip">Puan '+st.sess.s+'</span>':'')+'</div>';
+ h+='<p class="board-help" role="status">'+(st.kDone?'Çalışma tamamlandı.':b.selName?'Şimdi '+esc(b.selName)+' adına uygun görseli seç.':b.sel?'Şimdi bu görselin adını seç.':'Bir görsel seç. İstersen önce bir ad da seçebilirsin.')+'</p><div class="board"><div class="board-imgs">';
+ b.items.forEach((it,i)=>{const r=b.res[it.id],nm=b.pair[it.id];let cls='bimg'+(b.sel===it.id?' sel':'')+(r===1||r===2?' ok':r===0?' bad':'');let lbl=nm?esc(nm):'&nbsp;';if(b.checked&&r===0)lbl='<s>'+esc(nm)+'</s><br>Doğru: '+esc(it.answer);else if(r===0)lbl='Yanıt gösterildi: '+esc(it.answer);else if(r===1||r===2)lbl='✓ '+lbl;
+ h+='<div class="'+cls+'"><button class="bimg-btn" aria-pressed="'+(b.sel===it.id)+'" aria-label="'+(i+1)+'. görsel'+(nm?', eşlenen ad: '+esc(nm):'')+'" onclick="tapImg(\''+it.id+'\')"><img src="'+esc(it.image)+'" alt=""></button><button class="zoom-btn" aria-label="'+(i+1)+'. görseli büyüt" onclick="zoomImg(\''+it.id+'\')">⤢</button><div class="blbl">'+lbl+'</div>';
+ if(b.checked)h+='<details class="card"><summary>Açıklama</summary><p>'+esc(it.explanation||'')+'</p>'+sesDugme(it.answer+'. '+it.explanation)+'</details>';h+='</div>';});
+ h+='</div><div class="board-side">'+msgHtml()+'<div class="board-names">';
+ b.names.forEach((n,i)=>{const used=boardUsed(n);if(st.kDone)return;/* Değerlendirmede adlar yerlerinde kalır; kaybolup yeni yerleşim oluşturmaz. */if(used&&st.practice==='learn')return;h+='<button class="bname'+(b.selName===n?' sel':'')+'" aria-pressed="'+(b.selName===n)+'"'+(used?' disabled':'')+' onclick="tapName('+i+')">'+esc(n)+(used?' ✓':'')+'</button>';});
+ h+='</div>';if(st.practice==='check'&&!b.checked)h+='<button class="btn pri" onclick="checkBoard()"'+(done<b.items.length?' disabled':'')+'>Yanıtları kontrol et</button>';if(st.kDone)h+='<button class="btn pri" onclick="finish()">Raporu Gör</button><button class="btn" onclick="startBoard(st.practice,'+b.size+')">Yeniden çalış</button>';return h+'</div></div>'+footHtml()+'</div>';
 }
-render=function(){
-  if(st.screen==='boardmode'||st.screen==='board'){
-    document.getElementById('app').innerHTML=st.screen==='board'?boardHTML():boardModeHTML();
-    document.querySelectorAll('.msg').forEach(e=>{e.setAttribute('role','status');e.setAttribute('aria-live','polite');});
-    return;
-  }
-  BOARD_PREV_RENDER();
-};
+render=function(){if(st.screen==='boardmode'||st.screen==='board'){document.getElementById('app').innerHTML=st.screen==='board'?boardHTML():boardModeHTML();return;}BOARD_PREV_RENDER();};

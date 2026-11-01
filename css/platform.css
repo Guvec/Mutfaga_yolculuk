@@ -140,3 +140,13 @@ body{padding-bottom:env(safe-area-inset-bottom)}
   .board-side .msg b{font-size:14px}
   .board-side .msg .spk{min-width:34px;min-height:34px;font-size:15px}
 }
+
+/* Açık yönergeler, büyütülmüş dokunma alanları ve açılır ayrıntılar. */
+.voice-tools{display:flex;justify-content:center;gap:10px;padding:12px;flex-wrap:wrap}
+.feedback-detail{padding:12px;background:#fff;border:1px solid #a9bec0;border-radius:10px;max-height:32vh;overflow:auto}
+summary{cursor:pointer;font-weight:bold;min-height:44px;padding:8px 0}
+.feedback-detail p,.audit-report p{line-height:1.55}
+.bname:disabled{opacity:1;background:#e9eeee;color:#465558;border-color:#9aaeb0}
+.preparing{opacity:.65}
+.modal select{display:block;width:100%;min-height:48px;font:inherit;margin:8px 0 16px}
+@media(max-width:759px){.board-side{position:static}.bname{font-size:15px;min-height:48px}.board-names{grid-template-columns:repeat(2,minmax(0,1fr))}.board-imgs{grid-template-columns:repeat(3,minmax(0,1fr))}.board-help{position:sticky;top:0;background:#f1f6f6;padding:10px;z-index:3}.feedback-detail{max-height:none}.board-side .msg{max-height:none}.opts button{min-height:52px}.voice-tools .btn{min-height:44px}}

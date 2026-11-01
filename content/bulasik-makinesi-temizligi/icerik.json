@@ -28,7 +28,8 @@
       "source": {
         "file": "Bulaşık Yıkama ve Atık Yönetimi.docx",
         "question": "1"
-      }
+      },
+      "hint": "Önce ürünün kullanım yerini ve güvenli davranışı düşün."
     },
     {
       "id": "b-bd-1-2",
@@ -58,7 +59,8 @@
       "source": {
         "file": "Bulaşık Yıkama ve Atık Yönetimi.docx",
         "question": "2"
-      }
+      },
+      "hint": "Önce ürünün kullanım yerini ve güvenli davranışı düşün."
     },
     {
       "id": "b-bd-2-1",
@@ -88,7 +90,8 @@
       "source": {
         "file": "Bulaşık Yıkama ve Atık Yönetimi.docx",
         "question": "1"
-      }
+      },
+      "hint": "Önce ürünün kullanım yerini ve güvenli davranışı düşün."
     },
     {
       "id": "b-bd-2-2",
@@ -118,7 +121,8 @@
       "source": {
         "file": "Bulaşık Yıkama ve Atık Yönetimi.docx",
         "question": "2"
-      }
+      },
+      "hint": "Önce ürünün kullanım yerini ve güvenli davranışı düşün."
     },
     {
       "id": "b-bd-2-3",
@@ -148,7 +152,8 @@
       "source": {
         "file": "Bulaşık Yıkama ve Atık Yönetimi.docx",
         "question": "3"
-      }
+      },
+      "hint": "Önce ürünün kullanım yerini ve güvenli davranışı düşün."
     },
     {
       "id": "b-bd-3-1",
@@ -178,7 +183,8 @@
       "source": {
         "file": "Bulaşık Yıkama ve Atık Yönetimi.docx",
         "question": "1"
-      }
+      },
+      "hint": "Önce ürünün kullanım yerini ve güvenli davranışı düşün."
     },
     {
       "id": "b-bd-3-2",
@@ -208,7 +214,8 @@
       "source": {
         "file": "Bulaşık Yıkama ve Atık Yönetimi.docx",
         "question": "2"
-      }
+      },
+      "hint": "Önce ürünün kullanım yerini ve güvenli davranışı düşün."
     },
     {
       "id": "b-bd-4-2",
@@ -238,7 +245,8 @@
       "source": {
         "file": "Bulaşık Yıkama ve Atık Yönetimi.docx",
         "question": "2"
-      }
+      },
+      "hint": "Önce ürünün kullanım yerini ve güvenli davranışı düşün."
     },
     {
       "id": "b-bd-4-3",
@@ -268,7 +276,136 @@
       "source": {
         "file": "Bulaşık Yıkama ve Atık Yönetimi.docx",
         "question": "3"
-      }
+      },
+      "hint": "Önce ürünün kullanım yerini ve güvenli davranışı düşün."
+    },
+    {
+      "id": "atik-yeni-1",
+      "prompt": "Okuldaki atık kutusuna atık ayrılacak. Önce ne kontrol edilir?",
+      "choices": [
+        {
+          "id": "A",
+          "text": "Kutunun yalnız rengi"
+        },
+        {
+          "id": "B",
+          "text": "Kutunun etiketi ve kabul bilgisi"
+        },
+        {
+          "id": "C",
+          "text": "Kutunun kapak büyüklüğü"
+        },
+        {
+          "id": "D",
+          "text": "Kutunun bulunduğu raf"
+        }
+      ],
+      "correct": "B",
+      "explanation": "Kutuların kabul ettiği atıklar değişebilir. Etiket ve okulun toplama sistemi kontrol edilir.",
+      "group": "5. Bölüm · Atık yönetimi",
+      "chapter": 5,
+      "source": {
+        "file": "Bulaşık Yıkama ve Atık Yönetimi.docx",
+        "section": "Atık yönetimi",
+        "adaptation": "Kaynak metinden yeni soru"
+      },
+      "hint": "Atığın türünü, kutunun etiketini ve öğrencinin güvenli görevini düşün."
+    },
+    {
+      "id": "atik-yeni-2",
+      "prompt": "Kızartmadan kalan sıcak yağ için öğrenci ne yapar?",
+      "choices": [
+        {
+          "id": "A",
+          "text": "Yağı evyeye döker."
+        },
+        {
+          "id": "B",
+          "text": "Yağı başka kaba taşır."
+        },
+        {
+          "id": "C",
+          "text": "Yağa dokunmadan öğretmene bildirir."
+        },
+        {
+          "id": "D",
+          "text": "Yağı çöp torbasına döker."
+        }
+      ],
+      "correct": "C",
+      "explanation": "Sıcak yağ yanığa yol açabilir. Soğutma ve uygun kapta toplama işini öğretmen yürütür.",
+      "group": "5. Bölüm · Atık yönetimi",
+      "chapter": 5,
+      "source": {
+        "file": "Bulaşık Yıkama ve Atık Yönetimi.docx",
+        "section": "Atık yönetimi",
+        "adaptation": "Kaynak metinden yeni soru"
+      },
+      "hint": "Atığın türünü, kutunun etiketini ve öğrencinin güvenli görevini düşün."
+    },
+    {
+      "id": "atik-yeni-3",
+      "prompt": "Atıkların arasında kırık bardak görülüyor. Öğrenci ne yapar?",
+      "choices": [
+        {
+          "id": "A",
+          "text": "Parçalara dokunmadan öğretmene bildirir."
+        },
+        {
+          "id": "B",
+          "text": "Parçaları eliyle ayırır."
+        },
+        {
+          "id": "C",
+          "text": "Parçaları süngerle toplar."
+        },
+        {
+          "id": "D",
+          "text": "Torbayı eliyle bastırır."
+        }
+      ],
+      "correct": "A",
+      "explanation": "Kırık cam eli kesebilir. Öğrenci parçaları toplamaz ve torbayı sıkıştırmaz.",
+      "group": "5. Bölüm · Atık yönetimi",
+      "chapter": 5,
+      "source": {
+        "file": "Bulaşık Yıkama ve Atık Yönetimi.docx",
+        "section": "Atık yönetimi",
+        "adaptation": "Kaynak metinden yeni soru"
+      },
+      "hint": "Atığın türünü, kutunun etiketini ve öğrencinin güvenli görevini düşün."
+    },
+    {
+      "id": "atik-yeni-4",
+      "prompt": "Yemek israfını azaltmak için tabağa ne kadar yemek alınır?",
+      "choices": [
+        {
+          "id": "A",
+          "text": "Tabağın alabileceği kadar"
+        },
+        {
+          "id": "B",
+          "text": "Arkadaşının aldığı kadar"
+        },
+        {
+          "id": "C",
+          "text": "Her yemekten iki porsiyon"
+        },
+        {
+          "id": "D",
+          "text": "Yenebilecek kadar"
+        }
+      ],
+      "correct": "D",
+      "explanation": "Porsiyon ihtiyaca göre alınır. Yenmeyecek kadar yemek almak atığı artırır.",
+      "group": "5. Bölüm · Atık yönetimi",
+      "chapter": 5,
+      "source": {
+        "file": "Bulaşık Yıkama ve Atık Yönetimi.docx",
+        "section": "Atık yönetimi",
+        "adaptation": "Kaynak metinden yeni soru"
+      },
+      "hint": "Atığın türünü, kutunun etiketini ve öğrencinin güvenli görevini düşün."
     }
   ],
   "matches": [
@@ -279,11 +416,13 @@
       "image": "assets/bulasik-guncel/arac-6.jpg",
       "imageAlt": "Adı veya türü sorulan nesnenin fotoğrafı.",
       "answer": "Bulaşık eldiveni",
-      "explanation": "Ne için kullanılır? Yıkama sırasında ellerin deterjanla temasını azaltmak için kullanılır.\nNasıl kullanılır? İçi kuru ve yırtıksız eldiven giyilir. Yiyecek hazırlamaya geçerken bulaşık eldiveni çıkarılır ve eller yıkanır.",
+      "explanation": "Yıkama sırasında ellerin deterjanla temasını azaltmak için kullanılır.",
       "source": {
         "file": "Bulaşık Yıkama ve Atık Yönetimi.docx",
         "card": 1
-      }
+      },
+      "detail": "Ne için kullanılır? Yıkama sırasında ellerin deterjanla temasını azaltmak için kullanılır.\nNasıl kullanılır? İçi kuru ve yırtıksız eldiven giyilir. Yiyecek hazırlamaya geçerken bulaşık eldiveni çıkarılır ve eller yıkanır.",
+      "hint": "Nesnenin biçimine ve yapıldığı malzemeye bak."
     },
     {
       "id": "bulasik-2",
@@ -292,11 +431,13 @@
       "image": "assets/bulasik-guncel/arac-7.jpg",
       "imageAlt": "Adı veya türü sorulan nesnenin fotoğrafı.",
       "answer": "Bulaşık süngeri",
-      "explanation": "Ne için kullanılır? Uygun kapların yüzeyindeki kiri uzaklaştırmak için kullanılır.\nNasıl kullanılır? Yüzeye uygun sünger seçilir. Süngerin kalın ve yumuşak yüzü yıkama için kullanılır. İnce ve pürüzlü yüzü serttir. Sert yüz kaplamalı tavada ve camda kullanılmaz.",
+      "explanation": "Uygun kapların yüzeyindeki kiri uzaklaştırmak için kullanılır.",
       "source": {
         "file": "Bulaşık Yıkama ve Atık Yönetimi.docx",
         "card": 2
-      }
+      },
+      "detail": "Ne için kullanılır? Uygun kapların yüzeyindeki kiri uzaklaştırmak için kullanılır.\nNasıl kullanılır? Yüzeye uygun sünger seçilir. Süngerin kalın ve yumuşak yüzü yıkama için kullanılır. İnce ve pürüzlü yüzü serttir. Sert yüz kaplamalı tavada ve camda kullanılmaz.",
+      "hint": "Nesnenin biçimine ve yapıldığı malzemeye bak."
     },
     {
       "id": "bulasik-3",
@@ -305,11 +446,13 @@
       "image": "assets/bulasik-guncel/arac-8.jpg",
       "imageAlt": "Adı veya türü sorulan nesnenin fotoğrafı.",
       "answer": "Bulaşık fırçası",
-      "explanation": "Ne için kullanılır? Kapların içini ve ulaşılması güç yerleri temizlemek için kullanılır.\nNasıl kullanılır? Fırça sapından tutulur. Kabın içi, yüzeye uygun fırçayla ovalanır. Kılları bozulmuş fırça yenisiyle değiştirilir.",
+      "explanation": "Kapların içini ve ulaşılması güç yerleri temizlemek için kullanılır.",
       "source": {
         "file": "Bulaşık Yıkama ve Atık Yönetimi.docx",
         "card": 3
-      }
+      },
+      "detail": "Ne için kullanılır? Kapların içini ve ulaşılması güç yerleri temizlemek için kullanılır.\nNasıl kullanılır? Fırça sapından tutulur. Kabın içi, yüzeye uygun fırçayla ovalanır. Kılları bozulmuş fırça yenisiyle değiştirilir.",
+      "hint": "Nesnenin biçimine ve yapıldığı malzemeye bak."
     },
     {
       "id": "bulasik-4",
@@ -318,11 +461,13 @@
       "image": "assets/bulasik-guncel/arac-9.jpg",
       "imageAlt": "Adı veya türü sorulan nesnenin fotoğrafı.",
       "answer": "Kurulama rafı",
-      "explanation": "Ne için kullanılır? Temiz bulaşığın suyunun süzülmesi ve kuruması için kullanılır.\nNasıl kullanılır? Temiz bulaşıklar dengeli ve aralıklı dizilir. Rafın altında biriken su boşaltılır.",
+      "explanation": "Temiz bulaşığın suyunun süzülmesi ve kuruması için kullanılır.",
       "source": {
         "file": "Bulaşık Yıkama ve Atık Yönetimi.docx",
         "card": 4
-      }
+      },
+      "detail": "Ne için kullanılır? Temiz bulaşığın suyunun süzülmesi ve kuruması için kullanılır.\nNasıl kullanılır? Temiz bulaşıklar dengeli ve aralıklı dizilir. Rafın altında biriken su boşaltılır.",
+      "hint": "Nesnenin biçimine ve yapıldığı malzemeye bak."
     },
     {
       "id": "bulasik-5",
@@ -331,11 +476,13 @@
       "image": "assets/bulasik-guncel/arac-10.jpg",
       "imageAlt": "Adı veya türü sorulan nesnenin fotoğrafı.",
       "answer": "Silikon spatula",
-      "explanation": "Ne için kullanılır? Tabakta ve kapta kalan yemek artıklarını yıkamadan önce sıyırmak için kullanılır.\nNasıl kullanılır? Spatula sapından tutulur. Artıklar silikon uçla çöp kabına veya organik atık kabına sıyrılır. Silikon uç yüzeyi çizmez; bu yüzden kaplamalı tavada da kullanılır. Kullanımdan sonra yıkanıp kurutulur.",
+      "explanation": "Tabakta ve kapta kalan yemek artıklarını yıkamadan önce sıyırmak için kullanılır.",
       "source": {
         "file": "Bulaşık Yıkama ve Atık Yönetimi.docx",
         "card": 5
-      }
+      },
+      "detail": "Ne için kullanılır? Tabakta ve kapta kalan yemek artıklarını yıkamadan önce sıyırmak için kullanılır.\nNasıl kullanılır? Spatula sapından tutulur. Artıklar silikon uçla çöp kabına veya organik atık kabına sıyrılır. Silikon uç yüzeyi çizmez; bu yüzden kaplamalı tavada da kullanılır. Kullanımdan sonra yıkanıp kurutulur.",
+      "hint": "Nesnenin biçimine ve yapıldığı malzemeye bak."
     },
     {
       "id": "bulasik-6",
@@ -344,11 +491,13 @@
       "image": "assets/bulasik-guncel/arac-11.jpg",
       "imageAlt": "Adı veya türü sorulan nesnenin fotoğrafı.",
       "answer": "Mutfak termometresi",
-      "explanation": "Ne için kullanılır? Yıkama suyunun sıcaklığını ölçmek için kullanılır.\nNasıl kullanılır? Termometrenin ucu suya daldırılır. Ekrandaki sayı okunur. Yıkama suyunun sıcaklığı, ürünün kullanım bilgisine göre öğretmen tarafından belirlenir. Kullanımdan sonra ucu yıkanır ve kurulanır.",
+      "explanation": "Yıkama suyunun sıcaklığını ölçmek için kullanılır.",
       "source": {
         "file": "Bulaşık Yıkama ve Atık Yönetimi.docx",
         "card": 6
-      }
+      },
+      "detail": "Ne için kullanılır? Yıkama suyunun sıcaklığını ölçmek için kullanılır.\nNasıl kullanılır? Termometrenin ucu suya daldırılır. Ekrandaki sayı okunur. Yıkama suyunun sıcaklığı, ürünün kullanım bilgisine göre öğretmen tarafından belirlenir. Kullanımdan sonra ucu yıkanır ve kurulanır.",
+      "hint": "Nesnenin biçimine ve yapıldığı malzemeye bak."
     },
     {
       "id": "bulasik-7",
@@ -357,11 +506,13 @@
       "image": "assets/bulasik-guncel/arac-64.jpg",
       "imageAlt": "Adı veya türü sorulan nesnenin fotoğrafı.",
       "answer": "Pedallı çöp kovası",
-      "explanation": "Ne için kullanılır? Uygun atıkların kapaklı bir kovada toplanması için kullanılır.\nNasıl kullanılır? Pedala ayakla basılarak kapak açılır. Kova dolunca torbası değiştirilir; taşarsa kapak kapanmaz, koku oluşur ve haşere gelir.",
+      "explanation": "Uygun atıkların kapaklı bir kovada toplanması için kullanılır.",
       "source": {
         "file": "Bulaşık Yıkama ve Atık Yönetimi.docx",
         "card": 7
-      }
+      },
+      "detail": "Ne için kullanılır? Uygun atıkların kapaklı bir kovada toplanması için kullanılır.\nNasıl kullanılır? Pedala ayakla basılarak kapak açılır. Kova dolunca torbası değiştirilir; taşarsa kapak kapanmaz, koku oluşur ve haşere gelir.",
+      "hint": "Nesnenin biçimine ve yapıldığı malzemeye bak."
     },
     {
       "id": "bulasik-8",
@@ -374,7 +525,9 @@
       "source": {
         "file": "Bulaşık Yıkama ve Atık Yönetimi.docx",
         "card": 8
-      }
+      },
+      "detail": "Temiz karton kutu kâğıt ve karton atığıdır. Kutunun etiketine ve okulun toplama sistemine göre ayrılır. Kırık veya keskin atık görülürse öğretmene haber verilir.",
+      "hint": "Nesnenin biçimine ve yapıldığı malzemeye bak."
     },
     {
       "id": "bulasik-9",
@@ -387,7 +540,9 @@
       "source": {
         "file": "Bulaşık Yıkama ve Atık Yönetimi.docx",
         "card": 9
-      }
+      },
+      "detail": "Boş plastik şişe plastik atıktır. Kutunun etiketine ve okulun toplama sistemine göre ayrılır. Kırık veya keskin atık görülürse öğretmene haber verilir.",
+      "hint": "Nesnenin biçimine ve yapıldığı malzemeye bak."
     },
     {
       "id": "bulasik-10",
@@ -400,7 +555,9 @@
       "source": {
         "file": "Bulaşık Yıkama ve Atık Yönetimi.docx",
         "card": 10
-      }
+      },
+      "detail": "Boş ve sağlam cam kavanoz cam ambalajdır. Kutunun etiketine ve okulun toplama sistemine göre ayrılır. Kırık veya keskin atık görülürse öğretmene haber verilir.",
+      "hint": "Nesnenin biçimine ve yapıldığı malzemeye bak."
     },
     {
       "id": "bulasik-11",
@@ -413,7 +570,9 @@
       "source": {
         "file": "Bulaşık Yıkama ve Atık Yönetimi.docx",
         "card": 11
-      }
+      },
+      "detail": "Boş konserve kutusu metal atıktır. Kutunun etiketine ve okulun toplama sistemine göre ayrılır. Kırık veya keskin atık görülürse öğretmene haber verilir.",
+      "hint": "Nesnenin biçimine ve yapıldığı malzemeye bak."
     },
     {
       "id": "bulasik-12",
@@ -426,7 +585,9 @@
       "source": {
         "file": "Bulaşık Yıkama ve Atık Yönetimi.docx",
         "card": 12
-      }
+      },
+      "detail": "Sebze kabukları organik atıktır. Kutunun etiketine ve okulun toplama sistemine göre ayrılır. Kırık veya keskin atık görülürse öğretmene haber verilir.",
+      "hint": "Nesnenin biçimine ve yapıldığı malzemeye bak."
     }
   ],
   "words": [],
@@ -446,6 +607,10 @@
     {
       "label": "4. Bölüm",
       "chapter": 4
+    },
+    {
+      "label": "5. Bölüm · Atık yönetimi",
+      "chapter": 5
     }
   ],
   "distractors": {

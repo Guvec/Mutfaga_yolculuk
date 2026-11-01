@@ -8,13 +8,14 @@
       "image": "assets/baharat/t01_01.jpg",
       "imageAlt": "Besin fotoğrafı",
       "answer": "PUL BİBER",
-      "hint": "Görselin rengini, biçimini ve yapısını incele.",
-      "explanation": "",
+      "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
+      "explanation": "Kırmızı biberin kurutulup parçalanmasıyla hazırlanır. Yemeklere ve çorbalara eklenir; acılığı ürüne göre değişir.",
       "source": {
         "file": "Baharat_12_Gorsel_18_Ad.docx",
         "page": 1,
         "card": 1
-      }
+      },
+      "detail": "Kırmızı biberin kurutulup parçalanmasıyla hazırlanır. Yemeklere ve çorbalara eklenir; acılığı ürüne göre değişir. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir."
     },
     {
       "id": "bh-01-02",
@@ -23,13 +24,14 @@
       "image": "assets/baharat/t01_02.jpg",
       "imageAlt": "Besin fotoğrafı",
       "answer": "SUMAK",
-      "hint": "Görselin rengini, biçimini ve yapısını incele.",
-      "explanation": "",
+      "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
+      "explanation": "Kırmızımsı, ekşi tat veren bir baharattır. Soğan salatasında ve salatalarda kullanılır.",
       "source": {
         "file": "Baharat_12_Gorsel_18_Ad.docx",
         "page": 1,
         "card": 2
-      }
+      },
+      "detail": "Kırmızımsı, ekşi tat veren bir baharattır. Soğan salatasında ve salatalarda kullanılır. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir."
     },
     {
       "id": "bh-01-03",
@@ -38,13 +40,14 @@
       "image": "assets/baharat/t01_03.jpg",
       "imageAlt": "Besin fotoğrafı",
       "answer": "İSOT",
-      "hint": "Görselin rengini, biçimini ve yapısını incele.",
-      "explanation": "",
+      "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
+      "explanation": "Koyu renkli bir biber ürünüdür. Çiğ köfte ve çeşitli yemeklerde kullanılır; yalnız renkten acılık miktarı anlaşılmaz.",
       "source": {
         "file": "Baharat_12_Gorsel_18_Ad.docx",
         "page": 1,
         "card": 3
-      }
+      },
+      "detail": "Koyu renkli bir biber ürünüdür. Çiğ köfte ve çeşitli yemeklerde kullanılır; yalnız renkten acılık miktarı anlaşılmaz. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir."
     },
     {
       "id": "bh-01-04",
@@ -53,13 +56,14 @@
       "image": "assets/baharat/t01_04.jpg",
       "imageAlt": "Besin fotoğrafı",
       "answer": "KARABİBER",
-      "hint": "Görselin rengini, biçimini ve yapısını incele.",
-      "explanation": "",
+      "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
+      "explanation": "Tane veya öğütülmüş olarak kullanılır. Yemeklere belirgin bir aroma ve yakıcılık verir.",
       "source": {
         "file": "Baharat_12_Gorsel_18_Ad.docx",
         "page": 1,
         "card": 4
-      }
+      },
+      "detail": "Tane veya öğütülmüş olarak kullanılır. Yemeklere belirgin bir aroma ve yakıcılık verir. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir."
     },
     {
       "id": "bh-01-05",
@@ -68,13 +72,14 @@
       "image": "assets/baharat/t01_05.jpg",
       "imageAlt": "Besin fotoğrafı",
       "answer": "KIRMIZI TOZ BİBER",
-      "hint": "Görselin rengini, biçimini ve yapısını incele.",
-      "explanation": "",
+      "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
+      "explanation": "Kurutulmuş biberin öğütülmüş biçimidir. Pul biberden daha ince yapıdadır; tatlı veya acı olabilir.",
       "source": {
         "file": "Baharat_12_Gorsel_18_Ad.docx",
         "page": 1,
         "card": 5
-      }
+      },
+      "detail": "Kurutulmuş biberin öğütülmüş biçimidir. Pul biberden daha ince yapıdadır; tatlı veya acı olabilir. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir."
     },
     {
       "id": "bh-01-06",
@@ -83,13 +88,14 @@
       "image": "assets/baharat/t01_06.jpg",
       "imageAlt": "Besin fotoğrafı",
       "answer": "YENİBAHAR",
-      "hint": "Görselin rengini, biçimini ve yapısını incele.",
-      "explanation": "",
+      "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
+      "explanation": "Tane veya öğütülmüş olarak kullanılır. Dolma içi ve köfte gibi yemeklere aroma verir.",
       "source": {
         "file": "Baharat_12_Gorsel_18_Ad.docx",
         "page": 1,
         "card": 6
-      }
+      },
+      "detail": "Tane veya öğütülmüş olarak kullanılır. Dolma içi ve köfte gibi yemeklere aroma verir. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir."
     },
     {
       "id": "bh-01-07",
@@ -98,13 +104,14 @@
       "image": "assets/baharat/t01_07.jpg",
       "imageAlt": "Besin fotoğrafı",
       "answer": "BEYAZ BİBER",
-      "hint": "Görselin rengini, biçimini ve yapısını incele.",
-      "explanation": "",
+      "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
+      "explanation": "Tane veya öğütülmüş olarak kullanılır. Açık renkli soslarda ve çorbalarda tercih edilebilir.",
       "source": {
         "file": "Baharat_12_Gorsel_18_Ad.docx",
         "page": 1,
         "card": 7
-      }
+      },
+      "detail": "Tane veya öğütülmüş olarak kullanılır. Açık renkli soslarda ve çorbalarda tercih edilebilir. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir."
     },
     {
       "id": "bh-01-08",
@@ -113,13 +120,14 @@
       "image": "assets/baharat/t01_08.jpg",
       "imageAlt": "Besin fotoğrafı",
       "answer": "PEMBE BİBER",
-      "hint": "Görselin rengini, biçimini ve yapısını incele.",
-      "explanation": "",
+      "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
+      "explanation": "Pembe renkli taneler hâlindedir. Soslarda ve yemeklerin lezzetlendirilmesinde kullanılır; karabiberle aynı bitki değildir.",
       "source": {
         "file": "Baharat_12_Gorsel_18_Ad.docx",
         "page": 1,
         "card": 8
-      }
+      },
+      "detail": "Pembe renkli taneler hâlindedir. Soslarda ve yemeklerin lezzetlendirilmesinde kullanılır; karabiberle aynı bitki değildir. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir."
     },
     {
       "id": "bh-01-09",
@@ -128,13 +136,14 @@
       "image": "assets/baharat/t01_09.jpg",
       "imageAlt": "Besin fotoğrafı",
       "answer": "SİÇUAN BİBERİ",
-      "hint": "Görselin rengini, biçimini ve yapısını incele.",
-      "explanation": "",
+      "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
+      "explanation": "Yemeklere kendine özgü aroma veren bir baharattır. Karabiberle aynı bitki değildir.",
       "source": {
         "file": "Baharat_12_Gorsel_18_Ad.docx",
         "page": 1,
         "card": 9
-      }
+      },
+      "detail": "Yemeklere kendine özgü aroma veren bir baharattır. Karabiberle aynı bitki değildir. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir."
     },
     {
       "id": "bh-01-10",
@@ -143,13 +152,14 @@
       "image": "assets/baharat/t01_10.jpg",
       "imageAlt": "Besin fotoğrafı",
       "answer": "KİMYON",
-      "hint": "Görselin rengini, biçimini ve yapısını incele.",
-      "explanation": "",
+      "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
+      "explanation": "Tane veya öğütülmüş olarak kullanılır. Köfte ve bakliyat yemeklerine aroma verir.",
       "source": {
         "file": "Baharat_12_Gorsel_18_Ad.docx",
         "page": 1,
         "card": 10
-      }
+      },
+      "detail": "Tane veya öğütülmüş olarak kullanılır. Köfte ve bakliyat yemeklerine aroma verir. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir."
     },
     {
       "id": "bh-01-11",
@@ -158,13 +168,14 @@
       "image": "assets/baharat/t01_11.jpg",
       "imageAlt": "Besin fotoğrafı",
       "answer": "KÖRİ",
-      "hint": "Görselin rengini, biçimini ve yapısını incele.",
-      "explanation": "",
+      "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
+      "explanation": "Tek bir bitki değil, baharat karışımıdır. Karışımın içeriği ve tadı ürüne göre değişir; etiketi kontrol edilir.",
       "source": {
         "file": "Baharat_12_Gorsel_18_Ad.docx",
         "page": 1,
         "card": 11
-      }
+      },
+      "detail": "Tek bir bitki değil, baharat karışımıdır. Karışımın içeriği ve tadı ürüne göre değişir; etiketi kontrol edilir. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir."
     },
     {
       "id": "bh-01-12",
@@ -173,13 +184,14 @@
       "image": "assets/baharat/t01_12.jpg",
       "imageAlt": "Besin fotoğrafı",
       "answer": "TARÇIN",
-      "hint": "Görselin rengini, biçimini ve yapısını incele.",
-      "explanation": "",
+      "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
+      "explanation": "Çubuk veya toz biçiminde kullanılır. Sütlü tatlılarda, içeceklerde ve bazı yemeklerde aroma verir.",
       "source": {
         "file": "Baharat_12_Gorsel_18_Ad.docx",
         "page": 1,
         "card": 12
-      }
+      },
+      "detail": "Çubuk veya toz biçiminde kullanılır. Sütlü tatlılarda, içeceklerde ve bazı yemeklerde aroma verir. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir."
     },
     {
       "id": "bh-02-01",
@@ -188,13 +200,14 @@
       "image": "assets/baharat/t02_01.jpg",
       "imageAlt": "Besin fotoğrafı",
       "answer": "KİŞNİŞ TOHUMU",
-      "hint": "Görselin rengini, biçimini ve yapısını incele.",
-      "explanation": "",
+      "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
+      "explanation": "Yuvarlak taneli bir baharattır. Tane veya öğütülmüş hâlde yemeklerde kullanılır; kişniş yaprağından farklıdır.",
       "source": {
         "file": "Baharat_12_Gorsel_18_Ad.docx",
         "page": 3,
         "card": 1
-      }
+      },
+      "detail": "Yuvarlak taneli bir baharattır. Tane veya öğütülmüş hâlde yemeklerde kullanılır; kişniş yaprağından farklıdır. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir."
     },
     {
       "id": "bh-02-02",
@@ -203,13 +216,14 @@
       "image": "assets/baharat/t02_02.jpg",
       "imageAlt": "Besin fotoğrafı",
       "answer": "HARDAL TOHUMU",
-      "hint": "Görselin rengini, biçimini ve yapısını incele.",
-      "explanation": "",
+      "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
+      "explanation": "Küçük, yuvarlak tanelerdir. Hardal ürünleri ve bazı tariflerde kullanılır; hazır hardal sosuyla aynı biçimde değildir.",
       "source": {
         "file": "Baharat_12_Gorsel_18_Ad.docx",
         "page": 3,
         "card": 2
-      }
+      },
+      "detail": "Küçük, yuvarlak tanelerdir. Hardal ürünleri ve bazı tariflerde kullanılır; hazır hardal sosuyla aynı biçimde değildir. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir."
     },
     {
       "id": "bh-02-03",
@@ -218,13 +232,14 @@
       "image": "assets/baharat/t02_03.jpg",
       "imageAlt": "Besin fotoğrafı",
       "answer": "SUSAM",
-      "hint": "Görselin rengini, biçimini ve yapısını incele.",
-      "explanation": "",
+      "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
+      "explanation": "Küçük yağlı tohumlardır. Simit, ekmek ve tatlılarda kullanılır.",
       "source": {
         "file": "Baharat_12_Gorsel_18_Ad.docx",
         "page": 3,
         "card": 3
-      }
+      },
+      "detail": "Küçük yağlı tohumlardır. Simit, ekmek ve tatlılarda kullanılır. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir."
     },
     {
       "id": "bh-02-04",
@@ -233,13 +248,14 @@
       "image": "assets/baharat/t02_04.jpg",
       "imageAlt": "Besin fotoğrafı",
       "answer": "REZENE TOHUMU",
-      "hint": "Görselin rengini, biçimini ve yapısını incele.",
-      "explanation": "",
+      "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
+      "explanation": "Uzunca ve çizgili tanelerdir. Hamur işleri ve bazı yemeklerde aroma vermek için kullanılır.",
       "source": {
         "file": "Baharat_12_Gorsel_18_Ad.docx",
         "page": 3,
         "card": 4
-      }
+      },
+      "detail": "Uzunca ve çizgili tanelerdir. Hamur işleri ve bazı yemeklerde aroma vermek için kullanılır. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir."
     },
     {
       "id": "bh-02-05",
@@ -248,13 +264,14 @@
       "image": "assets/baharat/t02_05.jpg",
       "imageAlt": "Besin fotoğrafı",
       "answer": "ÇÖREK OTU",
-      "hint": "Görselin rengini, biçimini ve yapısını incele.",
-      "explanation": "",
+      "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
+      "explanation": "Küçük siyah tanelerdir. Ekmek ve tuzlu hamur işlerinde kullanılır; siyah susamla karıştırılabilir.",
       "source": {
         "file": "Baharat_12_Gorsel_18_Ad.docx",
         "page": 3,
         "card": 5
-      }
+      },
+      "detail": "Küçük siyah tanelerdir. Ekmek ve tuzlu hamur işlerinde kullanılır; siyah susamla karıştırılabilir. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir."
     },
     {
       "id": "bh-02-06",
@@ -263,13 +280,14 @@
       "image": "assets/baharat/t02_06.jpg",
       "imageAlt": "Besin fotoğrafı",
       "answer": "ÇEMEN",
-      "hint": "Görselin rengini, biçimini ve yapısını incele.",
-      "explanation": "",
+      "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
+      "explanation": "Tohum, toz veya karışım biçiminde satılabilir. Görseldeki ürünün biçimi ve içeriği etiketten doğrulanır.",
       "source": {
         "file": "Baharat_12_Gorsel_18_Ad.docx",
         "page": 3,
         "card": 6
-      }
+      },
+      "detail": "Tohum, toz veya karışım biçiminde satılabilir. Görseldeki ürünün biçimi ve içeriği etiketten doğrulanır. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir."
     },
     {
       "id": "bh-02-07",
@@ -278,13 +296,14 @@
       "image": "assets/baharat/t02_07.jpg",
       "imageAlt": "Besin fotoğrafı",
       "answer": "MAHLEP",
-      "hint": "Görselin rengini, biçimini ve yapısını incele.",
-      "explanation": "",
+      "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
+      "explanation": "Öğütülmüş biçimi hamur işlerinde kullanılır. Özellikle çörek ve tuzlu kurabiyelere aroma verir.",
       "source": {
         "file": "Baharat_12_Gorsel_18_Ad.docx",
         "page": 3,
         "card": 7
-      }
+      },
+      "detail": "Öğütülmüş biçimi hamur işlerinde kullanılır. Özellikle çörek ve tuzlu kurabiyelere aroma verir. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir."
     },
     {
       "id": "bh-02-08",
@@ -293,13 +312,14 @@
       "image": "assets/baharat/t02_08.jpg",
       "imageAlt": "Besin fotoğrafı",
       "answer": "KAKULE",
-      "hint": "Görselin rengini, biçimini ve yapısını incele.",
-      "explanation": "",
+      "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
+      "explanation": "Kabuklu kapsülünün içinde aromalı tohumları bulunur. Kahve ve tatlılarda kullanılır.",
       "source": {
         "file": "Baharat_12_Gorsel_18_Ad.docx",
         "page": 3,
         "card": 8
-      }
+      },
+      "detail": "Kabuklu kapsülünün içinde aromalı tohumları bulunur. Kahve ve tatlılarda kullanılır. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir."
     },
     {
       "id": "bh-02-09",
@@ -308,13 +328,14 @@
       "image": "assets/baharat/t02_09.jpg",
       "imageAlt": "Besin fotoğrafı",
       "answer": "HAŞHAŞ TOHUMU",
-      "hint": "Görselin rengini, biçimini ve yapısını incele.",
-      "explanation": "",
+      "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
+      "explanation": "Çok küçük taneli bir üründür. Hamur işlerinde ve süslemede kullanılır; ezme biçiminden farklıdır.",
       "source": {
         "file": "Baharat_12_Gorsel_18_Ad.docx",
         "page": 3,
         "card": 9
-      }
+      },
+      "detail": "Çok küçük taneli bir üründür. Hamur işlerinde ve süslemede kullanılır; ezme biçiminden farklıdır. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir."
     },
     {
       "id": "bh-02-10",
@@ -323,13 +344,14 @@
       "image": "assets/baharat/t02_10.jpg",
       "imageAlt": "Besin fotoğrafı",
       "answer": "ANASON",
-      "hint": "Görselin rengini, biçimini ve yapısını incele.",
-      "explanation": "",
+      "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
+      "explanation": "Küçük tohumlu bir aromatik bitkidir. Hamur işlerinde ve içeceklerde aroma vermek için kullanılır.",
       "source": {
         "file": "Baharat_12_Gorsel_18_Ad.docx",
         "page": 3,
         "card": 10
-      }
+      },
+      "detail": "Küçük tohumlu bir aromatik bitkidir. Hamur işlerinde ve içeceklerde aroma vermek için kullanılır. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir."
     },
     {
       "id": "bh-02-11",
@@ -338,13 +360,14 @@
       "image": "assets/baharat/t02_11.jpg",
       "imageAlt": "Besin fotoğrafı",
       "answer": "YILDIZ ANASON",
-      "hint": "Görselin rengini, biçimini ve yapısını incele.",
-      "explanation": "",
+      "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
+      "explanation": "Yıldız biçimli bir baharattır. Tatlı ve içeceklerde aroma vermek için kullanılır; anason tohumuyla aynı bitki değildir.",
       "source": {
         "file": "Baharat_12_Gorsel_18_Ad.docx",
         "page": 3,
         "card": 11
-      }
+      },
+      "detail": "Yıldız biçimli bir baharattır. Tatlı ve içeceklerde aroma vermek için kullanılır; anason tohumuyla aynı bitki değildir. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir."
     },
     {
       "id": "bh-02-12",
@@ -353,13 +376,14 @@
       "image": "assets/baharat/t02_12.jpg",
       "imageAlt": "Besin fotoğrafı",
       "answer": "KARANFİL",
-      "hint": "Görselin rengini, biçimini ve yapısını incele.",
-      "explanation": "",
+      "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
+      "explanation": "Kurutulmuş çiçek tomurcuğudur. Komposto ve tatlılara yoğun aroma verir.",
       "source": {
         "file": "Baharat_12_Gorsel_18_Ad.docx",
         "page": 3,
         "card": 12
-      }
+      },
+      "detail": "Kurutulmuş çiçek tomurcuğudur. Komposto ve tatlılara yoğun aroma verir. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir."
     },
     {
       "id": "bh-03-01",
@@ -368,13 +392,14 @@
       "image": "assets/baharat/t03_01.jpg",
       "imageAlt": "Besin fotoğrafı",
       "answer": "TAZE YEŞİL FESLEĞEN",
-      "hint": "Görselin rengini, biçimini ve yapısını incele.",
-      "explanation": "",
+      "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
+      "explanation": "Yeşil yapraklı aromatik bir bitkidir. Salata ve soslarda kullanılır.",
       "source": {
         "file": "Baharat_12_Gorsel_18_Ad.docx",
         "page": 5,
         "card": 1
-      }
+      },
+      "detail": "Yeşil yapraklı aromatik bir bitkidir. Salata ve soslarda kullanılır. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir."
     },
     {
       "id": "bh-03-02",
@@ -383,13 +408,14 @@
       "image": "assets/baharat/t03_02.jpg",
       "imageAlt": "Besin fotoğrafı",
       "answer": "TAZE BİBERİYE",
-      "hint": "Görselin rengini, biçimini ve yapısını incele.",
-      "explanation": "",
+      "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
+      "explanation": "İnce, iğneye benzeyen yaprakları vardır. Patates ve et yemeklerinde aroma vermek için kullanılır.",
       "source": {
         "file": "Baharat_12_Gorsel_18_Ad.docx",
         "page": 5,
         "card": 2
-      }
+      },
+      "detail": "İnce, iğneye benzeyen yaprakları vardır. Patates ve et yemeklerinde aroma vermek için kullanılır. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir."
     },
     {
       "id": "bh-03-03",
@@ -398,13 +424,14 @@
       "image": "assets/baharat/t03_03.jpg",
       "imageAlt": "Besin fotoğrafı",
       "answer": "TAZE KEKİK",
-      "hint": "Görselin rengini, biçimini ve yapısını incele.",
-      "explanation": "",
+      "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
+      "explanation": "Küçük yapraklı aromatik bir bitkidir. Yemeklere ve soslara aroma vermek için kullanılır.",
       "source": {
         "file": "Baharat_12_Gorsel_18_Ad.docx",
         "page": 5,
         "card": 3
-      }
+      },
+      "detail": "Küçük yapraklı aromatik bir bitkidir. Yemeklere ve soslara aroma vermek için kullanılır. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir."
     },
     {
       "id": "bh-03-04",
@@ -413,13 +440,14 @@
       "image": "assets/baharat/t03_04.jpg",
       "imageAlt": "Besin fotoğrafı",
       "answer": "TARHUN",
-      "hint": "Görselin rengini, biçimini ve yapısını incele.",
-      "explanation": "",
+      "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
+      "explanation": "Uzun ve dar yapraklı aromatik bir bitkidir. Sos ve yemeklerde aroma vermek için kullanılır.",
       "source": {
         "file": "Baharat_12_Gorsel_18_Ad.docx",
         "page": 5,
         "card": 4
-      }
+      },
+      "detail": "Uzun ve dar yapraklı aromatik bir bitkidir. Sos ve yemeklerde aroma vermek için kullanılır. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir."
     },
     {
       "id": "bh-03-05",
@@ -428,13 +456,14 @@
       "image": "assets/baharat/t03_05.jpg",
       "imageAlt": "Besin fotoğrafı",
       "answer": "ROKA",
-      "hint": "Görselin rengini, biçimini ve yapısını incele.",
-      "explanation": "",
+      "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
+      "explanation": "Yeşil yapraklı bir salata bitkisidir. Yaprakları kendine özgü keskin tat verir.",
       "source": {
         "file": "Baharat_12_Gorsel_18_Ad.docx",
         "page": 5,
         "card": 5
-      }
+      },
+      "detail": "Yeşil yapraklı bir salata bitkisidir. Yaprakları kendine özgü keskin tat verir. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir."
     },
     {
       "id": "bh-03-06",
@@ -443,13 +472,14 @@
       "image": "assets/baharat/t03_06.jpg",
       "imageAlt": "Besin fotoğrafı",
       "answer": "MERCANKÖŞK",
-      "hint": "Görselin rengini, biçimini ve yapısını incele.",
-      "explanation": "",
+      "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
+      "explanation": "Yaprakları aroma vermek için kullanılır. Kekikle benzer görünebilir; etiketli örnekle karşılaştırılır.",
       "source": {
         "file": "Baharat_12_Gorsel_18_Ad.docx",
         "page": 5,
         "card": 6
-      }
+      },
+      "detail": "Yaprakları aroma vermek için kullanılır. Kekikle benzer görünebilir; etiketli örnekle karşılaştırılır. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir."
     },
     {
       "id": "bh-03-07",
@@ -458,13 +488,14 @@
       "image": "assets/baharat/t03_07.jpg",
       "imageAlt": "Besin fotoğrafı",
       "answer": "ADAÇAYI",
-      "hint": "Görselin rengini, biçimini ve yapısını incele.",
-      "explanation": "",
+      "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
+      "explanation": "Yapraklarıyla kullanılan aromatik bir bitkidir. Mutfakta aroma vermek için kullanılabilir; ders kapsamında tedavi amacıyla önerilmez.",
       "source": {
         "file": "Baharat_12_Gorsel_18_Ad.docx",
         "page": 5,
         "card": 7
-      }
+      },
+      "detail": "Yapraklarıyla kullanılan aromatik bir bitkidir. Mutfakta aroma vermek için kullanılabilir; ders kapsamında tedavi amacıyla önerilmez. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir."
     },
     {
       "id": "bh-03-08",
@@ -473,13 +504,14 @@
       "image": "assets/baharat/t03_08.jpg",
       "imageAlt": "Besin fotoğrafı",
       "answer": "MAYDANOZ",
-      "hint": "Görselin rengini, biçimini ve yapısını incele.",
-      "explanation": "",
+      "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
+      "explanation": "Yeşil yapraklı bir bitkidir. Salata, köfte ve yemeklerde kullanılır.",
       "source": {
         "file": "Baharat_12_Gorsel_18_Ad.docx",
         "page": 5,
         "card": 8
-      }
+      },
+      "detail": "Yeşil yapraklı bir bitkidir. Salata, köfte ve yemeklerde kullanılır. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir."
     },
     {
       "id": "bh-03-09",
@@ -488,13 +520,14 @@
       "image": "assets/baharat/t03_09.jpg",
       "imageAlt": "Besin fotoğrafı",
       "answer": "TAZE NANE",
-      "hint": "Görselin rengini, biçimini ve yapısını incele.",
-      "explanation": "",
+      "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
+      "explanation": "Yapraklı aromatik bir bitkidir. Salata, içecek ve yemeklerde kullanılır; kuru naneden farklı bir görünümü vardır.",
       "source": {
         "file": "Baharat_12_Gorsel_18_Ad.docx",
         "page": 5,
         "card": 9
-      }
+      },
+      "detail": "Yapraklı aromatik bir bitkidir. Salata, içecek ve yemeklerde kullanılır; kuru naneden farklı bir görünümü vardır. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir."
     },
     {
       "id": "bh-03-10",
@@ -503,13 +536,14 @@
       "image": "assets/baharat/t03_10.jpg",
       "imageAlt": "Besin fotoğrafı",
       "answer": "KUZUKULAĞI",
-      "hint": "Görselin rengini, biçimini ve yapısını incele.",
-      "explanation": "",
+      "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
+      "explanation": "Ekşi tatlı yeşil yaprakları salatalarda kullanılabilir. Bilinmeyen yabani yapraklar toplanıp yenmez.",
       "source": {
         "file": "Baharat_12_Gorsel_18_Ad.docx",
         "page": 5,
         "card": 10
-      }
+      },
+      "detail": "Ekşi tatlı yeşil yaprakları salatalarda kullanılabilir. Bilinmeyen yabani yapraklar toplanıp yenmez. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir."
     },
     {
       "id": "bh-03-11",
@@ -518,13 +552,14 @@
       "image": "assets/baharat/t03_11.jpg",
       "imageAlt": "Besin fotoğrafı",
       "answer": "MELİSA (OĞUL OTU)",
-      "hint": "Görselin rengini, biçimini ve yapısını incele.",
-      "explanation": "",
+      "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
+      "explanation": "Yapraklı aromatik bir bitkidir. İçeceklere aroma vermek için kullanılır.",
       "source": {
         "file": "Baharat_12_Gorsel_18_Ad.docx",
         "page": 5,
         "card": 11
-      }
+      },
+      "detail": "Yapraklı aromatik bir bitkidir. İçeceklere aroma vermek için kullanılır. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir."
     },
     {
       "id": "bh-03-12",
@@ -533,13 +568,14 @@
       "image": "assets/baharat/t03_12.jpg",
       "imageAlt": "Besin fotoğrafı",
       "answer": "TAZE DEREOTU",
-      "hint": "Görselin rengini, biçimini ve yapısını incele.",
-      "explanation": "",
+      "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
+      "explanation": "İnce, dallanmış yaprakları vardır. Salata, yoğurtlu yemek ve hamur işlerinde kullanılır.",
       "source": {
         "file": "Baharat_12_Gorsel_18_Ad.docx",
         "page": 5,
         "card": 12
-      }
+      },
+      "detail": "İnce, dallanmış yaprakları vardır. Salata, yoğurtlu yemek ve hamur işlerinde kullanılır. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir."
     },
     {
       "id": "bh-04-01",
@@ -548,13 +584,14 @@
       "image": "assets/baharat/t04_01.jpg",
       "imageAlt": "Besin fotoğrafı",
       "answer": "KURU NANE",
-      "hint": "Görselin rengini, biçimini ve yapısını incele.",
-      "explanation": "",
+      "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
+      "explanation": "Nanenin kurutulmuş biçimidir. Çorba, cacık ve dolma gibi yemeklerde kullanılır.",
       "source": {
         "file": "Baharat_12_Gorsel_18_Ad.docx",
         "page": 7,
         "card": 1
-      }
+      },
+      "detail": "Nanenin kurutulmuş biçimidir. Çorba, cacık ve dolma gibi yemeklerde kullanılır. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir."
     },
     {
       "id": "bh-04-02",
@@ -563,13 +600,14 @@
       "image": "assets/baharat/t04_02.jpg",
       "imageAlt": "Besin fotoğrafı",
       "answer": "TAZE NANE",
-      "hint": "Görselin rengini, biçimini ve yapısını incele.",
-      "explanation": "",
+      "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
+      "explanation": "Yapraklı aromatik bir bitkidir. Salata, içecek ve yemeklerde kullanılır; kuru naneden farklı bir görünümü vardır.",
       "source": {
         "file": "Baharat_12_Gorsel_18_Ad.docx",
         "page": 7,
         "card": 2
-      }
+      },
+      "detail": "Yapraklı aromatik bir bitkidir. Salata, içecek ve yemeklerde kullanılır; kuru naneden farklı bir görünümü vardır. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir."
     },
     {
       "id": "bh-04-03",
@@ -578,13 +616,14 @@
       "image": "assets/baharat/t04_03.jpg",
       "imageAlt": "Besin fotoğrafı",
       "answer": "KURU KEKİK",
-      "hint": "Görselin rengini, biçimini ve yapısını incele.",
-      "explanation": "",
+      "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
+      "explanation": "Kurutulmuş yapraklı bir aromatik üründür. Et, sebze ve soslarda kullanılır; benzer kuru otlar yalnız fotoğraftan her zaman kesin ayrılmaz.",
       "source": {
         "file": "Baharat_12_Gorsel_18_Ad.docx",
         "page": 7,
         "card": 3
-      }
+      },
+      "detail": "Kurutulmuş yapraklı bir aromatik üründür. Et, sebze ve soslarda kullanılır; benzer kuru otlar yalnız fotoğraftan her zaman kesin ayrılmaz. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir."
     },
     {
       "id": "bh-04-04",
@@ -593,13 +632,14 @@
       "image": "assets/baharat/t04_04.jpg",
       "imageAlt": "Besin fotoğrafı",
       "answer": "TAZE KEKİK",
-      "hint": "Görselin rengini, biçimini ve yapısını incele.",
-      "explanation": "",
+      "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
+      "explanation": "Küçük yapraklı aromatik bir bitkidir. Yemeklere ve soslara aroma vermek için kullanılır.",
       "source": {
         "file": "Baharat_12_Gorsel_18_Ad.docx",
         "page": 7,
         "card": 4
-      }
+      },
+      "detail": "Küçük yapraklı aromatik bir bitkidir. Yemeklere ve soslara aroma vermek için kullanılır. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir."
     },
     {
       "id": "bh-04-05",
@@ -608,13 +648,14 @@
       "image": "assets/baharat/t04_05.jpg",
       "imageAlt": "Besin fotoğrafı",
       "answer": "KURU DEREOTU",
-      "hint": "Görselin rengini, biçimini ve yapısını incele.",
-      "explanation": "",
+      "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
+      "explanation": "Dereotunun kurutulmuş biçimidir. Yemeklere aroma vermek için kullanılır.",
       "source": {
         "file": "Baharat_12_Gorsel_18_Ad.docx",
         "page": 7,
         "card": 5
-      }
+      },
+      "detail": "Dereotunun kurutulmuş biçimidir. Yemeklere aroma vermek için kullanılır. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir."
     },
     {
       "id": "bh-04-06",
@@ -623,13 +664,14 @@
       "image": "assets/baharat/t04_06.jpg",
       "imageAlt": "Besin fotoğrafı",
       "answer": "TAZE DEREOTU",
-      "hint": "Görselin rengini, biçimini ve yapısını incele.",
-      "explanation": "",
+      "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
+      "explanation": "İnce, dallanmış yaprakları vardır. Salata, yoğurtlu yemek ve hamur işlerinde kullanılır.",
       "source": {
         "file": "Baharat_12_Gorsel_18_Ad.docx",
         "page": 7,
         "card": 6
-      }
+      },
+      "detail": "İnce, dallanmış yaprakları vardır. Salata, yoğurtlu yemek ve hamur işlerinde kullanılır. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir."
     },
     {
       "id": "bh-04-07",
@@ -638,13 +680,14 @@
       "image": "assets/baharat/t04_07.jpg",
       "imageAlt": "Besin fotoğrafı",
       "answer": "TAZE MOR REYHAN",
-      "hint": "Görselin rengini, biçimini ve yapısını incele.",
-      "explanation": "",
+      "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
+      "explanation": "Mor yapraklı aromatik bir bitkidir. Salata ve içeceklerde kullanılır; farklı çeşitlerde renk değişebilir.",
       "source": {
         "file": "Baharat_12_Gorsel_18_Ad.docx",
         "page": 7,
         "card": 7
-      }
+      },
+      "detail": "Mor yapraklı aromatik bir bitkidir. Salata ve içeceklerde kullanılır; farklı çeşitlerde renk değişebilir. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir."
     },
     {
       "id": "bh-04-08",
@@ -653,13 +696,14 @@
       "image": "assets/baharat/t04_08.jpg",
       "imageAlt": "Besin fotoğrafı",
       "answer": "KURU MOR REYHAN",
-      "hint": "Görselin rengini, biçimini ve yapısını incele.",
-      "explanation": "",
+      "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
+      "explanation": "Mor reyhanın kurutulmuş biçimidir. Yemeklere ve içeceklere aroma verir.",
       "source": {
         "file": "Baharat_12_Gorsel_18_Ad.docx",
         "page": 7,
         "card": 8
-      }
+      },
+      "detail": "Mor reyhanın kurutulmuş biçimidir. Yemeklere ve içeceklere aroma verir. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir."
     },
     {
       "id": "bh-04-09",
@@ -668,13 +712,14 @@
       "image": "assets/baharat/t04_09.jpg",
       "imageAlt": "Besin fotoğrafı",
       "answer": "KURU YEŞİL FESLEĞEN",
-      "hint": "Görselin rengini, biçimini ve yapısını incele.",
-      "explanation": "",
+      "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
+      "explanation": "Fesleğenin kurutulmuş biçimidir. Sos ve yemeklere aroma vermek için kullanılır.",
       "source": {
         "file": "Baharat_12_Gorsel_18_Ad.docx",
         "page": 7,
         "card": 9
-      }
+      },
+      "detail": "Fesleğenin kurutulmuş biçimidir. Sos ve yemeklere aroma vermek için kullanılır. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir."
     },
     {
       "id": "bh-04-10",
@@ -683,13 +728,14 @@
       "image": "assets/baharat/t04_10.jpg",
       "imageAlt": "Besin fotoğrafı",
       "answer": "TAZE YEŞİL FESLEĞEN",
-      "hint": "Görselin rengini, biçimini ve yapısını incele.",
-      "explanation": "",
+      "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
+      "explanation": "Yeşil yapraklı aromatik bir bitkidir. Salata ve soslarda kullanılır.",
       "source": {
         "file": "Baharat_12_Gorsel_18_Ad.docx",
         "page": 7,
         "card": 10
-      }
+      },
+      "detail": "Yeşil yapraklı aromatik bir bitkidir. Salata ve soslarda kullanılır. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir."
     },
     {
       "id": "bh-04-11",
@@ -698,13 +744,14 @@
       "image": "assets/baharat/t04_11.jpg",
       "imageAlt": "Besin fotoğrafı",
       "answer": "KURU BİBERİYE",
-      "hint": "Görselin rengini, biçimini ve yapısını incele.",
-      "explanation": "",
+      "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
+      "explanation": "Biberiyenin kurutulmuş yapraklarıdır. Fırın yemeklerinde ve soslarda kullanılır.",
       "source": {
         "file": "Baharat_12_Gorsel_18_Ad.docx",
         "page": 7,
         "card": 11
-      }
+      },
+      "detail": "Biberiyenin kurutulmuş yapraklarıdır. Fırın yemeklerinde ve soslarda kullanılır. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir."
     },
     {
       "id": "bh-04-12",
@@ -713,13 +760,14 @@
       "image": "assets/baharat/t04_12.jpg",
       "imageAlt": "Besin fotoğrafı",
       "answer": "NORİ",
-      "hint": "Görselin rengini, biçimini ve yapısını incele.",
-      "explanation": "",
+      "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
+      "explanation": "Yenilebilir deniz yosununun yaprak biçimli ürünüdür. Sarma ve süsleme işlerinde kullanılır; paket etiketi kontrol edilir.",
       "source": {
         "file": "Baharat_12_Gorsel_18_Ad.docx",
         "page": 7,
         "card": 12
-      }
+      },
+      "detail": "Yenilebilir deniz yosununun yaprak biçimli ürünüdür. Sarma ve süsleme işlerinde kullanılır; paket etiketi kontrol edilir. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir."
     },
     {
       "id": "bh-05-01",
@@ -728,13 +776,14 @@
       "image": "assets/baharat/t05_01.jpg",
       "imageAlt": "Besin fotoğrafı",
       "answer": "KURU GÜL TAÇ YAPRAĞI",
-      "hint": "Görselin rengini, biçimini ve yapısını incele.",
-      "explanation": "",
+      "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
+      "explanation": "Gıda kullanımına uygun gül yapraklarıdır. Tatlı ve içeceklerde aroma veya süsleme için kullanılır.",
       "source": {
         "file": "Baharat_12_Gorsel_18_Ad.docx",
         "page": 9,
         "card": 1
-      }
+      },
+      "detail": "Gıda kullanımına uygun gül yapraklarıdır. Tatlı ve içeceklerde aroma veya süsleme için kullanılır. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir."
     },
     {
       "id": "bh-05-02",
@@ -743,13 +792,14 @@
       "image": "assets/baharat/t05_02.jpg",
       "imageAlt": "Besin fotoğrafı",
       "answer": "KUŞBURNU",
-      "hint": "Görselin rengini, biçimini ve yapısını incele.",
-      "explanation": "",
+      "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
+      "explanation": "Meyveleri kurutulmuş veya işlenmiş olarak kullanılır. İçecek ve marmelat hazırlanabilir.",
       "source": {
         "file": "Baharat_12_Gorsel_18_Ad.docx",
         "page": 9,
         "card": 2
-      }
+      },
+      "detail": "Meyveleri kurutulmuş veya işlenmiş olarak kullanılır. İçecek ve marmelat hazırlanabilir. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir."
     },
     {
       "id": "bh-05-03",
@@ -758,13 +808,14 @@
       "image": "assets/baharat/t05_03.jpg",
       "imageAlt": "Besin fotoğrafı",
       "answer": "IHLAMUR",
-      "hint": "Görselin rengini, biçimini ve yapısını incele.",
-      "explanation": "",
+      "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
+      "explanation": "Çiçek ve ilgili yaprak bölümleri kurutularak kullanılır. Sıcak içecek hazırlanabilir; bu bir tedavi önerisi değildir.",
       "source": {
         "file": "Baharat_12_Gorsel_18_Ad.docx",
         "page": 9,
         "card": 3
-      }
+      },
+      "detail": "Çiçek ve ilgili yaprak bölümleri kurutularak kullanılır. Sıcak içecek hazırlanabilir; bu bir tedavi önerisi değildir. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir."
     },
     {
       "id": "bh-05-04",
@@ -773,13 +824,14 @@
       "image": "assets/baharat/t05_04.jpg",
       "imageAlt": "Besin fotoğrafı",
       "answer": "VANİLYA",
-      "hint": "Görselin rengini, biçimini ve yapısını incele.",
-      "explanation": "",
+      "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
+      "explanation": "Tatlılara aroma vermek için kullanılır. Vanilya ve vanilin ürünleri aynı ürün değildir; reçete ve etiket kontrol edilir.",
       "source": {
         "file": "Baharat_12_Gorsel_18_Ad.docx",
         "page": 9,
         "card": 4
-      }
+      },
+      "detail": "Tatlılara aroma vermek için kullanılır. Vanilya ve vanilin ürünleri aynı ürün değildir; reçete ve etiket kontrol edilir. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir."
     },
     {
       "id": "bh-05-05",
@@ -788,13 +840,14 @@
       "image": "assets/baharat/t05_05.jpg",
       "imageAlt": "Besin fotoğrafı",
       "answer": "SAFRAN",
-      "hint": "Görselin rengini, biçimini ve yapısını incele.",
-      "explanation": "",
+      "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
+      "explanation": "İnce iplik biçimli bir baharattır. Pilav ve tatlılara renk ve aroma verir; zerdeçalla aynı ürün değildir.",
       "source": {
         "file": "Baharat_12_Gorsel_18_Ad.docx",
         "page": 9,
         "card": 5
-      }
+      },
+      "detail": "İnce iplik biçimli bir baharattır. Pilav ve tatlılara renk ve aroma verir; zerdeçalla aynı ürün değildir. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir."
     },
     {
       "id": "bh-05-06",
@@ -803,13 +856,14 @@
       "image": "assets/baharat/t05_06.jpg",
       "imageAlt": "Besin fotoğrafı",
       "answer": "LAVANTA",
-      "hint": "Görselin rengini, biçimini ve yapısını incele.",
-      "explanation": "",
+      "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
+      "explanation": "Çiçekleri yoğun aromalıdır. Yalnız gıda kullanımına uygun ürün reçeteye göre kullanılır.",
       "source": {
         "file": "Baharat_12_Gorsel_18_Ad.docx",
         "page": 9,
         "card": 6
-      }
+      },
+      "detail": "Çiçekleri yoğun aromalıdır. Yalnız gıda kullanımına uygun ürün reçeteye göre kullanılır. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir."
     },
     {
       "id": "bh-05-07",
@@ -818,13 +872,14 @@
       "image": "assets/baharat/t05_07.jpg",
       "imageAlt": "Besin fotoğrafı",
       "answer": "HİBİSKUS",
-      "hint": "Görselin rengini, biçimini ve yapısını incele.",
-      "explanation": "",
+      "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
+      "explanation": "Kurutulmuş çanak yaprakları içeceklere kırmızı renk ve ekşi tat verir. Gıda kullanımına uygun ürün seçilir.",
       "source": {
         "file": "Baharat_12_Gorsel_18_Ad.docx",
         "page": 9,
         "card": 7
-      }
+      },
+      "detail": "Kurutulmuş çanak yaprakları içeceklere kırmızı renk ve ekşi tat verir. Gıda kullanımına uygun ürün seçilir. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir."
     },
     {
       "id": "bh-05-08",
@@ -833,13 +888,14 @@
       "image": "assets/baharat/t05_08.jpg",
       "imageAlt": "Besin fotoğrafı",
       "answer": "KELEBEK BEZELYESİ ÇİÇEĞİ",
-      "hint": "Görselin rengini, biçimini ve yapısını incele.",
-      "explanation": "",
+      "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
+      "explanation": "Gıda kullanımına uygun çiçekleri içeceklere mavi renk vermek için kullanılır. Her mavi çiçek bu ürün değildir.",
       "source": {
         "file": "Baharat_12_Gorsel_18_Ad.docx",
         "page": 9,
         "card": 8
-      }
+      },
+      "detail": "Gıda kullanımına uygun çiçekleri içeceklere mavi renk vermek için kullanılır. Her mavi çiçek bu ürün değildir. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir."
     },
     {
       "id": "bh-05-09",
@@ -848,13 +904,14 @@
       "image": "assets/baharat/t05_09.jpg",
       "imageAlt": "Besin fotoğrafı",
       "answer": "PAPATYA",
-      "hint": "Görselin rengini, biçimini ve yapısını incele.",
-      "explanation": "",
+      "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
+      "explanation": "Kurutulmuş çiçekleri kullanılır. İçecek hazırlanabilir; yalnız gıda amacıyla satılan ürünler seçilir.",
       "source": {
         "file": "Baharat_12_Gorsel_18_Ad.docx",
         "page": 9,
         "card": 9
-      }
+      },
+      "detail": "Kurutulmuş çiçekleri kullanılır. İçecek hazırlanabilir; yalnız gıda amacıyla satılan ürünler seçilir. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir."
     },
     {
       "id": "bh-05-10",
@@ -863,13 +920,14 @@
       "image": "assets/baharat/t05_10.jpg",
       "imageAlt": "Besin fotoğrafı",
       "answer": "MEYAN KÖKÜ",
-      "hint": "Görselin rengini, biçimini ve yapısını incele.",
-      "explanation": "",
+      "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
+      "explanation": "Kök parçaları aroma vermek için kullanılır. Öğrenci tadım miktarını kendi belirlemez; öğretmenin reçetesine uyulur.",
       "source": {
         "file": "Baharat_12_Gorsel_18_Ad.docx",
         "page": 9,
         "card": 10
-      }
+      },
+      "detail": "Kök parçaları aroma vermek için kullanılır. Öğrenci tadım miktarını kendi belirlemez; öğretmenin reçetesine uyulur. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir."
     },
     {
       "id": "bh-05-11",
@@ -878,13 +936,14 @@
       "image": "assets/baharat/t05_11.jpg",
       "imageAlt": "Besin fotoğrafı",
       "answer": "LİMON OTU",
-      "hint": "Görselin rengini, biçimini ve yapısını incele.",
-      "explanation": "",
+      "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
+      "explanation": "Uzun yapraklı aromatik bir bitkidir. Yemek ve içeceklere limonu andıran aroma vermek için kullanılır.",
       "source": {
         "file": "Baharat_12_Gorsel_18_Ad.docx",
         "page": 9,
         "card": 11
-      }
+      },
+      "detail": "Uzun yapraklı aromatik bir bitkidir. Yemek ve içeceklere limonu andıran aroma vermek için kullanılır. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir."
     },
     {
       "id": "bh-05-12",
@@ -893,13 +952,14 @@
       "image": "assets/baharat/t05_12.jpg",
       "imageAlt": "Besin fotoğrafı",
       "answer": "PANDAN YAPRAĞI",
-      "hint": "Görselin rengini, biçimini ve yapısını incele.",
-      "explanation": "",
+      "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
+      "explanation": "Uzun yaprakları aroma vermek için kullanılır. Özellikle tatlı ve pirinçli tariflerde yer alabilir.",
       "source": {
         "file": "Baharat_12_Gorsel_18_Ad.docx",
         "page": 9,
         "card": 12
-      }
+      },
+      "detail": "Uzun yaprakları aroma vermek için kullanılır. Özellikle tatlı ve pirinçli tariflerde yer alabilir. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir."
     },
     {
       "id": "bh-06-01",
@@ -908,13 +968,14 @@
       "image": "assets/baharat/t06_01.jpg",
       "imageAlt": "Besin fotoğrafı",
       "answer": "ZERDEÇAL",
-      "hint": "Görselin rengini, biçimini ve yapısını incele.",
-      "explanation": "",
+      "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
+      "explanation": "Sarı renkli, kök gövdeden elde edilen bir baharattır. Yemeklere renk ve aroma verir.",
       "source": {
         "file": "Baharat_12_Gorsel_18_Ad.docx",
         "page": 11,
         "card": 1
-      }
+      },
+      "detail": "Sarı renkli, kök gövdeden elde edilen bir baharattır. Yemeklere renk ve aroma verir. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir."
     },
     {
       "id": "bh-06-02",
@@ -923,13 +984,14 @@
       "image": "assets/baharat/t06_02.jpg",
       "imageAlt": "Besin fotoğrafı",
       "answer": "ZENCEFİL",
-      "hint": "Görselin rengini, biçimini ve yapısını incele.",
-      "explanation": "",
+      "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
+      "explanation": "Taze veya toz biçiminde kullanılır. Kurabiye, içecek ve çeşitli yemeklere aroma verir.",
       "source": {
         "file": "Baharat_12_Gorsel_18_Ad.docx",
         "page": 11,
         "card": 2
-      }
+      },
+      "detail": "Taze veya toz biçiminde kullanılır. Kurabiye, içecek ve çeşitli yemeklere aroma verir. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir."
     },
     {
       "id": "bh-06-03",
@@ -938,13 +1000,14 @@
       "image": "assets/baharat/t06_03.jpg",
       "imageAlt": "Besin fotoğrafı",
       "answer": "ÇEMEN",
-      "hint": "Görselin rengini, biçimini ve yapısını incele.",
-      "explanation": "",
+      "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
+      "explanation": "Tohum, toz veya karışım biçiminde satılabilir. Görseldeki ürünün biçimi ve içeriği etiketten doğrulanır.",
       "source": {
         "file": "Baharat_12_Gorsel_18_Ad.docx",
         "page": 11,
         "card": 3
-      }
+      },
+      "detail": "Tohum, toz veya karışım biçiminde satılabilir. Görseldeki ürünün biçimi ve içeriği etiketten doğrulanır. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir."
     },
     {
       "id": "bh-06-04",
@@ -953,13 +1016,14 @@
       "image": "assets/baharat/t06_04.jpg",
       "imageAlt": "Besin fotoğrafı",
       "answer": "MAHLEP",
-      "hint": "Görselin rengini, biçimini ve yapısını incele.",
-      "explanation": "",
+      "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
+      "explanation": "Öğütülmüş biçimi hamur işlerinde kullanılır. Özellikle çörek ve tuzlu kurabiyelere aroma verir.",
       "source": {
         "file": "Baharat_12_Gorsel_18_Ad.docx",
         "page": 11,
         "card": 4
-      }
+      },
+      "detail": "Öğütülmüş biçimi hamur işlerinde kullanılır. Özellikle çörek ve tuzlu kurabiyelere aroma verir. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir."
     },
     {
       "id": "bh-06-05",
@@ -968,13 +1032,14 @@
       "image": "assets/baharat/t06_05.jpg",
       "imageAlt": "Besin fotoğrafı",
       "answer": "KAKAO",
-      "hint": "Görselin rengini, biçimini ve yapısını incele.",
-      "explanation": "",
+      "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
+      "explanation": "Kahverengi toz bir üründür. Kek, kurabiye ve tatlılara kakao tadı verir; kahveyle karıştırılmaz.",
       "source": {
         "file": "Baharat_12_Gorsel_18_Ad.docx",
         "page": 11,
         "card": 5
-      }
+      },
+      "detail": "Kahverengi toz bir üründür. Kek, kurabiye ve tatlılara kakao tadı verir; kahveyle karıştırılmaz. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir."
     },
     {
       "id": "bh-06-06",
@@ -983,13 +1048,14 @@
       "image": "assets/baharat/t06_06.jpg",
       "imageAlt": "Besin fotoğrafı",
       "answer": "MISIR UNU",
-      "hint": "Görselin rengini, biçimini ve yapısını incele.",
-      "explanation": "",
+      "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
+      "explanation": "Mısırın öğütülmesiyle elde edilir. Ekmek ve çeşitli tariflerde kullanılır; mısır nişastasından farklıdır.",
       "source": {
         "file": "Baharat_12_Gorsel_18_Ad.docx",
         "page": 11,
         "card": 6
-      }
+      },
+      "detail": "Mısırın öğütülmesiyle elde edilir. Ekmek ve çeşitli tariflerde kullanılır; mısır nişastasından farklıdır. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir."
     },
     {
       "id": "bh-06-07",
@@ -998,13 +1064,14 @@
       "image": "assets/baharat/t06_07.jpg",
       "imageAlt": "Besin fotoğrafı",
       "answer": "BEYAZ BİBER",
-      "hint": "Görselin rengini, biçimini ve yapısını incele.",
-      "explanation": "",
+      "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
+      "explanation": "Tane veya öğütülmüş olarak kullanılır. Açık renkli soslarda ve çorbalarda tercih edilebilir.",
       "source": {
         "file": "Baharat_12_Gorsel_18_Ad.docx",
         "page": 11,
         "card": 7
-      }
+      },
+      "detail": "Tane veya öğütülmüş olarak kullanılır. Açık renkli soslarda ve çorbalarda tercih edilebilir. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir."
     },
     {
       "id": "bh-06-08",
@@ -1013,13 +1080,14 @@
       "image": "assets/baharat/t06_08.jpg",
       "imageAlt": "Besin fotoğrafı",
       "answer": "SARIMSAK TOZU",
-      "hint": "Görselin rengini, biçimini ve yapısını incele.",
-      "explanation": "",
+      "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
+      "explanation": "Kurutulmuş sarımsağın öğütülmüş ürünüdür. Taze sarımsakla miktarı birebir aynı kabul edilmez; reçeteye uyulur.",
       "source": {
         "file": "Baharat_12_Gorsel_18_Ad.docx",
         "page": 11,
         "card": 8
-      }
+      },
+      "detail": "Kurutulmuş sarımsağın öğütülmüş ürünüdür. Taze sarımsakla miktarı birebir aynı kabul edilmez; reçeteye uyulur. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir."
     },
     {
       "id": "bh-06-09",
@@ -1028,13 +1096,14 @@
       "image": "assets/baharat/t06_09.jpg",
       "imageAlt": "Besin fotoğrafı",
       "answer": "SOĞAN TOZU",
-      "hint": "Görselin rengini, biçimini ve yapısını incele.",
-      "explanation": "",
+      "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
+      "explanation": "Kurutulmuş soğanın öğütülmüş ürünüdür. Yemek ve karışımlarda aroma vermek için kullanılır.",
       "source": {
         "file": "Baharat_12_Gorsel_18_Ad.docx",
         "page": 11,
         "card": 9
-      }
+      },
+      "detail": "Kurutulmuş soğanın öğütülmüş ürünüdür. Yemek ve karışımlarda aroma vermek için kullanılır. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir."
     },
     {
       "id": "bh-06-10",
@@ -1043,13 +1112,14 @@
       "image": "assets/baharat/t06_10.jpg",
       "imageAlt": "Besin fotoğrafı",
       "answer": "YULAF UNU",
-      "hint": "Görselin rengini, biçimini ve yapısını incele.",
-      "explanation": "",
+      "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
+      "explanation": "Yulafın öğütülmüş ürünüdür. Hamur işlerinde kullanılır; beyaz unla miktarı kendiliğinden birebir değiştirilmez.",
       "source": {
         "file": "Baharat_12_Gorsel_18_Ad.docx",
         "page": 11,
         "card": 10
-      }
+      },
+      "detail": "Yulafın öğütülmüş ürünüdür. Hamur işlerinde kullanılır; beyaz unla miktarı kendiliğinden birebir değiştirilmez. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir."
     },
     {
       "id": "bh-06-11",
@@ -1058,13 +1128,14 @@
       "image": "assets/baharat/t06_11.jpg",
       "imageAlt": "Besin fotoğrafı",
       "answer": "MATCHA",
-      "hint": "Görselin rengini, biçimini ve yapısını incele.",
-      "explanation": "",
+      "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
+      "explanation": "İnce öğütülmüş yeşil çay ürünüdür. İçecek ve tatlılarda kullanılır; sıradan yeşil renkli tozlardan fotoğrafla kesin ayrılmaz.",
       "source": {
         "file": "Baharat_12_Gorsel_18_Ad.docx",
         "page": 11,
         "card": 11
-      }
+      },
+      "detail": "İnce öğütülmüş yeşil çay ürünüdür. İçecek ve tatlılarda kullanılır; sıradan yeşil renkli tozlardan fotoğrafla kesin ayrılmaz. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir."
     },
     {
       "id": "bh-06-12",
@@ -1073,13 +1144,14 @@
       "image": "assets/baharat/t06_12.jpg",
       "imageAlt": "Besin fotoğrafı",
       "answer": "KIRMIZI PANCAR TOZU",
-      "hint": "Görselin rengini, biçimini ve yapısını incele.",
-      "explanation": "",
+      "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
+      "explanation": "Pancardan elde edilen toz üründür. Yiyeceklere renk ve tat vermek için kullanılabilir.",
       "source": {
         "file": "Baharat_12_Gorsel_18_Ad.docx",
         "page": 11,
         "card": 12
-      }
+      },
+      "detail": "Pancardan elde edilen toz üründür. Yiyeceklere renk ve tat vermek için kullanılabilir. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir."
     },
     {
       "id": "bh-07-01",
@@ -1088,13 +1160,14 @@
       "image": "assets/baharat/t07_01.jpg",
       "imageAlt": "Besin fotoğrafı",
       "answer": "DOMATES SALÇASI",
-      "hint": "Görselin rengini, biçimini ve yapısını incele.",
-      "explanation": "",
+      "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
+      "explanation": "Domatesten elde edilen yoğun kıvamlı üründür. Yemek ve soslarda kullanılır.",
       "source": {
         "file": "Baharat_12_Gorsel_18_Ad.docx",
         "page": 13,
         "card": 1
-      }
+      },
+      "detail": "Domatesten elde edilen yoğun kıvamlı üründür. Yemek ve soslarda kullanılır. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir."
     },
     {
       "id": "bh-07-02",
@@ -1103,13 +1176,14 @@
       "image": "assets/baharat/t07_02.jpg",
       "imageAlt": "Besin fotoğrafı",
       "answer": "BİBER SALÇASI",
-      "hint": "Görselin rengini, biçimini ve yapısını incele.",
-      "explanation": "",
+      "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
+      "explanation": "Biberden elde edilen yoğun kıvamlı üründür. Yemeklere tat ve renk verir; domates salçasından farklıdır.",
       "source": {
         "file": "Baharat_12_Gorsel_18_Ad.docx",
         "page": 13,
         "card": 2
-      }
+      },
+      "detail": "Biberden elde edilen yoğun kıvamlı üründür. Yemeklere tat ve renk verir; domates salçasından farklıdır. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir."
     },
     {
       "id": "bh-07-03",
@@ -1118,13 +1192,14 @@
       "image": "assets/baharat/t07_03.jpg",
       "imageAlt": "Besin fotoğrafı",
       "answer": "KURU DOMATES",
-      "hint": "Görselin rengini, biçimini ve yapısını incele.",
-      "explanation": "",
+      "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
+      "explanation": "Suyu azaltılmış domates ürünüdür. Yemek, salata ve hamur işlerinde kullanılabilir.",
       "source": {
         "file": "Baharat_12_Gorsel_18_Ad.docx",
         "page": 13,
         "card": 3
-      }
+      },
+      "detail": "Suyu azaltılmış domates ürünüdür. Yemek, salata ve hamur işlerinde kullanılabilir. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir."
     },
     {
       "id": "bh-07-04",
@@ -1133,13 +1208,14 @@
       "image": "assets/baharat/t07_04.jpg",
       "imageAlt": "Besin fotoğrafı",
       "answer": "DEMİRHİNDİ",
-      "hint": "Görselin rengini, biçimini ve yapısını incele.",
-      "explanation": "",
+      "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
+      "explanation": "Kabuklu meyvesi ve işlenmiş ürünleri tariflerde kullanılır. İçecek ve soslara ekşi tat verebilir.",
       "source": {
         "file": "Baharat_12_Gorsel_18_Ad.docx",
         "page": 13,
         "card": 4
-      }
+      },
+      "detail": "Kabuklu meyvesi ve işlenmiş ürünleri tariflerde kullanılır. İçecek ve soslara ekşi tat verebilir. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir."
     },
     {
       "id": "bh-07-05",
@@ -1148,13 +1224,14 @@
       "image": "assets/baharat/t07_05.jpg",
       "imageAlt": "Besin fotoğrafı",
       "answer": "ZEYTİNYAĞI",
-      "hint": "Görselin rengini, biçimini ve yapısını incele.",
-      "explanation": "",
+      "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
+      "explanation": "Zeytinden elde edilen yağdır. Salata ve yemeklerde kullanılır; rengi tek başına kalite ölçütü değildir.",
       "source": {
         "file": "Baharat_12_Gorsel_18_Ad.docx",
         "page": 13,
         "card": 5
-      }
+      },
+      "detail": "Zeytinden elde edilen yağdır. Salata ve yemeklerde kullanılır; rengi tek başına kalite ölçütü değildir. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir."
     },
     {
       "id": "bh-07-06",
@@ -1163,13 +1240,14 @@
       "image": "assets/baharat/t07_06.jpg",
       "imageAlt": "Besin fotoğrafı",
       "answer": "KEÇİBOYNUZU PEKMEZİ",
-      "hint": "Görselin rengini, biçimini ve yapısını incele.",
-      "explanation": "",
+      "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
+      "explanation": "Keçiboynuzundan elde edilen koyu kıvamlı üründür. Tatlı ve kahvaltılarda kullanılır.",
       "source": {
         "file": "Baharat_12_Gorsel_18_Ad.docx",
         "page": 13,
         "card": 6
-      }
+      },
+      "detail": "Keçiboynuzundan elde edilen koyu kıvamlı üründür. Tatlı ve kahvaltılarda kullanılır. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir."
     },
     {
       "id": "bh-07-07",
@@ -1178,13 +1256,14 @@
       "image": "assets/baharat/t07_07.jpg",
       "imageAlt": "Besin fotoğrafı",
       "answer": "ÜZÜM PEKMEZİ",
-      "hint": "Görselin rengini, biçimini ve yapısını incele.",
-      "explanation": "",
+      "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
+      "explanation": "Üzümden elde edilen koyu kıvamlı üründür. Tatlı ve kahvaltılarda kullanılır.",
       "source": {
         "file": "Baharat_12_Gorsel_18_Ad.docx",
         "page": 13,
         "card": 7
-      }
+      },
+      "detail": "Üzümden elde edilen koyu kıvamlı üründür. Tatlı ve kahvaltılarda kullanılır. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir."
     },
     {
       "id": "bh-07-08",
@@ -1193,13 +1272,14 @@
       "image": "assets/baharat/t07_08.jpg",
       "imageAlt": "Besin fotoğrafı",
       "answer": "NAR EKŞİSİ",
-      "hint": "Görselin rengini, biçimini ve yapısını incele.",
-      "explanation": "",
+      "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
+      "explanation": "Nardan elde edilen ekşi üründür. Salata ve yemeklerde kullanılır; nar ekşili sosla aynı ürün olmayabilir, etiket okunur.",
       "source": {
         "file": "Baharat_12_Gorsel_18_Ad.docx",
         "page": 13,
         "card": 8
-      }
+      },
+      "detail": "Nardan elde edilen ekşi üründür. Salata ve yemeklerde kullanılır; nar ekşili sosla aynı ürün olmayabilir, etiket okunur. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir."
     },
     {
       "id": "bh-07-09",
@@ -1208,13 +1288,14 @@
       "image": "assets/baharat/t07_09.jpg",
       "imageAlt": "Besin fotoğrafı",
       "answer": "SUMAK EKŞİSİ",
-      "hint": "Görselin rengini, biçimini ve yapısını incele.",
-      "explanation": "",
+      "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
+      "explanation": "Sumaktan elde edilen ekşi üründür. Salata ve yemeklerde kullanılır; toz sumaktan farklı biçimdedir.",
       "source": {
         "file": "Baharat_12_Gorsel_18_Ad.docx",
         "page": 13,
         "card": 9
-      }
+      },
+      "detail": "Sumaktan elde edilen ekşi üründür. Salata ve yemeklerde kullanılır; toz sumaktan farklı biçimdedir. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir."
     },
     {
       "id": "bh-07-10",
@@ -1223,13 +1304,14 @@
       "image": "assets/baharat/t07_10.jpg",
       "imageAlt": "Besin fotoğrafı",
       "answer": "HAŞHAŞ EZMESİ",
-      "hint": "Görselin rengini, biçimini ve yapısını incele.",
-      "explanation": "",
+      "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
+      "explanation": "Haşhaş tohumlarının ezilmiş ürünüdür. Çörek ve benzeri hamur işlerinde kullanılır.",
       "source": {
         "file": "Baharat_12_Gorsel_18_Ad.docx",
         "page": 13,
         "card": 10
-      }
+      },
+      "detail": "Haşhaş tohumlarının ezilmiş ürünüdür. Çörek ve benzeri hamur işlerinde kullanılır. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir."
     },
     {
       "id": "bh-07-11",
@@ -1238,13 +1320,14 @@
       "image": "assets/baharat/t07_11.jpg",
       "imageAlt": "Besin fotoğrafı",
       "answer": "HARDAL SOSU",
-      "hint": "Görselin rengini, biçimini ve yapısını incele.",
-      "explanation": "",
+      "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
+      "explanation": "Hardal içeren hazırlanmış bir sostur. Sandviç ve soslarda kullanılır; içerik etiketten kontrol edilir.",
       "source": {
         "file": "Baharat_12_Gorsel_18_Ad.docx",
         "page": 13,
         "card": 11
-      }
+      },
+      "detail": "Hardal içeren hazırlanmış bir sostur. Sandviç ve soslarda kullanılır; içerik etiketten kontrol edilir. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir."
     },
     {
       "id": "bh-07-12",
@@ -1253,13 +1336,14 @@
       "image": "assets/baharat/t07_12.jpg",
       "imageAlt": "Besin fotoğrafı",
       "answer": "TAHİN",
-      "hint": "Görselin rengini, biçimini ve yapısını incele.",
-      "explanation": "",
+      "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
+      "explanation": "Susamın ezilmesiyle elde edilir. Tatlı ve soslarda kullanılır; pekmezle aynı ürün değildir.",
       "source": {
         "file": "Baharat_12_Gorsel_18_Ad.docx",
         "page": 13,
         "card": 12
-      }
+      },
+      "detail": "Susamın ezilmesiyle elde edilir. Tatlı ve soslarda kullanılır; pekmezle aynı ürün değildir. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir."
     },
     {
       "id": "bh-08-01",
@@ -1268,13 +1352,14 @@
       "image": "assets/baharat/t08_01.jpg",
       "imageAlt": "Besin fotoğrafı",
       "answer": "NAR TANELERİ",
-      "hint": "Görselin rengini, biçimini ve yapısını incele.",
-      "explanation": "",
+      "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
+      "explanation": "Nar meyvesinin taneleridir. Salata, tatlı ve süslemede kullanılır.",
       "source": {
         "file": "Baharat_12_Gorsel_18_Ad.docx",
         "page": 15,
         "card": 1
-      }
+      },
+      "detail": "Nar meyvesinin taneleridir. Salata, tatlı ve süslemede kullanılır. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir."
     },
     {
       "id": "bh-08-02",
@@ -1283,13 +1368,14 @@
       "image": "assets/baharat/t08_02.jpg",
       "imageAlt": "Besin fotoğrafı",
       "answer": "PORTAKAL KABUĞU RENDESİ",
-      "hint": "Görselin rengini, biçimini ve yapısını incele.",
-      "explanation": "",
+      "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
+      "explanation": "Portakal kabuğunun dış bölümünden elde edilir. Kek ve tatlılara aroma verir.",
       "source": {
         "file": "Baharat_12_Gorsel_18_Ad.docx",
         "page": 15,
         "card": 2
-      }
+      },
+      "detail": "Portakal kabuğunun dış bölümünden elde edilir. Kek ve tatlılara aroma verir. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir."
     },
     {
       "id": "bh-08-03",
@@ -1298,13 +1384,14 @@
       "image": "assets/baharat/t08_03.jpg",
       "imageAlt": "Besin fotoğrafı",
       "answer": "MİSKET LİMONU",
-      "hint": "Görselin rengini, biçimini ve yapısını incele.",
-      "explanation": "",
+      "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
+      "explanation": "Turunçgil meyvesidir. Suyu ve uygun hazırlanmış kabuğu tariflerde kullanılır.",
       "source": {
         "file": "Baharat_12_Gorsel_18_Ad.docx",
         "page": 15,
         "card": 3
-      }
+      },
+      "detail": "Turunçgil meyvesidir. Suyu ve uygun hazırlanmış kabuğu tariflerde kullanılır. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir."
     },
     {
       "id": "bh-08-04",
@@ -1313,13 +1400,14 @@
       "image": "assets/baharat/t08_04.jpg",
       "imageAlt": "Besin fotoğrafı",
       "answer": "LİMON KABUĞU RENDESİ",
-      "hint": "Görselin rengini, biçimini ve yapısını incele.",
-      "explanation": "",
+      "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
+      "explanation": "Limon kabuğunun dış bölümünden elde edilir. Kek ve tatlılara aroma verir.",
       "source": {
         "file": "Baharat_12_Gorsel_18_Ad.docx",
         "page": 15,
         "card": 4
-      }
+      },
+      "detail": "Limon kabuğunun dış bölümünden elde edilir. Kek ve tatlılara aroma verir. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir."
     },
     {
       "id": "bh-08-05",
@@ -1328,13 +1416,14 @@
       "image": "assets/baharat/t08_05.jpg",
       "imageAlt": "Besin fotoğrafı",
       "answer": "TURNA YEMİŞİ",
-      "hint": "Görselin rengini, biçimini ve yapısını incele.",
-      "explanation": "",
+      "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
+      "explanation": "Taze veya kurutulmuş olarak satılan meyvedir. Tatlı ve soslarda kullanılır; paket etiketi kontrol edilir.",
       "source": {
         "file": "Baharat_12_Gorsel_18_Ad.docx",
         "page": 15,
         "card": 5
-      }
+      },
+      "detail": "Taze veya kurutulmuş olarak satılan meyvedir. Tatlı ve soslarda kullanılır; paket etiketi kontrol edilir. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir."
     },
     {
       "id": "bh-08-06",
@@ -1343,13 +1432,14 @@
       "image": "assets/baharat/t08_06.jpg",
       "imageAlt": "Besin fotoğrafı",
       "answer": "MUSKAT",
-      "hint": "Görselin rengini, biçimini ve yapısını incele.",
-      "explanation": "",
+      "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
+      "explanation": "Sert yapılı bir baharattır; rendelenerek kullanılır. Yoğun aroması nedeniyle reçetedeki az miktara uyulur.",
       "source": {
         "file": "Baharat_12_Gorsel_18_Ad.docx",
         "page": 15,
         "card": 6
-      }
+      },
+      "detail": "Sert yapılı bir baharattır; rendelenerek kullanılır. Yoğun aroması nedeniyle reçetedeki az miktara uyulur. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir."
     },
     {
       "id": "bh-08-07",
@@ -1358,13 +1448,14 @@
       "image": "assets/baharat/t08_07.jpg",
       "imageAlt": "Besin fotoğrafı",
       "answer": "KURU ÜZÜM",
-      "hint": "Görselin rengini, biçimini ve yapısını incele.",
-      "explanation": "",
+      "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
+      "explanation": "Üzümün kurutulmuş biçimidir. Kek, pilav ve tatlılarda kullanılır.",
       "source": {
         "file": "Baharat_12_Gorsel_18_Ad.docx",
         "page": 15,
         "card": 7
-      }
+      },
+      "detail": "Üzümün kurutulmuş biçimidir. Kek, pilav ve tatlılarda kullanılır. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir."
     },
     {
       "id": "bh-08-08",
@@ -1373,13 +1464,14 @@
       "image": "assets/baharat/t08_08.jpg",
       "imageAlt": "Besin fotoğrafı",
       "answer": "KURU KAYISI",
-      "hint": "Görselin rengini, biçimini ve yapısını incele.",
-      "explanation": "",
+      "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
+      "explanation": "Kayısının kurutulmuş biçimidir. Tatlı, komposto ve bazı yemeklerde kullanılır.",
       "source": {
         "file": "Baharat_12_Gorsel_18_Ad.docx",
         "page": 15,
         "card": 8
-      }
+      },
+      "detail": "Kayısının kurutulmuş biçimidir. Tatlı, komposto ve bazı yemeklerde kullanılır. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir."
     },
     {
       "id": "bh-08-09",
@@ -1388,13 +1480,14 @@
       "image": "assets/baharat/t08_09.jpg",
       "imageAlt": "Besin fotoğrafı",
       "answer": "KURU DUT",
-      "hint": "Görselin rengini, biçimini ve yapısını incele.",
-      "explanation": "",
+      "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
+      "explanation": "Dutun kurutulmuş biçimidir. Tatlı ve bazı karışımlarda kullanılır.",
       "source": {
         "file": "Baharat_12_Gorsel_18_Ad.docx",
         "page": 15,
         "card": 9
-      }
+      },
+      "detail": "Dutun kurutulmuş biçimidir. Tatlı ve bazı karışımlarda kullanılır. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir."
     },
     {
       "id": "bh-08-10",
@@ -1403,13 +1496,14 @@
       "image": "assets/baharat/t08_10.jpg",
       "imageAlt": "Besin fotoğrafı",
       "answer": "HURMA",
-      "hint": "Görselin rengini, biçimini ve yapısını incele.",
-      "explanation": "",
+      "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
+      "explanation": "Çekirdekli bir meyvedir. Tatlı hazırlanırken çekirdeği çıkarılır.",
       "source": {
         "file": "Baharat_12_Gorsel_18_Ad.docx",
         "page": 15,
         "card": 10
-      }
+      },
+      "detail": "Çekirdekli bir meyvedir. Tatlı hazırlanırken çekirdeği çıkarılır. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir."
     },
     {
       "id": "bh-08-11",
@@ -1418,13 +1512,14 @@
       "image": "assets/baharat/t08_11.jpg",
       "imageAlt": "Besin fotoğrafı",
       "answer": "KURU İNCİR",
-      "hint": "Görselin rengini, biçimini ve yapısını incele.",
-      "explanation": "",
+      "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
+      "explanation": "İncirin kurutulmuş biçimidir. Tatlı ve hamur işlerinde kullanılır.",
       "source": {
         "file": "Baharat_12_Gorsel_18_Ad.docx",
         "page": 15,
         "card": 11
-      }
+      },
+      "detail": "İncirin kurutulmuş biçimidir. Tatlı ve hamur işlerinde kullanılır. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir."
     },
     {
       "id": "bh-08-12",
@@ -1433,13 +1528,14 @@
       "image": "assets/baharat/t08_12.jpg",
       "imageAlt": "Besin fotoğrafı",
       "answer": "KEÇİBOYNUZU",
-      "hint": "Görselin rengini, biçimini ve yapısını incele.",
-      "explanation": "",
+      "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
+      "explanation": "Uzun, koyu renkli meyveleri vardır. Toz ve pekmez gibi ürünlerin hazırlanmasında kullanılır.",
       "source": {
         "file": "Baharat_12_Gorsel_18_Ad.docx",
         "page": 15,
         "card": 12
-      }
+      },
+      "detail": "Uzun, koyu renkli meyveleri vardır. Toz ve pekmez gibi ürünlerin hazırlanmasında kullanılır. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir."
     },
     {
       "id": "bh-09-01",
@@ -1448,13 +1544,14 @@
       "image": "assets/baharat/t09_01.jpg",
       "imageAlt": "Besin fotoğrafı",
       "answer": "DOLMALIK FISTIK",
-      "hint": "Görselin rengini, biçimini ve yapısını incele.",
-      "explanation": "",
+      "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
+      "explanation": "Çam fıstığı olarak da bilinir. Dolma içi ve bazı soslarda kullanılır; yer fıstığından farklıdır.",
       "source": {
         "file": "Baharat_12_Gorsel_18_Ad.docx",
         "page": 17,
         "card": 1
-      }
+      },
+      "detail": "Çam fıstığı olarak da bilinir. Dolma içi ve bazı soslarda kullanılır; yer fıstığından farklıdır. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir."
     },
     {
       "id": "bh-09-02",
@@ -1463,13 +1560,14 @@
       "image": "assets/baharat/t09_02.jpg",
       "imageAlt": "Besin fotoğrafı",
       "answer": "HİNDİSTAN CEVİZİ RENDESİ",
-      "hint": "Görselin rengini, biçimini ve yapısını incele.",
-      "explanation": "",
+      "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
+      "explanation": "Hindistan cevizinin rendelenmiş ürünüdür. Tatlı ve kurabiyelerde kullanılır.",
       "source": {
         "file": "Baharat_12_Gorsel_18_Ad.docx",
         "page": 17,
         "card": 2
-      }
+      },
+      "detail": "Hindistan cevizinin rendelenmiş ürünüdür. Tatlı ve kurabiyelerde kullanılır. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir."
     },
     {
       "id": "bh-09-03",
@@ -1478,13 +1576,14 @@
       "image": "assets/baharat/t09_03.jpg",
       "imageAlt": "Besin fotoğrafı",
       "answer": "BADEM",
-      "hint": "Görselin rengini, biçimini ve yapısını incele.",
-      "explanation": "",
+      "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
+      "explanation": "Uzunca biçimli bir sert kabuklu yemiştir. Tatlı, hamur işi ve yemeklerde kullanılır.",
       "source": {
         "file": "Baharat_12_Gorsel_18_Ad.docx",
         "page": 17,
         "card": 3
-      }
+      },
+      "detail": "Uzunca biçimli bir sert kabuklu yemiştir. Tatlı, hamur işi ve yemeklerde kullanılır. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir."
     },
     {
       "id": "bh-09-04",
@@ -1493,13 +1592,14 @@
       "image": "assets/baharat/t09_04.jpg",
       "imageAlt": "Besin fotoğrafı",
       "answer": "ANTEP FISTIĞI",
-      "hint": "Görselin rengini, biçimini ve yapısını incele.",
-      "explanation": "",
+      "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
+      "explanation": "Yeşil iç rengiyle tanınan bir sert kabuklu yemiştir. Tatlı ve süslemede kullanılır.",
       "source": {
         "file": "Baharat_12_Gorsel_18_Ad.docx",
         "page": 17,
         "card": 4
-      }
+      },
+      "detail": "Yeşil iç rengiyle tanınan bir sert kabuklu yemiştir. Tatlı ve süslemede kullanılır. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir."
     },
     {
       "id": "bh-09-05",
@@ -1508,13 +1608,14 @@
       "image": "assets/baharat/t09_05.jpg",
       "imageAlt": "Besin fotoğrafı",
       "answer": "CEVİZ",
-      "hint": "Görselin rengini, biçimini ve yapısını incele.",
-      "explanation": "",
+      "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
+      "explanation": "Girintili çıkıntılı iç yapısı vardır. Tatlı, salata ve hamur işlerinde kullanılır.",
       "source": {
         "file": "Baharat_12_Gorsel_18_Ad.docx",
         "page": 17,
         "card": 5
-      }
+      },
+      "detail": "Girintili çıkıntılı iç yapısı vardır. Tatlı, salata ve hamur işlerinde kullanılır. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir."
     },
     {
       "id": "bh-09-06",
@@ -1523,13 +1624,14 @@
       "image": "assets/baharat/t09_06.jpg",
       "imageAlt": "Besin fotoğrafı",
       "answer": "YER FISTIĞI",
-      "hint": "Görselin rengini, biçimini ve yapısını incele.",
-      "explanation": "",
+      "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
+      "explanation": "Taneleri kabuk içinde bulunur. Ezme, tatlı ve yemeklerde kullanılır; Antep fıstığından farklıdır.",
       "source": {
         "file": "Baharat_12_Gorsel_18_Ad.docx",
         "page": 17,
         "card": 6
-      }
+      },
+      "detail": "Taneleri kabuk içinde bulunur. Ezme, tatlı ve yemeklerde kullanılır; Antep fıstığından farklıdır. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir."
     },
     {
       "id": "bh-09-07",
@@ -1538,13 +1640,14 @@
       "image": "assets/baharat/t09_07.jpg",
       "imageAlt": "Besin fotoğrafı",
       "answer": "FINDIK",
-      "hint": "Görselin rengini, biçimini ve yapısını incele.",
-      "explanation": "",
+      "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
+      "explanation": "Yuvarlağa yakın taneli bir sert kabuklu yemiştir. Tatlı ve hamur işlerinde kullanılır.",
       "source": {
         "file": "Baharat_12_Gorsel_18_Ad.docx",
         "page": 17,
         "card": 7
-      }
+      },
+      "detail": "Yuvarlağa yakın taneli bir sert kabuklu yemiştir. Tatlı ve hamur işlerinde kullanılır. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir."
     },
     {
       "id": "bh-09-08",
@@ -1553,13 +1656,14 @@
       "image": "assets/baharat/t09_08.jpg",
       "imageAlt": "Besin fotoğrafı",
       "answer": "KAJU",
-      "hint": "Görselin rengini, biçimini ve yapısını incele.",
-      "explanation": "",
+      "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
+      "explanation": "Kıvrık biçimli bir sert kabuklu yemiştir. Tatlı ve yemeklerde kullanılır.",
       "source": {
         "file": "Baharat_12_Gorsel_18_Ad.docx",
         "page": 17,
         "card": 8
-      }
+      },
+      "detail": "Kıvrık biçimli bir sert kabuklu yemiştir. Tatlı ve yemeklerde kullanılır. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir."
     },
     {
       "id": "bh-09-09",
@@ -1568,13 +1672,14 @@
       "image": "assets/baharat/t09_09.jpg",
       "imageAlt": "Besin fotoğrafı",
       "answer": "KESTANE",
-      "hint": "Görselin rengini, biçimini ve yapısını incele.",
-      "explanation": "",
+      "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
+      "explanation": "Sert kabuklu bir meyvedir. Pişirilerek veya işlenerek tatlı ve yemeklerde kullanılır.",
       "source": {
         "file": "Baharat_12_Gorsel_18_Ad.docx",
         "page": 17,
         "card": 9
-      }
+      },
+      "detail": "Sert kabuklu bir meyvedir. Pişirilerek veya işlenerek tatlı ve yemeklerde kullanılır. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir."
     },
     {
       "id": "bh-09-10",
@@ -1583,13 +1688,14 @@
       "image": "assets/baharat/t09_10.jpg",
       "imageAlt": "Besin fotoğrafı",
       "answer": "KETEN TOHUMU",
-      "hint": "Görselin rengini, biçimini ve yapısını incele.",
-      "explanation": "",
+      "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
+      "explanation": "Küçük ve parlak yüzeyli tohumlardır. Ekmek ve bazı tariflerde kullanılır.",
       "source": {
         "file": "Baharat_12_Gorsel_18_Ad.docx",
         "page": 17,
         "card": 10
-      }
+      },
+      "detail": "Küçük ve parlak yüzeyli tohumlardır. Ekmek ve bazı tariflerde kullanılır. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir."
     },
     {
       "id": "bh-09-11",
@@ -1598,13 +1704,14 @@
       "image": "assets/baharat/t09_11.jpg",
       "imageAlt": "Besin fotoğrafı",
       "answer": "SUSAM",
-      "hint": "Görselin rengini, biçimini ve yapısını incele.",
-      "explanation": "",
+      "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
+      "explanation": "Küçük yağlı tohumlardır. Simit, ekmek ve tatlılarda kullanılır.",
       "source": {
         "file": "Baharat_12_Gorsel_18_Ad.docx",
         "page": 17,
         "card": 11
-      }
+      },
+      "detail": "Küçük yağlı tohumlardır. Simit, ekmek ve tatlılarda kullanılır. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir."
     },
     {
       "id": "bh-09-12",
@@ -1613,13 +1720,14 @@
       "image": "assets/baharat/t09_12.jpg",
       "imageAlt": "Besin fotoğrafı",
       "answer": "ÇÖREK OTU",
-      "hint": "Görselin rengini, biçimini ve yapısını incele.",
-      "explanation": "",
+      "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
+      "explanation": "Küçük siyah tanelerdir. Ekmek ve tuzlu hamur işlerinde kullanılır; siyah susamla karıştırılabilir.",
       "source": {
         "file": "Baharat_12_Gorsel_18_Ad.docx",
         "page": 17,
         "card": 12
-      }
+      },
+      "detail": "Küçük siyah tanelerdir. Ekmek ve tuzlu hamur işlerinde kullanılır; siyah susamla karıştırılabilir. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir."
     },
     {
       "id": "bh-10-01",
@@ -1628,13 +1736,14 @@
       "image": "assets/baharat/t10_01.jpg",
       "imageAlt": "Besin fotoğrafı",
       "answer": "DEFNE YAPRAĞI",
-      "hint": "Görselin rengini, biçimini ve yapısını incele.",
-      "explanation": "",
+      "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
+      "explanation": "Bütün yaprakları yemeğe aroma verir. Servisten önce yaprak çıkarılır.",
       "source": {
         "file": "Baharat_12_Gorsel_18_Ad.docx",
         "page": 19,
         "card": 1
-      }
+      },
+      "detail": "Bütün yaprakları yemeğe aroma verir. Servisten önce yaprak çıkarılır. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir."
     },
     {
       "id": "bh-10-02",
@@ -1643,13 +1752,14 @@
       "image": "assets/baharat/t10_02.jpg",
       "imageAlt": "Besin fotoğrafı",
       "answer": "MUSKAT",
-      "hint": "Görselin rengini, biçimini ve yapısını incele.",
-      "explanation": "",
+      "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
+      "explanation": "Sert yapılı bir baharattır; rendelenerek kullanılır. Yoğun aroması nedeniyle reçetedeki az miktara uyulur.",
       "source": {
         "file": "Baharat_12_Gorsel_18_Ad.docx",
         "page": 19,
         "card": 2
-      }
+      },
+      "detail": "Sert yapılı bir baharattır; rendelenerek kullanılır. Yoğun aroması nedeniyle reçetedeki az miktara uyulur. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir."
     },
     {
       "id": "bh-10-03",
@@ -1658,13 +1768,14 @@
       "image": "assets/baharat/t10_03.jpg",
       "imageAlt": "Besin fotoğrafı",
       "answer": "TAZE SOĞAN",
-      "hint": "Görselin rengini, biçimini ve yapısını incele.",
-      "explanation": "",
+      "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
+      "explanation": "Yeşil yaprakları ve beyaz bölümü yemeklerde kullanılır. Kuru soğandan farklı görünür.",
       "source": {
         "file": "Baharat_12_Gorsel_18_Ad.docx",
         "page": 19,
         "card": 3
-      }
+      },
+      "detail": "Yeşil yaprakları ve beyaz bölümü yemeklerde kullanılır. Kuru soğandan farklı görünür. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir."
     },
     {
       "id": "bh-10-04",
@@ -1673,13 +1784,14 @@
       "image": "assets/baharat/t10_04.jpg",
       "imageAlt": "Besin fotoğrafı",
       "answer": "TAZE ACI BİBER",
-      "hint": "Görselin rengini, biçimini ve yapısını incele.",
-      "explanation": "",
+      "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
+      "explanation": "Taze kullanılan biber türlerindendir. Acılığı görüntüden kesin anlaşılmaz; reçetedeki miktara uyulur.",
       "source": {
         "file": "Baharat_12_Gorsel_18_Ad.docx",
         "page": 19,
         "card": 4
-      }
+      },
+      "detail": "Taze kullanılan biber türlerindendir. Acılığı görüntüden kesin anlaşılmaz; reçetedeki miktara uyulur. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir."
     },
     {
       "id": "bh-10-05",
@@ -1688,13 +1800,14 @@
       "image": "assets/baharat/t10_05.jpg",
       "imageAlt": "Besin fotoğrafı",
       "answer": "KURU ACI BİBER",
-      "hint": "Görselin rengini, biçimini ve yapısını incele.",
-      "explanation": "",
+      "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
+      "explanation": "Biberin kurutulmuş biçimidir. Acılık ürüne göre değişir; gözlere dokunulmaz, işlemden sonra eller yıkanır.",
       "source": {
         "file": "Baharat_12_Gorsel_18_Ad.docx",
         "page": 19,
         "card": 5
-      }
+      },
+      "detail": "Biberin kurutulmuş biçimidir. Acılık ürüne göre değişir; gözlere dokunulmaz, işlemden sonra eller yıkanır. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir."
     },
     {
       "id": "bh-10-06",
@@ -1703,13 +1816,14 @@
       "image": "assets/baharat/t10_06.jpg",
       "imageAlt": "Besin fotoğrafı",
       "answer": "KAPARİ",
-      "hint": "Görselin rengini, biçimini ve yapısını incele.",
-      "explanation": "",
+      "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
+      "explanation": "Genellikle salamura biçiminde satılan çiçek tomurcuklarıdır. Sos ve yemeklerde kullanılır.",
       "source": {
         "file": "Baharat_12_Gorsel_18_Ad.docx",
         "page": 19,
         "card": 6
-      }
+      },
+      "detail": "Genellikle salamura biçiminde satılan çiçek tomurcuklarıdır. Sos ve yemeklerde kullanılır. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir."
     },
     {
       "id": "bh-10-07",
@@ -1718,13 +1832,14 @@
       "image": "assets/baharat/t10_07.jpg",
       "imageAlt": "Besin fotoğrafı",
       "answer": "KURU SOĞAN",
-      "hint": "Görselin rengini, biçimini ve yapısını incele.",
-      "explanation": "",
+      "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
+      "explanation": "Katmanlı gövdesi yemeklerde kullanılır. Doğranarak, kavrularak veya tarifteki biçimde hazırlanır.",
       "source": {
         "file": "Baharat_12_Gorsel_18_Ad.docx",
         "page": 19,
         "card": 7
-      }
+      },
+      "detail": "Katmanlı gövdesi yemeklerde kullanılır. Doğranarak, kavrularak veya tarifteki biçimde hazırlanır. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir."
     },
     {
       "id": "bh-10-08",
@@ -1733,13 +1848,14 @@
       "image": "assets/baharat/t10_08.jpg",
       "imageAlt": "Besin fotoğrafı",
       "answer": "SARIMSAK",
-      "hint": "Görselin rengini, biçimini ve yapısını incele.",
-      "explanation": "",
+      "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
+      "explanation": "Dişlerden oluşan bir başı vardır. Yemeklere aroma vermek için kullanılır.",
       "source": {
         "file": "Baharat_12_Gorsel_18_Ad.docx",
         "page": 19,
         "card": 8
-      }
+      },
+      "detail": "Dişlerden oluşan bir başı vardır. Yemeklere aroma vermek için kullanılır. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir."
     },
     {
       "id": "bh-10-09",
@@ -1748,13 +1864,14 @@
       "image": "assets/baharat/t10_09.jpg",
       "imageAlt": "Besin fotoğrafı",
       "answer": "KIRMIZI SOĞAN",
-      "hint": "Görselin rengini, biçimini ve yapısını incele.",
-      "explanation": "",
+      "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
+      "explanation": "Dış kabuğu ve katmanları morumsu olan soğandır. Salata ve yemeklerde kullanılır.",
       "source": {
         "file": "Baharat_12_Gorsel_18_Ad.docx",
         "page": 19,
         "card": 9
-      }
+      },
+      "detail": "Dış kabuğu ve katmanları morumsu olan soğandır. Salata ve yemeklerde kullanılır. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir."
     },
     {
       "id": "bh-10-10",
@@ -1763,13 +1880,14 @@
       "image": "assets/baharat/t10_10.jpg",
       "imageAlt": "Besin fotoğrafı",
       "answer": "KİŞNİŞ YAPRAĞI",
-      "hint": "Görselin rengini, biçimini ve yapısını incele.",
-      "explanation": "",
+      "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
+      "explanation": "Taze yeşil yaprakları yemeklerde kullanılır. Maydanozla benzer görünebilir; adı öğretmenin sağladığı etiketli örnekle karşılaştırılır.",
       "source": {
         "file": "Baharat_12_Gorsel_18_Ad.docx",
         "page": 19,
         "card": 10
-      }
+      },
+      "detail": "Taze yeşil yaprakları yemeklerde kullanılır. Maydanozla benzer görünebilir; adı öğretmenin sağladığı etiketli örnekle karşılaştırılır. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir."
     },
     {
       "id": "bh-10-11",
@@ -1778,13 +1896,14 @@
       "image": "assets/baharat/t10_11.jpg",
       "imageAlt": "Besin fotoğrafı",
       "answer": "TERE",
-      "hint": "Görselin rengini, biçimini ve yapısını incele.",
-      "explanation": "",
+      "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
+      "explanation": "Küçük yapraklı bir salata bitkisidir. Salata ve kahvaltılarda kullanılır.",
       "source": {
         "file": "Baharat_12_Gorsel_18_Ad.docx",
         "page": 19,
         "card": 11
-      }
+      },
+      "detail": "Küçük yapraklı bir salata bitkisidir. Salata ve kahvaltılarda kullanılır. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir."
     },
     {
       "id": "bh-10-12",
@@ -1793,13 +1912,14 @@
       "image": "assets/baharat/t10_12.jpg",
       "imageAlt": "Besin fotoğrafı",
       "answer": "SİYAH SARIMSAK",
-      "hint": "Görselin rengini, biçimini ve yapısını incele.",
-      "explanation": "",
+      "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
+      "explanation": "Kontrollü işlemle koyu renk kazanmış sarımsak ürünüdür. Sos ve yemeklerde kullanılır; yanmış sarımsakla aynı şey değildir.",
       "source": {
         "file": "Baharat_12_Gorsel_18_Ad.docx",
         "page": 19,
         "card": 12
-      }
+      },
+      "detail": "Kontrollü işlemle koyu renk kazanmış sarımsak ürünüdür. Sos ve yemeklerde kullanılır; yanmış sarımsakla aynı şey değildir. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir."
     },
     {
       "id": "bh-11-01",
@@ -1808,13 +1928,14 @@
       "image": "assets/baharat/t11_01.jpg",
       "imageAlt": "Besin fotoğrafı",
       "answer": "ELMA SİRKESİ",
-      "hint": "Görselin rengini, biçimini ve yapısını incele.",
-      "explanation": "",
+      "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
+      "explanation": "Elmadan elde edilen ekşi bir üründür. Salata ve tariflerde kullanılır; temizlik veya dezenfeksiyon garantisi olarak sunulmaz.",
       "source": {
         "file": "Baharat_12_Gorsel_18_Ad.docx",
         "page": 21,
         "card": 1
-      }
+      },
+      "detail": "Elmadan elde edilen ekşi bir üründür. Salata ve tariflerde kullanılır; temizlik veya dezenfeksiyon garantisi olarak sunulmaz. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir."
     },
     {
       "id": "bh-11-02",
@@ -1823,13 +1944,14 @@
       "image": "assets/baharat/t11_02.jpg",
       "imageAlt": "Besin fotoğrafı",
       "answer": "ÜZÜM SİRKESİ",
-      "hint": "Görselin rengini, biçimini ve yapısını incele.",
-      "explanation": "",
+      "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
+      "explanation": "Üzümden elde edilen ekşi bir üründür. Salata ve tariflerde kullanılır; elma sirkesinden yalnız görünüşle kesin ayrılmaz.",
       "source": {
         "file": "Baharat_12_Gorsel_18_Ad.docx",
         "page": 21,
         "card": 2
-      }
+      },
+      "detail": "Üzümden elde edilen ekşi bir üründür. Salata ve tariflerde kullanılır; elma sirkesinden yalnız görünüşle kesin ayrılmaz. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir."
     },
     {
       "id": "bh-11-03",
@@ -1838,13 +1960,14 @@
       "image": "assets/baharat/t11_03.jpg",
       "imageAlt": "Besin fotoğrafı",
       "answer": "SOYA SOSU",
-      "hint": "Görselin rengini, biçimini ve yapısını incele.",
-      "explanation": "",
+      "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
+      "explanation": "Soyadan hazırlanan, tuzlu tat veren bir sostur. Yemek ve soslarda kullanılır; etiket ve reçete kontrol edilir.",
       "source": {
         "file": "Baharat_12_Gorsel_18_Ad.docx",
         "page": 21,
         "card": 3
-      }
+      },
+      "detail": "Soyadan hazırlanan, tuzlu tat veren bir sostur. Yemek ve soslarda kullanılır; etiket ve reçete kontrol edilir. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir."
     },
     {
       "id": "bh-11-04",
@@ -1853,13 +1976,14 @@
       "image": "assets/baharat/t11_04.jpg",
       "imageAlt": "Besin fotoğrafı",
       "answer": "KEÇİBOYNUZU PEKMEZİ",
-      "hint": "Görselin rengini, biçimini ve yapısını incele.",
-      "explanation": "",
+      "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
+      "explanation": "Keçiboynuzundan elde edilen koyu kıvamlı üründür. Tatlı ve kahvaltılarda kullanılır.",
       "source": {
         "file": "Baharat_12_Gorsel_18_Ad.docx",
         "page": 21,
         "card": 4
-      }
+      },
+      "detail": "Keçiboynuzundan elde edilen koyu kıvamlı üründür. Tatlı ve kahvaltılarda kullanılır. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir."
     },
     {
       "id": "bh-11-05",
@@ -1868,13 +1992,14 @@
       "image": "assets/baharat/t11_05.jpg",
       "imageAlt": "Besin fotoğrafı",
       "answer": "TEREYAĞI",
-      "hint": "Görselin rengini, biçimini ve yapısını incele.",
-      "explanation": "",
+      "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
+      "explanation": "Sütten elde edilen bir yağdır. Yemek ve hamur işlerinde kullanılır; margarinle aynı ürün değildir.",
       "source": {
         "file": "Baharat_12_Gorsel_18_Ad.docx",
         "page": 21,
         "card": 5
-      }
+      },
+      "detail": "Sütten elde edilen bir yağdır. Yemek ve hamur işlerinde kullanılır; margarinle aynı ürün değildir. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir."
     },
     {
       "id": "bh-11-06",
@@ -1883,13 +2008,14 @@
       "image": "assets/baharat/t11_06.jpg",
       "imageAlt": "Besin fotoğrafı",
       "answer": "BAL",
-      "hint": "Görselin rengini, biçimini ve yapısını incele.",
-      "explanation": "",
+      "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
+      "explanation": "Yoğun kıvamlı tatlı bir besindir. Reçetedeki miktara göre tatlandırmada kullanılır.",
       "source": {
         "file": "Baharat_12_Gorsel_18_Ad.docx",
         "page": 21,
         "card": 6
-      }
+      },
+      "detail": "Yoğun kıvamlı tatlı bir besindir. Reçetedeki miktara göre tatlandırmada kullanılır. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir."
     },
     {
       "id": "bh-11-07",
@@ -1898,13 +2024,14 @@
       "image": "assets/baharat/t11_07.jpg",
       "imageAlt": "Besin fotoğrafı",
       "answer": "ESMER ŞEKER",
-      "hint": "Görselin rengini, biçimini ve yapısını incele.",
-      "explanation": "",
+      "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
+      "explanation": "Kahverengi tonlarda bir şeker ürünüdür. Tatlı ve hamur işlerinde kullanılır; sağlık üstünlüğü varsayılmaz.",
       "source": {
         "file": "Baharat_12_Gorsel_18_Ad.docx",
         "page": 21,
         "card": 7
-      }
+      },
+      "detail": "Kahverengi tonlarda bir şeker ürünüdür. Tatlı ve hamur işlerinde kullanılır; sağlık üstünlüğü varsayılmaz. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir."
     },
     {
       "id": "bh-11-08",
@@ -1913,13 +2040,14 @@
       "image": "assets/baharat/t11_08.jpg",
       "imageAlt": "Besin fotoğrafı",
       "answer": "TUZ",
-      "hint": "Görselin rengini, biçimini ve yapısını incele.",
-      "explanation": "",
+      "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
+      "explanation": "Yemeğe tuzlu tat verir. İnce ve iri taneli ürünler bulunur; reçetedeki miktar esas alınır.",
       "source": {
         "file": "Baharat_12_Gorsel_18_Ad.docx",
         "page": 21,
         "card": 8
-      }
+      },
+      "detail": "Yemeğe tuzlu tat verir. İnce ve iri taneli ürünler bulunur; reçetedeki miktar esas alınır. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir."
     },
     {
       "id": "bh-11-09",
@@ -1928,13 +2056,14 @@
       "image": "assets/baharat/t11_09.jpg",
       "imageAlt": "Besin fotoğrafı",
       "answer": "KAYA TUZU",
-      "hint": "Görselin rengini, biçimini ve yapısını incele.",
-      "explanation": "",
+      "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
+      "explanation": "İri veya öğütülmüş biçimde satılabilir. Tane büyüklüğü ürüne göre değişir; normal tuzdan sağlıkça üstün olduğu varsayılmaz.",
       "source": {
         "file": "Baharat_12_Gorsel_18_Ad.docx",
         "page": 21,
         "card": 9
-      }
+      },
+      "detail": "İri veya öğütülmüş biçimde satılabilir. Tane büyüklüğü ürüne göre değişir; normal tuzdan sağlıkça üstün olduğu varsayılmaz. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir."
     },
     {
       "id": "bh-11-10",
@@ -1943,13 +2072,14 @@
       "image": "assets/baharat/t11_10.jpg",
       "imageAlt": "Besin fotoğrafı",
       "answer": "LİMON TUZU",
-      "hint": "Görselin rengini, biçimini ve yapısını incele.",
-      "explanation": "",
+      "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
+      "explanation": "Genellikle sitrik asit ürünüdür. Kristalli görünür; sofra tuzu veya limon kabuğu değildir. Etiket ve reçete kontrol edilir.",
       "source": {
         "file": "Baharat_12_Gorsel_18_Ad.docx",
         "page": 21,
         "card": 10
-      }
+      },
+      "detail": "Genellikle sitrik asit ürünüdür. Kristalli görünür; sofra tuzu veya limon kabuğu değildir. Etiket ve reçete kontrol edilir. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir."
     },
     {
       "id": "bh-11-11",
@@ -1958,13 +2088,14 @@
       "image": "assets/baharat/t11_11.jpg",
       "imageAlt": "Besin fotoğrafı",
       "answer": "DAMLA SAKIZI",
-      "hint": "Görselin rengini, biçimini ve yapısını incele.",
-      "explanation": "",
+      "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
+      "explanation": "Küçük reçine parçaları hâlindedir. Sütlü tatlılara ve bazı hamur işlerine aroma verir.",
       "source": {
         "file": "Baharat_12_Gorsel_18_Ad.docx",
         "page": 21,
         "card": 11
-      }
+      },
+      "detail": "Küçük reçine parçaları hâlindedir. Sütlü tatlılara ve bazı hamur işlerine aroma verir. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir."
     },
     {
       "id": "bh-11-12",
@@ -1973,13 +2104,14 @@
       "image": "assets/baharat/t11_12.jpg",
       "imageAlt": "Besin fotoğrafı",
       "answer": "ALTIN VARAK",
-      "hint": "Görselin rengini, biçimini ve yapısını incele.",
-      "explanation": "",
+      "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
+      "explanation": "Yalnız yenilebilir ve gıda kullanımına uygun ürün, süsleme için kullanılır. El işi veya dekorasyon varağı yiyeceğe konmaz.",
       "source": {
         "file": "Baharat_12_Gorsel_18_Ad.docx",
         "page": 21,
         "card": 12
-      }
+      },
+      "detail": "Yalnız yenilebilir ve gıda kullanımına uygun ürün, süsleme için kullanılır. El işi veya dekorasyon varağı yiyeceğe konmaz. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir."
     }
   ],
   "words": [],
@@ -2072,5 +2204,10 @@
       "TAHİN",
       "NAR EKŞİSİ"
     ]
-  }
+  },
+  "teacherNotes": [
+    "Fotoğrafta benzer görünen kuru ot, toz ve sıvı ürünler kesin tanımlama becerisinin tek kanıtı değildir. Gerçek, gıda kullanımına uygun ve etiketli örneklerle çalışılır.",
+    "Bu sette baharatlar yanında yağ, sos, yemiş ve başka mutfak malzemeleri de bulunur.",
+    "Tadım veya sağlık etkisi değerlendirilmez; öğrencinin alerji ve güvenli çalışma koşullarını öğretmen belirler."
+  ]
 }

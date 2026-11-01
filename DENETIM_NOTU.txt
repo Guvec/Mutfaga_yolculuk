@@ -1,0 +1,15 @@
+Yapılan kontroller
+- JavaScript dosyalarının ve service worker dosyasının sözdizimi
+- 10 mutfak, 11 baharat ve 1 bulaşık takımında 12 görsel/18 farklı ad/6 çeldirici
+- Her takımda doğru eşleştirmelerin puanlanması
+- Yanlış ilk yanıt ve düzeltmenin ayrı kaydı
+- Bağımsız denemede erken açıklama ve puanın gizlenmesi
+- Erken bitirmede yanıtlanmayanların ayrı gösterilmesi
+- 4 kartlık hazırlık çalışması
+- Açıklamaların boş olmaması ve tüm resim dosyalarının bulunması
+- Ses kuyruğu yerine yeni konuşmanın öncekini kesmesi (yapay konuşma motoruyla işlev testi)
+- Service worker kurulum ve çevrimdışı hazırlık akışı (yalıtılmış işlev testi)
+- Tarayıcıda menü, öğretmen seçenekleri, dinamik yönerge, doğru eşleştirme, kısa/ayrıntılı bilgi, ses ayarları ve yeni atık sorularına geçiş
+
+Sınırlılıklar
+Gerçek telefon/tablette dokunma, cihazlara göre Türkçe ses kalitesi ve yayındaki HTTPS ortamında uçtan uca çevrimdışı çalışma bu paket tesliminde doğrulanmadı. Kullanılan puanlar öğrenmenin veya bağımsız uygulamanın tek kanıtı değildir. Yeni sorular kaynak belgenin atık yönetimi bölümünden uyarlanmıştır.

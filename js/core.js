@@ -368,7 +368,7 @@ function render(){
         g.recs.forEach(function(r){
           var n=r.qs.length, avg=n?r.qs.reduce(function(a,q){return a+q.s;},0)/n:0;
           h+='<div class="hrow"><div><b>'+fmtTime(r.t)+'</b> · '+esc(catName(r))+'<br>'+n+' soru · ✓'+r.ok+' ↻'+r.fix+' ✗'+r.bad+'</div>'+
-             '<div class="r"><b>'+r.s+' puan</b><br>ort. '+fmtS(avg)+'</div></div>';
+             '<div class="r"><b>'+r.s+' puan</b><br>'+sessionTimeLabel(r)+'</div></div>';
         });
       });
     }
@@ -487,7 +487,7 @@ function drawHistory(){
       x.fillStyle=C.navy; x.font="22px Arial";
       x.fillText(fmtTime(r.t)+"  "+catName(r),54,y-3);
       x.fillText(n+" soru  ✓"+r.ok+" ↻"+r.fix+" ✗"+r.bad,560,y-3);
-      x.textAlign="right"; x.font="bold 22px Arial"; x.fillText(r.s+" puan · ort. "+fmtS(avg),W-54,y-3); x.textAlign="left";
+      x.textAlign="right"; x.font="bold 22px Arial"; x.fillText(r.s+" puan · "+sessionTimeLabel(r),W-54,y-3); x.textAlign="left";
       y+=58;
     });
   });
