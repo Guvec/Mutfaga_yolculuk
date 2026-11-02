@@ -1,22 +1,22 @@
 /* Konu verileri oyun motorlarından ayrıdır. GitHub Pages üzerinde derleme gerekmez. */
 'use strict';
 const SUBJECTS = [
-  {id:'baharat', name:'Baharat ve Aromatikler', desc:'11 takım · Her takımda 12 görsel ve 18 ad.'},
+  {id:'baharat', name:'Baharatlar ve Diğer Mutfak Ürünleri', desc:'8 takım · 12 görsel ve 18 ad · Ayrıca açıklamalı ürün bankası.'},
   {id:'kuver', name:'Kuver', desc:'Basit kuver ve tabldot kuver çalışmaları.'},
-  {id:'mutfak-araclari', name:'Mutfak Araçları', desc:'120 araç · 10 takım · Her takımda 12 görsel ve 18 ad.'},
+  {id:'mutfak-araclari', name:'Mutfak Araçları', desc:'144 örnek · 12 takım · Her takımda 12 görsel ve 18 ad.'},
   {id:'beslenme-ilkeleri', name:'Beslenme İlkeleri', desc:'Hazırlanıyor.'},
   {id:'bulasik-makinesi-temizligi', name:'Bulaşık Yıkama ve Atık Yönetimi', desc:'Elde yıkama, makinede yıkama ve atıkları ayırma.'}
 ];
 const CONTENT = Object.create(null);
 const OLD_RENDER = render, OLD_NEWQ = newQ, OLD_START = startSession, OLD_RESOLVE = resolve;
 const OLD_QUIZ = quizHtml, OLD_ITEM = itemImg;
-VERSION='Sürüm · 02.11.2026 · Android düzeni 5'; // Her yüklemede tarih güncellenir.
+VERSION='Sürüm · 02.11.2026 · Konuya göre yarış odaları 13'; // Her yüklemede tarih güncellenir.
 st.subject='kuver'; st.practice='learn';
 LEVELS={
   1:{name:'Basit Kuver', items:['yemek_catali','yemek_bicagi','pecete','corba_kasigi','su_bardagi']},
   3:{name:'Tabldot Kuver', items:['yemek_catali','yemek_bicagi','pecete','corba_kasigi','su_bardagi','ekmek_tabagi','tereyagi_bicagi','tatli_catali','tatli_kasigi']}
 };
-ITEMS.kuver_tabagi.kural='Kuver tabağı konuğun önüne, masa kenarından 2–3 cm içeri konur.';
+ITEMS.kuver_tabagi.kural='Bu çalışmada kuver tabağı konuğun önüne, masa kenarından 2–3 cm içeri konur.';
 ITEMS.corba_kasigi.ayirt='Çorba içmek için kullanılır. Tatlı kaşığından büyüktür.';
 ITEMS.pecete.kural='Bu kuverde peçeteyi çatalın soluna koyuyoruz.';
 ITEMS.pecete.ayirt='Peçete ağız çevresini ve elleri silmek için kullanılır. Bu düzende çatalın solundadır.';
@@ -41,7 +41,7 @@ catName=function(r){
   const kind=r.variant?(r.variant==='tabldot'?'Tabldot Kuver':'Basit Kuver'):(r.d===3?'Eski tam kuver':r.d===2?'Eski seviye 2':'Eski temel kuver');
   return (r.op==='kur'?'Kuveri Kur · '+kind:'Adını Bul')+(r.practice==='check'?' · Kendimi Deniyorum':r.practice==='learn'?' · Öğreniyorum':'');
 };
-back=function(){const m={profiles:'welcome',home:'profiles',subject:'home',level:'subject',mode:'level',summary:'subject',history:'home',content:'subject'};go(m[st.screen]||'home');};
+back=function(){const m={profiles:'welcome',home:'profiles',subject:'home',level:'subject',mode:'level',summary:'subject',history:'home',content:'subject',classification:'subject'};go(m[st.screen]||'home');};
 function openSubject(id){st.subject=id;go('subject');}
 pickOp=function(op){st.op=op;go(op==='kur'?'level':'mode');};
 pickLevel=function(l){st.lvl=l;go('mode');};
@@ -118,9 +118,16 @@ modal=function(text,yesFn){modalFocus=document.activeElement;CORE_MODAL(text,yes
 closeModal=function(){CORE_CLOSE();if(modalFocus&&modalFocus.isConnected)modalFocus.focus();};
 const CORE_BREAK=startBreak;
 startBreak=function(){CORE_BREAK();document.querySelector('#ov>div').setAttribute('role','dialog');document.querySelector('#ov>div').setAttribute('aria-modal','true');document.getElementById('bGo').focus();};
-document.addEventListener('keydown',e=>{if(!document.getElementById('ov').classList.contains('on'))return;const els=[...document.querySelectorAll('#ov button:not(:disabled)')];if(e.key==='Tab'&&els.length){if(e.shiftKey&&document.activeElement===els[0]){e.preventDefault();els.at(-1).focus();}else if(!e.shiftKey&&document.activeElement===els.at(-1)){e.preventDefault();els[0].focus();}}if(e.key==='Escape'&&!st.inBreak)closeModal();});
+document.addEventListener('keydown',e=>{if(!document.getElementById('ov').classList.contains('on'))return;const els=[...document.querySelectorAll('#ov button:not(:disabled), #ov select:not(:disabled), #ov input:not(:disabled), #ov summary, #ov [tabindex="0"]')];if(e.key==='Tab'&&els.length){if(e.shiftKey&&document.activeElement===els[0]){e.preventDefault();els.at(-1).focus();}else if(!e.shiftKey&&document.activeElement===els.at(-1)){e.preventDefault();els[0].focus();}}if(e.key==='Escape'&&!st.inBreak)closeModal();});
 function getData(){return CONTENT[st.subject]||{questions:[],matches:[],words:[]};}
 function contentArr(){const d=getData();return st.op==='mcq'?d.questions:st.op==='match'?d.matches:d.words;}
+function classificationHTML(){
+ const d=getData(),groups=d.classification||[],items=d.matches||[];
+ let h=topBar('Servis takımlarını tanı').replace('back()',"go('subject')")+'<div class="wrap"><h1>Servis takımlarını tanı</h1><p class="card">Önce grupları incele. Sonra eşleştirme oyununda çalış. Benzer tabak ve metal takımların boylarını birlikte karşılaştır. Görseli büyütmek için üzerine dokun.</p>';
+ groups.forEach((g,i)=>{h+='<details class="card classification-group"'+(i===0?' open':'')+'><summary>'+esc(g.title)+'</summary><div class="classification-grid">';g.items.forEach(id=>{const it=items.find(x=>x.id===id);if(!it)return;h+='<article class="classification-item"><a href="'+esc(it.image)+'" target="_blank" rel="noopener" aria-label="'+esc(it.answer)+' görselini büyüt"><img src="'+esc(it.image)+'" alt="'+esc(it.answer)+'"></a><h2>'+esc(it.answer)+'</h2><p>'+esc(it.explanation)+'</p>'+sesDugme(it.answer+'. '+it.explanation)+'</article>';});h+='</div></details>';});
+ return h+'<button class="btn pri" onclick="pickContent(\'match\')">Eşleştirme oyununa geç</button></div>';
+}
+
 /* Kartlarda "set" alanı varsa oturum takım takım yapılır (ör. Mutfak Araçları: 11 takım × 12 kart). */
 function contentSets(){return [...new Set(contentArr().filter(x=>x.set).map(x=>x.set))].sort((a,b)=>a-b);}
 function pickContent(op){st.op=op;st.practice='learn';st.contentSet=null;if(typeof boardSetsFill==='function')boardSetsFill();go('content');}
@@ -165,22 +172,25 @@ render=function(){
   let h=null;
   if(st.screen==='welcome')h='<div class="welcome"><img src="assets/acilis-kolaj.jpg" alt="Tabldot kuver, çorba tenceresi, çırpma teli ve bulaşık makinesi"><h1>Mesleki Oyunlar</h1><p class="sub">Yiyecek ve İçecek Hizmetleri</p><button class="btn pri start" onclick="go(\'profiles\')">Başlayalım</button><p class="ver">'+VERSION+'</p></div>';
   else if(st.screen==='home')h=topBar('Konu klasörleri')+'<div class="wrap"><h1>Ne çalışalım?</h1><p class="sub">Bir konu seç.</p><div class="list">'+SUBJECTS.map(s=>s.id==='beslenme-ilkeleri'?'<div class="menu-btn preparing" aria-disabled="true"><b>'+esc(s.name)+'</b><span>Hazırlanıyor</span></div>':menuButton(s.name,s.desc,"openSubject('"+s.id+"')")).join('')+(st.guest?'':menuButton('Çalışma Geçmişim','Son 14 günün sonuçları.',"go('history')"))+'</div></div>';
+  else if(st.screen==='classification')h=classificationHTML();
   else if(st.screen==='subject'){
     h=topBar(subjectName())+'<div class="wrap"><h1>'+subjectName()+'</h1><div class="list">';
     if(st.subject==='kuver')h+=menuButton('Kuveri Kur','Basit kuver veya tabldot kuver.',"pickOp('kur')")+menuButton('Adını Bul','Kuver parçalarını tanı.',"pickOp('ad')");
     // Kuver parçaları Adını Bul ve Mutfak Araçları eşleştirmesinde zaten çalışılır; Kuver'de ayrı eşleştirme yok.
     // Kelime Kartları, 12'li eşleştirmenin tekrarı olduğu için menüden kaldırıldı.
+    if(st.subject==='baharat')h+=menuButton('Ürünleri açıklamalarıyla tanı','Sıvılar, tozlar ve diğer ürünler. Bu bölüm puanlanmaz.',"go('spicelearn')");
+    if(st.subject==='mutfak-araclari')h+=menuButton('Servis takımlarını tanı','Tabakları, metal takımları ve servis kaplarını gruplarıyla öğren.',"go('classification')");
     if(st.subject!=='kuver')h+=menuButton('Eşleştirme','12 görseli doğru adla eşleştir.',"pickContent('match')");
-    if(st.subject!=='baharat')h+=menuButton('Çoktan Seçmeli Sorular','Bu konuya ait sorular.',"pickContent('mcq')")+'</div></div>';
-  }else if(st.screen==='level')h=topBar('Kuveri Kur')+'<div class="wrap"><h1>Kuver seç</h1><div class="list">'+menuButton('Basit Kuver','6 parça · Kuver tabağı masada hazır.',"pickLevel(1)")+menuButton('Tabldot Kuver','10 parça · Gönderdiğin örnek düzene göre.',"pickLevel(3)")+'</div></div>';
+    if(st.subject!=='baharat'&&st.subject!=='kuver')h+=menuButton('Çoktan Seçmeli Sorular','Bu konuya ait sorular.',"pickContent('mcq')");h+='</div></div>';
+  }else if(st.screen==='level')h=topBar('Kuveri Kur')+'<div class="wrap"><h1>Kuver seç</h1><div class="list">'+menuButton('Basit Kuver','6 parça · Çorba ve ana yemek menüsü. Kuver tabağı hazır.',"pickLevel(1)")+menuButton('Tabldot Kuver','10 parça · Bu çalışmanın örnek düzenine göre.',"pickLevel(3)")+'</div></div>';
   else if(st.screen==='mode')h=topBar('Çalışma biçimi')+'<div class="wrap"><h1>Nasıl çalışalım?</h1><div class="list">'+menuButton('Öğreniyorum','İpucu ve ikinci deneme ile çalış.',"choosePractice('learn')")+menuButton('Kendimi Deniyorum','Her soruyu bir kez yanıtla. Sonra açıklamayı incele.',"choosePractice('check')")+'</div><p class="note">Her oturumda 1 mola hakkın var.</p></div>';
   else if(st.screen==='content'){
     const d=getData(),a=st.op==='mcq'?d.questions:st.op==='match'?d.matches:d.words;
     h=topBar(subjectName())+'<div class="wrap"><h1>'+({mcq:'Çoktan Seçmeli Sorular',match:'Eşleştirme',word:'Kelime Kartları'}[st.op])+'</h1>';
     if(CONTENT[st.subject]===null)h+='<p role="alert">İçerik yüklenemedi. Bağlantını kontrol edip yeniden dene.</p><button class="btn" onclick="loadContent()">Yeniden Dene</button>';
     else if(!CONTENT[st.subject])h+='<p>İçerik yükleniyor…</p>';
-    else if(!a.length)h+='<p class="card">Bu bölümün PDF içeriği henüz eklenmedi.</p>';
-    else if(contentSets().length)h+='<p class="sub">Bir takım seç. Her takımda '+a.filter(x=>x.set===contentSets()[0]).length+' kart var.</p><div class="list set-list">'+contentSets().map(n=>menuButton(n+'. takım',a.filter(x=>x.set===n).length+' kart',"startContent("+n+")")).join('')+'</div>';
+    else if(!a.length)h+='<p class="card">Bu konuda henüz etkinlik yok. Konu menüsünden başka bir çalışma seçebilirsin.</p>';
+    else if(contentSets().length)h+='<p class="sub">Bir takım seç. Her takımda '+a.filter(x=>x.set===contentSets()[0]).length+' kart var.</p><div class="list set-list">'+contentSets().map(n=>menuButton(n+'. takım'+(d.setTitles&&d.setTitles[n]?' · '+d.setTitles[n]:''),a.filter(x=>x.set===n).length+' kart',"startContent("+n+")")).join('')+'</div>';
     else h+='<p>'+a.length+' etkinlik hazır.</p><button class="btn pri" onclick="startContent()">Başla</button>';
     h+='</div>';
   }
@@ -198,9 +208,9 @@ function validateContent(d){
   for(const field of ['questions','matches','words'])if(!Array.isArray(d[field]))throw new Error('Eksik dizi: '+field);
   const ids=new Set();for(const q of d.questions){if(ids.has(q.id)||!q.id||!q.prompt||!Array.isArray(q.choices)||q.choices.length<2||!q.choices.some(c=>c.id===q.correct)||new Set(q.choices.map(c=>c.id)).size!==q.choices.length)throw new Error('Geçersiz soru');ids.add(q.id);}
   for(const f of ['matches','words']){const s=new Set();for(const q of d[f]){if(!q.id||!q.answer||!q.prompt||s.has(q.id))throw new Error('Geçersiz kart');s.add(q.id);}if(d[f].length===1)throw new Error('Eşleştirme için en az 2 kart gerekir');}
-  return d;
+  return {...d,questions:d.questions.filter(q=>!q.disabled)};
 }
-async function loadContent(){await Promise.all(SUBJECTS.map(async s=>{try{const r=await fetch('content/'+s.id+'/icerik.json');if(!r.ok)throw Error(r.status);CONTENT[s.id]=validateContent(await r.json());}catch(e){CONTENT[s.id]=null;}}));if(st.screen==='content')render();}
+async function loadContent(){await Promise.all(SUBJECTS.map(async s=>{try{const r=await fetch('content/'+s.id+'/icerik.json');if(!r.ok)throw Error(r.status);CONTENT[s.id]=validateContent(await r.json());}catch(e){CONTENT[s.id]=null;}}));if(st.screen==='content'||st.screen==='spicelearn')render();}
 render();loadContent();
 // Aynı kapsamda bulunan eski kuver service worker'ının eski index.html sunmasını önler.
 if('serviceWorker' in navigator&&(location.protocol==='https:'||location.hostname==='localhost')){

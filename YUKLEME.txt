@@ -1,23 +1,6 @@
-MESLEKİ OYUNLAR — ANDROID DÜZENİ 5
-02.11.2026
-
-Yükleme:
-1. ZIP dosyasını ayıklayın.
-2. GitHub deposunda Add file > Upload files seçin.
-3. js, css, content, assets klasörlerini ve index.html, sw.js, manifest.json, icon-192.png, icon-512.png dosyalarını birlikte yükleyin. Dış klasörü veya ZIP dosyasını yüklemeyin.
-4. Commit changes ile kaydedin. Önceki dosyaları silmeyin.
-5. GitHub Pages yayını bitince siteyi Ctrl+F5 ile yenileyin.
-
-SES_DENEMELERI klasörü yalnız iki yeni sesi dinlemek içindir. Oyun çalışması için yüklenmesi gerekmez. Oyunlara hazır ses kaydı henüz bağlanmamıştır.
-
-Bu sürümde:
-- Görsel konu kartları, yenilenmiş renkler ve daha okunaklı başlıklar
-- Küçük ekranda seçilen görselin yanında açılan ad paneli
-- 12 görsel ve toplam 18 ad korunur; 6 ad çeldiricidir
-- Kaydırılabilir ad listesi, büyük dokunma alanları ve açık kapatma düğmesi
-- Dikey/yatay telefon ekranlarına uyum ve tablet düzeni
-- İlerleme çubuğu, kısa geri bildirim ve isteğe bağlı ayrıntılı bilgi
-- Önceki açıklama, yanıt kaydı, süre ve ses kontrolü düzeltmeleri korunur
-- Vazgeçilen altı ek etkinlik bu pakette bulunmaz
-
-Siteye bu konuşmadan doğrudan yükleme yapılmadı; bu ZIP elle yükleme içindir.
+SÜRÜM: v13 — TAM SİTE + YARIŞ ODALARI
+GitHub Pages köküne site klasörünün İÇİNDEKİLERİNİ yükleyin; .nojekyll dahil.
+Mevcut bireysel oyunlar çalışır. Yarışta yalnız Kendimi Deniyorum vardır.
+Firebase web ayarları henüz girilmedi; çevrimiçi oda bağlantısı kapalıdır.
+YARIS_KURULUM.txt içindeki kurulum tamamlanmadan telefonlar arasında yarış yapılamaz.
+Canlı siteye yükleme yapılmadı.

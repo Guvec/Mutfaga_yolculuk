@@ -12,15 +12,15 @@ var PTS = 10;               // ilk denemede doğru puanı
 var ITEMS = {
   kuver_tabagi:   {ad:"Kuver tabağı", AD:"KUVER TABAĞI", x:53.3, y:61.4, w:43.2,
                    yer:"Ortada",
-                   kural:"Kuver tabağı ortaya, masa kenarından iki parmak içeri konur.",
+                   kural:"Kuver tabağı ortaya, bu çalışmada masa kenarından 2–3 cm içeri konur.",
                    ayirt:"Kuver tabağı büyük, düz bir tabaktır. Kuverin ortasında durur."},
   yemek_catali:   {ad:"Yemek çatalı", AD:"YEMEK ÇATALI", x:28, y:64.6, h:51.5, mx:28, my:64,
                    yer:"Tabağın solu",
-                   kural:"Yemek çatalı tabağın soluna konur. Çatal sol elde tutulduğu için soldadır.",
+                   kural:"Yemek çatalı tabağın soluna konur.",
                    ayirt:"Yemek çatalı uzundur, ana yemekte kullanılır. Tatlı çatalı ondan kısadır."},
   yemek_bicagi:   {ad:"Yemek bıçağı", AD:"YEMEK BIÇAĞI", x:79.3, y:63, h:55.8, mx:79.3, my:55,
                    yer:"Tabağın sağı",
-                   kural:"Yemek bıçağı tabağın sağına konur, keskin ağzı tabağa bakar. Bıçak sağ elde tutulduğu için sağdadır.",
+                   kural:"Yemek bıçağı tabağın sağına konur, keskin ağzı tabağa bakar.",
                    ayirt:"Yemek bıçağı uzundur, ana yemekte kullanılır. Tereyağı bıçağı ondan kısadır."},
   corba_kasigi:   {ad:"Çorba kaşığı", AD:"ÇORBA KAŞIĞI", x:88, y:66.8, h:48, mx:90, my:77,
                    yer:"Bıçağın sağı",
@@ -145,7 +145,7 @@ function answer(v){
   if(st.tries===1){
     st.lastRes={cls:"bad", head:"Tekrar dene.", text: st.op==="kur" ? "Bu yer başka bir parçanın yeri." : "Görsele dikkatle bak."};
   } else {
-    st.lastRes={cls:"bad", head:"Bu da doğru değil.", text: st.op==="kur" ? "Doğru yeri görmek için düğmeye dokun." : "Doğru cevabı görmek için düğmeye dokun."};
+    st.lastRes={cls:"bad", head:"Henüz doğru yanıt bulunmadı.", text: st.op==="kur" ? "Doğru yeri görmek için düğmeye dokun." : "Doğru cevabı görmek için düğmeye dokun."};
   }
   render();
 }
@@ -323,7 +323,7 @@ function render(){
   case "welcome":
     h='<div class="welcome"><img src="'+IMG.ornek_kuver+'" alt="Örnek kuver"><h1>Mesleki Oyunlar</h1>'+
       '<p class="sub">Kuver parçalarını tanı, masada doğru yere yerleştir.</p>'+
-      '<div style="width:100%;max-width:360px"><button class="btn pri" onclick="go(\'profiles\')">Haydi Başlayalım!</button></div>'+
+      '<div style="width:100%;max-width:360px"><button class="btn pri" onclick="go(\'profiles\')">Başla</button></div>'+
       '<div class="ver">'+VERSION+'</div></div>';
     break;
   case "profiles":

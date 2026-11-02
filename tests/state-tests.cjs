@@ -1,102 +1,55 @@
-const vm=require('node:vm'),fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict');
-const root=path.resolve(__dirname,'..'),elements=new Map(),store=new Map();
-const el=id=>{if(!elements.has(id))elements.set(id,{id,innerHTML:'',className:'',style:{},isConnected:true,value:'',focus(){},setAttribute(){},classList:{contains(){return false}},insertAdjacentHTML(_,s){this.innerHTML+=s}});return elements.get(id)};
-const ctx=new Proxy({measureText:t=>({width:String(t).length*11})},{get:(o,k)=>o[k]||(()=>{})});
-const doc={hidden:false,activeElement:null,addEventListener(){},getElementById:el,querySelector:s=>s==='.rep'?el('app'):el(s),querySelectorAll:()=>[],createElement:tag=>tag==='canvas'?{width:0,height:0,getContext:()=>ctx,toDataURL:()=> 'data:image/png;base64,',toBlob(){}}:el(tag),body:el('body')};
-const env={console,document:doc,window:{scrollTo(){}},localStorage:{getItem:k=>store.get(k),setItem:(k,v)=>store.set(k,v)},navigator:{},location:{protocol:'http:',hostname:'test'},fetch:async url=>({ok:true,json:async()=>JSON.parse(fs.readFileSync(path.join(root,url),'utf8'))}),setTimeout,clearTimeout,URL,Date,Math,JSON};vm.createContext(env);
-for(const file of ['js/core.js','js/platform.js','js/eslestirme.js','js/sorular.js','js/ses.js'])vm.runInContext(fs.readFileSync(path.join(root,file),'utf8'),env,{filename:file});
-const run=s=>vm.runInContext(s,env),html=()=>el('app').innerHTML;
-(async()=>{await run('loadContent()');assert.equal(run('VERSION'),'Sürüm · 01.11.2026');assert(html().includes('Sürüm · 01.11.2026'));run('guest()');for(const t of ['Kuver','Mutfak Araçları','Beslenme İlkeleri','Bulaşık Makinesi Temizliği'])assert(html().includes(t));run("openSubject('kuver');pickOp('kur')");assert(html().includes('Basit Kuver'));assert(html().includes('Tabldot Kuver'));assert(!html().includes('Tam Kuver'));run("pickLevel(1);choosePractice('learn')");assert.equal(run('LEVELS[st.lvl].items.length'),5);
-run("answer(LEVELS[1].items.find(k=>k!==st.q.key))");assert(html().includes('Birlikte tekrar deneyelim'));run('askBreak();startBreak()');assert.equal(run('st.brk'),1);assert.equal(run('st.t0'),0);el('bGo').onclick();run('answer(st.q.key)');assert.equal(run('st.sess.fix'),1);assert.equal(run('st.sess.s'),5);
-for(let i=1;i<5;i++)run('nextQ();answer(st.q.key)');run('nextQ()');assert.equal(run('st.kDone'),true);assert(!html().includes('class="done-photo"'));assert(html().includes('basit kuver örneği'));assert.equal(run('st.sess.s'),45);
-run("st.lvl=3;st.practice='check';startSession()");for(let i=0;i<9;i++){assert.equal((html().match(/onclick="answer\('/g)||[]).length,9);run('answer(st.q.key);nextQ()');}assert.equal(run('st.kDone'),true);assert.equal(run('st.sess.s'),90);assert(html().includes('tabldot-kuver-referans.png'));assert.equal(run('st.sess.variant'),'tabldot');
-run("st.op='ad';st.practice='learn';startSession()");assert.equal(run('st.kDone'),false);assert(!html().includes('Çalışma tamamlandı'));for(let i=0;i<10;i++)run('answer(st.q.ans);nextQ()');assert.equal(run('st.kDone'),true);assert.equal(run('st.sess.ok'),10);assert.equal(run('new Set(st.sess.qs.map(q=>q.prompt)).size'),10);
-run("st.op='kur';st.practice='check';startSession();answer(LEVELS[3].items.find(k=>k!==st.q.key))");assert.equal(run('st.tries'),2);assert.equal(run('st.t0'),0);run('showSol()');assert.equal(run('st.sess.bad'),1);
-run("st.subject='beslenme-ilkeleri';pickContent('mcq')");assert(html().includes('PDF içeriği henüz eklenmedi'));
-run("CONTENT['beslenme-ilkeleri']={questions:[{id:'T',prompt:'TEST',choices:[{id:'A',text:'TEST A'},{id:'B',text:'TEST B'}],correct:'B',explanation:'TEST açıklama',source:{file:'test.pdf',page:1}}],matches:[],words:[]};startContent()");assert(html().indexOf('TEST A')<html().indexOf('TEST B'));run("answer('A');answer('B');nextQ()");assert.equal(run('st.sess.fix'),1);run('finish()');assert(html().includes('Sonuç özeti'));assert.equal(run('st.sess.qs[0].source.page'),1);run('startSession()');assert(html().includes('TEST A'));
-// Takımsız eşleştirme kartları da 12'li tahtaya bölünür (14 kart -> 12 + 2).
-run("CONTENT.kuver={questions:[],matches:Array.from({length:14},(_,i)=>({id:'m'+i,prompt:'TEST',image:'x.jpg',answer:'AD '+i})),words:[{id:'a',prompt:'TEST KELİME A',answer:'ANLAM A'},{id:'b',prompt:'TEST KELİME B',answer:'ANLAM B'}]};st.subject='kuver';pickContent('match')");assert.equal((html().match(/startContent\(\d+\)/g)||[]).length,2);
-run("startContent(1);startBoard('learn')");assert.equal(run('st.board.items.length'),12);run("st.board.items.forEach(it=>{tapImg(it.id);tapName(st.board.names.indexOf(it.answer));})");assert.equal(run('st.kDone'),true);assert.equal(run('st.sess.s'),120);run("st.op='word';startContent()");assert.equal(run('st.q.choices.length'),2);run('answer(st.q.correct)');assert.equal(run('st.sess.ok'),1);
-run("st.prof='TEST';st.guest=false;st.op='kur';st.lvl=1;startSession();answer(st.q.key)");assert.equal(JSON.parse(store.get('kv_records')).at(-1).variant,'basit');run("st.guest=true;startSession();answer(st.q.key)");assert.equal(JSON.parse(store.get('kv_records')).length,1);
-assert.throws(()=>run("validateContent({questions:[{id:'x',prompt:'x',choices:[{id:'A',text:'a'},{id:'A',text:'b'}],correct:'A'}],matches:[],words:[]})"));
-// Kaynağı henüz gelmeyen konuların JSON dosyaları boş kalmalı; test verisi yalnız VM belleğinde kullanıldı.
-for(const slug of ['kuver','beslenme-ilkeleri','bulasik-makinesi-temizligi']){const d=JSON.parse(fs.readFileSync(path.join(root,'content',slug,'icerik.json')));for(const f of ['questions','matches','words'])assert.equal(d[f].length,0);}
-// Mutfak Araçları eşleştirme kartları: 11 takım × 12 kart, 120 farklı araç.
-const mk=JSON.parse(fs.readFileSync(path.join(root,'content','mutfak-araclari','icerik.json'),'utf8'));
-assert.equal(mk.matches.length,132);assert.equal(new Set(mk.matches.map(m=>m.answer)).size,120);assert.equal(new Set(mk.matches.map(m=>m.id)).size,132);
-const names=new Set(mk.matches.map(m=>m.answer));
-for(const m of mk.matches){assert(fs.existsSync(path.join(root,m.image)),m.image);assert(m.explanation&&m.source&&m.source.page);for(const x of m.similar||[])assert(names.has(x),x);assert(!(m.imageAlt||'').includes(m.answer));}
-for(let t=1;t<=11;t++){const g=mk.matches.filter(m=>m.set===t);assert.equal(g.length,12);assert.equal(new Set(g.map(m=>m.answer)).size,12);}
-// Çeldiriciler: her takımda 6 sabit ad; kitaptaki 120 addan; tahtada görseli yok; tekrar yok.
-for(let t=1;t<=11;t++){const L=mk.distractors[String(t)],on=new Set(mk.matches.filter(m=>m.set===t).map(m=>m.answer));assert.equal(L.length,6);assert.equal(new Set(L).size,6);for(const x of L){assert(names.has(x),x);assert(!on.has(x),t+': '+x);}}
-// Kitapla eşitlenen adlar: eski adlar kalmadı.
-const mkText=JSON.stringify(mk);for(const old of ['ORTA BOY TABAK','SERVİS TABAĞI','KURU GIDA KABI','"SİLİKON SPATULA"','Reçellik'])assert(!mkText.includes(old),old);
-for(const nw of ['TATLI TABAĞI','ANA YEMEK TABAĞI','KURU GIDA KAVANOZU','SİLİKON SIYIRMA SPATULASI','KAHVALTILIK KÂSE'])assert(names.has(nw),nw);
-const sw=fs.readFileSync(path.join(root,'sw.js'),'utf8');assert(sw.includes('"js/ses.js"'));for(const m of mk.matches)assert(sw.includes('"'+m.image+'"'),'sw: '+m.image);
-await run('loadContent()');assert(run("CONTENT['mutfak-araclari'].matches.length")===132);
-run("st.guest=true;st.prof=null;openSubject('kuver')");assert(html().includes('Kuveri Kur')&&html().includes('Adını Bul')&&html().includes('Çoktan Seçmeli'));assert(!html().includes("pickContent('match')"));assert(!html().includes('Kelime Kartları'));
-for(const s of ['mutfak-araclari','beslenme-ilkeleri','bulasik-makinesi-temizligi']){run("openSubject('"+s+"')");assert(html().includes("pickContent('match')")&&html().includes("pickContent('mcq')"));assert(!html().includes('Kelime Kartları'));}
-run("st.guest=true;st.prof=null;openSubject('mutfak-araclari');pickContent('match')");assert.equal((html().match(/startContent\(\d+\)/g)||[]).length,11);assert(html().includes('12 kart'));
-// Öğreniyorum: 12 görsel ve 12 ad birlikte; yanlışta ipucu, ikinci yanlışta doğru ad gösterilir.
-for(let t=1;t<=11;t++){run('startContent('+t+')');assert.equal(run('st.screen'),'boardmode');run("startBoard('learn')");
-  assert.equal((html().match(/class="bimg(?:"| )/g)||[]).length,12);assert.equal((html().match(/class="bname/g)||[]).length,18);
-  assert.equal(run('JSON.stringify([...st.board.names].sort())'),run('JSON.stringify(st.board.items.map(x=>x.answer).concat(getData().distractors["'+t+'"]).sort())'));
-  assert(html().includes('12 görsel ve 18 ad var. 6 adın görseli yok.'));
-  const ids=run('st.board.items.map(x=>x.id)');
-  ids.forEach((id,k)=>{
-    if(k===0){run("tapImg('"+id+"');tapName(st.board.names.findIndex(n=>n!==boardItem('"+id+"').answer))");assert(html().includes('Birlikte tekrar deneyelim'));assert.equal(run("st.board.res['"+id+"']"),undefined);
-      run("tapName(st.board.names.indexOf(boardItem('"+id+"').answer));tapImg('"+id+"')");assert.equal(run("st.board.res['"+id+"']"),2);}
-    else if(k===1){for(let z=0;z<2;z++)run("tapImg('"+id+"');tapName(st.board.names.findIndex(n=>n!==boardItem('"+id+"').answer&&!boardUsed(n)))");assert.equal(run("st.board.res['"+id+"']"),0);}
-    else run("tapImg('"+id+"');tapName(st.board.names.indexOf(boardItem('"+id+"').answer))");
-  });
-  assert.equal(run('st.kDone'),true);assert.equal(run('st.sess.qs.length'),12);assert.equal(run('st.sess.ok'),10);assert.equal(run('st.sess.fix'),1);assert.equal(run('st.sess.bad'),1);assert.equal(run('st.sess.s'),105);
-  assert.equal((html().match(/class="bname/g)||[]).length,0);assert(html().includes('Raporu Gör'));}
-run('finish()');assert(html().includes('Sonuç özeti'));assert.equal(run('catName(st.sess)'),'Mutfak Araçları · Eşleştirme · 11. takım · Öğreniyorum');
-run('startSession()');assert.equal(run('st.screen'),'board');assert.equal(run('st.contentSet'),11);assert.equal(run('Object.keys(st.board.res).length'),0);
-// Kendimi Deniyorum: hepsi eşlenmeden kontrol yok; bir eşleşme değiştirilebilir; kontrolden sonra yanlış olan gösterilir.
-run("startContent(3);startBoard('check')");const ids3=run('st.board.items.map(x=>x.id)');
-run("tapImg('"+ids3[0]+"');tapName(st.board.names.indexOf(boardItem('"+ids3[1]+"').answer))");run("tapImg('"+ids3[1]+"');tapName(st.board.names.indexOf(boardItem('"+ids3[0]+"').answer))");
-for(let k=2;k<12;k++){run("tapImg('"+ids3[k]+"');tapName(st.board.names.indexOf(boardItem('"+ids3[k]+"').answer))");if(k===5){run('checkBoard()');assert.equal(run('st.board.checked'),false);}}
-assert(html().includes('Kontrol et'));run("tapImg('"+ids3[0]+"')");assert.equal(run("st.board.pair['"+ids3[0]+"']"),undefined);
-run("tapName(st.board.names.indexOf(boardItem('"+ids3[1]+"').answer))");run('checkBoard()');
-assert.equal(run('st.sess.ok'),10);assert.equal(run('st.sess.bad'),2);assert.equal(run('st.sess.s'),100);assert(html().includes('<s>'));assert.equal(run('st.kDone'),true);
-run("pickContent('match')");assert.equal(run('st.contentSet'),null);
-// Mutfak Araçları çoktan seçmeli sorular: 211 soru, 22 konu; A-B-C-D sırası korunur.
-assert.equal(mk.questions.length,211);assert.equal(mk.groups.length,22);
-for(const q of mk.questions){assert.deepEqual(q.choices.map(c=>c.id),['A','B','C','D']);assert(['A','B','C','D'].includes(q.correct));assert(q.group&&q.prompt);
-  for(const c of q.choices){if(c.image){assert(fs.existsSync(path.join(root,c.image)),c.image);assert(sw.includes('"'+c.image+'"'));}else assert(c.text.length>0,q.id);}
-  if(q.image){assert(fs.existsSync(path.join(root,q.image)));assert(sw.includes('"'+q.image+'"'));}}
-assert.equal(mk.questions.filter(q=>q.choices.some(c=>c.image)).length,9);assert.equal(mk.questions.filter(q=>q.image).length,21);
-run("openSubject('mutfak-araclari');pickContent('mcq')");assert.equal((html().match(/pickGroup\(\d+\)/g)||[]).length,22);assert(html().includes('1. Bölüm'));
-for(let g=0;g<22;g++){run('pickGroup('+g+')');const n=run('st.contentItems.length');const ids=run('st.contentItems.map(q=>q.id)');assert.equal(JSON.stringify(ids),run('JSON.stringify(getData().questions.filter(q=>q.group===st.mcqGroup).map(q=>q.id))'));
-  for(let i=0;i<n;i++){assert(html().includes(run('esc(st.q.prompt)')));assert.equal((html().match(/class="olet"/g)||[]).length,4);
-    if(i===0){run("answer(st.q.choices.find(c=>c.id!==st.q.correct).id)");run("answer(st.q.choices.find(c=>c.id!==st.q.correct&&!st.wrong.includes(c.id)).id)");run('showSol()');assert(html().includes('Doğru yanıt: '+run('st.q.correct')));}
-    else run('answer(st.q.correct)');run('nextQ()');}
-  assert.equal(run('st.kDone'),true);assert.equal(run('st.sess.ok'),n-1);assert.equal(run('st.sess.bad'),1);run("pickContent('mcq')");}
-run("pickGroup(4)");run('finish()');assert.equal(run('catName(st.sess)'),'Mutfak Araçları · Çoktan Seçmeli Sorular · 1. Bölüm sonu değerlendirme');run('startSession()');assert.equal(run('st.sess.group'),'1. Bölüm sonu değerlendirme');assert(html().includes('opts-pic'));
-// Sesli okuma: ad kartı okunur; görselin adı eşleşmeden önce okunmaz; soru ve seçenekler okunur.
-run("globalThis.SPOKEN=[];globalThis.SpeechSynthesisUtterance=function(t){this.text=t};globalThis.speechSynthesis={speak(u){SPOKEN.push(u.text)},cancel(){},getVoices(){return [{lang:'tr-TR'}]}};window.speechSynthesis=speechSynthesis;SES.acik=true");
-assert.equal(run("sesMetin('Süt ……… ile 250 ml ölçülür; 74 °C; 3–4 gün; 200 g un')"),'Süt boşluk ile 250 mililitre ölçülür; 74 derece; 3 ile 4 gün; 200 gram un');
-assert.equal(run("sesAd('SMOOTHİE BLENDERİ')"),'smuti blenderi');assert.equal(run("sesAd('TATLI KAŞIĞI')"),'tatlı kaşığı');
-run("openSubject('mutfak-araclari');pickContent('match');startContent(5);startBoard('check');SPOKEN.length=0");
-const id5=run('st.board.items[0].id');run("tapImg('"+id5+"')");assert.equal(run('SPOKEN.length'),0,'görsel adı okunmamalı');
-run("tapName(0)");assert.equal(run('SPOKEN.at(-1)'),run("sesMetin(sesAd(st.board.names[0]))"));
-run("startBoard('learn');SPOKEN.length=0;tapImg(st.board.items[0].id)");assert.equal(run('SPOKEN.length'),0);
-run("tapName(st.board.names.indexOf(st.board.items[0].answer))");assert(run("SPOKEN.some(t=>t.startsWith('Doğru!'))"));
-run("SPOKEN.length=0;tapImg(st.board.items[0].id)");assert(run("SPOKEN[0].startsWith(sesMetin(sesAd(st.board.items[0].answer)))"),'eşlenmiş görsel okunur');
-run("pickContent('mcq');pickGroup(0)");assert(run("SPOKEN.at(-1).startsWith(sesMetin(st.q.prompt))"));assert(run("SPOKEN.at(-1).includes('A, ')"));assert(html().includes('class="spk"'));
-run("sesAcKapa();SPOKEN.length=0;answer(st.q.correct)");assert.equal(run('SPOKEN.length'),0,'ses kapalıyken okunmaz');run('sesAcKapa()');
-
-// Baharat: 11 bağımsız takım; altı çeldirici kontrol bitene kadar kullanılabilir.
-for(let n=1;n<=11;n++){
- run("openSubject('baharat');pickContent('match');startContent("+n+");startBoard('check')");
- assert.equal(run('st.board.items.length'),12);assert.equal(run('st.board.names.length'),18);
- assert.equal(run('new Set(st.board.names).size'),18);assert.equal(run('st.board.extra'),6);
- const its=run('st.board.items');for(const it of its)assert(fs.existsSync(path.join(root,it.image)));
- run("st.board.items.forEach(it=>tryPair(it.id,it.answer));checkBoard()");assert.equal(run('st.sess.ok'),12);assert.equal(run('st.sess.bad'),0);
- run("startBoard('check');tryPair(st.board.items[0].id,boardDistractors(st.contentSet,st.board.items)[0]);st.board.items.slice(1).forEach(it=>tryPair(it.id,it.answer));checkBoard()");assert.equal(run('st.sess.ok'),11);assert.equal(run('st.sess.bad'),1);
- run("startBoard('learn');tryPair(st.board.items[0].id,boardDistractors(st.contentSet,st.board.items)[0]);tryPair(st.board.items[0].id,st.board.items[0].answer)");assert.equal(run('st.sess.fix'),1);
+const fs=require('fs'),vm=require('vm'),assert=require('assert');
+const root=require('path').resolve(__dirname,'..')+'/';const el={innerHTML:'',setAttribute(){},insertAdjacentHTML(){},classList:{contains(){return false},add(){},remove(){},toggle(){}},focus(){}};
+const ctx={console,Date,Math,JSON,Set,Object,Array,Number,String,Promise,setTimeout(){},setInterval(){},clearInterval(){},clearTimeout(){},localStorage:{getItem(){return null},setItem(){}},document:{addEventListener(){},getElementById(){return el},querySelectorAll(){return []},querySelector(){return null},body:{classList:{toggle(){}}}},window:{scrollTo(){},addEventListener(){}},navigator:{},fetch:async()=>({ok:false,status:404})};vm.createContext(ctx);
+for(const f of ['core','platform','eslestirme','sorular','ses','iyilestirme','android','denetim-v10','baharat-bilgi'])vm.runInContext(fs.readFileSync(root+'js/'+f+'.js','utf8'),ctx);
+for(const subject of ['mutfak-araclari','bulasik-makinesi-temizligi']){
+ const data=JSON.parse(fs.readFileSync(root+'content/'+subject+'/icerik.json','utf8'));
+ ctx.input=data;ctx.subject=subject;
+ vm.runInContext(`CONTENT[subject]=validateContent(input);st.subject=subject;st.guest=true;st.op='match';render=function(){};saveProgress=function(){};`,ctx);
+ for(const q of data.questions){assert.equal(q.choices.length,4);assert(q.choices.some(c=>c.id===q.correct));for(const c of q.choices){assert(c.text||c.image,q.id);if(c.image)assert(fs.existsSync(root+c.image));}}
+ for(const n of new Set(data.matches.map(x=>x.set))){
+  ctx.setnum=n;
+  vm.runInContext(`st.contentSet=setnum;startBoard('check');if(st.board.items.length!==12||st.board.names.length!==18||new Set(st.board.names).size!==18)throw Error('Board size');st.board.items.forEach(it=>tryPair(it.id,it.answer));checkBoard();if(st.sess.ok!==12||st.sess.bad!==0||!st.kDone)throw Error('Score');`,ctx);
+ }
+ for(const x of data.matches)assert(fs.existsSync(root+x.image));
+ console.log(subject+': '+data.matches.length+' cards, '+data.questions.length+' questions; boards and scoring PASS');
 }
-console.log('PASS: Baharat 11 takım × 12 görsel / 18 benzersiz ad / 6 çeldirici / doğru ve yanlış yanıt / öğrenme ve bağımsız deneme.');
-console.log('PASS: Sesli okuma / 18 ad tahtası / ');
-console.log('PASS: Mutfak Araçları 211 soru / 22 konu / Mutfak Araçları 11 takım × 12 görsel-ad tahtası (öğrenme + toplu kontrol) / Menü / basit ve tabldot / 1 mola / +5 düzeltme / 5 ve 9 parça / sabit bağımsız hedefler / 10 benzersiz tanıma sorusu / tek yanıt / rapor / soru-kart motorları / kaynak izi / misafir-kayıt / JSON doğrulama.');})().catch(e=>{console.error(e);process.exit(1)});
+const run=s=>vm.runInContext(s,ctx);
+// Wrong-answer logs, no answer reveal before checking, partial/complete counts.
+ctx.input=JSON.parse(fs.readFileSync(root+'content/mutfak-araclari/icerik.json'));run(`CONTENT['mutfak-araclari']=input;st.subject='mutfak-araclari';st.op='match';st.contentSet=1;startBoard('learn',4);if(st.board.items.length!==4)throw Error('Preparation size');const it=st.board.items[0],wrong=st.board.names.find(n=>n!==it.answer);tryPair(it.id,wrong);tryPair(it.id,it.answer);if(st.sess.qs[0].firstAnswer!==wrong||st.sess.qs[0].attemptCount!==2||st.sess.fix!==1)throw Error('Attempt record');finish();if(st.sess.unanswered!==3)throw Error('Partial unanswered');`);
+run(`st.op='match';st.contentSet=1;startBoard('check');st.board.items.forEach(it=>tryPair(it.id,it.answer));if(st.sess.qs.length)throw Error('Premature scoring');checkBoard();if(st.sess.qs.some(q=>q.s!==null)||typeof st.sess.duration!=='number')throw Error('False card timing');`);
+// Full independent MCQ: chosen answer logged, no revealed correct answer until summary.
+run(`st.op='mcq';st.mcqGroup=CONTENT[st.subject].questions[0].group;st.practice='check';startContent();const correct=st.q.correct;answer(correct);if(st.sess.ok!==1||st.lastRes.text.includes(st.q.explanation))throw Error('Independent answer leak');nextQ();const wr=st.q.choices.find(c=>c.id!==st.q.correct);answer(wr.id);if(st.sess.bad!==1||st.sess.qs[1].selectedAnswer!==wr.text||st.sess.qs[1].hintUsed)throw Error('Wrong answer log');finish();if(st.sess.unanswered!==st.contentItems.length-2)throw Error('Missing unfinished questions');`);
+for(const sub of ['mutfak-araclari','bulasik-makinesi-temizligi','baharat']){const d=JSON.parse(fs.readFileSync(root+'content/'+sub+'/icerik.json'));for(const q of d.questions)assert(q.explanation.trim());for(const x of d.matches){assert(x.explanation.trim());assert(x.detail.trim());}}
+console.log('PASS: attempts, independent assessment, partial completion, duration, 4-card preparation, explanations');
+// Speech is replaced instead of queued, selected voice and rate survive.
+let spoken=[],cancels=0;ctx.SpeechSynthesisUtterance=function(t){this.text=t};ctx.speechSynthesis={getVoices:()=>[{lang:'tr-TR',voiceURI:'tr-test',name:'Türkçe',localService:true}],speak:u=>spoken.push(u),cancel:()=>cancels++,addEventListener(){}};ctx.window.speechSynthesis=ctx.speechSynthesis;
+run(`SES.acik=true;SES.voice='tr-test';SES.rate=1;sesSoyle('Birinci cümle. İkinci cümle.');sesSoyle('Yeni yönerge.');`);assert.equal(spoken.length,2);assert(cancels>=2);assert.equal(spoken[1].voice.voiceURI,'tr-test');
+console.log('PASS: speech replacement and Turkish voice selection');
+run(`st.op='mcq';st.practice='check';st.screen='quiz';if(statsHtml().includes('Puan'))throw Error('Score reveals correctness');`);
+run(`if(sesMetin('200 g, 20 ml, 3–4 cm').indexOf('200 gram')<0||sesMetin('20 ml')!=='20 mililitre')throw Error('Speech units');`);
+console.log('PASS: assessment score hidden; measurement units spoken');
+ctx.input=JSON.parse(fs.readFileSync(root+'content/baharat/icerik.json'));
+run(`CONTENT.baharat=input;st.subject='baharat';st.op='match';for(const n of [...new Set(input.matches.map(x=>x.set))]){st.contentSet=n;startBoard('check');if(st.board.names.length!==18)throw Error('Baharat choices');st.board.items.forEach(it=>tryPair(it.id,it.answer));checkBoard();if(st.sess.ok!==12)throw Error('Baharat score');}`);
+console.log('PASS: all current baharat boards');
+
+run(`st.subject='mutfak-araclari';st.op='match';st.contentSet=1;startBoard('learn',4);finish();const count=st.sess.qs.length;finish();if(st.sess.qs.length!==count)throw Error('Duplicate unfinished answers');`);
+ctx.window.matchMedia=q=>({matches:q.includes('759')});let scrolled=0;el.scrollIntoView=()=>scrolled++;
+run(`st.op='match';st.contentSet=1;startBoard('learn',4);tapImg(st.board.items[0].id);if(!boardHTML().includes('mobile-selected'))throw Error('No selected preview');`);assert.equal(scrolled,0);console.log('PASS: repeated finish, narrow-screen picture preview and navigation');
+
+run(`st.op='match';st.contentSet=1;startBoard('learn',12);tapImg(st.board.items[0].id);if(!PHONE.open)throw Error('Phone panel does not open');const phoneCorrect=st.board.items[0].answer;tapName(st.board.names.indexOf(phoneCorrect));if(PHONE.open||st.sess.ok!==1)throw Error('Phone panel score/close');phoneOpenNames();if(!PHONE.open)throw Error('Open names');phoneCloseNames();if(PHONE.open)throw Error('Close names');`);console.log('PASS: phone panel opens, scores, closes and reopens');
+// v9: the same-scale spoon comparison has been reviewed and re-enabled.
+ctx.input=JSON.parse(fs.readFileSync(root+'content/mutfak-araclari/icerik.json'));run("CONTENT['mutfak-araclari']=validateContent(input)");assert.equal(run("CONTENT['mutfak-araclari'].questions.length"),95);assert.equal(run("CONTENT['mutfak-araclari'].questions.some(q=>q.id==='m-bd-1-2')"),true);console.log('PASS v9: reviewed spoon question active');
+// v8: A closed picker must reopen on the same image; a first wrong answer keeps it open.
+ctx.input=JSON.parse(fs.readFileSync(root+'content/baharat/icerik.json'));run(`CONTENT['baharat']=validateContent(input);st.subject='baharat';st.op='match';st.contentSet=CONTENT.baharat.matches.find(x=>x.answer==='MAYDANOZ').set;st.modalOpen=false;st.inBreak=false;startBoard('learn',12);const parsley=st.board.items.find(x=>x.answer==='MAYDANOZ');tapImg(parsley.id);if(!PHONE.open||st.board.sel!==parsley.id)throw Error('Parsley first tap');phoneCloseNames();tapImg(parsley.id);if(!PHONE.open||st.board.sel!==parsley.id)throw Error('Repeated parsley tap must reopen names');const badName=st.board.names.find(x=>x!==parsley.answer);tapName(st.board.names.indexOf(badName));if(!PHONE.open||st.board.sel!==parsley.id||st.sess.bad!==0)throw Error('Wrong answer should retain image and choices');tapName(st.board.names.indexOf(parsley.answer));if(PHONE.open||st.sess.fix!==1)throw Error('Retry correct answer');`);
+run(`startBoard('check',12);const p2=st.board.items.find(x=>x.answer==='MAYDANOZ');tapImg(p2.id);phoneCloseNames();tapImg(p2.id);if(!PHONE.open||st.board.sel!==p2.id)throw Error('Independent same-card reopen');tapName(st.board.names.indexOf(p2.answer));if(PHONE.open||st.board.pair[p2.id]!==p2.answer||st.sess.ok!==0)throw Error('Independent pick/scoring leak');if(!boardIntro(12,6).includes('6 tanesi hiçbir görselle eşleşmez')||boardIntro(4,3).includes('18'))throw Error('Instruction counts');`);
+const spice=JSON.parse(fs.readFileSync(root+'content/baharat/icerik.json'));assert(!spice.matches.some(x=>x.answer==='SARIMSAK'));assert.equal(spice.matches.filter(x=>x.answer==='HAVLICAN').length,1);assert.equal(spice.matches.filter(x=>x.answer==='SİYAH SARIMSAK').length,1);
+console.log('PASS v8: parsley opens names on first and repeated tap; wrong-answer retry; independent answer hidden; dynamic instruction; galangal and black garlic');
+
+const kitchen=JSON.parse(fs.readFileSync(root+'content/mutfak-araclari/icerik.json'));assert.equal(kitchen.matches.length,144);assert.equal(new Set(kitchen.matches.map(x=>x.set)).size,12);assert.equal(kitchen.classification.length,12);const kid=new Set(kitchen.matches.map(x=>x.id));for(const g of kitchen.classification){assert(g.page>0);assert(g.items.length);for(const id of g.items)assert(kid.has(id),id);}for(const group of ['Ana yemek takımları','Antre takımları','Tatlı takımları','Balık takımları','Özel amaçlı takımlar'])assert(kitchen.classification.some(x=>x.title===group));assert(!kitchen.matches.some(x=>['Çukur tabak','Meşrubat bardağı','Fincan','Kahvaltı çatalı ve bıçağı'].includes(x.answer)));const allShakers=kitchen.matches.filter(x=>['Tuzluk','Karabiberlik'].includes(x.answer));assert.equal(allShakers.length,2);console.log('PASS v9: MEB learning taxonomy, referenced card identities, twelve kitchen sets and precise names');
+
+run(`st.subject='kuver';st.op='ad';st.practice='check';startSession();const ci=st.q.ans;answer(ci);if(st.lastRes.cls||quizHtml().includes('opt right')||statsHtml().includes('Puan'))throw Error('Kuver assessment leak');`);
+console.log('PASS v10: kuver independent feedback and score deferred');
+
+run(`st.subject='baharat';st.op='match';st.contentSet=1;st.modalOpen=false;st.inBreak=false;startBoard('check');const editId=st.board.items[0].id;const oldChoice=st.board.names[0];tryPair(editId,oldChoice);const beforeAttempts=st.board.attempts[editId].length;tapImg(editId);phoneCloseNames();if(st.board.pair[editId]!==oldChoice||Object.keys(st.board.pair).length!==1)throw Error('Cancelled edit removed selection');tapImg(editId);tapName(st.board.names.indexOf(oldChoice));if(st.board.attempts[editId].length!==beforeAttempts)throw Error('Same selection changed attempt log');const otherId=st.board.items[1].id;const otherChoice=st.board.names.find(n=>n!==oldChoice);tryPair(otherId,otherChoice);tapImg(editId);tryPair(editId,otherChoice);if(st.board.pair[editId]!==oldChoice)throw Error('Duplicate name assignment allowed');const replacement=st.board.names.find(n=>!boardUsed(n));tryPair(editId,replacement);if(boardUsed(oldChoice)||!boardUsed(replacement)||Object.keys(st.board.pair).length!==2)throw Error('Atomic replacement failed');if(st.sess.ok||st.sess.s||st.sess.qs.length)throw Error('Editing reveals result');if(!boardHTML().includes(' paired')||boardHTML().includes('✓'))throw Error('Early correctness mark');`);
+console.log('PASS v11: cancelled edit and same choice preserved; replacement releases previous name; duplicate names rejected; no early scoring/check marks');

@@ -1,3 +1,3 @@
-# Mutfak Araçları · kaynaklar
+# Kaynakların korunması
 
-Sorular ve kartlar öğretmenin kendi kitaplarından alınmıştır. Kitapların PDF dosyaları telif nedeniyle bu depoda tutulmaz; uygulama yalnız `../icerik.json` dosyasını ve `assets/` görsellerini kullanır.
+Kitap PDF ve Word dosyaları bu depoya yüklenmez. Oyun içerikleri `../icerik.json` dosyasından okunur.

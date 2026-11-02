@@ -1,5 +1,3 @@
-# Bulaşık Makinesi Temizliği · kaynaklar
+# Kaynakların korunması
 
-Bu konuya aktarılan PDF dosyaları bu klasörde saklanır. Uygulama PDF'yi açmaz; içerik `../icerik.json` dosyasından okunur.
-
-Henüz PDF eklenmedi.
+Kitap PDF ve Word dosyaları bu depoya yüklenmez. Oyun içerikleri `../icerik.json` dosyasından okunur.

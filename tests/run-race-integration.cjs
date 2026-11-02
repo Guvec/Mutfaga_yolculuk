@@ -1,0 +1,1 @@
+const {spawnSync}=require('child_process'),path=require('path');for(const file of ['race-rules-tests.cjs','race-ui-tests.cjs']){const r=spawnSync(process.execPath,[path.join(__dirname,file)],{stdio:'inherit',env:process.env});if(r.status!==0)process.exit(r.status||1);}

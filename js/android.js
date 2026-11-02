@@ -8,11 +8,11 @@ function phoneReturnFocus(){const cards=document.querySelectorAll('.bimg-btn');i
 function phoneDetails(){PHONE.expanded=!PHONE.expanded;render();}
 const PHONE_TAPIMG=tapImg,PHONE_TAPNAME=tapName,PHONE_START=startBoard;
 startBoard=function(){PHONE.open=false;PHONE.expanded=false;return PHONE_START.apply(this,arguments);};
-tapImg=function(id){const i=st.board?st.board.items.findIndex(x=>x.id===id):-1;PHONE_TAPIMG(id);if(!phoneWidth()||st.screen!=='board')return;if(i>=0)PHONE.returnIndex=i;if(st.board.sel===id&&!st.kDone){PHONE.open=true;PHONE.expanded=false;render();}};
-tapName=function(i){PHONE_TAPNAME(i);if(!phoneWidth()||st.screen!=='board')return;PHONE.open=false;PHONE.expanded=false;render();phoneReturnFocus();};
+tapImg=function(id){if(!st.board||st.kDone||st.inBreak||st.modalOpen||st.board.checked)return;const i=st.board.items.findIndex(x=>x.id===id);if(i<0)return;PHONE_TAPIMG(id);if(!phoneWidth()||st.screen!=='board')return;PHONE.returnIndex=i;if(st.board.sel===id&&!st.kDone){PHONE.open=true;PHONE.expanded=false;render();}};
+tapName=function(i){if(!st.board||st.kDone||st.inBreak||st.modalOpen||st.board.checked)return;PHONE_TAPNAME(i);if(!phoneWidth()||st.screen!=='board')return;PHONE.open=!!st.board.sel;PHONE.expanded=false;render();if(!PHONE.open)phoneReturnFocus();};
 const PHONE_FINISH=finish;
 finish=function(){PHONE.open=false;PHONE.expanded=false;return PHONE_FINISH();};
-function miniFeedback(){const m=st.lastRes;if(!m||m.intro)return '';let t=String(m.text||'');const parts=t.match(/[^.!?]+[.!?]*/g)||[t];const short=parts.slice(0,2).join(' ').trim();return '<section class="phone-feedback '+esc(m.cls||'')+'" role="status"><strong>'+esc(m.head)+'</strong><p>'+esc(short)+'</p>'+(m.detail||t!==short?'<button class="btn sm" onclick="phoneDetails()" aria-expanded="'+PHONE.expanded+'">'+(PHONE.expanded?'Bilgiyi kapat':'Bilgiyi aç')+'</button>':'')+(PHONE.expanded?'<div class="phone-information"><p>'+esc(m.detail||m.text||'')+'</p>'+sesDugme(m.detail||m.text||'','Açıklamayı dinle')+'</div>':'')+'</section>';}
+function miniFeedback(){const m=st.lastRes;if(!m||m.intro)return '';let t=String(m.text||'');const parts=t.match(/[^.!?]+[.!?]*/g)||[t];const short=parts.slice(0,2).join(' ').trim();return '<section class="phone-feedback '+esc(m.cls||'')+'" role="status"><strong>'+esc(m.head)+'</strong><p>'+esc(short)+'</p>'+sesDugme(sesBirlestir(m.head,m.text),'Geri bildirimi dinle')+(m.detail||t!==short?'<button class="btn sm" onclick="phoneDetails()" aria-expanded="'+PHONE.expanded+'">'+(PHONE.expanded?'Bilgiyi kapat':'Bilgiyi aç')+'</button>':'')+(PHONE.expanded?'<div class="phone-information"><p>'+esc(m.detail||m.text||'')+'</p>'+sesDugme(m.detail||m.text||'','Açıklamayı dinle')+'</div>':'')+'</section>';}
 function phoneBoardDecorate(){
  const wrap=document.querySelector('.board-wrap'),board=document.querySelector('.board'),side=document.querySelector('.board-side'),pictures=document.querySelector('.board-imgs');if(!wrap||!board||!side||!pictures||!st.board)return;
  const b=st.board,open=phoneWidth()&&PHONE.open&&!st.kDone;wrap.classList.add('phone-board');wrap.classList.toggle('phone-picker-open',open);
@@ -27,11 +27,13 @@ function phoneBoardDecorate(){
   else{
    side.hidden=false;side.setAttribute('role','dialog');side.setAttribute('aria-modal','true');side.setAttribute('aria-label','Adını seç');
    const selected=b.sel?boardItem(b.sel):null;
-   side.insertAdjacentHTML('afterbegin','<div class="phone-sheet-header"><div class="phone-sheet-title"><h2>Adını seç</h2><button class="phone-sheet-close" onclick="phoneCloseNames()" aria-label="Adları kapat">×</button></div>'+(selected?'<div class="phone-sheet-selected"><img src="'+esc(selected.image)+'" alt="Seçilen görsel"><p>Bu görselin adını bul.</p></div>':'<p class="phone-sheet-instruction">Bir ad seç. Sonra ona uygun görsele dokun.</p>')+'</div>');
+   const retry=selected&&st.practice==='learn'&&b.tries[selected.id]===1?'<p class="phone-retry" role="status"><strong>Henüz eşleşmedi.</strong> '+esc(selected.hint||'Biçimini ve kullanım yerini düşün.')+'</p>':'';
+   side.insertAdjacentHTML('afterbegin','<div class="phone-sheet-header"><div class="phone-sheet-title"><h2>Adını seç</h2><button class="phone-sheet-close" onclick="phoneCloseNames()" aria-label="Adları kapat">×</button></div>'+(selected?'<div class="phone-sheet-selected"><img src="'+esc(selected.image)+'" alt="Seçilen görsel"><div><p>Bu görselin adını bul.</p>'+(selected.task?'<p class="card-task">'+esc(selected.task)+'</p>':'')+'</div></div>':'<p class="phone-sheet-instruction">Bir ad seç. Sonra ona uygun görsele dokun.</p>')+retry+'</div>');
    wrap.insertAdjacentHTML('beforeend','<button class="phone-dimmer" aria-label="Adları kapat" tabindex="-1" onclick="phoneCloseNames()"></button>');
    const head=side.querySelector('.phone-sheet-close');if(head)head.focus({preventScroll:true});
   }
  }else{side.hidden=false;side.removeAttribute('role');side.removeAttribute('aria-modal');}
+ if(phoneWidth()&&st.practice==='check'&&!b.checked&&done===b.items.length){const controls=wrap.querySelector('.phone-board-controls');if(controls)controls.insertAdjacentHTML('afterend','<button class="btn pri phone-check" onclick="checkBoard()">Yanıtları kontrol et</button>');}
  pictures.inert=open;
  if(st.kDone){const controls=wrap.querySelector('.phone-board-controls');if(controls)controls.insertAdjacentHTML('afterend','<div class="phone-finish"><button class="btn pri" onclick="finish()">Sonucumu gör</button><button class="btn" onclick="startBoard(st.practice,'+b.size+')">Yeniden çalış</button></div>');}
 }

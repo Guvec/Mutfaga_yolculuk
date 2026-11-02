@@ -77,3 +77,28 @@ h2{line-height:1.3}
 @media(max-width:759px), (max-height:500px){.phone-board .zoom-btn{background:transparent;text-shadow:0 1px 2px #fff}.topic-art img{display:none}.topic-art img:first-child{display:block;width:100%;max-height:92px}}
 
 @media(max-width:759px), (max-height:500px){.phone-board .board-side.name-sheet-open{max-width:600px;margin-inline:auto;max-height:calc(100vh - 28px - env(safe-area-inset-top) - env(safe-area-inset-bottom));max-height:calc(100dvh - 28px - env(safe-area-inset-top) - env(safe-area-inset-bottom))}}
+
+/* Öğrenme ekranı: cevaplar yalnız öğretim bölümünde görünür. */
+.classification-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin-top:16px}.classification-item{background:#fff;border:1px solid #d8e3dc;border-radius:12px;padding:12px;min-width:0}.classification-item img{display:block;width:100%;aspect-ratio:1;object-fit:contain}.classification-item h2{font-size:19px;line-height:1.35}.classification-item p{font-size:17px;line-height:1.5}.classification-group>summary{font-weight:bold;font-size:21px;padding:10px;cursor:pointer}@media(max-width:759px){.classification-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.classification-item{padding:8px}.classification-item h2{font-size:18px}.classification-item p{font-size:16px}}
+/* v10: use information is part of the task, and stays separate from feedback. */
+.card-task{font-size:15px;line-height:1.4;margin:8px 2px;color:#18343a;overflow-wrap:anywhere}
+.learning-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:16px}.learning-grid .card{margin:0}.learning-grid img{width:100%;height:210px;object-fit:contain;background:#fff}.learning-grid h2{font-size:20px}#spiceSearch{display:block;width:100%;min-height:48px;margin:8px 0 16px;font:inherit;padding:12px;border:2px solid #536e76;border-radius:12px}
+.phone-sheet-selected .card-task{font-size:16px}.bimg-btn{position:relative;z-index:1}.zoom-btn{z-index:2}
+@media(max-width:759px), (max-height:500px){.phone-board .bimg>.card-task{display:none}}
+/* Long product names set their row height; the panel scrolls vertically. */
+.phone-board .board-names{grid-auto-rows:minmax(56px,auto)}
+.phone-board .bname{height:auto;max-height:none;white-space:normal;overflow-wrap:anywhere}
+@media(max-height:500px){.phone-board .board-names{grid-auto-rows:minmax(52px,auto)}}
+.phone-board .board-names{grid-auto-rows:max-content}
+
+/* v11: Öğrencinin seçimi görünür; kontrol öncesi doğruluk gösterilmez. */
+.phone-board .bimg.paired:not(.ok):not(.bad) .blbl{display:flex;overflow-wrap:anywhere}
+
+/* Büyütme, fotoğrafın seçim alanından ayrı ve görünür bir denetimdir. */
+.bimg-tools{display:flex;align-items:center;gap:4px;min-height:48px}
+.bimg-tools .blbl{order:0;flex:1;min-width:0;overflow-wrap:anywhere}
+.bimg .bimg-tools .zoom-btn{position:static;order:1;flex:0 0 48px;width:48px;height:48px;margin-left:auto;background:#fff;border:1px solid var(--line);border-radius:12px;font-size:22px;text-shadow:none}
+/* Seçilen ad, dar kartta büyütme denetimiyle aynı dar satıra sıkışmaz. */
+.bimg-tools{flex-wrap:wrap}
+.bimg-tools .blbl{flex:1 0 100%;width:100%;order:0}
+.bimg .bimg-tools .zoom-btn{order:1}
