@@ -29,6 +29,9 @@
   /* Yalnız daha yüksek doğru sayısı yazılır. Sunucudaki nesil, sonucun oynandığı nesille aynı değilse yazılmaz. */
   async submit(table,pid,row){
    await this.connect();const fb=this.sdk;
+   /* Görünen ad değiştiyse kuralların izin verdiği ayrı işlemle önce ad güncellenir; puan ayrı işlemde yazılır. */
+   await fb.runTransaction(this.db,async tx=>{const [p,r]=await Promise.all([tx.get(this.profRef(pid)),tx.get(this.rowRef(table,pid))]);
+    if(p.exists()&&p.data().status==='in'&&p.data().gen===row.gen&&r.exists()&&r.data().gen===row.gen&&r.data().name!==row.name)tx.update(this.rowRef(table,pid),{name:row.name});});
    return fb.runTransaction(this.db,async tx=>{
     const [p,r]=await Promise.all([tx.get(this.profRef(pid)),tx.get(this.rowRef(table,pid))]);
     if(!p.exists()||p.data().status!=='in'||p.data().gen!==row.gen)return {stale:true};

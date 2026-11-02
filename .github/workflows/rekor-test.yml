@@ -36,10 +36,8 @@ jobs:
           mkdir -p out
           { echo "== $(date -u) commit ${GITHUB_SHA}"; 
             for t in state-tests speech-tests race-model-tests spice-info-tests ui-regression rekor-ui-tests; do echo "== $t"; node site/tests/$t.cjs; echo "exit=$?"; done;
-            git -C $GITHUB_WORKSPACE fetch -q --depth 1 origin main && mkdir -p main-site && git -C $GITHUB_WORKSPACE archive FETCH_HEAD | tar -x -C main-site;
-            for k in 1 2 3 4 5; do echo "== ui-regression tekrar $k (taslak)"; node site/tests/ui-regression.cjs >/tmp/u.txt 2>&1; echo "exit=$?"; grep -E "Error" /tmp/u.txt | head -2; echo "== ui-regression tekrar $k (main v14)"; node main-site/tests/ui-regression.cjs >/tmp/m.txt 2>&1; echo "exit=$?"; grep -E "Error" /tmp/m.txt | head -2; done;
             echo "== emulator: rekor-rules-tests + oda testleri (race-rules, race-ui)";
-            npx firebase emulators:exec --only auth,firestore --project demo-mesleki-yaris --config firebase/firebase.json "node site/tests/rekor-rules-tests.cjs && node site/tests/run-race-integration.cjs"; echo "exit=$?";
+            npx firebase emulators:exec --only auth,firestore --project demo-mesleki-yaris --config firebase/firebase.json "node site/tests/rekor-rules-tests.cjs && node site/tests/rekor-entegrasyon-tests.cjs && node site/tests/run-race-integration.cjs"; echo "exit=$?";
           } > out/sonuc.txt 2>&1
           cat out/sonuc.txt
       - name: Sonucu dala yaz
