@@ -27,10 +27,12 @@ jobs:
         run: |
           npm install --no-audit --no-fund
           npx playwright install --with-deps chromium
+          mkdir -p sdk && for f in firebase-app.js firebase-auth.js firebase-firestore.js; do curl -fsSL -o sdk/$f https://www.gstatic.com/firebasejs/10.12.2/$f; done; ls -l sdk
       - name: Testleri çalıştır
         working-directory: ../work
         run: |
           set +e
+          export FIREBASE_SDK_CACHE=$PWD/sdk
           mkdir -p out
           { echo "== $(date -u) commit ${GITHUB_SHA}"; 
             for t in state-tests speech-tests race-model-tests spice-info-tests ui-regression rekor-ui-tests; do echo "== $t"; node site/tests/$t.cjs; echo "exit=$?"; done;
