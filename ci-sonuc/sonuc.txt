@@ -1,4 +1,4 @@
-== Mon Nov  2 22:18:02 UTC 2026 commit fadc3a25b3f3e45d88bc5aefc589ce643ec01a0c
+== Mon Nov  2 22:20:06 UTC 2026 commit 3b2d68ebe7dc5d9c1db6d6b88a231ee0ea7f717c
 == state-tests
 mutfak-araclari: 144 cards, 95 questions; boards and scoring PASS
 bulasik-makinesi-temizligi: 12 cards, 13 questions; boards and scoring PASS
@@ -64,16 +64,16 @@ exit=0
 [36m[1mi  firestore:[22m[39m Firestore Emulator logging to [1mfirestore-debug.log[22m
 [32m[1m✔  firestore:[22m[39m Firestore Emulator UI websocket is running on 9150.
 [36m[1mi [22m[39m Running script: [1mnode site/tests/rekor-rules-tests.cjs && node site/tests/run-race-integration.cjs[22m
-[2026-11-02T22:18:22.818Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x8d1deffd error. Code: 7 Message: 7 PERMISSION_DENIED: 
+[2026-11-02T22:20:30.039Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x6c0a2551 error. Code: 7 Message: 7 PERMISSION_DENIED: 
 false for 'create' @ L72, evaluation error at L75:21 for 'update' @ L75, false for 'create' @ L72
 PASS Başka hesap adına profil açılamaz
-[2026-11-02T22:18:22.853Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x8d1deffe error. Code: 7 Message: 7 PERMISSION_DENIED: 
+[2026-11-02T22:20:30.075Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x6c0a2552 error. Code: 7 Message: 7 PERMISSION_DENIED: 
 false for 'create' @ L72, evaluation error at L75:21 for 'update' @ L75, false for 'create' @ L72
 PASS Geçersiz profil kimliği reddedilir
-[2026-11-02T22:18:22.883Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x8d1defff error. Code: 7 Message: 7 PERMISSION_DENIED: 
+[2026-11-02T22:20:30.106Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x6c0a2553 error. Code: 7 Message: 7 PERMISSION_DENIED: 
 false for 'create' @ L72, evaluation error at L75:21 for 'update' @ L75, false for 'create' @ L72
 PASS Profil gen 0 ve in ile açılmak zorunda
-[2026-11-02T22:18:22.904Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x8d1df000 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+[2026-11-02T22:20:30.128Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x6c0a2554 error. Code: 7 Message: 7 PERMISSION_DENIED: 
 false for 'create' @ L72, false for 'update' @ L75
 PASS Profile fazladan alan eklenemez
 PASS Profil açılır
@@ -81,80 +81,180 @@ PASS Başkası profili okuyamaz
 PASS Sahibi profili okur
 PASS Olmayan profil sorgulanabilir (açma öncesi)
 PASS Profiller listelenemez
-[2026-11-02T22:18:23.113Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x8d1df004 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+[2026-11-02T22:20:30.352Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x6c0a2558 error. Code: 7 Message: 7 PERMISSION_DENIED: 
 evaluation error at L75:21 for 'update' @ L75, false for 'update' @ L75
 PASS Başkası profil durumunu değiştiremez
-[2026-11-02T22:18:23.128Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x8d1df001 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+[2026-11-02T22:20:30.367Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x6c0a2555 error. Code: 7 Message: 7 PERMISSION_DENIED: 
 false for 'create' @ L72, evaluation error at L75:21 for 'update' @ L75, false for 'update' @ L75
 PASS Sahip değiştirilemez
-[2026-11-02T22:18:23.147Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x8d1df005 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+[2026-11-02T22:20:30.386Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x6c0a2559 error. Code: 7 Message: 7 PERMISSION_DENIED: 
 evaluation error at L75:21 for 'update' @ L75, false for 'update' @ L75
 PASS Nesil 1 artmadan durum değişmez
-[2026-11-02T22:18:23.159Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x8d1df006 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+[2026-11-02T22:20:30.397Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x6c0a255a error. Code: 7 Message: 7 PERMISSION_DENIED: 
 false for 'delete' @ L81
 PASS Profil silinemez
-[2026-11-02T22:18:23.181Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x8d1df007 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+[2026-11-02T22:20:30.416Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x6c0a255b error. Code: 7 Message: 7 PERMISSION_DENIED: 
 false for 'create' @ L72, evaluation error at L75:21 for 'update' @ L75, false for 'update' @ L75
 PASS Var olan profil yeniden "açılamaz" (sahiplenme yok)
-[2026-11-02T22:18:23.230Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x8d1df008 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+[2026-11-02T22:20:30.463Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x6c0a255c error. Code: 7 Message: 7 PERMISSION_DENIED: 
 evaluation error at L100:21 for 'create' @ L100, evaluation error at L101:21 for 'update' @ L101, false for 'create' @ L100
 PASS Profilsiz satır yazılamaz
-[2026-11-02T22:18:23.268Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x8d1df009 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+[2026-11-02T22:20:30.499Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x6c0a255d error. Code: 7 Message: 7 PERMISSION_DENIED: 
 evaluation error at L100:21 for 'create' @ L100, evaluation error at L101:21 for 'update' @ L101, false for 'create' @ L100
 PASS Nesil eşleşmeden yazılamaz
-[2026-11-02T22:18:23.288Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x8d1df00a error. Code: 7 Message: 7 PERMISSION_DENIED: 
+[2026-11-02T22:20:30.520Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x6c0a255e error. Code: 7 Message: 7 PERMISSION_DENIED: 
 false for 'create' @ L100, false for 'update' @ L101
 PASS Yanlış dönem reddedilir
-[2026-11-02T22:18:23.304Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x8d1df00b error. Code: 7 Message: 7 PERMISSION_DENIED: 
+[2026-11-02T22:20:30.535Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x6c0a255f error. Code: 7 Message: 7 PERMISSION_DENIED: 
 false for 'create' @ L100, false for 'update' @ L101
 PASS Geçmiş dönem tablosuna yazılamaz
-[2026-11-02T22:18:23.324Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x8d1df00c error. Code: 7 Message: 7 PERMISSION_DENIED: 
+[2026-11-02T22:20:30.555Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x6c0a2560 error. Code: 7 Message: 7 PERMISSION_DENIED: 
 false for 'create' @ L100, false for 'update' @ L101
 PASS Yanlış sürüm reddedilir
-[2026-11-02T22:18:23.341Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x8d1df00d error. Code: 7 Message: 7 PERMISSION_DENIED: 
+[2026-11-02T22:20:30.573Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x6c0a2561 error. Code: 7 Message: 7 PERMISSION_DENIED: 
 false for 'create' @ L100, false for 'update' @ L101
 PASS Açık satıra fazladan alan (süre) eklenemez
-[2026-11-02T22:18:23.359Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x8d1df00e error. Code: 7 Message: 7 PERMISSION_DENIED: 
+[2026-11-02T22:20:30.589Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x6c0a2562 error. Code: 7 Message: 7 PERMISSION_DENIED: 
 false for 'create' @ L100, false for 'update' @ L101
 PASS Açık satıra hesap kimliği eklenemez
-[2026-11-02T22:18:23.376Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x8d1df00f error. Code: 7 Message: 7 PERMISSION_DENIED: 
+[2026-11-02T22:20:30.605Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x6c0a2563 error. Code: 7 Message: 7 PERMISSION_DENIED: 
 false for 'create' @ L100, false for 'update' @ L101
 PASS Tablo üst sınırı aşılamaz (13 / 12)
-[2026-11-02T22:18:23.391Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x8d1df010 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+[2026-11-02T22:20:30.623Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x6c0a2564 error. Code: 7 Message: 7 PERMISSION_DENIED: 
 false for 'create' @ L100, false for 'update' @ L101
 PASS Kuver Basit üst sınırı 5
-[2026-11-02T22:18:23.403Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x8d1df011 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+[2026-11-02T22:20:30.634Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x6c0a2565 error. Code: 7 Message: 7 PERMISSION_DENIED: 
 false for 'create' @ L100, false for 'update' @ L101
 PASS Tanımsız tablo reddedilir
-[2026-11-02T22:18:23.418Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x8d1df012 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+[2026-11-02T22:20:30.649Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x6c0a2566 error. Code: 7 Message: 7 PERMISSION_DENIED: 
 false for 'create' @ L100, false for 'update' @ L101
 PASS Doğru sayısı sayı olmak zorunda
-[2026-11-02T22:18:23.433Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x8d1df013 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+[2026-11-02T22:20:30.664Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x6c0a2567 error. Code: 7 Message: 7 PERMISSION_DENIED: 
 false for 'create' @ L100, false for 'update' @ L101
 PASS Ad en fazla 16 harf
-[2026-11-02T22:18:23.446Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x8d1df014 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+[2026-11-02T22:20:30.678Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x6c0a2568 error. Code: 7 Message: 7 PERMISSION_DENIED: 
 false for 'create' @ L100, false for 'update' @ L101
 PASS Geçen haftaya yazılamaz
-[2026-11-02T22:18:23.460Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x8d1df015 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+[2026-11-02T22:20:30.692Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x6c0a2569 error. Code: 7 Message: 7 PERMISSION_DENIED: 
 false for 'create' @ L100, false for 'update' @ L101
 PASS Gelecek haftaya yazılamaz
 PASS Genel tabloya yazılır
 PASS Bu haftaya (sunucu saati) yazılır
 PASS Birleşik soru denemesine yazılır (10 üzerinden)
-[2026-11-02T22:18:23.544Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x8d1df017 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+[2026-11-02T22:20:30.788Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x6c0a256b error. Code: 7 Message: 7 PERMISSION_DENIED: 
 evaluation error at L100:21 for 'create' @ L100, evaluation error at L101:21 for 'update' @ L101, false for 'update' @ L101
 PASS Başkası satırı yazamaz
-[2026-11-02T22:18:23.556Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x8d1df018 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+[2026-11-02T22:20:30.800Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x6c0a256c error. Code: 7 Message: 7 PERMISSION_DENIED: 
 evaluation error at L105:21 for 'delete' @ L105, false for 'delete' @ L105
 PASS Başkası satırı silemez
-[2026-11-02T22:18:23.576Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x8d1df016 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+[2026-11-02T22:20:30.823Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x6c0a256a error. Code: 7 Message: 7 PERMISSION_DENIED: 
 evaluation error at L101:21 for 'update' @ L101, false for 'update' @ L101
 PASS Doğru sayısı düşürülemez
-Error: Expected request to fail, but it succeeded.
-    at /home/runner/work/Mutfaga_yolculuk/work/node_modules/@firebase/rules-unit-testing/dist/index.cjs.js:768:31
-    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
-    at async step (/home/runner/work/Mutfaga_yolculuk/work/site/tests/rekor-rules-tests.cjs:5:36)
-    at async /home/runner/work/Mutfaga_yolculuk/work/site/tests/rekor-rules-tests.cjs:54:3
+[2026-11-02T22:20:30.842Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x6c0a256d error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L101:21 for 'update' @ L101, false for 'update' @ L101
+PASS Eşit sonuç yeniden yazılamaz
+PASS Doğru sayısı artar
+[2026-11-02T22:20:30.875Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x6c0a256e error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L101:21 for 'update' @ L101, false for 'update' @ L101
+PASS Skor güncellemesinde dönem değişemez
+[2026-11-02T22:20:30.897Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x6c0a256f error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L101:21 for 'update' @ L101, false for 'update' @ L101
+PASS Skor ve ad aynı güncellemede değişemez
+PASS Yalnız ad değişir
+PASS Giriş yapmamış okuyamaz
+PASS Giriş yapan listeyi okur
+[2026-11-02T22:20:31.003Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x6c0a2570 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L105:21 for 'delete' @ L105, false for 'delete' @ L105
+PASS Güncel nesildeki satır "in" iken silinemez
+[2026-11-02T22:20:31.056Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x6c0a2572 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L75:21 for 'update' @ L75, evaluation error at L100:21 for 'create' @ L100, evaluation error at L101:21 for 'update' @ L101, false for 'create' @ L100
+PASS Tek pakette profili kapatıp satır yazmak reddedilir
+PASS Listeden çık: in → out, nesil 1
+[2026-11-02T22:20:31.080Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x6c0a2573 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L101:21 for 'update' @ L101, false for 'update' @ L101
+PASS Çıkıştan sonra gecikmiş eski nesil yazma reddedilir
+[2026-11-02T22:20:31.100Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x6c0a2574 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L100:21 for 'create' @ L100, evaluation error at L101:21 for 'update' @ L101, false for 'create' @ L100
+PASS Çıkıştan sonra yeni nesille de yazılamaz (durum out)
+PASS Çıkışta satırlar silinir
+PASS Çıkışta haftalık satır silinir
+[2026-11-02T22:20:31.136Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x6c0a2575 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L75:21 for 'update' @ L75, evaluation error at L100:21 for 'create' @ L100, evaluation error at L101:21 for 'update' @ L101, false for 'create' @ L100
+PASS Tek pakette listeye dönüp yeni nesille yazmak reddedilir
+PASS Listeye dön: out → in, nesil 2
+[2026-11-02T22:20:31.165Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x6c0a2576 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L100:21 for 'create' @ L100, evaluation error at L101:21 for 'update' @ L101, false for 'create' @ L100
+PASS Eski nesille (0) yazma reddedilir
+PASS Yeni nesille (2) yazılır
+[2026-11-02T22:20:31.191Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x6c0a2577 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L105:21 for 'delete' @ L105, false for 'delete' @ L105
+PASS Gecikmiş eski silme isteği yeni nesil satırını silemez
+PASS Kalmış eski nesil satırı "in" iken silinebilir
+PASS Kalmış eski nesil satırı yeni nesille değiştirilebilir
+[2026-11-02T22:20:31.277Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x6c0a2578 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L105:21 for 'delete' @ L105, false for 'delete' @ L105
+PASS Başka hesabın eski nesil satırı silinemez
+PASS Sahibi çıkıştan sonra kendi satırını siler
+PASS Profil silme: in → deleted
+[2026-11-02T22:20:31.307Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x6c0a257a error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L100:21 for 'create' @ L100, evaluation error at L101:21 for 'update' @ L101, false for 'create' @ L100
+PASS deleted durumunda yazma reddedilir
+PASS deleted durumunda kalan satırlar silinir
+[2026-11-02T22:20:31.323Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x6c0a257b error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L75:21 for 'update' @ L75, false for 'update' @ L75
+PASS deleted son durumdur, geri dönülemez
+[2026-11-02T22:20:31.339Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x6c0a257c error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'create' @ L72, evaluation error at L75:21 for 'update' @ L75, false for 'update' @ L75
+PASS deleted profil yeniden açılamaz
+[2026-11-02T22:20:31.347Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x6c0a2579 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'create' @ L72, evaluation error at L75:21 for 'update' @ L75, false for 'update' @ L75
+PASS deleted profil başka hesapça sahiplenilemez
+PASS: 63 rekor kuralı denetimi
+[2026-11-02T22:20:32.001Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x8872357f error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L12:21 for 'create' @ L12, evaluation error at L23:21 for 'update' @ L23, false for 'create' @ L12
+[2026-11-02T22:20:32.232Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x88723583 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L23:21 for 'update' @ L23, false for 'update' @ L23
+[2026-11-02T22:20:32.253Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x88723580 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L23:21 for 'update' @ L23, false for 'update' @ L23
+[2026-11-02T22:20:32.268Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x88723586 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L30:22 for 'create' @ L30, false for 'update' @ L34, false for 'create' @ L30
+[2026-11-02T22:20:32.284Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x88723587 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L46:22 for 'create' @ L46, false for 'update' @ L53, false for 'create' @ L46
+[2026-11-02T22:20:32.298Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x88723588 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'create' @ L46, false for 'update' @ L53
+[2026-11-02T22:20:32.320Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x88723589 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'update' @ L53
+[2026-11-02T22:20:32.356Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x8872358b error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L34:22 for 'update' @ L34, false for 'update' @ L34
+[2026-11-02T22:20:32.449Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x8872358e error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L30:22 for 'create' @ L30, false for 'update' @ L34, false for 'create' @ L30
+[2026-11-02T22:20:32.459Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x8872358c error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L12:21 for 'create' @ L12, evaluation error at L23:21 for 'update' @ L23, false for 'create' @ L12
+PASS real Firestore emulator: owner-only room creation/start/close; task schema; private room listing; membership; no late/expired joining; atomic submission; numeric score consistency; immutable submissions; scores hidden from other students until closure; nonmember denial.
+LIMIT: valid-looking scores still originate on the client; this is a classroom activity, not a tamper-proof examination service.
+PASS: missing configuration is explicit; normal home remains usable.
+node:fs:573
+  return binding.open(
+                 ^
+
+Error: ENOENT: no such file or directory, open '/tmp/race13-qa/firebase-app.js'
+    at Object.openSync (node:fs:573:18)
+    at Object.readFileSync (node:fs:452:35)
+    at /home/runner/work/Mutfaga_yolculuk/work/site/tests/race-ui-tests.cjs:11:116
+    at RouteHandler._handleInternal (/home/runner/work/Mutfaga_yolculuk/work/node_modules/playwright-core/lib/coreBundle.js:59786:11)
+    at RouteHandler._handleImpl (/home/runner/work/Mutfaga_yolculuk/work/node_modules/playwright-core/lib/coreBundle.js:59753:29)
+    at /home/runner/work/Mutfaga_yolculuk/work/node_modules/playwright-core/lib/coreBundle.js:59747:59
+    at AsyncLocalStorage.run (node:async_hooks:346:14)
+    at _Zone.run (/home/runner/work/Mutfaga_yolculuk/work/node_modules/playwright-core/lib/coreBundle.js:10149:40)
+    at RouteHandler.handle (/home/runner/work/Mutfaga_yolculuk/work/node_modules/playwright-core/lib/coreBundle.js:59747:38)
+    at _BrowserContext._onRoute (/home/runner/work/Mutfaga_yolculuk/work/node_modules/playwright-core/lib/coreBundle.js:61965:46) {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/tmp/race13-qa/firebase-app.js'
+}
+
+Node.js v20.20.2
 [33m[1m⚠ [22m[39m Script exited unsuccessfully (code 1)
 [36m[1mi  emulators:[22m[39m Shutting down emulators.
 [36m[1mi  firestore:[22m[39m Stopping Firestore Emulator
