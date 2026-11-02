@@ -93,7 +93,7 @@ function rkAfterAssessment(){
  const p=rkProf(pid);
  if(p.status!=='in'){RK.msg.cloud='Sıralamada görünmüyorsun. İstersen Rekorlarım ekranından listeye dönebilirsin.';return;}
  const q=rkQueue(),name=rkName(st.prof);
- ['genel','hafta'].forEach(period=>q.push({pid,board:b.id,period,name,correct,gen:p.gen,at:Date.now(),sess:s.id}));
+ ['genel','hafta'].forEach(period=>q.push({qid:rkRandomId(),pid,board:b.id,period,name,correct,gen:p.gen,at:Date.now(),sess:s.id}));
  lsSet('rk_queue',q);
  RK.msg.cloud=rkOnline()?'Sıralama güncelleniyor…':'Sıran internete bağlanınca görünecek.';
  if(!p.synced)RK.msg.note='Adın sıralamada görünür. İstemezsen Rekorlarım ekranından listeden çıkabilirsin.';
@@ -106,7 +106,7 @@ async function rkFlush(sessId){
  try{
   const checked={};
   while(rkQueue().length){
-   const item=rkQueue()[0],drop=()=>lsSet('rk_queue',rkQueue().slice(1)),p=rkProf(item.pid);
+   const item=rkQueue()[0],drop=()=>lsSet('rk_queue',rkQueue().filter(x=>x!==null&&(item.qid?x.qid!==item.qid:JSON.stringify(x)!==JSON.stringify(item)))),p=rkProf(item.pid);
    if(p.status!=='in'||item.gen!==p.gen){drop();continue;}
    if(!checked[item.pid]){const sp=await be.ensureProfile(item.pid);rkProfSet(item.pid,{status:sp.status,gen:sp.gen,synced:true});checked[item.pid]=sp;}
    const sp=checked[item.pid];if(sp.status!=='in'||sp.gen!==item.gen){drop();continue;}
@@ -115,16 +115,17 @@ async function rkFlush(sessId){
    const tries=item.period==='genel'?[rkTable(item.board,'genel')]:[0,1,-1].map(d=>rkTable(item.board,'hafta',rkWeekNo()+d));
    for(const t of tries){try{rkCleanAdd(item.pid,t);res=await be.submit(t,item.pid,row);table=t;break;}catch(e){if(!/permission/i.test(rkErrCode(e)))throw e;}}
    drop();
+   if(item.sess===sessId&&!res){outcome=outcome||{};outcome.failed=true;}
    if(item.sess===sessId&&res)outcome=outcome||{};
    if(item.sess===sessId&&res&&!res.stale)outcome[item.period]={table,kept:!!res.kept};
   }
   if(outcome&&RK.msg&&RK.msg.sess===sessId){
    const pid=rkPid(st.prof);const parts=[];
    for(const period of ['hafta','genel']){const o=outcome[period];if(!o)continue;const rows=await be.list(o.table);const r=rkRank(rows,pid);if(r)parts.push((period==='hafta'?'Bu haftaki sıran: ':'Genel sıran: ')+r.rank+(r.tie>1?' ('+r.tie+' kişiyle aynı sırada)':''));}
-   const kept=outcome.genel&&outcome.genel.kept;RK.msg.cloud=parts.length?parts.join(' · ')+(kept?' · En iyi sonucun korunuyor.':''):'Bu sonuç sıralamaya gönderilmedi.';
+   const kept=outcome.genel&&outcome.genel.kept;RK.msg.cloud=parts.length?parts.join(' · ')+(kept?' · En iyi sonucun korunuyor.':''):outcome.failed?'Bu sonuç sıralamaya yazılamadı. Sonucun bu telefonda kayıtlı.':'Bu sonuç sıralamaya gönderilmedi.';
   }
  }catch(e){if(RK.msg&&RK.msg.sess===sessId)RK.msg.cloud='Sıralamaya şu anda ulaşılamadı. Sonucun telefonda kayıtlı; internet olduğunda yeniden gönderilir.';}
- finally{RK.busy=false;}
+ finally{RK.busy=false;if(RK.again){RK.again=false;setTimeout(rkMaintenance,0);}}
  if(RK.msg&&RK.msg.sess===sessId&&['board','quiz','summary','spicereview'].includes(st.screen))render();
 }
 /* Sıra: kendisinden daha çok doğru yapan kişi sayısı + 1. Eşitler aynı sırayı paylaşır; ekranda alfabetik dizilir. */
@@ -157,7 +158,9 @@ function rkForgetProfile(name){
 }
 /* Açılışta ve bağlantı gelince: yarım kalan silme/temizlik işlerini bitirir, bekleyen sonuçları gönderir. */
 async function rkMaintenance(){
- if(!rkOnline()||RK.busy)return;const all=rkProfAll(),clean=rkClean(),be=rkBackend();if(!be)return;
+ if(!rkOnline())return;if(RK.busy||RK.maint){RK.again=true;return;}RK.maint=true;try{await rkMaintenanceRun();}finally{RK.maint=false;}if(RK.again){RK.again=false;setTimeout(rkMaintenance,0);}
+}
+async function rkMaintenanceRun(){const all=rkProfAll(),clean=rkClean(),be=rkBackend();if(!be)return;
  for(const pid of Object.keys(all)){
   const p=all[pid];
   try{
@@ -238,7 +241,7 @@ function rkPekStart(kind,arg){
 function rkPekMenuHTML(){
  const gs=rkPekGroups(st.subject);let h=topBar(subjectName())+'<div class="wrap"><h1>Pekiştiriyorum</h1>';
  if(!gs.length)return h+'<p class="card">Bu konuda tekrar edilecek madde yok. Uyguluyorum bölümünde yanlış yaptıkların burada toplanır.</p></div>';
- h+='<p class="sub">Uyguluyorum bölümünde yanlış yaptıkların. Bir madde arka arkaya iki kez ilk denemede doğru yapılınca listeden çıkar. Bu tur sıralamaya yazılmaz.</p><div class="list">';
+ h+='<p class="sub">Uyguluyorum\'da yanlış yaptığın maddeler burada listelenir. Bir madde arka arkaya iki kez ilk denemede doğru yapılınca listeden çıkar. Bu tur sıralamaya yazılmaz.</p><div class="list">';
  gs.forEach(g=>h+=menuButton(g.label,g.n+' madde',"rkPekStart('"+g.kind+"',"+g.arg+")"));
  return h+'</div></div>';
 }
@@ -288,7 +291,7 @@ function rkBoardHTML(){
  h+='<div class="card rk-pick"><label>Konu <select onchange="rkPickSubject(this.value)">'+Object.keys(RK_SUBJECT_NAMES).map(s=>'<option value="'+s+'"'+(s===b.subject?' selected':'')+'>'+esc(RK_SUBJECT_NAMES[s])+'</option>').join('')+'</select></label>';
  h+='<label>Çalışma <select onchange="rkOpenBoard(this.value)">'+RK_BOARDS.filter(x=>x.subject===b.subject).map(x=>'<option value="'+x.id+'"'+(x.id===b.id?' selected':'')+'>'+esc(x.label)+'</option>').join('')+'</select></label>';
  h+='<div class="rk-period" role="group" aria-label="Dönem"><button class="btn sm'+(v.period==='hafta'?' pri':'')+'" aria-pressed="'+(v.period==='hafta')+'" onclick="rkPickPeriod(\'hafta\')">Bu hafta</button><button class="btn sm'+(v.period==='genel'?' pri':'')+'" aria-pressed="'+(v.period==='genel')+'" onclick="rkPickPeriod(\'genel\')">Genel</button></div></div>';
- h+='<h2 class="rk-title">'+esc(RK_SUBJECT_NAMES[b.subject]+' · '+b.label)+'</h2><p class="note">'+(v.period==='hafta'?'Hafta: '+rkWeekLabel(rkWeekNo())+'. Liste pazartesi yeniden başlar.':'Bu eğitim yılının en iyi sonuçları.')+' Her öğrencinin bu denemedeki en iyi sonucu yazılır. Sırayı yalnız doğru sayısı belirler.</p>';
+ h+='<h2 class="rk-title">'+esc(RK_SUBJECT_NAMES[b.subject]+' · '+b.label)+'</h2><p class="note">'+(v.period==='hafta'?'Hafta: '+rkWeekLabel(rkWeekNo())+'. Liste pazartesi yeniden başlar.':'Bu eğitim yılının en iyi sonuçları.')+' Her öğrencinin bu çalışmadaki en iyi doğru sayısı gösterilir. Sırayı yalnız doğru sayısı belirler.</p>';
  if(v.state==='offline')return h+'<p class="card" role="status">Sıralamayı görmek için internete bağlan.</p></div>';
  if(v.state==='loading'||v.state==='idle')return h+'<p class="card" role="status">Sıralama yükleniyor…</p></div>';
  if(v.state==='error')return h+'<p class="card" role="alert">'+esc(v.err)+'</p><button class="btn" onclick="rkLoadRows()">Yeniden dene</button></div>';
@@ -300,7 +303,7 @@ function rkBoardHTML(){
 }
 function rkBannerHTML(){
  const m=RK.msg;if(!m||!st.sess||m.sess!==st.sess.id)return '';
- return '<section class="card rk-banner'+(m.head==='Yeni rekor!'?' rk-new':'')+'" role="status"><strong>'+esc(m.head)+'</strong><p>'+esc(m.text)+'</p>'+(m.cloud?'<p class="note">'+esc(m.cloud)+'</p>':'')+(m.note?'<p class="note">'+esc(m.note)+'</p>':'')+(m.board?'<button class="btn sm" onclick="rkOpenBoard(\''+m.board+'\')">Sıralamayı gör</button>':'')+(m.pek&&rkPekItems(st.subject).length?'<button class="btn sm" onclick="go(\'pekmenu\')">Pekiştiriyorum\'a dön</button>':'')+(m.pek&&st.pekRound&&st.pekRound.kind==='m'?'<button class="btn sm" onclick="rkPekFullCheck()">Takımın tamamıyla yokla (puansız)</button>':'')+'</section>';
+ return '<section class="card rk-banner'+(m.head==='Yeni rekor!'?' rk-new':'')+'" role="status"><strong>'+esc(m.head)+'</strong><p>'+esc(m.text)+'</p>'+(m.cloud?'<p class="note">'+esc(m.cloud)+'</p>':'')+(m.note?'<p class="note">'+esc(m.note)+'</p>':'')+(m.board?'<button class="btn sm" onclick="rkOpenBoard(\''+m.board+'\')">Sıralamayı gör</button>':'')+(m.pek&&rkPekItems(st.subject).length?'<button class="btn sm" onclick="go(\'pekmenu\')">Pekiştiriyorum listesine dön</button>':'')+(m.pek&&st.pekRound&&st.pekRound.kind==='m'?'<button class="btn sm" onclick="rkPekFullCheck()">Takımın tamamıyla yokla (puansız)</button>':'')+'</section>';
 }
 /* Pekiştirme sonrası 12 görsel / 18 adlık yoklama. Puansızdır ve sıralamaya yazılmaz. */
 function rkPekFullCheck(){const n=st.pekRound&&st.pekRound.set;if(!n)return;st.pekRound=null;st.op='match';st.contentSet=n;startBoard('check',12);st.sess.unranked=true;st.lastRes={...st.lastRes,head:'Puansız yoklama. '+st.lastRes.head};render();}
@@ -311,7 +314,7 @@ const RK_RENDER=render,RK_BACK=back,RK_CAT=catName,RK_STATS=statsHtml,RK_ANSWER=
 startSession=function(){if(!RK.startingPek)st.pekRound=null;return RK_START.apply(this,arguments);};
 startBoard=function(){st.pekRound=null;return RK_STARTBOARD.apply(this,arguments);};
 startContent=function(){st.pekRound=null;return RK_STARTCONTENT.apply(this,arguments);};
-catName=function(r){const s=RK_CAT(r);return r.practice==='pek'?s.replace(' · Öğreniyorum','')+' · Pekiştiriyorum':s;};
+catName=function(r){const s=RK_CAT(r);if(r.unranked)return s.replace(' · Uyguluyorum','')+' · Puansız yoklama';return r.practice==='pek'?s.replace(' · Öğreniyorum','')+' · Pekiştiriyorum':s;};
 statsHtml=function(){if(st.practice==='pek'&&st.op==='mcq'&&st.sess&&st.screen!=='summary')return '<div class="stats"><span class="chip">Yanıtlanan '+st.sess.qs.length+' / '+(st.contentItems||[]).length+'</span></div>';return RK_STATS();};
 /* Pekiştiriyorum'da çoktan seçmeli: tek yanıt, hemen geri bildirim ve açıklama. İpucuyla ikinci deneme yok. */
 answer=function(v){
@@ -334,6 +337,7 @@ render=function(){
   if(st.sess.practice==='check'&&!st.sess.rkDone)rkAfterAssessment();
   else if(st.sess.practice==='pek'&&!st.sess.rkPekDone)rkPekProcess();
  }
+ if(st.sess&&st.sess.unranked)st.sess.s=0;
  const app=document.getElementById('app');
  if(st.screen==='rekor'){if(st.guest){st.screen='siralama';}else{app.innerHTML=rkRecordsHTML();return;}}
  if(st.screen==='siralama'){app.innerHTML=rkBoardHTML();return;}
@@ -346,6 +350,7 @@ render=function(){
   if(list)list.insertAdjacentHTML('afterend','<p class="note">'+note+'</p>');}
  /* Pekiştirme turunun sonunda normal tur başlatan düğmeler gizlenir; dönüş banner'daki düğmelerle yapılır. */
  if(st.pekRound&&st.kDone&&['board','quiz'].includes(st.screen))app.querySelectorAll('button[onclick]').forEach(b=>{if(/startBoard|newKuverBtn|startSession/.test(b.getAttribute('onclick')))b.remove();});
+ if(st.sess&&st.sess.unranked)app.querySelectorAll('.stats .chip').forEach(c=>{if(/Puan/.test(c.textContent))c.remove();});
  if(['board','quiz','summary','spicereview'].includes(st.screen)){const ban=rkBannerHTML();if(ban){const w=app.querySelector('.wrap');if(w)w.insertAdjacentHTML('afterbegin',ban);}}
 };
 window.addEventListener('online',()=>{rkMaintenance();});

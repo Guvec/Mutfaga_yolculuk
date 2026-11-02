@@ -89,6 +89,21 @@ const FAKE=`window.REKOR_FAKE=(()=>{const prof={},rows={};let uid='u-cihaz';cons
   // Profil silme: durum 'deleted', satırlar kaldırılır.
   const ayse=await page.evaluate(()=>rkPid('Ayşe'));await page.evaluate(()=>{rkForgetProfile('Ayşe');});await page.waitForFunction(p=>!rkProfAll()[p],ayse);assert.equal(await page.evaluate(p=>REKOR_FAKE.prof[p].status,ayse),'deleted');assert.equal(await page.evaluate(([p])=>Object.values(REKOR_FAKE.rows).some(t=>t[p]),[ayse]),false);ok('Profil silinince sunucu durumu deleted, bütün satırlar silindi');
 
+  // Gönderim sürerken bir profil listeden çıkarsa başka profilin sonucu kuyruktan düşmez.
+  await page.evaluate(()=>{lsSet('profiles',profiles().concat(['Can','Ece']));});
+  const ids=await page.evaluate(()=>{const c=rkPid('Can',true),e=rkPid('Ece',true);rkProfSet(c,{status:'in',gen:0});rkProfSet(e,{status:'in',gen:0});return [c,e];});
+  await page.evaluate(([c,e])=>{const sub=REKOR_FAKE.submit;REKOR_FAKE.submit=async(...a)=>{await new Promise(r=>setTimeout(r,120));return sub(...a);};
+   lsSet('rk_queue',[{qid:'q1',pid:c,board:'bh-e3',period:'genel',name:'Can',correct:7,gen:0,at:Date.now(),sess:1},{qid:'q2',pid:e,board:'bh-e3',period:'genel',name:'Ece',correct:9,gen:0,at:Date.now(),sess:1}]);
+   rkFlush(null);setTimeout(()=>lsSet('rk_queue',rkQueue().filter(x=>x.pid!==c)),40);},ids);
+  await page.waitForFunction(()=>!RK.busy&&!rkQueue().length);await page.evaluate(()=>{const s=REKOR_FAKE.submit;});
+  assert.equal(await page.evaluate(([a,e])=>!!(REKOR_FAKE.rows[a]||{})[e],[T+'bh-e3~genel',ids[1]]),true);ok('Gönderim sürerken başka profilin kuyruktaki sonucu korunuyor');
+  // Gönderim sürerken profil silinirse bulut silmesi gönderim bitince yapılır.
+  await page.evaluate(([c])=>{lsSet('rk_queue',[{qid:'q3',pid:c,board:'bh-e4',period:'genel',name:'Can',correct:5,gen:0,at:Date.now(),sess:1}]);rkFlush(null);setTimeout(()=>rkForgetProfile('Can'),30);},ids);
+  await page.waitForFunction(c=>!rkProfAll()[c],ids[0],{timeout:5000});assert.equal(await page.evaluate(c=>REKOR_FAKE.prof[c].status,ids[0]),'deleted');assert.equal(await page.evaluate(c=>Object.values(REKOR_FAKE.rows).some(t=>t[c]),ids[0]),false);ok('Gönderim sürerken silinen profilin bulut kaydı gönderim bitince temizleniyor');
+  // Puansız yoklama: puan üretmez, puan göstermez, rekor ve bulut yazmaz.
+  await page.evaluate(()=>{pickProfile('Ali');const best=JSON.stringify(rkBestAll()[rkPid('Ali')]);st.subject='baharat';st.op='match';st.contentSet=1;st.pekRound={kind:'m',set:1};rkPekFullCheck();st.board.items.forEach(it=>tryPair(it.id,it.answer));checkBoard();window.__best=best;});
+  const yk=await page.evaluate(()=>({s:st.sess.s,chip:[...document.querySelectorAll('.stats .chip')].some(c=>/Puan/.test(c.textContent)),best:JSON.stringify(rkBestAll()[rkPid('Ali')])===window.__best,cat:catName(st.sess)}));
+  assert.equal(yk.s,0);assert.equal(yk.chip,false);assert.equal(yk.best,true);assert(yk.cat.includes('Puansız yoklama'),yk.cat);ok('Puansız yoklama: puan 0, puan gösterilmiyor, kişisel rekor değişmiyor');
   // Uyguluyorum adı; eski ad kalmadı.
   await page.evaluate(()=>{st.subject='baharat';st.op='match';st.contentSet=1;go('boardmode');});assert(await page.getByRole('button',{name:/Uyguluyorum/}).isVisible());assert.equal(await page.getByText('Kendimi Deniyorum').count(),0);
   if(shots){await page.setViewportSize({width:1200,height:844});await page.evaluate(()=>rkOpenBoard('bh-e1'));await page.waitForSelector('.rk-row');await page.screenshot({path:shots+'/5-siralama-1200.png'});}
