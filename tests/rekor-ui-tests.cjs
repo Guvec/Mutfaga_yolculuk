@@ -103,7 +103,19 @@ const FAKE=`window.REKOR_FAKE=(()=>{const prof={},rows={};let uid='u-cihaz';cons
   // Puansız yoklama: puan üretmez, puan göstermez, rekor ve bulut yazmaz.
   await page.evaluate(()=>{pickProfile('Ali');const best=JSON.stringify(rkBestAll()[rkPid('Ali')]);st.subject='baharat';st.op='match';st.contentSet=1;st.pekRound={kind:'m',set:1};rkPekFullCheck();st.board.items.forEach(it=>tryPair(it.id,it.answer));checkBoard();window.__best=best;});
   const yk=await page.evaluate(()=>({s:st.sess.s,chip:[...document.querySelectorAll('.stats .chip')].some(c=>/Puan/.test(c.textContent)),best:JSON.stringify(rkBestAll()[rkPid('Ali')])===window.__best,cat:catName(st.sess)}));
-  assert.equal(yk.s,0);assert.equal(yk.chip,false);assert.equal(yk.best,true);assert(yk.cat.includes('Puansız yoklama'),yk.cat);ok('Puansız yoklama: puan 0, puan gösterilmiyor, kişisel rekor değişmiyor');
+  assert.equal(yk.s,0);assert.equal(yk.chip,false);assert.equal(yk.best,true);assert(yk.cat.includes('Puansız deneme'),yk.cat);ok('Puansız yoklama: puan 0, puan gösterilmiyor, kişisel rekor değişmiyor');
+  // Oda yarışı oturumu, yarış kapandıktan sonra ekran yeniden çizilse de rekor/pekiştirme yazmaz.
+  const race=await page.evaluate(()=>{pickProfile('Ali');const before=JSON.stringify([rkBestAll(),rkPekAll(),rkQueue()]);st.subject='mutfak-araclari';st.op='match';st.contentSet=7;startBoard('check',12);st.sess.race={room:'TEST'};st.board.items.forEach((it,i)=>tryPair(it.id,st.board.items[(i+1)%12].answer));checkBoard();YR.active=false;render();return before===JSON.stringify([rkBestAll(),rkPekAll(),rkQueue()]);});
+  assert.equal(race,true);ok('Oda yarışı oturumu rekor, kuyruk ve Pekiştiriyorum yazmıyor');
+  // Aynı metinli iki soru Pekiştiriyorum'da karışmaz.
+  const dup=await page.evaluate(()=>{st.subject='mutfak-araclari';st.op='mcq';const qs=getData().questions.filter(q=>q.prompt.startsWith('Çiğ et sızdırmaz'));const pid=rkPid('Ali');const m=rkPek(pid);qs.forEach(q=>m['q|mutfak-araclari|'+q.id]={kind:'q',subject:'mutfak-araclari',id:q.id,streak:1,wrong:[],at:1});rkPekSave(pid,m);
+   st.mcqGroup=null;rkPekStart('q');const first=st.contentItems.find(q=>q.prompt.startsWith('Çiğ et sızdırmaz'));let g=0;while(!st.kDone&&g++<20){const q=st.q;answer(q.id===first.id?q.choices.find(c=>c.id!==q.correct).id:q.correct);nextQ();}
+   const left=rkPek(pid);return {n:qs.length,firstLeft:!!left['q|mutfak-araclari|'+first.id],otherLeft:qs.filter(q=>q.id!==first.id).some(q=>!!left['q|mutfak-araclari|'+q.id])};});
+  assert.equal(dup.n,2);assert.equal(dup.firstLeft,true);assert.equal(dup.otherLeft,false);ok('Aynı metinli iki soru Pekiştiriyorum sayaçlarında karışmıyor');
+  // Bu telefondan ulaşılamayan profil (başka oturuma ait) kuyruğu kilitlemez; diğer profilin sonucu gönderilir.
+  const lost=await page.evaluate(async()=>{const be=REKOR_FAKE,ens=be.ensureProfile;const x='xxxxxxxxxxxxxxxxxxxx',y=rkPid('Ayşe2',true);rkProfSet(x,{status:'in',gen:0});rkProfSet(y,{status:'in',gen:0});be.ensureProfile=async p=>{if(p===x){const e=Error('permission-denied');e.code='permission-denied';throw e;}return ens(p);};
+   lsSet('rk_queue',[{qid:'l1',pid:x,board:'bh-e5',period:'genel',name:'Eski',correct:3,gen:0,at:1,sess:1},{qid:'l2',pid:y,board:'bh-e5',period:'genel',name:'Ayşe2',correct:6,gen:0,at:1,sess:1}]);await rkFlush(null);be.ensureProfile=ens;return {q:rkQueue().length,st:rkProf(x).status,row:!!(REKOR_FAKE.rows[RK_TERM+'~bh-e5~genel']||{})[y]};});
+  assert.deepEqual(lost,{q:0,st:'lost',row:true});ok('Ulaşılamayan profil kuyruğu kilitlemiyor; diğer profilin sonucu gönderildi');
   // Uyguluyorum adı; eski ad kalmadı.
   await page.evaluate(()=>{st.subject='baharat';st.op='match';st.contentSet=1;go('boardmode');});assert(await page.getByRole('button',{name:/Uyguluyorum/}).isVisible());assert.equal(await page.getByText('Kendimi Deniyorum').count(),0);
   if(shots){await page.setViewportSize({width:1200,height:844});await page.evaluate(()=>rkOpenBoard('bh-e1'));await page.waitForSelector('.rk-row');await page.screenshot({path:shots+'/5-siralama-1200.png'});}
