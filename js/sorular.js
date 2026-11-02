@@ -5,12 +5,13 @@ const MCQ_PREV_START=startContent,MCQ_PREV_RENDER=render,MCQ_PREV_QUIZ=contentQu
 /* Sıralama denemeleri için birleşen gruplar. Ortak hedefi olan küçük gruplar tek deneme olur. */
 const MCQ_MERGE={
   'mutfak-araclari':[{label:'Tabaklar, kâseler, bardaklar ve fincanlar',parts:['Tabaklar ve kâseler','Bardaklar ve fincanlar']}],
-  'bulasik-makinesi-temizligi':[{label:'Bulaşık Yıkama ve Atık Yönetimi · Bütün bölümler',parts:['1. Bölüm','2. Bölüm','3. Bölüm','4. Bölüm','5. Bölüm · Atık yönetimi']}]
+  'bulasik-makinesi-temizligi':[{label:'Bulaşık Yıkama ve Atık Yönetimi · Bütün bölümler',whole:true,parts:['1. Bölüm','2. Bölüm','3. Bölüm','4. Bölüm','5. Bölüm · Atık yönetimi']}]
 };
+/* whole: bölümler yerinde kalır, ayrıca bütün soruları içeren tek deneme listenin sonuna eklenir. */
 function mcqGroups(){const d=getData();if(st.op!=='mcq')return [];
   const qs=d.questions||[];if(!qs.some(q=>q.group))return [];
   let list=(d.groups&&d.groups.length?d.groups:[...new Set(qs.map(q=>q.group))].map(g=>({label:g}))).map(g=>({...g,parts:[g.label]}));
-  (MCQ_MERGE[st.subject]||[]).forEach(m=>{const i=list.findIndex(g=>m.parts.includes(g.label));if(i<0)return;const first=list[i];list=list.filter(g=>!m.parts.includes(g.label));list.splice(i,0,{label:m.label,chapter:first.chapter,parts:m.parts.slice()});});
+  (MCQ_MERGE[st.subject]||[]).forEach(m=>{if(m.whole){list.push({label:m.label,whole:true,parts:m.parts.slice()});return;}const i=list.findIndex(g=>m.parts.includes(g.label));if(i<0)return;const first=list[i];list=list.filter(g=>!m.parts.includes(g.label));list.splice(i,0,{label:m.label,chapter:first.chapter,parts:m.parts.slice()});});
   return list.map(g=>({...g,count:qs.filter(q=>g.parts.includes(q.group)).length})).filter(g=>g.count);}
 function mcqGroupParts(label){const g=mcqGroups().find(x=>x.label===label);return g?g.parts:[label];}
 /* Uyguluyorum ve Pekiştiriyorum'da soru sırası ve seçenek yeri karışır; harfler A-B-C-D olarak yeniden dizilir.
@@ -35,6 +36,7 @@ function mcqListHTML(){
   const gs=mcqGroups();let h=topBar(subjectName())+'<div class="wrap"><h1>Çoktan Seçmeli Sorular</h1><p class="sub">Bir konu seç.</p>';
   let ch=null;
   gs.forEach((g,i)=>{
+    if(g.whole){if(ch!==null)h+='</div>';ch=null;h+='<h2 class="grp-h">Bütün bölümler</h2><div class="list set-list grp-list">'+menuButton('Bütün bölümler',g.count+' soru · Sıralamaya bu deneme yazılır',"pickGroup("+i+")")+'</div>';return;}
     if(g.chapter&&g.chapter!==ch){if(ch!==null)h+='</div>';ch=g.chapter;h+='<h2 class="grp-h">'+ch+'. Bölüm</h2><div class="list set-list grp-list">';}
     h+=menuButton(g.label.replace(/^\d\. Bölüm · /,''),g.count+' soru',"pickGroup("+i+")");
   });
