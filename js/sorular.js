@@ -2,16 +2,27 @@
    Soru metni, seçenek sırası ve doğru harf kaynaktaki gibi kalır; sorular karıştırılmaz. */
 'use strict';
 const MCQ_PREV_START=startContent,MCQ_PREV_RENDER=render,MCQ_PREV_QUIZ=contentQuizHTML;
+/* Sıralama denemeleri için birleşen gruplar. Ortak hedefi olan küçük gruplar tek deneme olur. */
+const MCQ_MERGE={
+  'mutfak-araclari':[{label:'Tabaklar, kâseler, bardaklar ve fincanlar',parts:['Tabaklar ve kâseler','Bardaklar ve fincanlar']}],
+  'bulasik-makinesi-temizligi':[{label:'Bulaşık Yıkama ve Atık Yönetimi · Bütün bölümler',parts:['1. Bölüm','2. Bölüm','3. Bölüm','4. Bölüm','5. Bölüm · Atık yönetimi']}]
+};
 function mcqGroups(){const d=getData();if(st.op!=='mcq')return [];
   const qs=d.questions||[];if(!qs.some(q=>q.group))return [];
-  const list=(d.groups&&d.groups.length?d.groups:[...new Set(qs.map(q=>q.group))].map(g=>({label:g})));
-  return list.map(g=>({...g,count:qs.filter(q=>q.group===g.label).length})).filter(g=>g.count);}
+  let list=(d.groups&&d.groups.length?d.groups:[...new Set(qs.map(q=>q.group))].map(g=>({label:g}))).map(g=>({...g,parts:[g.label]}));
+  (MCQ_MERGE[st.subject]||[]).forEach(m=>{const i=list.findIndex(g=>m.parts.includes(g.label));if(i<0)return;const first=list[i];list=list.filter(g=>!m.parts.includes(g.label));list.splice(i,0,{label:m.label,chapter:first.chapter,parts:m.parts.slice()});});
+  return list.map(g=>({...g,count:qs.filter(q=>g.parts.includes(q.group)).length})).filter(g=>g.count);}
+function mcqGroupParts(label){const g=mcqGroups().find(x=>x.label===label);return g?g.parts:[label];}
+/* Uyguluyorum ve Pekiştiriyorum'da soru sırası ve seçenek yeri karışır; harfler A-B-C-D olarak yeniden dizilir.
+   Öğreniyorum'da kaynak sırası korunur. */
+function mcqShuffled(q){const letters=['A','B','C','D','E','F'];const ch=shuffle(q.choices);let correct=q.correct;const choices=ch.map((c,i)=>{const id=letters[i];if(c.id===q.correct)correct=id;return {...c,id};});return {...q,choices,correct};}
 function pickGroup(i){st.mcqGroup=mcqGroups()[i].label;go('mcqmode');}
 function mcqBegin(mode){st.practice=mode;startContent();}
 startContent=function(setNo){
   if(st.op!=='mcq'||!mcqGroups().length)return MCQ_PREV_START(setNo);
   if(!st.mcqGroup){go('content');return;}
-  const items=getData().questions.filter(q=>q.group===st.mcqGroup);
+  const parts=mcqGroupParts(st.mcqGroup);let items=getData().questions.filter(q=>parts.includes(q.group));
+  if(st.practice==='check')items=shuffle(items).map(mcqShuffled);
   st.contentItems=items.slice();st.contentIndex=0;st.brk=0;st.kDone=false;st.done=false;st.inBreak=false;st.contentSet=null;
   st.sess={id:Date.now(),p:st.guest?'Misafir':st.prof,t:new Date().toISOString(),op:'mcq',subject:st.subject,practice:st.practice||'learn',total:items.length,group:st.mcqGroup,s:0,ok:0,fix:0,bad:0,br:0,qs:[]};
   st.savedMsg=st.guest?'Misafir oturumu: sonuçlar kaydedilmiyor.':'';contentNext();st.screen='quiz';render();window.scrollTo(0,0);
@@ -44,7 +55,7 @@ contentQuizHTML=function(){
   return h+footHtml()+'</div>';
 };
 render=function(){
-  if(st.screen==='mcqmode'){document.getElementById('app').innerHTML=topBar(subjectName())+'<div class="wrap"><h1>Nasıl çalışalım?</h1><div class="list">'+menuButton('Öğreniyorum','Yanlışta ipucu ve ikinci deneme var.',"mcqBegin('learn')")+menuButton('Kendimi Deniyorum','Her soruda bir yanıt ver. Açıklamalar çalışma bitince açılır.',"mcqBegin('check')")+'</div></div>';return;}
+  if(st.screen==='mcqmode'){document.getElementById('app').innerHTML=topBar(subjectName())+'<div class="wrap"><h1>Nasıl çalışalım?</h1><div class="list">'+menuButton('Öğreniyorum','Yanlışta ipucu ve ikinci deneme var.',"mcqBegin('learn')")+menuButton('Uyguluyorum','Her soruda bir yanıt ver. Açıklamalar çalışma bitince açılır.',"mcqBegin('check')")+'</div></div>';return;}
   if(st.screen==='content'&&st.op==='mcq'&&CONTENT[st.subject]&&mcqGroups().length){document.getElementById('app').innerHTML=mcqListHTML();return;}
   MCQ_PREV_RENDER();
 };

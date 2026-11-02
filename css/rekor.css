@@ -1,0 +1,26 @@
+/* Rekorlarım, sıralama ve Pekiştiriyorum. Mevcut renklerle uyumlu, beyaz zemin. */
+.rk-tabs{display:flex;gap:8px;margin:4px 0 14px}
+.rk-tabs .btn{flex:1;min-height:48px}
+.rk-part h2,.rk-title{font-size:1.05rem;margin:0 0 6px}
+.rk-part p{margin:4px 0 10px}
+.rk-list{display:flex;flex-direction:column;gap:8px;margin-bottom:14px}
+.rk-rec{display:flex;flex-direction:column;align-items:stretch;gap:10px;padding:12px;border:1px solid #d3dfdf;border-radius:12px;background:#fff}
+.rk-rec>div{display:flex;flex-direction:column;gap:3px}
+.rk-rec span{overflow-wrap:break-word}
+@media (min-width:760px){.rk-rec{flex-direction:row;align-items:center;justify-content:space-between}.rk-rec .btn{width:auto;flex:none}}
+.rk-pick{display:flex;flex-direction:column;gap:10px}
+.rk-pick label{display:flex;flex-direction:column;gap:4px;font-weight:600}
+.rk-pick select{min-height:48px;font-size:1rem;padding:6px 8px;border:1px solid #9fb5b7;border-radius:10px;background:#fff;max-width:100%}
+.rk-period{display:flex;gap:8px}
+.rk-period .btn{flex:1;min-height:44px}
+.rk-rows{list-style:none;margin:8px 0;padding:0;display:flex;flex-direction:column;gap:6px}
+.rk-row{display:grid;grid-template-columns:3.2em 1fr auto;align-items:center;gap:8px;padding:10px 12px;border:1px solid #d3dfdf;border-radius:10px;background:#fff;font-size:1.05rem}
+.rk-row.rk-me{border:2px solid #0f6e72;background:#e6f1f1}
+.rk-rank{font-weight:700;color:#0f6e72}
+.rk-name{overflow-wrap:anywhere}
+.rk-score{font-weight:700;white-space:nowrap}
+.rk-banner{border-left:6px solid #0f6e72}
+.rk-banner strong{display:block;font-size:1.1rem;margin-bottom:4px}
+.rk-banner p{margin:4px 0}
+.rk-banner .btn{margin:6px 6px 0 0}
+.rk-banner.rk-new{border-left-color:#23804f;background:#f1faf4}

@@ -1,0 +1,16 @@
+{
+  "name": "mesleki-oyunlar-yaris-dogrulama",
+  "private": true,
+  "description": "Yalnız geliştirme/test bağımlılıkları; site derleme gerektirmez.",
+  "scripts": {
+    "test": "node site/tests/state-tests.cjs && node site/tests/speech-tests.cjs && node site/tests/race-model-tests.cjs",
+    "test:rooms": "firebase emulators:exec --only auth,firestore --project demo-mesleki-yaris --config firebase/firebase.json \"node site/tests/run-race-integration.cjs\"",
+    "test:rekor": "firebase emulators:exec --only auth,firestore --project demo-mesleki-yaris --config firebase/firebase.json \"node site/tests/rekor-rules-tests.cjs && node site/tests/run-race-integration.cjs\""
+  },
+  "devDependencies": {
+    "firebase": "10.12.2",
+    "@firebase/rules-unit-testing": "3.0.2",
+    "firebase-tools": "13.35.1",
+    "playwright": "1.62.1"
+  }
+}

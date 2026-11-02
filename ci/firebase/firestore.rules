@@ -1,0 +1,109 @@
+rules_version = '2';
+service cloud.firestore {
+ match /databases/{database}/documents {
+  function signed() { return request.auth != null; }
+  match /raceRooms/{code} {
+   function room() { return get(/databases/$(database)/documents/raceRooms/$(code)).data; }
+   function host() { return signed() && room().host == request.auth.uid; }
+   function member() { return signed() && exists(/databases/$(database)/documents/raceRooms/$(code)/players/$(request.auth.uid)); }
+   function live() { return request.time < room().createdAt + duration.value(24, 'h'); }
+   allow get: if signed();
+   allow list: if false;
+   allow create: if signed() && code.matches('^[A-Z2-9]{8}$')
+    && request.resource.data.keys().hasAll(['host','subject','set','level','total','fingerprint','version','status','seed','createdAt','closedAt'])
+    && request.resource.data.keys().hasOnly(['host','subject','set','level','total','fingerprint','version','status','seed','createdAt','closedAt'])
+    && request.resource.data.host == request.auth.uid && request.resource.data.status == 'lobby'
+    && request.resource.data.createdAt == request.time && request.resource.data.closedAt == null
+    && request.resource.data.version == 13 && request.resource.data.seed is int
+    && request.resource.data.seed >= 0 && request.resource.data.seed <= 4294967295
+    && request.resource.data.fingerprint is string && request.resource.data.fingerprint.matches('^[a-f0-9]{64}$')
+    && ((request.resource.data.subject == 'baharat' && request.resource.data.set is int && request.resource.data.set >= 1 && request.resource.data.set <= 8 && request.resource.data.level == 0 && request.resource.data.total == 12)
+     || (request.resource.data.subject == 'mutfak-araclari' && request.resource.data.set is int && request.resource.data.set >= 1 && request.resource.data.set <= 12 && request.resource.data.level == 0 && request.resource.data.total == 12)
+     || (request.resource.data.subject == 'kuver' && request.resource.data.set == 0 && ((request.resource.data.level == 1 && request.resource.data.total == 5) || (request.resource.data.level == 3 && request.resource.data.total == 9))));
+   allow update: if host() && live() && (
+    (resource.data.status == 'lobby' && request.resource.data.status == 'playing' && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['status']))
+    || (resource.data.status in ['lobby','playing'] && request.resource.data.status == 'closed' && request.resource.data.closedAt == request.time && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['status','closedAt'])));
+   allow delete: if host();
+   match /players/{uid} {
+    allow get: if signed() && (request.auth.uid == uid || host() || (member() && live()));
+    allow list: if signed() && (host() || (member() && live()));
+    allow create: if signed() && request.auth.uid == uid && live() && room().status == 'lobby' && room().host != request.auth.uid
+     && request.resource.data.keys().hasAll(['nick','status','completed']) && request.resource.data.keys().hasOnly(['nick','status','completed'])
+     && request.resource.data.nick is string && request.resource.data.nick.size() >= 1 && request.resource.data.nick.size() <= 16
+     && request.resource.data.status == 'waiting' && request.resource.data.completed == 0;
+    allow update: if signed() && request.auth.uid == uid && live() && room().status in ['lobby','playing']
+     && resource.data.status in ['waiting','working']
+     && request.resource.data.keys().hasOnly(['nick','status','completed']) && request.resource.data.nick == resource.data.nick
+     && request.resource.data.completed is int && request.resource.data.completed >= resource.data.completed && request.resource.data.completed <= room().total
+     && ((request.resource.data.status == 'working' && room().status == 'playing')
+      || (request.resource.data.status == 'left')
+      || (request.resource.data.status == 'submitted' && room().status == 'playing' && request.resource.data.completed == room().total && existsAfter(/databases/$(database)/documents/raceRooms/$(code)/results/$(uid))));
+    allow delete: if host();
+   }
+   match /results/{uid} {
+    allow get: if signed() && (request.auth.uid == uid || host() || (member() && live() && room().status == 'closed'));
+    allow list: if signed() && (host() || (member() && live() && room().status == 'closed'));
+    allow create: if signed() && request.auth.uid == uid && member() && live() && room().status == 'playing'
+     && request.resource.data.keys().hasAll(['nick','subject','fingerprint','total','correct','score']) && request.resource.data.keys().hasOnly(['nick','subject','fingerprint','total','correct','score'])
+     && request.resource.data.nick == get(/databases/$(database)/documents/raceRooms/$(code)/players/$(uid)).data.nick
+     && request.resource.data.subject == room().subject && request.resource.data.fingerprint == room().fingerprint
+     && request.resource.data.total == room().total && request.resource.data.correct is int && request.resource.data.correct >= 0 && request.resource.data.correct <= room().total
+     && request.resource.data.score == request.resource.data.correct * 10
+     && getAfter(/databases/$(database)/documents/raceRooms/$(code)/players/$(uid)).data.status == 'submitted';
+    allow update: if false;
+    allow delete: if host();
+   }
+  }
+ 
+  /* ---------- Bireysel rekor ve sıralama (v15) ----------
+     Oda kuralları yukarıda değişmeden durur. Tablo kimliği: dönem~tablo~dönemlik ('genel' veya 'w<hafta>').
+     Hafta, Türkiye saatiyle (UTC+3) pazartesi 00:00'da başlar ve sunucu saatine (request.time) göre denetlenir. */
+  function rkTerm() { return '2026-2027'; }
+  function rkBoards() { return {'bh-e1': 12, 'bh-e2': 12, 'bh-e3': 12, 'bh-e4': 12, 'bh-e5': 12, 'bh-e6': 12, 'bh-e7': 12, 'bh-e8': 12, 'ma-e1': 12, 'ma-e2': 12, 'ma-e3': 12, 'ma-e4': 12, 'ma-e5': 12, 'ma-e6': 12, 'ma-e7': 12, 'ma-e8': 12, 'ma-e9': 12, 'ma-e10': 12, 'ma-e11': 12, 'ma-e12': 12, 'bl-e1': 12, 'kv-basit': 5, 'kv-tabldot': 9, 'ma-s01': 10, 'ma-s02': 5, 'ma-s03': 6, 'ma-s04': 6, 'ma-s05': 7, 'ma-s06': 6, 'ma-s07': 5, 'ma-s08': 5, 'ma-s09': 5, 'ma-s10': 7, 'ma-s11': 8, 'ma-s12': 4, 'ma-s13': 7, 'ma-s14': 7, 'ma-s15': 7, 'bl-s1': 13}; }
+  function rkVersion() { return 1; }
+  function rkWeekNow() { return (request.time.toMillis() + 10800000 + 259200000) / 604800000; }
+  function rkParts(table) { return table.split('~'); }
+  function rkReadable(table) { return rkParts(table).size() == 3 && rkParts(table)[1] in rkBoards() && rkParts(table)[0].matches('^[0-9]{4}-[0-9]{4}$') && rkParts(table)[2].matches('^(genel|w[0-9]{1,6})$'); }
+  function rkWritable(table) { return rkReadable(table) && rkParts(table)[0] == rkTerm() && (rkParts(table)[2] == 'genel' || rkParts(table)[2] == 'w' + string(rkWeekNow())); }
+
+  match /rekorProfiller/{pid} {
+   allow get: if signed() && (resource == null || resource.data.owner == request.auth.uid);
+   allow list: if false;
+   allow create: if signed() && pid.matches('^[a-z0-9]{20}$')
+    && request.resource.data.keys().hasAll(['owner','status','gen']) && request.resource.data.keys().hasOnly(['owner','status','gen'])
+    && request.resource.data.owner == request.auth.uid && request.resource.data.status == 'in' && request.resource.data.gen == 0;
+   allow update: if signed() && resource.data.owner == request.auth.uid && resource.data.status != 'deleted'
+    && request.resource.data.keys().hasAll(['owner','status','gen']) && request.resource.data.keys().hasOnly(['owner','status','gen'])
+    && request.resource.data.owner == resource.data.owner
+    && request.resource.data.gen == resource.data.gen + 1
+    && ((resource.data.status == 'in' && request.resource.data.status in ['out','deleted'])
+     || (resource.data.status == 'out' && request.resource.data.status in ['in','deleted']));
+   allow delete: if false;
+  }
+
+  match /rekor/{table}/rows/{pid} {
+   function prof() { return get(/databases/$(database)/documents/rekorProfiller/$(pid)).data; }
+   function profAfter() { return getAfter(/databases/$(database)/documents/rekorProfiller/$(pid)).data; }
+   function total() { return rkBoards()[rkParts(table)[1]]; }
+   function shape(d) {
+    return d.keys().hasAll(['name','correct','term','version','gen']) && d.keys().hasOnly(['name','correct','term','version','gen'])
+     && d.name is string && d.name.size() >= 1 && d.name.size() <= 16
+     && d.correct is int && d.correct >= 0 && d.correct <= total()
+     && d.term == rkTerm() && d.version == rkVersion() && d.gen is int;
+   }
+   function live() {
+    return signed() && exists(/databases/$(database)/documents/rekorProfiller/$(pid))
+     && prof().owner == request.auth.uid && prof().status == 'in' && profAfter().status == 'in'
+     && prof().gen == profAfter().gen && request.resource.data.gen == prof().gen;
+   }
+   allow list, get: if signed() && rkReadable(table);
+   allow create: if rkWritable(table) && shape(request.resource.data) && live();
+   allow update: if rkWritable(table) && shape(request.resource.data) && live() && (
+    resource.data.gen < prof().gen
+    || (request.resource.data.diff(resource.data).affectedKeys().hasOnly(['correct']) && request.resource.data.correct > resource.data.correct)
+    || request.resource.data.diff(resource.data).affectedKeys().hasOnly(['name']));
+   allow delete: if signed() && exists(/databases/$(database)/documents/rekorProfiller/$(pid))
+    && prof().owner == request.auth.uid && (prof().status in ['out','deleted'] || resource.data.gen < prof().gen);
+  }
+ }
+}

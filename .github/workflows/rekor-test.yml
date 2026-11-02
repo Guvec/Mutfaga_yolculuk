@@ -1,0 +1,48 @@
+# Yalnız test-rekor dalında çalışır. main dalına ve canlı siteye dokunmaz.
+name: Rekor kural testleri
+on:
+  push:
+    branches: [test-rekor]
+    paths-ignore: ['ci-sonuc/**']
+permissions:
+  contents: write
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: {node-version: '20'}
+      - uses: actions/setup-java@v4
+        with: {distribution: temurin, java-version: '21'}
+      - name: Çalışma klasörünü hazırla
+        run: |
+          mkdir -p ../work/site
+          rsync -a --exclude .git --exclude ci --exclude .github --exclude ci-sonuc ./ ../work/site/
+          cp -r ci/firebase ../work/firebase
+          cp ci/package.json ../work/package.json
+      - name: Bağımlılıkları kur
+        working-directory: ../work
+        run: |
+          npm install --no-audit --no-fund
+          npx playwright install --with-deps chromium
+      - name: Testleri çalıştır
+        working-directory: ../work
+        run: |
+          set +e
+          mkdir -p out
+          { echo "== $(date -u) commit ${GITHUB_SHA}"; 
+            for t in state-tests speech-tests race-model-tests spice-info-tests ui-regression rekor-ui-tests; do echo "== $t"; node site/tests/$t.cjs; echo "exit=$?"; done;
+            echo "== emulator: rekor-rules-tests + oda testleri (race-rules, race-ui)";
+            npx firebase emulators:exec --only auth,firestore --project demo-mesleki-yaris --config firebase/firebase.json "node site/tests/rekor-rules-tests.cjs && node site/tests/run-race-integration.cjs"; echo "exit=$?";
+          } > out/sonuc.txt 2>&1
+          cat out/sonuc.txt
+      - name: Sonucu dala yaz
+        run: |
+          mkdir -p ci-sonuc && cp ../work/out/sonuc.txt ci-sonuc/sonuc.txt
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add ci-sonuc/sonuc.txt
+          git commit -m "Test sonucu ${GITHUB_SHA::7}" || true
+          git push
