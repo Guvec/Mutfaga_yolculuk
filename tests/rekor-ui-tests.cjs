@@ -128,13 +128,18 @@ const FAKE=`window.REKOR_FAKE=(()=>{const prof={},rows={};let uid='u-cihaz';cons
   // Oyun sonunda "Birlikte tekrar edelim": yalnız yanlış varsa, en fazla 4 yanlış + 1 bildiği madde, puansız, sıralamayı etkilemez.
   await play('Tekrar Bir',0);assert.equal(await page.getByRole('button',{name:/Birlikte tekrar edelim/}).count(),0);ok('Hiç yanlış yoksa tekrar düğmesi çıkmıyor');
   await play('Tekrar Iki',6);await settle();
-  const tb=page.getByRole('button',{name:/Birlikte tekrar edelim \(4\)/});assert(await tb.isVisible());assert((await page.textContent('#app')).includes('Kalanlar Pekiştiriyorum listende bekler'));ok('Oyun sonunda 6 yanlışlı öğrenciye "(4)" düğmesi çıkıyor');
+  const tb=page.getByRole('button',{name:/Birlikte tekrar edelim \(5\)/});assert(await tb.isVisible());assert((await page.textContent('#app')).includes('Kalanlar Pekiştiriyorum listende bekler'));ok('Oyun sonunda 6 yanlışlı öğrenciye "(5)" düğmesi çıkıyor (4 yanlış + 1 bildiği)');
   const bestBefore=await page.evaluate(()=>JSON.stringify([rkBestAll()[rkPid('Tekrar Iki')],REKOR_FAKE.rows]));
   await tb.click();
   const tr=await page.evaluate(()=>({kind:st.pekRound.kind,n:st.board.items.length,prac:st.sess.practice,left:rkPekItems('baharat').length}));
   assert.deepEqual(tr,{kind:'m',n:5,prac:'pek',left:6});ok('Tekrar turu 4 yanlış + 1 bildiği maddeyle açılıyor, kalan 2 yanlış listede');
   await page.evaluate(()=>{st.board.items.forEach(it=>tryPair(it.id,it.answer));render();});await settle();
   assert.equal(await page.evaluate(()=>JSON.stringify([rkBestAll()[rkPid('Tekrar Iki')],REKOR_FAKE.rows])),bestBefore);assert.equal(await page.evaluate(()=>rkPekItems('baharat').length),6);ok('Tekrar turu rekoru ve sıralamayı değiştirmiyor; aynı günkü doğrular maddeyi çıkarmıyor');
+  // Tekrar turu puan vermez; başka profile geçince eski düğme çıkmaz; kuverde düğme yoktur; eski kuyruktaki tam ad kısaltılır.
+  const pz=await page.evaluate(()=>({s:st.sess.s,head:st.lastRes&&st.lastRes.head}));assert.equal(pz.s,0);
+  const ph=await page.evaluate(()=>{pickProfile('Başka Kişi');return rkTekrarHTML();});assert.equal(ph,'');ok('Tekrar turu puan yazmıyor; başka profilde eski tekrar düğmesi çıkmıyor');
+  const kvt=await page.evaluate(()=>{pickProfile('Ali');st.subject='kuver';st.op='kur';st.lvl=3;startSession();st.sess.qs.push({prompt:'su_bardagi',r:0});st.sess.practice='check';rkPekFromAssessment(rkPid('Ali',true));return RK.tk;});assert.equal(kvt,null);ok('Kuverde "Birlikte tekrar edelim" düğmesi çıkmıyor');
+  const qn=await page.evaluate(()=>{const pid=rkPid('Ali',true);lsSet('rk_queue',[]);const p=rkProf(pid);return rkName('Ali Veli Yılmaz');});assert.equal(qn,'Ali');ok('Gönderim anında ad yeniden ilk ada indiriliyor');
   // Sıralamada yalnız ilk ad; ilk sonuçtan önce açıklama; ana sayfada sıralama düğmesi.
   const fn=await page.evaluate(()=>[rkName('Ali Veli'),rkName('  Ayşe   Nur Kaya '),rkName('Fatih'),rkName(''),rkName('Abcdefghijklmnopqrstuvwxyz Soyad')]);
   assert.deepEqual(fn,['Ali','Ayşe','Fatih','','Abcdefghijklmnop']);ok('Sıralamaya yalnız ilk ad gider');

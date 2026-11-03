@@ -112,7 +112,7 @@ async function rkFlush(sessId){
    if(p.status!=='in'||item.gen!==p.gen){drop();continue;}
    if(!checked[item.pid]){let sp;try{sp=await be.ensureProfile(item.pid);}catch(e){if(!/permission/i.test(rkErrCode(e)))throw e;rkProfSet(item.pid,{status:'lost'});lsSet('rk_queue',rkQueue().filter(x=>x.pid!==item.pid));if(item.sess===sessId){outcome=outcome||{};outcome.genel={failed:true};}continue;}rkProfSet(item.pid,{status:sp.status,gen:sp.gen,synced:true});checked[item.pid]=sp;}
    const sp=checked[item.pid];if(sp.status!=='in'||sp.gen!==item.gen){drop();continue;}
-   const row={name:item.name,correct:item.correct,term:RK_TERM,version:RK_VERSION,gen:item.gen};
+   const row={name:rkName(item.name),correct:item.correct,term:RK_TERM,version:RK_VERSION,gen:item.gen};
    let res=null,table=null;
    const tries=item.period==='genel'?[rkTable(item.board,'genel')]:[0,1,-1].map(d=>rkTable(item.board,'hafta',rkWeekNo()+d));
    for(const t of tries){try{rkCleanAdd(item.pid,t);res=await be.submit(t,item.pid,row);table=t;break;}catch(e){if(!/permission/i.test(rkErrCode(e)))throw e;}}
@@ -196,16 +196,17 @@ function rkPekFromAssessment(pid){
  else if(st.op==='kur'){kind='k';arg=st.lvl;s.qs.forEach(row=>{if(!row.prompt)return;mk('k|'+st.lvl+'|'+row.prompt,{kind:'k',subject:'kuver',lvl:st.lvl,id:row.prompt},row.r===1,null);});}
  rkPekSave(pid,map);
  /* Oyun sonunda "Birlikte tekrar edelim" düğmesi için bu çalışmanın yanlışları ve bir bildiği madde. */
- RK.tk=kind&&wrong.length?{sess:s.id,kind,arg,subject:st.subject,keys:wrong,known:known.slice(0,1),n:wrong.length}:null;
+ /* Kuver'de düğme yok: tur kalan parçaların hepsini de sorar. Kuver yanlışları Pekiştiriyorum menüsünden çalışılır. */
+ RK.tk=kind&&kind!=='k'&&wrong.length?{sess:s.id,prof:st.prof,kind,arg,subject:st.subject,keys:wrong,known:known.slice(0,1),n:Math.min(wrong.length,4)+(known.length?1:0),more:wrong.length>4}:null;
 }
 /* Anahtardan (m|konu|takım|id, q|konu|id) bildiği maddenin bilgisini çıkarır. */
 function rkPekKnown(key){const a=String(key).split('|');if(a[0]==='m')return {kind:'m',subject:a[1],set:Number(a[2]),id:a.slice(3).join('|')};if(a[0]==='q')return {kind:'q',subject:a[1],id:a.slice(2).join('|')};return null;}
 function rkTekrarHTML(){
- const t=RK.tk;if(!t||!st.sess||t.sess!==st.sess.id||st.guest)return '';
- const n=Math.min(t.n,4);
- return '<section class="card rk-tekrar" role="status"><strong>Birlikte tekrar edelim</strong><p>'+n+' maddeyi yeniden çalışalım. Bu tur sıralamaya yazılmaz.'+(t.n>4?' Kalanlar Pekiştiriyorum listende bekler.':'')+'</p><button class="btn pri" onclick="rkTekrarBasla()">Birlikte tekrar edelim ('+n+')</button></section>';
+ const t=RK.tk;if(!t||!st.sess||t.sess!==st.sess.id||st.guest||t.prof!==st.prof)return '';
+ const n=t.n;
+ return '<section class="card rk-tekrar" role="status"><strong>Birlikte tekrar edelim</strong><p>'+n+' maddeyle yeniden çalışalım. Bu tur sıralamaya yazılmaz.'+(t.more?' Kalanlar Pekiştiriyorum listende bekler.':'')+'</p><button class="btn pri" onclick="rkTekrarBasla()">Birlikte tekrar edelim ('+n+')</button></section>';
 }
-function rkTekrarBasla(){const t=RK.tk;if(!t)return;RK.tk=null;st.subject=t.subject;rkPekStart(t.kind,t.arg,{keys:t.keys,known:t.known});}
+function rkTekrarBasla(){const t=RK.tk;if(!t||st.guest||t.prof!==st.prof){RK.tk=null;return;}RK.tk=null;st.subject=t.subject;rkPekStart(t.kind,t.arg,{keys:t.keys,known:t.known});}
 function rkPekItems(subject){if(st.guest||!st.prof)return [];const pid=rkPid(st.prof);if(!pid)return [];return Object.entries(rkPek(pid)).filter(([k,v])=>v.subject===subject).map(([k,v])=>({key:k,...v}));}
 function rkPekGroups(subject){
  const items=rkPekItems(subject),out=[];
@@ -334,7 +335,9 @@ function rkPekFullCheck(){const n=st.pekRound&&st.pekRound.set;if(!n)return;st.p
 
 /* ---------- Ekran ve akış bağlantıları ---------- */
 const RK_SAVE=saveProgress;
-saveProgress=function(){if(st.sess&&st.sess.unranked)st.sess.s=0;return RK_SAVE.apply(this,arguments);};
+saveProgress=function(){
+ if(st.sess&&(st.sess.unranked||st.sess.practice==='pek')){st.sess.s=0;if(st.lastRes&&st.lastRes.head)st.lastRes.head=st.lastRes.head.replace(/\s*\+\d+ puan\.?/,'');}
+ return RK_SAVE.apply(this,arguments);};
 const RK_RENDER=render,RK_BACK=back,RK_CAT=catName,RK_STATS=statsHtml,RK_ANSWER=answer,RK_START=startSession,RK_STARTBOARD=startBoard,RK_STARTCONTENT=startContent;
 /* Yeni normal oturum başlarken önceki pekiştirme/yoklama işaretleri taşınmaz. */
 startSession=function(){if(!RK.startingPek)st.pekRound=null;return RK_START.apply(this,arguments);};

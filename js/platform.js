@@ -28,7 +28,7 @@ const PLACE_LABEL={yemek_catali:'Tabağın solu',yemek_bicagi:'Tabağın sağı'
 function subjectName(){ return SUBJECTS.find(s=>s.id===st.subject).name; }
 /* Takım adı: "6. takım · Pişirme kapları ve bıçaklar" (başlık varsa). */
 function setName(n){const d=(typeof getData==='function'&&getData())||{};return n+'. takım'+(d.setTitles&&d.setTitles[n]?' · '+d.setTitles[n]:'');}
-function setCard(n,d,count){return '<button type="button" class="design-topic set-topic" onclick="startContent('+n+')"><span class="design-topic-art set-collage">'+[].concat(d.setCovers[n]).slice(0,4).map(u=>'<img src="'+esc(u)+'" alt="" loading="lazy">').join('')+'<span class="set-badge" aria-hidden="true">'+n+'</span></span><span class="set-no">'+n+'. takım</span><span class="design-topic-name">'+esc((d.setTitles&&d.setTitles[n])||'')+'</span><span class="design-topic-note">'+count+' kart</span></button>';}
+function setCard(n,d,count){return '<button type="button" class="design-topic set-topic" onclick="startContent('+n+')"><span class="design-topic-art set-collage">'+[].concat(d.setCovers[n]).slice(0,4).map(u=>'<img src="'+esc(u)+'" alt="" loading="lazy">').join('')+'</span><span class="set-no">'+n+'. takım</span><span class="set-row"><span class="set-badge" aria-hidden="true">'+n+'</span><span class="design-topic-name">'+esc((d.setTitles&&d.setTitles[n])||'')+'</span></span><span class="design-topic-note">'+count+' kart</span></button>';}
 function menuButton(title,desc,action){return '<button class="menu-btn" onclick="'+action+'"><b>'+esc(title)+'</b><span>'+esc(desc)+'</span></button>';}
 function glassHTML(cls='',style=''){
   return '<span role="img" aria-label="Su bardağı" class="glass '+cls+'" style="'+style+'"></span>';
