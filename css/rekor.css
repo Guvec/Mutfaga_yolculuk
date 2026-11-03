@@ -25,3 +25,6 @@
 .rk-banner .btn{margin:6px 6px 0 0}
 .rk-banner.rk-new{border-left-color:#23804f;background:#f1faf4}
 .rk-start{margin:12px 0}.rk-start p{margin:6px 0}.rk-start-list{margin:6px 0 10px;padding-left:20px}.rk-start-list li{margin:2px 0}
+html[data-theme=dark] :is(.rk-rec,.rk-row,.rk-pick select){background:var(--surface);color:var(--text);border-color:var(--line)}
+html[data-theme=dark] .rk-row.rk-me{background:var(--teal2);border:2px solid var(--teal)}
+html[data-theme=dark] .rk-rank,html[data-theme=sepia] .rk-rank{color:var(--teal)}

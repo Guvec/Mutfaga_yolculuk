@@ -13,11 +13,12 @@ var ONE_CIKAN=['baharat','mutfak-araclari','kuver','bulasik-makinesi-temizligi']
 var HAZIRLANIYOR=['beslenme-ilkeleri'];
 (function(){
  const root=document.documentElement;
- let night=false,pending=null;
- try{night=localStorage.getItem('mesleki-gece')==='true';}catch(e){}
- function applyTheme(){root.dataset.theme=night?'dark':'light';root.style.colorScheme=night?'dark':'light';document.querySelectorAll('.theme-toggle').forEach(b=>{b.textContent=night?'Gece modu: Açık':'Gece modu: Kapalı';b.setAttribute('aria-pressed',String(night));});const m=document.querySelector('meta[name="theme-color"]');if(m)m.content=night?'#14231f':'#ffffff';}
- window.geceModu=function(){night=!night;try{localStorage.setItem('mesleki-gece',String(night));}catch(e){}applyTheme();};
- const themeButton=()=>'<button type="button" class="theme-toggle" aria-pressed="'+night+'" onclick="geceModu()">Gece modu: '+(night?'Açık':'Kapalı')+'</button>';
+ let theme='light',pending=null;
+ const THEMES=['light','sepia','dark'],THEME_NAME={light:'Açık',sepia:'Sepya',dark:'Gece'},THEME_COLOR={light:'#ffffff',sepia:'#f3ead4',dark:'#14231f'};
+ try{const t=localStorage.getItem('mesleki-tema');theme=THEMES.includes(t)?t:(localStorage.getItem('mesleki-gece')==='true'?'dark':'light');}catch(e){}
+ function applyTheme(){root.dataset.theme=theme;root.style.colorScheme=theme==='dark'?'dark':'light';document.querySelectorAll('.theme-toggle').forEach(b=>{b.textContent='Tema: '+THEME_NAME[theme];b.removeAttribute('aria-pressed');b.setAttribute('aria-label','Tema: '+THEME_NAME[theme]+'. Değiştirmek için dokun.');});const m=document.querySelector('meta[name="theme-color"]');if(m)m.content=THEME_COLOR[theme];}
+ window.temaDegistir=function(){theme=THEMES[(THEMES.indexOf(theme)+1)%THEMES.length];try{localStorage.setItem('mesleki-tema',theme);localStorage.setItem('mesleki-gece',String(theme==='dark'));}catch(e){}applyTheme();};
+ const themeButton=()=>'<button type="button" class="theme-toggle" aria-label="Tema: '+THEME_NAME[theme]+'. Değiştirmek için dokun." onclick="temaDegistir()">Tema: '+THEME_NAME[theme]+'</button>';
  const sesYazi=()=>'Sesli okuma: '+(SES.acik?'Açık':'Kapalı');
  const hoparlor=()=>'<svg class="design-spk" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 9h4l5-4v14l-5-4H4z" fill="currentColor"/>'+(SES.acik?'<path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>':'<path d="M16 9l5 6M21 9l-5 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>')+'</svg>';
  const muzik=()=>typeof muzikDugme==='function'?muzikDugme():'';
@@ -57,6 +58,6 @@ var HAZIRLANIYOR=['beslenme-ilkeleri'];
   else beforeRender();
   decorate();
  };
- window.addEventListener('storage',e=>{if(e.key==='mesleki-gece'){night=e.newValue==='true';applyTheme();}});
+ window.addEventListener('storage',e=>{if(e.key==='mesleki-tema'&&THEMES.includes(e.newValue)){theme=e.newValue;applyTheme();}});
  applyTheme();render();
 })();

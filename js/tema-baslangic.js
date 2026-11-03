@@ -1,1 +1,1 @@
-try{document.documentElement.dataset.theme=localStorage.getItem('mesleki-gece')==='true'?'dark':'light';document.documentElement.style.colorScheme=document.documentElement.dataset.theme;}catch(e){document.documentElement.dataset.theme='light';}
+try{var t=localStorage.getItem('mesleki-tema');if(t!=='light'&&t!=='sepia'&&t!=='dark')t=localStorage.getItem('mesleki-gece')==='true'?'dark':'light';document.documentElement.dataset.theme=t;document.documentElement.style.colorScheme=t==='dark'?'dark':'light';}catch(e){document.documentElement.dataset.theme='light';}
