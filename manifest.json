@@ -1,6 +1,6 @@
 {
-  "name": "Mesleki Oyunlar",
-  "short_name": "Mesleki Oyunlar",
+  "name": "İşin Mutfağına Yolculuk",
+  "short_name": "İşin Mutfağı",
   "description": "Yiyecek İçecek Hizmetleri alanı için kuver, mutfak araçları, beslenme ve temizlik çalışmaları.",
   "lang": "tr",
   "start_url": "./",
@@ -8,9 +8,19 @@
   "display": "fullscreen",
   "orientation": "any",
   "background_color": "#ffffff",
-  "theme_color": "#0f6e72",
+  "theme_color": "#ffffff",
   "icons": [
-    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
-    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" }
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
   ]
 }

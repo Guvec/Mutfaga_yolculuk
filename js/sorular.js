@@ -44,7 +44,7 @@ contentQuizHTML=function(){
   return h+footHtml()+'</div>';
 };
 render=function(){
-  if(st.screen==='mcqmode'){document.getElementById('app').innerHTML=topBar(subjectName())+'<div class="wrap"><h1>Nasıl çalışalım?</h1><div class="list">'+menuButton('Öğreniyorum','Yanlışta ipucu ve ikinci deneme var.',"mcqBegin('learn')")+menuButton('Kendimi Deniyorum','Her soruda bir yanıt ver. Açıklamalar çalışma bitince açılır.',"mcqBegin('check')")+'</div></div>';return;}
+  if(st.screen==='mcqmode'){document.getElementById('app').innerHTML=topBar(subjectName())+'<div class="wrap"><h1>Nasıl çalışalım?</h1><div class="list">'+menuButton('Öğreniyorum','Yanlışta ipucu ve ikinci deneme var.',"mcqBegin('learn')")+menuButton('Uyguluyorum','Her soruda bir yanıt ver. Açıklamalar çalışma bitince açılır.',"mcqBegin('check')")+'</div></div>';return;}
   if(st.screen==='content'&&st.op==='mcq'&&CONTENT[st.subject]&&mcqGroups().length){document.getElementById('app').innerHTML=mcqListHTML();return;}
   MCQ_PREV_RENDER();
 };

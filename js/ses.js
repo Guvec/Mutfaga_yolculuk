@@ -20,7 +20,7 @@ function sesSus(){
 }
 function sesYedek(metin,neden){sesDurum(neden+' Yazılı okuma: '+metin);}
 function sesBaslat(req){
- if(!req||req.token!==SES.token||!SES.acik)return;
+ if(!req||req.token!==SES.token||(!SES.acik&&!req.zorla))return;
  const vs=sesTurkce();if(!vs.length)return;
  SES.pending=null;clearTimeout(SES.timer);
  // Yerel ses varsayılanı ağ gecikmesini azaltır. Öğrencinin seçimi önceliklidir.

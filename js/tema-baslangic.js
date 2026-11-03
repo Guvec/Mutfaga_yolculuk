@@ -1,0 +1,1 @@
+try{document.documentElement.dataset.theme=localStorage.getItem('mesleki-gece')==='true'?'dark':'light';document.documentElement.style.colorScheme=document.documentElement.dataset.theme;}catch(e){document.documentElement.dataset.theme='light';}

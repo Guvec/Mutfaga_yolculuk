@@ -10,7 +10,7 @@ const SUBJECTS = [
 const CONTENT = Object.create(null);
 const OLD_RENDER = render, OLD_NEWQ = newQ, OLD_START = startSession, OLD_RESOLVE = resolve;
 const OLD_QUIZ = quizHtml, OLD_ITEM = itemImg;
-VERSION='Sürüm · 02.11.2026 · Konuya göre yarış odaları 13'; // Her yüklemede tarih güncellenir.
+VERSION='Sürüm · 03.11.2026 · Yeni tasarım, gece modu ve müzik'; // Her yüklemede tarih güncellenir.
 st.subject='kuver'; st.practice='learn';
 LEVELS={
   1:{name:'Basit Kuver', items:['yemek_catali','yemek_bicagi','pecete','corba_kasigi','su_bardagi']},
@@ -37,9 +37,9 @@ function exampleHTML(){
   return '<div class="table" role="img" aria-label="Çorba ve ana yemek menüsü için basit kuver örneği">'+['kuver_tabagi'].concat(LEVELS[1].items).map(k=>itemImg(k)).join('')+'</div>';
 }
 catName=function(r){
-  if(r.subject && r.subject!=='kuver')return (SUBJECTS.find(s=>s.id===r.subject)||{name:r.subject}).name+' · '+({mcq:'Çoktan Seçmeli Sorular',match:'Eşleştirme',word:'Kelime Kartları'}[r.op]||r.op)+(r.set?' · '+r.set+'. takım':'')+(r.op==='match'&&r.set?(r.practice==='check'?' · Kendimi Deniyorum':' · Öğreniyorum'):'');
+  if(r.subject && r.subject!=='kuver')return (SUBJECTS.find(s=>s.id===r.subject)||{name:r.subject}).name+' · '+({mcq:'Çoktan Seçmeli Sorular',match:'Eşleştirme',word:'Kelime Kartları'}[r.op]||r.op)+(r.set?' · '+r.set+'. takım':'')+(r.op==='match'&&r.set?(r.practice==='check'?' · Uyguluyorum':' · Öğreniyorum'):'');
   const kind=r.variant?(r.variant==='tabldot'?'Tabldot Kuver':'Basit Kuver'):(r.d===3?'Eski tam kuver':r.d===2?'Eski seviye 2':'Eski temel kuver');
-  return (r.op==='kur'?'Kuveri Kur · '+kind:'Adını Bul')+(r.practice==='check'?' · Kendimi Deniyorum':r.practice==='learn'?' · Öğreniyorum':'');
+  return (r.op==='kur'?'Kuveri Kur · '+kind:'Adını Bul')+(r.practice==='check'?' · Uyguluyorum':r.practice==='learn'?' · Öğreniyorum':'');
 };
 back=function(){const m={profiles:'welcome',home:'profiles',subject:'home',level:'subject',mode:'level',summary:'subject',history:'home',content:'subject',classification:'subject'};go(m[st.screen]||'home');};
 function openSubject(id){st.subject=id;go('subject');}
@@ -183,7 +183,7 @@ render=function(){
     if(st.subject!=='kuver')h+=menuButton('Eşleştirme','12 görseli doğru adla eşleştir.',"pickContent('match')");
     if(st.subject!=='baharat'&&st.subject!=='kuver')h+=menuButton('Çoktan Seçmeli Sorular','Bu konuya ait sorular.',"pickContent('mcq')");h+='</div></div>';
   }else if(st.screen==='level')h=topBar('Kuveri Kur')+'<div class="wrap"><h1>Kuver seç</h1><div class="list">'+menuButton('Basit Kuver','6 parça · Çorba ve ana yemek menüsü. Kuver tabağı hazır.',"pickLevel(1)")+menuButton('Tabldot Kuver','10 parça · Bu çalışmanın örnek düzenine göre.',"pickLevel(3)")+'</div></div>';
-  else if(st.screen==='mode')h=topBar('Çalışma biçimi')+'<div class="wrap"><h1>Nasıl çalışalım?</h1><div class="list">'+menuButton('Öğreniyorum','İpucu ve ikinci deneme ile çalış.',"choosePractice('learn')")+menuButton('Kendimi Deniyorum','Her soruyu bir kez yanıtla. Sonra açıklamayı incele.',"choosePractice('check')")+'</div><p class="note">Her oturumda 1 mola hakkın var.</p></div>';
+  else if(st.screen==='mode')h=topBar('Çalışma biçimi')+'<div class="wrap"><h1>Nasıl çalışalım?</h1><div class="list">'+menuButton('Öğreniyorum','İpucu ve ikinci deneme ile çalış.',"choosePractice('learn')")+menuButton('Uyguluyorum','Her soruyu bir kez yanıtla. Sonra açıklamayı incele.',"choosePractice('check')")+'</div><p class="note">Her oturumda 1 mola hakkın var.</p></div>';
   else if(st.screen==='content'){
     const d=getData(),a=st.op==='mcq'?d.questions:st.op==='match'?d.matches:d.words;
     h=topBar(subjectName())+'<div class="wrap"><h1>'+({mcq:'Çoktan Seçmeli Sorular',match:'Eşleştirme',word:'Kelime Kartları'}[st.op])+'</h1>';
