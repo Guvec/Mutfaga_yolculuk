@@ -119,12 +119,6 @@ const FAKE=`window.REKOR_FAKE=(()=>{const prof={},rows={};let uid='u-cihaz';cons
   // Uyguluyorum adı; eski ad kalmadı.
   await page.evaluate(()=>{st.subject='baharat';st.op='match';st.contentSet=1;go('boardmode');});assert(await page.getByRole('button',{name:/Uyguluyorum/}).isVisible());assert.equal(await page.getByText('Kendimi Deniyorum').count(),0);
   if(shots){await page.setViewportSize({width:1200,height:844});await page.evaluate(()=>rkOpenBoard('bh-e1'));await page.waitForSelector('.rk-row');await page.screenshot({path:shots+'/5-siralama-1200.png'});}
-  // Başlangıç ekranında herkes rekorunu ve sıralama bağlantısını görür; kapatma anahtarı yok.
-  await play('Mert',0);await settle();await page.evaluate(()=>{st.subject='baharat';st.op='match';go('boardmode');});
-  assert.match(await page.locator('.rk-start').innerText(),/Kendi rekorun[\s\S]*1\. takım: 12 \/ 12[\s\S]*Sıralamayı gör/);
-  await page.evaluate(()=>{st.guest=true;go('boardmode');});
-  assert.match(await page.locator('.rk-start').innerText(),/Sıralamayı gör/);await page.evaluate(()=>{st.guest=false;});
-  ok('Başlangıç ekranında kendi rekor ve Sıralamayı gör düğmesi var (misafirde yalnız sıralama)');
   assert.deepEqual(errors,[]);ok('Tarayıcıda yakalanmamış JavaScript hatası yok');
  }finally{await browser.close();await new Promise(r=>server.close(r));}
 })().catch(e=>{console.error(e);process.exitCode=1;});

@@ -305,24 +305,6 @@ function rkBoardHTML(){
  h+='</ol>'+(big?'<p class="note">İlk 50 sonuç ve senin sıran gösteriliyor.</p>':'')+'</div>';
  return h;
 }
-/* Oyun başlamadan önce herkes kendi rekorunu ve sıralama bağlantısını görür. Kapatma anahtarı yoktur. */
-function rkStartBoards(){
- if(st.screen==='boardmode')return RK_BOARDS.filter(b=>b.subject===st.subject&&b.kind==='match');
- if(st.screen==='mode'&&st.op==='kur')return RK_BOARDS.filter(b=>b.kind==='kur');
- if(st.screen==='mcqmode')return RK_BOARDS.filter(b=>b.kind==='mcq'&&b.subject===st.subject&&b.group===st.mcqGroup);
- return [];
-}
-function rkStartCardHTML(){
- const bs=rkStartBoards();if(!bs.length)return '';
- const open=(bs.find(b=>b.id)||bs[0]).id;
- if(st.guest)return '<section class="card rk-start"><strong>Sıralama</strong><p>Misafir olarak rekorun kaydedilmez. Sıralamayı görebilirsin.</p><button class="btn sm" onclick="rkOpenBoard(\''+open+'\')">Sıralamayı gör</button></section>';
- const pid=rkPid(st.prof),mine=pid?(rkBestAll()[pid]||{}):{};
- const rec=bs.filter(b=>mine[b.id]);
- let h='<section class="card rk-start"><strong>Kendi rekorun</strong>';
- if(!rec.length)h+='<p>Henüz rekorun yok. Uyguluyorum sonucun rekorun olur.</p>';
- else h+='<ul class="rk-start-list">'+rec.map(b=>'<li>'+esc(b.label.replace(/ · (Eşleştirme|Sorular)$/,''))+': <b>'+mine[b.id].best+' / '+b.total+'</b></li>').join('')+'</ul>';
- return h+'<button class="btn sm" onclick="rkOpenBoard(\''+(rec[0]||bs[0]).id+'\')">Sıralamayı gör</button></section>';
-}
 function rkBannerHTML(){
  const m=RK.msg;if(!m||!st.sess||m.sess!==st.sess.id)return '';
  return '<section class="card rk-banner'+(m.head==='Yeni rekor!'?' rk-new':'')+'" role="status"><strong>'+esc(m.head)+'</strong><p>'+esc(m.text)+'</p>'+(m.cloud?'<p class="note">'+esc(m.cloud)+'</p>':'')+(m.note?'<p class="note">'+esc(m.note)+'</p>':'')+(m.board?'<button class="btn sm" onclick="rkOpenBoard(\''+m.board+'\')">Sıralamayı gör</button>':'')+(m.pek&&rkPekItems(st.subject).length?'<button class="btn sm" onclick="go(\'pekmenu\')">Pekiştiriyorum listesine dön</button>':'')+(m.pek&&st.pekRound&&st.pekRound.kind==='m'?'<button class="btn sm" onclick="rkPekFullCheck()">Bütün takımla dene (puansız)</button>':'')+'</section>';
@@ -373,7 +355,7 @@ render=function(){
  if(st.screen==='subject'&&!st.guest&&!rkRaceActive()){const list=app.querySelector('.wrap .list'),n=rkPekItems(st.subject).length;if(list){list.insertAdjacentHTML('beforeend',menuButton('Pekiştiriyorum'+(n?' ('+n+')':''),n?'Uyguluyorum\'da yanlış yaptıklarını tekrar et.':'Uyguluyorum\'da yanlış yaptığın maddeler burada toplanır.',"go('pekmenu')"));const nb=list.lastElementChild;if(nb)nb.classList.add('activity-card');}}
  if(['mode','boardmode','mcqmode'].includes(st.screen)){const list=app.querySelector('.wrap .list'),ranked=st.screen==='boardmode'?!!RK_SUBJ[st.subject]:st.screen==='mode'?st.op==='kur':RK_BOARDS.some(x=>x.kind==='mcq'&&x.subject===st.subject&&x.group===st.mcqGroup);
   const note=ranked?'Uyguluyorum sonucun Rekorlarım\'a ve sıralamaya yazılır. Öğreniyorum yazılmaz.':st.screen==='mcqmode'?'Bu bölümün sonucu sıralamaya yazılmaz. Sıralama için “Bütün bölümler” denemesini çöz.':'Bu çalışmanın sonucu sıralamaya yazılmaz.';
-  if(list){list.insertAdjacentHTML('beforebegin',rkStartCardHTML());list.insertAdjacentHTML('afterend','<p class="note">'+note+'</p>');}}
+  if(list)list.insertAdjacentHTML('afterend','<p class="note">'+note+'</p>');}
  /* Pekiştirme turunun sonunda normal tur başlatan düğmeler gizlenir; dönüş banner'daki düğmelerle yapılır. */
  if(st.pekRound&&st.kDone&&['board','quiz'].includes(st.screen))app.querySelectorAll('button[onclick]').forEach(b=>{if(/startBoard|newKuverBtn|startSession/.test(b.getAttribute('onclick')))b.remove();});
  if(st.sess&&(st.sess.unranked||st.sess.practice==='pek'))app.querySelectorAll('.stats .chip').forEach(c=>{if(/Puan/.test(c.textContent))c.remove();});
