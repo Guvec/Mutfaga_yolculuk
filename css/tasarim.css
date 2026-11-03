@@ -126,3 +126,13 @@ html[data-theme=dark] .design-outline{background:var(--surface);color:var(--navy
 .design-guide .guide-item summary{font-weight:800;font-size:19px;color:var(--navy);cursor:pointer;min-height:44px;display:flex;align-items:center}
 .design-guide .guide-item p,.design-guide .guide-item li{font-size:17px;line-height:1.55}.design-guide .guide-item ul{padding-left:22px;margin:8px 0 0}
 .design-guide-btn{font-weight:700}
+/* Takım listesi: konu kartlarıyla aynı görünüm; 2x2 görsel kolajı ve numara rozeti */
+.set-list .set-topic{min-height:0;display:flex;flex-direction:column;align-items:stretch;width:100%;height:auto;border-radius:16px}
+.set-list .set-topic>span{display:block;width:100%;box-sizing:border-box;position:static}
+.set-list .set-topic>.set-collage{position:relative;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:2px;aspect-ratio:1/1;background:var(--line);padding:0}
+.set-collage img{width:100%;height:100%;object-fit:contain;background:#fff;display:block;padding:6px;box-sizing:border-box}
+.set-list .set-topic>.set-collage .set-badge{position:absolute;left:8px;top:8px;width:34px;height:34px;border-radius:50%;background:var(--teal);color:#fff;font-weight:800;font-size:17px;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 6px rgba(0,0,0,.25);width:34px}
+.set-topic .set-no{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.set-list .set-topic>.set-no{position:absolute}
+.set-topic .design-topic-name{font-size:18px;min-height:0;padding:12px 30px 4px 14px;flex:0 0 auto;align-items:flex-start}
+.set-topic .design-topic-note{margin-top:0;padding:0 30px 12px 14px}

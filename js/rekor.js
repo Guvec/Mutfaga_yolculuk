@@ -379,7 +379,7 @@ render=function(){
  /* Pekiştirme turunun sonunda normal tur başlatan düğmeler gizlenir; dönüş banner'daki düğmelerle yapılır. */
  if(st.pekRound&&st.kDone&&['board','quiz'].includes(st.screen))app.querySelectorAll('button[onclick]').forEach(b=>{if(/startBoard|newKuverBtn|startSession/.test(b.getAttribute('onclick')))b.remove();});
  if(st.sess&&(st.sess.unranked||st.sess.practice==='pek'))app.querySelectorAll('.stats .chip').forEach(c=>{if(/Puan/.test(c.textContent))c.remove();});
- if(['board','quiz','summary','spicereview'].includes(st.screen)){const ban=rkBannerHTML()+rkTekrarHTML();if(ban){const w=app.querySelector('.wrap')||app.querySelector('.quiz .side');if(w)w.insertAdjacentHTML('afterbegin',ban);}}
+ if(['board','quiz','summary','spicereview'].includes(st.screen)){const ban=rkBannerHTML(),tek=rkTekrarHTML(),w=app.querySelector('.wrap')||app.querySelector('.quiz .side');if(w){if(ban)w.insertAdjacentHTML('afterbegin',ban);if(tek)w.insertAdjacentHTML('beforeend',tek);}}
  /* Puansız deneme telefonda da açıkça belirtilir. */
  if(st.screen==='board'&&st.sess&&st.sess.unranked&&!(st.board&&st.board.checked)){const w=app.querySelector('.wrap');if(w)w.insertAdjacentHTML('afterbegin','<p class="card rk-banner" role="status"><strong>Puansız deneme</strong>Bu denemenin sonucu rekora ve sıralamaya yazılmaz.</p>');}
 };

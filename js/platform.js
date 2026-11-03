@@ -10,7 +10,7 @@ const SUBJECTS = [
 const CONTENT = Object.create(null);
 const OLD_RENDER = render, OLD_NEWQ = newQ, OLD_START = startSession, OLD_RESOLVE = resolve;
 const OLD_QUIZ = quizHtml, OLD_ITEM = itemImg;
-VERSION='Sürüm · 04.11.2026 · Oyun sonunda birlikte tekrar'; // Her yüklemede tarih güncellenir.
+VERSION='Sürüm · 04.11.2026 · Takım kapakları ve birlikte tekrar'; // Her yüklemede tarih güncellenir.
 st.subject='kuver'; st.practice='learn';
 LEVELS={
   1:{name:'Basit Kuver', items:['yemek_catali','yemek_bicagi','pecete','corba_kasigi','su_bardagi']},
@@ -26,6 +26,9 @@ ITEMS.corba_kasigi.kural='Bu menüde çorba önce servis edilir. Çorba kaşığ
 ITEMS.tatli_catali.kural='Bu düzende tatlı çatalı tabağın üst tarafına konur. Sapı sola bakar.';
 const PLACE_LABEL={yemek_catali:'Tabağın solu',yemek_bicagi:'Tabağın sağı',pecete:'En sol bölüm',corba_kasigi:'Sağ dış bölüm',su_bardagi:'Sağ üst bölüm',ekmek_tabagi:'Sol üst bölüm',tereyagi_bicagi:'Sol üstteki tabağın sağ kenarı',tatli_catali:'Tabağın üstündeki alt sıra',tatli_kasigi:'Tabağın üstündeki üst sıra'};
 function subjectName(){ return SUBJECTS.find(s=>s.id===st.subject).name; }
+/* Takım adı: "6. takım · Pişirme kapları ve bıçaklar" (başlık varsa). */
+function setName(n){const d=(typeof getData==='function'&&getData())||{};return n+'. takım'+(d.setTitles&&d.setTitles[n]?' · '+d.setTitles[n]:'');}
+function setCard(n,d,count){return '<button type="button" class="design-topic set-topic" onclick="startContent('+n+')"><span class="design-topic-art set-collage">'+[].concat(d.setCovers[n]).slice(0,4).map(u=>'<img src="'+esc(u)+'" alt="" loading="lazy">').join('')+'<span class="set-badge" aria-hidden="true">'+n+'</span></span><span class="set-no">'+n+'. takım</span><span class="design-topic-name">'+esc((d.setTitles&&d.setTitles[n])||'')+'</span><span class="design-topic-note">'+count+' kart</span></button>';}
 function menuButton(title,desc,action){return '<button class="menu-btn" onclick="'+action+'"><b>'+esc(title)+'</b><span>'+esc(desc)+'</span></button>';}
 function glassHTML(cls='',style=''){
   return '<span role="img" aria-label="Su bardağı" class="glass '+cls+'" style="'+style+'"></span>';
@@ -190,7 +193,7 @@ render=function(){
     if(CONTENT[st.subject]===null)h+='<p role="alert">İçerik yüklenemedi. Bağlantını kontrol edip yeniden dene.</p><button class="btn" onclick="loadContent()">Yeniden Dene</button>';
     else if(!CONTENT[st.subject])h+='<p>İçerik yükleniyor…</p>';
     else if(!a.length)h+='<p class="card">Bu konuda henüz etkinlik yok. Konu menüsünden başka bir çalışma seçebilirsin.</p>';
-    else if(contentSets().length)h+='<p class="sub">Bir takım seç. Her takımda '+a.filter(x=>x.set===contentSets()[0]).length+' kart var.</p><div class="list set-list">'+contentSets().map(n=>menuButton(n+'. takım'+(d.setTitles&&d.setTitles[n]?' · '+d.setTitles[n]:''),a.filter(x=>x.set===n).length+' kart',"startContent("+n+")")).join('')+'</div>';
+    else if(contentSets().length)h+='<p class="sub">Bir takım seç. Her takımda '+a.filter(x=>x.set===contentSets()[0]).length+' kart var.</p><div class="list set-list">'+contentSets().map(n=>d.setCovers&&d.setCovers[n]?setCard(n,d,a.filter(x=>x.set===n).length):menuButton(setName(n),a.filter(x=>x.set===n).length+' kart',"startContent("+n+")")).join('')+'</div>';
     else h+='<p>'+a.length+' etkinlik hazır.</p><button class="btn pri" onclick="startContent()">Başla</button>';
     h+='</div>';
   }

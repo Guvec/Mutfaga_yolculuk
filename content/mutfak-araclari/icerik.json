@@ -5759,6 +5759,80 @@
     "11": "Cihazlar ve saklama",
     "12": "Temizlik ve koruyucular"
   },
+  "setCovers": {
+    "1": [
+      "assets/mutfak-araclari/guncel-001.jpg",
+      "assets/meb-servis/meb-002.jpg",
+      "assets/meb-servis/meb-003.jpg",
+      "assets/mutfak-araclari/guncel-006.jpg"
+    ],
+    "2": [
+      "assets/mutfak-araclari/guncel-008.jpg",
+      "assets/mutfak-araclari/guncel-014.jpg",
+      "assets/mutfak-araclari/guncel-016.jpg",
+      "assets/meb-servis/meb-019.jpg"
+    ],
+    "3": [
+      "assets/mutfak-araclari/guncel-023.jpg",
+      "assets/mutfak-araclari/guncel-019.jpg",
+      "assets/mutfak-araclari/guncel-021.jpg",
+      "assets/meb-servis/meb-017.jpg"
+    ],
+    "4": [
+      "assets/meb-servis/meb-012.jpg",
+      "assets/meb-servis/meb-014.jpg",
+      "assets/mutfak-araclari/guncel-026.jpg",
+      "assets/mutfak-araclari/guncel-013.jpg"
+    ],
+    "5": [
+      "assets/mutfak-araclari/guncel-029.jpg",
+      "assets/meb-servis/meb-023.jpg",
+      "assets/mutfak-araclari/guncel-031.jpg",
+      "assets/mutfak-araclari/guncel-035.jpg"
+    ],
+    "6": [
+      "assets/mutfak-araclari/guncel-039.jpg",
+      "assets/mutfak-araclari/guncel-038.jpg",
+      "assets/mutfak-araclari/guncel-043.jpg",
+      "assets/mutfak-araclari/guncel-047.jpg"
+    ],
+    "7": [
+      "assets/mutfak-araclari/guncel-050.jpg",
+      "assets/mutfak-araclari/guncel-051.jpg",
+      "assets/mutfak-araclari/guncel-055.jpg",
+      "assets/mutfak-araclari/guncel-059.jpg"
+    ],
+    "8": [
+      "assets/mutfak-araclari/guncel-063.jpg",
+      "assets/mutfak-araclari/guncel-062.jpg",
+      "assets/mutfak-araclari/guncel-067.jpg",
+      "assets/mutfak-araclari/guncel-071.jpg"
+    ],
+    "9": [
+      "assets/mutfak-araclari/guncel-073.jpg",
+      "assets/mutfak-araclari/guncel-075.jpg",
+      "assets/mutfak-araclari/guncel-079.jpg",
+      "assets/mutfak-araclari/guncel-083.jpg"
+    ],
+    "10": [
+      "assets/mutfak-araclari/guncel-085.jpg",
+      "assets/mutfak-araclari/guncel-087.jpg",
+      "assets/mutfak-araclari/guncel-091.jpg",
+      "assets/mutfak-araclari/guncel-095.jpg"
+    ],
+    "11": [
+      "assets/mutfak-araclari/guncel-102.jpg",
+      "assets/mutfak-araclari/guncel-098.jpg",
+      "assets/mutfak-araclari/guncel-103.jpg",
+      "assets/mutfak-araclari/guncel-107.jpg"
+    ],
+    "12": [
+      "assets/mutfak-araclari/guncel-112.jpg",
+      "assets/mutfak-araclari/guncel-110.jpg",
+      "assets/mutfak-araclari/guncel-115.jpg",
+      "assets/mutfak-araclari/guncel-119.jpg"
+    ]
+  },
   "classification": [
     {
       "title": "Düz tabaklar",
@@ -5888,5 +5962,5 @@
     "v10: Kullanım amacı yalnız biçimden belirlenemeyen kartlarda kullanım bilgisi sorunun parçasıdır. Bunların puanı, yalnız görselden bağımsız tanıma olarak yorumlanmaz.",
     "v10: Metal takımlar ve tabaklarda fotoğraf çerçevesi korunur. Büyütme mutlak santimetre ölçüsü vermez; kullanım bilgisi ve takım içindeki göreli ölçek birlikte ele alınır."
   ],
-  "revision": "v12-20261104"
+  "revision": "v13-20261104"
 }

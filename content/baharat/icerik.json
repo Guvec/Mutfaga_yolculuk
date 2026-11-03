@@ -4206,5 +4206,55 @@
     "7": "Yemişler ve mutfak ürünleri",
     "8": "Sebzeler ve diğer mutfak ürünleri"
   },
-  "revision": "v10-20261102"
+  "setCovers": {
+    "1": [
+      "assets/baharat/t01_04.jpg",
+      "assets/baharat/t01_02.jpg",
+      "assets/baharat/t01_07.jpg",
+      "assets/baharat/t01_12.jpg"
+    ],
+    "2": [
+      "assets/baharat/t02_02.jpg",
+      "assets/baharat/t02_04.jpg",
+      "assets/baharat/t02_08.jpg",
+      "assets/baharat/t03_01.jpg"
+    ],
+    "3": [
+      "assets/baharat/t03_09.jpg",
+      "assets/baharat/t03_03.jpg",
+      "assets/baharat/t03_07.jpg",
+      "assets/baharat/t04_07.jpg"
+    ],
+    "4": [
+      "assets/baharat/t04_03.jpg",
+      "assets/baharat/t04_01.jpg",
+      "assets/baharat/t04_12.jpg",
+      "assets/baharat/t05_04.jpg"
+    ],
+    "5": [
+      "assets/baharat/t05_09.jpg",
+      "assets/baharat/t05_06.jpg",
+      "assets/baharat/t05_11.jpg",
+      "assets/baharat/t07_03.jpg"
+    ],
+    "6": [
+      "assets/baharat/t08_01.jpg",
+      "assets/baharat/t08_02.jpg",
+      "assets/baharat/v10-uzum.png",
+      "assets/baharat/v10-incir.png"
+    ],
+    "7": [
+      "assets/baharat/t09_05.jpg",
+      "assets/baharat/t09_02.jpg",
+      "assets/baharat/t09_07.jpg",
+      "assets/baharat/t10_01.jpg"
+    ],
+    "8": [
+      "assets/baharat/t10_04.jpg",
+      "assets/baharat/t10_06.jpg",
+      "assets/baharat/t10_10.jpg",
+      "assets/baharat/t11_11.jpg"
+    ]
+  },
+  "revision": "v11-20261104"
 }
