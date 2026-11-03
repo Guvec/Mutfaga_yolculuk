@@ -2,7 +2,7 @@
   "questions": [
     {
       "id": "b-bd-1-1",
-      "prompt": "Bulaşık makinesine hangi ürün konur?",
+      "prompt": "Makinede bulaşık yıkamak için hangi ürün seçilir?",
       "choices": [
         {
           "id": "A",
@@ -24,12 +24,12 @@
       "correct": "A",
       "group": "1. Bölüm",
       "chapter": 1,
-      "explanation": "Yalnız bulaşık makinesi için uygun deterjan kullanılır.",
+      "explanation": "Makine için üretilmiş bulaşık deterjanı kullanılır. El sabunu ve elde bulaşık deterjanı bu amaçla kullanılmaz.",
       "source": {
         "file": "Bulaşık Yıkama ve Atık Yönetimi.docx",
         "question": "1"
       },
-      "hint": "Önce ürünün kullanım yerini ve güvenli davranışı düşün."
+      "hint": "Yanlış ürün fazla köpürerek makineden taşabilir."
     },
     {
       "id": "b-bd-1-2",
@@ -55,12 +55,12 @@
       "correct": "C",
       "group": "1. Bölüm",
       "chapter": 1,
-      "explanation": "Eldivenin sağlam ve içinin kuru olması gerekir.",
+      "explanation": "Temiz, sağlam ve içi kuru eldiven seçilir; kullanılmadan önce kontrol edilir.",
       "source": {
         "file": "Bulaşık Yıkama ve Atık Yönetimi.docx",
         "question": "2"
       },
-      "hint": "Önce ürünün kullanım yerini ve güvenli davranışı düşün."
+      "hint": "Yırtık yerden deterjanlı su ele ulaşabilir."
     },
     {
       "id": "b-bd-2-1",
@@ -86,12 +86,12 @@
       "correct": "B",
       "group": "2. Bölüm",
       "chapter": 2,
-      "explanation": "Yüzeyi çizmeyen ve üreticinin uygun gördüğü araç seçilir.",
+      "explanation": "Kaplamayı çizmeyen ve üreticinin uygun gördüğü temizleme aracı kullanılır.",
       "source": {
         "file": "Bulaşık Yıkama ve Atık Yönetimi.docx",
         "question": "1"
       },
-      "hint": "Önce ürünün kullanım yerini ve güvenli davranışı düşün."
+      "hint": "Metal tel kaplamayı çizebilir."
     },
     {
       "id": "b-bd-2-2",
@@ -117,16 +117,16 @@
       "correct": "D",
       "group": "2. Bölüm",
       "chapter": 2,
-      "explanation": "Durulamada temiz su kullanılarak deterjan ve gevşeyen kirler uzaklaştırılır.",
+      "explanation": "Temiz suyla durulama, deterjanı ve gevşeyen kirleri uzaklaştırır.",
       "source": {
         "file": "Bulaşık Yıkama ve Atık Yönetimi.docx",
         "question": "2"
       },
-      "hint": "Önce ürünün kullanım yerini ve güvenli davranışı düşün."
+      "hint": "Yıkanan kabın üzerinde köpük kalmamalıdır."
     },
     {
       "id": "b-bd-2-3",
-      "prompt": "Yıkama suyu kirlenmiş. Ne yapılır?",
+      "prompt": "Yıkama suyu kirlenmiştir. Ne yapılır?",
       "choices": [
         {
           "id": "A",
@@ -148,16 +148,16 @@
       "correct": "C",
       "group": "2. Bölüm",
       "chapter": 2,
-      "explanation": "Kirlenen yıkama suyu değiştirilir; yalnız su veya deterjan eklemek yeterli değildir.",
+      "explanation": "Kirli su boşaltılır ve yıkama için temiz su hazırlanır; yalnız su veya deterjan eklemek yeterli değildir.",
       "source": {
         "file": "Bulaşık Yıkama ve Atık Yönetimi.docx",
         "question": "3"
       },
-      "hint": "Önce ürünün kullanım yerini ve güvenli davranışı düşün."
+      "hint": "Deterjan eklemek, suyun içindeki kirleri dışarı çıkarmaz."
     },
     {
       "id": "b-bd-3-1",
-      "prompt": "Makine kapalı ve soğuk. Püskürtme kolu kepçeye takılıyor. Ne yapılır?",
+      "prompt": "Makine kapalı ve soğuktur. Püskürtme kolu kepçeye takılmaktadır. Ne yapılır?",
       "choices": [
         {
           "id": "A",
@@ -179,12 +179,12 @@
       "correct": "C",
       "group": "3. Bölüm",
       "chapter": 3,
-      "explanation": "Kepçe, püskürtme kolunun yolunu açacak biçimde yeniden yerleştirilir.",
+      "explanation": "Kepçe, kolun dönüşünü engellemeyecek biçimde yeniden yerleştirilir.",
       "source": {
         "file": "Bulaşık Yıkama ve Atık Yönetimi.docx",
         "question": "1"
       },
-      "hint": "Önce ürünün kullanım yerini ve güvenli davranışı düşün."
+      "hint": "Kolun bulaşıklara su püskürtebilmesi için serbestçe dönmesi gerekir."
     },
     {
       "id": "b-bd-3-2",
@@ -210,16 +210,16 @@
       "correct": "A",
       "group": "3. Bölüm",
       "chapter": 3,
-      "explanation": "Deterjan tableti konmadan önce eller yıkanır ve tamamen kurulanır.",
+      "explanation": "Eller yıkanıp tamamen kurulanır. Ürünün etiketindeki korunma talimatlarına uyulur.",
       "source": {
         "file": "Bulaşık Yıkama ve Atık Yönetimi.docx",
         "question": "2"
       },
-      "hint": "Önce ürünün kullanım yerini ve güvenli davranışı düşün."
+      "hint": "Nem, tabletin yüzeyini çözündürüp ele yapışmasına yol açabilir."
     },
     {
       "id": "b-bd-4-2",
-      "prompt": "Temizlik ürünü nerede saklanır?",
+      "prompt": "Temizlik ürünü hangi kapta saklanır?",
       "choices": [
         {
           "id": "A",
@@ -241,12 +241,12 @@
       "correct": "B",
       "group": "4. Bölüm",
       "chapter": 4,
-      "explanation": "Ürünün kimliği ve uyarıları korunur.",
+      "explanation": "Ürün kendi etiketli ambalajında saklanır; adı ve kullanım uyarıları korunur.",
       "source": {
         "file": "Bulaşık Yıkama ve Atık Yönetimi.docx",
         "question": "2"
       },
-      "hint": "Önce ürünün kullanım yerini ve güvenli davranışı düşün."
+      "hint": "Su şişesine doldurulan temizlik ürünü içecek sanılabilir."
     },
     {
       "id": "b-bd-4-3",
@@ -272,36 +272,36 @@
       "correct": "A",
       "group": "4. Bölüm",
       "chapter": 4,
-      "explanation": "Öğrenci müdahale etmez ve güvenli uzaklaşır.",
+      "explanation": "Öğrenci güvenli alana uzaklaşır ve öğretmene haber verir; gaz kaçağına müdahale etmez.",
       "source": {
         "file": "Bulaşık Yıkama ve Atık Yönetimi.docx",
         "question": "3"
       },
-      "hint": "Önce ürünün kullanım yerini ve güvenli davranışı düşün."
+      "hint": "Cihazı denemek ve düğmelere dokunmak tehlikeyi artırabilir."
     },
     {
       "id": "atik-yeni-1",
-      "prompt": "Okuldaki atık kutusuna atık ayrılacak. Önce ne kontrol edilir?",
+      "prompt": "Atığın hangi kutuya konacağı, kutunun üzerindeki hangi yazıdan anlaşılır?",
       "choices": [
         {
           "id": "A",
-          "text": "Kutunun yalnız rengi"
+          "text": "Kutunun dış yüzey rengi"
         },
         {
           "id": "B",
-          "text": "Kutunun etiketi ve kabul bilgisi"
+          "text": "Etikette belirtilen atık türü"
         },
         {
           "id": "C",
-          "text": "Kutunun kapak büyüklüğü"
+          "text": "Kapağın açılıp kapanma biçimi"
         },
         {
           "id": "D",
-          "text": "Kutunun bulunduğu raf"
+          "text": "Kutunun durduğu raf"
         }
       ],
       "correct": "B",
-      "explanation": "Kutuların kabul ettiği atıklar değişebilir. Etiket ve okulun toplama sistemi kontrol edilir.",
+      "explanation": "Kutunun kabul ettiği atık türü etiketinden kontrol edilir; okulun toplama düzenine uyulur.",
       "group": "5. Bölüm · Atık yönetimi",
       "chapter": 5,
       "source": {
@@ -309,7 +309,7 @@
         "section": "Atık yönetimi",
         "adaptation": "Kaynak metinden yeni soru"
       },
-      "hint": "Atığın türünü, kutunun etiketini ve öğrencinin güvenli görevini düşün."
+      "hint": "Yalnız renge bakmak, atığın yanlış kutuya atılmasına yol açabilir."
     },
     {
       "id": "atik-yeni-2",
@@ -317,23 +317,23 @@
       "choices": [
         {
           "id": "A",
-          "text": "Yağı evyeye döker."
+          "text": "Evyeye döker."
         },
         {
           "id": "B",
-          "text": "Yağı başka kaba taşır."
+          "text": "Başka kaba taşır."
         },
         {
           "id": "C",
-          "text": "Yağa dokunmadan öğretmene bildirir."
+          "text": "Öğretmene haber verir."
         },
         {
           "id": "D",
-          "text": "Yağı çöp torbasına döker."
+          "text": "Çöp torbasına boşaltır."
         }
       ],
       "correct": "C",
-      "explanation": "Sıcak yağ yanığa yol açabilir. Soğutma ve uygun kapta toplama işini öğretmen yürütür.",
+      "explanation": "Öğrenci sıcak yağa ve kabına dokunmadan öğretmene haber verir. Soğutma ve toplama işini öğretmen yönetir.",
       "group": "5. Bölüm · Atık yönetimi",
       "chapter": 5,
       "source": {
@@ -341,15 +341,15 @@
         "section": "Atık yönetimi",
         "adaptation": "Kaynak metinden yeni soru"
       },
-      "hint": "Atığın türünü, kutunun etiketini ve öğrencinin güvenli görevini düşün."
+      "hint": "Sıçrayan sıcak yağ cildi yakabilir."
     },
     {
       "id": "atik-yeni-3",
-      "prompt": "Atıkların arasında kırık bardak görülüyor. Öğrenci ne yapar?",
+      "prompt": "Atıkların arasında kırık bardak gören öğrenci ne yapar?",
       "choices": [
         {
           "id": "A",
-          "text": "Parçalara dokunmadan öğretmene bildirir."
+          "text": "Dokunmadan öğretmene bildirir."
         },
         {
           "id": "B",
@@ -357,7 +357,7 @@
         },
         {
           "id": "C",
-          "text": "Parçaları süngerle toplar."
+          "text": "Süngerle parçaları toplar."
         },
         {
           "id": "D",
@@ -365,7 +365,7 @@
         }
       ],
       "correct": "A",
-      "explanation": "Kırık cam eli kesebilir. Öğrenci parçaları toplamaz ve torbayı sıkıştırmaz.",
+      "explanation": "Öğrenci kırık camı toplamaz ve torbayı sıkıştırmaz; öğretmene haber verir.",
       "group": "5. Bölüm · Atık yönetimi",
       "chapter": 5,
       "source": {
@@ -373,7 +373,7 @@
         "section": "Atık yönetimi",
         "adaptation": "Kaynak metinden yeni soru"
       },
-      "hint": "Atığın türünü, kutunun etiketini ve öğrencinin güvenli görevini düşün."
+      "hint": "Cam parçaları süngeri veya torbayı delip eli kesebilir."
     },
     {
       "id": "atik-yeni-4",
@@ -397,7 +397,7 @@
         }
       ],
       "correct": "D",
-      "explanation": "Porsiyon ihtiyaca göre alınır. Yenmeyecek kadar yemek almak atığı artırır.",
+      "explanation": "Porsiyon kişinin ihtiyacına göre alınır; yenmeyecek kadar yemek almak atığı artırır.",
       "group": "5. Bölüm · Atık yönetimi",
       "chapter": 5,
       "source": {
@@ -405,7 +405,7 @@
         "section": "Atık yönetimi",
         "adaptation": "Kaynak metinden yeni soru"
       },
-      "hint": "Atığın türünü, kutunun etiketini ve öğrencinin güvenli görevini düşün."
+      "hint": "Tabakta bırakılan yemekler atığa dönüşebilir."
     }
   ],
   "matches": [
