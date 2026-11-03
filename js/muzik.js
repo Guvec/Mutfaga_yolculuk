@@ -1,13 +1,13 @@
 /* Arka plan müziği. Müzik ile sesli okuma aynı anda açık olmaz:
    - Müzik açıkken sesli okuma kapalıdır. Eşleştirmede ada dokununca ad yine okunur; müzik o sırada kısa süre durur.
    - Sesli okuma açılınca müzik kapanır. Müzik yeniden açılmak istenirse uyarı çıkar.
-   - Tarayıcılar sesi ancak ilk dokunuştan sonra başlatır; müzik sayfadaki ilk dokunuşla başlar.
-   Tercih cihazda saklanır (mesleki-muzik: "acik" / "kapali"). */
+   - Müzik açıksa, tarayıcılar sesi ancak ilk dokunuştan sonra başlattığı için müzik sayfadaki ilk dokunuşla başlar.
+   Müzik varsayılan olarak kapalıdır; öğrenci isterse açar. Tercih cihazda saklanır (mesleki-muzik: "acik" / "kapali"). */
 'use strict';
 var MUZIK=(function(){
  var PARCALAR=['assets/muzik/bach-prelud-do-major.mp3','assets/muzik/sakin-sabah.mp3','assets/muzik/aksam-isigi.mp3'];
  var ANAHTAR='mesleki-muzik',SES_DUZEYI=0.35;
- var tercih='acik';try{tercih=localStorage.getItem(ANAHTAR)==='kapali'?'kapali':'acik';}catch(e){}
+ var tercih='kapali';try{tercih=localStorage.getItem(ANAHTAR)==='acik'?'acik':'kapali';}catch(e){}
  var audio=null,sira=0,bekleyenOkuma=null,konusmaTakip=null;
  function kaydet(){try{localStorage.setItem(ANAHTAR,tercih);}catch(e){}}
  function hazirla(){
@@ -35,8 +35,16 @@ var MUZIK=(function(){
    if((goruldu&&!konusuyor&&sure>400)||(!goruldu&&sure>3000)||sure>15000){clearInterval(konusmaTakip);konusmaTakip=null;cal();}
   },250);
  }
- // Müzik tercihi açıksa sesli okuma kapalı başlar (iki ses aynı anda çalmaz).
+ // Müzik varsayılan olarak kapalıdır; sesli okuma açık başlar. Müziği öğrenci açtıysa sesli okuma kapalı başlar (iki ses aynı anda çalmaz).
  if(tercih==='acik'&&typeof SES!=='undefined'&&SES.acik){SES.acik=false;try{lsSet('ses',false);}catch(e){}}
+ /* Bir kereye mahsus geçiş: eski sürümde müzik kendiliğinden açık geldiği için sesli okuma kapanıp kaydedilmişti.
+    Müzik tercihi hiç seçilmemişse bu kapalılık öğrencinin seçimi değildir; sesli okuma açılır. */
+ try{
+  if(localStorage.getItem('mesleki-ses-gecis')!=='1'){
+   localStorage.setItem('mesleki-ses-gecis','1');
+   if(localStorage.getItem(ANAHTAR)===null&&typeof SES!=='undefined'&&!SES.acik){SES.acik=true;lsSet('ses',true);}
+  }
+ }catch(e){}
  function ilkDokunus(){document.removeEventListener('pointerdown',ilkDokunus,true);document.removeEventListener('keydown',ilkDokunus,true);cal();}
  document.addEventListener('pointerdown',ilkDokunus,true);document.addEventListener('keydown',ilkDokunus,true);
  document.addEventListener('visibilitychange',function(){if(document.hidden)durdur();else if(audio&&!konusmaTakip)cal();});
