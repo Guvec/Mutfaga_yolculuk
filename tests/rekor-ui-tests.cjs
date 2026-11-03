@@ -40,6 +40,8 @@ const FAKE=`window.REKOR_FAKE=(()=>{const prof={},rows={};let uid='u-cihaz';cons
   assert.equal(await play('Ali',3),9);await settle();t=await banner();assert(t.includes('En iyi sonucun korunuyor: 12 / 12'),t);rows=await page.evaluate(a=>REKOR_FAKE.rows[a],T+'bh-e1~genel');assert.equal(Object.values(rows)[0].correct,12);ok('Düşük sonuç rekoru bozmuyor, hata gibi gösterilmiyor');
 
   // Pekiştiriyorum: 3 yanlış listede; tur 2–4 hedef ve gerçek karışıklıklardan oluşan ad havuzuyla açılır.
+  // Aynı günkü eski doğrular maddeyi listeden çıkarmaz; bu testte yalnız son oyunun 3 yanlışı bırakılır.
+  await page.evaluate(()=>{const pid=rkPid('Ali'),m=rkPek(pid);Object.keys(m).forEach(k=>{const id=k.split('|')[3],it=st.board.items.find(x=>x.id===id);if(!it||st.board.pair[id]===it.answer)delete m[k];});rkPekSave(pid,m);});
   await page.evaluate(()=>{st.subject='baharat';go('subject');});assert(await page.getByRole('button',{name:/Pekiştiriyorum \(3\)/}).isVisible());
   await page.getByRole('button',{name:/Pekiştiriyorum \(3\)/}).click();await page.getByRole('button',{name:/1\. takım · Eşleştirme/}).click();
   const pb=await page.evaluate(()=>({n:st.board.items.length,names:st.board.names.length,all:st.board.items.every(it=>st.board.names.includes(it.answer)),variant:st.board.variant}));assert.equal(pb.n,3);assert(pb.names>=3&&pb.names<=5,JSON.stringify(pb));assert(pb.all&&pb.variant);
@@ -47,7 +49,12 @@ const FAKE=`window.REKOR_FAKE=(()=>{const prof={},rows={};let uid='u-cihaz';cons
   await page.evaluate(()=>{st.board.items.forEach(it=>tryPair(it.id,it.answer));render();});t=await banner();assert(t.includes('Bu turu tamamladın.'),t);
   assert.equal(await page.evaluate(()=>rkPekItems('baharat').length),3);ok('Pekiştirme turu: tek bağımsız doğru maddeyi listeden çıkarmıyor');
   assert.equal(await page.locator('button[onclick*="startBoard"]').count(),0);
-  await page.evaluate(()=>rkPekStart('m',1));await page.evaluate(()=>{st.board.items.forEach(it=>tryPair(it.id,it.answer));render();});assert.equal(await page.evaluate(()=>rkPekItems('baharat').length),0);ok('Arka arkaya ikinci bağımsız doğruda madde listeden çıkıyor');
+  const roundM=()=>page.evaluate(()=>{rkPekStart('m',1);st.board.items.forEach(it=>tryPair(it.id,it.answer));render();});
+  const shiftDay=d=>page.evaluate(d=>{const a=rkPekAll();Object.values(a).forEach(m=>Object.values(m).forEach(it=>{it.day=d;}));lsSet('rk_pek',a);},d);
+  assert.deepEqual(await page.evaluate(()=>Object.values(rkPek(rkPid('Ali'))).map(i=>i.streak)),[0,0,0]);ok('Aynı günkü doğru sayaca eklenmiyor');
+  await shiftDay('2000-01-01');await roundM();assert.equal(await page.evaluate(()=>rkPekItems('baharat').length),3);
+  await roundM();assert.equal(await page.evaluate(()=>rkPekItems('baharat').length),3);ok('Aynı gün ikinci tur maddeyi listeden çıkarmıyor');
+  await shiftDay('2000-01-02');await roundM();assert.equal(await page.evaluate(()=>rkPekItems('baharat').length),0);ok('İki ayrı günde bağımsız doğru yapılınca madde listeden çıkıyor');
   const before=await page.evaluate(a=>JSON.stringify(REKOR_FAKE.rows[a]),T+'bh-e1~genel');await page.evaluate(()=>rkPekFullCheck());assert.equal(await page.evaluate(()=>st.sess.unranked),true);await page.evaluate(()=>{const b=st.board;b.items.forEach(it=>tryPair(it.id,it.answer));checkBoard();});await settle();assert.equal(await page.evaluate(a=>JSON.stringify(REKOR_FAKE.rows[a]),T+'bh-e1~genel'),before);ok('Puansız 12/18 yoklaması sıralamaya yazmıyor');
 
   // İkinci profil aynı cihazda: eşit puan ortak sıra, alfabetik.
@@ -118,6 +125,16 @@ const FAKE=`window.REKOR_FAKE=(()=>{const prof={},rows={};let uid='u-cihaz';cons
   assert.deepEqual(lost,{q:0,st:'lost',row:true});ok('Ulaşılamayan profil kuyruğu kilitlemiyor; diğer profilin sonucu gönderildi');
   // Uyguluyorum adı; eski ad kalmadı.
   await page.evaluate(()=>{st.subject='baharat';st.op='match';st.contentSet=1;go('boardmode');});assert(await page.getByRole('button',{name:/Uyguluyorum/}).isVisible());assert.equal(await page.getByText('Kendimi Deniyorum').count(),0);
+  // Oyun sonunda "Birlikte tekrar edelim": yalnız yanlış varsa, en fazla 4 yanlış + 1 bildiği madde, puansız, sıralamayı etkilemez.
+  await play('Tekrar Bir',0);assert.equal(await page.getByRole('button',{name:/Birlikte tekrar edelim/}).count(),0);ok('Hiç yanlış yoksa tekrar düğmesi çıkmıyor');
+  await play('Tekrar Iki',6);await settle();
+  const tb=page.getByRole('button',{name:/Birlikte tekrar edelim \(4\)/});assert(await tb.isVisible());assert((await page.textContent('#app')).includes('Kalanlar Pekiştiriyorum listende bekler'));ok('Oyun sonunda 6 yanlışlı öğrenciye "(4)" düğmesi çıkıyor');
+  const bestBefore=await page.evaluate(()=>JSON.stringify([rkBestAll()[rkPid('Tekrar Iki')],REKOR_FAKE.rows]));
+  await tb.click();
+  const tr=await page.evaluate(()=>({kind:st.pekRound.kind,n:st.board.items.length,prac:st.sess.practice,left:rkPekItems('baharat').length}));
+  assert.deepEqual(tr,{kind:'m',n:5,prac:'pek',left:6});ok('Tekrar turu 4 yanlış + 1 bildiği maddeyle açılıyor, kalan 2 yanlış listede');
+  await page.evaluate(()=>{st.board.items.forEach(it=>tryPair(it.id,it.answer));render();});await settle();
+  assert.equal(await page.evaluate(()=>JSON.stringify([rkBestAll()[rkPid('Tekrar Iki')],REKOR_FAKE.rows])),bestBefore);assert.equal(await page.evaluate(()=>rkPekItems('baharat').length),6);ok('Tekrar turu rekoru ve sıralamayı değiştirmiyor; aynı günkü doğrular maddeyi çıkarmıyor');
   // Sıralamada yalnız ilk ad; ilk sonuçtan önce açıklama; ana sayfada sıralama düğmesi.
   const fn=await page.evaluate(()=>[rkName('Ali Veli'),rkName('  Ayşe   Nur Kaya '),rkName('Fatih'),rkName(''),rkName('Abcdefghijklmnopqrstuvwxyz Soyad')]);
   assert.deepEqual(fn,['Ali','Ayşe','Fatih','','Abcdefghijklmnop']);ok('Sıralamaya yalnız ilk ad gider');

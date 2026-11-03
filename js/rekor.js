@@ -180,18 +180,32 @@ async function rkMaintenanceRun(){const all=rkProfAll(),clean=rkClean(),be=rkBac
 /* ---------- Pekiştiriyorum verisi ---------- */
 /* Oturumdaki i. soru, i. yanıt satırıdır (sorular sırayla tek tek yanıtlanır); metin eşleşmezse metinle aranır. */
 function rkMcqRow(i,q){const s=st.sess,r=s.qs[i];if(r&&(r.qid?r.qid===q.id:r.q===q.prompt))return r;return s.qs.find(x=>x.qid===q.id)||null;}
+function rkToday(){return new Date().toLocaleDateString('sv-SE');}
+/* Bağımsız doğru, son yanlıştan ya da son sayılan doğrudan farklı bir günde yapılırsa sayılır. Aynı günkü doğru kaydedilir ama listeden çıkarmaz. */
 function rkPekMark(map,key,info,correct,wrongName){
- const it=map[key];
- if(correct){if(!it)return;it.streak=(it.streak||0)+1;it.at=Date.now();if(it.streak>=2)delete map[key];return;}
- const n=it||{...info,streak:0,wrong:[]};n.streak=0;n.at=Date.now();if(wrongName&&!n.wrong.includes(wrongName))n.wrong.push(wrongName);map[key]=n;
+ const it=map[key],today=rkToday();
+ if(correct){if(!it)return;it.at=Date.now();if(it.day===today)return;it.streak=(it.streak||0)+1;it.day=today;if(it.streak>=2)delete map[key];return;}
+ const n=it||{...info,streak:0,wrong:[]};n.streak=0;n.at=Date.now();n.day=today;if(wrongName&&!n.wrong.includes(wrongName))n.wrong.push(wrongName);map[key]=n;
 }
 function rkPekFromAssessment(pid){
- const map=rkPek(pid),s=st.sess;
- if(st.op==='match'&&st.board){st.board.items.forEach(it=>{const nm=st.board.pair[it.id];rkPekMark(map,'m|'+st.subject+'|'+st.contentSet+'|'+it.id,{kind:'m',subject:st.subject,set:st.contentSet,id:it.id},nm===it.answer,nm&&nm!==it.answer?nm:null);});}
- else if(st.op==='mcq'){(st.contentItems||[]).forEach((q,i)=>{const row=rkMcqRow(i,q);if(!row||row.r===null)return;rkPekMark(map,'q|'+st.subject+'|'+q.id,{kind:'q',subject:st.subject,id:q.id},row.r===1,null);});}
- else if(st.op==='kur'){s.qs.forEach(row=>{if(!row.prompt)return;rkPekMark(map,'k|'+st.lvl+'|'+row.prompt,{kind:'k',subject:'kuver',lvl:st.lvl,id:row.prompt},row.r===1,null);});}
+ const map=rkPek(pid),s=st.sess,wrong=[],known=[];
+ const mk=(key,info,correct,wn)=>{rkPekMark(map,key,info,correct,wn);(correct?known:wrong).push(key);};
+ let kind=null,arg=null;
+ if(st.op==='match'&&st.board){kind='m';arg=st.contentSet;st.board.items.forEach(it=>{const nm=st.board.pair[it.id];mk('m|'+st.subject+'|'+st.contentSet+'|'+it.id,{kind:'m',subject:st.subject,set:st.contentSet,id:it.id},nm===it.answer,nm&&nm!==it.answer?nm:null);});}
+ else if(st.op==='mcq'){kind='q';(st.contentItems||[]).forEach((q,i)=>{const row=rkMcqRow(i,q);if(!row||row.r===null)return;mk('q|'+st.subject+'|'+q.id,{kind:'q',subject:st.subject,id:q.id},row.r===1,null);});}
+ else if(st.op==='kur'){kind='k';arg=st.lvl;s.qs.forEach(row=>{if(!row.prompt)return;mk('k|'+st.lvl+'|'+row.prompt,{kind:'k',subject:'kuver',lvl:st.lvl,id:row.prompt},row.r===1,null);});}
  rkPekSave(pid,map);
+ /* Oyun sonunda "Birlikte tekrar edelim" düğmesi için bu çalışmanın yanlışları ve bir bildiği madde. */
+ RK.tk=kind&&wrong.length?{sess:s.id,kind,arg,subject:st.subject,keys:wrong,known:known.slice(0,1),n:wrong.length}:null;
 }
+/* Anahtardan (m|konu|takım|id, q|konu|id) bildiği maddenin bilgisini çıkarır. */
+function rkPekKnown(key){const a=String(key).split('|');if(a[0]==='m')return {kind:'m',subject:a[1],set:Number(a[2]),id:a.slice(3).join('|')};if(a[0]==='q')return {kind:'q',subject:a[1],id:a.slice(2).join('|')};return null;}
+function rkTekrarHTML(){
+ const t=RK.tk;if(!t||!st.sess||t.sess!==st.sess.id||st.guest)return '';
+ const n=Math.min(t.n,4);
+ return '<section class="card rk-tekrar" role="status"><strong>Birlikte tekrar edelim</strong><p>'+n+' maddeyi yeniden çalışalım. Bu tur sıralamaya yazılmaz.'+(t.n>4?' Kalanlar Pekiştiriyorum listende bekler.':'')+'</p><button class="btn pri" onclick="rkTekrarBasla()">Birlikte tekrar edelim ('+n+')</button></section>';
+}
+function rkTekrarBasla(){const t=RK.tk;if(!t)return;RK.tk=null;st.subject=t.subject;rkPekStart(t.kind,t.arg,{keys:t.keys,known:t.known});}
 function rkPekItems(subject){if(st.guest||!st.prof)return [];const pid=rkPid(st.prof);if(!pid)return [];return Object.entries(rkPek(pid)).filter(([k,v])=>v.subject===subject).map(([k,v])=>({key:k,...v}));}
 function rkPekGroups(subject){
  const items=rkPekItems(subject),out=[];
@@ -208,21 +222,26 @@ function rkPekProcess(){
  if(r.kind==='k')s.qs.forEach(row=>{if(row.prompt&&(r.targets||[]).includes(row.prompt))rkPekMark(map,'k|'+st.lvl+'|'+row.prompt,{kind:'k',subject:'kuver',lvl:st.lvl,id:row.prompt},row.r===1,null);});
  rkPekSave(pid,map);
  const left=rkPekItems(st.subject).length;
- RK.msg={sess:s.id,head:'Bu turu tamamladın.',text:left?'Tekrar edilecek '+left+' madde kaldı. Bir madde arka arkaya iki kez ilk denemede doğru yapılınca listeden çıkar.':'Bu konuda tekrar edilecek madde kalmadı.',cloud:'',pek:true};
+ RK.msg={sess:s.id,head:'Bu turu tamamladın.',text:left?'Tekrar edilecek '+left+' madde kaldı. Bir madde, iki ayrı günde ilk denemede doğru yapılınca listeden çıkar.':'Bu konuda tekrar edilecek madde kalmadı.',cloud:'',pek:true};
 }
-function rkPekStart(kind,arg){
- const items=rkPekItems(st.subject).sort((a,b)=>(a.streak||0)-(b.streak||0)||(a.at||0)-(b.at||0));
+function rkPekStart(kind,arg,opts){
+ opts=opts||{};const LIM=opts.keys?4:null;
+ let items=rkPekItems(st.subject).sort((a,b)=>(a.streak||0)-(b.streak||0)||(a.at||0)-(b.at||0));
+ if(opts.keys)items=items.filter(x=>opts.keys.includes(x.key));
+ const knownItem=opts.known&&opts.known.length?rkPekKnown(opts.known[0]):null;
  st.brk=0;st.kDone=false;st.done=false;st.inBreak=false;RK.msg=null;
  if(kind==='q'){
-  st.op='mcq';const qs=getData().questions,pick=items.filter(x=>x.kind==='q').slice(0,8).map(x=>qs.find(q=>q.id===x.id)).filter(Boolean);
+  st.op='mcq';const qs=getData().questions,pick=items.filter(x=>x.kind==='q').slice(0,LIM||8).map(x=>qs.find(q=>q.id===x.id)).filter(Boolean);
   if(!pick.length){go('pekmenu');return;}
-  st.practice='pek';st.mcqGroup='Pekiştiriyorum';st.pekRound={kind:'q'};st.contentItems=shuffle(pick).map(mcqShuffled);st.contentIndex=0;st.contentSet=null;
-  st.sess={id:Date.now(),p:st.prof,t:new Date().toISOString(),op:'mcq',subject:st.subject,practice:'pek',total:pick.length,group:'Pekiştiriyorum',s:0,ok:0,fix:0,bad:0,br:0,qs:[]};
+  const kq=knownItem&&knownItem.kind==='q'?qs.find(q=>q.id===knownItem.id):null;
+  st.practice='pek';st.mcqGroup='Pekiştiriyorum';st.pekRound={kind:'q'};st.contentItems=shuffle(pick).map(mcqShuffled);if(kq&&!pick.includes(kq))st.contentItems.push(mcqShuffled(kq));st.contentIndex=0;st.contentSet=null;
+  st.sess={id:Date.now(),p:st.prof,t:new Date().toISOString(),op:'mcq',subject:st.subject,practice:'pek',total:st.contentItems.length,group:'Pekiştiriyorum',s:0,ok:0,fix:0,bad:0,br:0,qs:[]};
   st.savedMsg='';contentNext();st.screen='quiz';render();window.scrollTo(0,0);return;
  }
  if(kind==='m'){
   st.op='match';st.contentSet=arg;const full=contentArr().filter(x=>x.set===arg),targets=items.filter(x=>x.kind==='m'&&x.set===arg).slice(0,4);
   const its=targets.map(t=>full.find(x=>x.id===t.id)).filter(Boolean);if(!its.length){go('pekmenu');return;}
+  if(knownItem&&knownItem.kind==='m'&&knownItem.set===arg){const kx=full.find(x=>x.id===knownItem.id);if(kx&&!its.includes(kx))its.push(kx);}
   /* Ad havuzu: hedeflerin doğru adları + öğrencinin gerçekten seçtiği yanlış adlar + gerekirse aynı takımın öğretilmiş adları. Dolgu çeldirici yok. */
   const names=[];const add=n=>{if(n&&!names.includes(n))names.push(n);};its.forEach(x=>add(x.answer));targets.forEach(t=>(t.wrong||[]).forEach(add));
   shuffle(full.filter(x=>!its.includes(x)).map(x=>x.answer)).forEach(n=>{if(names.length<its.length+2)add(n);});
@@ -233,7 +252,7 @@ function rkPekStart(kind,arg){
   st.savedMsg='';if(typeof PHONE!=='undefined'){PHONE.open=false;PHONE.expanded=false;}tStart();st.screen='board';render();window.scrollTo(0,0);return;
  }
  if(kind==='k'){
-  const targets=items.filter(x=>x.kind==='k'&&x.lvl===arg).map(x=>x.id);if(!targets.length){go('pekmenu');return;}
+  const targets=items.filter(x=>x.kind==='k'&&x.lvl===arg).slice(0,LIM||99).map(x=>x.id);if(!targets.length){go('pekmenu');return;}
   st.op='kur';st.lvl=arg;st.practice='learn';st.pekRound={kind:'k',targets};RK.startingPek=true;try{startSession();}finally{RK.startingPek=false;}st.sess.practice='pek';
   /* Yanlış yerleştirilen parçalar önce sorulur; ekmek tabağı tereyağı bıçağından önce gelir. */
   let first=st.order.filter(k=>targets.includes(k)),rest=st.order.filter(k=>!targets.includes(k));
@@ -245,7 +264,7 @@ function rkPekStart(kind,arg){
 function rkPekMenuHTML(){
  const gs=rkPekGroups(st.subject);let h=topBar(subjectName())+'<div class="wrap"><h1>Pekiştiriyorum</h1>';
  if(!gs.length)return h+'<p class="card">Bu konuda tekrar edilecek madde yok. Uyguluyorum\'da yanlış yaptığın maddeler burada toplanır.</p></div>';
- h+='<p class="sub">Uyguluyorum\'da yanlış yaptığın maddeler burada listelenir. Bir madde arka arkaya iki kez ilk denemede doğru yapılınca listeden çıkar. Bu tur sıralamaya yazılmaz.</p><div class="list">';
+ h+='<p class="sub">Uyguluyorum\'da yanlış yaptığın maddeler burada listelenir. Bir madde, iki ayrı günde ilk denemede doğru yapılınca listeden çıkar. Bu tur sıralamaya yazılmaz.</p><div class="list">';
  gs.forEach(g=>h+=menuButton(g.label,g.n+' madde',"rkPekStart('"+g.kind+"',"+g.arg+")"));
  return h+'</div></div>';
 }
@@ -360,7 +379,7 @@ render=function(){
  /* Pekiştirme turunun sonunda normal tur başlatan düğmeler gizlenir; dönüş banner'daki düğmelerle yapılır. */
  if(st.pekRound&&st.kDone&&['board','quiz'].includes(st.screen))app.querySelectorAll('button[onclick]').forEach(b=>{if(/startBoard|newKuverBtn|startSession/.test(b.getAttribute('onclick')))b.remove();});
  if(st.sess&&(st.sess.unranked||st.sess.practice==='pek'))app.querySelectorAll('.stats .chip').forEach(c=>{if(/Puan/.test(c.textContent))c.remove();});
- if(['board','quiz','summary','spicereview'].includes(st.screen)){const ban=rkBannerHTML();if(ban){const w=app.querySelector('.wrap')||app.querySelector('.quiz .side');if(w)w.insertAdjacentHTML('afterbegin',ban);}}
+ if(['board','quiz','summary','spicereview'].includes(st.screen)){const ban=rkBannerHTML()+rkTekrarHTML();if(ban){const w=app.querySelector('.wrap')||app.querySelector('.quiz .side');if(w)w.insertAdjacentHTML('afterbegin',ban);}}
  /* Puansız deneme telefonda da açıkça belirtilir. */
  if(st.screen==='board'&&st.sess&&st.sess.unranked&&!(st.board&&st.board.checked)){const w=app.querySelector('.wrap');if(w)w.insertAdjacentHTML('afterbegin','<p class="card rk-banner" role="status"><strong>Puansız deneme</strong>Bu denemenin sonucu rekora ve sıralamaya yazılmaz.</p>');}
 };
