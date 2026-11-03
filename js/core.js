@@ -103,7 +103,7 @@ document.addEventListener("visibilitychange",function(){ if(document.hidden) pau
 function startSession(){
   st.sess = {id:Date.now(), p:st.guest?"Misafir":st.prof, t:new Date().toISOString(),
              op:st.op, d:st.op==="kur"?st.lvl:0, s:0, ok:0, fix:0, bad:0, br:0, k:0, qs:[]};
-  st.streak=0; st.brk=0; st.savedMsg=st.guest?"Misafir oturumu: skor kaydedilmiyor.":"";
+  st.streak=0; st.brk=0; st.savedMsg=st.guest?((typeof YR!=="undefined"&&YR.active)?"Yanıtların, çalışmayı bitirince yarış odasına gönderilir.":"Misafir oturumu: skor kaydedilmiyor."):"";
   st.bag=[]; st.last=null;
   if(st.op==="kur") newKuver(); else newQ();
   st.screen="quiz"; render();

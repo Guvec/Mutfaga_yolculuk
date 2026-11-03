@@ -16,7 +16,7 @@ function startBoard(practice,size,variant){
  st.board={items,names:shuffle(items.map(x=>x.answer).concat(dis)),extra:dis.length,pair:{},sel:null,selName:null,tries:{},res:{},attempts:{},responseTime:{},checked:false,size,variant:!!variant};
  st.brk=0;st.kDone=false;st.done=false;st.inBreak=false;st.lastRes={cls:'',head:boardIntro(items.length,dis.length),text:'Bir görsel seç.',intro:true};
  st.sess={id:Date.now(),revision:getData().revision||VERSION,p:st.guest?'Misafir':st.prof,t:new Date().toISOString(),op:'match',subject:st.subject,practice,set:st.contentSet,s:0,ok:0,fix:0,bad:0,br:0,total:items.length,qs:[],preparation:size<12};
- st.savedMsg=st.guest?'Misafir oturumu: sonuçlar kaydedilmiyor.':'';tStart();st.screen='board';render();window.scrollTo(0,0);
+ st.savedMsg=st.guest?((typeof YR!=='undefined'&&YR.active)?'Yanıtların, çalışmayı bitirince yarış odasına gönderilir.':'Misafir oturumu: sonuçlar kaydedilmiyor.'):'';tStart();st.screen='board';render();window.scrollTo(0,0);
 }
 function boardItem(id){return st.board.items.find(x=>x.id===id);}
 function boardUsed(n){return Object.values(st.board.pair).includes(n);}
