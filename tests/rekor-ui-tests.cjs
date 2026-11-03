@@ -118,6 +118,12 @@ const FAKE=`window.REKOR_FAKE=(()=>{const prof={},rows={};let uid='u-cihaz';cons
   assert.deepEqual(lost,{q:0,st:'lost',row:true});ok('Ulaşılamayan profil kuyruğu kilitlemiyor; diğer profilin sonucu gönderildi');
   // Uyguluyorum adı; eski ad kalmadı.
   await page.evaluate(()=>{st.subject='baharat';st.op='match';st.contentSet=1;go('boardmode');});assert(await page.getByRole('button',{name:/Uyguluyorum/}).isVisible());assert.equal(await page.getByText('Kendimi Deniyorum').count(),0);
+  // Sıralamada yalnız ilk ad; ilk sonuçtan önce açıklama; ana sayfada sıralama düğmesi.
+  const fn=await page.evaluate(()=>[rkName('Ali Veli'),rkName('  Ayşe   Nur Kaya '),rkName('Fatih'),rkName(''),rkName('Abcdefghijklmnopqrstuvwxyz Soyad')]);
+  assert.deepEqual(fn,['Ali','Ayşe','Fatih','','Abcdefghijklmnop']);ok('Sıralamaya yalnız ilk ad gider');
+  const first=await page.evaluate(()=>{lsSet('rk_prof',{});lsSet('profiles',['Yeni Kişi']);pickProfile('Yeni Kişi');st.subject='baharat';st.op='match';st.contentSet=1;go('boardmode');return document.getElementById('app').textContent;});
+  assert(first.includes('Sıralamada yalnız adın görünür'));ok('İlk sonuçtan önce sıralama açıklaması görünüyor');
+  await page.evaluate(()=>{go('home');});assert(await page.getByRole('button',{name:'Rekorlarım ve Sıralama'}).isVisible());await page.getByRole('button',{name:'Rekorlarım ve Sıralama'}).click();assert((await page.textContent('#app')).includes('Sıralamada görünme'));ok('Ana sayfadaki düğme Rekorlarım ekranını açıyor');
   if(shots){await page.setViewportSize({width:1200,height:844});await page.evaluate(()=>rkOpenBoard('bh-e1'));await page.waitForSelector('.rk-row');await page.screenshot({path:shots+'/5-siralama-1200.png'});}
   assert.deepEqual(errors,[]);ok('Tarayıcıda yakalanmamış JavaScript hatası yok');
  }finally{await browser.close();await new Promise(r=>server.close(r));}

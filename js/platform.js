@@ -10,7 +10,7 @@ const SUBJECTS = [
 const CONTENT = Object.create(null);
 const OLD_RENDER = render, OLD_NEWQ = newQ, OLD_START = startSession, OLD_RESOLVE = resolve;
 const OLD_QUIZ = quizHtml, OLD_ITEM = itemImg;
-VERSION='Sürüm · 04.11.2026 · Sesli okuma açık, müzik isteğe bağlı'; // Her yüklemede tarih güncellenir.
+VERSION='Sürüm · 04.11.2026 · Sıralamada yalnız ad görünür'; // Her yüklemede tarih güncellenir.
 st.subject='kuver'; st.practice='learn';
 LEVELS={
   1:{name:'Basit Kuver', items:['yemek_catali','yemek_bicagi','pecete','corba_kasigi','su_bardagi']},
@@ -199,7 +199,7 @@ render=function(){
     const c=st.sess;document.querySelector('.rep').insertAdjacentHTML('beforeend','<section class="card"><h2>Sonuç özeti</h2><p>İlk denemede doğru: '+c.ok+' · İkinci denemede: '+c.fix+' · Yanlış / yanıt gösterilen: '+c.bad+'</p><p class="note">'+(c.practice==='check'?'Bağımsız deneme':'İpucu içerebilen öğrenme çalışması')+'.'+(c.op==='kur'?' Ekranda yer seçimi, atölyede bağımsız kuver açma becerisinden ayrı değerlendirilir.':'')+'</p><div class="report-scroll"><table><thead><tr><th>Soru / Parça</th><th>Doğru yanıt</th><th>Sonuç</th></tr></thead><tbody>'+c.qs.map(q=>'<tr><td>'+esc(q.q)+'</td><td>'+esc(q.a)+'</td><td>'+(q.r===null?'Yanıtlanmadı':q.r===1?'İlk denemede':q.r===2?'İpucundan sonra':'Yanlış / yanıt gösterildi')+'</td></tr>').join('')+'</tbody></table></div></section>');
   }
   document.querySelectorAll('.msg').forEach(e=>{e.setAttribute('role','status');e.setAttribute('aria-live','polite');});
-  const nameInput=document.getElementById('pname');if(nameInput)nameInput.setAttribute('aria-label','Takma ad');
+  const nameInput=document.getElementById('pname');if(nameInput)nameInput.setAttribute('aria-label','Adın (soyadı yazma)');
   document.querySelectorAll('[data-choice]').forEach(b=>b.onclick=()=>answer(b.dataset.choice));
   if(st.screen==='quiz'&&st.op==='ad')document.querySelectorAll('.table .it').forEach(img=>{img.setAttribute('aria-hidden','true');if(img.tagName==='IMG')img.alt='';});
   if(st.screen==='quiz'&&st.done){const b=[...document.querySelectorAll('button')].find(b=>b.textContent==='Devam');if(b)b.focus({preventScroll:true});}

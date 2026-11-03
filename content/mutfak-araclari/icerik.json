@@ -1889,7 +1889,7 @@
         "file": "Mutfak_Araclari_Sayfa_Duzeni.docx",
         "question": "6"
       },
-      "hint": "Buzdolabının soğutucusu donmaz ama çok soğuktur."
+      "hint": "Soğutucu bölümün sıcaklığı termometreyle kontrol edilir."
     },
     {
       "id": "m-kd-103-7",
@@ -5888,5 +5888,5 @@
     "v10: Kullanım amacı yalnız biçimden belirlenemeyen kartlarda kullanım bilgisi sorunun parçasıdır. Bunların puanı, yalnız görselden bağımsız tanıma olarak yorumlanmaz.",
     "v10: Metal takımlar ve tabaklarda fotoğraf çerçevesi korunur. Büyütme mutlak santimetre ölçüsü vermez; kullanım bilgisi ve takım içindeki göreli ölçek birlikte ele alınır."
   ],
-  "revision": "v11-20261103"
+  "revision": "v12-20261104"
 }

@@ -27,7 +27,8 @@ function rkBoard(id){return RK_BOARDS.find(b=>b.id===id)||null;}
 function rkWeekNo(ms){return Math.floor(((ms||Date.now())+10800000+259200000)/604800000);}
 function rkWeekLabel(w){const start=w*604800000-259200000,d=ms=>{const x=new Date(ms);return pad(x.getUTCDate())+'.'+pad(x.getUTCMonth()+1)+'.'+x.getUTCFullYear();};return d(start)+' – '+d(start+6*86400000);}
 function rkTable(boardId,period,w){return RK_TERM+'~'+boardId+'~'+(period==='genel'?'genel':'w'+(w||rkWeekNo()));}
-function rkName(n){return String(n||'').trim().replace(/\s+/g,' ').slice(0,16);}
+/* Sıralamada yalnız ilk ad görünür; soyadı ve sonrası sunucuya gitmez. */
+function rkName(n){return String(n||'').trim().split(/\s+/)[0].slice(0,16);}
 function rkRandomId(){const c='abcdefghijklmnopqrstuvwxyz0123456789',b=crypto.getRandomValues(new Uint8Array(20));return Array.from(b,x=>c[x%c.length]).join('');}
 function rkIds(){return ls('rk_ids',{});}
 function rkPid(name,create){const m=rkIds();if(!m[name]&&create){m[name]=rkRandomId();lsSet('rk_ids',m);}return m[name]||null;}
@@ -97,7 +98,7 @@ function rkAfterAssessment(){
  ['genel','hafta'].forEach(period=>q.push({qid:rkRandomId(),pid,board:b.id,period,name,correct,gen:p.gen,at:Date.now(),sess:s.id}));
  lsSet('rk_queue',q);
  RK.msg.cloud=rkOnline()?'Sıralama güncelleniyor…':'Sıran internete bağlanınca görünecek.';
- if(!p.synced)RK.msg.note='Adın sıralamada görünür. İstemezsen Rekorlarım ekranından listeden çıkabilirsin.';
+ if(!p.synced)RK.msg.note='Sıralamada yalnız adın görünür. İstemezsen Rekorlarım ekranından listeden çıkabilirsin.';
  rkFlush(s.id);
 }
 /* Sıradaki sonuçları gönderir. Listeden çıkıldıktan sonra kalan ya da eski nesilden gelen sonuçlar atılır. */
@@ -256,7 +257,7 @@ function rkParticipationHTML(){
  const pid=rkPid(st.prof);const p=pid?rkProf(pid):{status:'in'};const pending=pid&&(rkClean()[pid]||[]).length;
  let h='<section class="card rk-part"><h2>Sıralamada görünme</h2>';
  if(p.status==='lost')return h+'<p>Bu profilin sıralama kaydına bu telefondan ulaşılamıyor. Telefonun site verileri silinmiş olabilir. Öğretmenine haber ver; istersen yeni bir profil açabilirsin.</p></section>';
- if(p.status==='in')h+='<p>Adın (<b>'+esc(rkName(st.prof))+'</b>) Uyguluyorum sonuçlarıyla sıralamada görünür.</p><button class="btn" onclick="rkLeave()">Listeden çık</button>';
+ if(p.status==='in')h+='<p>Sıralamada yalnız adın (<b>'+esc(rkName(st.prof))+'</b>) görünür. Uyguluyorum sonuçlarınla listeye girersin.</p><button class="btn" onclick="rkLeave()">Listeden çık</button>';
  else h+='<p>Şu anda sıralamada görünmüyorsun. Rekorların yalnız bu telefonda tutuluyor.</p><button class="btn" onclick="rkJoin()"'+(pending&&!rkOnline()?' disabled':'')+'>Listeye dön</button>';
  if(RK.view.notice)h+='<p class="note" role="status">'+esc(RK.view.notice)+'</p>';
  return h+'</section>';
@@ -354,7 +355,7 @@ render=function(){
  if(st.screen==='home'){const list=app.querySelector('.wrap .list');if(list)list.insertAdjacentHTML('beforeend',menuButton(st.guest?'Sıralama':'Rekorlarım ve Sıralama',st.guest?'Uyguluyorum sonuçlarının haftalık ve genel listesi.':'Kendi en iyi sonuçların, haftalık ve genel liste.',st.guest?"rkOpenBoard()":"go('rekor')"));}
  if(st.screen==='subject'&&!st.guest&&!rkRaceActive()){const list=app.querySelector('.wrap .list'),n=rkPekItems(st.subject).length;if(list){list.insertAdjacentHTML('beforeend',menuButton('Pekiştiriyorum'+(n?' ('+n+')':''),n?'Uyguluyorum\'da yanlış yaptıklarını tekrar et.':'Uyguluyorum\'da yanlış yaptığın maddeler burada toplanır.',"go('pekmenu')"));const nb=list.lastElementChild;if(nb)nb.classList.add('activity-card');}}
  if(['mode','boardmode','mcqmode'].includes(st.screen)){const list=app.querySelector('.wrap .list'),ranked=st.screen==='boardmode'?!!RK_SUBJ[st.subject]:st.screen==='mode'?st.op==='kur':RK_BOARDS.some(x=>x.kind==='mcq'&&x.subject===st.subject&&x.group===st.mcqGroup);
-  const note=ranked?'Uyguluyorum sonucun Rekorlarım\'a ve sıralamaya yazılır. Öğreniyorum yazılmaz.':st.screen==='mcqmode'?'Bu bölümün sonucu sıralamaya yazılmaz. Sıralama için “Bütün bölümler” denemesini çöz.':'Bu çalışmanın sonucu sıralamaya yazılmaz.';
+  const _pid=!st.guest&&st.prof?rkPid(st.prof):null,_first=ranked&&!st.guest&&!!st.prof&&(!_pid||(!rkProf(_pid).synced&&rkProf(_pid).status==='in'));const note=ranked?'Uyguluyorum sonucun Rekorlarım\'a ve sıralamaya yazılır. Öğreniyorum yazılmaz.'+(_first?' Sıralamada yalnız adın görünür. İstemezsen Rekorlarım ekranından listeden çıkabilirsin.':''):st.screen==='mcqmode'?'Bu bölümün sonucu sıralamaya yazılmaz. Sıralama için “Bütün bölümler” denemesini çöz.':'Bu çalışmanın sonucu sıralamaya yazılmaz.';
   if(list)list.insertAdjacentHTML('afterend','<p class="note">'+note+'</p>');}
  /* Pekiştirme turunun sonunda normal tur başlatan düğmeler gizlenir; dönüş banner'daki düğmelerle yapılır. */
  if(st.pekRound&&st.kDone&&['board','quiz'].includes(st.screen))app.querySelectorAll('button[onclick]').forEach(b=>{if(/startBoard|newKuverBtn|startSession/.test(b.getAttribute('onclick')))b.remove();});
