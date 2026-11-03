@@ -333,7 +333,7 @@ function render(){
       h+='<div class="prof"><button class="menu-btn" onclick="pickProfile(profiles()['+i+'])"><b>'+esc(n)+'</b></button>'+
          '<button class="del" aria-label="Profili sil" onclick="askDelProfile(profiles()['+i+'])">🗑</button></div>';
     });
-    h+='</div><div class="card" style="margin-top:14px"><b>Yeni profil</b><p class="note" style="margin:4px 0 10px">Yalnız adını yaz, soyadını yazma. Sıralamada yalnız bu ad görünür.</p>'+
+    h+='</div><div class="card" style="margin-top:14px"><b>Yeni profil</b><p class="note" style="margin:4px 0 10px">Profil için adını yazman yeterli. Sıralamada yalnızca adın görünür.</p>'+
        '<input type="text" id="pname" maxlength="20" placeholder="Adın" autocomplete="off">'+
        '<div style="margin-top:10px"><button class="btn pri" onclick="createProfile()">Profil Oluştur</button></div></div>'+
        '<div style="margin-top:14px"><button class="btn ghost" onclick="guest()">Misafir Olarak Devam Et</button>'+
