@@ -71,11 +71,11 @@ service cloud.firestore {
    allow list: if false;
    allow create: if signed() && pid.matches('^[a-z0-9]{20}$')
     && request.resource.data.keys().hasAll(['owner','status','gen']) && request.resource.data.keys().hasOnly(['owner','status','gen'])
-    && request.resource.data.owner == request.auth.uid && request.resource.data.status == 'in' && request.resource.data.gen == 0;
+    && request.resource.data.owner == request.auth.uid && request.resource.data.status == 'in' && request.resource.data.gen is int && request.resource.data.gen == 0;
    allow update: if signed() && resource.data.owner == request.auth.uid && resource.data.status != 'deleted'
     && request.resource.data.keys().hasAll(['owner','status','gen']) && request.resource.data.keys().hasOnly(['owner','status','gen'])
     && request.resource.data.owner == resource.data.owner
-    && request.resource.data.gen == resource.data.gen + 1
+    && request.resource.data.gen is int && request.resource.data.gen == resource.data.gen + 1
     && ((resource.data.status == 'in' && request.resource.data.status in ['out','deleted'])
      || (resource.data.status == 'out' && request.resource.data.status in ['in','deleted']));
    allow delete: if false;
@@ -88,6 +88,7 @@ service cloud.firestore {
    function shape(d) {
     return d.keys().hasAll(['name','correct','term','version','gen']) && d.keys().hasOnly(['name','correct','term','version','gen'])
      && d.name is string && d.name.size() >= 1 && d.name.size() <= 16
+     && d.name.matches('.*[^\\s].*') && !d.name.matches('.*[\\r\\n].*')
      && d.correct is int && d.correct >= 0 && d.correct <= total()
      && d.term == rkTerm() && d.version == rkVersion() && d.gen is int;
    }
