@@ -10,13 +10,13 @@ const SUBJECTS = [
 const CONTENT = Object.create(null);
 const OLD_RENDER = render, OLD_NEWQ = newQ, OLD_START = startSession, OLD_RESOLVE = resolve;
 const OLD_QUIZ = quizHtml, OLD_ITEM = itemImg;
-VERSION='Sürüm · 03.11.2026 · Yeni tasarım, gece modu ve müzik'; // Her yüklemede tarih güncellenir.
+VERSION='Sürüm · 03.11.2026 · Kılavuz, geri tuşu, içerik düzeltmeleri'; // Her yüklemede tarih güncellenir.
 st.subject='kuver'; st.practice='learn';
 LEVELS={
   1:{name:'Basit Kuver', items:['yemek_catali','yemek_bicagi','pecete','corba_kasigi','su_bardagi']},
   3:{name:'Tabldot Kuver', items:['yemek_catali','yemek_bicagi','pecete','corba_kasigi','su_bardagi','ekmek_tabagi','tereyagi_bicagi','tatli_catali','tatli_kasigi']}
 };
-ITEMS.kuver_tabagi.kural='Bu çalışmada kuver tabağı konuğun önüne, masa kenarından 2–3 cm içeri konur.';
+ITEMS.kuver_tabagi.kural='Bu çalışmada kuver tabağı konuğun önüne, masa kenarından iki parmak (yaklaşık 2 cm) içeri konur.';
 ITEMS.corba_kasigi.ayirt='Çorba içmek için kullanılır. Tatlı kaşığından büyüktür.';
 ITEMS.pecete.kural='Bu kuverde peçeteyi çatalın soluna koyuyoruz.';
 ITEMS.pecete.ayirt='Peçete ağız çevresini ve elleri silmek için kullanılır. Bu düzende çatalın solundadır.';

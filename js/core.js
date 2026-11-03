@@ -12,7 +12,7 @@ var PTS = 10;               // ilk denemede doğru puanı
 var ITEMS = {
   kuver_tabagi:   {ad:"Kuver tabağı", AD:"KUVER TABAĞI", x:53.3, y:61.4, w:43.2,
                    yer:"Ortada",
-                   kural:"Kuver tabağı ortaya, bu çalışmada masa kenarından 2–3 cm içeri konur.",
+                   kural:"Kuver tabağı ortaya, bu çalışmada masa kenarından iki parmak (yaklaşık 2 cm) içeri konur.",
                    ayirt:"Kuver tabağı büyük, düz bir tabaktır. Kuverin ortasında durur."},
   yemek_catali:   {ad:"Yemek çatalı", AD:"YEMEK ÇATALI", x:28, y:64.6, h:51.5, mx:28, my:64,
                    yer:"Tabağın solu",

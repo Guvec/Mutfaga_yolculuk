@@ -16,7 +16,7 @@ const {chromium}=require('playwright'),http=require('http'),fs=require('fs'),pat
   await page.evaluate(()=>{st.subject='baharat';st.op='match';st.contentSet=1;startBoard('check');st.board.items.forEach((x,i)=>tryPair(x.id,st.board.items[(i+1)%12].answer));checkBoard();});
   assert.equal(await page.evaluate(()=>st.sess.bad),12);assert(await page.locator('.spice-fact').isVisible());assert.equal(await page.evaluate(()=>document.activeElement.id),'spiceProductTitle');
   const before=await page.evaluate(()=>JSON.stringify({session:st.sess,pair:st.board.pair,attempts:st.board.attempts,run:st.run}));
-  await page.evaluate(()=>{window.infoSpoken=[];sesSoyle=text=>window.infoSpoken.push(text);});
+  await page.evaluate(()=>{window.infoSpoken=[];SES.acik=true;/* müzik varsayılan açık olduğundan sesli okumayı açan öğrenci durumu */sesSoyle=text=>window.infoSpoken.push(text);});
   await page.getByRole('button',{name:'Bilgiyi dinle',exact:true}).click();assert.equal(await page.evaluate(()=>window.infoSpoken[0]),await page.evaluate(()=>st.board.items[0].answer+'. '+st.board.items[0].explanation));await page.getByRole('button',{name:'Sesi durdur',exact:true}).click();
   await page.getByRole('button',{name:'Sonraki ürün',exact:true}).focus();await page.keyboard.press('Enter');assert.equal(await page.evaluate(()=>spiceReviewIndex),1);
   await page.getByRole('button',{name:'Önceki ürün',exact:true}).click();assert.equal(await page.evaluate(()=>spiceReviewIndex),0);

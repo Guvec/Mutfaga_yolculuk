@@ -6,7 +6,7 @@
       "choices": [
         {
           "id": "A",
-          "text": "Çorba tabağı"
+          "text": "Tatlı tabağı"
         },
         {
           "id": "B",
@@ -29,11 +29,11 @@
         "file": "Mutfak_Araclari_Sayfa_Duzeni.docx",
         "question": "1"
       },
-      "hint": "Kabın derinliğini, kenarını ve varsa ortasındaki yuvayı karşılaştır."
+      "hint": "Tabakları yandan düşün. Hangisinin ortası derindir?"
     },
     {
       "id": "m-kd-11-2",
-      "prompt": "Çay ve kahve fincanının altına hangi tabak konur?",
+      "prompt": "Türk kahvesi fincanının altına hangi tabak konur?",
       "choices": [
         {
           "id": "A",
@@ -60,7 +60,7 @@
         "file": "Mutfak_Araclari_Sayfa_Duzeni.docx",
         "question": "2"
       },
-      "hint": "Kabın derinliğini, kenarını ve varsa ortasındaki yuvayı karşılaştır."
+      "hint": "Fincanın kaymaması için ortasında yuva olan tabağı düşün."
     },
     {
       "id": "m-kd-11-3",
@@ -91,7 +91,7 @@
         "file": "Mutfak_Araclari_Sayfa_Duzeni.docx",
         "question": "3"
       },
-      "hint": "Aracın biçimini ve hangi işi yaptığını birlikte düşün."
+      "hint": "Reçel az miktarda sunulur. Küçük kâse biçimindeki kabı düşün."
     },
     {
       "id": "m-kd-11-4",
@@ -122,7 +122,7 @@
         "file": "Mutfak_Araclari_Sayfa_Duzeni.docx",
         "question": "4"
       },
-      "hint": "Kabın derinliğini, kenarını ve varsa ortasındaki yuvayı karşılaştır."
+      "hint": "Kâse taşınırken sallanır. Sıvının taşmaması için kâsenin ne kadar dolu olması gerektiğini düşün."
     },
     {
       "id": "m-kd-11-5",
@@ -153,7 +153,7 @@
         "file": "Mutfak_Araclari_Sayfa_Duzeni.docx",
         "question": "5"
       },
-      "hint": "Konuğun oturduğu yönden sağ ve solu düşün."
+      "hint": "Ekmek tabağı çatalların olduğu tarafta, onların üstünde durur."
     },
     {
       "id": "m-kd-11-6",
@@ -184,7 +184,7 @@
         "file": "Mutfak_Araclari_Sayfa_Duzeni.docx",
         "question": "6"
       },
-      "hint": "Kabın derinliğini, kenarını ve varsa ortasındaki yuvayı karşılaştır."
+      "hint": "Pasta düz ve küçük bir tabakta sunulur. Çorba ve makarna tabakları çukurdur."
     },
     {
       "id": "m-kd-11-7",
@@ -215,7 +215,7 @@
         "file": "Mutfak_Araclari_Sayfa_Duzeni.docx",
         "question": "7"
       },
-      "hint": "Kabın derinliğini, kenarını ve varsa ortasındaki yuvayı karşılaştır."
+      "hint": "Yiyeceğin konduğu iç yüzeye parmak değmemelidir."
     },
     {
       "id": "m-kd-17-1",
@@ -246,7 +246,7 @@
         "file": "Mutfak_Araclari_Sayfa_Duzeni.docx",
         "question": "1"
       },
-      "hint": "Aracın biçimini ve hangi işi yaptığını birlikte düşün."
+      "hint": "Fincanlar sıcak içecek içindir. Soğuk içecek için kullanılan kabı düşün."
     },
     {
       "id": "m-kd-17-2",
@@ -277,7 +277,7 @@
         "file": "Mutfak_Araclari_Sayfa_Duzeni.docx",
         "question": "2"
       },
-      "hint": "Aracın biçimini ve hangi işi yaptığını birlikte düşün."
+      "hint": "Türk kahvesinin yanında ağızdaki tadı temizleyen içeceği düşün."
     },
     {
       "id": "m-kd-17-3",
@@ -308,7 +308,7 @@
         "file": "Mutfak_Araclari_Sayfa_Duzeni.docx",
         "question": "3"
       },
-      "hint": "Sıcak yüzey, buhar ve ıslak bezin yaratabileceği riski düşün."
+      "hint": "Sıcak çay fincanın gövdesini ısıtır. Elin yanmaması için fincanın hangi bölümü yapılmıştır?"
     },
     {
       "id": "m-kd-22-1",
@@ -339,7 +339,7 @@
         "file": "Mutfak_Araclari_Sayfa_Duzeni.docx",
         "question": "1"
       },
-      "hint": "Aynı takımdaki boylarını ve yiyeceği tutan bölümünü karşılaştır."
+      "hint": "Çatal ve bıçak tabağın iki yanında durur. Bıçak sağdadır."
     },
     {
       "id": "m-kd-22-2",
@@ -370,7 +370,7 @@
         "file": "Mutfak_Araclari_Sayfa_Duzeni.docx",
         "question": "2"
       },
-      "hint": "Aynı takımdaki boylarını ve yiyeceği tutan bölümünü karşılaştır."
+      "hint": "Sütlaç bir tatlıdır. Çorba kaşığından küçük, çay kaşığından büyük kaşığı düşün."
     },
     {
       "id": "m-kd-22-3",
@@ -401,7 +401,7 @@
         "file": "Mutfak_Araclari_Sayfa_Duzeni.docx",
         "question": "3"
       },
-      "hint": "Sürme ve dilimleme işlerini birbirinden ayır."
+      "hint": "Tereyağı sürmek için küçük ve ağzı keskin olmayan bıçağı düşün."
     },
     {
       "id": "m-kd-22-4",
@@ -421,7 +421,7 @@
         },
         {
           "id": "D",
-          "text": "çatala"
+          "text": "kuverin dışına"
         }
       ],
       "correct": "C",
@@ -432,7 +432,7 @@
         "file": "Mutfak_Araclari_Sayfa_Duzeni.docx",
         "question": "4"
       },
-      "hint": "Aracın biçimini ve hangi işi yaptığını birlikte düşün."
+      "hint": "Bıçağın keskin ağzı konuğa ya da kuverin dışına dönük olmaz."
     },
     {
       "id": "m-kd-22-5",
@@ -463,7 +463,7 @@
         "file": "Mutfak_Araclari_Sayfa_Duzeni.docx",
         "question": "5"
       },
-      "hint": "Kaşıktaki suyun şekeri nasıl etkilediğini düşün."
+      "hint": "Nemli kaşık şekeri topaklaştırır."
     },
     {
       "id": "m-kd-27-1",
@@ -494,7 +494,7 @@
         "file": "Mutfak_Araclari_Sayfa_Duzeni.docx",
         "question": "1"
       },
-      "hint": "Sıcak yüzey, buhar ve ıslak bezin yaratabileceği riski düşün."
+      "hint": "Elini sıcaktan koruyan ve servis sırasında kolda taşınan temiz bezi düşün."
     },
     {
       "id": "m-kd-27-2",
@@ -525,7 +525,7 @@
         "file": "Mutfak_Araclari_Sayfa_Duzeni.docx",
         "question": "2"
       },
-      "hint": "Aracın biçimini ve hangi işi yaptığını birlikte düşün."
+      "hint": "Ağırlık bir yana toplanırsa tepsi devrilir."
     },
     {
       "id": "m-kd-27-3",
@@ -556,7 +556,7 @@
         "file": "Mutfak_Araclari_Sayfa_Duzeni.docx",
         "question": "3"
       },
-      "hint": "Aracın biçimini ve hangi işi yaptığını birlikte düşün."
+      "hint": "Lito bezi yalnız servis içindir. Masa ayrı bir bezle silinir."
     },
     {
       "id": "m-kd-27-4",
@@ -587,7 +587,7 @@
         "file": "Mutfak_Araclari_Sayfa_Duzeni.docx",
         "question": "4"
       },
-      "hint": "Aracın biçimini ve hangi işi yaptığını birlikte düşün."
+      "hint": "Eşikte araba sarsılır ve kaplar devrilebilir."
     },
     {
       "id": "m-kd-27-5",
@@ -618,7 +618,7 @@
         "file": "Mutfak_Araclari_Sayfa_Duzeni.docx",
         "question": "5"
       },
-      "hint": "Aracın biçimini ve hangi işi yaptığını birlikte düşün."
+      "hint": "Ağır kaplar aşağıda durursa araba devrilmez."
     },
     {
       "id": "m-kd-27-6",
@@ -649,7 +649,7 @@
         "file": "Mutfak_Araclari_Sayfa_Duzeni.docx",
         "question": "6"
       },
-      "hint": "Aracın biçimini ve hangi işi yaptığını birlikte düşün."
+      "hint": "Kirli bez temiz tabağa ve konuğun yiyeceğine mikrop taşır."
     },
     {
       "id": "m-kd-43-1",
@@ -680,7 +680,7 @@
         "file": "Mutfak_Araclari_Sayfa_Duzeni.docx",
         "question": "1"
       },
-      "hint": "Aracın biçimini ve hangi işi yaptığını birlikte düşün."
+      "hint": "Pilav geniş tabanda eşit pişer."
     },
     {
       "id": "m-kd-43-2",
@@ -711,7 +711,7 @@
         "file": "Mutfak_Araclari_Sayfa_Duzeni.docx",
         "question": "2"
       },
-      "hint": "Aracın biçimini ve hangi işi yaptığını birlikte düşün."
+      "hint": "Türk kahvesi küçük, saplı ve ağzı dar kapta pişirilir."
     },
     {
       "id": "m-kd-43-3",
@@ -742,7 +742,7 @@
         "file": "Mutfak_Araclari_Sayfa_Duzeni.docx",
         "question": "3"
       },
-      "hint": "Sıcak yüzey, buhar ve ıslak bezin yaratabileceği riski düşün."
+      "hint": "Islak bez ısıyı ele hızla geçirir. Kuru ve kalın korumayı düşün."
     },
     {
       "id": "m-kd-43-4",
@@ -773,38 +773,38 @@
         "file": "Mutfak_Araclari_Sayfa_Duzeni.docx",
         "question": "4"
       },
-      "hint": "Aracın biçimini ve hangi işi yaptığını birlikte düşün."
+      "hint": "Metal araçlar kaplamayı çizer."
     },
     {
       "id": "m-kd-43-5",
-      "prompt": "Sıcak cam kap ……… yüzeye konmaz.",
+      "prompt": "Fırından çıkan sıcak cam kap nereye konur?",
       "choices": [
         {
           "id": "A",
-          "text": "kuru"
+          "text": "Islak bezin üstüne"
         },
         {
           "id": "B",
-          "text": "ısıya dayanıklı"
+          "text": "Soğuk mermer tezgâha"
         },
         {
           "id": "C",
-          "text": "düz"
+          "text": "Kuru, ısıya dayanıklı altlığa"
         },
         {
           "id": "D",
-          "text": "ıslak"
+          "text": "Ocağın üstüne"
         }
       ],
-      "correct": "D",
+      "correct": "C",
       "group": "Pişirme kapları ve tavalar",
       "chapter": 2,
-      "explanation": "Sıcak cam kap ıslak yüzeye konmaz. Ani sıcaklık farkı camın çatlamasına yol açabilir; uygun kuru nihale kullanılır.",
+      "explanation": "Sıcak cam kap kuru, ısıya dayanıklı bir altlığa konur. Islak ya da soğuk yüzey ve ocağın ateşi ani sıcaklık farkı yaratır; cam çatlayabilir.",
       "source": {
         "file": "Mutfak_Araclari_Sayfa_Duzeni.docx",
         "question": "5"
       },
-      "hint": "Sıcak yüzey, buhar ve ıslak bezin yaratabileceği riski düşün."
+      "hint": "Islaklık ve soğukluk ani sıcaklık farkı yaratır."
     },
     {
       "id": "m-kd-43-6",
@@ -820,7 +820,7 @@
         },
         {
           "id": "C",
-          "text": "Her kalıp aynı çizgiye kadar doldurulur."
+          "text": "Hamur kalıp gözlerine rastgele miktarda konur."
         },
         {
           "id": "D",
@@ -835,7 +835,7 @@
         "file": "Mutfak_Araclari_Sayfa_Duzeni.docx",
         "question": "6"
       },
-      "hint": "Aracın biçimini ve hangi işi yaptığını birlikte düşün."
+      "hint": "Hamur fırında kabarır. Kabarmaya yer kalması gerekir."
     },
     {
       "id": "m-kd-57-1",
@@ -866,7 +866,7 @@
         "file": "Mutfak_Araclari_Sayfa_Duzeni.docx",
         "question": "1"
       },
-      "hint": "Bıçağın ağzındaki tırtıklara bak."
+      "hint": "Ekmeğin kabuğu sert, içi yumuşaktır. Ağzı tırtıklı bıçağı düşün."
     },
     {
       "id": "m-kd-57-2",
@@ -897,7 +897,7 @@
         "file": "Mutfak_Araclari_Sayfa_Duzeni.docx",
         "question": "2"
       },
-      "hint": "Aracın biçimini ve hangi işi yaptığını birlikte düşün."
+      "hint": "Kesme tahtası kayarsa bıçak ele kayar."
     },
     {
       "id": "m-kd-57-3",
@@ -928,7 +928,7 @@
         "file": "Mutfak_Araclari_Sayfa_Duzeni.docx",
         "question": "3"
       },
-      "hint": "Aracın biçimini ve hangi işi yaptığını birlikte düşün."
+      "hint": "Kabuk küçük parçalar hâlinde isteniyor. Şerit değil."
     },
     {
       "id": "m-kd-57-4",
@@ -959,7 +959,7 @@
         "file": "Mutfak_Araclari_Sayfa_Duzeni.docx",
         "question": "4"
       },
-      "hint": "Aracın biçimini ve hangi işi yaptığını birlikte düşün."
+      "hint": "Kabın kıvrımına uyan, esnek ucu olan aracı düşün."
     },
     {
       "id": "m-kd-57-5",
@@ -990,7 +990,7 @@
         "file": "Mutfak_Araclari_Sayfa_Duzeni.docx",
         "question": "5"
       },
-      "hint": "Keskin bölümün ele ne kadar yakın olduğunu ve güvenli tutuşu düşün."
+      "hint": "Makasın sivri ucu yere bakarsa düşse bile kimseyi yaralamaz."
     },
     {
       "id": "m-kd-57-6",
@@ -1021,7 +1021,7 @@
         "file": "Mutfak_Araclari_Sayfa_Duzeni.docx",
         "question": "6"
       },
-      "hint": "Keskin bölümün ele ne kadar yakın olduğunu ve güvenli tutuşu düşün."
+      "hint": "Bıçak düz parmak ucunu keser. Parmak uçları bıçaktan uzak durmalıdır."
     },
     {
       "id": "m-kd-57-7",
@@ -1052,7 +1052,7 @@
         "file": "Mutfak_Araclari_Sayfa_Duzeni.docx",
         "question": "7"
       },
-      "hint": "Keskin bölümün ele ne kadar yakın olduğunu ve güvenli tutuşu düşün."
+      "hint": "Düşen bıçağı yakalamaya çalışan el kesilir."
     },
     {
       "id": "m-kd-69-1",
@@ -1083,7 +1083,7 @@
         "file": "Mutfak_Araclari_Sayfa_Duzeni.docx",
         "question": "1"
       },
-      "hint": "Gram ile mililitrenin farklı ölçüler olduğunu hatırla. Kabın ağırlığı ölçüme katılacak mı?"
+      "hint": "Un gramla ölçülür. Gram gösteren aracı düşün."
     },
     {
       "id": "m-kd-69-2",
@@ -1114,7 +1114,7 @@
         "file": "Mutfak_Araclari_Sayfa_Duzeni.docx",
         "question": "2"
       },
-      "hint": "Sıvıyı taşıması mı, süzmesi mi gerekiyor?"
+      "hint": "Çorba sıvıdır. Delikli araçlar sıvıyı tutmaz."
     },
     {
       "id": "m-kd-69-3",
@@ -1145,7 +1145,7 @@
         "file": "Mutfak_Araclari_Sayfa_Duzeni.docx",
         "question": "3"
       },
-      "hint": "Fırının içindeki hava ile yiyeceğin içini ayır."
+      "hint": "Soru yemeğin değil, fırının içindeki havanın sıcaklığını soruyor."
     },
     {
       "id": "m-kd-69-4",
@@ -1176,7 +1176,7 @@
         "file": "Mutfak_Araclari_Sayfa_Duzeni.docx",
         "question": "4"
       },
-      "hint": "Gram ile mililitrenin farklı ölçüler olduğunu hatırla. Kabın ağırlığı ölçüme katılacak mı?"
+      "hint": "Kabın ağırlığı sıfırlanınca terazi yalnız yiyeceği tartar."
     },
     {
       "id": "m-kd-69-5",
@@ -1207,7 +1207,7 @@
         "file": "Mutfak_Araclari_Sayfa_Duzeni.docx",
         "question": "5"
       },
-      "hint": "Sıvı miktarını gösteren çizgileri ve kabın durduğu zemini düşün."
+      "hint": "Mililitre çizgileri olan ölçme aracını düşün."
     },
     {
       "id": "m-kd-69-6",
@@ -1238,7 +1238,7 @@
         "file": "Mutfak_Araclari_Sayfa_Duzeni.docx",
         "question": "6"
       },
-      "hint": "Sıvı miktarını gösteren çizgileri ve kabın durduğu zemini düşün."
+      "hint": "Çizgiye yukarıdan ya da yandan bakınca miktar yanlış görünür."
     },
     {
       "id": "m-kd-74-1",
@@ -1269,7 +1269,7 @@
         "file": "Mutfak_Araclari_Sayfa_Duzeni.docx",
         "question": "1"
       },
-      "hint": "Aracın biçimini ve hangi işi yaptığını birlikte düşün."
+      "hint": "Hamuru inceltmek için üzerinde yuvarlanan aracı düşün."
     },
     {
       "id": "m-kd-74-2",
@@ -1300,7 +1300,7 @@
         "file": "Mutfak_Araclari_Sayfa_Duzeni.docx",
         "question": "2"
       },
-      "hint": "Aracın biçimini ve hangi işi yaptığını birlikte düşün."
+      "hint": "Kremayı düz ve ince yaymak için uzun, esnek ağızlı aracı düşün."
     },
     {
       "id": "m-kd-74-3",
@@ -1331,7 +1331,7 @@
         "file": "Mutfak_Araclari_Sayfa_Duzeni.docx",
         "question": "3"
       },
-      "hint": "Sıcak yüzey, buhar ve ıslak bezin yaratabileceği riski düşün."
+      "hint": "Kurabiyenin altından da hava geçmezse altı terler ve yumuşar."
     },
     {
       "id": "m-kd-74-4",
@@ -1362,7 +1362,7 @@
         "file": "Mutfak_Araclari_Sayfa_Duzeni.docx",
         "question": "4"
       },
-      "hint": "Aracın biçimini ve hangi işi yaptığını birlikte düşün."
+      "hint": "Torba sıkılınca krema en kolay yoldan, üstten çıkar."
     },
     {
       "id": "m-kd-74-5",
@@ -1393,7 +1393,7 @@
         "file": "Mutfak_Araclari_Sayfa_Duzeni.docx",
         "question": "5"
       },
-      "hint": "Aracın biçimini ve hangi işi yaptığını birlikte düşün."
+      "hint": "Çiğ yumurtada mikrop olabilir. Mikrobun başka yiyeceğe geçmemesi için ne yapılmalı?"
     },
     {
       "id": "m-kd-90-1",
@@ -1424,7 +1424,7 @@
         "file": "Mutfak_Araclari_Sayfa_Duzeni.docx",
         "question": "1"
       },
-      "hint": "Aracın biçimini ve hangi işi yaptığını birlikte düşün."
+      "hint": "Diğer cihazlar suyu ısıtır ama başka iş de yapar."
     },
     {
       "id": "m-kd-90-2",
@@ -1455,7 +1455,7 @@
         "file": "Mutfak_Araclari_Sayfa_Duzeni.docx",
         "question": "2"
       },
-      "hint": "Aracın biçimini ve hangi işi yaptığını birlikte düşün."
+      "hint": "Metal mikrodalgada kıvılcım çıkarır."
     },
     {
       "id": "m-kd-90-3",
@@ -1486,7 +1486,7 @@
         "file": "Mutfak_Araclari_Sayfa_Duzeni.docx",
         "question": "3"
       },
-      "hint": "Öğrencinin güvenli biçimde uzaklaşacağı davranışı düşün."
+      "hint": "Gaz kokusunda ilk iş kendini korumaktır. Ateş ve kıvılcım tehlikelidir."
     },
     {
       "id": "m-kd-90-4",
@@ -1517,7 +1517,7 @@
         "file": "Mutfak_Araclari_Sayfa_Duzeni.docx",
         "question": "4"
       },
-      "hint": "Sıcak yüzey, buhar ve ıslak bezin yaratabileceği riski düşün."
+      "hint": "Kapak açılınca içerideki sıcak hava ve buhar dışarı çıkar."
     },
     {
       "id": "m-kd-90-5",
@@ -1548,7 +1548,7 @@
         "file": "Mutfak_Araclari_Sayfa_Duzeni.docx",
         "question": "5"
       },
-      "hint": "Aracın biçimini ve hangi işi yaptığını birlikte düşün."
+      "hint": "Her yemek ve her cihaz farklıdır. Süre nerede yazar?"
     },
     {
       "id": "m-kd-95-1",
@@ -1579,7 +1579,7 @@
         "file": "Mutfak_Araclari_Sayfa_Duzeni.docx",
         "question": "1"
       },
-      "hint": "Aracın biçimini ve hangi işi yaptığını birlikte düşün."
+      "hint": "Tencerenin içine daldırılan, ucunda bıçak olan elektrikli cihazı düşün."
     },
     {
       "id": "m-kd-95-2",
@@ -1610,11 +1610,11 @@
         "file": "Mutfak_Araclari_Sayfa_Duzeni.docx",
         "question": "2"
       },
-      "hint": "Aracın biçimini ve hangi işi yaptığını birlikte düşün."
+      "hint": "İki çırpıcısı olan ve elde tutulan cihazı düşün."
     },
     {
       "id": "m-kd-95-3",
-      "prompt": "Bu çalışmada kullanılan, sıcak sıvıya uygun olmayan smoothie blenderine hangisi konmaz?",
+      "prompt": "Smoothie blenderine hangisi konmaz?",
       "choices": [
         {
           "id": "A",
@@ -1630,18 +1630,18 @@
         },
         {
           "id": "D",
-          "text": "Sıcak sıvı"
+          "text": "Kaynar çorba"
         }
       ],
       "correct": "D",
       "group": "Hazırlık cihazları",
       "chapter": 3,
-      "explanation": "Bu çalışmadaki smoothie blenderine sıcak sıvı konmaz. Sıcak sıvı sıçrayıp yanığa yol açabilir; cihazın kılavuzu esas alınır.",
+      "explanation": "Bu çalışmadaki smoothie blenderi sıcak sıvıya uygun değildir. Kaynar sıvı sıçrayıp yanığa yol açabilir; cihazın kılavuzu esas alınır.",
       "source": {
         "file": "Mutfak_Araclari_Sayfa_Duzeni.docx",
         "question": "3"
       },
-      "hint": "Aracın biçimini ve hangi işi yaptığını birlikte düşün."
+      "hint": "Bu blender sıcak sıvıya uygun değildir."
     },
     {
       "id": "m-kd-95-4",
@@ -1672,7 +1672,7 @@
         "file": "Mutfak_Araclari_Sayfa_Duzeni.docx",
         "question": "4"
       },
-      "hint": "Aracın biçimini ve hangi işi yaptığını birlikte düşün."
+      "hint": "Fiş prizdeyken makine yanlışlıkla çalışabilir."
     },
     {
       "id": "m-kd-95-5",
@@ -1684,15 +1684,15 @@
         },
         {
           "id": "B",
-          "text": "Fiş prizdeyken"
+          "text": "Makine kapalı, fiş prizdeyken"
         },
         {
           "id": "C",
-          "text": "Kanca dönerken"
+          "text": "Kanca dönmeyi bitirmeden"
         },
         {
           "id": "D",
-          "text": "Makine kapalı ve fişi çekiliyken"
+          "text": "Makine kapalı, fiş çekiliyken"
         }
       ],
       "correct": "D",
@@ -1703,7 +1703,7 @@
         "file": "Mutfak_Araclari_Sayfa_Duzeni.docx",
         "question": "5"
       },
-      "hint": "Aracın biçimini ve hangi işi yaptığını birlikte düşün."
+      "hint": "Fiş prizdeyken makine yanlışlıkla çalışabilir."
     },
     {
       "id": "m-kd-103-1",
@@ -1734,7 +1734,7 @@
         "file": "Mutfak_Araclari_Sayfa_Duzeni.docx",
         "question": "1"
       },
-      "hint": "Kitaptaki soğukta saklama ve çiğ yiyeceği hazır yiyecekten ayırma kuralını hatırla."
+      "hint": "Çiğ etin suyu damlarsa altındaki yiyeceğe mikrop geçer."
     },
     {
       "id": "m-kd-103-2",
@@ -1765,7 +1765,7 @@
         "file": "Mutfak_Araclari_Sayfa_Duzeni.docx",
         "question": "2"
       },
-      "hint": "Kabın kapalı olmasına ve gıdayı nemden korumasına bak."
+      "hint": "Un nemden ve böcekten korunmalıdır. Kapağı sıkı kapanan kabı düşün."
     },
     {
       "id": "m-kd-103-3",
@@ -1796,7 +1796,7 @@
         "file": "Mutfak_Araclari_Sayfa_Duzeni.docx",
         "question": "3"
       },
-      "hint": "Kitaptaki soğukta saklama ve çiğ yiyeceği hazır yiyecekten ayırma kuralını hatırla."
+      "hint": "Artan yemek buzdolabında birkaç gün dayanır, bir hafta değil."
     },
     {
       "id": "m-kd-103-4",
@@ -1827,7 +1827,7 @@
         "file": "Mutfak_Araclari_Sayfa_Duzeni.docx",
         "question": "4"
       },
-      "hint": "Sıcak yüzey, buhar ve ıslak bezin yaratabileceği riski düşün."
+      "hint": "Mikroplar oda sıcaklığında hızla çoğalır. Süre kısadır."
     },
     {
       "id": "m-kd-103-5",
@@ -1858,7 +1858,7 @@
         "file": "Mutfak_Araclari_Sayfa_Duzeni.docx",
         "question": "5"
       },
-      "hint": "Kitaptaki soğukta saklama ve çiğ yiyeceği hazır yiyecekten ayırma kuralını hatırla."
+      "hint": "Yemek tamamen ve çok iyi ısınmalıdır. En yüksek sıcaklığı düşün."
     },
     {
       "id": "m-kd-103-6",
@@ -1889,7 +1889,7 @@
         "file": "Mutfak_Araclari_Sayfa_Duzeni.docx",
         "question": "6"
       },
-      "hint": "Kitaptaki soğukta saklama ve çiğ yiyeceği hazır yiyecekten ayırma kuralını hatırla."
+      "hint": "Buzdolabının soğutucusu donmaz ama çok soğuktur."
     },
     {
       "id": "m-kd-103-7",
@@ -1920,7 +1920,7 @@
         "file": "Mutfak_Araclari_Sayfa_Duzeni.docx",
         "question": "7"
       },
-      "hint": "Kitaptaki soğukta saklama ve çiğ yiyeceği hazır yiyecekten ayırma kuralını hatırla."
+      "hint": "Dondurucu sıfırın çok altında çalışır."
     },
     {
       "id": "m-kd-109-1",
@@ -1951,7 +1951,7 @@
         "file": "Mutfak_Araclari_Sayfa_Duzeni.docx",
         "question": "1"
       },
-      "hint": "Aracın sıcaklık için mi, bulaşık yıkamak için mi kullanıldığını düşün. Temiz yüzeylere nasıl dokunulur?"
+      "hint": "Sert yüz kaplamayı çizer."
     },
     {
       "id": "m-kd-109-2",
@@ -1982,7 +1982,7 @@
         "file": "Mutfak_Araclari_Sayfa_Duzeni.docx",
         "question": "2"
       },
-      "hint": "Aracın sıcaklık için mi, bulaşık yıkamak için mi kullanıldığını düşün. Temiz yüzeylere nasıl dokunulur?"
+      "hint": "Ağzı yukarı bakan bardağın içinde su birikir."
     },
     {
       "id": "m-kd-109-3",
@@ -2013,7 +2013,7 @@
         "file": "Mutfak_Araclari_Sayfa_Duzeni.docx",
         "question": "3"
       },
-      "hint": "Aracın sıcaklık için mi, bulaşık yıkamak için mi kullanıldığını düşün. Temiz yüzeylere nasıl dokunulur?"
+      "hint": "Islak el tableti eritir ve yapıştırır."
     },
     {
       "id": "m-kd-109-4",
@@ -2044,7 +2044,7 @@
         "file": "Mutfak_Araclari_Sayfa_Duzeni.docx",
         "question": "4"
       },
-      "hint": "Aracın sıcaklık için mi, bulaşık yıkamak için mi kullanıldığını düşün. Temiz yüzeylere nasıl dokunulur?"
+      "hint": "Suyun akması ve havanın dolaşması için tabaklar aralıklı durmalıdır."
     },
     {
       "id": "m-kd-109-5",
@@ -2075,7 +2075,7 @@
         "file": "Mutfak_Araclari_Sayfa_Duzeni.docx",
         "question": "5"
       },
-      "hint": "Aracın sıcaklık için mi, bulaşık yıkamak için mi kullanıldığını düşün. Temiz yüzeylere nasıl dokunulur?"
+      "hint": "Yemek artıkları evyeyi ve makinenin süzgecini tıkar."
     },
     {
       "id": "m-kd-109-6",
@@ -2106,7 +2106,7 @@
         "file": "Mutfak_Araclari_Sayfa_Duzeni.docx",
         "question": "6"
       },
-      "hint": "Aracın sıcaklık için mi, bulaşık yıkamak için mi kullanıldığını düşün. Temiz yüzeylere nasıl dokunulur?"
+      "hint": "Mikrop nemli yerde çoğalır."
     },
     {
       "id": "m-kd-109-7",
@@ -2137,7 +2137,7 @@
         "file": "Mutfak_Araclari_Sayfa_Duzeni.docx",
         "question": "7"
       },
-      "hint": "Aracın sıcaklık için mi, bulaşık yıkamak için mi kullanıldığını düşün. Temiz yüzeylere nasıl dokunulur?"
+      "hint": "Kötü koku, süngerde çok mikrop olduğunu gösterir."
     },
     {
       "id": "m-kd-109-8",
@@ -2168,7 +2168,7 @@
         "file": "Mutfak_Araclari_Sayfa_Duzeni.docx",
         "question": "8"
       },
-      "hint": "Aracın sıcaklık için mi, bulaşık yıkamak için mi kullanıldığını düşün. Temiz yüzeylere nasıl dokunulur?"
+      "hint": "Bezler başka işlerde kullanıldı. Temiz ve tek kullanımlık olanı düşün."
     },
     {
       "id": "m-kd-114-1",
@@ -2199,7 +2199,7 @@
         "file": "Mutfak_Araclari_Sayfa_Duzeni.docx",
         "question": "1"
       },
-      "hint": "Sıcak yüzey, buhar ve ıslak bezin yaratabileceği riski düşün."
+      "hint": "Sıcağa dayanıklı ve kalın olan korumayı düşün."
     },
     {
       "id": "m-kd-114-2",
@@ -2230,7 +2230,7 @@
         "file": "Mutfak_Araclari_Sayfa_Duzeni.docx",
         "question": "2"
       },
-      "hint": "Giysi, el ve saç için kullanılan koruyucuları ayır."
+      "hint": "Bone başa takılır."
     },
     {
       "id": "m-kd-114-3",
@@ -2261,7 +2261,7 @@
         "file": "Mutfak_Araclari_Sayfa_Duzeni.docx",
         "question": "3"
       },
-      "hint": "Aracın sıcaklık için mi, bulaşık yıkamak için mi kullanıldığını düşün. Temiz yüzeylere nasıl dokunulur?"
+      "hint": "Bu eldiven eli deterjandan ve sıcak sudan korur."
     },
     {
       "id": "m-kd-114-4",
@@ -2292,7 +2292,7 @@
         "file": "Mutfak_Araclari_Sayfa_Duzeni.docx",
         "question": "4"
       },
-      "hint": "Eldivenin el yıkamanın yerini tutup tutmadığını düşün."
+      "hint": "Eldiven kirli elin üstüne takılırsa mikrop eldivenin içinde kalır."
     },
     {
       "id": "m-bd-1-1",
@@ -2327,7 +2327,7 @@
         "file": "Mutfak_Araclari_Sayfa_Duzeni.docx",
         "question": "1"
       },
-      "hint": "Aracın biçimini ve hangi işi yaptığını birlikte düşün."
+      "hint": "Makarna tabağı geniş kenarlı ve ortası çukurdur."
     },
     {
       "id": "m-bd-1-2",
@@ -2366,7 +2366,7 @@
           "note": "Kaşık örnekleri ortak ölçekte yenilendi."
         }
       },
-      "hint": "Aracın biçimini ve hangi işi yaptığını birlikte düşün."
+      "hint": "Tatlı kaşığı çorba kaşığından küçük, çay kaşığından büyüktür."
     },
     {
       "id": "m-bd-1-3",
@@ -2401,7 +2401,7 @@
         "file": "Mutfak_Araclari_Sayfa_Duzeni.docx",
         "question": "3"
       },
-      "hint": "Aracın biçimini ve hangi işi yaptığını birlikte düşün."
+      "hint": "Tabakların ortasına bak. Yuvası olan tabağı bul."
     },
     {
       "id": "m-bd-1-4",
@@ -2432,7 +2432,7 @@
         "file": "Mutfak_Araclari_Sayfa_Duzeni.docx",
         "question": "4"
       },
-      "hint": "Aracın biçimini ve hangi işi yaptığını birlikte düşün."
+      "hint": "Kirli bez temiz tabağa ve konuğun yiyeceğine mikrop taşır."
     },
     {
       "id": "m-bd-1-5",
@@ -2463,7 +2463,7 @@
         "file": "Mutfak_Araclari_Sayfa_Duzeni.docx",
         "question": "5"
       },
-      "hint": "Aracın biçimini ve hangi işi yaptığını birlikte düşün."
+      "hint": "Konuk fincanı sağ eliyle tutar."
     },
     {
       "id": "m-bd-1-6",
@@ -2494,7 +2494,7 @@
         "file": "Mutfak_Araclari_Sayfa_Duzeni.docx",
         "question": "6"
       },
-      "hint": "Aracın biçimini ve hangi işi yaptığını birlikte düşün."
+      "hint": "Islak sürahi elden kayar."
     },
     {
       "id": "m-bd-1-7",
@@ -2525,7 +2525,7 @@
         "file": "Mutfak_Araclari_Sayfa_Duzeni.docx",
         "question": "7"
       },
-      "hint": "Aracın biçimini ve hangi işi yaptığını birlikte düşün."
+      "hint": "Ortak kaptan almak için büyük servis takımı kullanılır."
     },
     {
       "id": "m-bd-2-1",
@@ -2560,7 +2560,7 @@
         "file": "Mutfak_Araclari_Sayfa_Duzeni.docx",
         "question": "1"
       },
-      "hint": "Aracın biçimini ve hangi işi yaptığını birlikte düşün."
+      "hint": "Cezve küçük, saplı ve ağzı dar bir kaptır."
     },
     {
       "id": "m-bd-2-2",
@@ -2595,7 +2595,7 @@
         "file": "Mutfak_Araclari_Sayfa_Duzeni.docx",
         "question": "2"
       },
-      "hint": "Aracın biçimini ve hangi işi yaptığını birlikte düşün."
+      "hint": "Kevgir delikli ve saplı, büyük bir kaşık gibidir."
     },
     {
       "id": "m-bd-2-3",
@@ -2630,7 +2630,7 @@
         "file": "Mutfak_Araclari_Sayfa_Duzeni.docx",
         "question": "3"
       },
-      "hint": "Aracın biçimini ve hangi işi yaptığını birlikte düşün."
+      "hint": "İnce rendenin delikleri çok küçüktür."
     },
     {
       "id": "m-bd-2-4",
@@ -2661,7 +2661,7 @@
         "file": "Mutfak_Araclari_Sayfa_Duzeni.docx",
         "question": "4"
       },
-      "hint": "Gram ile mililitrenin farklı ölçüler olduğunu hatırla. Kabın ağırlığı ölçüme katılacak mı?"
+      "hint": "Gram yazıyorsa tartılarak ölçülür."
     },
     {
       "id": "m-bd-2-5",
@@ -2692,7 +2692,7 @@
         "file": "Mutfak_Araclari_Sayfa_Duzeni.docx",
         "question": "5"
       },
-      "hint": "Aracın biçimini ve hangi işi yaptığını birlikte düşün."
+      "hint": "Metal araçlar kaplamayı çizer."
     },
     {
       "id": "m-bd-2-6",
@@ -2723,7 +2723,7 @@
         "file": "Mutfak_Araclari_Sayfa_Duzeni.docx",
         "question": "6"
       },
-      "hint": "Öğrencinin güvenli biçimde uzaklaşacağı davranışı düşün."
+      "hint": "Yangında öğrencinin görevi kendini korumaktır."
     },
     {
       "id": "m-bd-2-7",
@@ -2754,7 +2754,7 @@
         "file": "Mutfak_Araclari_Sayfa_Duzeni.docx",
         "question": "7"
       },
-      "hint": "Sıcak yüzey, buhar ve ıslak bezin yaratabileceği riski düşün."
+      "hint": "Islak bez ısıyı ele hızla geçirir. Kuru ve kalın korumayı düşün."
     },
     {
       "id": "m-bd-3-1",
@@ -2789,7 +2789,7 @@
         "file": "Mutfak_Araclari_Sayfa_Duzeni.docx",
         "question": "1"
       },
-      "hint": "Aracın biçimini ve hangi işi yaptığını birlikte düşün."
+      "hint": "Çay makinesinde altta su haznesi, üstte demlik vardır."
     },
     {
       "id": "m-bd-3-2",
@@ -2824,7 +2824,7 @@
         "file": "Mutfak_Araclari_Sayfa_Duzeni.docx",
         "question": "2"
       },
-      "hint": "Aracın biçimini ve hangi işi yaptığını birlikte düşün."
+      "hint": "El blenderi uzun gövdelidir; ucunda bıçak vardır."
     },
     {
       "id": "m-bd-3-3",
@@ -2859,7 +2859,7 @@
         "file": "Mutfak_Araclari_Sayfa_Duzeni.docx",
         "question": "3"
       },
-      "hint": "Aracın biçimini ve hangi işi yaptığını birlikte düşün."
+      "hint": "Kapaklı ve camdan yapılmış kabı bul."
     },
     {
       "id": "m-bd-3-4",
@@ -2890,7 +2890,7 @@
         "file": "Mutfak_Araclari_Sayfa_Duzeni.docx",
         "question": "4"
       },
-      "hint": "Aracın biçimini ve hangi işi yaptığını birlikte düşün."
+      "hint": "Metal mikrodalgada kıvılcım çıkarır."
     },
     {
       "id": "m-bd-3-5",
@@ -2902,15 +2902,15 @@
         },
         {
           "id": "B",
-          "text": "Fiş prizdeyken"
+          "text": "Mikser kapalı, fiş prizdeyken"
         },
         {
           "id": "C",
-          "text": "Çırpıcılar dönerken"
+          "text": "Çırpıcılar dönmeyi bitirmeden"
         },
         {
           "id": "D",
-          "text": "Mikser kapatılıp fiş çekildikten sonra"
+          "text": "Mikser kapalı, fiş çekiliyken"
         }
       ],
       "correct": "D",
@@ -2921,7 +2921,7 @@
         "file": "Mutfak_Araclari_Sayfa_Duzeni.docx",
         "question": "5"
       },
-      "hint": "Aracın biçimini ve hangi işi yaptığını birlikte düşün."
+      "hint": "Fiş prizdeyken mikser yanlışlıkla çalışabilir."
     },
     {
       "id": "m-bd-3-6",
@@ -2952,7 +2952,7 @@
         "file": "Mutfak_Araclari_Sayfa_Duzeni.docx",
         "question": "6"
       },
-      "hint": "Kitaptaki soğukta saklama ve çiğ yiyeceği hazır yiyecekten ayırma kuralını hatırla."
+      "hint": "Çiğ etin suyu damlarsa altındaki yiyeceğe mikrop geçer."
     },
     {
       "id": "m-bd-3-7",
@@ -2983,7 +2983,7 @@
         "file": "Mutfak_Araclari_Sayfa_Duzeni.docx",
         "question": "7"
       },
-      "hint": "Öğrencinin güvenli biçimde uzaklaşacağı davranışı düşün."
+      "hint": "Gaz kokusunda öğrencinin görevi kendini korumaktır."
     }
   ],
   "matches": [
@@ -3947,7 +3947,7 @@
           ]
         }
       },
-      "detail": "Bardaklar grubundadır. Bu örneğin gövdesi hafif kavislidir. Bardak ağız kenarına dokunmadan alt bölümünden tutulur. Kullanılacak bardak servis yapılacak içeceğe ve işletmenin takımına göre seçilir. Bu kullanım adı tek başına biçimden kesin çıkarılamaz. Delik sayısı veya bardak şekli evrensel bir adlandırma kuralı değildir.",
+      "detail": "Bardaklar grubundadır. Bu örneğin gövdesi hafif kavislidir. Bardak ağız kenarına dokunmadan alt bölümünden tutulur. Kullanılacak bardak servis yapılacak içeceğe ve işletmenin takımına göre seçilir.",
       "hint": "Gövdesinin hafif kavisli yan çizgilerini ve ağız bölümünü incele.",
       "classificationGroup": "Bardaklar",
       "task": "Bu çalışmada su sunumu için seçilen boş bardak.",
@@ -3972,7 +3972,7 @@
           ]
         }
       },
-      "detail": "Bardaklar grubundadır. Burada uzun ve daha düz gövdeli bir örnek gösterilir. Aynı bardak farklı içeceklerde kullanılabilir; bardak seçimi servis miktarına ve işletmedeki takımlara göre yapılır. Bu kullanım adı tek başına biçimden kesin çıkarılamaz. Delik sayısı veya bardak şekli evrensel bir adlandırma kuralı değildir.",
+      "detail": "Bardaklar grubundadır. Burada uzun ve daha düz gövdeli bir örnek gösterilir. Aynı bardak farklı içeceklerde kullanılabilir; bardak seçimi servis miktarına ve işletmedeki takımlara göre yapılır.",
       "hint": "Boş bardağın uzun gövdesine ve düz yan çizgilerine bak.",
       "classificationGroup": "Bardaklar",
       "task": "Bu çalışmada meyve suyu sunumu için seçilen boş bardak.",
@@ -5104,13 +5104,13 @@
       "image": "assets/mutfak-araclari/guncel-091.jpg",
       "imageAlt": "Adı sorulan aracın fotoğrafı.",
       "answer": "Pişirme kâğıdı",
-      "explanation": "Fırın tepsisine serilen, hamurun tepsiye yapışmasını önleyen kâğıttır. Yeniden kullanım ve sıcaklık sınırı ürün talimatına göre belirlenir. Kâğıt, fırının ısıtıcısına değdirilmez; sıcak ısıtıcıya değen kâğıt yanabilir.",
+      "explanation": "Fırın tepsisine serilen, hamurun tepsiye yapışmasını önleyen kâğıttır. Dayanabileceği en yüksek sıcaklık paketinde yazar. Kâğıt, fırının ısıtıcısına değdirilmez; sıcak ısıtıcıya değen kâğıt yanabilir.",
       "source": {
         "file": "Mutfak_Araclari_Sayfa_Duzeni.docx",
         "bookItem": 91,
         "card": 7
       },
-      "detail": "Ne için kullanılır? Fırın tepsisine serilen, hamurun tepsiye yapışmasını önleyen kâğıttır.\nNasıl kullanılır? Kâğıt tepsinin boyuna göre kesilir ve tepsiye düz serilir; hamur üstüne dizilir. Kâğıt bir kez kullanılır ve atılır.\nDikkat: Kâğıt, fırının ısıtıcısına değdirilmez; sıcak ısıtıcıya değen kâğıt yanabilir.\nFarkı nedir? Yeniden kullanım ve sıcaklık sınırı ürün talimatına göre belirlenir. Bir kez kullanılıp atıldığı için gereçtir.",
+      "detail": "Ne için kullanılır? Fırın tepsisine serilen, hamurun tepsiye yapışmasını önleyen kâğıttır.\nNasıl kullanılır? Kâğıt tepsinin boyuna göre kesilir ve tepsiye düz serilir; hamur üstüne dizilir. Kâğıt bir kez kullanılır ve atılır.\nDikkat: Kâğıt, fırının ısıtıcısına değdirilmez; sıcak ısıtıcıya değen kâğıt yanabilir.\nFarkı nedir? Dayanabileceği en yüksek sıcaklık paketinde yazar. Bir kez kullanılıp atıldığı için gereçtir.",
       "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak."
     },
     {

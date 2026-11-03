@@ -123,3 +123,6 @@ html[data-theme=dark] .design-outline{background:var(--surface);color:var(--navy
 }
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
 #sesDurum{position:fixed;left:12px;right:12px;bottom:12px;z-index:1000;color:var(--text);box-shadow:0 4px 14px #0002}
+.design-guide .guide-item summary{font-weight:800;font-size:19px;color:var(--navy);cursor:pointer;min-height:44px;display:flex;align-items:center}
+.design-guide .guide-item p,.design-guide .guide-item li{font-size:17px;line-height:1.55}.design-guide .guide-item ul{padding-left:22px;margin:8px 0 0}
+.design-guide-btn{font-weight:700}
