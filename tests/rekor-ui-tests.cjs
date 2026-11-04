@@ -23,7 +23,9 @@ const FAKE=`window.REKOR_FAKE=(()=>{const prof={},rows={};let uid='u-cihaz';cons
   // Bütün tabloların içerik sayıları kurallardaki sınırlarla aynı olmalı.
   const invalid=await page.evaluate(()=>RK_BOARDS.filter(b=>!rkBoardValid(b)).map(b=>b.id));assert.deepEqual(invalid,[]);ok('39 tablonun kart/soru sayısı içerikle aynı');
   const rulesBoards=fs.readFileSync(path.resolve(root,'../firebase/firestore.rules'),'utf8').match(/rkBoards\(\) \{ return \{([^}]*)\}/)[1];
-  const jsBoards=await page.evaluate(()=>RK_BOARDS.map(b=>"'"+b.id+"': "+b.total).join(', '));assert.equal(rulesBoards,jsBoards);ok('Kurallardaki tablo listesi uygulamayla birebir aynı');
+  // Harita anahtarlarının yazılış sırası sıralama kuralı değildir; kimlik ve sınırları karşılaştır.
+  const rulesEntries=Array.from(rulesBoards.matchAll(/'([^']+)':\s*(\d+)/g),m=>[m[1],Number(m[2])]).sort();
+  const jsEntries=await page.evaluate(()=>RK_BOARDS.map(b=>[b.id,b.total]).sort());assert.deepEqual(rulesEntries,jsEntries);ok('Kurallardaki tablo kimlikleri ve puan sınırları uygulamayla birebir aynı');
 
   const play=async(name,wrong)=>page.evaluate(([name,wrong])=>{
    if(!profiles().includes(name))lsSet('profiles',profiles().concat([name]));pickProfile(name);

@@ -1168,7 +1168,8 @@
       "detail": "Kakao tozu, kakao çekirdeklerinin işlenmesiyle elde edilir. Kek, kurabiye ve tatlılarda kullanılır. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir.",
       "originalSet": 6,
       "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
-      "currentBoardCard": 10
+      "currentBoardCard": 10,
+      "kok": "Görseldeki besinin adı nedir?"
     },
     {
       "id": "bh-07-03",
@@ -1189,7 +1190,8 @@
       "originalSet": 7,
       "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
       "task": "Fotoğrafta sunulan biçimleri birlikte değerlendir.",
-      "currentBoardCard": 11
+      "currentBoardCard": 11,
+      "kok": "Görseldeki besinin adı nedir?"
     },
     {
       "id": "bh-07-04",
@@ -1230,7 +1232,8 @@
       "originalSet": 8,
       "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
       "task": "Fotoğrafta sunulan biçimleri birlikte değerlendir.",
-      "currentBoardCard": 2
+      "currentBoardCard": 2,
+      "kok": "Görseldeki besinin adı nedir?"
     },
     {
       "id": "bh-08-02",
@@ -1251,7 +1254,8 @@
       "originalSet": 8,
       "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
       "task": "Fotoğrafta sunulan biçimleri birlikte değerlendir.",
-      "currentBoardCard": 3
+      "currentBoardCard": 3,
+      "kok": "Görseldeki besinin adı nedir?"
     },
     {
       "id": "bh-08-03",
@@ -1271,7 +1275,8 @@
       "detail": "Turunçgil meyvesidir. Suyu ve uygun hazırlanmış kabuğu tariflerde kullanılır. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir.",
       "originalSet": 8,
       "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
-      "currentBoardCard": 4
+      "currentBoardCard": 4,
+      "kok": "Görseldeki besinin adı nedir?"
     },
     {
       "id": "bh-08-04",
@@ -1292,7 +1297,8 @@
       "originalSet": 8,
       "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
       "task": "Fotoğrafta sunulan biçimleri birlikte değerlendir.",
-      "currentBoardCard": 5
+      "currentBoardCard": 5,
+      "kok": "Görseldeki besinin adı nedir?"
     },
     {
       "id": "bh-08-05",
@@ -1312,7 +1318,8 @@
       "detail": "Taze veya kurutulmuş olarak satılan meyvedir. Tatlı ve soslarda kullanılır; paket etiketi kontrol edilir. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir.",
       "originalSet": 8,
       "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
-      "currentBoardCard": 6
+      "currentBoardCard": 6,
+      "kok": "Görseldeki besinin adı nedir?"
     },
     {
       "id": "bh-08-06",
@@ -1352,7 +1359,8 @@
       "detail": "Üzümün kurutulmuş biçimidir. Kek, pilav ve tatlılarda kullanılır. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir.",
       "originalSet": 8,
       "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
-      "currentBoardCard": 7
+      "currentBoardCard": 7,
+      "kok": "Görseldeki besinin adı nedir?"
     },
     {
       "id": "bh-08-08",
@@ -1372,7 +1380,8 @@
       "detail": "Kayısının kurutulmuş biçimidir. Tatlı, komposto ve bazı yemeklerde kullanılır. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir.",
       "originalSet": 8,
       "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
-      "currentBoardCard": 8
+      "currentBoardCard": 8,
+      "kok": "Görseldeki besinin adı nedir?"
     },
     {
       "id": "bh-08-09",
@@ -1392,7 +1401,8 @@
       "detail": "Dutun kurutulmuş biçimidir. Tatlı ve bazı karışımlarda kullanılır. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir.",
       "originalSet": 8,
       "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
-      "currentBoardCard": 9
+      "currentBoardCard": 9,
+      "kok": "Görseldeki besinin adı nedir?"
     },
     {
       "id": "bh-08-10",
@@ -1412,7 +1422,8 @@
       "detail": "Çekirdekli bir meyvedir. Tatlı hazırlanırken çekirdeği çıkarılır. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir.",
       "originalSet": 8,
       "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
-      "currentBoardCard": 10
+      "currentBoardCard": 10,
+      "kok": "Görseldeki besinin adı nedir?"
     },
     {
       "id": "bh-08-11",
@@ -1432,7 +1443,8 @@
       "detail": "İncirin kurutulmuş biçimidir. Tatlı ve hamur işlerinde kullanılır. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir.",
       "originalSet": 8,
       "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
-      "currentBoardCard": 11
+      "currentBoardCard": 11,
+      "kok": "Görseldeki besinin adı nedir?"
     },
     {
       "id": "bh-08-12",
@@ -1452,7 +1464,8 @@
       "detail": "Uzun, koyu renkli meyveleri vardır. Toz ve pekmez gibi ürünlerin hazırlanmasında kullanılır. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir.",
       "originalSet": 8,
       "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
-      "currentBoardCard": 12
+      "currentBoardCard": 12,
+      "kok": "Görseldeki besinin adı nedir?"
     },
     {
       "id": "bh-09-01",
@@ -1472,7 +1485,8 @@
       "detail": "Çam fıstığı olarak da bilinir. Dolma içi ve bazı soslarda kullanılır; yer fıstığından farklıdır. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir.",
       "originalSet": 9,
       "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
-      "currentBoardCard": 1
+      "currentBoardCard": 1,
+      "kok": "Görseldeki besinin adı nedir?"
     },
     {
       "id": "bh-09-02",
@@ -1493,7 +1507,8 @@
       "originalSet": 9,
       "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
       "task": "Fotoğrafta sunulan biçimleri birlikte değerlendir.",
-      "currentBoardCard": 2
+      "currentBoardCard": 2,
+      "kok": "Görseldeki besinin adı nedir?"
     },
     {
       "id": "bh-09-03",
@@ -1513,7 +1528,8 @@
       "detail": "Uzunca biçimli bir sert kabuklu yemiştir. Tatlı, hamur işi ve yemeklerde kullanılır. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir.",
       "originalSet": 9,
       "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
-      "currentBoardCard": 3
+      "currentBoardCard": 3,
+      "kok": "Görseldeki besinin adı nedir?"
     },
     {
       "id": "bh-09-04",
@@ -1533,7 +1549,8 @@
       "detail": "Yeşil iç rengiyle tanınan bir sert kabuklu yemiştir. Tatlı ve süslemede kullanılır. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir.",
       "originalSet": 9,
       "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
-      "currentBoardCard": 4
+      "currentBoardCard": 4,
+      "kok": "Görseldeki besinin adı nedir?"
     },
     {
       "id": "bh-09-05",
@@ -1553,7 +1570,8 @@
       "detail": "Girintili çıkıntılı iç yapısı vardır. Tatlı, salata ve hamur işlerinde kullanılır. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir.",
       "originalSet": 9,
       "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
-      "currentBoardCard": 5
+      "currentBoardCard": 5,
+      "kok": "Görseldeki besinin adı nedir?"
     },
     {
       "id": "bh-09-06",
@@ -1573,7 +1591,8 @@
       "detail": "Taneleri kabuk içinde bulunur. Ezme, tatlı ve yemeklerde kullanılır; Antep fıstığından farklıdır. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir.",
       "originalSet": 9,
       "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
-      "currentBoardCard": 6
+      "currentBoardCard": 6,
+      "kok": "Görseldeki besinin adı nedir?"
     },
     {
       "id": "bh-09-07",
@@ -1593,7 +1612,8 @@
       "detail": "Yuvarlağa yakın taneli bir sert kabuklu yemiştir. Tatlı ve hamur işlerinde kullanılır. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir.",
       "originalSet": 9,
       "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
-      "currentBoardCard": 7
+      "currentBoardCard": 7,
+      "kok": "Görseldeki besinin adı nedir?"
     },
     {
       "id": "bh-09-08",
@@ -1613,7 +1633,8 @@
       "detail": "Kıvrık biçimli bir sert kabuklu yemiştir. Tatlı ve yemeklerde kullanılır. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir.",
       "originalSet": 9,
       "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
-      "currentBoardCard": 8
+      "currentBoardCard": 8,
+      "kok": "Görseldeki besinin adı nedir?"
     },
     {
       "id": "bh-09-09",
@@ -1633,7 +1654,8 @@
       "detail": "Sert kabuklu bir meyvedir. Pişirilerek veya işlenerek tatlı ve yemeklerde kullanılır. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir.",
       "originalSet": 9,
       "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
-      "currentBoardCard": 9
+      "currentBoardCard": 9,
+      "kok": "Görseldeki besinin adı nedir?"
     },
     {
       "id": "bh-09-10",
@@ -1653,7 +1675,8 @@
       "detail": "Küçük ve parlak yüzeyli tohumlardır. Ekmek ve bazı tariflerde kullanılır. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir.",
       "originalSet": 9,
       "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
-      "currentBoardCard": 10
+      "currentBoardCard": 10,
+      "kok": "Görseldeki besinin adı nedir?"
     },
     {
       "id": "bh-10-01",
@@ -1693,7 +1716,8 @@
       "detail": "Yeşil yaprakları ve beyaz bölümü yemeklerde kullanılır. Kuru soğandan farklı görünür. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir.",
       "originalSet": 10,
       "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
-      "currentBoardCard": 12
+      "currentBoardCard": 12,
+      "kok": "Görseldeki besinin adı nedir?"
     },
     {
       "id": "bh-10-04",
@@ -1714,7 +1738,8 @@
       "originalSet": 10,
       "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
       "task": "Fotoğrafta sunulan biçimleri birlikte değerlendir.",
-      "currentBoardCard": 1
+      "currentBoardCard": 1,
+      "kok": "Görseldeki besinin adı nedir?"
     },
     {
       "id": "bh-10-05",
@@ -1775,7 +1800,8 @@
       "detail": "Sarı kabuklu kuru soğandır. Katmanlı gövdesi yemeklerde kullanılır. Kırmızı soğanla aynı bitkinin farklı bir ürün tipidir.",
       "originalSet": 10,
       "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
-      "currentBoardCard": 4
+      "currentBoardCard": 4,
+      "kok": "Görseldeki besinin adı nedir?"
     },
     {
       "id": "bh-10-08",
@@ -1816,7 +1842,8 @@
       "detail": "Dış kabuğu ve katmanları morumsu olan soğandır. Salata ve yemeklerde kullanılır. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir.",
       "originalSet": 10,
       "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
-      "currentBoardCard": 6
+      "currentBoardCard": 6,
+      "kok": "Görseldeki besinin adı nedir?"
     },
     {
       "id": "bh-10-10",
@@ -1876,7 +1903,8 @@
       "detail": "Kontrollü işlemle koyu renk kazanmış sarımsak ürünüdür. Sos ve yemeklerde kullanılır; yanmış sarımsakla aynı şey değildir. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir.",
       "originalSet": 10,
       "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
-      "currentBoardCard": 9
+      "currentBoardCard": 9,
+      "kok": "Görseldeki besinin adı nedir?"
     },
     {
       "id": "bh-11-07",
@@ -1896,7 +1924,8 @@
       "detail": "Kahverengi tonlarda bir şeker ürünüdür. Tatlı ve hamur işlerini tatlandırmak için kullanılır. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir.",
       "originalSet": 11,
       "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
-      "currentBoardCard": 10
+      "currentBoardCard": 10,
+      "kok": "Görseldeki besinin adı nedir?"
     },
     {
       "id": "bh-11-11",
@@ -1916,7 +1945,8 @@
       "detail": "Küçük reçine parçaları hâlindedir. Sütlü tatlılara ve bazı hamur işlerine aroma verir. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir.",
       "originalSet": 11,
       "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
-      "currentBoardCard": 11
+      "currentBoardCard": 11,
+      "kok": "Görseldeki besinin adı nedir?"
     },
     {
       "id": "bh-11-12",
@@ -1936,7 +1966,8 @@
       "detail": "Yalnız yenilebilir ve gıda kullanımına uygun ürün, süsleme için kullanılır. El işi veya dekorasyon varağı yiyeceğe konmaz. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir.",
       "originalSet": 11,
       "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
-      "currentBoardCard": 12
+      "currentBoardCard": 12,
+      "kok": "Görseldeki besinin adı nedir?"
     }
   ],
   "words": [],
@@ -4256,5 +4287,5 @@
       "assets/baharat/t11_11.jpg"
     ]
   },
-  "revision": "v11-20261104"
+  "revision": "v12-20261105"
 }

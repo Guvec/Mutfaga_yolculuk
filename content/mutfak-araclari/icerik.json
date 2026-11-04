@@ -812,7 +812,7 @@
       "choices": [
         {
           "id": "A",
-          "text": "Hamur kabarmaz diye ağzına kadar doldurulur."
+          "text": "Ağzına kadar doldurulur."
         },
         {
           "id": "B",
@@ -820,11 +820,11 @@
         },
         {
           "id": "C",
-          "text": "Büyük muffin olsun diye üstü tepeleme doldurulur."
+          "text": "Tepeleme doldurulur."
         },
         {
           "id": "D",
-          "text": "Taşan hamur kalıptan akar diye önemsenmez."
+          "text": "Kabarırken taşmasına izin verilir."
         }
       ],
       "correct": "B",
@@ -1184,7 +1184,7 @@
       "choices": [
         {
           "id": "A",
-          "text": "250 ml ölçü kabı"
+          "text": "200 ml çizgisi bulunan ölçü kabı"
         },
         {
           "id": "B",
@@ -1548,7 +1548,7 @@
         "file": "Mutfak_Araclari_Sayfa_Duzeni.docx",
         "question": "5"
       },
-      "hint": "Her yemek ve her cihaz farklıdır. Süre nerede yazar?"
+      "hint": "Bekleme süresi ürünün ve cihazın kullanım talimatında belirtilir."
     },
     {
       "id": "m-kd-95-1",
@@ -1636,7 +1636,7 @@
       "correct": "B",
       "group": "Hazırlık cihazları",
       "chapter": 3,
-      "explanation": "Hazne dolum çizgisini aşmadan doldurulur, kapak sıkıca kapatılır ve cihaz düşük hızda başlatılır. Bu önlemler karışımın taşma ve sıçrama riskini azaltır.",
+      "explanation": "Hazne dolum çizgisi aşılmadan doldurulur. Kapak ve bıçaklı bölüm cihazın kullanım talimatına göre kapatılır. Cihaz, kılavuzda belirtilen ayarla çalıştırılır.",
       "source": {
         "file": "Mutfak_Araclari_Sayfa_Duzeni.docx",
         "question": "3"
@@ -2436,7 +2436,7 @@
     },
     {
       "id": "m-bd-1-5",
-      "prompt": "Bu servis düzeninde, tabağıyla sunulan Türk kahvesi fincanının kulpu nereye bakar?",
+      "prompt": "Türk kahvesi fincanı tabağıyla sunulurken kulpu konuğun hangi tarafına çevrilir?",
       "choices": [
         {
           "id": "A",
@@ -3006,7 +3006,13 @@
       },
       "set": 1,
       "task": "Diğer tabakların altına konan, bu dizinin en büyük düz örneği.",
-      "assessmentConstruct": "Görsel ve verilen kullanım bilgisini adla ilişkilendirme. Kullanım amacı yalnız fotoğrafın biçiminden çıkarılmaz."
+      "assessmentConstruct": "Görsel ve verilen kullanım bilgisini adla ilişkilendirme. Kullanım amacı yalnız fotoğrafın biçiminden çıkarılmaz.",
+      "disla": [
+        "Ana yemek tabağı",
+        "Antre tabağı",
+        "Tatlı tabağı",
+        "Ekmek tabağı"
+      ]
     },
     {
       "id": "guncel-001",
@@ -3032,7 +3038,13 @@
       "hint": "Düz yüzeyine ve aynı ölçekte gösterilen diğer tabaklarla boy farkına bak.",
       "classificationGroup": "Düz tabaklar",
       "task": "Ana yemek servisi için seçilen büyük düz örnek.",
-      "assessmentConstruct": "Görsel ve verilen kullanım bilgisini adla ilişkilendirme. Kullanım amacı yalnız fotoğrafın biçiminden çıkarılmaz."
+      "assessmentConstruct": "Görsel ve verilen kullanım bilgisini adla ilişkilendirme. Kullanım amacı yalnız fotoğrafın biçiminden çıkarılmaz.",
+      "disla": [
+        "Servis (kuver) tabağı",
+        "Antre tabağı",
+        "Tatlı tabağı",
+        "Ekmek tabağı"
+      ]
     },
     {
       "id": "meb-002",
@@ -3053,7 +3065,13 @@
       },
       "set": 1,
       "task": "Başlangıç yemekleri için seçilen orta boy düz örnek.",
-      "assessmentConstruct": "Görsel ve verilen kullanım bilgisini adla ilişkilendirme. Kullanım amacı yalnız fotoğrafın biçiminden çıkarılmaz."
+      "assessmentConstruct": "Görsel ve verilen kullanım bilgisini adla ilişkilendirme. Kullanım amacı yalnız fotoğrafın biçiminden çıkarılmaz.",
+      "disla": [
+        "Servis (kuver) tabağı",
+        "Ana yemek tabağı",
+        "Tatlı tabağı",
+        "Ekmek tabağı"
+      ]
     },
     {
       "id": "guncel-004",
@@ -3079,7 +3097,13 @@
       "hint": "Aynı ölçekte gösterilen düz tabakların boylarını karşılaştır.",
       "classificationGroup": "Düz tabaklar",
       "task": "Tatlı servisi için seçilen küçük düz örnek.",
-      "assessmentConstruct": "Görsel ve verilen kullanım bilgisini adla ilişkilendirme. Kullanım amacı yalnız fotoğrafın biçiminden çıkarılmaz."
+      "assessmentConstruct": "Görsel ve verilen kullanım bilgisini adla ilişkilendirme. Kullanım amacı yalnız fotoğrafın biçiminden çıkarılmaz.",
+      "disla": [
+        "Servis (kuver) tabağı",
+        "Ana yemek tabağı",
+        "Antre tabağı",
+        "Ekmek tabağı"
+      ]
     },
     {
       "id": "guncel-005",
@@ -3105,7 +3129,13 @@
       "hint": "Küçük ve düz yüzeyine bak; ortasında fincan yuvası yoktur.",
       "classificationGroup": "Düz tabaklar",
       "task": "Ekmek servisi için seçilen en küçük düz örnek.",
-      "assessmentConstruct": "Görsel ve verilen kullanım bilgisini adla ilişkilendirme. Kullanım amacı yalnız fotoğrafın biçiminden çıkarılmaz."
+      "assessmentConstruct": "Görsel ve verilen kullanım bilgisini adla ilişkilendirme. Kullanım amacı yalnız fotoğrafın biçiminden çıkarılmaz.",
+      "disla": [
+        "Servis (kuver) tabağı",
+        "Ana yemek tabağı",
+        "Antre tabağı",
+        "Tatlı tabağı"
+      ]
     },
     {
       "id": "guncel-002",
@@ -3131,7 +3161,11 @@
       "hint": "Yayvan gövdesine, dışa açılan kenarına ve iç çukurluğuna bak.",
       "classificationGroup": "Çukur tabaklar",
       "task": "Çorba servisi için seçilen çukur örnek.",
-      "assessmentConstruct": "Görsel ve verilen kullanım bilgisini adla ilişkilendirme. Kullanım amacı yalnız fotoğrafın biçiminden çıkarılmaz."
+      "assessmentConstruct": "Görsel ve verilen kullanım bilgisini adla ilişkilendirme. Kullanım amacı yalnız fotoğrafın biçiminden çıkarılmaz.",
+      "disla": [
+        "Çukur yemek tabağı",
+        "Makarna tabağı"
+      ]
     },
     {
       "id": "meb-003",
@@ -3152,7 +3186,11 @@
       },
       "set": 1,
       "task": "Soslu yemek servisi için seçilen çukur örnek.",
-      "assessmentConstruct": "Görsel ve verilen kullanım bilgisini adla ilişkilendirme. Kullanım amacı yalnız fotoğrafın biçiminden çıkarılmaz."
+      "assessmentConstruct": "Görsel ve verilen kullanım bilgisini adla ilişkilendirme. Kullanım amacı yalnız fotoğrafın biçiminden çıkarılmaz.",
+      "disla": [
+        "Çorba tabağı",
+        "Makarna tabağı"
+      ]
     },
     {
       "id": "guncel-003",
@@ -3178,7 +3216,11 @@
       "hint": "Geniş ve düz kenarla çukur ortayı birlikte incele.",
       "classificationGroup": "Çukur tabaklar",
       "task": "Makarna servisi için seçilen, geniş kenarlı çukur örnek.",
-      "assessmentConstruct": "Görsel ve verilen kullanım bilgisini adla ilişkilendirme. Kullanım amacı yalnız fotoğrafın biçiminden çıkarılmaz."
+      "assessmentConstruct": "Görsel ve verilen kullanım bilgisini adla ilişkilendirme. Kullanım amacı yalnız fotoğrafın biçiminden çıkarılmaz.",
+      "disla": [
+        "Çorba tabağı",
+        "Çukur yemek tabağı"
+      ]
     },
     {
       "id": "meb-004",
@@ -3199,7 +3241,10 @@
       },
       "set": 1,
       "task": "Salata servisi için seçilen kayık biçimli örnek.",
-      "assessmentConstruct": "Görsel ve verilen kullanım bilgisini adla ilişkilendirme. Kullanım amacı yalnız fotoğrafın biçiminden çıkarılmaz."
+      "assessmentConstruct": "Görsel ve verilen kullanım bilgisini adla ilişkilendirme. Kullanım amacı yalnız fotoğrafın biçiminden çıkarılmaz.",
+      "disla": [
+        "Oval balık servis tabağı"
+      ]
     },
     {
       "id": "meb-005",
@@ -3220,7 +3265,10 @@
       },
       "set": 1,
       "task": "Balık servisi için seçilen uzun oval örnek.",
-      "assessmentConstruct": "Görsel ve verilen kullanım bilgisini adla ilişkilendirme. Kullanım amacı yalnız fotoğrafın biçiminden çıkarılmaz."
+      "assessmentConstruct": "Görsel ve verilen kullanım bilgisini adla ilişkilendirme. Kullanım amacı yalnız fotoğrafın biçiminden çıkarılmaz.",
+      "disla": [
+        "Salata tabağı"
+      ]
     },
     {
       "id": "guncel-006",
@@ -3238,7 +3286,10 @@
       "detail": "Ne için kullanılır? Fincanın altına konan küçük tabaktır. Ortasında fincanın oturduğu yuva vardır.\nNasıl kullanılır? Fincan, tabağın ortasındaki yuvaya yerleştirilir. Çay kaşığı tabağa, fincanın sağına konur; sapı sağa bakar. Fincan, tabağıyla birlikte taşınır.\nFarkı nedir? Ekmek tabağından farklı olarak ortasında yuva vardır.",
       "hint": "Ortadaki yuvaya ve tabağın biçimine bak.",
       "task": "Fincanın altına konmak için seçilen örnek.",
-      "assessmentConstruct": "Görsel ve verilen kullanım bilgisini adla ilişkilendirme. Kullanım amacı yalnız fotoğrafın biçiminden çıkarılmaz."
+      "assessmentConstruct": "Görsel ve verilen kullanım bilgisini adla ilişkilendirme. Kullanım amacı yalnız fotoğrafın biçiminden çıkarılmaz.",
+      "disla": [
+        "Çay tabağı"
+      ]
     },
     {
       "id": "guncel-007",
@@ -3256,7 +3307,10 @@
       "detail": "Ne için kullanılır? Çay bardağının altına konan küçük tabaktır.\nNasıl kullanılır? Çay bardağı tabağın ortasına konur. Çay kaşığı ve şeker bardağın sağına konur; kaşığın sapı sağa bakar. Tabağa çay dökülmüşse servis yapılmaz; tabak temizlenir ve kurulanır.\nFarkı nedir? Fincan tabağına göre genellikle küçüktür.",
       "hint": "Ortadaki yuvaya ve tabağın biçimine bak.",
       "task": "İnce belli cam bardağın altına konmak için seçilen örnek.",
-      "assessmentConstruct": "Görsel ve verilen kullanım bilgisini adla ilişkilendirme. Kullanım amacı yalnız fotoğrafın biçiminden çıkarılmaz."
+      "assessmentConstruct": "Görsel ve verilen kullanım bilgisini adla ilişkilendirme. Kullanım amacı yalnız fotoğrafın biçiminden çıkarılmaz.",
+      "disla": [
+        "Fincan tabağı"
+      ]
     },
     {
       "id": "guncel-008",
@@ -3282,7 +3336,10 @@
       "hint": "Yüksek gövdesine ve iç derinliğine bak.",
       "classificationGroup": "Kâse ve fincanlar",
       "task": "Çorba sunumu için seçilen derin kap.",
-      "assessmentConstruct": "Görsel ve verilen kullanım bilgisini adla ilişkilendirme. Kullanım amacı yalnız fotoğrafın biçiminden çıkarılmaz."
+      "assessmentConstruct": "Görsel ve verilen kullanım bilgisini adla ilişkilendirme. Kullanım amacı yalnız fotoğrafın biçiminden çıkarılmaz.",
+      "disla": [
+        "Salata kâsesi"
+      ]
     },
     {
       "id": "meb-006",
@@ -3301,7 +3358,10 @@
         "card": 2,
         "revision": "MEB sınıflandırmasıyla eklenen örnek"
       },
-      "set": 2
+      "set": 2,
+      "disla": [
+        "Çorba kâsesi"
+      ]
     },
     {
       "id": "guncel-014",
@@ -3327,7 +3387,13 @@
       "hint": "Gövde biçimini, kulpunu ve aynı ölçekteki diğer fincanları karşılaştır.",
       "classificationGroup": "Kâse ve fincanlar",
       "task": "Çay veya kahve sunumu için seçilen, kendi altlığı olan tek kulplu örnek.",
-      "assessmentConstruct": "Görsel ve verilen kullanım bilgisini adla ilişkilendirme. Kullanım amacı yalnız fotoğrafın biçiminden çıkarılmaz."
+      "assessmentConstruct": "Görsel ve verilen kullanım bilgisini adla ilişkilendirme. Kullanım amacı yalnız fotoğrafın biçiminden çıkarılmaz.",
+      "disla": [
+        "Cappuccino fincanı",
+        "Espresso fincanı",
+        "Türk kahvesi fincanı",
+        "Kupa"
+      ]
     },
     {
       "id": "meb-007",
@@ -3348,7 +3414,10 @@
       },
       "set": 2,
       "task": "Süt köpüklü cappuccino sunumu için seçilen geniş ağızlı örnek.",
-      "assessmentConstruct": "Görsel ve verilen kullanım bilgisini adla ilişkilendirme. Kullanım amacı yalnız fotoğrafın biçiminden çıkarılmaz."
+      "assessmentConstruct": "Görsel ve verilen kullanım bilgisini adla ilişkilendirme. Kullanım amacı yalnız fotoğrafın biçiminden çıkarılmaz.",
+      "disla": [
+        "Çay ve kahve fincanı"
+      ]
     },
     {
       "id": "meb-008",
@@ -3369,7 +3438,11 @@
       },
       "set": 2,
       "task": "Espresso sunumu için seçilen küçük örnek.",
-      "assessmentConstruct": "Görsel ve verilen kullanım bilgisini adla ilişkilendirme. Kullanım amacı yalnız fotoğrafın biçiminden çıkarılmaz."
+      "assessmentConstruct": "Görsel ve verilen kullanım bilgisini adla ilişkilendirme. Kullanım amacı yalnız fotoğrafın biçiminden çıkarılmaz.",
+      "disla": [
+        "Türk kahvesi fincanı",
+        "Çay ve kahve fincanı"
+      ]
     },
     {
       "id": "guncel-015",
@@ -3395,7 +3468,11 @@
       "hint": "Küçük gövdesini ve kendi altlığını incele.",
       "classificationGroup": "Kâse ve fincanlar",
       "task": "Türk kahvesi sunumu için seçilen küçük örnek.",
-      "assessmentConstruct": "Görsel ve verilen kullanım bilgisini adla ilişkilendirme. Kullanım amacı yalnız fotoğrafın biçiminden çıkarılmaz."
+      "assessmentConstruct": "Görsel ve verilen kullanım bilgisini adla ilişkilendirme. Kullanım amacı yalnız fotoğrafın biçiminden çıkarılmaz.",
+      "disla": [
+        "Espresso fincanı",
+        "Çay ve kahve fincanı"
+      ]
     },
     {
       "id": "guncel-016",
@@ -3411,7 +3488,10 @@
         "card": 7
       },
       "detail": "Ne için kullanılır? Sıcak veya soğuk içecekleri sunmak için kullanılan büyük, kulplu kaptır.\nNasıl kullanılır? Kupa kulpundan tutulur ve düz bir yüzeye konur. Serviste kulpu sağa çevrilir.\nDikkat: Kupa doldurulurken üstte boşluk bırakılır; böylece sıcak içecek taşıp eli yakmaz.\nFarkı nedir? Fincana göre büyüktür ve çoğunlukla tabaksız kullanılır.",
-      "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak."
+      "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak.",
+      "disla": [
+        "Çay ve kahve fincanı"
+      ]
     },
     {
       "id": "guncel-009",
@@ -3429,7 +3509,10 @@
       "detail": "Ne için kullanılır? Salatanın sunulduğu kâsedir. Ortak servis için büyük, tek kişilik servis için küçük modelleri vardır.\nNasıl kullanılır? Ortak servis kâsesi masanın ortasına konur; yanına servis kaşığı ve çatalı yerleştirilir. Tek kişilik kâse konuğun önüne konur. Salata taşmasın diye kâsenin üst kenarında boşluk bırakılır.\nFarkı nedir? Fotoğraftaki model, çorba kâsesinden daha geniş ve basıktır.",
       "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak.",
       "task": "Salata sunumu için seçilen derin kap.",
-      "assessmentConstruct": "Görsel ve verilen kullanım bilgisini adla ilişkilendirme. Kullanım amacı yalnız fotoğrafın biçiminden çıkarılmaz."
+      "assessmentConstruct": "Görsel ve verilen kullanım bilgisini adla ilişkilendirme. Kullanım amacı yalnız fotoğrafın biçiminden çıkarılmaz.",
+      "disla": [
+        "Çorba kâsesi"
+      ]
     },
     {
       "id": "guncel-010",
@@ -3529,7 +3612,11 @@
       "hint": "Dört dişine ve diğer çatallarla boy farkına bak.",
       "classificationGroup": "Ana yemek takımları",
       "task": "Ana yemek için seçilen bu dizinin büyük çatalı.",
-      "assessmentConstruct": "Görsel ve verilen kullanım bilgisini adla ilişkilendirme. Kullanım amacı yalnız fotoğrafın biçiminden çıkarılmaz."
+      "assessmentConstruct": "Görsel ve verilen kullanım bilgisini adla ilişkilendirme. Kullanım amacı yalnız fotoğrafın biçiminden çıkarılmaz.",
+      "disla": [
+        "Antre çatalı",
+        "Tatlı çatalı"
+      ]
     },
     {
       "id": "guncel-019",
@@ -3554,7 +3641,11 @@
       "hint": "Bıçağın uzun gövdesine ve kesici kenarına bak.",
       "classificationGroup": "Ana yemek takımları",
       "task": "Ana yemek için seçilen bu dizinin büyük bıçağı.",
-      "assessmentConstruct": "Görsel ve verilen kullanım bilgisini adla ilişkilendirme. Kullanım amacı yalnız fotoğrafın biçiminden çıkarılmaz."
+      "assessmentConstruct": "Görsel ve verilen kullanım bilgisini adla ilişkilendirme. Kullanım amacı yalnız fotoğrafın biçiminden çıkarılmaz.",
+      "disla": [
+        "Antre bıçağı",
+        "Tatlı bıçağı"
+      ]
     },
     {
       "id": "guncel-023",
@@ -3579,7 +3670,12 @@
       "hint": "Ağız bölümünü ve ortak ölçekteki diğer kaşıklarla boy farkını incele.",
       "classificationGroup": "Ana yemek takımları",
       "task": "Çorba için seçilen bu dizinin büyük kaşığı.",
-      "assessmentConstruct": "Görsel ve verilen kullanım bilgisini adla ilişkilendirme. Kullanım amacı yalnız fotoğrafın biçiminden çıkarılmaz."
+      "assessmentConstruct": "Görsel ve verilen kullanım bilgisini adla ilişkilendirme. Kullanım amacı yalnız fotoğrafın biçiminden çıkarılmaz.",
+      "disla": [
+        "Antre kaşığı",
+        "Tatlı kaşığı",
+        "Balık kaşığı"
+      ]
     },
     {
       "id": "guncel-020",
@@ -3604,7 +3700,11 @@
       "hint": "Ortak ölçekteki ana yemek ve tatlı çatallarıyla boyunu karşılaştır.",
       "classificationGroup": "Antre takımları",
       "task": "Başlangıç yemeği için seçilen orta boy çatal.",
-      "assessmentConstruct": "Görsel ve verilen kullanım bilgisini adla ilişkilendirme. Kullanım amacı yalnız fotoğrafın biçiminden çıkarılmaz."
+      "assessmentConstruct": "Görsel ve verilen kullanım bilgisini adla ilişkilendirme. Kullanım amacı yalnız fotoğrafın biçiminden çıkarılmaz.",
+      "disla": [
+        "Ana yemek çatalı",
+        "Tatlı çatalı"
+      ]
     },
     {
       "id": "meb-009",
@@ -3625,7 +3725,11 @@
       },
       "set": 3,
       "task": "Başlangıç yemeği için seçilen orta boy bıçak.",
-      "assessmentConstruct": "Görsel ve verilen kullanım bilgisini adla ilişkilendirme. Kullanım amacı yalnız fotoğrafın biçiminden çıkarılmaz."
+      "assessmentConstruct": "Görsel ve verilen kullanım bilgisini adla ilişkilendirme. Kullanım amacı yalnız fotoğrafın biçiminden çıkarılmaz.",
+      "disla": [
+        "Ana yemek bıçağı",
+        "Tatlı bıçağı"
+      ]
     },
     {
       "id": "meb-010",
@@ -3646,7 +3750,11 @@
       },
       "set": 3,
       "task": "Berrak çorba ve komposto için seçilen orta boy kaşık.",
-      "assessmentConstruct": "Görsel ve verilen kullanım bilgisini adla ilişkilendirme. Kullanım amacı yalnız fotoğrafın biçiminden çıkarılmaz."
+      "assessmentConstruct": "Görsel ve verilen kullanım bilgisini adla ilişkilendirme. Kullanım amacı yalnız fotoğrafın biçiminden çıkarılmaz.",
+      "disla": [
+        "Çorba kaşığı",
+        "Tatlı kaşığı"
+      ]
     },
     {
       "id": "guncel-021",
@@ -3671,7 +3779,11 @@
       "hint": "Dört dişini ve diğer çatallardan kısa olan gövdesini karşılaştır.",
       "classificationGroup": "Tatlı takımları",
       "task": "Tatlı için seçilen küçük dört dişli çatal.",
-      "assessmentConstruct": "Görsel ve verilen kullanım bilgisini adla ilişkilendirme. Kullanım amacı yalnız fotoğrafın biçiminden çıkarılmaz."
+      "assessmentConstruct": "Görsel ve verilen kullanım bilgisini adla ilişkilendirme. Kullanım amacı yalnız fotoğrafın biçiminden çıkarılmaz.",
+      "disla": [
+        "Ana yemek çatalı",
+        "Antre çatalı"
+      ]
     },
     {
       "id": "meb-011",
@@ -3692,7 +3804,11 @@
       },
       "set": 3,
       "task": "Meyve ve tatlı için seçilen küçük bıçak.",
-      "assessmentConstruct": "Görsel ve verilen kullanım bilgisini adla ilişkilendirme. Kullanım amacı yalnız fotoğrafın biçiminden çıkarılmaz."
+      "assessmentConstruct": "Görsel ve verilen kullanım bilgisini adla ilişkilendirme. Kullanım amacı yalnız fotoğrafın biçiminden çıkarılmaz.",
+      "disla": [
+        "Ana yemek bıçağı",
+        "Antre bıçağı"
+      ]
     },
     {
       "id": "guncel-024",
@@ -3717,7 +3833,11 @@
       "hint": "Ortak ölçekteki büyük ve küçük kaşıklarla boyunu karşılaştır.",
       "classificationGroup": "Tatlı takımları",
       "task": "Puding gibi tatlılar için seçilen küçük kaşık.",
-      "assessmentConstruct": "Görsel ve verilen kullanım bilgisini adla ilişkilendirme. Kullanım amacı yalnız fotoğrafın biçiminden çıkarılmaz."
+      "assessmentConstruct": "Görsel ve verilen kullanım bilgisini adla ilişkilendirme. Kullanım amacı yalnız fotoğrafın biçiminden çıkarılmaz.",
+      "disla": [
+        "Antre kaşığı",
+        "Çay kaşığı"
+      ]
     },
     {
       "id": "guncel-025",
@@ -3736,7 +3856,11 @@
       "hint": "Çatal, bıçak ve kaşığı ayır. Aynı takımdaki boylarını karşılaştır.",
       "classificationGroup": "Özel amaçlı takımlar",
       "task": "Çayı karıştırmak için seçilen küçük kaşık.",
-      "assessmentConstruct": "Görsel ve verilen kullanım bilgisini adla ilişkilendirme. Kullanım amacı yalnız fotoğrafın biçiminden çıkarılmaz."
+      "assessmentConstruct": "Görsel ve verilen kullanım bilgisini adla ilişkilendirme. Kullanım amacı yalnız fotoğrafın biçiminden çıkarılmaz.",
+      "disla": [
+        "Kahve kaşığı",
+        "Tatlı kaşığı"
+      ]
     },
     {
       "id": "meb-017",
@@ -3757,7 +3881,11 @@
       },
       "set": 3,
       "task": "Kahveyi karıştırmak için seçilen en küçük kaşık.",
-      "assessmentConstruct": "Görsel ve verilen kullanım bilgisini adla ilişkilendirme. Kullanım amacı yalnız fotoğrafın biçiminden çıkarılmaz."
+      "assessmentConstruct": "Görsel ve verilen kullanım bilgisini adla ilişkilendirme. Kullanım amacı yalnız fotoğrafın biçiminden çıkarılmaz.",
+      "disla": [
+        "Çay kaşığı",
+        "Tatlı kaşığı"
+      ]
     },
     {
       "id": "meb-024",
@@ -3835,7 +3963,11 @@
       },
       "set": 4,
       "task": "Soslu balık yemeklerinin servisi için seçilen özel kaşık.",
-      "assessmentConstruct": "Görsel ve verilen kullanım bilgisini adla ilişkilendirme. Kullanım amacı yalnız fotoğrafın biçiminden çıkarılmaz."
+      "assessmentConstruct": "Görsel ve verilen kullanım bilgisini adla ilişkilendirme. Kullanım amacı yalnız fotoğrafın biçiminden çıkarılmaz.",
+      "disla": [
+        "Çorba kaşığı",
+        "Tatlı kaşığı"
+      ]
     },
     {
       "id": "guncel-022",
@@ -3951,7 +4083,10 @@
       "hint": "Gövdesinin hafif kavisli yan çizgilerini ve ağız bölümünü incele.",
       "classificationGroup": "Bardaklar",
       "task": "Bu çalışmada su sunumu için seçilen boş bardak.",
-      "assessmentConstruct": "Görsel ve verilen kullanım bilgisini adla ilişkilendirme. Kullanım amacı yalnız fotoğrafın biçiminden çıkarılmaz."
+      "assessmentConstruct": "Görsel ve verilen kullanım bilgisini adla ilişkilendirme. Kullanım amacı yalnız fotoğrafın biçiminden çıkarılmaz.",
+      "disla": [
+        "Meyve suyu bardağı"
+      ]
     },
     {
       "id": "guncel-012",
@@ -3976,7 +4111,10 @@
       "hint": "Boş bardağın uzun gövdesine ve düz yan çizgilerine bak.",
       "classificationGroup": "Bardaklar",
       "task": "Bu çalışmada meyve suyu sunumu için seçilen boş bardak.",
-      "assessmentConstruct": "Görsel ve verilen kullanım bilgisini adla ilişkilendirme. Kullanım amacı yalnız fotoğrafın biçiminden çıkarılmaz."
+      "assessmentConstruct": "Görsel ve verilen kullanım bilgisini adla ilişkilendirme. Kullanım amacı yalnız fotoğrafın biçiminden çıkarılmaz.",
+      "disla": [
+        "Su bardağı"
+      ]
     },
     {
       "id": "guncel-013",
@@ -4031,7 +4169,10 @@
       },
       "set": 5,
       "task": "Bu takımda tuz sunmak için ayrılan delikli kap.",
-      "assessmentConstruct": "Görsel ve verilen kullanım bilgisini adla ilişkilendirme. Kullanım amacı yalnız fotoğrafın biçiminden çıkarılmaz."
+      "assessmentConstruct": "Görsel ve verilen kullanım bilgisini adla ilişkilendirme. Kullanım amacı yalnız fotoğrafın biçiminden çıkarılmaz.",
+      "disla": [
+        "Karabiberlik"
+      ]
     },
     {
       "id": "meb-023",
@@ -4052,7 +4193,10 @@
       },
       "set": 5,
       "task": "Bu takımda öğütülmüş karabiber sunmak için ayrılan delikli kap.",
-      "assessmentConstruct": "Görsel ve verilen kullanım bilgisini adla ilişkilendirme. Kullanım amacı yalnız fotoğrafın biçiminden çıkarılmaz."
+      "assessmentConstruct": "Görsel ve verilen kullanım bilgisini adla ilişkilendirme. Kullanım amacı yalnız fotoğrafın biçiminden çıkarılmaz.",
+      "disla": [
+        "Tuzluk"
+      ]
     },
     {
       "id": "guncel-029",
@@ -4069,7 +4213,11 @@
       },
       "detail": "Ne için kullanılır? Masada tuz, karabiber, yağ ve sirke sunmak için kullanılan kaplardır.\nNasıl kullanılır? Tuzluk ve biberlik ağzına kadar doldurulmaz; üstte boşluk bırakılır. Yağlık ve sirkelik dolum çizgisine kadar doldurulur; çizgi yoksa üstte boşluk bırakılır. Kapların dışı silinir; tuzluk ve biberliğin delikleri tıkanırsa temizlenir.",
       "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak.",
-      "classificationGroup": "Menajlar"
+      "classificationGroup": "Menajlar",
+      "disla": [
+        "Tuzluk",
+        "Karabiberlik"
+      ]
     },
     {
       "id": "guncel-030",
@@ -4086,7 +4234,11 @@
       },
       "detail": "Menajlar arasında yer alır. Şekerlik kapağıyla birlikte kullanılır. Sunumdan önce temizliği ve kapağının yerine oturması kontrol edilir.",
       "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak.",
-      "classificationGroup": "Menajlar"
+      "classificationGroup": "Menajlar",
+      "disla": [
+        "Çorba servis potu"
+      ],
+      "kok": "Görseldeki şeker sunma kabının adı nedir?"
     },
     {
       "id": "guncel-027",
@@ -4445,7 +4597,10 @@
         "card": 2
       },
       "detail": "Ne için kullanılır? Yiyecekleri üzerinde kesmek ve doğramak için kullanılır. Fotoğraftaki tahta çelik yüzeylidir; altında kaydırmaz mat vardır.\nNasıl kullanılır? Tahtanın altına kaydırmaz mat konur; böylece tahta kaymaz. Yiyecek tahtanın ortasında kesilir.\nDikkat: Çiğ et için ayrı tahta kullanılır; çiğ etteki mikrop tahtadan, pişirilmeden yenecek yiyeceğe geçebilir.",
-      "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak."
+      "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak.",
+      "disla": [
+        "Kaydırmaz mat"
+      ]
     },
     {
       "id": "guncel-051",
@@ -4525,7 +4680,11 @@
         "card": 7
       },
       "detail": "Ne için kullanılır? Limon ve portakalın renkli kabuğunu çok ince rendelemek için kullanılır. Sert peyniri ince rendelemek için de kullanılabilir.\nNasıl kullanılır? Meyve yıkanır ve kurulanır. Rende sapından tutulur; alt ucu kaymayan yüzeye dayanır. Renkli kabuk dişlere hafifçe sürtülür; beyaz kısım görülünce meyve çevrilir. Rende fırçayla temizlenir.\nDikkat: İnce dişler çok keskindir; parmaklar dişlere değdirilmez. Dişler parmakla silinmez.\nFarkı nedir? Düz el rendesine göre dişleri çok incedir; kabuğu çok küçük parçalar hâlinde rendeler.",
-      "hint": "Dişlerinin büyüklüğüne ve rende yüzeyinin biçimine bak."
+      "hint": "Dişlerinin büyüklüğüne ve rende yüzeyinin biçimine bak.",
+      "disla": [
+        "Düz el rendesi",
+        "Şerit çıkaran limon rendesi"
+      ]
     },
     {
       "id": "guncel-056",
@@ -4533,14 +4692,14 @@
       "prompt": "Bu aracın adı nedir?",
       "image": "assets/mutfak-araclari/guncel-056.jpg",
       "imageAlt": "Adı sorulan aracın fotoğrafı.",
-      "answer": "Limon rendesi (zester)",
-      "explanation": "Limon ve portakalın renkli kabuğundan ince, uzun şeritler çıkarmak için kullanılır. Bu şeritlerle tatlı ve içecekler süslenir. İnce rendeye göre kabuğu küçük parçalar yerine uzun, ince şeritler hâlinde çıkarır. Delikli uç keskindir; rende, meyveyi tutan parmaklardan uzağa doğru çekilir.",
+      "answer": "Şerit çıkaran limon rendesi",
+      "explanation": "Limon ve portakal kabuğundan ince, uzun şeritler çıkarır.",
       "source": {
         "file": "Mutfak_Araclari_Sayfa_Duzeni.docx",
         "bookItem": 56,
         "card": 8
       },
-      "detail": "Ne için kullanılır? Limon ve portakalın renkli kabuğundan ince, uzun şeritler çıkarmak için kullanılır. Bu şeritlerle tatlı ve içecekler süslenir.\nNasıl kullanılır? Meyve yıkanır ve kurulanır. Rende sapından tutulur; delikli uç kabuğa hafifçe bastırılır ve kabuk boyunca çekilir. Yalnız renkli kabuk alınır; altındaki beyaz kısım acıdır. Bazı modellerin yanında tek ve kalın şerit çıkaran oluklu bir uç da bulunur.\nDikkat: Delikli uç keskindir; rende, meyveyi tutan parmaklardan uzağa doğru çekilir.\nFarkı nedir? İnce rendeye göre kabuğu küçük parçalar yerine uzun, ince şeritler hâlinde çıkarır.",
+      "detail": "Limon ve portakal kabuğundan ince, uzun şeritler çıkarır.",
       "hint": "Dişlerinin büyüklüğüne ve rende yüzeyinin biçimine bak."
     },
     {
@@ -4685,7 +4844,11 @@
         "card": 5
       },
       "detail": "Ne için kullanılır? Köfte, yumurta ve krep gibi yiyecekleri tavada çevirmek için kullanılan geniş ve ince uçlu spatuladır.\nNasıl kullanılır? Spatulanın ince ucu yiyeceğin altına kaydırılır; yiyecek kaldırılıp çevrilir. Kaplamalı tavada silikon çevirme spatulası kullanılır.\nDikkat: Yiyecek çevrilirken yağ sıçrayabilir; yiyecek tavaya yakın tutularak yavaşça çevrilir.\nFarkı nedir? Silikon sıyırma spatulasından farklı olarak yiyeceği alttan destekleyip çevirmek için kullanılır.",
-      "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak."
+      "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak.",
+      "disla": [
+        "Omlet spatulası",
+        "Krep spatulası"
+      ]
     },
     {
       "id": "guncel-066",
@@ -4694,13 +4857,13 @@
       "image": "assets/mutfak-araclari/guncel-066.jpg",
       "imageAlt": "Adı sorulan aracın fotoğrafı.",
       "answer": "Silikon sıyırma spatulası",
-      "explanation": "Kapta kalan hamuru ve kremayı sıyırmak, karışımı yavaşça karıştırmak için kullanılır. Kaplamalı tavada da kullanılır. Pasta spatulasına göre esnektir; kabı sıyırmaya uygundur.",
+      "explanation": "Kapta kalan hamuru ve kremayı sıyırmak, karışımı yavaşça karıştırmak için kullanılır. Tavada kullanım için üreticinin belirttiği sıcaklık sınırı ve kullanım uygunluğu kontrol edilir. Pasta spatulasına göre esnektir; kabı sıyırmaya uygundur.",
       "source": {
         "file": "Mutfak_Araclari_Sayfa_Duzeni.docx",
         "bookItem": 66,
         "card": 6
       },
-      "detail": "Ne için kullanılır? Kapta kalan hamuru ve kremayı sıyırmak, karışımı yavaşça karıştırmak için kullanılır. Kaplamalı tavada da kullanılır.\nNasıl kullanılır? Esnek uç kabın iç kenarına bastırılır; hamur kabın ortasına doğru sıyrılır. Spatula doğrudan ateşe değdirilmez ve kızgın tavanın içinde bırakılmaz; silikon aşırı sıcakta bozulur.\nFarkı nedir? Pasta spatulasına göre esnektir; kabı sıyırmaya uygundur.",
+      "detail": "Ne için kullanılır? Kapta kalan hamuru ve kremayı sıyırmak, karışımı yavaşça karıştırmak için kullanılır. Tavada kullanım için üreticinin belirttiği sıcaklık sınırı ve kullanım uygunluğu kontrol edilir.\nNasıl kullanılır? Esnek uç kabın iç kenarına bastırılır; hamur kabın ortasına doğru sıyrılır. Spatula doğrudan ateşe değdirilmez ve kızgın tavanın içinde bırakılmaz; silikon aşırı sıcakta bozulur.\nFarkı nedir? Pasta spatulasına göre esnektir; kabı sıyırmaya uygundur.",
       "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak.",
       "task": "Kabın içindeki karışımı sıyırmak için seçilen esnek başlıklı örnek.",
       "assessmentConstruct": "Görsel ve verilen kullanım bilgisini adla ilişkilendirme. Kullanım amacı yalnız fotoğrafın biçiminden çıkarılmaz."
@@ -4739,7 +4902,10 @@
       "detail": "Ne için kullanılır? Omleti tavada çevirmek ve katlamak için kullanılır.\nNasıl kullanılır? Geniş, esnek uç omletin altına kaydırılır. Omlet alttan desteklenerek yavaşça çevrilir ya da katlanır.\nFarkı nedir? Çevirme spatulasına göre başlığı daha geniş ve esnektir; omleti alttan destekleyerek dağılmadan kaldırmayı kolaylaştırır.",
       "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak.",
       "task": "Omleti katlamak ve çevirmek için seçilen geniş esnek örnek.",
-      "assessmentConstruct": "Görsel ve verilen kullanım bilgisini adla ilişkilendirme. Kullanım amacı yalnız fotoğrafın biçiminden çıkarılmaz."
+      "assessmentConstruct": "Görsel ve verilen kullanım bilgisini adla ilişkilendirme. Kullanım amacı yalnız fotoğrafın biçiminden çıkarılmaz.",
+      "disla": [
+        "Çevirme spatulası"
+      ]
     },
     {
       "id": "guncel-069",
@@ -4757,7 +4923,11 @@
       "detail": "Ne için kullanılır? Krebi çevirmek ve katlamak için kullanılır.\nNasıl kullanılır? Uzun, ince uç krebin altına kaydırılır. Krep alttan desteklenerek yavaşça çevrilir.\nDikkat: Fotoğraftaki metal model kaplamasız pişirme yüzeyinde kullanılır; kaplamalı yüzeyi çizer. Kaplamalı krep tavasında silikon çevirme spatulası kullanılır.\nFarkı nedir? Çevirme spatulasına göre başlığı daha uzun ve dardır.",
       "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak.",
       "task": "Krebi kaldırıp çevirmek için seçilen uzun düz örnek.",
-      "assessmentConstruct": "Görsel ve verilen kullanım bilgisini adla ilişkilendirme. Kullanım amacı yalnız fotoğrafın biçiminden çıkarılmaz."
+      "assessmentConstruct": "Görsel ve verilen kullanım bilgisini adla ilişkilendirme. Kullanım amacı yalnız fotoğrafın biçiminden çıkarılmaz.",
+      "disla": [
+        "Pasta spatulası",
+        "Çevirme spatulası"
+      ]
     },
     {
       "id": "guncel-070",
@@ -4830,13 +5000,13 @@
       "image": "assets/mutfak-araclari/guncel-074.jpg",
       "imageAlt": "Adı sorulan aracın fotoğrafı.",
       "answer": "Süzgeç",
-      "explanation": "Haşlanan makarnanın, yıkanan sebze ve meyvenin suyunu süzmek için kullanılır. Kevgire göre büyüktür; yiyeceğin hepsi süzgece dökülerek süzülür. Buhar yakar; tencere iki kulpundan kuru fırın eldivenleriyle tutulur. Su yavaşça süzgece dökülür; yüz ve eller buhardan uzak tutulur.",
+      "explanation": "Haşlanan makarnanın ve yıkanan sebzelerin suyunu süzer. Sıcak suyu süzme işlemini öğretmen yapar. Öğrenci sıcak su ve buhardan uzakta durur.",
       "source": {
         "file": "Mutfak_Araclari_Sayfa_Duzeni.docx",
         "bookItem": 74,
         "card": 2
       },
-      "detail": "Ne için kullanılır? Haşlanan makarnanın, yıkanan sebze ve meyvenin suyunu süzmek için kullanılır.\nNasıl kullanılır? Süzgeç evyeye ya da derin bir kabın üstüne kaymayacak biçimde konur. Yiyecek süzgece yavaşça dökülür.\nDikkat: Buhar yakar; tencere iki kulpundan kuru fırın eldivenleriyle tutulur. Su yavaşça süzgece dökülür; yüz ve eller buhardan uzak tutulur.\nFarkı nedir? Kevgire göre büyüktür; yiyeceğin hepsi süzgece dökülerek süzülür.",
+      "detail": "Haşlanan makarnanın ve yıkanan sebzelerin suyunu süzer. Sıcak suyu süzme işlemini öğretmen yapar. Öğrenci sıcak su ve buhardan uzakta durur.",
       "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak."
     },
     {
@@ -5038,13 +5208,13 @@
       "image": "assets/mutfak-araclari/guncel-087.jpg",
       "imageAlt": "Adı sorulan aracın fotoğrafı.",
       "answer": "Mutfak fırçası",
-      "explanation": "Hamurun üstüne yumurta sarısı, süt ya da yağ sürmek için kullanılan silikon fırçadır. Çiğ yumurtaya batırılan fırça yıkanmadan başka işte kullanılmaz; çiğ yumurtadaki mikrop başka yiyeceğe geçer.",
+      "explanation": "Hamurun üzerine yumurta sarısı, süt veya yağ sürmek için kullanılır. Çiğ yumurtaya değen fırça yıkanıp durulanır. Başka yiyecekte kullanılmadan önce öğretmenin belirlediği hijyen işlemi tamamlanır.",
       "source": {
         "file": "Mutfak_Araclari_Sayfa_Duzeni.docx",
         "bookItem": 87,
         "card": 3
       },
-      "detail": "Ne için kullanılır? Hamurun üstüne yumurta sarısı, süt ya da yağ sürmek için kullanılan silikon fırçadır.\nNasıl kullanılır? Fırça sıvıya hafifçe batırılır. Fırçadaki fazla sıvı kabın kenarına sıyrılır. Hamurun üstüne ince bir tabaka sürülür.\nDikkat: Çiğ yumurtaya batırılan fırça yıkanmadan başka işte kullanılmaz; çiğ yumurtadaki mikrop başka yiyeceğe geçer.",
+      "detail": "Hamurun üzerine yumurta sarısı, süt veya yağ sürmek için kullanılır. Çiğ yumurtaya değen fırça yıkanıp durulanır. Başka yiyecekte kullanılmadan önce öğretmenin belirlediği hijyen işlemi tamamlanır.",
       "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak."
     },
     {
@@ -5111,7 +5281,8 @@
         "card": 7
       },
       "detail": "Ne için kullanılır? Fırın tepsisine serilen, hamurun tepsiye yapışmasını önleyen kâğıttır.\nNasıl kullanılır? Kâğıt tepsinin boyuna göre kesilir ve tepsiye düz serilir; hamur üstüne dizilir. Kâğıt bir kez kullanılır ve atılır.\nDikkat: Kâğıt, fırının ısıtıcısına değdirilmez; sıcak ısıtıcıya değen kâğıt yanabilir.\nFarkı nedir? Dayanabileceği en yüksek sıcaklık paketinde yazar. Bir kez kullanılıp atıldığı için gereçtir.",
-      "hint": "Düz, ince ve rulo ya da tabaka hâlindeki kâğıt görünümüne bak."
+      "hint": "Düz, ince ve rulo ya da tabaka hâlindeki kâğıt görünümüne bak.",
+      "kok": "Görseldeki malzemenin adı nedir?"
     },
     {
       "id": "guncel-092",
@@ -5152,13 +5323,13 @@
       "image": "assets/mutfak-araclari/guncel-094.jpg",
       "imageAlt": "Adı sorulan aracın fotoğrafı.",
       "answer": "Ocak",
-      "explanation": "Tencere ve tavadaki yemekleri pişirmek için kullanılır. Atölyemizdeki ocak tüplü gazla çalışır; bazı mutfaklarda elektrikli ocak kullanılır. Gaz kokusu alınırsa düğmelere dokunulmaz; hemen uzaklaşılır ve öğretmene haber verilir. Ocak yanmazsa ya da alev sönerse de öğretmene haber verilir.",
+      "explanation": "Tencere ve tavadaki yemekleri pişirmek için kullanılır. Fotoğrafta gazla çalışan bir ocak görülür. Bazı mutfaklarda elektrikli ocak kullanılır. Gaz kokusu alınırsa düğmelere dokunulmaz; hemen uzaklaşılır ve öğretmene haber verilir. Ocak yanmazsa ya da alev sönerse de öğretmene haber verilir.",
       "source": {
         "file": "Mutfak_Araclari_Sayfa_Duzeni.docx",
         "bookItem": 94,
         "card": 10
       },
-      "detail": "Ne için kullanılır? Tencere ve tavadaki yemekleri pişirmek için kullanılır. Atölyemizdeki ocak tüplü gazla çalışır; bazı mutfaklarda elektrikli ocak kullanılır.\nNasıl kullanılır? Tencere, ocak kapalıyken gözün ortasına oturtulur. Ocak açılır, ateş tarife göre ayarlanır ve iş bitince kapatılır. Tencere ve tava sapları ocağın kenarından taşmayacak biçimde içe çevrilir; sapa çarpılırsa tencere devrilebilir. Ocağın yanında bez, kâğıt ve peçete bulundurulmaz; bunlar alev alır.\nDikkat: Gaz kokusu alınırsa düğmelere dokunulmaz; hemen uzaklaşılır ve öğretmene haber verilir. Ocak yanmazsa ya da alev sönerse de öğretmene haber verilir.",
+      "detail": "Ne için kullanılır? Tencere ve tavadaki yemekleri pişirmek için kullanılır. Fotoğrafta gazla çalışan bir ocak görülür. Bazı mutfaklarda elektrikli ocak kullanılır.\nNasıl kullanılır? Tencere, ocak kapalıyken gözün ortasına oturtulur. Ocak açılır, ateş tarife göre ayarlanır ve iş bitince kapatılır. Tencere ve tava sapları ocağın kenarından taşmayacak biçimde içe çevrilir; sapa çarpılırsa tencere devrilebilir. Ocağın yanında bez, kâğıt ve peçete bulundurulmaz; bunlar alev alır.\nDikkat: Gaz kokusu alınırsa düğmelere dokunulmaz; hemen uzaklaşılır ve öğretmene haber verilir. Ocak yanmazsa ya da alev sönerse de öğretmene haber verilir.",
       "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak."
     },
     {
@@ -5216,13 +5387,13 @@
       "image": "assets/mutfak-araclari/guncel-098.jpg",
       "imageAlt": "Adı sorulan aracın fotoğrafı.",
       "answer": "Mikrodalga fırın",
-      "explanation": "Yemeği kısa sürede ısıtmak ve dondurucudan çıkan yiyeceği çözmek için kullanılan elektrikli fırındır.\nPişmiş yemek nasıl ısıtılır?\n1.\tYemek, mikrodalgaya uygun cam ya da porselen kaba konur.\n2.\tKap, mikrodalgaya uygun kapakla gevşekçe kapatılır; buhar çıksın diye kapağın bir ucu aralık bırakılır.\n3.\tSüre ayarlanır, fırının kapağı kapatılır ve cihaz çalıştırılır.\n4.\tMikrodalga yemeği her yerinden eşit ısıtmaz; bu yüzden ısıtma yarıya gelince yemek karıştırılır.\n5.\tIsıtma bitince yemek gevşekçe örtülü olarak ürün ve cihaz talimatında belirtilen süre kadar bekletilir; böylece ısı yemeğin içinde dağılır.\n6.\tYemeğin sıcaklığı, yemek termometresiyle birkaç yerden ölçülür. Her ölçüm en az 74 °C olmalıdır; düşükse yemek yeniden ısıtılır. Yemeği kısa sürede ısıtır. Mikrodalgaya çelik kap, metal kaşık ve alüminyum folyo konmaz; kıvılcım çıkarır. Kap tamamen kapatılırsa içinde buhar birikir ve kapak fırlayabilir. Kabuklu yumurta mikrodalgada ısıtılmaz; patlar. Sıcak kap kuru fırın eldiveniyle çıkarılır.",
+      "explanation": "Yemeği ısıtmak ve uygun programda çözdürmek için kullanılır. Mikrodalgaya uygun kap seçilir. Süre ve kullanım için cihazın talimatına uyulur.",
       "source": {
         "file": "Mutfak_Araclari_Sayfa_Duzeni.docx",
         "bookItem": 98,
         "card": 2
       },
-      "detail": "Ne için kullanılır? Yemeği kısa sürede ısıtmak ve dondurucudan çıkan yiyeceği çözmek için kullanılan elektrikli fırındır.\nPişmiş yemek nasıl ısıtılır?\n1.\tYemek, mikrodalgaya uygun cam ya da porselen kaba konur.\n2.\tKap, mikrodalgaya uygun kapakla gevşekçe kapatılır; buhar çıksın diye kapağın bir ucu aralık bırakılır.\n3.\tSüre ayarlanır, fırının kapağı kapatılır ve cihaz çalıştırılır.\n4.\tMikrodalga yemeği her yerinden eşit ısıtmaz; bu yüzden ısıtma yarıya gelince yemek karıştırılır.\n5.\tIsıtma bitince yemek gevşekçe örtülü olarak ürün ve cihaz talimatında belirtilen süre kadar bekletilir; böylece ısı yemeğin içinde dağılır.\n6.\tYemeğin sıcaklığı, yemek termometresiyle birkaç yerden ölçülür. Her ölçüm en az 74 °C olmalıdır; düşükse yemek yeniden ısıtılır.\nDikkat: Mikrodalgaya çelik kap, metal kaşık ve alüminyum folyo konmaz; kıvılcım çıkarır. Kap tamamen kapatılırsa içinde buhar birikir ve kapak fırlayabilir. Kabuklu yumurta mikrodalgada ısıtılmaz; patlar. Sıcak kap kuru fırın eldiveniyle çıkarılır.\nFarkı nedir? Yemeği kısa sürede ısıtır. Yalnız mikrodalga ile ısıtmada yiyeceğin üstü kızarmaz.",
+      "detail": "Ne için kullanılır? Yemeği ısıtmak ve uygun programda çözdürmek için kullanılır. Mikrodalgaya uygun kap seçilir. Süre ve kullanım için cihazın talimatına uyulur.\nPişmiş yemek nasıl ısıtılır?\n1.\tYemek, mikrodalgaya uygun cam ya da porselen kaba konur.\n2.\tKap, mikrodalgaya uygun kapakla gevşekçe kapatılır; buhar çıksın diye kapağın bir ucu aralık bırakılır.\n3.\tSüre ayarlanır, fırının kapağı kapatılır ve cihaz çalıştırılır.\n4.\tMikrodalga yemeği her yerinden eşit ısıtmaz; bu yüzden ısıtma yarıya gelince yemek karıştırılır.\n5.\tIsıtma bitince yemek gevşekçe örtülü olarak ürün ve cihaz talimatında belirtilen süre kadar bekletilir; böylece ısı yemeğin içinde dağılır.\n6.\tYemeğin sıcaklığı, yemek termometresiyle birkaç yerden ölçülür. Her ölçüm en az 74 °C olmalıdır; düşükse yemek yeniden ısıtılır.\nDikkat: Mikrodalgaya çelik kap, metal kaşık ve alüminyum folyo konmaz; kıvılcım çıkarır. Kap tamamen kapatılırsa içinde buhar birikir ve kapak fırlayabilir. Kabuklu yumurta mikrodalgada ısıtılmaz; patlar. Sıcak kap kuru fırın eldiveniyle çıkarılır.\nFarkı nedir? Yemeği kısa sürede ısıtır. Yalnız mikrodalga ile ısıtmada yiyeceğin üstü kızarmaz.",
       "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak."
     },
     {
@@ -5312,13 +5483,13 @@
       "image": "assets/mutfak-araclari/guncel-104.jpg",
       "imageAlt": "Adı sorulan aracın fotoğrafı.",
       "answer": "Smoothie blenderi",
-      "explanation": "Meyve, yoğurt ve sütü karıştırarak içecek hazırlamak için kullanılır. Bu içeceğe smoothie denir. El blenderinden farklı olarak malzemeyi kapalı haznede karıştırır. Sıcak sıvı her blenderde çekilmez: sıcak buhar kapağı fırlatabilir. Sıcak sıvı için önce cihazın kılavuzuna bakılır. Dolum çizgisi aşılmaz, kapak sıkıca kapatılır, cihaz düşük hızda başlatılır. Başlık, bıçaklar durduktan ve fiş çekildikten sonra açılır.",
+      "explanation": "Meyve, yoğurt ve sütle soğuk içecek hazırlamak için kullanılır. Bu kapalı kişisel blenderde sıcak malzeme kullanılmaz. Dolum çizgisi aşılmaz. Bıçaklı bölüm kılavuza göre kapatılır. Hazne açılmadan önce cihaz durdurulur ve fişi çekilir.",
       "source": {
         "file": "Mutfak_Araclari_Sayfa_Duzeni.docx",
         "bookItem": 104,
         "card": 8
       },
-      "detail": "Ne için kullanılır? Meyve, yoğurt ve sütü karıştırarak içecek hazırlamak için kullanılır. Bu içeceğe smoothie denir.\nNasıl kullanılır? Fiş çekiliyken malzemeler hazneye konur; dolum çizgisi aşılmaz. Bıçaklı başlık, bıçaklara dokunulmadan takılır ve hazne gövdeye sağlamca oturtulur. Cihaz çalıştırılır; içecek pürüzsüz olunca durdurulur.\nDikkat: Sıcak sıvı her blenderde çekilmez: sıcak buhar kapağı fırlatabilir. Sıcak sıvı için önce cihazın kılavuzuna bakılır. Dolum çizgisi aşılmaz, kapak sıkıca kapatılır, cihaz düşük hızda başlatılır. Başlık, bıçaklar durduktan ve fiş çekildikten sonra açılır.\nFarkı nedir? El blenderinden farklı olarak malzemeyi kapalı haznede karıştırır.",
+      "detail": "Meyve, yoğurt ve sütle soğuk içecek hazırlamak için kullanılır. Bu kapalı kişisel blenderde sıcak malzeme kullanılmaz. Dolum çizgisi aşılmaz. Bıçaklı bölüm kılavuza göre kapatılır. Hazne açılmadan önce cihaz durdurulur ve fişi çekilir.",
       "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak."
     },
     {
@@ -5410,13 +5581,13 @@
       "image": "assets/mutfak-araclari/guncel-110.jpg",
       "imageAlt": "Adı sorulan aracın fotoğrafı.",
       "answer": "Bulaşık makinesi",
-      "explanation": "Bulaşıkları yıkamak ve durulamak için kullanılır. Makine çalışırken kapak açılmaz. Kapak açılırken sıcak buhardan uzak durulur. Keskin bıçaklar makineye konmaz; ayrı yıkanır, lavaboya ya da suya bırakılmaz.",
+      "explanation": "Bulaşıkları yıkamak ve durulamak için kullanılır. Makine çalışırken kapak açılmaz. Kapak açılırken sıcak buhardan uzak durulur. Keskin bıçakların temizliğini öğretmen yapar. Öğrenci bıçağı suya veya evyeye bırakmaz; öğretmene haber verir.",
       "source": {
         "file": "Mutfak_Araclari_Sayfa_Duzeni.docx",
         "bookItem": 110,
         "card": 2
       },
-      "detail": "Ne için kullanılır? Bulaşıkları yıkamak ve durulamak için kullanılır.\nNasıl kullanılır?\n1.\tTabaktaki yemek artıkları, makinenin süzgeci tıkanmasın diye çöpe sıyrılır.\n2.\tTabaklar dik, bardak ve kâseler ağzı aşağı bakacak biçimde yerleştirilir; böylece su her yere ulaşır ve bardakların içinde kirli su birikmez. Çatal ve kaşıklar, makinenin kılavuzunda gösterilen bölmelere yerleştirilir. Temiz çatal ve kaşıklar saplarından tutulur.\n3.\tDeterjan tableti kuru elle deterjan haznesine konur. Öğretmen, parlatıcı kullanımı için makinenin kılavuzunu kontrol eder. Kılavuzda uygun görülen ürün kullanılır. Program bulaşığın türüne göre seçilir; kapak kapatılır ve program başlatılır.\n4.\tProgram bitince bulaşıkların soğuması beklenir. Temiz bulaşığa dokunmadan önce eller yıkanıp kurulanır; sonra bulaşıklar makineden çıkarılır.\nDikkat: Makine çalışırken kapak açılmaz. Kapak açılırken sıcak buhardan uzak durulur. Keskin bıçaklar makineye konmaz; ayrı yıkanır, lavaboya ya da suya bırakılmaz.",
+      "detail": "Ne için kullanılır? Bulaşıkları yıkamak ve durulamak için kullanılır.\nNasıl kullanılır?\n1.\tTabaktaki yemek artıkları, makinenin süzgeci tıkanmasın diye çöpe sıyrılır.\n2.\tTabaklar dik, bardak ve kâseler ağzı aşağı bakacak biçimde yerleştirilir; böylece su her yere ulaşır ve bardakların içinde kirli su birikmez. Çatal ve kaşıklar, makinenin kılavuzunda gösterilen bölmelere yerleştirilir. Temiz çatal ve kaşıklar saplarından tutulur.\n3.\tDeterjan tableti kuru elle deterjan haznesine konur. Öğretmen, parlatıcı kullanımı için makinenin kılavuzunu kontrol eder. Kılavuzda uygun görülen ürün kullanılır. Program bulaşığın türüne göre seçilir; kapak kapatılır ve program başlatılır.\n4.\tProgram bitince bulaşıkların soğuması beklenir. Temiz bulaşığa dokunmadan önce eller yıkanıp kurulanır; sonra bulaşıklar makineden çıkarılır.\nDikkat: Makine çalışırken kapak açılmaz. Kapak açılırken sıcak buhardan uzak durulur. Keskin bıçakların temizliğini öğretmen yapar. Öğrenci bıçağı suya veya evyeye bırakmaz; öğretmene haber verir.",
       "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak."
     },
     {
@@ -5529,7 +5700,8 @@
         "card": 9
       },
       "detail": "Ne için kullanılır? Temiz eldiven, elden yiyeceğe mikrop geçmesini azaltır.\nNasıl kullanılır? Eller yıkanıp kurulandıktan sonra temiz eldiven takılır. Eldiven kirlenince ya da yırtılınca çıkarılıp atılır. Çiğ etten hazır yiyeceğe geçerken kullanılan eldiven çıkarılıp atılır. Eller yıkanır ve kurulanır. Temiz eldiven takılır.\nDikkat: Eldiven el yıkamanın yerine geçmez; kirli elle takılan eldivenin dışına elin mikrobu geçer. Tek kullanımlık eldiven eli sıcaktan korumaz; sıcak kap kuru fırın eldiveniyle tutulur.\nFarkı nedir? Bulaşık eldiveninden farklı olarak incedir ve bir kez kullanılır.",
-      "hint": "İnce, esnek ve parmaklı yapıya bak. Bulaşık eldiveninden farkını düşün."
+      "hint": "İnce, esnek ve parmaklı yapıya bak. Bulaşık eldiveninden farkını düşün.",
+      "kok": "Görseldeki malzemenin adı nedir?"
     },
     {
       "id": "guncel-118",
@@ -5577,7 +5749,8 @@
         "card": 12
       },
       "detail": "Ne için kullanılır? Saçı örter; yiyeceğe saç düşmesini önler.\nNasıl kullanılır? Bone, eller yıkanmadan önce takılır; böylece saça dokunan el sonradan yıkanıp temizlenir. Saçın tamamı bonenin içine toplanır. İş bitince bone çıkarılır ve çöpe atılır.",
-      "hint": "Saçı örten, ince ve lastikli yuvarlak yapıya bak."
+      "hint": "Saçı örten, ince ve lastikli yuvarlak yapıya bak.",
+      "kok": "Görseldeki malzemenin adı nedir?"
     }
   ],
   "words": [],
@@ -5962,5 +6135,5 @@
     "v10: Kullanım amacı yalnız biçimden belirlenemeyen kartlarda kullanım bilgisi sorunun parçasıdır. Bunların puanı, yalnız görselden bağımsız tanıma olarak yorumlanmaz.",
     "v10: Metal takımlar ve tabaklarda fotoğraf çerçevesi korunur. Büyütme mutlak santimetre ölçüsü vermez; kullanım bilgisi ve takım içindeki göreli ölçek birlikte ele alınır."
   ],
-  "revision": "v15-20261104"
+  "revision": "v16-20261105"
 }

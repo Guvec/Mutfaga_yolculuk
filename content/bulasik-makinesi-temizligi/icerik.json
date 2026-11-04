@@ -422,7 +422,8 @@
         "card": 1
       },
       "detail": "Ne için kullanılır? Yıkama sırasında ellerin deterjanla temasını azaltmak için kullanılır.\nNasıl kullanılır? İçi kuru ve yırtıksız eldiven giyilir. Yiyecek hazırlamaya geçerken bulaşık eldiveni çıkarılır ve eller yıkanır.",
-      "hint": "Nesnenin biçimine ve yapıldığı malzemeye bak."
+      "hint": "Nesnenin biçimine ve yapıldığı malzemeye bak.",
+      "grup": "nesne"
     },
     {
       "id": "bulasik-2",
@@ -437,7 +438,8 @@
         "card": 2
       },
       "detail": "Ne için kullanılır? Uygun kapların yüzeyindeki kiri uzaklaştırmak için kullanılır.\nNasıl kullanılır? Yüzeye uygun sünger seçilir. Süngerin kalın ve yumuşak yüzü yıkama için kullanılır. İnce ve pürüzlü yüzü serttir. Sert yüz kaplamalı tavada ve camda kullanılmaz.",
-      "hint": "Nesnenin biçimine ve yapıldığı malzemeye bak."
+      "hint": "Nesnenin biçimine ve yapıldığı malzemeye bak.",
+      "grup": "nesne"
     },
     {
       "id": "bulasik-3",
@@ -452,7 +454,8 @@
         "card": 3
       },
       "detail": "Ne için kullanılır? Kapların içini ve ulaşılması güç yerleri temizlemek için kullanılır.\nNasıl kullanılır? Fırça sapından tutulur. Kabın içi, yüzeye uygun fırçayla ovalanır. Kılları bozulmuş fırça yenisiyle değiştirilir.",
-      "hint": "Nesnenin biçimine ve yapıldığı malzemeye bak."
+      "hint": "Nesnenin biçimine ve yapıldığı malzemeye bak.",
+      "grup": "nesne"
     },
     {
       "id": "bulasik-4",
@@ -467,7 +470,8 @@
         "card": 4
       },
       "detail": "Ne için kullanılır? Temiz bulaşığın suyunun süzülmesi ve kuruması için kullanılır.\nNasıl kullanılır? Temiz bulaşıklar dengeli ve aralıklı dizilir. Rafın altında biriken su boşaltılır.",
-      "hint": "Nesnenin biçimine ve yapıldığı malzemeye bak."
+      "hint": "Nesnenin biçimine ve yapıldığı malzemeye bak.",
+      "grup": "nesne"
     },
     {
       "id": "bulasik-5",
@@ -482,7 +486,8 @@
         "card": 5
       },
       "detail": "Ne için kullanılır? Tabakta ve kapta kalan yemek artıklarını yıkamadan önce sıyırmak için kullanılır.\nNasıl kullanılır? Spatula sapından tutulur. Artıklar silikon uçla çöp kabına veya organik atık kabına sıyrılır. Silikon uç yüzeyi çizmez; bu yüzden kaplamalı tavada da kullanılır. Kullanımdan sonra yıkanıp kurutulur.",
-      "hint": "Nesnenin biçimine ve yapıldığı malzemeye bak."
+      "hint": "Nesnenin biçimine ve yapıldığı malzemeye bak.",
+      "grup": "nesne"
     },
     {
       "id": "bulasik-6",
@@ -491,13 +496,14 @@
       "image": "assets/bulasik-guncel/arac-11.jpg",
       "imageAlt": "Adı veya türü sorulan nesnenin fotoğrafı.",
       "answer": "Mutfak termometresi",
-      "explanation": "Yıkama suyunun sıcaklığını ölçmek için kullanılır.",
+      "explanation": "Öğretmenin seçtiği, su sıcaklığını ölçmeye uygun termometreyle yıkama suyunun sıcaklığı ölçülür. Yalnız daldırılabilir prob bölümü suya sokulur.",
       "source": {
         "file": "Bulaşık Yıkama ve Atık Yönetimi.docx",
         "card": 6
       },
-      "detail": "Ne için kullanılır? Yıkama suyunun sıcaklığını ölçmek için kullanılır.\nNasıl kullanılır? Termometrenin ucu suya daldırılır. Ekrandaki sayı okunur. Yıkama suyunun sıcaklığı, ürünün kullanım bilgisine göre öğretmen tarafından belirlenir. Kullanımdan sonra ucu yıkanır ve kurulanır.",
-      "hint": "Nesnenin biçimine ve yapıldığı malzemeye bak."
+      "detail": "Öğretmenin seçtiği, su sıcaklığını ölçmeye uygun termometreyle yıkama suyunun sıcaklığı ölçülür. Yalnız daldırılabilir prob bölümü suya sokulur.",
+      "hint": "Nesnenin biçimine ve yapıldığı malzemeye bak.",
+      "grup": "nesne"
     },
     {
       "id": "bulasik-7",
@@ -512,7 +518,8 @@
         "card": 7
       },
       "detail": "Ne için kullanılır? Uygun atıkların kapaklı bir kovada toplanması için kullanılır.\nNasıl kullanılır? Pedala ayakla basılarak kapak açılır. Kova dolunca torbası değiştirilir; taşarsa kapak kapanmaz, koku oluşur ve haşere gelir.",
-      "hint": "Nesnenin biçimine ve yapıldığı malzemeye bak."
+      "hint": "Nesnenin biçimine ve yapıldığı malzemeye bak.",
+      "grup": "nesne"
     },
     {
       "id": "bulasik-8",
@@ -527,7 +534,9 @@
         "card": 8
       },
       "detail": "Temiz karton kutu kâğıt ve karton atığıdır. Kutunun etiketine ve okulun toplama sistemine göre ayrılır. Kırık veya keskin atık görülürse öğretmene haber verilir.",
-      "hint": "Nesnenin biçimine ve yapıldığı malzemeye bak."
+      "hint": "Nesnenin biçimine ve yapıldığı malzemeye bak.",
+      "grup": "atik",
+      "kok": "Görseldeki atığın türü nedir?"
     },
     {
       "id": "bulasik-9",
@@ -542,7 +551,9 @@
         "card": 9
       },
       "detail": "Boş plastik şişe plastik atıktır. Kutunun etiketine ve okulun toplama sistemine göre ayrılır. Kırık veya keskin atık görülürse öğretmene haber verilir.",
-      "hint": "Nesnenin biçimine ve yapıldığı malzemeye bak."
+      "hint": "Nesnenin biçimine ve yapıldığı malzemeye bak.",
+      "grup": "atik",
+      "kok": "Görseldeki atığın türü nedir?"
     },
     {
       "id": "bulasik-10",
@@ -557,7 +568,9 @@
         "card": 10
       },
       "detail": "Boş ve sağlam cam kavanoz cam ambalajdır. Kutunun etiketine ve okulun toplama sistemine göre ayrılır. Kırık veya keskin atık görülürse öğretmene haber verilir.",
-      "hint": "Nesnenin biçimine ve yapıldığı malzemeye bak."
+      "hint": "Nesnenin biçimine ve yapıldığı malzemeye bak.",
+      "grup": "atik",
+      "kok": "Görseldeki atığın türü nedir?"
     },
     {
       "id": "bulasik-11",
@@ -572,7 +585,9 @@
         "card": 11
       },
       "detail": "Boş konserve kutusu metal atıktır. Kutunun etiketine ve okulun toplama sistemine göre ayrılır. Kırık veya keskin atık görülürse öğretmene haber verilir.",
-      "hint": "Nesnenin biçimine ve yapıldığı malzemeye bak."
+      "hint": "Nesnenin biçimine ve yapıldığı malzemeye bak.",
+      "grup": "atik",
+      "kok": "Görseldeki atığın türü nedir?"
     },
     {
       "id": "bulasik-12",
@@ -587,7 +602,9 @@
         "card": 12
       },
       "detail": "Sebze kabukları organik atıktır. Kutunun etiketine ve okulun toplama sistemine göre ayrılır. Kırık veya keskin atık görülürse öğretmene haber verilir.",
-      "hint": "Nesnenin biçimine ve yapıldığı malzemeye bak."
+      "hint": "Nesnenin biçimine ve yapıldığı malzemeye bak.",
+      "grup": "atik",
+      "kok": "Görseldeki atığın türü nedir?"
     }
   ],
   "words": [],
@@ -623,5 +640,5 @@
       "Tekstil"
     ]
   },
-  "revision": null
+  "revision": "v1-20261105"
 }

@@ -26,9 +26,14 @@
   let items=d.matches.filter(x=>set===0||x.set===set);
   items=shuffle(items,rng).slice(0,n);
   return items.map(it=>{
-   const same=d.matches.filter(x=>x.set===it.set).map(x=>x.answer),extra=(d.distractors&&d.distractors[String(it.set)])||[];
-   const pool=shuffle(uniq(same.concat(extra)).filter(x=>x!==it.answer),rng).slice(0,3);
-   return finalize({id:it.id,prompt:IMG_PROMPT[subject]||'Bu görselde ne var?',image:it.image,imageAlt:it.imageAlt||'Adı sorulan nesnenin fotoğrafı.'},[it.answer].concat(pool),it.answer,rng,{explanation:it.explanation||'',hint:it.hint||''});
+   const same=d.matches.filter(x=>x.set===it.set&&(!it.grup||x.grup===it.grup)).map(x=>x.answer);
+   // Gruplu maddelerde yalnız aynı grubun adları kullanılır; ortak havuz iki grubu karıştırabilir.
+   const extra=it.grup?[]:((d.distractors&&d.distractors[String(it.set)])||[]);
+   let pool=uniq(same.concat(extra)).filter(x=>x!==it.answer);
+   pool=pool.filter(x=>!(it.disla||[]).includes(x));
+   if(pool.length<3)throw new Error(it.id+': en az üç farklı çeldirici gerekir.');
+   pool=shuffle(pool,rng).slice(0,3);
+   return finalize({id:it.id,prompt:it.kok||IMG_PROMPT[subject]||'Bu görselde ne var?',image:it.image,imageAlt:it.imageAlt||'Adı sorulan nesnenin fotoğrafı.'},[it.answer].concat(pool),it.answer,rng,{explanation:it.explanation||'',hint:it.hint||''});
   });
  }
  /* Metin sorusu: seçenek bir fotoğraf olabilir (metni boş, image dolu). Doğru seçenek özgün harfinden bulunur. */
