@@ -37,6 +37,7 @@ async function yrCreate(){
  if(String(raw||'').trim()&&!YarisModel.validCode(wanted)){YR.error='Oda kodu 3–10 harf ya da rakam olmalı.';render();return;}
  YR.busy=true;YR.error='';render();
  try{
+  if(typeof frEnsure==='function')await Promise.race([frEnsure(),new Promise(r=>setTimeout(r,4000))]);
   await yrWithTimeout(yrReady(c.subject),9000);
   const base={mode:c.mode,subject:c.subject,kind:c.kind,set:c.set,n:c.n||YarisModel.N_DEFAULT,lim:c.lim,seed:crypto.getRandomValues(new Uint32Array(1))[0],rev:yrRev(c.subject),hostNick:nick};
   const qs=YarisModel.buildQuestions(yrData(c.subject),{subject:c.subject,kind:c.kind,set:c.set,n:base.n},base.seed);
@@ -53,6 +54,7 @@ async function yrJoin(code){
  if(!YarisModel.validCode(c)){YR.error='Oda kodunu yaz.';render();return;}
  YR.busy=true;YR.error='';render();
  try{
+  if(typeof frEnsure==='function')await Promise.race([frEnsure(),new Promise(r=>setTimeout(r,4000))]);
   const pd=yrPlayerBase(nick,0);
   /* Önce odayı oku ve sürümü denetle: uyumsuz telefon kapışmada yer almaz, listeye girmez. */
   const seen=await yrWithTimeout(yrService().peek(c));
@@ -63,13 +65,15 @@ async function yrJoin(code){
   await yrEnter(c,room);
  }catch(e){YR.error=yrErrText(e);}finally{YR.busy=false;render();}
 }
-function yrPlayerBase(nick,rid){return {nick,score:0,ok:0,bad:0,n:0,tt:0,done:false,ts:Date.now(),rid,m:0,r:[],pr:[]};}
+function yrWithPid(pd){if(typeof FR!=='undefined'&&FR.ready&&FR.pid&&st.prof&&!st.guest)pd.pid=FR.pid;return pd;}
+function yrPlayerBase(nick,rid){return yrWithPid({nick,score:0,ok:0,bad:0,n:0,tt:0,done:false,ts:Date.now(),rid,m:0,r:[],pr:[]});}
 async function yrEnter(code,room){
  yrReset();YR.active=true;YR.code=code;YR.room=room;YR.nick=yrNickGet();YR.host=room.host===yrMe();YR.started=false;
  if(YR.host)await yrService().setPlayer(code,yrPlayerBase(YR.nick,room.created));
  YR.unsubs=yrService().watch(code,yrRoomChanged,yrPlayersChanged,e=>{if(YR.active)yrSetError(e);});
  YR.hb=setInterval(yrBeat,duelOr(8000,10000));
  st.screen='racelobby';render();
+ if(typeof frInvSend==='function')frInvSend();
  if(typeof sesSecimiSor==='function')sesSecimiSor();
 }
 function duelOr(a,b){return yrDuel()?a:b;}
@@ -163,7 +167,7 @@ function yrRaceNext(){
 }
 /* Yazma hatası sessizce yutulmaz: öğrenciye kısa uyarı çıkar, yazma düzelince kalkar. */
 function yrSend(pd){
- YR.pend=pd;
+ pd=yrWithPid(pd);YR.pend=pd;
  return yrService().setPlayer(YR.code,pd).then(()=>{if(YR.pend===pd)YR.pend=null;if(YR.warn&&!YR.pend){YR.warn='';if(YR.active)render();}}).catch(()=>{if(!YR.warn&&YR.active){YR.warn='Bağlantı sorunu: sonucun diğer telefonlara ulaşmamış olabilir. Bağlantı gelince yeniden denenir.';render();}});
 }
 function yrRaceWrite(done){
@@ -327,7 +331,7 @@ function yrOverHTML(){
  const all=yrAllDone(),r=YarisModel.ranks(yrAllPlayers()),me=r.find(p=>p.uid===yrMe()),med=['🥇','🥈','🥉'];
  let h=yrTop('Oyun Odası')+'<div class="wrap">'+yrWarnHTML()+'<h1 id="yrHeading" tabindex="-1">'+(all?'Yarış bitti!':'Bitirdin!')+'</h1>';
  if(me)h+='<p class="card"><b>'+me.ok+' / '+YR.qs.length+' doğru.</b> '+(all?'Sıran: <b>'+me.rank+'.</b>'+(me.rank===1?' Tebrikler!':' İyi oynadın!'):'Diğer oyuncular bitirince son sıra belli olur.')+'</p>';
- h+='<ol class="yr-list yr-podium">'+r.map(p=>'<li class="yr-row'+(p.uid===yrMe()?' me':'')+'"><span class="yr-rk">'+(all&&p.rank<=3?med[p.rank-1]:p.rank+'.')+'</span><span class="yr-nm">'+esc(p.nick)+(p.uid===yrMe()?' (Sen)':'')+'</span><span class="yr-sc">'+p.ok+' doğru'+(p.done?'':(yrLost(p)?' · 📶':' · ⏳'))+'</span></li>').join('')+'</ol><button class="btn pri" onclick="yrLeave()">'+(all?'Oyundan çık':'Çık')+'</button></div>';
+ h+='<ol class="yr-list yr-podium">'+r.map(p=>'<li class="yr-row'+(p.uid===yrMe()?' me':'')+'"><span class="yr-rk">'+(all&&p.rank<=3?med[p.rank-1]:p.rank+'.')+'</span><span class="yr-nm">'+esc(p.nick)+(p.uid===yrMe()?' (Sen)':(typeof frBtn==='function'?frBtn(p,false):''))+'</span><span class="yr-sc">'+p.ok+' doğru'+(p.done?'':(yrLost(p)?' · 📶':' · ⏳'))+'</span></li>').join('')+'</ol><button class="btn pri" onclick="yrLeave()">'+(all?'Oyundan çık':'Çık')+'</button></div>';
  return h;
 }
 function duScoreHTML(){
@@ -355,6 +359,7 @@ function duOverHTML(){
  if(DU.left||!o||o.done)h+='<p class="sub">Rakip ayrıldı.</p>';
  else if(DU.want)h+='<button class="btn" disabled>⏳ '+esc(DU.onick)+' bekleniyor…</button>';
  else h+='<button class="btn pri" onclick="duRematch()">🔁 Rövanş'+(o&&(o.m|0)===DU.m+1?' · '+esc(DU.onick)+' hazır!':'')+'</button>';
+ if(typeof frBtn==='function')h+=frBtn(o,true);
  return h+'<button class="btn ghost" onclick="yrLeave()">Çık</button></div>';
 }
 function yrScreenHTML(){
