@@ -27,3 +27,4 @@
 html[data-theme=dark] :is(.rk-rec,.rk-row,.rk-pick select){background:var(--surface);color:var(--text);border-color:var(--line)}
 html[data-theme=dark] .rk-row.rk-me{background:var(--teal2);border:2px solid var(--teal)}
 html[data-theme=dark] .rk-rank,html[data-theme=sepia] .rk-rank{color:var(--teal)}
+html[data-theme=dark] .rk-banner.rk-new{background:#1d3b2c;border-left-color:#6fcf97}
