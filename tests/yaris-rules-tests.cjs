@@ -50,9 +50,8 @@ const {doc,setDoc,getDoc,getDocs,collection,updateDoc,deleteDoc,writeBatch}=requ
   {const b=writeBatch(C);b.set(P(C,'ABC12','ece'),pl({rid:created,nick:'Ece'}));b.update(R(C,'ABC12'),{cnt:4});await assertSucceeds(b.commit());}
   {const b=writeBatch(C);b.delete(P(C,'ABC12','ece'));b.update(R(C,'ABC12'),{cnt:1});await assertFails(b.commit());}
   {const b=writeBatch(C);b.delete(P(C,'ABC12','ece'));b.update(R(C,'ABC12'),{cnt:3});await assertSucceeds(b.commit());}
-  await env.withSecurityRulesDisabled(async ctx=>setDoc(doc(ctx.firestore(),'oyunOdalari','FULL1'),room({cnt:8,created:Date.now()})));
-  {const full=(await env.withSecurityRulesDisabled(async ctx=>(await getDoc(doc(ctx.firestore(),'oyunOdalari','FULL1'))).data().created));
-   const b=writeBatch(C);b.set(P(C,'FULL1','ece'),pl({rid:full,nick:'Ece'}));b.update(R(C,'FULL1'),{cnt:9});await assertFails(b.commit(),'9. kişi girmez');}
+  {const fc=Date.now();await env.withSecurityRulesDisabled(async ctx=>setDoc(doc(ctx.firestore(),'oyunOdalari','FULL1'),room({cnt:8,created:fc})));
+   const b=writeBatch(C);b.set(P(C,'FULL1','ece'),pl({rid:fc,nick:'Ece'}));b.update(R(C,'FULL1'),{cnt:9});await assertFails(b.commit(),'9. kişi girmez');}
   // başlatma: yalnız kurucu, yalnız status alanı
   await assertFails(updateDoc(R(A,'ABC12'),{status:'playing'}));await assertFails(updateDoc(R(H,'ABC12'),{status:'playing',n:5}));await assertFails(updateDoc(R(H,'ABC12'),{seed:1}));
   await assertSucceeds(updateDoc(R(H,'ABC12'),{status:'playing'}));
@@ -70,7 +69,7 @@ const {doc,setDoc,getDoc,getDocs,collection,updateDoc,deleteDoc,writeBatch}=requ
   await assertFails(updateDoc(R(B,'DUEL1'),{guest:'can'}),'yer dolu');
   await assertFails(setDoc(P(B,'DUEL1','can'),pl({rid:c2})),'üçüncü oyuncu giremez');
   await env.withSecurityRulesDisabled(async ctx=>setDoc(doc(ctx.firestore(),'oyunOdalari','DUEL2'),room({mode:'duel',n:6,created:Date.now()})));
-  {const c3=(await env.withSecurityRulesDisabled(async ctx=>(await getDoc(doc(ctx.firestore(),'oyunOdalari','DUEL2'))).data().created));const b=writeBatch(A);b.update(R(A,'DUEL2'),{guest:'ayse'});b.set(P(A,'DUEL2','ayse'),pl({rid:c3,nick:'Ayşe'}));await assertSucceeds(b.commit());}
+  {const c3=(await getDoc(R(H,'DUEL2'))).data().created;const b=writeBatch(A);b.update(R(A,'DUEL2'),{guest:'ayse'});b.set(P(A,'DUEL2','ayse'),pl({rid:c3,nick:'Ayşe'}));await assertSucceeds(b.commit());}
   await assertSucceeds(setDoc(P(A,'DUEL1','ayse'),pl({rid:c2,nick:'Ayşe'})));
   await assertSucceeds(setDoc(P(H,'DUEL1','host'),pl({rid:c2})));
   await assertSucceeds(updateDoc(P(A,'DUEL1','ayse'),{r:[512,-1,430],m:0,ts:Date.now()}));
