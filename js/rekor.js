@@ -20,7 +20,7 @@ const RK_BOARDS=(()=>{const a=[];
  a.push({id:'bl-s1',subject:'bulasik-makinesi-temizligi',kind:'mcq',group:RK_MCQ['bulasik-makinesi-temizligi'][0],total:13,label:'Bütün bölümler · Sorular'});
  return a;})();
 const RK_SUBJECT_NAMES={baharat:'Baharatlar','mutfak-araclari':'Mutfak Araçları',kuver:'Kuver','bulasik-makinesi-temizligi':'Bulaşık Yıkama ve Atık Yönetimi'};
-const RK={backend:null,busy:false,view:{board:null,period:'hafta',rows:null,state:'idle',err:''},msg:null};
+const RK={cal:null,backend:null,busy:false,view:{board:null,period:'hafta',rows:null,state:'idle',err:''},msg:null};
 
 /* ---------- Yardımcılar ---------- */
 function rkBoard(id){return RK_BOARDS.find(b=>b.id===id)||null;}
@@ -204,7 +204,24 @@ function rkPekKnown(key){const a=String(key).split('|');if(a[0]==='m')return {ki
 function rkTekrarHTML(){
  const t=RK.tk;if(!t||!st.sess||t.sess!==st.sess.id||st.guest||t.prof!==st.prof)return '';
  const n=t.n;
- return '<section class="card rk-tekrar" role="status"><strong>Birlikte tekrar edelim</strong><p>'+n+' maddeyle yeniden çalışalım. Bu tur sıralamaya yazılmaz.'+(t.more?' Kalanlar Pekiştiriyorum listende bekler.':'')+'</p><button class="btn pri" onclick="rkTekrarBasla()">Birlikte tekrar edelim ('+n+')</button></section>';
+ return '<section class="card rk-tekrar" role="status"><strong>Birlikte tekrar edelim</strong><p>'+n+' maddeyle yeniden çalışalım. Bu tur sıralamaya yazılmaz.'+(t.more?' Kalanlar Pekiştiriyorum listende bekler.':'')+'</p><button class="btn pri" onclick="rkTekrarBasla()">Birlikte tekrar edelim ('+n+')</button>'+(t.kind==='m'?'<button class="btn" onclick="rkCalisBasla()">📖 Bu '+rkCalisAd(t.subject,t.keys.length)+' çalış</button>':'')+'</section>';
+}
+/* "Bu 3 aracı çalış": karıştırılan maddeler önce kartlarla (fotoğraf, ad, ne işe yaradığı) çalışılır, sonra yalnız onlarla denenir.
+   Bir seferde 3 madde: bu öğrenciler için bir kerede çalışılabilecek kadar; kalanlar "sıradaki 3" ile gelir. */
+const RK_ADLAR={'mutfak-araclari':'aracı','baharat':'ürünü','bulasik-makinesi-temizligi':'nesneyi'};
+function rkCalisAd(subject,total,pos){const n=Math.min(3,total-(pos||0));return (n>1?n+' ':'')+(RK_ADLAR[subject]||'maddeyi');}
+function rkCalisItems(){const c=RK.cal;if(!c)return [];const arr=(CONTENT[c.subject]&&CONTENT[c.subject].matches)||[];return c.keys.slice(c.pos,c.pos+3).map(k=>{const i=rkPekKnown(k);return i&&arr.find(x=>x.set===i.set&&x.id===i.id);}).filter(Boolean);}
+function rkCalisBasla(){const t=RK.tk;if(!t||st.guest||t.prof!==st.prof||t.kind!=='m')return;RK.cal={subject:t.subject,set:t.arg,keys:t.keys.slice(),pos:0,prof:t.prof};RK.tk=null;st.subject=t.subject;sesSus();go('pekcalis');window.scrollTo(0,0);}
+function rkCalisSonraki(){if(!RK.cal)return;RK.cal.pos+=3;sesSus();render();window.scrollTo(0,0);}
+function rkCalisDene(){const c=RK.cal;if(!c||c.prof!==st.prof)return;const keys=c.keys.slice(c.pos,c.pos+3);sesSus();st.subject=c.subject;RK.cal=null;rkPekStart('m',c.set,{keys,known:[]});}
+function rkCalisHTML(){
+ const c=RK.cal,its=rkCalisItems();if(!c||!its.length)return topBar(subjectName())+'<div class="wrap"><p class="card">Çalışılacak madde yok.</p></div>';
+ const more=c.keys.length-(c.pos+3);
+ let h=topBar(subjectName())+'<div class="wrap rk-cal"><h1 id="rkCalBaslik" tabindex="-1">Bu '+rkCalisAd(c.subject,c.keys.length,c.pos)+' çalış</h1><p class="sub">Her kartta fotoğrafı, adı ve ne işe yaradığı var. Oku, sonra dene. Bu bölüm puan vermez.</p>';
+ its.forEach(it=>{h+='<article class="card rk-cal-kart"><img src="'+esc(it.image)+'" alt="'+esc(it.imageAlt||it.answer)+'"><h2>'+esc(it.answer)+'</h2><p>'+esc(it.explanation||'')+'</p>'+(typeof sesDugme==='function'?sesDugme(it.answer+'. '+(it.explanation||''),it.answer+' kartını dinle'):'')+'</article>';});
+ h+='<button class="btn pri" onclick="rkCalisDene()">Şimdi dene ('+its.length+')</button>';
+ if(more>0)h+='<button class="btn" onclick="rkCalisSonraki()">Sıradaki '+rkCalisAd(c.subject,c.keys.length,c.pos+3)+' çalış</button>';
+ return h+'</div>';
 }
 function rkTekrarBasla(){const t=RK.tk;if(!t||st.guest||t.prof!==st.prof){RK.tk=null;return;}RK.tk=null;st.subject=t.subject;rkPekStart(t.kind,t.arg,{keys:t.keys,known:t.known});}
 function rkPekItems(subject){if(st.guest||!st.prof)return [];const pid=rkPid(st.prof);if(!pid)return [];return Object.entries(rkPek(pid)).filter(([k,v])=>v.subject===subject).map(([k,v])=>({key:k,...v}));}
@@ -367,7 +384,7 @@ answer=function(v){
  st.sess.qs.push({qid:q.id,q:q.prompt,a:q.correctText,r:st.res,s:secs,selectedAnswer:c.text||c.id+' seçeneği',firstAnswer:c.text||c.id+' seçeneği',attemptCount:1,hintUsed:false,assessment:false,explanation:q.explanation||'',source:q.source});
  st.lastRes={cls:right?'ok':'fix',head:right?'Doğru.':'Doğru yanıt: '+q.correctText,text:q.explanation||''};saveProgress();render();
 };
-back=function(){if(st.screen==='rekor'||st.screen==='siralama'){go('home');return;}if(st.screen==='pekmenu'){go('subject');return;}RK_BACK();};
+back=function(){if(st.screen==='rekor'||st.screen==='siralama'){go('home');return;}if(st.screen==='pekmenu'){go('subject');return;}if(st.screen==='pekcalis'){sesSus();RK.cal=null;go('subject');return;}RK_BACK();};
 const RK_DELPROF=askDelProfile;
 askDelProfile=function(n){
  const pid=rkPid(n),cloud=pid&&(rkProf(pid).synced||(rkClean()[pid]||[]).length||rkQueue().some(x=>x.pid===pid));
@@ -386,6 +403,7 @@ render=function(){
  if(st.screen==='rekor'){if(st.guest){st.screen='siralama';}else{app.innerHTML=rkRecordsHTML();return;}}
  if(st.screen==='siralama'){app.innerHTML=rkBoardHTML();return;}
  if(st.screen==='pekmenu'){app.innerHTML=rkPekMenuHTML();return;}
+ if(st.screen==='pekcalis'){app.innerHTML=rkCalisHTML();const hb=document.getElementById('rkCalBaslik');if(hb)hb.focus();return;}
  RK_RENDER();
  if(st.screen==='home'){const list=app.querySelector('.wrap .list');if(list)list.insertAdjacentHTML('beforeend',menuButton(st.guest?'Sıralama':'Rekorlarım ve Sıralama',st.guest?'Uyguluyorum sonuçlarının haftalık ve genel listesi.':'Kendi en iyi sonuçların, haftalık ve genel liste.',st.guest?"rkOpenBoard()":"go('rekor')"));}
  if(st.screen==='subject'&&!st.guest&&!rkRaceActive()){const list=app.querySelector('.wrap .list'),n=rkPekItems(st.subject).length;if(list){list.insertAdjacentHTML('beforeend',menuButton('Pekiştiriyorum'+(n?' ('+n+')':''),n?'Uyguluyorum\'da yanlış yaptıklarını tekrar et.':'Uyguluyorum\'da yanlış yaptığın maddeler burada toplanır.',"go('pekmenu')"));const nb=list.lastElementChild;if(nb)nb.classList.add('activity-card');}}
