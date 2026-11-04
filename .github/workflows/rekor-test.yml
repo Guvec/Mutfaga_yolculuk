@@ -35,9 +35,9 @@ jobs:
           export FIREBASE_SDK_CACHE=$PWD/sdk
           mkdir -p out
           { echo "== $(date -u) commit ${GITHUB_SHA}"; 
-            for t in state-tests speech-tests race-model-tests spice-info-tests ui-regression rekor-ui-tests; do echo "== $t"; node site/tests/$t.cjs; echo "exit=$?"; done;
-            echo "== emulator: rekor-rules-tests + oda testleri (race-rules, race-ui)";
-            npx firebase emulators:exec --only auth,firestore --project demo-mesleki-yaris --config firebase/firebase.json "node site/tests/rekor-rules-tests.cjs && node site/tests/rekor-entegrasyon-tests.cjs && node site/tests/run-race-integration.cjs"; echo "exit=$?";
+            for t in state-tests speech-tests yaris-model-tests yaris-ui-tests spice-info-tests ui-regression rekor-ui-tests; do echo "== $t"; node site/tests/$t.cjs; echo "exit=$?"; done;
+            echo "== emulator: rekor-rules-tests + yaris-rules-tests";
+            npx firebase emulators:exec --only auth,firestore --project demo-mesleki-yaris --config firebase/firebase.json "node site/tests/rekor-rules-tests.cjs && node site/tests/rekor-entegrasyon-tests.cjs && node site/tests/yaris-rules-tests.cjs"; echo "exit=$?";
           } > out/sonuc.txt 2>&1
           cat out/sonuc.txt
       - name: Sonucu dala yaz

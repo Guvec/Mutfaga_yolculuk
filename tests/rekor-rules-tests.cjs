@@ -1,5 +1,5 @@
 /* Rekor/sıralama Firestore kuralları. firebase@10.12.2, @firebase/rules-unit-testing@3 ve çalışan emülatör gerekir.
-   Oda kuralları ayrıca race-rules-tests.cjs ile aynı kural dosyasında yeniden sınanır. */
+   Oda kuralları ayrıca yaris-rules-tests.cjs ile aynı kural dosyasında yeniden sınanır. */
 const fs=require('fs'),path=require('path'),{initializeTestEnvironment,assertSucceeds,assertFails}=require('@firebase/rules-unit-testing');
 const {doc,setDoc,getDoc,getDocs,collection,updateDoc,deleteDoc,writeBatch}=require('firebase/firestore');
 let n=0;const step=async(name,p)=>{await p;n++;console.log('PASS '+name);};

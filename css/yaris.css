@@ -1,2 +1,50 @@
-/* Yalnız yarış ekranları. Mevcut kartların görünümü korunur. */
-.race-code{overflow-wrap:anywhere;font-size:1.2em}.race-ranks{padding-left:2.2em}.race-ranks li{padding:14px 10px;margin:8px 0;border:1px solid #b8cecc;border-radius:12px;overflow-wrap:anywhere}.race-ranks span{display:block}.race-me{background:#e4f3f1;border:2px solid #0f6e72!important}.race-players li{padding:8px;overflow-wrap:anywhere}.race-bar{border:2px solid #0f6e72}.race-bar strong{display:block}#yrInvite{width:100%;box-sizing:border-box}#yrSubject,#yrSet,#yrLevel{display:block;width:100%;min-height:48px;margin:8px 0 16px;font:inherit;padding:8px;border:1px solid #759692;border-radius:8px}#yrNick,#yrCode{min-height:48px;box-sizing:border-box;width:100%}
+/* Birlikte Oynayalım ekranları. Renkler tema değişkenlerinden gelir (açık, sepya, koyu). */
+.inp{display:block;width:100%;border:2px solid var(--line);border-radius:12px;padding:12px;font-size:17px;background:var(--surface,#fff);color:var(--navy);margin:4px 0 8px;min-height:50px}
+.wrap label{display:block;font-weight:bold;margin-top:12px}
+.wrap .btn{margin:8px 0}
+.yr-sm{display:block;font-weight:normal;font-size:14px;margin-top:3px;color:inherit;opacity:.9}
+.yr-sep{border-top:1px solid var(--line);margin:16px 0 4px}
+.yr-err{border:2px solid var(--bad);background:var(--badbg);color:var(--navy);border-radius:12px;padding:10px 12px;margin:10px 0}
+.yr-chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:8px}
+.yr-chip{border:2px solid var(--line);background:var(--surface,#fff);color:var(--navy);border-radius:12px;padding:10px 12px;min-height:46px;text-align:left;font-weight:bold}
+.yr-chip small{display:block;font-weight:normal;font-size:13px;color:var(--muted)}
+.yr-chip.on{border-color:var(--teal);background:var(--teal2);color:var(--navy)}
+.yr-codebox{text-align:center}
+.yr-code{font-size:38px;letter-spacing:.12em;font-weight:bold;color:var(--teal);overflow-wrap:anywhere}
+.yr-list{list-style:none;margin:0 0 12px;padding:0}
+.yr-row{display:flex;gap:8px;align-items:center;justify-content:space-between;padding:12px;margin:6px 0;border:1px solid var(--line);border-radius:12px;background:var(--surface,#fff)}
+.yr-row.me{border:2px solid var(--teal);background:var(--teal2)}
+.yr-nm{flex:1;overflow-wrap:anywhere;font-weight:bold}
+.yr-rk{min-width:2.2em;font-weight:bold}
+.yr-sc{font-size:15px;color:var(--muted);white-space:nowrap}
+.yr-rank{list-style:none;margin:0 0 8px;padding:0}
+.yr-rank .yr-row{padding:8px 10px;margin:4px 0}
+.yr-prog{margin:6px 0 4px;color:var(--muted);font-weight:bold}
+.yr-bar{height:12px;background:var(--line);border-radius:8px;overflow:hidden}
+.yr-fill{height:100%;width:100%;background:var(--ok)}
+.yr-fill.low{background:var(--bad)}
+.yr-sec{text-align:right;margin:2px 0 6px;font-size:14px;color:var(--muted)}
+.yr-img{display:block;max-width:100%;max-height:34vh;object-fit:contain;margin:6px auto;background:#fff;border:1px solid var(--line);border-radius:12px}
+.yr-q{font-size:22px;margin:8px 0}
+.yr-opts{display:flex;flex-direction:column;gap:10px;margin:8px 0}
+.yr-opt{display:flex;align-items:center;gap:12px;width:100%;text-align:left;border:2px solid var(--line);border-radius:14px;background:var(--surface,#fff);color:var(--navy);padding:12px 14px;min-height:58px;font-size:18px}
+.yr-opt .yr-let{flex:none;width:34px;height:34px;border-radius:50%;background:var(--teal2);display:flex;align-items:center;justify-content:center;font-weight:bold}
+.yr-opt:disabled{opacity:1}
+.yr-opt.ok{border-color:var(--ok);background:var(--okbg)}
+.yr-opt.bad{border-color:var(--bad);background:var(--badbg)}
+.yr-fb{border:2px solid var(--line);border-radius:14px;padding:12px;margin:10px 0;background:var(--surface,#fff)}
+.yr-fb.ok{border-color:var(--ok);background:var(--okbg)}
+.yr-fb.bad{border-color:var(--bad);background:var(--badbg)}
+.yr-fb p{margin:6px 0 0}
+.yr-wait{text-align:center;font-weight:bold;margin:10px 0}
+.yr-full{min-height:80vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:20px;gap:10px}
+.yr-big{font-size:96px;font-weight:bold;color:var(--teal);line-height:1}
+.yr-vsline{display:flex;flex-direction:column;gap:6px;font-size:24px;font-weight:bold;overflow-wrap:anywhere}
+.yr-duel{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:6px 0}
+.yr-side{flex:1;text-align:center;border:2px solid var(--line);border-radius:14px;padding:8px;background:var(--surface,#fff);overflow-wrap:anywhere}
+.yr-side small{display:block;font-weight:bold}
+.yr-side b{font-size:32px}
+.yr-side.hit{border-color:var(--ok);background:var(--okbg)}
+.yr-vs{text-align:center;font-size:22px}
+.yr-vs small{display:block;font-size:13px;color:var(--muted)}
+@media(prefers-reduced-motion:no-preference){.yr-fill{transition:width .1s linear}}
