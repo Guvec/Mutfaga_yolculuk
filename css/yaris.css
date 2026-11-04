@@ -64,7 +64,7 @@
 .sn-kart .btn{margin:0 12px 12px;width:calc(100% - 24px)}.sn-resim{width:100%;border-radius:8px;border:1px solid var(--line)}
 
 /* Oyun ekranı: soru ve seçenekler kaydırmadan aynı ekranda */
-body.yr-oyun .top .ses-ac,body.yr-oyun .top .muzik-ac,body.yr-oyun .top .theme-toggle,body.yr-oyun .top .who,body.yr-oyun .gs-strip{display:none}
+body.yr-oyun .top .muzik-ac,body.yr-oyun .top .theme-toggle,body.yr-oyun .top .who,body.yr-oyun .gs-strip{display:none}
 body.yr-oyun .top{min-height:44px;padding:2px 10px}
 body.yr-oyun .wrap{padding-top:6px;padding-bottom:14px}
 body.yr-oyun .yr-side{padding:4px 6px}body.yr-oyun .yr-side b{font-size:26px}
