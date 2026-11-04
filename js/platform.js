@@ -102,7 +102,7 @@ resolve=function(r){
 };
 quizHtml=function(){
   if(st.op!=='kur'&&st.op!=='ad')return contentQuizHTML();
-  if(st.op==='ad'&&st.kDone)return topBar('Adını Bul',true)+'<div class="wrap"><div class="msg ok"><b>Çalışma tamamlandı.</b>10 parçayı inceledin.</div>'+statsHtml()+'<button class="btn pri" onclick="finish()">Raporu Gör</button></div>';
+  if(st.op==='ad'&&st.kDone)return topBar('Adını Bul')+'<div class="wrap"><div class="msg ok"><b>Çalışma tamamlandı.</b>10 parçayı inceledin.</div>'+statsHtml()+'<button class="btn pri" onclick="finish()">Raporu Gör</button></div>';
   let h=OLD_QUIZ();
   h=h.replace('<img class="done-photo" src="'+IMG.ornek_kuver+'" alt="Örnek kuver">',exampleHTML());
   h=h.replace(' · '+LEVELS[st.lvl].name.split(' · ')[0],' · '+LEVELS[st.lvl].name);

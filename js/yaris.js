@@ -29,11 +29,11 @@ function yrTitles(subject){const d=CONTENT[subject];return d&&d.setTitles;}
 function yrLabel(room){return YarisModel.taskLabel(room,yrTitles(room.subject));}
 /* ---------- giriş ---------- */
 function yrOpen(){sesSus();YR.error='';st.screen='racemenu';render();window.scrollTo(0,0);}
-function yrCreateOpen(mode){if(!yrNickOk())return;YR.cfg.mode=mode;YR.cfg.code=(document.getElementById('yrNew')||{}).value||YR.cfg.code;YR.error='';st.screen='racecreate';render();window.scrollTo(0,0);}
-function yrCfg(k,v){const e=document.getElementById('yrNew');if(e)YR.cfg.code=e.value;YR.cfg[k]=v;if(k==='subject'){const s=YR_SUBJECTS.find(x=>x.id===v);YR.cfg.kind=v==='kuver'?'kuver':'gorsel';YR.cfg.set=v==='kuver'?1:(s.sets>1?1:0);if(v==='bulasik-makinesi-temizligi')YR.cfg.set=0;}render();}
-function yrCfgKind(kind,set){YR.cfg.kind=kind;YR.cfg.set=set;const e=document.getElementById('yrNew');if(e)YR.cfg.code=e.value;render();}
+function yrCreateOpen(mode){if(!yrNickOk())return;YR.cfg.mode=mode;YR.error='';st.screen='racecreate';render();window.scrollTo(0,0);}
+function yrCfg(k,v){YR.cfg[k]=v;if(k==='subject'){const s=YR_SUBJECTS.find(x=>x.id===v);YR.cfg.kind=v==='kuver'?'kuver':'gorsel';YR.cfg.set=v==='kuver'?1:(s.sets>1?1:0);if(v==='bulasik-makinesi-temizligi')YR.cfg.set=0;}render();}
+function yrCfgKind(kind,set){YR.cfg.kind=kind;YR.cfg.set=set;render();}
 async function yrCreate(){
- if(YR.busy)return;const nick=yrNickGet(),c=YR.cfg,e=document.getElementById('yrNew'),raw=e?e.value:c.code,wanted=YarisModel.slug(raw);
+ if(YR.busy)return;const nick=yrNickGet(),c=YR.cfg,raw=c.code,wanted=YarisModel.slug(raw);
  if(String(raw||'').trim()&&!YarisModel.validCode(wanted)){YR.error='Oda kodu 3–10 harf ya da rakam olmalı.';render();return;}
  YR.busy=true;YR.error='';render();
  try{
@@ -283,7 +283,7 @@ function yrMenuHTML(){
   '<p class="card" id="yrNick">Oyundaki adın: <b>'+esc(yrNickGet())+'</b></p>'+
   '<button class="btn pri" onclick="yrCreateOpen(\'race\')"'+(cfg?'':' disabled')+'>Oyun Odası Kur<span class="yr-sm">Herkes aynı sorulara kendi hızında cevap verir. Canlı sıralama görünür.</span></button>'+
   '<button class="btn" onclick="yrCreateOpen(\'duel\')"'+(cfg?'':' disabled')+'>1’e 1 Kapışma Kur<span class="yr-sm">İki kişi aynı soruya aynı anda bakar. Önce doğru basan puanı alır.</span></button>'+
-  '<div class="yr-sep"></div><label for="yrCode">Oda kodu</label><input id="yrCode" class="inp" maxlength="10" autocapitalize="characters" autocomplete="off" value="'+esc(code.toUpperCase())+'" placeholder="Oda kodu"><button class="btn pri" onclick="yrJoin()"'+(cfg&&!YR.busy?'':' disabled')+'>Odaya Gir</button>'+yrErr()+'</div>';
+  (code?'<div class="yr-sep"></div><input id="yrCode" type="hidden" value="'+esc(code.toUpperCase())+'"><button class="btn pri" onclick="yrJoin()"'+(cfg&&!YR.busy?'':' disabled')+'>Davet edildiğin odaya gir</button>':'')+yrErr()+'</div>';
 }
 function yrCreateHTML(){
  const c=YR.cfg,s=YR_SUBJECTS.find(x=>x.id===c.subject),d=CONTENT[c.subject],titles=d&&d.setTitles||{};
@@ -298,7 +298,6 @@ function yrCreateHTML(){
  }
  h+='<h2>Maç uzunluğu</h2><div class="yr-chips">'+YarisModel.MATCH_CHOICES.map(x=>'<button class="yr-chip'+(c.n===x.n?' on':'')+'" onclick="yrCfg(\'n\','+x.n+')">'+x.name+'<small>'+x.note+'</small></button>').join('')+'</div>';
  h+='<h2>Her soru için süre</h2><div class="yr-chips">'+YarisModel.SEC_CHOICES.map(x=>'<button class="yr-chip'+(c.lim===x?' on':'')+'" onclick="yrCfg(\'lim\','+x+')">'+x+' sn</button>').join('')+'</div>';
- h+='<label for="yrNew">Oda kodu (isteğe bağlı)</label><input id="yrNew" class="inp" maxlength="10" autocapitalize="characters" autocomplete="off" value="'+esc(c.code||'')+'" placeholder="Örn. ZIHIN11"><p class="sub">Boş bırakırsan 5 karakterli bir kod verilir. Arkadaşların bu kodu yazıp girer.</p>';
  h+='<button class="btn pri" onclick="yrCreate()"'+(YR.busy?' disabled':'')+'>'+(YR.busy?'Oda kuruluyor…':'Odayı kur')+'</button>'+yrErr()+'</div>';
  return h;
 }
@@ -307,7 +306,7 @@ function yrPlayersListHTML(){
 }
 function yrLobbyHTML(){
  const r=YR.room,duel=r.mode==='duel',cap=YarisModel.LIMITS[r.mode].max;
- let h=yrTop(duel?'1’e 1 Kapışma':'Oyun Odası')+'<div class="wrap"><p class="sub">'+esc(yrLabel(r))+' · '+r.n+' soru · her soru '+r.lim+' sn</p><div class="card yr-codebox"><small>Oda kodu</small><div class="yr-code" id="yrHeading" tabindex="-1">'+esc(YR.code)+'</div></div>';
+ let h=yrTop(duel?'1’e 1 Kapışma':'Oyun Odası')+'<div class="wrap"><p class="sub">'+esc(yrLabel(r))+' · '+r.n+' soru · her soru '+r.lim+' sn</p><h1 id="yrHeading" tabindex="-1">'+(duel?'Rakip bekleniyor':'Oyuncular geliyor')+'</h1>';
  h+='<h2>Oyuncular ('+YR.players.length+'/'+cap+')</h2><ul class="yr-list" id="yrList">'+yrPlayersListHTML()+'</ul>';
  if(duel)h+='<p class="card" role="status">⏳ '+(YR.players.length<2?'Rakip bekleniyor. İkinci kişi girince kapışma kendiliğinden başlar.':'Kapışma başlıyor…')+'</p>';
  else if(YR.host)h+='<button class="btn pri" onclick="yrStart()"'+(YR.players.length<2?' disabled':'')+'>Yarışı başlat</button>'+(YR.players.length<2?'<p class="sub">En az iki kişi gerekir.</p>':'');

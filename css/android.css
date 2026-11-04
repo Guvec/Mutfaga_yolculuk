@@ -102,3 +102,8 @@ h2{line-height:1.3}
 .bimg-tools{flex-wrap:wrap}
 .bimg-tools .blbl{flex:1 0 100%;width:100%;order:0}
 .bimg .bimg-tools .zoom-btn{order:1}
+
+/* Görseller kırpılmaz, oranı bozulmaz: kart, soru ve büyütülmüş görünümde tamamı görünür. */
+.content-image,.match-image,.modal.zoom img,.mobile-selected img,.opts-pic .opt img,.bimg-btn img,.yr-img,.yr-cimg{object-fit:contain;object-position:center}
+.content-image,.match-image,.modal.zoom img{height:auto}
+.modal.zoom img{max-height:calc(70dvh)}

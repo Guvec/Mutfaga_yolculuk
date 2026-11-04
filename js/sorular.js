@@ -45,7 +45,7 @@ function mcqListHTML(){
 contentQuizHTML=function(){
   if(st.op!=='mcq'||!st.q||!st.q.group)return MCQ_PREV_QUIZ();
   const q=st.q;
-  let h=topBar(subjectName()+' · '+q.group,true)+'<div class="wrap">'+statsHtml();
+  let h=topBar(subjectName()+' · '+q.group)+'<div class="wrap">'+statsHtml();
   h+='<section class="card"><h2>'+esc(q.prompt)+'</h2>'+(q.image?'<img class="content-image match-image" src="'+esc(q.image)+'" alt="'+esc(q.imageAlt||'Soru fotoğrafı')+'">':'');
   const pic=q.choices.some(c=>c.image);
   h+='<div class="opts'+(pic?' opts-pic':' opts-mcq')+'">';

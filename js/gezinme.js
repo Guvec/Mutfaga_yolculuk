@@ -28,9 +28,9 @@ function gezinmeCik(){
   }
   if(typeof PHONE!=='undefined'&&PHONE.open&&typeof phoneCloseNames==='function'){phoneCloseNames();return;}
   if(st.screen==='home'||st.screen==='welcome'){gezinmeCikisSor();return;}
-  // Oyun ekranlarında üstte Geri düğmesi yoktur; geri tuşu çalışmayı bitirme sorusunu açar.
+  // Oyun ekranında telefonun geri tuşu, üstteki "← Geri" düğmesiyle aynı yolu izler.
   var oyunda=(st.screen==='quiz'||st.screen==='board')&&!(typeof YR!=='undefined'&&YR.active);
-  if(oyunda){if(st.kDone)go('subject');else askFinish();return;}
+  if(oyunda){oyunGeri();return;}
   back();
  });
 })();

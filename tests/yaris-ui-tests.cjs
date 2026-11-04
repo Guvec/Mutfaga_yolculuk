@@ -46,7 +46,7 @@ const hub={rooms:{},n:0,ops:{
   if(cfg.set)await p.getByRole('button',{name:new RegExp('^'+cfg.set+'\\. takım')}).click();
   await p.getByRole('button',{name:'Odayı kur'}).click();await p.waitForFunction(()=>YR.active&&st.screen==='racelobby');return p.evaluate(()=>YR.code);
  }
- async function joinRoom(p,nick,code){await openMenu(p,nick);await p.fill('#yrCode',code);await p.getByRole('button',{name:'Odaya Gir'}).click();await p.waitForFunction(()=>YR.active&&st.screen==='racelobby');}
+ async function joinRoom(p,nick,code){await openMenu(p,nick);await p.evaluate(c=>yrJoin(c),code);await p.waitForFunction(()=>YR.active&&st.screen==='racelobby');}
  const correctIdx=p=>p.evaluate(()=>{const q=YR.qs[st.screen==='dplay'?DU.k:YR.g.k];return q.choices.findIndex(c=>c.id===q.correct);});
  const wrongIdx=async p=>{const c=await correctIdx(p);return (c+1)%4;};
  async function raceAnswer(p,right){const k=await p.evaluate(()=>YR.g.k);await p.locator('.yr-opt').nth(right?await correctIdx(p):await wrongIdx(p)).click();await p.waitForFunction(k=>YR.g.ph==='fb'&&YR.g.k===k,k);await p.locator('#yrNext').click();}
@@ -58,8 +58,8 @@ const hub={rooms:{},n:0,ops:{
   await a.getByRole('button',{name:/Oyun Odası Kur/}).click();assert.equal(await a.evaluate(()=>st.screen),'racecreate');assert.equal(await a.evaluate(()=>yrNickGet()),'🦊 Kurnaz Tilki #482');
   await a.evaluate(()=>{st.prof=null;st.guest=true;});assert(/^👤 Misafir \d{3}$/.test(await a.evaluate(()=>yrNickGet())),'misafir adı');await a.evaluate(()=>{st.prof='Ali';st.guest=false;});
   // geçersiz kod
-  await a.fill('#yrNew','ab');await a.getByRole('button',{name:'Odayı kur'}).click();assert((await text(a)).includes('3–10'));
-  await a.fill('#yrNew','Zihin 11b');await a.getByRole('button',{name:'Odayı kur'}).click();await a.waitForFunction(()=>YR.active&&st.screen==='racelobby');assert.equal(await a.evaluate(()=>YR.code),'ZIHIN11B');
+  await a.evaluate(()=>{YR.cfg.code='ab';});await a.getByRole('button',{name:'Odayı kur'}).click();assert((await text(a)).includes('3–10'));
+  await a.evaluate(()=>{YR.cfg.code='Zihin 11b';});await a.getByRole('button',{name:'Odayı kur'}).click();await a.waitForFunction(()=>YR.active&&st.screen==='racelobby');assert.equal(await a.evaluate(()=>YR.code),'ZIHIN11B');
   // ---- 2) Oyun Odası: lobi, katılım, başlatma, aynı sorular ----
   assert((await text(a)).includes('En az iki kişi gerekir'));assert(await a.getByRole('button',{name:'Yarışı başlat'}).isDisabled());
   await joinRoom(b,'🐼 Cesur Panda','zihin11b');
@@ -72,7 +72,7 @@ const hub={rooms:{},n:0,ops:{
   const qa=await a.evaluate(()=>YR.qs.map(q=>[q.id,q.choices.map(x=>x.text).join('|'),q.correct])),qb=await b.evaluate(()=>YR.qs.map(q=>[q.id,q.choices.map(x=>x.text).join('|'),q.correct]));
   assert.deepEqual(qa,qb,'iki telefonda aynı sorular ve seçenek sırası');assert.equal(qa.length,10);
   // geç gelen katılamaz
-  const late=await phone(390);await openMenu(late,'Geç');await late.fill('#yrCode','ZIHIN11B');await late.getByRole('button',{name:'Odaya Gir'}).click();await late.waitForFunction(()=>YR.error.length>0);assert((await text(late)).includes('başlamış'));
+  const late=await phone(390);await openMenu(late,'Geç');await late.evaluate(c=>yrJoin(c),'ZIHIN11B');await late.waitForFunction(()=>YR.error.length>0);assert((await text(late)).includes('başlamış'));
   // ilk soruda yapısal denetim: görsel + yönerge + dört seçenek, süre çubuğu
   assert.equal(await a.locator('.yr-opt').count(),4);assert(await a.locator('.yr-img').isVisible());assert.equal(await a.locator('#yrFill').count(),1);
   if(process.env.QA_SCREENSHOTS){fs.mkdirSync(process.env.QA_SCREENSHOTS,{recursive:true});await a.screenshot({path:path.join(process.env.QA_SCREENSHOTS,'yaris-soru-390.png')});}
@@ -99,7 +99,7 @@ const hub={rooms:{},n:0,ops:{
   const d1=await phone(390),d2=await phone(390),d3=await phone(390);
   const dcode=await createRoom(d1,'Mert','duel',{subject:'Baharatlar',set:2});assert((await text(d1)).includes('Rakip bekleniyor'));
   await joinRoom(d2,'Selin','DUEL'.length?dcode:dcode);
-  await d3.evaluate(()=>{st.prof='Üçüncü';st.guest=false;yrOpen();});await d3.fill('#yrCode',dcode);await d3.getByRole('button',{name:'Odaya Gir'}).click();await d3.waitForFunction(()=>YR.error.length>0);assert(/dolu|başlamış/.test(await text(d3)),'üçüncü kişi kapışmaya giremez: '+(await text(d3)).slice(0,300));
+  await d3.evaluate(()=>{st.prof='Üçüncü';st.guest=false;yrOpen();});await d3.evaluate(c=>yrJoin(c),dcode);await d3.waitForFunction(()=>YR.error.length>0);assert(/dolu|başlamış/.test(await text(d3)),'üçüncü kişi kapışmaya giremez: '+(await text(d3)).slice(0,300));
   for(const p of [d1,d2])await p.waitForFunction(()=>st.screen==='dintro'||st.screen==='dplay',null,{timeout:15000});
   assert((await text(d1)).includes('Selin')||(await d1.evaluate(()=>st.screen))==='dplay');
   for(const p of [d1,d2])await p.waitForFunction(()=>st.screen==='dplay',null,{timeout:15000});
@@ -141,13 +141,13 @@ const hub={rooms:{},n:0,ops:{
   const v1=await phone(390),v2=await phone(390);const vcode=await createRoom(v1,'Eda','race',{subject:'Baharatlar',set:3});
   await v2.evaluate(()=>{CONTENT.baharat.revision='farkli-surum';});await joinRoom(v2,'Efe',vcode).catch(()=>{});
   assert((await text(v2)).includes('farklı sürümdeki'));
-  const v3=await phone(390);await openMenu(v3,'Ece');await v3.getByRole('button',{name:/Oyun Odası Kur/}).click();await v3.fill('#yrNew',vcode);await v3.getByRole('button',{name:'Odayı kur'}).click();await v3.waitForFunction(()=>YR.error.length>0);assert((await text(v3)).includes('kullanılıyor'));
+  const v3=await phone(390);await openMenu(v3,'Ece');await v3.getByRole('button',{name:/Oyun Odası Kur/}).click();await v3.evaluate(c=>{YR.cfg.code=c;},vcode);await v3.getByRole('button',{name:'Odayı kur'}).click();await v3.waitForFunction(()=>YR.error.length>0);assert((await text(v3)).includes('kullanılıyor'));
   assert.equal(Object.keys(hub.rooms[vcode].players).length,1,'sürümü uyuşmayan telefon listeye girmedi');
   // kapasite: 8 kişilik oda, 9. kişi girmez; biri çıkınca yer açılır
   const cap=await phone(390);const ccode=await createRoom(cap,'Kurucu','race',{subject:'Baharatlar',set:1});
   const extra=[];for(let i=0;i<7;i++){const x=await phone(390);await joinRoom(x,'Oyuncu'+i,ccode);extra.push(x);}
-  const ninth=await phone(390);await openMenu(ninth,'Dokuz');await ninth.fill('#yrCode',ccode);await ninth.getByRole('button',{name:'Odaya Gir'}).click();await ninth.waitForFunction(()=>YR.error.length>0);assert((await text(ninth)).includes('dolu'),'9. kişi girmemeli');
-  await extra[0].evaluate(()=>yrLeaveNow());await ninth.getByRole('button',{name:'Odaya Gir'}).click();await ninth.waitForFunction(()=>YR.active,null,{timeout:8000});
+  const ninth=await phone(390);await openMenu(ninth,'Dokuz');await ninth.evaluate(c=>yrJoin(c),ccode);await ninth.waitForFunction(()=>YR.error.length>0);assert((await text(ninth)).includes('dolu'),'9. kişi girmemeli');
+  await extra[0].evaluate(()=>yrLeaveNow());await ninth.evaluate(c=>yrJoin(c),ccode);await ninth.waitForFunction(()=>YR.active,null,{timeout:8000});
   // yazma hatası: son sonuç gidemezse uyarı çıkar, bağlantı gelince yeniden gönderilir
   {const f1=await phone(390),f2=await phone(390);const fc=await createRoom(f1,'Fatma','race',{subject:'Baharatlar',set:2});await joinRoom(f2,'Fikret',fc);
    await f1.getByRole('button',{name:'Yarışı başlat'}).click();for(const p of [f1,f2])await p.waitForFunction(()=>st.screen==='raceplay',null,{timeout:15000});
@@ -158,7 +158,7 @@ const hub={rooms:{},n:0,ops:{
    const t0=Date.now();let done=false;while(Date.now()-t0<30000&&!done){done=Object.values(hub.rooms[fc].players).some(p=>p.nick==='Fatma'&&p.done);if(!done)await new Promise(r=>setTimeout(r,500));}
    assert(done,'bitiş sonucu bağlantı gelince yeniden gönderilmeli');}
   // ---- 6) Davet bağlantısı kodu getirir; kurucu çıkarsa oda kapanır ----
-  const inv=await phone(390,'?oda='+vcode);assert.equal(await inv.inputValue('#yrCode'),vcode);
+  const inv=await phone(390,'?oda='+vcode);assert.equal(await inv.inputValue('#yrCode'),vcode);assert.equal(await inv.locator('#yrCode').getAttribute('type'),'hidden');
   await v1.evaluate(()=>yrLeave());await v1.waitForFunction(()=>!YR.active);
   // ---- 7) Yatay taşma yok ----
   for(const p of [a,b,d1,v3,inv])assert(await p.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),'yatay taşma');
