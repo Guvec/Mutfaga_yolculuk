@@ -195,9 +195,9 @@ function rkPekFromAssessment(pid){
  else if(st.op==='mcq'){kind='q';(st.contentItems||[]).forEach((q,i)=>{const row=rkMcqRow(i,q);if(!row||row.r===null)return;mk('q|'+st.subject+'|'+q.id,{kind:'q',subject:st.subject,id:q.id},row.r===1,null);});}
  else if(st.op==='kur'){kind='k';arg=st.lvl;s.qs.forEach(row=>{if(!row.prompt)return;mk('k|'+st.lvl+'|'+row.prompt,{kind:'k',subject:'kuver',lvl:st.lvl,id:row.prompt},row.r===1,null);});}
  rkPekSave(pid,map);
- /* Oyun sonunda "Birlikte tekrar edelim" düğmesi için bu çalışmanın yanlışları ve bir bildiği madde. */
+ /* Oyun sonunda "Birlikte tekrar edelim" düğmesi için yalnız bu çalışmanın yanlışları (doğru yapılan madde tekrar turuna girmez). */
  /* Kuver'de düğme yok: tur kalan parçaların hepsini de sorar. Kuver yanlışları Pekiştiriyorum menüsünden çalışılır. */
- RK.tk=kind&&kind!=='k'&&wrong.length?{sess:s.id,prof:st.prof,kind,arg,subject:st.subject,keys:wrong,known:known.slice(0,1),n:Math.min(wrong.length,4)+(known.length?1:0),more:wrong.length>4}:null;
+ RK.tk=kind&&kind!=='k'&&wrong.length?{sess:s.id,prof:st.prof,kind,arg,subject:st.subject,keys:wrong,known:[],n:Math.min(wrong.length,4),more:wrong.length>4}:null;
 }
 /* Anahtardan (m|konu|takım|id, q|konu|id) bildiği maddenin bilgisini çıkarır. */
 function rkPekKnown(key){const a=String(key).split('|');if(a[0]==='m')return {kind:'m',subject:a[1],set:Number(a[2]),id:a.slice(3).join('|')};if(a[0]==='q')return {kind:'q',subject:a[1],id:a.slice(2).join('|')};return null;}
