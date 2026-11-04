@@ -26,7 +26,7 @@ const {chromium}=require('playwright'),http=require('http'),fs=require('fs'),pat
 
   // Görünen ad değişince: önce ad, sonra puan ayrı işlemlerle; düşük sonuçta yalnız ad güncellenir.
   await A.evaluate(([p])=>{lsSet('rk_queue',[{qid:'n1',pid:p,board:'bh-e1',period:'genel',name:'Ali K',correct:11,gen:rkProf(p).gen,at:Date.now(),sess:1}]);rkFlush(null);},[aid]);await settle(A);
-  let me=(await list(A,G1)).find(r=>r.pid===aid);assert.equal(me.name,'Ali K');assert.equal(me.correct,11);
+  let me=(await list(A,G1)).find(r=>r.pid===aid);assert.equal(me.name,'Ali','yalnız ilk ad kaydedilir');assert.equal(me.correct,11);
   await A.evaluate(([p])=>{lsSet('rk_queue',[{qid:'n2',pid:p,board:'bh-e1',period:'genel',name:'Ali',correct:9,gen:rkProf(p).gen,at:Date.now(),sess:1}]);rkFlush(null);},[aid]);await settle(A);
   me=(await list(A,G1)).find(r=>r.pid===aid);assert.equal(me.name,'Ali');assert.equal(me.correct,11);ok('Ad değişikliği + yüksek sonuç, ad değişikliği + düşük sonuç kurallarla uyumlu');
 
