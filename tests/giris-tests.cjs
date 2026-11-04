@@ -8,7 +8,7 @@ const {chromium}=require('playwright'),http=require('http'),fs=require('fs'),pat
  const open=async(w,h)=>{const ctx=await browser.newContext({viewport:{width:w,height:h},serviceWorkers:'block'});await ctx.addInitScript(()=>{try{sessionStorage.setItem('mesleki-ses-secim','1');localStorage.setItem('ses','false');}catch(e){}});const p=await ctx.newPage();p.errs=[];p.on('pageerror',e=>p.errs.push(e.message));p.on('response',r=>{if(r.status()>=400)p.errs.push(r.status()+' '+r.url());});await p.goto('http://127.0.0.1:'+server.address().port);await p.waitForFunction(()=>st.screen==='giris'&&document.querySelector('#actor'));return p;};
  try{
   const d=await open(1100,800);
-  assert((await d.textContent('.gs-slogan')).includes('Herkes yemek yapabilir'));assert.equal(await d.locator('h1').count(),1);assert.equal(await d.evaluate(()=>document.fonts.check('italic 700 20px GsPoppins')),true);ok('Açılış ekranı ilk gelir; tek başlık slogan, özel yazı tipi yüklü');
+  assert.equal(await d.locator('h1').count(),1);assert.equal(await d.evaluate(()=>{const i=document.querySelector('h1 img');return i&&i.alt==='Herkes yemek yapabilir'&&i.naturalWidth>0;}),true);ok('Açılış ekranı ilk gelir; tek başlık slogan görseli (alt metinli)');
   assert.equal(await d.locator('.food').count(),6);assert.equal(await d.textContent('#pageLabel'),'1 / 3');ok('Masaüstünde 6 besin, 3 sayfa');
   const seen=new Set();for(let i=0;i<3;i++){(await d.locator('.food .name').allTextContents()).forEach(n=>seen.add(n));await d.click('#otherFoods');}
   assert.equal(seen.size,14);ok('14 besinin hepsine sayfalarla ulaşılır');
