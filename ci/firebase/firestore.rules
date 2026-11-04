@@ -65,7 +65,7 @@ service cloud.firestore {
    allow get: if signed();
    allow list: if false;
    allow create: if signed() && code.matches('^[A-Z0-9]{3,10}$')
-    && request.resource.data.keys().hasOnly(['host','hostNick','mode','subject','kind','set','n','lim','seed','rev','created','status','guest','qv'])
+    && request.resource.data.keys().hasOnly(['host','hostNick','mode','subject','kind','set','n','lim','seed','rev','created','status','guest','qv','cnt'])
     && request.resource.data.keys().hasAll(['host','hostNick','mode','subject','kind','set','n','lim','seed','rev','created','status','guest','qv'])
     && request.resource.data.host == request.auth.uid && request.resource.data.status == 'lobby' && request.resource.data.guest == null
     && request.resource.data.mode in ['race','duel']
@@ -78,13 +78,18 @@ service cloud.firestore {
     && request.resource.data.rev is string && request.resource.data.rev.size() <= 40
     && request.resource.data.hostNick is string && request.resource.data.hostNick.size() >= 1 && request.resource.data.hostNick.size() <= 16
     && request.resource.data.qv == 1
+    && (!('cnt' in request.resource.data) || (request.resource.data.mode == 'race' && request.resource.data.cnt == 1))
     && request.resource.data.created is int && request.resource.data.created > request.time.toMillis() - 3600000 && request.resource.data.created < request.time.toMillis() + 3600000;
    allow update: if signed() && (
     (resource.data.host == request.auth.uid && resource.data.status == 'lobby' && request.resource.data.status == 'playing'
       && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['status']))
     || (resource.data.mode == 'duel' && resource.data.status == 'lobby' && resource.data.host != request.auth.uid
       && resource.data.guest == null && request.resource.data.guest == request.auth.uid
-      && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['guest'])));
+      && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['guest']))
+    || (resource.data.mode == 'race' && resource.data.status == 'lobby' && resource.data.host != request.auth.uid
+      && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['cnt'])
+      && request.resource.data.cnt is int && request.resource.data.cnt >= 1 && request.resource.data.cnt <= 8
+      && (request.resource.data.cnt == resource.data.cnt + 1 || request.resource.data.cnt == resource.data.cnt - 1)));
    allow delete: if signed() && (resource.data.host == request.auth.uid || !recent(resource.data.created));
 
    match /players/{uid} {
@@ -94,7 +99,7 @@ service cloud.firestore {
       && d.nick is string && d.nick.size() >= 1 && d.nick.size() <= 16
       && d.score is int && d.score >= 0 && d.score <= 60
       && d.ok is int && d.ok >= 0 && d.ok <= 60 && d.bad is int && d.bad >= 0 && d.bad <= 60
-      && d.n is int && d.n >= 0 && d.n <= 60 && d.tt is int && d.tt >= 0
+      && d.n is int && d.n >= 0 && d.n <= 60 && d.n <= room().n && d.ok + d.bad <= d.n && d.tt is int && d.tt >= 0
       && d.done is bool && d.ts is int && d.rid == room().created
       && (!('m' in d) || (d.m is int && d.m >= 0 && d.m <= 50))
       && (!('r' in d) || (d.r is list && d.r.size() <= 60))

@@ -2,7 +2,7 @@
    Koleksiyon: oyunOdalari/{KOD} ve oyunOdalari/{KOD}/players/{uid}. Kurallar: ci/firebase/firestore.rules. */
 (function(root){
  'use strict';
- const COLL='oyunOdalari',DAY=86400000,CODE_CHARS='ABCDEFGHJKLMNPRSTUVYZ23456789';
+ const COLL='oyunOdalari',DAY=86400000,MAX_RACE=8,CODE_CHARS='ABCDEFGHJKLMNPRSTUVYZ23456789';
  class YarisFirebase {
   constructor(config){this.config=config;this.sdk=null;this.db=null;this.auth=null;this.uid=null;this.loading=null;}
   async connect(){
@@ -34,10 +34,12 @@
      else continue;
     }
     const data={...spec,host:this.uid,status:'lobby',guest:null,created:Date.now(),qv:1};
+    if(spec.mode==='race')data.cnt=1;
     try{await fb.setDoc(ref,data);return {code,room:data};}catch(e){if(wanted)throw e;}
    }
    throw Error('Oda kurulamadı. Yeniden dene.');
   }
+  async peek(code){await this.connect();const r=await this.sdk.getDoc(this.room(code));return r.exists()?r.data():null;}
   /* Odaya girer. Kapışmada ikinci kişi "guest" yerini tek işlemde alır; üçüncü kişi giremez. */
   async join(code,nick,pdata){
    await this.connect();const fb=this.sdk,uid=this.uid;let room;
@@ -49,6 +51,13 @@
     if(room.mode==='duel'){
      if(room.guest&&room.guest!==uid)throw Error('Bu kapışma dolu.');
      if(!room.guest)tx.update(this.room(code),{guest:uid});
+    }else{
+     /* Oyun Odası kapasitesi: kişi sayısı odanın "cnt" alanında tutulur, katılırken tek işlemde artar. */
+     const mine=await tx.get(this.player(code));
+     if(!mine.exists()){
+      const c=room.cnt||1;if(c>=MAX_RACE)throw Error('Bu oda dolu (en çok '+MAX_RACE+' kişi).');
+      tx.update(this.room(code),{cnt:c+1});
+     }
     }
    });
    await fb.setDoc(this.player(code),{...pdata,rid:room.created});
@@ -60,7 +69,13 @@
   /* Salonda çıkan oyuncu kaydını siler; kurucu çıkarsa oda da silinir. Oyun başladıktan sonra kayıt kalır (sonuç görünsün). */
   async leave(code,lobby,host){
    const fb=this.sdk;
-   if(lobby){await fb.deleteDoc(this.player(code)).catch(()=>{});if(host)await fb.deleteDoc(this.room(code)).catch(()=>{});}
+   if(!lobby)return;
+   if(host){await fb.deleteDoc(this.player(code)).catch(()=>{});await fb.deleteDoc(this.room(code)).catch(()=>{});return;}
+   /* Salondan çıkan, kapasitede yer açar. */
+   try{await fb.runTransaction(this.db,async tx=>{
+    const r=await tx.get(this.room(code)),p=await tx.get(this.player(code));
+    if(p.exists()){tx.delete(this.player(code));if(r.exists()&&r.data().mode==='race'&&r.data().status==='lobby'&&(r.data().cnt||1)>1)tx.update(this.room(code),{cnt:(r.data().cnt||1)-1});}
+   });}catch(e){await fb.deleteDoc(this.player(code)).catch(()=>{});}
   }
   async remove(code){const fb=this.sdk,p=await fb.getDocs(fb.collection(this.db,COLL,code,'players'));for(let i=0;i<p.docs.length;i+=400){const b=fb.writeBatch(this.db);p.docs.slice(i,i+400).forEach(d=>b.delete(d.ref));await b.commit();}await fb.deleteDoc(this.room(code));}
  }

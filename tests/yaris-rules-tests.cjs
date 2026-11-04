@@ -21,7 +21,9 @@ const {doc,setDoc,getDoc,getDocs,collection,updateDoc,deleteDoc}=require('fireba
   await assertFails(setDoc(R(H,'ABC12'),room({status:'playing'})));
   await assertFails(setDoc(R(H,'ABC12'),room({extra:1})));
   await assertFails(setDoc(R(H,'ABC12'),room({created:Date.now()-90000000})));
-  await assertSucceeds(setDoc(R(H,'ABC12'),room()));
+  await assertFails(setDoc(R(H,'ABC12'),room({cnt:5})),'kurucu cnt=1 ile başlar');
+  await assertFails(setDoc(R(H,'DDD11'),room({mode:'duel',cnt:1})),'kapışmada cnt yok');
+  await assertSucceeds(setDoc(R(H,'ABC12'),room({cnt:1})));
   const created=(await getDoc(R(H,'ABC12'))).data().created;
   // okuma: tek oda okunur, liste okunamaz, girişsiz okunamaz
   await assertSucceeds(getDoc(R(A,'ABC12')));await assertFails(getDoc(R(O,'ABC12')));await assertFails(getDocs(collection(A,'oyunOdalari')));
@@ -30,11 +32,18 @@ const {doc,setDoc,getDoc,getDocs,collection,updateDoc,deleteDoc}=require('fireba
   await assertFails(setDoc(P(A,'ABC12','ayse'),pl({rid:created+1})),'yanlış rid');
   await assertFails(setDoc(P(A,'ABC12','ayse'),pl({rid:created,nick:'Ayşe Yılmaz Kaya Uzun Soyad'})),'ad çok uzun');
   await assertFails(setDoc(P(A,'ABC12','ayse'),pl({rid:created,ok:99})));
+  await assertFails(setDoc(P(A,'ABC12','ayse'),pl({rid:created,ok:5,bad:0,n:3})),'doğru sayısı cevap sayısından çok olamaz');
+  await assertFails(setDoc(P(A,'ABC12','ayse'),pl({rid:created,ok:0,bad:0,n:11})),'cevap sayısı soru sayısını aşamaz');
   await assertFails(setDoc(P(A,'ABC12','can'),pl({rid:created})),'başkası adına yazamaz');
   await assertSucceeds(setDoc(P(A,'ABC12','ayse'),pl({rid:created,nick:'Ayşe'})));
   await assertSucceeds(setDoc(P(B,'ABC12','can'),pl({rid:created,nick:'Can'})));
   // oda üyeleri listeyi okur, dışarıdaki okuyamaz
   await assertSucceeds(getDocs(collection(A,'oyunOdalari','ABC12','players')));await assertFails(getDocs(collection(C,'oyunOdalari','ABC12','players')));await assertFails(getDoc(P(C,'ABC12','ayse')));
+  // kapasite sayacı: katılan bir artırır, çıkan bir azaltır, başka değişiklik yok
+  await assertFails(updateDoc(R(A,'ABC12'),{cnt:5}),'tek adımdan çok artmaz');
+  await assertFails(updateDoc(R(A,'ABC12'),{cnt:9}));
+  await assertSucceeds(updateDoc(R(A,'ABC12'),{cnt:2}));await assertSucceeds(updateDoc(R(B,'ABC12'),{cnt:3}));
+  await assertFails(updateDoc(R(A,'ABC12'),{cnt:3,n:5}));
   // başlatma: yalnız kurucu, yalnız status alanı
   await assertFails(updateDoc(R(A,'ABC12'),{status:'playing'}));await assertFails(updateDoc(R(H,'ABC12'),{status:'playing',n:5}));await assertFails(updateDoc(R(H,'ABC12'),{seed:1}));
   await assertSucceeds(updateDoc(R(H,'ABC12'),{status:'playing'}));

@@ -52,9 +52,12 @@ async function yrJoin(code){
  YR.busy=true;YR.error='';render();
  try{
   const pd=yrPlayerBase(nick,0);
+  /* Önce odayı oku ve sürümü denetle: uyumsuz telefon kapışmada yer almaz, listeye girmez. */
+  const seen=await yrWithTimeout(yrService().peek(c));
+  if(!seen)throw Error('Oda bulunamadı. Kodu kontrol et.');
+  await yrReady(seen.subject);
+  if(seen.rev!==yrRev(seen.subject))throw Error('Bu odayı farklı sürümdeki bir telefon kurdu. Uygulamayı kapatıp yeniden aç, sonra tekrar dene.');
   const room=await yrWithTimeout(yrService().join(c,nick,pd));
-  await yrReady(room.subject);
-  if(room.rev!==yrRev(room.subject)){await yrService().leave(c,true,false).catch(()=>{});throw Error('Bu odayı farklı sürümdeki bir telefon kurdu. Uygulamayı kapatıp yeniden aç, sonra tekrar dene.');}
   await yrEnter(c,room);
  }catch(e){YR.error=yrErrText(e);}finally{YR.busy=false;render();}
 }
@@ -69,7 +72,7 @@ async function yrEnter(code,room){
 function duelOr(a,b){return yrDuel()?a:b;}
 function yrReset(){
  YR.unsubs.forEach(f=>{try{f();}catch(e){}});YR.unsubs=[];if(YR.hb)clearInterval(YR.hb);if(YR.cd)clearInterval(YR.cd);if(YR.tm)clearInterval(YR.tm);
- YR.hb=YR.cd=YR.tm=null;YR.active=false;YR.code=null;YR.room=null;YR.players=[];YR.qs=[];YR.seen={};YR.sig={};YR.started=false;YR.ast=false;YR.g=null;DU=null;YR.error='';
+ if(DU&&DU.to){clearTimeout(DU.to);}YR.hb=YR.cd=YR.tm=null;YR.warn='';YR.active=false;YR.code=null;YR.room=null;YR.players=[];YR.qs=[];YR.seen={};YR.sig={};YR.started=false;YR.ast=false;YR.g=null;DU=null;YR.error='';
 }
 /* ---------- oda ve oyuncu bildirimleri ---------- */
 function yrRoomChanged(room){
@@ -141,7 +144,8 @@ function yrTick(){
 }
 function yrRaceAnswer(i){
  const g=YR.g;if(!g||g.ph!=='q')return;
- const q=YR.qs[g.k],ms=Math.min(Math.round(performance.now()-g.t0),YR.room.lim*1000);
+ const q=YR.qs[g.k],raw=performance.now()-g.t0,ms=Math.min(Math.round(raw),YR.room.lim*1000);
+ if(raw>YR.room.lim*1000)i=-1;/* süre dolduktan sonra gelen tıklama sayılmaz */
  g.ph='fb';g.pick=i;g.ms=ms;g.right=i>=0&&q.choices[i].id===q.correct;
  if(g.right)g.ok++;else g.bad++;g.tt+=ms;
  if(YR.tm){clearInterval(YR.tm);YR.tm=null;}
@@ -152,10 +156,14 @@ function yrRaceNext(){
  if(g.k+1>=YR.qs.length){g.done=true;g.ph='done';yrRaceWrite(true);st.screen='raceover';render();window.scrollTo(0,0);return;}
  g.k++;g.ph='q';g.pick=null;g.t0=performance.now();render();yrQTimer();
 }
+/* Yazma hatası sessizce yutulmaz: öğrenciye kısa uyarı çıkar, yazma düzelince kalkar. */
+function yrSend(pd){
+ return yrService().setPlayer(YR.code,pd).then(()=>{if(YR.warn){YR.warn='';if(YR.active)render();}}).catch(()=>{if(!YR.warn&&YR.active){YR.warn='Bağlantı sorunu: sonucun diğer telefonlara ulaşmamış olabilir. Bağlantı gelince yeniden denenir.';render();}});
+}
 function yrRaceWrite(done){
  const g=YR.g;if(!g||!yrTransport||!YR.room)return;
  const n=g.ph==='fb'||g.ph==='done'?g.k+1:g.k;
- yrService().setPlayer(YR.code,{nick:YR.nick,score:g.ok,ok:g.ok,bad:g.bad,n:Math.min(n,60),tt:Math.round(g.tt),done:!!done,ts:Date.now(),rid:YR.room.created,m:0,r:[],pr:[]}).catch(()=>{});
+ yrSend({nick:YR.nick,score:g.ok,ok:g.ok,bad:g.bad,n:Math.min(n,60),tt:Math.round(g.tt),done:!!done,ts:Date.now(),rid:YR.room.created,m:0,r:[],pr:[]});
 }
 function yrAllPlayers(){
  const me=yrMe(),g=YR.g;
@@ -190,7 +198,7 @@ function duStart(m){
 }
 function duWrite(){
  if(!DU||!yrTransport||!YR.room)return;
- yrService().setPlayer(YR.code,{nick:YR.nick,score:DU.sc[0],ok:DU.sc[0],bad:DU.sc[1],n:DU.myR.length,tt:0,done:!!DU.quit,ts:Date.now(),rid:YR.room.created,m:DU.want?DU.m+1:DU.m,r:DU.want?[]:DU.myR,pr:DU.want?DU.myR:DU.prevR}).catch(()=>{});
+ yrSend({nick:YR.nick,score:DU.sc[0],ok:DU.sc[0],bad:DU.sc[1],n:DU.myR.length,tt:0,done:!!DU.quit,ts:Date.now(),rid:YR.room.created,m:DU.want?DU.m+1:DU.m,r:DU.want?[]:DU.myR,pr:DU.want?DU.myR:DU.prevR});
 }
 function duBeat(){
  if(!DU||DU.over||DU.left)return;
@@ -213,7 +221,9 @@ function duTick(){
 }
 function duAns(i){
  if(!DU||DU.ph!=='q')return;
- const q=YR.qs[DU.k],ms=Math.max(1,Math.round(performance.now()-DU.t0)),ok=q.choices[i].id===q.correct,ob=duOppR(),ot=ob?ob[DU.k]:undefined;
+ const q=YR.qs[DU.k],ms=Math.max(1,Math.round(performance.now()-DU.t0));
+ if(ms>DU.lim){duMine(-DU.lim,'time');return;}/* süre dolduktan sonra gelen tıklama sayılmaz */
+ const ok=q.choices[i].id===q.correct,ob=duOppR(),ot=ob?ob[DU.k]:undefined;
  DU.pick=i;
  if(ok&&ot>0&&ms>=ot){duMine(-ms,'late');return;}
  duMine(ok?ms:-ms,ok?'ok':'bad');
@@ -239,7 +249,7 @@ function duResolve(){
 }
 function duEnd(){
  if(!DU||DU.over)return;DU.over=true;DU.ph='over';if(DU.to){clearTimeout(DU.to);DU.to=null;}if(YR.tm){clearInterval(YR.tm);YR.tm=null;}
- DU.result=DU.left?'win':YarisModel.duResult(DU.sc);duWrite();st.screen='dover';render();window.scrollTo(0,0);
+ DU.result=DU.left?'left':YarisModel.duResult(DU.sc);duWrite();st.screen='dover';render();window.scrollTo(0,0);
 }
 function duLeft(){if(!DU||DU.over)return;DU.left=true;duEnd();}
 function duRematch(){if(!DU||!DU.over||DU.want||DU.left)return;DU.want=true;duWrite();render();duOverSync();}
@@ -249,11 +259,12 @@ function duOverSync(){
 }
 /* ====================== EKRANLAR ====================== */
 function yrTop(title){return topBar(title);}
+function yrWarnHTML(){return YR.warn?'<p class="yr-err" role="status">'+esc(YR.warn)+'</p>':'';}
 function yrErr(){return (YR.error?'<p class="yr-err" role="alert">'+esc(YR.error)+'</p>':'')+(!navigator.onLine?'<p class="sub" role="status">İnternet bağlantısı yok.</p>':'');}
 function yrChoicesHTML(q,onclick,state){
  return '<div class="yr-opts">'+q.choices.map((c,i)=>{let cls='yr-opt';
   if(state){if(c.id===q.correct)cls+=' ok';else if(state.pick===i)cls+=' bad';}
-  return '<button type="button" class="'+cls+'" onclick="'+onclick+'('+i+')"'+(state?' disabled':'')+'><span class="yr-let">'+c.id+'</span><span>'+esc(c.text)+'</span></button>';}).join('')+'</div>';
+  return '<button type="button" class="'+cls+'" onclick="'+onclick+'('+i+')"'+(state?' disabled':'')+'><span class="yr-let">'+c.id+'</span>'+(c.image?'<img class="yr-cimg" src="'+esc(c.image)+'" alt="'+esc(c.alt||('Seçenek '+c.id))+'">':'')+(c.text?'<span>'+esc(c.text)+'</span>':'')+'</button>';}).join('')+'</div>';
 }
 function yrQuestionHTML(q){return (q.image?'<img class="yr-img" src="'+esc(q.image)+'" alt="'+esc(q.imageAlt||'Soru görseli')+'">':'')+'<h2 class="yr-q">'+esc(q.prompt)+'</h2>';}
 function yrMenuHTML(){
@@ -296,7 +307,7 @@ function yrLobbyHTML(){
 function yrCountHTML(){return '<div class="yr-full"><p>'+esc(yrLabel(YR.room))+'</p><div class="yr-big" id="yrHeading" tabindex="-1" role="status">'+Math.max(1,YR.count)+'</div><p>Hazır ol!</p></div>';}
 function yrRaceHTML(){
  const g=YR.g,q=YR.qs[g.k],lim=YR.room.lim;
- let h=yrTop(yrLabel(YR.room))+'<div class="wrap"><ul class="yr-rank" id="yrRank" aria-label="Canlı sıralama">'+yrRankHTML(true)+'</ul><p class="yr-prog" id="yrHeading" tabindex="-1">Soru '+(g.k+1)+' / '+YR.qs.length+'</p>';
+ let h=yrTop(yrLabel(YR.room))+'<div class="wrap">'+yrWarnHTML()+'<ul class="yr-rank" id="yrRank" aria-label="Canlı sıralama">'+yrRankHTML(true)+'</ul><p class="yr-prog" id="yrHeading" tabindex="-1">Soru '+(g.k+1)+' / '+YR.qs.length+'</p>';
  if(g.ph==='q')h+='<div class="yr-bar" aria-hidden="true"><div class="yr-fill" id="yrFill"></div></div><p class="yr-sec" id="yrSec">'+lim+' sn</p>';
  h+=yrQuestionHTML(q)+yrChoicesHTML(q,'yrRaceAnswer',g.ph==='fb'?{pick:g.pick}:null);
  if(g.ph==='fb'){
@@ -319,7 +330,7 @@ function duScoreHTML(){
 function duIntroHTML(){return '<div class="yr-full"><div class="yr-vsline"><span>🙂 '+esc(YR.nick)+'</span><span>⚔️</span><span>'+esc(DU?DU.onick:'Rakip')+' 🙂</span></div><p>'+esc(yrLabel(YR.room))+' · '+(DU?DU.total:YR.room.n)+' soru</p><div class="yr-big" id="yrHeading" tabindex="-1" role="status">'+Math.max(1,YR.count)+'</div><p>Önce doğru basan puanı alır. Hazır ol!</p></div>';}
 function duPlayHTML(){
  const q=YR.qs[DU.k],asking=DU.ph==='q',res=DU.ph==='res';
- let h=yrTop('Kapışma')+'<div class="wrap">'+duScoreHTML()+'<p class="yr-prog" id="yrHeading" tabindex="-1">Soru '+(DU.k+1)+' / '+DU.total+'</p>';
+ let h=yrTop('Kapışma')+'<div class="wrap">'+yrWarnHTML()+duScoreHTML()+'<p class="yr-prog" id="yrHeading" tabindex="-1">Soru '+(DU.k+1)+' / '+DU.total+'</p>';
  if(asking)h+='<div class="yr-bar" aria-hidden="true"><div class="yr-fill" id="yrFill"></div></div><p class="yr-sec" id="yrSec">'+YR.room.lim+' sn</p>';
  h+=yrQuestionHTML(q)+yrChoicesHTML(q,'duAns',asking?null:{pick:DU.pick});
  if(DU.ph==='wait'){const m={ok:'✓ Doğru! Sonuç bekleniyor…',bad:'Yanlış! Bu soruda kilitlendin. Sonuç bekleniyor…',time:'Süre doldu. Sonuç bekleniyor…',late:'⚡ '+esc(DU.onick)+' senden önce doğru bastı.'}[DU.why]||'Sonuç bekleniyor…';h+='<p class="yr-wait" role="status">'+m+'</p>';}
@@ -331,7 +342,7 @@ function duPlayHTML(){
  return h+'<button class="btn ghost" onclick="yrLeave()">Kapışmadan çık</button></div>';
 }
 function duOverHTML(){
- const r=DU.result,t=r==='win'?(DU.left?'🏆 Rakip ayrıldı, kazandın!':'🏆 Kazandın!'):r==='lose'?'İyi mücadele! 💪':'Berabere! İkiniz de iyi oynadınız.',o=duOpp();
+ const r=DU.result,t=r==='left'?'Rakip ayrıldı ya da bağlantısı koptu. Bu maçın sonucu sayılmadı.':r==='win'?'🏆 Kazandın!':r==='lose'?'İyi mücadele! 💪':'Berabere! İkiniz de iyi oynadınız.',o=duOpp();
  let sub=r==='win'?'Tebrikler, '+esc(YR.nick)+'!':r==='lose'?'Rövanşta sen kazanabilirsin!':'Rövanş oynayabilirsiniz.';
  let h=yrTop('Kapışma bitti')+'<div class="wrap" style="text-align:center"><h1 id="yrHeading" tabindex="-1">'+t+'</h1>'+duScoreHTML()+'<p class="sub">'+sub+'</p>';
  if(DU.left||!o||o.done)h+='<p class="sub">Rakip ayrıldı.</p>';

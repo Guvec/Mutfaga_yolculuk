@@ -30,10 +30,12 @@
    return finalize({id:it.id,prompt:IMG_PROMPT[subject]||'Bu görselde ne var?',image:it.image,imageAlt:it.imageAlt||'Adı sorulan nesnenin fotoğrafı.'},[it.answer].concat(pool),it.answer,rng,{explanation:it.explanation||'',hint:it.hint||''});
   });
  }
+ /* Metin sorusu: seçenek bir fotoğraf olabilir (metni boş, image dolu). Doğru seçenek özgün harfinden bulunur. */
  function textQuestions(d,n,rng){
   return shuffle(d.questions,rng).slice(0,n).map(q=>{
-   const correct=q.choices.find(c=>c.id===q.correct).text;
-   return finalize({id:q.id,prompt:q.prompt},q.choices.map(c=>c.text),correct,rng,{explanation:q.explanation||'',hint:q.hint||''});
+   const order=shuffle(q.choices,rng),ids=['A','B','C','D'];
+   const choices=order.map((c,i)=>{const o={id:ids[i],text:c.text||''};if(c.image){o.image=c.image;o.alt=c.alt||('Seçenek '+ids[i]+' fotoğrafı');}return o;});
+   return {id:q.id,prompt:q.prompt,explanation:q.explanation||'',hint:q.hint||'',choices,correct:ids[order.findIndex(c=>c.id===q.correct)]};
   });
  }
  /* Kuver: parçanın adı (görselden) ve parçanın yeri (adından). */

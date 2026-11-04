@@ -29,6 +29,7 @@
 .yr-opts{display:flex;flex-direction:column;gap:10px;margin:8px 0}
 .yr-opt{display:flex;align-items:center;gap:12px;width:100%;text-align:left;border:2px solid var(--line);border-radius:14px;background:var(--surface,#fff);color:var(--navy);padding:12px 14px;min-height:58px;font-size:18px}
 .yr-opt .yr-let{flex:none;width:34px;height:34px;border-radius:50%;background:var(--teal2);display:flex;align-items:center;justify-content:center;font-weight:bold}
+.yr-cimg{flex:1;min-width:0;max-height:22vh;object-fit:contain;background:#fff;border-radius:8px}
 .yr-opt:disabled{opacity:1}
 .yr-opt.ok{border-color:var(--ok);background:var(--okbg)}
 .yr-opt.bad{border-color:var(--bad);background:var(--badbg)}
