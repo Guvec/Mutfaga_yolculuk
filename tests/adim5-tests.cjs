@@ -34,6 +34,19 @@ const {chromium}=require('playwright'),http=require('http'),fs=require('fs'),pat
   DU={m:0,k:2,total:10,myR:[],prevR:[],ph:'q',t0:performance.now(),sc:[0,0],over:false,onick:'B',lim:20000,iAmHost:true};st.screen='dplay';render();
   return {cls:document.body.classList.contains('yr-oyun'),bottom:Math.round(document.querySelector('.yr-opts').getBoundingClientRect().bottom),n:document.querySelectorAll('.yr-opt').length};});
  assert(m.cls&&m.n===4&&m.bottom<=650,'seçenekler kaydırmadan görünür: '+JSON.stringify(m));
+  /* 5) Bekleme sınırı: Er Meydanı'nda doğru bilen, cevap vermeyenleri 2 sn bekler ve turu sonuçlandırır; Kapışma'da da aynı */
+ const w=await p.evaluate(async()=>{
+  yrTransport={uid:'u1',setPlayer:()=>Promise.resolve()};window.yrSend=()=>{};
+  YR.room={mode:'arena',host:'u1',subject:'baharat',kind:'gorsel',set:0,n:5,lim:20,seed:7,created:5,status:'playing'};YR.active=true;YR.nick='A';
+  YR.qs=yrBuild(YR.room,0);const now=Date.now();
+  YR.players=[{uid:'u1',nick:'A',rid:5},{uid:'u2',nick:'B',rid:5,r:[]},{uid:'u3',nick:'C',rid:5,r:[]}];YR.seen={u2:now,u3:now};
+  AR={k:0,total:5,myR:[],win:[],sc:{},ph:'q',over:false,quit:false,to:null,lim:20000,t0:performance.now(),pick:null,why:'',res:null,final:null};st.screen='aplay';
+  const q=YR.qs[0],ci=q.choices.findIndex(c=>c.id===q.correct);arAns(ci);
+  const ph0=AR.ph;await new Promise(r=>setTimeout(r,2300));
+  const ph1=AR.ph,win=AR.win[0]&&AR.win[0].uid;clearTimeout(AR.to);
+  return {ph0,ph1,win};
+ });
+ assert.strictEqual(w.ph0,'wait');assert.strictEqual(w.ph1,'res','2 sn sonra tur sonuçlanır');assert.strictEqual(w.win,'u1','doğru bilen puanı alır');
  assert.deepStrictEqual(errs,[],'JS hatası yok: '+errs.join('|'));
  console.log('adim5-tests geçti');await br.close();srv.close();
 })().catch(e=>{console.error(e);process.exit(1);});

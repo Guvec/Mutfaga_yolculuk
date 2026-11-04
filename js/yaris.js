@@ -102,7 +102,7 @@ async function yrEnter(code,room){
 function duelOr(a,b){return yrDuel()?a:b;}
 function yrReset(){
  YR.unsubs.forEach(f=>{try{f();}catch(e){}});YR.unsubs=[];if(YR.hb)clearInterval(YR.hb);if(YR.cd)clearInterval(YR.cd);if(YR.tm)clearInterval(YR.tm);
- if(DU&&DU.to){clearTimeout(DU.to);}if(DU&&DU.fto)clearTimeout(DU.fto);YR.hb=YR.cd=YR.tm=null;YR.warn='';YR.pend=null;YR.active=false;YR.code=null;YR.room=null;YR.players=[];YR.qs=[];YR.seen={};YR.sig={};YR.started=false;YR.ast=false;YR.g=null;DU=null;if(typeof AR!=='undefined'&&AR&&AR.to)clearTimeout(AR.to);if(typeof AR!=='undefined')AR=null;YR.error='';
+ if(DU&&DU.to){clearTimeout(DU.to);}if(DU&&DU.fto)clearTimeout(DU.fto);YR.hb=YR.cd=YR.tm=null;YR.warn='';YR.pend=null;YR.active=false;YR.code=null;YR.room=null;YR.players=[];YR.qs=[];YR.seen={};YR.sig={};YR.started=false;YR.ast=false;YR.g=null;DU=null;if(typeof AR!=='undefined'&&AR&&AR.to)clearTimeout(AR.to);if(typeof AR!=='undefined'&&AR&&AR.fto)clearTimeout(AR.fto);if(typeof AR!=='undefined')AR=null;YR.error='';
 }
 /* ---------- oda ve oyuncu bildirimleri ---------- */
 function yrRoomChanged(room){

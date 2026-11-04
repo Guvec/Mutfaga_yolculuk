@@ -3,6 +3,7 @@
    oyuncular kimliğe göre sıralanır, en hızlı doğru cevap puan alır, ilk iki doğru 200 ms'den yakınsa tur berabere sayılır. */
 'use strict';
 let AR=null;
+const AR_WAIT_MS=2000;
 function arOn(){return !!(YR.room&&YR.room.mode==='arena');}
 function arSorted(){return YR.players.slice().sort((a,b)=>a.uid<b.uid?-1:a.uid>b.uid?1:0);}
 function arGone(p){return p.uid!==yrMe()&&(!!p.done||!!(YR.seen[p.uid]&&Date.now()-YR.seen[p.uid]>45000));}
@@ -44,18 +45,21 @@ function arMine(v,why){
  if(!AR||AR.ph!=='q')return;
  AR.ph='wait';AR.why=why;if(YR.tm){clearInterval(YR.tm);YR.tm=null;}
  AR.myR[AR.k]=Math.round(v);arWrite();render();arSync();
+ /* Doğru bilen oyuncu, diğerlerinin cevabını en fazla AR_WAIT_MS bekler; ağ gecikmesi yüzünden takılı kalmaz. */
+ if(why==='ok'&&AR.ph==='wait'){const a=AR,kk=a.k;a.fto=setTimeout(()=>{if(AR!==a||a.over||a.ph!=='wait'||a.k!==kk)return;a.force=a.force||{};a.force[kk]=1;arSync();},AR_WAIT_MS);}
 }
 /* Her telefon, turun sonucunu aynı kuralla ve aynı veriyle hesaplar. */
 function arSync(){
  if(!AR||AR.over)return;
  if(AR.ph!=='wait')return;
  const k=AR.k,ps=arSorted(),me=yrMe();
- const val=p=>p.uid===me?AR.myR[k]:(p.r||[])[k];
+ const f=AR.force&&AR.force[k],val=p=>p.uid===me?AR.myR[k]:(((p.r||[])[k]===undefined||(p.r||[])[k]===null)&&f?-1:(p.r||[])[k]);
  const live=ps.filter(p=>!arGone(p));
  if(!live.length||!live.every(p=>val(p)!==undefined&&val(p)!==null))return;
  const times=ps.map(val),w=YarisModel.arWho(times),uid=w>=0?ps[w].uid:null;
  AR.win[k]={uid,times:ps.map((p,i)=>({uid:p.uid,nick:p.uid===me?YR.nick:p.nick,t:times[i]}))};
  if(uid)AR.sc[uid]=(AR.sc[uid]|0)+1;
+ if(AR.fto){clearTimeout(AR.fto);AR.fto=null;}
  AR.ph='res';AR.res=AR.win[k];
  if(uid===me&&typeof EFEKT!=='undefined')EFEKT.cal('tur');
  render();arWrite();
@@ -67,7 +71,7 @@ function arRanks(){
  return YarisModel.ranks(YR.players.map(p=>({...p,nick:p.uid===me?YR.nick:p.nick,ok:arPts(p.uid)})));
 }
 function arEnd(){
- if(!AR||AR.over)return;AR.over=true;AR.ph='over';if(AR.to){clearTimeout(AR.to);AR.to=null;}if(YR.tm){clearInterval(YR.tm);YR.tm=null;}
+ if(!AR||AR.over)return;AR.over=true;AR.ph='over';if(AR.to){clearTimeout(AR.to);AR.to=null;}if(AR.fto){clearTimeout(AR.fto);AR.fto=null;}if(YR.tm){clearInterval(YR.tm);YR.tm=null;}
  const r=arRanks(),me=r.find(p=>p.uid===yrMe());AR.final=me?me.rank:null;
  const top=AR.final===1&&r.filter(p=>p.rank===1).length===1;
  AR.rapor=sonucUret('Er Meydanı',yrLabel(YR.room),['arena',YR.room.subject,YR.room.kind,YR.room.set,YR.room.n].join('|'),AR.myR.filter(v=>v!==undefined&&v!==null).map(v=>({ok:v>0,ms:Math.abs(v)})),AR.final===1?'Sıralamada 1. oldun!':AR.final?'Sıralaman: '+AR.final+'.':'');
@@ -95,7 +99,7 @@ function arPlayHTML(){
  let h=yrTop('Er Meydanı')+'<div class="wrap">'+yrWarnHTML()+arScoreHTML()+'<p class="yr-prog" id="yrHeading" tabindex="-1">Soru '+(AR.k+1)+' / '+AR.total+'</p>';
  if(asking)h+='<div class="yr-bar" aria-hidden="true"><div class="yr-fill" id="yrFill"></div></div><p class="yr-sec" id="yrSec">'+YR.room.lim+' sn</p>';
  h+=yrQuestionHTML(q)+yrChoicesHTML(q,'arAns',asking?null:{pick:AR.pick});
- if(AR.ph==='wait'){const m={ok:'✓ Doğru! Diğerleri bekleniyor…',bad:'Yanlış! Bu soruda kilitlendin. Diğerleri bekleniyor…',time:'Süre doldu. Diğerleri bekleniyor…'}[AR.why]||'Sonuç bekleniyor…';h+='<p class="yr-wait" role="status">'+m+'</p>';}
+ if(AR.ph==='wait'){const m={ok:'✓ Doğru! Diğerlerinin cevabına bakılıyor…',bad:'Yanlış! Bu soruda kilitlendin. Diğerleri bekleniyor…',time:'Süre doldu. Diğerleri bekleniyor…'}[AR.why]||'Sonuç bekleniyor…';h+='<p class="yr-wait" role="status">'+m+'</p>';}
  if(AR.ph==='res'){
   const r=AR.res,s=n=>(Math.round(Math.abs(n)/100)/10).toFixed(1).replace('.',','),w=r.uid&&r.times.find(x=>x.uid===r.uid);
   const msg=r.uid===yrMe()?'<b>🎉 Bu tur senin!</b><br><small>'+s(w.t)+' sn</small>':r.uid?'<b>⚡ '+esc(w.nick)+' bildi!</b><br><small>'+s(w.t)+' sn</small>':(r.times.filter(x=>x.t>0).length>=2?'<b>🤝 En hızlı iki kişi aynı anda bildi.</b><br><small>Bu turda puan yok.</small>':'<b>Kimse bilemedi.</b><br><small>Doğrusu: '+esc(q.choices.find(c=>c.id===q.correct).text||q.correct)+'</small>');
