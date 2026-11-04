@@ -40,7 +40,7 @@ const {chromium}=require('playwright'),http=require('http'),fs=require('fs'),pat
   assert.equal(ilk.kat,10);assert(/Yeni oyun adın/.test(ilk.txt)&&/Beğenmezsen bir kez değiştirebilirsin/.test(ilk.txt));assert.equal(ilk.sabit,false);
   ok('İlk girişte ad kendiliğinden (mutfak karakteri) verilir; "Beğendin mi?" penceresi çıkar');
   const p0=await d.evaluate(()=>st.prof);
-  await d.evaluate(()=>{const e=Object.keys(AD_KAR).find(k=>AD_KAR[k][2]===10&&k!==adInfo(st.prof).e);window.__e2=e;adOpen(profiles().indexOf(st.prof),'profiles');});
+  await d.evaluate(()=>{const e=AD_KAR.findIndex((x,k)=>x[2]===10&&k!==adInfo(st.prof).e);window.__e2=e;adOpen(profiles().indexOf(st.prof),'profiles');});
   await d.waitForFunction(()=>st.screen==='pedit');
   await d.evaluate(()=>{st.pe.e=window.__e2;adSave();});
   await d.waitForFunction(()=>profiles().length===1&&profiles()[0]!==undefined&&adSabit(profiles()[0]),null,{timeout:5000});
