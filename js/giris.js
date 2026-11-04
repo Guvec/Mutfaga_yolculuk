@@ -108,7 +108,10 @@ function girisHTML(){return '<div class="gs"><header class="corner-controls"><bu
   $('#gSound').onclick=function(){SES.acik=!SES.acik;lsSet('ses',SES.acik);if(typeof sesSus==='function')sesSus();soundUi();if(SES.acik)say('Bir besine dokun.');};
   $('#replay').onclick=function(){if(G.last)react(G.last);};
   $('#otherFoods').onclick=function(){stop(true);G.page=(G.page+1)%Math.ceil(G.foods.length/size());draw();say('Diğer besinler. Bir besin seç.');};
-  $('#gStart').onclick=function(){GIRIS.dur();go('home');};
+  $('#gStart').onclick=function(){GIRIS.dur();
+   /* İlk girişte profil yoksa isim (karakter) seçimi önce gelir; kayıtlı profil varsa "Kim çalışıyor?" açılır. Misafir seçeneği profil ekranında kalır. */
+   if(!st.prof&&!st.guest){if(profiles().length)go('profiles');else if(typeof adOpen==='function')adOpen(-1,'profiles');else go('home');return;}
+   go('home');};
   $('#gHelp').onclick=function(){GIRIS.dur();kilavuzAc();};
  };
  GIRIS.dur=function(){G.run++;if(G.travel){try{G.travel.cancel();}catch(e){}G.travel=null;}if(typeof sesSus==='function')sesSus();};

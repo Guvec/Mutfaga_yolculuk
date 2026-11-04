@@ -35,7 +35,11 @@ const {chromium}=require('playwright'),http=require('http'),fs=require('fs'),pat
   const af=await d.evaluate(()=>({c:document.querySelector('#actor').className.trim(),t:document.querySelector('#actor').style.transform}));assert.equal(af.c,'actor rabbit');assert.equal(af.t,'translate(0px, 0px)');ok('Karakter değişince yürüyüş durur, karakter merkeze döner');
   await d.waitForTimeout(1500);assert.equal(await d.evaluate(()=>document.querySelector('#actor').className.trim()),'actor rabbit');ok('Eski hareket sonradan karışmaz');
   // ayrılırken yürüyüş
-  await d.locator('[data-food="honey"]').click();await d.waitForFunction(()=>document.querySelector('#actor').classList.contains('walking'));await d.click('#gStart');await d.waitForFunction(()=>st.screen==='home');await d.waitForTimeout(1200);ok('Çalışmaya başla ana sayfayı açar');
+  await d.locator('[data-food="honey"]').click();await d.waitForFunction(()=>document.querySelector('#actor').classList.contains('walking'));await d.click('#gStart');await d.waitForFunction(()=>st.screen==='pedit');
+  const ilk=await d.evaluate(()=>({tabs:[...document.querySelectorAll('.ad-tab button')].map(b=>b.innerText.replace(/\s+/g,' ').trim()),sel:AD_KAR[st.pe.e][2],ret:st.pe.ret}));
+  assert.equal(ilk.tabs.length,11);assert(/Mutfak/.test(ilk.tabs[0]));assert.equal(ilk.sel,10);assert.equal(ilk.ret,'profiles');
+  ok('İlk girişte profil yoksa isim seçimi açılır; Mutfak sekmesi ilk sırada ve mutfak karakteri seçili');
+  await d.evaluate(()=>{guest();});await d.waitForFunction(()=>st.screen==='home');await d.waitForTimeout(1200);ok('Misafir olarak devam edince ana sayfa açılır');
   assert.equal(await d.evaluate(()=>!!document.querySelector('.gs')),false);
   // kılavuz
   await d.evaluate(()=>go('giris'));await d.click('#gHelp');await d.waitForFunction(()=>st.screen==='guide');await d.evaluate(()=>back());await d.waitForFunction(()=>st.screen==='giris');ok('Kılavuz açılır, Geri açılış ekranına döner');

@@ -83,12 +83,17 @@ function adAsk(p){
 function adDone(p){lsSet('ad_yeni',ls('ad_yeni',[]).filter(x=>x!==p));}
 
 /* Profil oluşturma / düzenleme ekranı: kategori sekmeleri + karakter kartları */
+/* Mutfak kategorisi (listenin son kategorisi) sekmelerde ilk sırada görünür; karakter sırası ve kayıtlı adlar değişmez. */
+function adKitchen(){return AD_KAT.length-1;}
+function adTabOrder(){const k=adKitchen(),o=[k];for(let j=0;j<AD_KAT.length;j++)if(j!==k)o.push(j);return o;}
+/* Yeni profilde rastgele bir mutfak karakteri seçili açılır. */
+function adRndKitchen(){const k=adKitchen(),l=[];AD_KAR.forEach((x,j)=>{if(x[2]===k)l.push(j);});return l.length?l[adRnd(0,l.length-1)]:adRnd(0,AD_KAR.length-1);}
 function adOpen(i,ret){
- const p=i>=0?profiles()[i]:null,m=p?adInfo(p):null,e=m?m.e:adRnd(0,AD_KAR.length-1);
+ const p=i>=0?profiles()[i]:null,m=p?adInfo(p):null,e=m?m.e:adRndKitchen();
  st.pe={i,e,cat:AD_KAR[e][2],ret:ret||'profiles',busy:false};go('pedit');adCheck();
 }
 function adGrid(){const P=st.pe;let h='';AD_KAR.forEach((x,j)=>{if(x[2]===P.cat)h+='<button type="button" class="'+(j===P.e?'on':'')+'" aria-pressed="'+(j===P.e)+'" data-e="'+j+'" onclick="adSet('+j+')"><span>'+x[0]+'</span>'+esc(x[1])+'</button>';});return h;}
-function adTabs(){const P=st.pe;return AD_KAT.map((c,j)=>{const k=c.indexOf(' ');return '<button type="button" class="'+(j===P.cat?'on':'')+'" aria-pressed="'+(j===P.cat)+'" onclick="adCat('+j+')"><span>'+c.slice(0,k)+'</span>'+esc(c.slice(k+1))+'</button>';}).join('');}
+function adTabs(){const P=st.pe;return adTabOrder().map(j=>{const c=AD_KAT[j],k=c.indexOf(' ');return '<button type="button" class="'+(j===P.cat?'on':'')+'" aria-pressed="'+(j===P.cat)+'" onclick="adCat('+j+')"><span>'+c.slice(0,k)+'</span>'+esc(c.slice(k+1))+'</button>';}).join('');}
 function adCat(c){const P=st.pe;if(!P||P.busy)return;P.cat=c;const t=document.getElementById('pe-tab');if(t)t.innerHTML=adTabs();const g=document.getElementById('pe-em');if(g)g.innerHTML=adGrid();}
 function adSet(v){
  const P=st.pe;if(!P||P.busy)return;P.e=v;
