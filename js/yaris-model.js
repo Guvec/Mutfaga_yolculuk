@@ -20,13 +20,14 @@
   return {...base,...extra,choices:order.map((t,i)=>({id:ids[i],text:t})),correct:ids[order.indexOf(correctText)]};
  }
  /* Görselden ad: doğru ad + aynı takımın / çeldirici listesinin üç adı. */
- function imageQuestions(d,set,n,rng){
+ const IMG_PROMPT={baharat:'Bu görseldeki baharat veya aromatik bitki nedir?','mutfak-araclari':'Bu görseldeki mutfak aracı nedir?','bulasik-makinesi-temizligi':'Bu görseldeki nesne nedir?'};
+ function imageQuestions(d,set,n,rng,subject){
   let items=d.matches.filter(x=>set===0||x.set===set);
   items=shuffle(items,rng).slice(0,n);
   return items.map(it=>{
    const same=d.matches.filter(x=>x.set===it.set).map(x=>x.answer),extra=(d.distractors&&d.distractors[String(it.set)])||[];
    const pool=shuffle(uniq(same.concat(extra)).filter(x=>x!==it.answer),rng).slice(0,3);
-   return finalize({id:it.id,prompt:'Bu nedir?',image:it.image,imageAlt:it.imageAlt||'Adı sorulan nesnenin fotoğrafı.'},[it.answer].concat(pool),it.answer,rng,{explanation:it.explanation||'',hint:it.hint||''});
+   return finalize({id:it.id,prompt:IMG_PROMPT[subject]||'Bu görselde ne var?',image:it.image,imageAlt:it.imageAlt||'Adı sorulan nesnenin fotoğrafı.'},[it.answer].concat(pool),it.answer,rng,{explanation:it.explanation||'',hint:it.hint||''});
   });
  }
  function textQuestions(d,n,rng){
@@ -53,7 +54,7 @@
   const rng=seeded(seed),n=Math.max(1,Math.min(spec.n||N_DEFAULT,20));
   if(spec.kind==='kuver')return kuverQuestions(data,spec.set,n,rng);
   if(spec.kind==='bilgi')return textQuestions(data,n,rng);
-  return imageQuestions(data,spec.set,n,rng);
+  return imageQuestions(data,spec.set,n,rng,spec.subject);
  }
  function seedFor(seed,match){return (seed+(match|0)*7919)>>>0;}
  function taskLabel(room,titles){
