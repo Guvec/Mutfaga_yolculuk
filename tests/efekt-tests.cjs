@@ -19,13 +19,9 @@ await pg.addScriptTag({content:rk.match(/function rkCrownNames[\s\S]*?\n}\nfunct
 const ev=(f)=>pg.evaluate(f);
 await ev(()=>{MUZIK.ac();MUZIK.cal();});
 await pg.waitForTimeout(100);
-await ev(()=>{window.__b=plays.length;EFEKT.cal('tur');});
-let p=await ev(()=>plays.slice(window.__b));
-ok(p.some(x=>x.startsWith('pause:')),'Efekt başlarken müzik durur');
-ok(p.includes('play:'+(await ev(()=>location.href)).replace(/[^]*$/,'')+'assets/ses/tur.mp3')||p.some(x=>/play:.*assets\/ses\/tur\.mp3$/.test(x)),'tur.mp3 çalar');
-await ev(()=>{EFEKT.ayarla(false);window.__b=plays.length;EFEKT.cal('win');});
-ok(await ev(()=>plays.length===window.__b),'Efekt kapalıyken ses çalmaz');
-await ev(()=>EFEKT.ayarla(true));
+await ev(()=>{window.__b=plays.length;EFEKT.cal('tur');EFEKT.cal('win');});
+ok(await ev(()=>plays.length===window.__b),'Ses dosyası tanımlı değilken efekt çalmaz, müzik durmaz');
+ok(await ev(()=>efektDugme()===''),'Dosya yokken efekt düğmesi görünmez');
 await ev(()=>{SES.acik=true;sesSecimiSor();});
 ok(await ev(()=>!!document.getElementById('sesSecMuzik')),'Seçim penceresi açılır');
 await ev(()=>document.getElementById('sesSecMuzik').onclick());

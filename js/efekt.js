@@ -4,7 +4,8 @@
    - Sesli okuma ile müzik aynı anda açık olmaz; oyuna girişte öğrenci ikisinden birini seçer. */
 'use strict';
 var EFEKT=(function(){
- var DOSYA={win:'assets/ses/win.mp3',tur:'assets/ses/tur.mp3'},DUZEY={win:0.85,tur:0.8},ANAHTAR='mesleki-efekt';
+ /* Lisansı doğrulanmış ses dosyaları hazır olunca buraya eklenir, örn. {win:'assets/ses/win.mp3'}. Liste boşken hiçbir efekt çalmaz ve düğme görünmez. */
+ var DOSYA={},DUZEY={win:0.85,tur:0.8},ANAHTAR='mesleki-efekt';
  var tercih='acik';try{tercih=localStorage.getItem(ANAHTAR)==='kapali'?'kapali':'acik';}catch(e){}
  function acikMi(){return tercih==='acik';}
  function ayarla(v){tercih=v?'acik':'kapali';try{localStorage.setItem(ANAHTAR,tercih);}catch(e){}}
@@ -20,10 +21,11 @@ var EFEKT=(function(){
    return true;
   }catch(e){try{MUZIK.efektBitti();}catch(x){}return false;}
  }
- return {acikMi:acikMi,ayarla:ayarla,cal:cal};
+ function var_(){return Object.keys(DOSYA).length>0;}
+ return {acikMi:acikMi,ayarla:ayarla,cal:cal,var:var_};
 })();
 function efektAcKapa(){EFEKT.ayarla(!EFEKT.acikMi());document.querySelectorAll('.efekt-ac').forEach(function(b){b.textContent='Efekt sesleri: '+(EFEKT.acikMi()?'Açık':'Kapalı');b.setAttribute('aria-pressed',String(EFEKT.acikMi()));});}
-function efektDugme(){return '<button type="button" class="btn sm efekt-ac" aria-pressed="'+EFEKT.acikMi()+'" onclick="efektAcKapa()">Efekt sesleri: '+(EFEKT.acikMi()?'Açık':'Kapalı')+'</button>';}
+function efektDugme(){if(!EFEKT.var())return '';return '<button type="button" class="btn sm efekt-ac" aria-pressed="'+EFEKT.acikMi()+'" onclick="efektAcKapa()">Efekt sesleri: '+(EFEKT.acikMi()?'Açık':'Kapalı')+'</button>';}
 
 /* Oyuna girişte: sesli okuma mı, müzik mi, sessiz mi? Her tarayıcı oturumunda bir kez sorulur. */
 function sesSecimiSor(){
