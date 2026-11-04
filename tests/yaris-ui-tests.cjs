@@ -43,7 +43,6 @@ const hub={rooms:{},n:0,ops:{
  async function createRoom(p,nick,mode,cfg={}){
   await openMenu(p,nick);await p.getByRole('button',{name:mode==='duel'?/Kapışma Kur/:/Oyun Odası Kur/}).click();
   if(cfg.subject)await p.getByRole('button',{name:cfg.subject,exact:true}).click();
-  if(cfg.set)await p.getByRole('button',{name:new RegExp('^'+cfg.set+'\\. takım')}).click();
   await p.getByRole('button',{name:'Odayı kur'}).click();await p.waitForFunction(()=>YR.active&&st.screen==='racelobby');return p.evaluate(()=>YR.code);
  }
  async function joinRoom(p,nick,code){await openMenu(p,nick);await p.evaluate(c=>yrJoin(c),code);await p.waitForFunction(()=>YR.active&&st.screen==='racelobby');}

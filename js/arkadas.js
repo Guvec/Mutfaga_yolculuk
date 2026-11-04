@@ -156,13 +156,29 @@ function frDel(o,ask){
 }
 /* Davet gönder: kapışma odası kur, sonra arkadaşa davet yaz. */
 function frCall(o){FR.call={to:o,nick:FR.nick[o]||''};if(typeof yrCreateOpen==='function')yrCreateOpen('duel');}
+/* Oda içinden arkadaş çağır: listeden dokunulan arkadaşa davet gider. */
+const FR_SENT={};
+function frLobbyHTML(){
+ if(!st.prof||st.guest||!frOn()||!YR.room||YR.room.status!=='lobby')return '';
+ const cap=YarisModel.LIMITS[YR.room.mode].max;if(YR.players.length>=cap)return '';
+ let h='<div class="card ark-live"><div class="ark-lvh">👫 Arkadaşını çağır</div>';
+ if(!FR.ready)return h+'<small>⏳ Arkadaşların yükleniyor…</small></div>';
+ const l=FR.list.slice().sort((a,b)=>(frOnline(b)?1:0)-(frOnline(a)?1:0)).slice(0,6);
+ if(!l.length)return h+'<div class="ark-row"><small>Henüz arkadaşın yok.</small><button class="mini" onclick="frOpen()">👫 Arkadaş ekle</button></div></div>';
+ l.forEach(o=>{const k=YR.code+'_'+o;h+='<div class="ark-row"><span>'+(frOnline(o)?'🟢':'⚪')+' <b>'+esc(FR.nick[o]||'…')+'</b></span>'+(FR_SENT[k]?'<small>✓ Çağrıldı</small>':'<button class="mini" onclick="frInviteTo(\''+o+'\')">⚔️ Çağır</button>')+'</div>';});
+ return h+'</div>';
+}
+async function frInviteTo(o){
+ if(!YR.code)return;FR.call={to:o,nick:FR.nick[o]||''};
+ if(await frInvSend())FR_SENT[YR.code+'_'+o]=1;if(st.screen==='racelobby')render();
+}
 async function frInvSend(){
  const c=FR.call;if(!c||!FR.pid||!YR.room||!YR.code)return;FR.call=null;
  try{
   const t=await adFb(),fb=t.sdk,r=YR.room,sub=(typeof YR_SUBJECTS!=='undefined'&&(YR_SUBJECTS.find(x=>x.id===r.subject)||{}).name)||r.subject;
   await fb.setDoc(fb.doc(t.db,'yrDav',FR.pid+'_'+c.to+'_'+YR.code),{from:FR.pid,to:c.to,nick:YR.nick,code:YR.code,rid:r.created,subject:String(sub).slice(0,30),mode:r.mode,ts:fb.serverTimestamp()});
-  adToast((c.nick||'Arkadaşın')+' davet edildi');
- }catch(e){adToast('Davet gönderilemedi');}
+  adToast((c.nick||'Arkadaşın')+' davet edildi');return true;
+ }catch(e){adToast('Davet gönderilemedi');return false;}
 }
 /* Gelen davet: oyun sırasında rahatsız etme; menüye dönünce göster. */
 const FR_SAFE=['home','racemenu','profiles','friends','siralama','rekor'];
@@ -173,7 +189,7 @@ function frInvCheck(){
  if(!v)return;
  FR.invSeen[v.id]=1;
  st.modalOpen=true;pauseT();const ov=document.getElementById('ov');ov.className='on';
- ov.innerHTML='<div class="modal" role="dialog" aria-modal="true" aria-labelledby="frInvT"><p id="frInvT">⚔️ <b>'+esc(v.nick)+'</b> seni '+(v.mode==='duel'?'kapışmaya':'oyun odasına')+' çağırıyor!<br><small>'+esc(v.subject)+'</small></p><div class="row"><button class="btn ghost" id="frInvN">Şimdi değil</button><button class="btn pri" id="frInvY">Kabul et</button></div></div>';
+ ov.innerHTML='<div class="modal" role="dialog" aria-modal="true" aria-labelledby="frInvT"><p id="frInvT">⚔️ <b>'+esc(v.nick)+'</b> seni '+(v.mode==='duel'?'kapışmaya':v.mode==='arena'?'Er Meydanı’na':'oyun odasına')+' çağırıyor!<br><small>'+esc(v.subject)+'</small></p><div class="row"><button class="btn ghost" id="frInvN">Şimdi değil</button><button class="btn pri" id="frInvY">Kabul et</button></div></div>';
  const del=()=>adFb().then(t=>t.sdk.deleteDoc(t.sdk.doc(t.db,'yrDav',v.id))).catch(()=>{});
  document.getElementById('frInvY').onclick=()=>{closeModal();del();frJoinCode(v.code);};
  document.getElementById('frInvN').onclick=()=>{closeModal();del();};
