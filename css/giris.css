@@ -17,15 +17,14 @@ html[data-theme=dark] .gs h1.gs-slogan{text-shadow:0 3px 0 #0b2b29,0 8px 22px rg
 .gs .food:nth-child(2),.gs .food:nth-child(5){top:75%}
 .gs .food:nth-child(3),.gs .food:nth-child(4){top:86%}
 .gs .welcome{padding-top:30px}
-.gs h1.gs-slogan{font-size:clamp(34px,5.6vw,54px);white-space:nowrap;margin:0 0 20px;position:relative;padding-bottom:12px}
-.gs h1.gs-slogan::after{content:"";position:absolute;left:12%;right:12%;bottom:0;height:9px;border-radius:9px;background:linear-gradient(90deg,#087f79,#ff9f1c 55%,#ef5b2b);opacity:.9;transform:rotate(1.2deg)}
+.gs h1.gs-slogan{font-size:clamp(34px,5.6vw,54px);white-space:nowrap;margin:0 0 20px;position:relative;padding-bottom:0}
 @media(min-width:1500px){.gs .scene{height:360px}.gs .welcome{padding-top:40px}}
 @media(max-width:600px){
  .gs .scene{height:290px}
  .gs .food:nth-child(1),.gs .food:nth-child(4){top:39%}
  .gs .food:nth-child(2),.gs .food:nth-child(3){top:78%}
  .gs .welcome{padding-top:62px}
- .gs h1.gs-slogan{white-space:normal;font-size:clamp(34px,10.5vw,46px);margin:0 0 18px;padding-bottom:14px}
+ .gs h1.gs-slogan{white-space:normal;font-size:clamp(34px,10.5vw,46px);margin:0 0 18px;padding-bottom:0}
  .gs h1.gs-slogan span:first-child{display:block}
 }
 .gs h1.gs-slogan .hl{text-shadow:none}
