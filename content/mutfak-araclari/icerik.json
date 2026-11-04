@@ -5312,13 +5312,13 @@
       "image": "assets/mutfak-araclari/guncel-104.jpg",
       "imageAlt": "Adı sorulan aracın fotoğrafı.",
       "answer": "Smoothie blenderi",
-      "explanation": "Meyve, yoğurt ve sütü karıştırarak içecek hazırlamak için kullanılır. Bu içeceğe smoothie denir. El blenderinden farklı olarak malzemeyi kapalı haznede karıştırır. Kılavuz izin vermedikçe sıcak sıvı çekilmez. Dolum çizgisi aşılmaz, kapak sıkıca kapatılır, cihaz düşük hızda başlatılır. Başlık, bıçaklar durduktan ve fiş çekildikten sonra açılır.",
+      "explanation": "Meyve, yoğurt ve sütü karıştırarak içecek hazırlamak için kullanılır. Bu içeceğe smoothie denir. El blenderinden farklı olarak malzemeyi kapalı haznede karıştırır. Sıcak sıvı her blenderde çekilmez: sıcak buhar kapağı fırlatabilir. Sıcak sıvı için önce cihazın kılavuzuna bakılır. Dolum çizgisi aşılmaz, kapak sıkıca kapatılır, cihaz düşük hızda başlatılır. Başlık, bıçaklar durduktan ve fiş çekildikten sonra açılır.",
       "source": {
         "file": "Mutfak_Araclari_Sayfa_Duzeni.docx",
         "bookItem": 104,
         "card": 8
       },
-      "detail": "Ne için kullanılır? Meyve, yoğurt ve sütü karıştırarak içecek hazırlamak için kullanılır. Bu içeceğe smoothie denir.\nNasıl kullanılır? Fiş çekiliyken malzemeler hazneye konur; dolum çizgisi aşılmaz. Bıçaklı başlık, bıçaklara dokunulmadan takılır ve hazne gövdeye sağlamca oturtulur. Cihaz çalıştırılır; içecek pürüzsüz olunca durdurulur.\nDikkat: Kılavuz izin vermedikçe sıcak sıvı çekilmez. Dolum çizgisi aşılmaz, kapak sıkıca kapatılır, cihaz düşük hızda başlatılır. Başlık, bıçaklar durduktan ve fiş çekildikten sonra açılır.\nFarkı nedir? El blenderinden farklı olarak malzemeyi kapalı haznede karıştırır.",
+      "detail": "Ne için kullanılır? Meyve, yoğurt ve sütü karıştırarak içecek hazırlamak için kullanılır. Bu içeceğe smoothie denir.\nNasıl kullanılır? Fiş çekiliyken malzemeler hazneye konur; dolum çizgisi aşılmaz. Bıçaklı başlık, bıçaklara dokunulmadan takılır ve hazne gövdeye sağlamca oturtulur. Cihaz çalıştırılır; içecek pürüzsüz olunca durdurulur.\nDikkat: Sıcak sıvı her blenderde çekilmez: sıcak buhar kapağı fırlatabilir. Sıcak sıvı için önce cihazın kılavuzuna bakılır. Dolum çizgisi aşılmaz, kapak sıkıca kapatılır, cihaz düşük hızda başlatılır. Başlık, bıçaklar durduktan ve fiş çekildikten sonra açılır.\nFarkı nedir? El blenderinden farklı olarak malzemeyi kapalı haznede karıştırır.",
       "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak."
     },
     {
@@ -5962,5 +5962,5 @@
     "v10: Kullanım amacı yalnız biçimden belirlenemeyen kartlarda kullanım bilgisi sorunun parçasıdır. Bunların puanı, yalnız görselden bağımsız tanıma olarak yorumlanmaz.",
     "v10: Metal takımlar ve tabaklarda fotoğraf çerçevesi korunur. Büyütme mutlak santimetre ölçüsü vermez; kullanım bilgisi ve takım içindeki göreli ölçek birlikte ele alınır."
   ],
-  "revision": "v14-20261104"
+  "revision": "v15-20261104"
 }
