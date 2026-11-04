@@ -7,6 +7,7 @@ function sesVar(){return typeof window!=='undefined'&&'speechSynthesis' in windo
 function sesAd(ad){ad=String(ad||'').trim();return OKUNUS[ad.toLocaleUpperCase('tr')]||ad.toLocaleLowerCase('tr');}
 function sesMetin(t){t=String(t||'');Object.keys(OKUNUS).forEach(k=>{t=t.split(k).join(OKUNUS[k]);});return t.replace(/smoothie/gi,'smuti').replace(/waffle/gi,'vafıl').replace(/muffin/gi,'mafin').replace(/…+|\.{3,}/g,' boşluk ').replace(/(\d)\s*[–-]\s*(\d)/g,'$1 ile $2').replace(/−/g,'eksi ').replace(/°\s*C/g,' derece').replace(/(\d)\s*ml\b/gi,'$1 mililitre').replace(/(\d)\s*cm\b/gi,'$1 santimetre').replace(/(\d)\s*g\b/g,'$1 gram').replace(/\bGN\b/g,'ge ne').replace(/\s+/g,' ').trim();}
 function sesBirlestir(a,b){a=String(a||'').trim();return b?a+(/[.?!:]$/.test(a)?' ':'. ')+b:a;}
+function sesTumu(){try{return speechSynthesis.getVoices().length;}catch(e){return 0;}}
 function sesTurkce(){try{return speechSynthesis.getVoices().filter(v=>/^tr(?:-|_|$)/i.test(v.lang));}catch(e){return [];}}
 function sesDurum(metin){
  SES.status=metin;var p=document.getElementById('sesDurum');
@@ -21,11 +22,11 @@ function sesSus(){
 function sesYedek(metin,neden){sesDurum(neden+' Yazılı okuma: '+metin);}
 function sesBaslat(req){
  if(!req||req.token!==SES.token||(!SES.acik&&!req.zorla))return;
- const vs=sesTurkce();if(!vs.length)return;
+ const vs=sesTurkce();if(!vs.length&&!req.listesiz)return;
  SES.pending=null;clearTimeout(SES.timer);
  // Yerel ses varsayılanı ağ gecikmesini azaltır. Öğrencinin seçimi önceliklidir.
- const voice=vs.find(v=>v.voiceURI===SES.voice)||vs.find(v=>v.localService&&v.default)||vs.find(v=>v.localService)||vs.find(v=>v.default)||vs[0];
- const u=new SpeechSynthesisUtterance(req.text);SES.utterance=u;u.lang='tr-TR';u.voice=voice;
+ const voice=vs.length?(vs.find(v=>v.voiceURI===SES.voice)||vs.find(v=>v.localService&&v.default)||vs.find(v=>v.localService)||vs.find(v=>v.default)||vs[0]):null;
+ const u=new SpeechSynthesisUtterance(req.text);SES.utterance=u;u.lang='tr-TR';if(voice)u.voice=voice;/* Ses listesi boşsa cihazın kendi Türkçe varsayılanı denenir. */
  const rate=Number(SES.rate);u.rate=Number.isFinite(rate)?Math.max(0.8,Math.min(1.1,rate)):1;u.pitch=1;
  // Tek okuma nesnesi: noktalardan bölüp cümle başlarını kesmez, her cümlede yeni konuşma başlatmaz.
  u.onstart=()=>{if(req.token!==SES.token)return;clearTimeout(SES.timer);sesDurum('');};
@@ -42,17 +43,25 @@ function sesSoyle(metin){
  if(sesTurkce().length){sesBaslat(req);return;}
  // getVoices ilk çağrıda boş olabilir. Yalnız en son istek, sınırlı süre bekletilir.
  SES.pending=req;sesDurum('Türkçe sesler yükleniyor. Yazılı yönergeyle devam edebilirsin.');
- SES.timer=setTimeout(()=>{if(req.token!==SES.token||SES.pending!==req)return;SES.pending=null;sesYedek(req.text,'Türkçe ses yüklenemedi. Cihazın Türkçe ses ayarını kontrol edebilirsin.');},2500);
+ SES.timer=setTimeout(()=>{if(req.token!==SES.token||SES.pending!==req)return;
+  /* Bazı tahtalar ve tarayıcılar ses listesini hiç vermez ama Türkçe okuyabilir: liste tamamen boşsa dil etiketiyle bir kez denenir. Listede yalnız başka diller varsa başka dile düşülmez. */
+  if(sesTumu()===0){req.listesiz=true;sesBaslat(req);return;}
+  SES.pending=null;sesYedek(req.text,'Türkçe ses yüklenemedi. Cihazın Türkçe ses ayarını kontrol edebilirsin.');},2500);
 }
 if(sesVar())speechSynthesis.addEventListener('voiceschanged',()=>{
- const sel=document.getElementById('voiceSelect');if(sel)voiceOptions(sel);
+ const sel=document.getElementById('voiceSelect');if(sel)voiceOptions(sel);sesBilgiYaz();
  if(SES.pending&&sesTurkce().length)sesBaslat(SES.pending);
 });
 document.addEventListener('visibilitychange',()=>{if(document.hidden)sesSus();});
 function sesDugme(t,label){const i=SES.sira.push(t)-1;return '<button type="button" class="spk" aria-label="'+esc(label||'Sesli dinle')+'" onclick="event.stopPropagation();sesSoyle(SES.sira['+i+'])">🔊</button>';}
 function sesAcKapa(){SES.acik=!SES.acik;lsSet('ses',SES.acik);sesSus();render();}
 function voiceOptions(sel){const vs=sesTurkce();sel.innerHTML=vs.length?vs.map(v=>'<option value="'+esc(v.voiceURI)+'"'+(v.voiceURI===SES.voice?' selected':'')+'>'+esc(v.name)+'</option>').join(''):'<option value="">Türkçe ses bekleniyor</option>';if(!vs.some(v=>v.voiceURI===SES.voice)&&vs.length)sel.value=(vs.find(v=>v.localService&&v.default)||vs.find(v=>v.localService)||vs.find(v=>v.default)||vs[0]).voiceURI;}
-function voiceSettings(){sesSus();st.modalOpen=true;pauseT();const ov=document.getElementById('ov');ov.className='on';ov.innerHTML='<div class="modal" role="dialog" aria-modal="true" aria-label="Ses ayarları"><h2>Ses ayarları</h2><p>Okumak için 🔊 düğmesine dokun. Sesler cihazına göre değişir; kayıtlı insan sesi değildir. Bir sesi dinleyip seçebilirsin.</p><label for="voiceSelect">Türkçe ses</label><select id="voiceSelect" onchange="SES.voice=this.value;lsSet(\'sesVoice\',SES.voice)"></select><label for="voiceRate">Konuşma hızı</label><select id="voiceRate" onchange="SES.rate=Number(this.value);lsSet(\'sesRate\',SES.rate)"><option value="0.85">Biraz yavaş</option><option value="1">Normal</option><option value="1.1">Biraz hızlı</option></select><div class="row"><button class="btn" onclick="sesSoyle(\'Sesli okuma denemesi. Hazır olduğunda çalışmaya devam edebilirsin.\')">Sesi dene</button><button class="btn" onclick="sesSus()">Durdur</button><button class="btn pri" onclick="closeModal()">Kapat</button></div></div>';voiceOptions(document.getElementById('voiceSelect'));document.getElementById('voiceRate').value=String(SES.rate);document.getElementById('voiceSelect').focus();}
+function sesBilgiYaz(){const e=document.getElementById('sesBilgi');if(!e)return;
+ if(!sesVar()){e.textContent='Bu tarayıcı sesli okumayı desteklemiyor. Chrome ya da Edge ile açmayı dene.';return;}
+ const t=sesTurkce().length,h=sesTumu();
+ e.textContent=t?('Cihazda '+t+' Türkçe ses bulundu.'):h?('Cihazda '+h+' ses var ama Türkçe ses yok. Cihazın ses ayarından Türkçe ses paketi yüklenmeli.'):'Cihaz ses listesini vermedi. "Sesi dene" ile cihazın kendi sesi denenir.';
+}
+function voiceSettings(){sesSus();st.modalOpen=true;pauseT();const ov=document.getElementById('ov');ov.className='on';ov.innerHTML='<div class="modal" role="dialog" aria-modal="true" aria-label="Ses ayarları"><h2>Ses ayarları</h2><p>Okumak için 🔊 düğmesine dokun. Sesler cihazına göre değişir; kayıtlı insan sesi değildir. Bir sesi dinleyip seçebilirsin.</p><p id="sesBilgi" class="sub" role="status"></p><label for="voiceSelect">Türkçe ses</label><select id="voiceSelect" onchange="SES.voice=this.value;lsSet(\'sesVoice\',SES.voice)"></select><label for="voiceRate">Konuşma hızı</label><select id="voiceRate" onchange="SES.rate=Number(this.value);lsSet(\'sesRate\',SES.rate)"><option value="0.85">Biraz yavaş</option><option value="1">Normal</option><option value="1.1">Biraz hızlı</option></select><div class="row"><button class="btn" onclick="sesSoyle(\'Sesli okuma denemesi. Hazır olduğunda çalışmaya devam edebilirsin.\')">Sesi dene</button><button class="btn" onclick="sesSus()">Durdur</button><button class="btn pri" onclick="closeModal()">Kapat</button></div></div>';voiceOptions(document.getElementById('voiceSelect'));sesBilgiYaz();document.getElementById('voiceRate').value=String(SES.rate);document.getElementById('voiceSelect').focus();}
 /* ---- Ekranlara bağlama (bu dosya en son yüklenir) ---- */
 var SES_TOP=topBar;
 topBar=function(t,nb){return SES_TOP(t,nb).replace('<div class="who">','<button type="button" class="ses-ac" aria-pressed="'+SES.acik+'" aria-label="Sesli okuma '+(SES.acik?'açık. Kapatmak için dokun':'kapalı. Açmak için dokun')+'" onclick="sesAcKapa()">'+(SES.acik?'🔊':'🔇')+'</button><div class="who">');};
