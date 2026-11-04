@@ -28,6 +28,12 @@ finish=function(){
   const done=new Set(s.qs.map(x=>x.q));(st.contentItems||[]).forEach(q=>{if(!done.has(q.prompt)){const c=q.choices.find(x=>x.id===q.correct);s.qs.push({q:q.prompt,a:c?(c.text||c.id+' seçeneği'):'',r:null,s:null,selectedAnswer:null,attemptCount:0,explanation:q.explanation||'',source:q.source});}});
   s.duration=s.qs.reduce((n,x)=>n+(Number(x.s)||0),0);
  }
+ if(st.op==='kur'&&typeof LEVELS!=='undefined'&&LEVELS[st.lvl]){
+  // Kuver: yer seçilmeyen hedefler de raporda "Yanıtlanmadı" olarak görünür.
+  const answered=new Set(s.qs.map(x=>x.q));
+  LEVELS[st.lvl].items.forEach(k=>{const q=ITEMS[k].AD+' için yer seçimi';if(!answered.has(q))s.qs.push({q,a:PLACE_LABEL[k]||'',r:null,s:null,selectedAnswer:null,attemptCount:0});});
+  s.total=LEVELS[st.lvl].items.length;
+ }
  s.unanswered=s.qs.filter(x=>x.r===null).length;s.completed=s.qs.filter(x=>x.r!==null).length;U_FINISH();
 };
 function resultText(q){return q.r===null?'Yanıtlanmadı':q.r===1?'İlk denemede doğru':q.r===2?'İpucundan sonra doğru':'Yanlış / yanıt gösterildi';}

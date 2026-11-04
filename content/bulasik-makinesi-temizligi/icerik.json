@@ -281,23 +281,23 @@
     },
     {
       "id": "atik-yeni-1",
-      "prompt": "Atığın hangi kutuya konacağı, kutunun üzerindeki hangi yazıdan anlaşılır?",
+      "prompt": "Atığın uygun kutusu nasıl belirlenir?",
       "choices": [
         {
           "id": "A",
-          "text": "Kutunun dış yüzey rengi"
+          "text": "Kutunun rengine bakılarak karar verilir."
         },
         {
           "id": "B",
-          "text": "Etikette belirtilen atık türü"
+          "text": "Kutunun etiketindeki atık türü okunur."
         },
         {
           "id": "C",
-          "text": "Kapağın açılıp kapanma biçimi"
+          "text": "En yakın kutuya atılır."
         },
         {
           "id": "D",
-          "text": "Kutunun durduğu raf"
+          "text": "Kapağı en kolay açılan kutu seçilir."
         }
       ],
       "correct": "B",
@@ -622,5 +622,6 @@
       "Bitkisel atık yağ",
       "Tekstil"
     ]
-  }
+  },
+  "revision": null
 }
