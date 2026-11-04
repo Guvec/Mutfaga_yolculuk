@@ -36,7 +36,7 @@ assert.equal(m.duDecided([6,0],6,10),true);assert.equal(m.duDecided([5,1],6,10),
 const r=m.ranks([{nick:'Ali',ok:7,tt:99999},{nick:'Ayşe',ok:7,tt:1},{nick:'Can',ok:3},{nick:'Deniz',ok:9}]);
 assert.deepEqual(r.map(x=>[x.nick,x.rank]),[['Deniz',1],['Ali',2],['Ayşe',2],['Can',4]]);
 // 5) ad ve kod
-assert.equal(m.firstName('  Ali Arıkoğlu '),'Ali');assert(m.validNick('Ali'));assert(!m.validNick('<b>'));assert(!m.validNick('a'.repeat(17)));
+assert.equal(m.firstName('  Ali Arıkoğlu '),'Ali');assert(m.validNick('Ali'));assert(!m.validNick('<b>'));assert(m.validNick('🦊 Kurnaz Tilki #482'));assert(!m.validNick('a'.repeat(41)));assert.equal(m.cleanNick('  🦁   Kral  Aslan '),'🦁 Kral Aslan');
 assert.equal(m.slug('zihin 11-b'),'ZIHIN11B');assert.equal(m.slug('çğıöşü'),'CGIOSU');assert(m.validCode('AB3'));assert(!m.validCode('AB'));
 {const d=require('../content/mutfak-araclari/icerik.json');
  for(let seed=0;seed<30;seed++){const qs=m.buildQuestions(d,{subject:'mutfak-araclari',kind:'bilgi',set:0,n:20},seed);qs.forEach(q=>{assert.equal(q.choices.length,4);q.choices.forEach(c=>assert((c.text&&c.text.trim())||c.image,'boş seçenek '+q.id));assert(q.choices.some(c=>c.id===q.correct));});}

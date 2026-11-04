@@ -16,8 +16,10 @@ function yrMe(){return yrTransport&&yrTransport.uid;}
 function yrWithTimeout(p,ms){let t;return Promise.race([p,new Promise((_,rej)=>{t=setTimeout(()=>rej(Error('Bağlantı tamamlanamadı. İnterneti kontrol edip yeniden dene.')),ms||15000);})]).finally(()=>clearTimeout(t));}
 function yrErrText(e){const m=e&&e.message?String(e.message):'';if(/permission|insufficient|PERMISSION/i.test(m))return 'İzin yok: oda bulunamadı, dolu ya da oyun başlamış olabilir.';if(!m||/Firebase|firestore|auth\//i.test(m))return 'Odaya bağlanılamadı. İnterneti kontrol edip yeniden dene.';return m;}
 function yrSetError(e){YR.error=typeof e==='string'?e:yrErrText(e);render();}
-function yrNickGet(){const e=document.getElementById('yrNick');const raw=e?e.value:(ls('yr_nick','')||YarisModel.firstName(st.prof||''));return YarisModel.firstName(raw);}
-function yrNickOk(){const n=yrNickGet();if(!YarisModel.validNick(n)){YR.error='Önce adını yaz. Yalnız ilk adın yeterli.';render();return null;}lsSet('yr_nick',n);return n;}
+function yrGuestName(){let g='';try{g=sessionStorage.getItem('yr_misafir')||'';if(!g){g='👤 Misafir '+(100+crypto.getRandomValues(new Uint16Array(1))[0]%900);sessionStorage.setItem('yr_misafir',g);}}catch(e){}return g||'👤 Misafir';}
+/* Oyun adı profilden gelir (hazır karakter adı); gerçek ad yazılmaz. */
+function yrNickGet(){return st.prof&&!st.guest?YarisModel.cleanNick(st.prof):yrGuestName();}
+function yrNickOk(){return yrNickGet();}
 /* ---------- içerik ve soru yardımcıları ---------- */
 function yrData(subject){return subject==='kuver'?{LEVELS,ITEMS,IMG,PLACE_LABEL}:CONTENT[subject];}
 async function yrReady(subject){if(subject==='kuver')return;for(let i=0;i<80;i++){if(CONTENT[subject])return;if(CONTENT[subject]===null)break;await new Promise(r=>setTimeout(r,100));}throw Error('Konu dosyası yüklenemedi. Sayfayı yenileyip yeniden dene.');}
@@ -63,7 +65,7 @@ async function yrJoin(code){
 }
 function yrPlayerBase(nick,rid){return {nick,score:0,ok:0,bad:0,n:0,tt:0,done:false,ts:Date.now(),rid,m:0,r:[],pr:[]};}
 async function yrEnter(code,room){
- yrReset();YR.active=true;YR.code=code;YR.room=room;YR.nick=yrNickGet()||ls('yr_nick','')||'Oyuncu';YR.host=room.host===yrMe();YR.started=false;
+ yrReset();YR.active=true;YR.code=code;YR.room=room;YR.nick=yrNickGet();YR.host=room.host===yrMe();YR.started=false;
  if(YR.host)await yrService().setPlayer(code,yrPlayerBase(YR.nick,room.created));
  YR.unsubs=yrService().watch(code,yrRoomChanged,yrPlayersChanged,e=>{if(YR.active)yrSetError(e);});
  YR.hb=setInterval(yrBeat,duelOr(8000,10000));
@@ -272,9 +274,9 @@ function yrChoicesHTML(q,onclick,state){
 }
 function yrQuestionHTML(q){return (q.image?'<img class="yr-img" src="'+esc(q.image)+'" alt="'+esc(q.imageAlt||'Soru görseli')+'">':'')+'<h2 class="yr-q">'+esc(q.prompt)+'</h2>';}
 function yrMenuHTML(){
- const code=YR.codeDraft||new URLSearchParams(location.search).get('oda')||'',nick=ls('yr_nick','')||YarisModel.firstName(st.prof||''),cfg=yrConfigured();
+ const code=YR.codeDraft||new URLSearchParams(location.search).get('oda')||'',cfg=yrConfigured();
  return yrTop('Birlikte Oynayalım')+'<div class="wrap"><h1>Birlikte Oynayalım</h1><p class="sub">Arkadaşınla ya da sınıfla aynı sorulara birlikte cevap ver. Bu bölüm için internet gerekir.</p>'+(!cfg?'<p class="card" role="status">Oda bağlantısı henüz ayarlanmadı. Bireysel oyunları kullanabilirsin.</p>':'')+
-  '<label for="yrNick">Adın</label><input id="yrNick" class="inp" maxlength="16" autocomplete="off" value="'+esc(nick)+'" placeholder="Adın"><p class="sub">Yalnızca ilk adın görünür.</p>'+
+  '<p class="card" id="yrNick">Oyundaki adın: <b>'+esc(yrNickGet())+'</b></p>'+
   '<button class="btn pri" onclick="yrCreateOpen(\'race\')"'+(cfg?'':' disabled')+'>Oyun Odası Kur<span class="yr-sm">Herkes aynı sorulara kendi hızında cevap verir. Canlı sıralama görünür.</span></button>'+
   '<button class="btn" onclick="yrCreateOpen(\'duel\')"'+(cfg?'':' disabled')+'>1’e 1 Kapışma Kur<span class="yr-sm">İki kişi aynı soruya aynı anda bakar. Önce doğru basan puanı alır.</span></button>'+
   '<div class="yr-sep"></div><label for="yrCode">Oda kodu</label><input id="yrCode" class="inp" maxlength="10" autocapitalize="characters" autocomplete="off" value="'+esc(code.toUpperCase())+'" placeholder="Oda kodu"><button class="btn pri" onclick="yrJoin()"'+(cfg&&!YR.busy?'':' disabled')+'>Odaya Gir</button>'+yrErr()+'</div>';

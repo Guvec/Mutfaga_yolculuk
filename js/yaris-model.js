@@ -13,7 +13,8 @@
  function validCode(c){return /^[A-Z0-9]{3,10}$/.test(c);}
  /* Sıralamada yalnız ilk ad görünür. */
  function firstName(s){return String(s||'').trim().split(/\s+/)[0].slice(0,16);}
- function validNick(s){return typeof s==='string'&&/^[\p{L}\p{N}_-]{1,16}$/u.test(s.trim());}
+ function cleanNick(s){return String(s||'').replace(/\s+/g,' ').trim().slice(0,40);}
+ function validNick(s){if(typeof s!=='string')return false;const t=s.replace(/\s+/g,' ').trim();return t.length>=1&&t.length<=40&&!/[<>\u0000-\u001f]/.test(t);}
  function uniq(a){return Array.from(new Set(a));}
  function finalize(base,choicesText,correctText,rng,extra){
   const order=shuffle(choicesText,rng),ids=['A','B','C','D'];
@@ -90,6 +91,6 @@
  /* Kalan turlarda geri gelinemeyecek kadar öndeyse maç biter. */
  function duDecided(sc,played,total){const left=total-played;return Math.abs(sc[0]-sc[1])>left||played>=total;}
  function duResult(sc){return sc[0]>sc[1]?'win':sc[0]<sc[1]?'lose':'draw';}
- const api={labels,LIMITS,SEC_CHOICES,N_DEFAULT,MATCH_CHOICES,seeded,shuffle,slug,validCode,firstName,validNick,buildQuestions,seedFor,taskLabel,ranks,duWho,duScore,duDecided,duResult};
+ const api={labels,LIMITS,SEC_CHOICES,N_DEFAULT,MATCH_CHOICES,seeded,shuffle,slug,validCode,firstName,cleanNick,validNick,buildQuestions,seedFor,taskLabel,ranks,duWho,duScore,duDecided,duResult};
  root.YarisModel=api;if(typeof module!=='undefined'&&module.exports)module.exports=api;
 })(typeof window!=='undefined'?window:globalThis);

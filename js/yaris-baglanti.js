@@ -15,7 +15,7 @@
     this.sdk={...app,...auth,...db};const fb=this.sdk;
     const inst=fb.initializeApp(this.config,'mesleki-yaris');this.auth=fb.getAuth(inst);this.db=fb.getFirestore(inst);
     if(this.config.projectId.startsWith('demo-')&&['localhost','127.0.0.1'].includes(location.hostname)){fb.connectAuthEmulator(this.auth,'http://127.0.0.1:9099',{disableWarnings:true});fb.connectFirestoreEmulator(this.db,'127.0.0.1',8080);}
-    await fb.setPersistence(this.auth,fb.browserSessionPersistence);await this.auth.authStateReady();
+    await fb.setPersistence(this.auth,fb.browserLocalPersistence);await this.auth.authStateReady();
     if(!this.auth.currentUser)await fb.signInAnonymously(this.auth);this.uid=this.auth.currentUser.uid;return this;
    })();try{return await this.loading;}catch(e){this.loading=null;throw e;}
   }

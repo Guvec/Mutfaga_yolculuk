@@ -27,8 +27,8 @@ function rkBoard(id){return RK_BOARDS.find(b=>b.id===id)||null;}
 function rkWeekNo(ms){return Math.floor(((ms||Date.now())+10800000+259200000)/604800000);}
 function rkWeekLabel(w){const start=w*604800000-259200000,d=ms=>{const x=new Date(ms);return pad(x.getUTCDate())+'.'+pad(x.getUTCMonth()+1)+'.'+x.getUTCFullYear();};return d(start)+' – '+d(start+6*86400000);}
 function rkTable(boardId,period,w){return RK_TERM+'~'+boardId+'~'+(period==='genel'?'genel':'w'+(w||rkWeekNo()));}
-/* Sıralamada yalnız ilk ad görünür; soyadı ve sonrası sunucuya gitmez. */
-function rkName(n){return String(n||'').trim().split(/\s+/)[0].slice(0,16);}
+/* Sıralamada yalnız oyun adı (hazır karakter) görünür; gerçek ad tutulmaz. */
+function rkName(n){return String(n||'').trim().replace(/\s+/g,' ').slice(0,40);}
 function rkRandomId(){const c='abcdefghijklmnopqrstuvwxyz0123456789',b=crypto.getRandomValues(new Uint8Array(20));return Array.from(b,x=>c[x%c.length]).join('');}
 function rkIds(){return ls('rk_ids',{});}
 function rkPid(name,create){const m=rkIds();if(!m[name]&&create){m[name]=rkRandomId();lsSet('rk_ids',m);}return m[name]||null;}

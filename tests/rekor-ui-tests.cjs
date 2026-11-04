@@ -139,10 +139,10 @@ const FAKE=`window.REKOR_FAKE=(()=>{const prof={},rows={};let uid='u-cihaz';cons
   const pz=await page.evaluate(()=>({s:st.sess.s,head:st.lastRes&&st.lastRes.head}));assert.equal(pz.s,0);
   const ph=await page.evaluate(()=>{pickProfile('Başka Kişi');return rkTekrarHTML();});assert.equal(ph,'');ok('Tekrar turu puan yazmıyor; başka profilde eski tekrar düğmesi çıkmıyor');
   const kvt=await page.evaluate(()=>{pickProfile('Ali');st.subject='kuver';st.op='kur';st.lvl=3;startSession();st.sess.qs.push({prompt:'su_bardagi',r:0});st.sess.practice='check';rkPekFromAssessment(rkPid('Ali',true));return RK.tk;});assert.equal(kvt,null);ok('Kuverde "Birlikte tekrar edelim" düğmesi çıkmıyor');
-  const qn=await page.evaluate(()=>{const pid=rkPid('Ali',true);lsSet('rk_queue',[]);const p=rkProf(pid);return rkName('Ali Veli Yılmaz');});assert.equal(qn,'Ali');ok('Gönderim anında ad yeniden ilk ada indiriliyor');
+  const qn=await page.evaluate(()=>{const pid=rkPid('Ali',true);lsSet('rk_queue',[]);const p=rkProf(pid);return rkName('🦊  Kurnaz Tilki #482');});assert.equal(qn,'🦊 Kurnaz Tilki #482');ok('Gönderimde oyun adı (karakter) olduğu gibi gider, boşluklar düzenlenir');
   // Sıralamada yalnız ilk ad; ilk sonuçtan önce açıklama; ana sayfada sıralama düğmesi.
-  const fn=await page.evaluate(()=>[rkName('Ali Veli'),rkName('  Ayşe   Nur Kaya '),rkName('Fatih'),rkName(''),rkName('Abcdefghijklmnopqrstuvwxyz Soyad')]);
-  assert.deepEqual(fn,['Ali','Ayşe','Fatih','','Abcdefghijklmnop']);ok('Sıralamaya yalnız ilk ad gider');
+  const fn=await page.evaluate(()=>[rkName('🐼 Cesur Panda'),rkName('  🦁   Kral Aslan '),rkName(''),rkName('A'.repeat(50))]);
+  assert.deepEqual(fn,['🐼 Cesur Panda','🦁 Kral Aslan','','A'.repeat(40)]);ok('Sıralamaya oyun adı gider, 40 karakterle sınırlı');
   const first=await page.evaluate(()=>{lsSet('rk_prof',{});lsSet('profiles',['Yeni Kişi']);pickProfile('Yeni Kişi');st.subject='baharat';st.op='match';st.contentSet=1;go('boardmode');return document.getElementById('app').textContent;});
   assert(first.includes('Sıralamada yalnız adın görünür'));ok('İlk sonuçtan önce sıralama açıklaması görünüyor');
   await page.evaluate(()=>{go('home');});assert(await page.getByRole('button',{name:'Rekorlarım ve Sıralama'}).isVisible());await page.getByRole('button',{name:'Rekorlarım ve Sıralama'}).click();assert((await page.textContent('#app')).includes('Sıralamada görünme'));ok('Ana sayfadaki düğme Rekorlarım ekranını açıyor');
