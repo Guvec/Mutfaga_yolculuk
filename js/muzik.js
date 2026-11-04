@@ -35,6 +35,10 @@ var MUZIK=(function(){
    if((goruldu&&!konusuyor&&sure>400)||(!goruldu&&sure>3000)||sure>15000){clearInterval(konusmaTakip);konusmaTakip=null;cal();}
   },250);
  }
+ /* Efekt sesi çalarken müzik durur, efekt bitince kaldığı yerden devam eder. */
+ var efektDurdurdu=false;
+ function efektIcinDuraklat(){if(!acikMi()||!audio||audio.paused)return;efektDurdurdu=true;durdur();}
+ function efektBitti(){if(!efektDurdurdu)return;efektDurdurdu=false;if(!konusmaTakip)cal();}
  /* Bir kereye mahsus sıfırlama: eski sürümlerden kalan "müzik açık" tercihi sesli okumayı kapatıyordu.
     Herkes müzik kapalı, sesli okuma açık başlar; müziği öğrenci isterse kendisi açar. */
  try{
@@ -57,7 +61,7 @@ var MUZIK=(function(){
  function ilkDokunus(){document.removeEventListener('pointerdown',ilkDokunus,true);document.removeEventListener('keydown',ilkDokunus,true);cal();}
  document.addEventListener('pointerdown',ilkDokunus,true);document.addEventListener('keydown',ilkDokunus,true);
  document.addEventListener('visibilitychange',function(){if(document.hidden)durdur();else if(audio&&!konusmaTakip)cal();});
- return {acikMi:acikMi,ac:ac,kapat:kapat,cal:cal,okumaIcinDuraklat:okumaIcinDuraklat,etiketleriYenile:etiketleriYenile};
+ return {acikMi:acikMi,ac:ac,kapat:kapat,cal:cal,okumaIcinDuraklat:okumaIcinDuraklat,efektIcinDuraklat:efektIcinDuraklat,efektBitti:efektBitti,etiketleriYenile:etiketleriYenile};
 })();
 
 function muzikDugme(){return '<button type="button" class="muzik-ac" aria-pressed="'+MUZIK.acikMi()+'" onclick="muzikAcKapa()">Müzik: '+(MUZIK.acikMi()?'Açık':'Kapalı')+'</button>';}

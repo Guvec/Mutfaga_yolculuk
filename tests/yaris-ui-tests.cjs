@@ -35,7 +35,7 @@ const hub={rooms:{},n:0,ops:{
   await c.exposeFunction('__hub',async(op,...a)=>{try{return hub.ops[op](...a);}catch(e){throw new Error(e.message);}});
   await c.route('**/js/yaris-baglanti.js',r=>r.fulfill({contentType:'text/javascript',body:MOCK}));
   await c.route('**/js/yaris-ayar.js',r=>r.fulfill({contentType:'text/javascript',body:'window.YARIS_FIREBASE_CONFIG={projectId:"demo-test",apiKey:"demo"};'}));
-  const p=await c.newPage();p.on('pageerror',e=>errors.push(e.message));p.on('console',m=>{if(m.type()==='error'&&!/Failed to load resource/.test(m.text()))errors.push(m.text());});
+  const p=await c.newPage();await p.addInitScript(()=>{try{sessionStorage.setItem('mesleki-ses-secim','1');}catch(e){}});p.on('pageerror',e=>errors.push(e.message));p.on('console',m=>{if(m.type()==='error'&&!/Failed to load resource/.test(m.text()))errors.push(m.text());});
   await p.goto(url+'/'+query);await p.waitForFunction(()=>typeof yrOpen==='function'&&CONTENT.baharat&&CONTENT['mutfak-araclari']);await p.evaluate(()=>{const o=duResolve;duResolve=function(){o();(window.__ws=window.__ws||[]).push([DU.m,DU.k,DU.w]);};});return p;
  }
  const text=p=>p.locator('#app').innerText();

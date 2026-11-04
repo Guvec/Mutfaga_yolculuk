@@ -299,7 +299,7 @@ function rkRecordsHTML(){
 function rkOpenBoard(id){
  const pid=st.prof?rkPid(st.prof):null,mine=pid?(rkBestAll()[pid]||{}):{};
  const last=Object.entries(mine).sort((a,b)=>String(b[1].lastAt).localeCompare(String(a[1].lastAt)))[0];
- RK.view.board=id||RK.view.board||(last&&last[0])||'bh-e1';RK.view.rows=null;RK.view.state='idle';RK.view.err='';go('siralama');rkLoadRows();
+ RK.view.board=id||RK.view.board||(last&&last[0])||'bh-e1';RK.view.rows=null;RK.view.state='idle';RK.view.err='';RK.view.crown=true;go('siralama');rkLoadRows();
 }
 function rkPickSubject(sub){const b=RK_BOARDS.find(x=>x.subject===sub);if(b)rkOpenBoard(b.id);}
 function rkPickPeriod(p){RK.view.period=p;RK.view.rows=null;render();rkLoadRows();}
@@ -308,7 +308,7 @@ async function rkLoadRows(){
  v.state='loading';render();
  try{const be=rkBackend();if(!be)throw Error('NO_CONFIG');const rows=await be.list(rkTable(v.board,v.period==='genel'?'genel':'hafta'));if(v.board+'|'+v.period!==key)return;v.rows=rows;v.state='ready';}
  catch(e){if(v.board+'|'+v.period!==key)return;v.state='error';v.err=rkErrCode(e)==='NO_CONFIG'?'Sıralama bağlantısı ayarlanmadı.':'Sıralamaya şu anda ulaşılamadı.';}
- if(st.screen==='siralama')render();
+ if(st.screen==='siralama'){render();if(v.crown&&v.state==='ready'&&v.period==='hafta'){v.crown=false;rkCrownShow(v.rows);}}
 }
 function rkBoardHTML(){
  const v=RK.view,b=rkBoard(v.board)||RK_BOARDS[0],pid=st.prof&&!st.guest?rkPid(st.prof):null;
@@ -322,9 +322,22 @@ function rkBoardHTML(){
  if(v.state==='error')return h+'<p class="card" role="alert">'+esc(v.err)+'</p><button class="btn" onclick="rkLoadRows()">Yeniden dene</button></div>';
  const rows=rkSorted(v.rows||[]);if(!rows.length)return h+'<p class="card">Bu listede henüz sonuç yok. Uyguluyorum bölümünü bitiren ilk kişi sen olabilirsin.</p></div>';
  let shown=rows;const big=rows.length>100;if(big){shown=rows.slice(0,50);const me=rows.find(r=>r.pid===pid);if(me&&!shown.includes(me))shown=shown.concat([me]);}
- h+='<ol class="rk-rows">';shown.forEach(r=>{const rank=rows.filter(x=>x.correct>r.correct).length+1,me=r.pid===pid;h+='<li class="rk-row'+(me?' rk-me':'')+'"><span class="rk-rank">'+rank+'.</span><span class="rk-name">'+esc(r.name)+(me?' <b>(sen)</b>':'')+'</span><span class="rk-score">'+r.correct+' / '+b.total+'</span></li>';});
+ h+='<ol class="rk-rows">';shown.forEach(r=>{const rank=rows.filter(x=>x.correct>r.correct).length+1,me=r.pid===pid;h+='<li class="rk-row'+(me?' rk-me':'')+'"><span class="rk-rank">'+rank+'.</span><span class="rk-name">'+(rank===1&&v.period==='hafta'?'<span class="rk-crown" role="img" aria-label="Haftanın birincisi">👑</span>':'')+esc(r.name)+(me?' <b>(sen)</b>':'')+'</span><span class="rk-score">'+r.correct+' / '+b.total+'</span></li>';});
  h+='</ol>'+(big?'<p class="note">İlk 50 sonuç ve senin sıran gösteriliyor.</p>':'')+'</div>';
  return h;
+}
+/* Sıralamaya her girişte haftanın birincisinin adı ortada taç animasyonuyla gösterilir. */
+function rkCrownNames(rows){
+ const r=rkSorted(rows||[]);if(!r.length)return [];const top=r[0].correct;return r.filter(x=>x.correct===top).map(x=>x.name);
+}
+function rkCrownShow(rows){
+ const names=rkCrownNames(rows);if(!names.length)return;
+ const old=document.getElementById('rkCrown');if(old)old.remove();
+ const shown=names.slice(0,3).map(esc).join(', ')+(names.length>3?' +'+(names.length-3):'');
+ const d=document.createElement('div');d.id='rkCrown';d.className='rk-crownbox';d.setAttribute('role','status');d.setAttribute('aria-live','polite');
+ d.innerHTML='<div class="rk-crowncard"><div class="rk-bigcrown" aria-hidden="true">👑</div><p class="rk-cl">Haftanın birincisi</p><p class="rk-cn">'+shown+'</p><p class="rk-ch">Kapatmak için dokun</p></div>';
+ const kapat=()=>{clearTimeout(d._t);d.remove();};d.onclick=kapat;d._t=setTimeout(kapat,4000);
+ document.body.appendChild(d);
 }
 function rkBannerHTML(){
  const m=RK.msg;if(!m||!st.sess||m.sess!==st.sess.id)return '';

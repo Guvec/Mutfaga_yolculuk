@@ -28,3 +28,14 @@ html[data-theme=dark] :is(.rk-rec,.rk-row,.rk-pick select){background:var(--surf
 html[data-theme=dark] .rk-row.rk-me{background:var(--teal2);border:2px solid var(--teal)}
 html[data-theme=dark] .rk-rank,html[data-theme=sepia] .rk-rank{color:var(--teal)}
 html[data-theme=dark] .rk-banner.rk-new{background:#1d3b2c;border-left-color:#6fcf97}
+
+.rk-crown{margin-right:4px}
+.rk-crownbox{position:fixed;inset:0;z-index:60;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.45);animation:rkFade .3s}
+.rk-crowncard{background:var(--surface,#fff);color:var(--navy,#123);border-radius:20px;padding:24px 32px;text-align:center;max-width:86vw;box-shadow:0 8px 30px rgba(0,0,0,.35);animation:rkPop .6s cubic-bezier(.2,1.4,.4,1)}
+.rk-bigcrown{font-size:72px;line-height:1;animation:rkDrop .8s ease-out}
+.rk-cl{margin:8px 0 0;font-size:16px}
+.rk-cn{margin:4px 0;font-size:28px;font-weight:700;overflow-wrap:anywhere}
+.rk-ch{margin:8px 0 0;font-size:13px;opacity:.7}
+@keyframes rkFade{from{opacity:0}to{opacity:1}}
+@keyframes rkPop{from{transform:scale(.6)}to{transform:scale(1)}}
+@keyframes rkDrop{from{transform:translateY(-60px) rotate(-12deg);opacity:0}to{transform:none;opacity:1}}

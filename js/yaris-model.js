@@ -5,7 +5,7 @@
  'use strict';
  const labels={baharat:'Baharatlar','mutfak-araclari':'Mutfak Araçları','bulasik-makinesi-temizligi':'Bulaşık Yıkama ve Atık Yönetimi',kuver:'Kuver'};
  const LIMITS={race:{min:2,max:8},duel:{min:2,max:2}};
- const SEC_CHOICES=[15,20,30],N_DEFAULT=10;
+ const SEC_CHOICES=[15,20,30],N_DEFAULT=10,MATCH_CHOICES=[{n:5,name:'Kısa maç',note:'5 soru'},{n:10,name:'Uzun maç',note:'10 soru'}];
  function seeded(seed){let a=seed>>>0;return ()=>{a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return ((t^t>>>14)>>>0)/4294967296;};}
  function shuffle(a,rng){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(rng()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
  /* Oda kodu: büyük harf ve rakam, Türkçe harfler sadeleşir. */
@@ -90,6 +90,6 @@
  /* Kalan turlarda geri gelinemeyecek kadar öndeyse maç biter. */
  function duDecided(sc,played,total){const left=total-played;return Math.abs(sc[0]-sc[1])>left||played>=total;}
  function duResult(sc){return sc[0]>sc[1]?'win':sc[0]<sc[1]?'lose':'draw';}
- const api={labels,LIMITS,SEC_CHOICES,N_DEFAULT,seeded,shuffle,slug,validCode,firstName,validNick,buildQuestions,seedFor,taskLabel,ranks,duWho,duScore,duDecided,duResult};
+ const api={labels,LIMITS,SEC_CHOICES,N_DEFAULT,MATCH_CHOICES,seeded,shuffle,slug,validCode,firstName,validNick,buildQuestions,seedFor,taskLabel,ranks,duWho,duScore,duDecided,duResult};
  root.YarisModel=api;if(typeof module!=='undefined'&&module.exports)module.exports=api;
 })(typeof window!=='undefined'?window:globalThis);
