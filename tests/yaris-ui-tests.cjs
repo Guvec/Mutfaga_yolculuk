@@ -136,6 +136,7 @@ const hub={rooms:{},n:0,ops:{
   assert.equal(await d1.evaluate(()=>DU.m),1);assert.deepEqual(await d1.evaluate(()=>DU.sc),[0,0]);assert.notEqual(await d1.evaluate(()=>YR.qs.map(q=>q.id).join()),before);
   // rakip çıkınca diğeri kazanır
   await d2.evaluate(()=>yrLeaveNow());await d1.waitForFunction(()=>st.screen==='dover'&&DU.left,null,{timeout:25000});assert((await text(d1)).includes('Rakip ayrıldı'));
+  assert.equal(await d1.evaluate(()=>DU.result),'win','rakip bilerek çıkınca maç kazanılır');assert((await text(d1)).includes('maçı sen kazandın'));
   // ---- 5) Sürüm farkı ve kod çakışması ----
   const v1=await phone(390),v2=await phone(390);const vcode=await createRoom(v1,'Eda','race',{subject:'Baharatlar',set:3});
   await v2.evaluate(()=>{CONTENT.baharat.revision='farkli-surum';});await joinRoom(v2,'Efe',vcode).catch(()=>{});

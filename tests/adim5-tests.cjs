@@ -47,6 +47,12 @@ const {chromium}=require('playwright'),http=require('http'),fs=require('fs'),pat
   return {ph0,ph1,win};
  });
  assert.strictEqual(w.ph0,'wait');assert.strictEqual(w.ph1,'res','2 sn sonra tur sonuçlanır');assert.strictEqual(w.win,'u1','doğru bilen puanı alır');
+ /* 6) Er Meydanı: biri oyundan çıkarsa tur kalanlarla sonuçlanır ve çıkan oyuncu etiketle görünür */
+ const lv=await p.evaluate(()=>{
+  const now=Date.now();YR.players=[{uid:'u1',nick:'A',rid:5},{uid:'u2',nick:'B',rid:5,r:[4000],done:false},{uid:'u3',nick:'C',rid:5,r:[],done:true}];YR.seen={u2:now,u3:now};
+  AR={k:0,total:5,myR:[2500],win:[],sc:{},ph:'wait',over:false,quit:false,to:null,lim:20000,t0:0,pick:null,why:'ok',res:null,final:null};
+  arSync();const r={ph:AR.ph,win:AR.win[0]&&AR.win[0].uid,html:arScoreHTML()};clearTimeout(AR.to);return r;});
+ assert.strictEqual(lv.ph,'res','çıkan oyuncu beklenmez');assert.strictEqual(lv.win,'u1');assert(/oyundan çıktı/.test(lv.html),'çıkan oyuncu etiketi');
  assert.deepStrictEqual(errs,[],'JS hatası yok: '+errs.join('|'));
  console.log('adim5-tests geçti');await br.close();srv.close();
 })().catch(e=>{console.error(e);process.exit(1);});

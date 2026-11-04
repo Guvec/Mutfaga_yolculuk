@@ -242,7 +242,7 @@ function duWrite(){
 function duBeat(){
  if(!DU||DU.over||DU.left)return;
  const o=duOpp(),seen=o&&YR.seen[o.uid];
- if(DU.k>=0&&(!o||o.done||(seen&&Date.now()-seen>45000)))duLeft();
+ if(DU.k>=0&&(!o||o.done||(seen&&Date.now()-seen>45000)))duLeft(!!(o&&o.done));
 }
 function duRound(k){
  if(!DU||DU.over)return;
@@ -279,7 +279,7 @@ function duMine(v,why){
 function duSync(){
  if(!DU)return;
  {const o0=duOpp();if(o0){DU.onick=o0.nick;DU.oid=o0.uid;}}
- if(!DU.over&&!DU.left&&DU.k>=0){const o=duOpp();if(o&&o.done){duLeft();return;}}
+ if(!DU.over&&!DU.left&&DU.k>=0){const o=duOpp();if(o&&o.done){duLeft(true);return;}}
  if(DU.ph==='wait'){const ob=duOppR();if(ob&&ob[DU.k]!==undefined&&ob[DU.k]!==null)duResolve();}
  if(DU.over&&st.screen==='dover')duOverSync();
 }
@@ -293,14 +293,15 @@ function duResolve(){
 }
 function duEnd(){
  if(!DU||DU.over)return;DU.over=true;DU.ph='over';if(DU.to){clearTimeout(DU.to);DU.to=null;}if(DU.fto){clearTimeout(DU.fto);DU.fto=null;}if(YR.tm){clearInterval(YR.tm);YR.tm=null;}
- DU.result=DU.left?'left':YarisModel.duResult(DU.sc);
+ DU.result=DU.left?(DU.forfeit?'win':'left'):YarisModel.duResult(DU.sc);
  /* Maç sonu: kısa ses efekti ve (sesli okuma açıksa) sonuç cümlesi. */
- DU.rapor=sonucUret('1’e 1 Kapışma',yrLabel(YR.room),['kapisma',YR.room.subject,YR.room.kind,YR.room.set,YR.room.n].join('|'),DU.myR.filter(v=>v!==undefined&&v!==null).map(v=>({ok:v>0,ms:Math.abs(v)})),{win:'Kazandın!',lose:'Bu maçı kaybettin',draw:'Berabere',left:'Rakip ayrıldı'}[DU.result]||'');
+ DU.rapor=sonucUret('1’e 1 Kapışma',yrLabel(YR.room),['kapisma',YR.room.subject,YR.room.kind,YR.room.set,YR.room.n].join('|'),DU.myR.filter(v=>v!==undefined&&v!==null).map(v=>({ok:v>0,ms:Math.abs(v)})),{win:DU.forfeit?'Rakip oyundan çıktı':'Kazandın!',lose:'Bu maçı kaybettin',draw:'Berabere',left:'Rakip ayrıldı'}[DU.result]||'');
  if(typeof EFEKT!=='undefined'){const es={win:'win',lose:'kayip',draw:'bera'}[DU.result];if(DU.result==='win'&&DU.rapor.durum==='yeni')EFEKT.cal('rekor');else if(es)EFEKT.cal(es);}
- if(typeof sesSoyle==='function'){const sm={win:'Kazandın! Tebrikler.',lose:'İyi mücadele! Rövanşta sen kazanabilirsin.',draw:'Berabere! İkiniz de iyi oynadınız.',left:'Rakip ayrıldı. Bu maçın sonucu sayılmadı.'}[DU.result];if(sm)sesSoyle(sm);}
+ if(typeof sesSoyle==='function'){const sm={win:DU.forfeit?'Rakip oyundan çıktı. Maçı sen kazandın.':'Kazandın! Tebrikler.',lose:'İyi mücadele! Rövanşta sen kazanabilirsin.',draw:'Berabere! İkiniz de iyi oynadınız.',left:'Rakip ayrıldı. Bu maçın sonucu sayılmadı.'}[DU.result];if(sm)sesSoyle(sm);}
  duWrite();if(typeof oduKazan==='function')oduKazan('kapisma',DU.result);if(DU.result==='win'&&typeof rkWinAdd==='function')rkWinAdd('oy-kapisma',1);st.screen='dover';render();window.scrollTo(0,0);
 }
-function duLeft(){if(!DU||DU.over)return;DU.left=true;duEnd();}
+/* Rakip oyundan bilerek çıktıysa (quit) maçı sen kazanırsın; bağlantısı koptuysa sonuç sayılmaz. */
+function duLeft(quit){if(!DU||DU.over)return;DU.left=true;DU.forfeit=!!quit;duEnd();}
 function duRematch(){if(!DU||!DU.over||DU.want||DU.left)return;DU.want=true;duWrite();render();duOverSync();}
 function duOverSync(){
  if(!DU||!DU.want||DU.go2)return;const o=duOpp();
@@ -381,7 +382,7 @@ function duScoreHTML(){
  const me=DU.sc[0],op=DU.sc[1];
  return '<div class="yr-duel"><div class="yr-side'+(DU.w===1&&DU.ph==='res'?' hit':'')+'"><small>'+esc(YR.nick)+'</small><b>'+me+'</b></div><div class="yr-vs">⚔️<small>'+(DU.k+1>0?Math.min(DU.k+1,DU.total):0)+'/'+DU.total+'</small></div><div class="yr-side'+(DU.w===2&&DU.ph==='res'?' hit':'')+'"><small>'+esc(DU.onick)+'</small><b>'+op+'</b></div></div>';
 }
-function duIntroHTML(){return '<div class="yr-full"><div class="yr-vsline"><span>🙂 '+esc(YR.nick)+'</span><span>⚔️</span><span>'+esc(DU?DU.onick:'Rakip')+' 🙂</span></div><p>'+esc(yrLabel(YR.room))+' · '+(DU?DU.total:YR.room.n)+' soru</p><div class="yr-big" id="yrHeading" tabindex="-1" role="status">'+Math.max(1,YR.count)+'</div><p>Önce doğru basan puanı alır. Hazır ol!</p></div>';}
+function duIntroHTML(){return '<div class="yr-full"><div class="yr-vsline"><span>🙂 '+esc(YR.nick)+'</span><span>⚔️</span><span>'+esc(DU?DU.onick:'Rakip')+' 🙂</span></div><p>'+esc(yrLabel(YR.room))+' · '+(DU?DU.total:YR.room.n)+' soru</p><div class="yr-big" id="yrHeading" tabindex="-1" role="status">'+Math.max(1,YR.count)+'</div><p>Önce doğru basan puanı alır. Rakibin yetişemeyeceği kadar öne geçen maçı kazanır.</p><p>Hazır ol!</p></div>';}
 function duPlayHTML(){
  const q=YR.qs[DU.k],asking=DU.ph==='q',res=DU.ph==='res';
  let h=yrTop('Kapışma')+'<div class="wrap">'+yrWarnHTML()+duScoreHTML()+'<p class="yr-prog" id="yrHeading" tabindex="-1">Soru '+(DU.k+1)+' / '+DU.total+'</p>';
@@ -397,7 +398,7 @@ function duPlayHTML(){
 }
 function duOverHTML(){
  const r=DU.result,t=r==='left'?'Rakip ayrıldı ya da bağlantısı koptu. Bu maçın sonucu sayılmadı.':r==='win'?'🏆 Kazandın!':r==='lose'?'İyi mücadele! 💪':'Berabere! İkiniz de iyi oynadınız.',o=duOpp();
- let sub=r==='win'?'Tebrikler, '+esc(YR.nick)+'!':r==='lose'?'Rövanşta sen kazanabilirsin!':'Rövanş oynayabilirsiniz.';
+ let sub=DU.forfeit?'Rakip oyundan çıktı, maçı sen kazandın.':r==='win'?'Tebrikler, '+esc(YR.nick)+'!':r==='lose'?'Rövanşta sen kazanabilirsin!':'Rövanş oynayabilirsiniz.';
  let h=yrTop('Kapışma bitti')+'<div class="wrap" style="text-align:center">'+yrWarnHTML()+'<h1 id="yrHeading" tabindex="-1">'+t+'</h1>'+duScoreHTML()+'<p class="sub">'+sub+'</p>'+(DU.rapor?sonucGoster(DU.rapor):'');
  if(DU.left||!o||o.done)h+='<p class="sub">Rakip ayrıldı.</p>';
  else if(DU.want)h+='<button class="btn" disabled>⏳ '+esc(DU.onick)+' bekleniyor…</button>';

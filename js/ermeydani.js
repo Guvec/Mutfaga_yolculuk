@@ -91,7 +91,7 @@ function arBeat(){
 /* ---------- ekranlar ---------- */
 function arScoreHTML(){
  const r=arRanks();
- return '<ul class="yr-rank ar-rank" aria-label="Puanlar">'+r.map(p=>'<li class="yr-row'+(p.uid===yrMe()?' me':'')+(AR.res&&AR.res.uid===p.uid?' hit':'')+'"><span class="yr-rk">'+p.rank+'.</span><span class="yr-nm">'+esc(p.nick)+(p.uid===yrMe()?' (Sen)':'')+(arGone(p)?' 📶':'')+'</span><span class="yr-sc">'+p.ok+' puan</span></li>').join('')+'</ul>';
+ return '<ul class="yr-rank ar-rank" aria-label="Puanlar">'+r.map(p=>'<li class="yr-row'+(p.uid===yrMe()?' me':'')+(AR.res&&AR.res.uid===p.uid?' hit':'')+'"><span class="yr-rk">'+p.rank+'.</span><span class="yr-nm">'+esc(p.nick)+(p.uid===yrMe()?' (Sen)':'')+(arGone(p)?(p.done?' · oyundan çıktı':' 📶'):'')+'</span><span class="yr-sc">'+p.ok+' puan</span></li>').join('')+'</ul>';
 }
 function arIntroHTML(){return '<div class="yr-full"><p>'+esc(yrLabel(YR.room))+' · '+(AR?AR.total:YR.room.n)+' soru</p><h1>⚔️ Er Meydanı</h1><div class="yr-big" id="yrHeading" tabindex="-1" role="status">'+Math.max(1,YR.count)+'</div><p>Önce doğru basan puanı alır. Hazır ol!</p></div>';}
 function arPlayHTML(){
