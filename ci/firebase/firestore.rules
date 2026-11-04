@@ -99,7 +99,7 @@ service cloud.firestore {
 
    match /players/{uid} {
     function shape(d) {
-     return d.keys().hasOnly(['nick','score','ok','bad','n','tt','done','ts','rid','m','r','pr'])
+     return d.keys().hasOnly(['nick','score','ok','bad','n','tt','done','ts','rid','m','r','pr','pid'])
       && d.keys().hasAll(['nick','score','ok','bad','n','tt','done','ts','rid'])
       && d.nick is string && d.nick.size() >= 1 && d.nick.size() <= 16
       && d.score is int && d.score >= 0 && d.score <= 60
@@ -108,7 +108,8 @@ service cloud.firestore {
       && d.done is bool && d.ts is int && d.rid == room().created
       && (!('m' in d) || (d.m is int && d.m >= 0 && d.m <= 50))
       && (!('r' in d) || (d.r is list && d.r.size() <= 60))
-      && (!('pr' in d) || (d.pr is list && d.pr.size() <= 60));
+      && (!('pr' in d) || (d.pr is list && d.pr.size() <= 60))
+      && (!('pid' in d) || (yrPidOk(d.pid) && yrKimOk(uid) && get(/databases/$(database)/documents/yrKim/$(uid)).data.pid == d.pid));
     }
     allow get: if signed() && (request.auth.uid == uid || member());
     allow list: if signed() && member();
@@ -171,5 +172,109 @@ service cloud.firestore {
    allow delete: if signed() && exists(/databases/$(database)/documents/rekorProfiller/$(pid))
     && prof().owner == request.auth.uid && (prof().status in ['out','deleted'] || resource.data.gen < prof().gen);
   }
+
+  /* ---------- Arkadaşlar ve davetler (v17) ----------
+     Oyuncu kodu (pid) herkese açık bir ad kartıdır (yrKart); yalnız kodu bilen tek kartı okuyabilir, liste yok.
+     Çevrim içi bilgisi (yrDurum) yalnız sahibine ve kabul edilmiş arkadaşına açıktır.
+     Her hesap (uid) aynı anda tek aktif profil taşır (yrKim); sahiplik kuralda bu kayıttan doğrulanır. */
+  function yrPidOk(p) { return p is string && p.matches('^[A-HJ-NP-Z2-9]{7}$'); }
+  function yrKimOk(u) {
+   return exists(/databases/$(database)/documents/yrKim/$(u))
+    && exists(/databases/$(database)/documents/yrKart/$(get(/databases/$(database)/documents/yrKim/$(u)).data.pid))
+    && get(/databases/$(database)/documents/yrKart/$(get(/databases/$(database)/documents/yrKim/$(u)).data.pid)).data.owner == u;
+  }
+  function yrHasKim() { return signed() && yrKimOk(request.auth.uid); }
+  function yrMe() { return get(/databases/$(database)/documents/yrKim/$(request.auth.uid)).data.pid; }
+  function yrPair(a, b) { return a < b ? a + '_' + b : b + '_' + a; }
+  function yrFrDoc(a, b) { return /databases/$(database)/documents/yrFr/$(yrPair(a, b)); }
+  function yrBlocked(a, b) {
+   return exists(/databases/$(database)/documents/yrEngel/$(a + '_' + b)) || exists(/databases/$(database)/documents/yrEngel/$(b + '_' + a));
+  }
+  function yrFriend(p) { return yrHasKim() && exists(yrFrDoc(yrMe(), p)) && get(yrFrDoc(yrMe(), p)).data.st == 'ok'; }
+  function yrOwns(p) { return signed() && exists(/databases/$(database)/documents/yrKart/$(p)) && get(/databases/$(database)/documents/yrKart/$(p)).data.owner == request.auth.uid; }
+
+  match /yrKart/{pid} {
+   allow get: if signed() && yrPidOk(pid);
+   allow list: if false;
+   allow create: if signed() && yrPidOk(pid)
+    && request.resource.data.keys().hasOnly(['owner','nick']) && request.resource.data.keys().hasAll(['owner','nick'])
+    && request.resource.data.owner == request.auth.uid
+    && request.resource.data.nick is string && request.resource.data.nick.size() >= 1 && request.resource.data.nick.size() <= 16;
+   allow update: if signed() && resource.data.owner == request.auth.uid
+    && request.resource.data.keys().hasOnly(['owner','nick']) && request.resource.data.owner == resource.data.owner
+    && request.resource.data.nick is string && request.resource.data.nick.size() >= 1 && request.resource.data.nick.size() <= 16;
+   allow delete: if signed() && resource.data.owner == request.auth.uid;
+  }
+
+  match /yrKim/{uid} {
+   allow get: if signed() && request.auth.uid == uid;
+   allow list: if false;
+   allow create, update: if signed() && request.auth.uid == uid
+    && request.resource.data.keys().hasOnly(['pid']) && request.resource.data.keys().hasAll(['pid'])
+    && yrPidOk(request.resource.data.pid)
+    && getAfter(/databases/$(database)/documents/yrKart/$(request.resource.data.pid)).data.owner == uid;
+   allow delete: if signed() && request.auth.uid == uid;
+  }
+
+  match /yrDurum/{pid} {
+   allow get: if signed() && yrPidOk(pid) && (yrOwns(pid) || yrFriend(pid));
+   allow list: if false;
+   allow create, update: if signed() && yrOwns(pid)
+    && request.resource.data.keys().hasOnly(['seen']) && request.resource.data.keys().hasAll(['seen'])
+    && request.resource.data.seen == request.time;
+   allow delete: if signed() && yrOwns(pid);
+  }
+
+  match /yrFr/{key} {
+   function ok(d) {
+    return d.keys().hasOnly(['a','b','by','st','ts']) && d.keys().hasAll(['a','b','by','st','ts'])
+     && yrPidOk(d.a) && yrPidOk(d.b) && d.a < d.b && key == d.a + '_' + d.b
+     && (d.by == d.a || d.by == d.b) && d.st in ['p','ok'] && d.ts == request.time;
+   }
+   allow get: if yrHasKim() && (resource.data.a == yrMe() || resource.data.b == yrMe());
+   allow list: if yrHasKim() && (resource.data.a == yrMe() || resource.data.b == yrMe());
+   allow create: if yrHasKim() && ok(request.resource.data) && request.resource.data.st == 'p'
+    && request.resource.data.by == yrMe()
+    && exists(/databases/$(database)/documents/yrKart/$(request.resource.data.a))
+    && exists(/databases/$(database)/documents/yrKart/$(request.resource.data.b))
+    && !yrBlocked(request.resource.data.a, request.resource.data.b);
+   allow update: if yrHasKim() && resource.data.st == 'p' && resource.data.by != yrMe()
+    && (resource.data.a == yrMe() || resource.data.b == yrMe())
+    && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['st','ts'])
+    && request.resource.data.st == 'ok' && request.resource.data.ts == request.time
+    && !yrBlocked(resource.data.a, resource.data.b);
+   allow delete: if yrHasKim() && (resource.data.a == yrMe() || resource.data.b == yrMe());
+  }
+
+  match /yrEngel/{id} {
+   allow get, list: if yrHasKim() && resource.data.by == yrMe();
+   allow create: if yrHasKim() && request.resource.data.keys().hasOnly(['by','to']) && request.resource.data.keys().hasAll(['by','to'])
+    && request.resource.data.by == yrMe() && yrPidOk(request.resource.data.to) && request.resource.data.to != request.resource.data.by
+    && id == request.resource.data.by + '_' + request.resource.data.to;
+   allow update: if false;
+   allow delete: if yrHasKim() && resource.data.by == yrMe();
+  }
+
+  /* Davet: gönderen kendi kurduğu, henüz başlamamış odaya ve kabul edilmiş arkadaşına davet yazar. Kimlik: gönderen_alıcı_oda. */
+  match /yrDav/{id} {
+   function ok(d) {
+    return d.keys().hasOnly(['from','to','nick','code','rid','subject','mode','ts']) && d.keys().hasAll(['from','to','nick','code','rid','subject','mode','ts'])
+     && yrPidOk(d.from) && yrPidOk(d.to) && d.from != d.to && d.code is string && d.code.matches('^[A-Z0-9]{3,10}$')
+     && id == d.from + '_' + d.to + '_' + d.code
+     && d.nick is string && d.nick.size() >= 1 && d.nick.size() <= 16
+     && d.subject is string && d.subject.size() <= 30 && d.mode in ['race','duel'] && d.rid is int && d.ts == request.time;
+   }
+   allow get, list: if yrHasKim() && (resource.data.to == yrMe() || resource.data.from == yrMe());
+   allow create: if yrHasKim() && ok(request.resource.data) && request.resource.data.from == yrMe()
+    && yrFriend(request.resource.data.to) && !yrBlocked(request.resource.data.from, request.resource.data.to)
+    && exists(/databases/$(database)/documents/oyunOdalari/$(request.resource.data.code))
+    && get(/databases/$(database)/documents/oyunOdalari/$(request.resource.data.code)).data.host == request.auth.uid
+    && get(/databases/$(database)/documents/oyunOdalari/$(request.resource.data.code)).data.created == request.resource.data.rid
+    && get(/databases/$(database)/documents/oyunOdalari/$(request.resource.data.code)).data.status == 'lobby'
+    && get(/databases/$(database)/documents/oyunOdalari/$(request.resource.data.code)).data.mode == request.resource.data.mode;
+   allow update: if false;
+   allow delete: if yrHasKim() && (resource.data.to == yrMe() || resource.data.from == yrMe());
+  }
+
  }
 }
