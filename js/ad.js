@@ -49,6 +49,15 @@ function adRename(o,nw,info){
  if(st.prof===o)st.prof=nw;
  if(typeof arkRenamed==='function')arkRenamed(o,nw);
 }
+/* Karakter listesinde bir ad değiştiyse (örn. Coşkulu Trompet → Huzurlu Civciv) kayıtlı profil adı yeni ada taşınır. Yalnız telefondaki kayıtlar; internet gerekmez. */
+function adMigrate(){
+ const map=adMap();
+ profiles().slice().forEach(p=>{
+  const m=map[p];if(!m||!AD_KAR[m.e])return;
+  const nw=adMake(m.e,m.n);
+  if(nw!==p&&profiles().indexOf(nw)<0)adRename(p,nw,m);
+ });
+}
 /* Açılışta: gerçek adlı eski profillere karakter ver; silinmiş profillerin rezervasyonunu bırak. İnternet gerekir. */
 async function adSync(){
  if(AD_STATE.busy||!navigator.onLine)return;AD_STATE.busy=true;let changed=false;
@@ -147,6 +156,7 @@ function adEditHTML(){
 const AD_RENDER=render,AD_BACK=back,AD_CREATE=createProfile;
 render=function(){
  if(st.screen==='pedit'&&st.pe){document.getElementById('app').innerHTML=adEditHTML();return;}
+ adMigrate();
  AD_RENDER();
  if(st.screen==='profiles'){
   const inp=document.getElementById('pname');

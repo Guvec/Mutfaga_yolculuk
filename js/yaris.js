@@ -259,7 +259,11 @@ function duResolve(){
 }
 function duEnd(){
  if(!DU||DU.over)return;DU.over=true;DU.ph='over';if(DU.to){clearTimeout(DU.to);DU.to=null;}if(YR.tm){clearInterval(YR.tm);YR.tm=null;}
- DU.result=DU.left?'left':YarisModel.duResult(DU.sc);if(DU.result==='win'&&typeof EFEKT!=='undefined')EFEKT.cal('win');duWrite();st.screen='dover';render();window.scrollTo(0,0);
+ DU.result=DU.left?'left':YarisModel.duResult(DU.sc);
+ /* Maç sonu: kısa ses efekti ve (sesli okuma açıksa) sonuç cümlesi. */
+ if(typeof EFEKT!=='undefined'){const es={win:'win',lose:'kayip',draw:'bera'}[DU.result];if(es)EFEKT.cal(es);}
+ if(typeof sesSoyle==='function'){const sm={win:'Kazandın! Tebrikler.',lose:'İyi mücadele! Rövanşta sen kazanabilirsin.',draw:'Berabere! İkiniz de iyi oynadınız.',left:'Rakip ayrıldı. Bu maçın sonucu sayılmadı.'}[DU.result];if(sm)sesSoyle(sm);}
+ duWrite();st.screen='dover';render();window.scrollTo(0,0);
 }
 function duLeft(){if(!DU||DU.over)return;DU.left=true;duEnd();}
 function duRematch(){if(!DU||!DU.over||DU.want||DU.left)return;DU.want=true;duWrite();render();duOverSync();}
