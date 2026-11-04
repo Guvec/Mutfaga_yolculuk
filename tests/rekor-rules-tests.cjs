@@ -45,7 +45,7 @@ let n=0;const step=async(name,p)=>{await p;n++;console.log('PASS '+name);};
   await step('Negatif doğru sayısı reddedilir',assertFails(setDoc(row(a,G,pA),r({correct:-1}))));
   await step('Kesirli doğru sayısı reddedilir',assertFails(setDoc(row(a,G,pA),r({correct:10.5}))));
   await step('Boş ad reddedilir',assertFails(setDoc(row(a,G,pA),r({name:''}))));
-  await step('Ad en fazla 16 harf',assertFails(setDoc(row(a,G,pA),r({name:'A'.repeat(17)}))));
+  await step('Ad en fazla 40 karakter',assertFails(setDoc(row(a,G,pA),r({name:'A'.repeat(41)}))));
   await step('Geçen haftaya yazılamaz',assertFails(setDoc(row(a,TERM+'~bh-e1~w'+(W-1),pA),r())));
   await step('Gelecek haftaya yazılamaz',assertFails(setDoc(row(a,TERM+'~bh-e1~w'+(W+1),pA),r())));
   await step('Genel tabloya yazılır',assertSucceeds(setDoc(row(a,G,pA),r())));

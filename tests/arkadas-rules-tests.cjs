@@ -25,7 +25,7 @@ const {doc,setDoc,getDoc,getDocs,collection,query,where,updateDoc,deleteDoc,writ
   await ok(setDoc(D(U.a,'yrDurum',PA),{seen:serverTimestamp()}));
   await no(setDoc(D(U.b,'yrDurum',PA),{seen:serverTimestamp()}),'başkası yazamaz');
   await no(setDoc(D(U.a,'yrDurum',PA),{seen:new Date(0)}),'sunucu saati şart');
-  await ok(getDoc(D(U.a,'yrDurum',PA)));await no(getDoc(D(U.b,'yrDurum',PA)),'arkadaş değilken okunamaz');await no(getDoc(D(U.x,'yrDurum',PA)),'yabancı okuyamaz');
+  await ok(getDoc(D(U.a,'yrDurum',PA)));await ok(getDoc(D(U.b,'yrDurum',PA)),'giriş yapan okuyabilir (gerçek ad yok)');await no(getDoc(D(U.o,'yrDurum',PA)),'girişsiz okuyamaz');await no(getDocs(collection(U.x,'yrDurum')),'liste kapalı');
   // arkadaşlık isteği
   const K=PA+'_'+PB,fr=(o={})=>({a:PA,b:PB,by:PA,st:'p',ts:serverTimestamp(),...o});
   await no(setDoc(D(U.b,'yrFr',K),fr()),'başkası adına istek');
@@ -45,7 +45,6 @@ const {doc,setDoc,getDoc,getDocs,collection,query,where,updateDoc,deleteDoc,writ
   await no(updateDoc(D(U.b,'yrFr',K),{st:'ok',by:PB,ts:serverTimestamp()}),'kabulde başka alan değişemez');
   await ok(updateDoc(D(U.b,'yrFr',K),{st:'ok',ts:serverTimestamp()}));
   // arkadaşlar durumu görür, yabancı görmez
-  await ok(getDoc(D(U.b,'yrDurum',PA)));await no(getDoc(D(U.c,'yrDurum',PA)));
   // engelleme
   await no(setDoc(D(U.b,'yrEngel',PB+'_'+PC),{by:PA,to:PC}),'başkası adına engel');
   await ok(setDoc(D(U.b,'yrEngel',PB+'_'+PC),{by:PB,to:PC}));
@@ -75,7 +74,14 @@ const {doc,setDoc,getDoc,getDocs,collection,query,where,updateDoc,deleteDoc,writ
   // arkadaşlıktan çıkma: iki taraf da silebilir; sonra davet gitmez
   await ok(deleteDoc(D(U.a,'yrFr',K)));
   await no(setDoc(D(U.a,'yrDav',PA+'_'+PB+'_ODA11'),dv()),'arkadaşlık bitince davet gitmez');
-  await no(getDoc(D(U.b,'yrDurum',PA)),'çıkınca durum görünmez');
+  // oyun adı rezervasyonu
+  await ok(setDoc(D(U.a,'nm','12_0'),{u:'ua',t:1}));
+  await no(setDoc(D(U.b,'nm','12_0'),{u:'ub',t:1}),'alınmış ad üstüne yazılamaz');
+  await no(setDoc(D(U.b,'nm','12_5'),{u:'ua',t:1}),'başkası adına ad ayrılamaz');
+  await no(setDoc(D(U.b,'nm','abc'),{u:'ub',t:1}),'anahtar biçimi');
+  await ok(getDoc(D(U.b,'nm','12_0')));await no(getDocs(collection(U.b,'nm')),'liste kapalı');
+  await no(deleteDoc(D(U.b,'nm','12_0')),'başkası silemez');await ok(deleteDoc(D(U.a,'nm','12_0')));
+  await ok(setDoc(D(U.a,'yrKart',PA),{owner:'ua',nick:'🦊 Kurnaz Tilki #1234'}));
   // oyuncu belgesinde pid sahipliği
   const pl=(o={})=>({nick:'Ali',score:0,ok:0,bad:0,n:0,tt:0,done:false,ts:Date.now(),rid,...o});
   await ok(setDoc(D(U.a,'oyunOdalari/ODA11/players','ua'),pl({pid:PA})));

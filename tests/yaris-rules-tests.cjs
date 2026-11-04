@@ -30,7 +30,7 @@ const {doc,setDoc,getDoc,getDocs,collection,updateDoc,deleteDoc,writeBatch}=requ
   // oyuncular: kurucu ve öğrenci katılır
   await assertSucceeds(setDoc(P(H,'ABC12','host'),pl({rid:created})));
   await assertFails(setDoc(P(A,'ABC12','ayse'),pl({rid:created+1})),'yanlış rid');
-  await assertFails(setDoc(P(A,'ABC12','ayse'),pl({rid:created,nick:'Ayşe Yılmaz Kaya Uzun Soyad'})),'ad çok uzun');
+  await assertFails(setDoc(P(A,'ABC12','ayse'),pl({rid:created,nick:'A'.repeat(41)})),'ad çok uzun');
   await assertFails(setDoc(P(A,'ABC12','ayse'),pl({rid:created,ok:99})));
   await assertFails(setDoc(P(A,'ABC12','ayse'),pl({rid:created,ok:5,bad:0,n:3})),'doğru sayısı cevap sayısından çok olamaz');
   await assertFails(setDoc(P(A,'ABC12','ayse'),pl({rid:created,ok:0,bad:0,n:11})),'cevap sayısı soru sayısını aşamaz');
