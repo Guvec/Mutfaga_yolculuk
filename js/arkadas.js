@@ -123,9 +123,9 @@ function frCopy(){
 }
 function frShare(){
  const t=FR.pid; /* yalnız kod: kolayca kopyalanıp yapıştırılsın */
- if(navigator.share)navigator.share({text:t}).catch(()=>{});
- else if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(t).then(()=>adToast('Kod kopyalandı: '+t),()=>adToast(t));
- else adToast(t);
+ const cp=()=>{if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(t).then(()=>adToast('Kod kopyalandı: '+t),()=>adToast('Kodun: '+t));else adToast('Kodun: '+t);};
+ /* Paylaşma penceresi kapatılırsa (AbortError) bir şey yapılmaz; başka bir hatada kod kopyalanır. */
+ if(navigator.share)navigator.share({text:t}).catch(e=>{if(!e||e.name!=='AbortError')cp();});else cp();
 }
 function frAdd(){
  const e=document.getElementById('fr-code'),c=String(e?e.value:'').toUpperCase().replace(/[^A-Z0-9]/g,'');
@@ -234,6 +234,11 @@ render=function(){
     act.innerHTML='<button type="button" class="btn pri" data-ark="1" onclick="frOpen()">👫 Arkadaşlarım<span id="fr-badge">'+(FR.inc.length?' · '+FR.inc.length+' yeni istek':'')+'</span></button><button type="button" class="btn design-outline" onclick="tasarimOda(\'create\')">Oyun kur</button>';
     const sec=app.querySelector('.design-race');if(sec&&!document.getElementById('fr-live')){const h=frLive();sec.insertAdjacentHTML('beforebegin','<div class="card ark-live" id="fr-live"'+(h?'':' style="display:none"')+'>'+h+'</div>');}
     frEnsure().then(()=>{});
+   }
+   /* Profilsiz ya da misafir: arkadaş bölümü neden yok, nasıl açılır? */
+   if(app&&(!st.prof||st.guest)&&frOn()&&!document.getElementById('fr-info')){
+    const sec2=app.querySelector('.design-race');
+    if(sec2)sec2.insertAdjacentHTML('beforebegin','<div class="card ark-live" id="fr-info"><div class="ark-lvh">👫 Arkadaşlarla oynamak ister misin?</div><p class="sub">Arkadaş eklemek ve kimin çevrim içi olduğunu görmek için bir oyun adın olmalı. Misafir olarak arkadaş eklenemez.</p><button type="button" class="btn pri" onclick="adAuto()">Oyun adı al</button></div>');
    }
   }
   setTimeout(frInvCheck,300);

@@ -57,6 +57,6 @@ function sesSecimiSor(){
  var kapat=function(){closeModal();render();};
  document.getElementById('sesSecOku').onclick=function(){MUZIK.kapat();SES.acik=true;lsSet('ses',true);kapat();};
  document.getElementById('sesSecMuzik').onclick=function(){MUZIK.ac();kapat();};
- document.getElementById('sesSecSessiz').onclick=function(){MUZIK.kapat();SES.acik=false;lsSet('ses',false);sesSus();kapat();};
+ document.getElementById('sesSecSessiz').onclick=function(){MUZIK.kapat();SES.acik=false;lsSet('ses',false);EFEKT.ayarla(false);sesSus();kapat();};
  document.getElementById(SES.acik?'sesSecOku':MUZIK.acikMi()?'sesSecMuzik':'sesSecOku').focus();
 }

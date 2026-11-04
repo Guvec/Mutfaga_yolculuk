@@ -29,9 +29,13 @@ const kuver={LEVELS:ctx.LEVELS,ITEMS:ctx.ITEMS,IMG:ctx.IMG,PLACE_LABEL:vm.runInC
 for(const level of[1,3]){const q=m.buildQuestions(kuver,{kind:'kuver',set:level,n:10},9);check(q,'kuver '+level);assert.deepEqual(q,m.buildQuestions(kuver,{kind:'kuver',set:level,n:10},9));}
 // 3) kapışma kuralı: önce doğru basan alır
 assert.equal(m.duWho(1200,2000,true),1);assert.equal(m.duWho(2000,1200,true),2);assert.equal(m.duWho(-500,900,true),2);assert.equal(m.duWho(900,-500,false),1);assert.equal(m.duWho(-1,-2,true),0);
-assert.equal(m.duWho(1000,1000,true),1);assert.equal(m.duWho(1000,1000,false),2,'eşit sürede kurucu kazanır');
+assert.equal(m.duWho(1000,1000,true),0,'çok yakın basışta beraberlik');assert.equal(m.duWho(1000,1150,false),0);assert.equal(m.duWho(1000,1250,true),1,'200 ms farktan sonra hızlı olan alır');assert.equal(m.duWho(1250,1000,true),2);assert.equal(m.duWho(1000,-1150,true),1,'rakip yanlışsa beraberlik yok');
 assert.deepEqual(m.duScore([1000,-800,900],[1500,700,-1],true),[2,1]);assert.deepEqual(m.duScore([1000,-800],[1500],true),[1,0],'rakibin henüz yazmadığı tur sayılmaz');
 assert.equal(m.duDecided([6,0],6,10),true);assert.equal(m.duDecided([5,1],6,10),false);assert.equal(m.duDecided([5,5],10,10),true);assert.equal(m.duResult([3,3]),'draw');
+// rövanş: önceki maçın soruları sona kalır, iki telefonda aynı sıra
+{const sp={subject:'baharat',kind:'gorsel',set:1,n:5},q0=m.buildQuestions(bah,sp,m.seedFor(9,0)),ids0=q0.map(q=>q.id),q1=m.buildFresh(bah,sp,m.seedFor(9,1),ids0);
+ assert.deepEqual(q1,m.buildFresh(bah,sp,m.seedFor(9,1),ids0));assert.equal(q1.length,5);
+ const pool=bah.matches.filter(x=>x.set===1).length;assert(pool>=10?q1.every(q=>!ids0.includes(q.id)):q1.filter(q=>ids0.includes(q.id)).length<=Math.max(0,5-(pool-5)),'rövanşta yeni sorular önce gelir (havuz '+pool+')');}
 // 4) sıralama: doğru sayısı; eşitler aynı sırayı paylaşır; süre etkisiz
 const r=m.ranks([{nick:'Ali',ok:7,tt:99999},{nick:'Ayşe',ok:7,tt:1},{nick:'Can',ok:3},{nick:'Deniz',ok:9}]);
 assert.deepEqual(r.map(x=>[x.nick,x.rank]),[['Deniz',1],['Ali',2],['Ayşe',2],['Can',4]]);

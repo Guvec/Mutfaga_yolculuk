@@ -49,3 +49,4 @@
 .yr-vs{text-align:center;font-size:22px}
 .yr-vs small{display:block;font-size:13px;color:var(--muted)}
 @media(prefers-reduced-motion:no-preference){.yr-fill{transition:width .1s linear}}
+.yr-qrow{display:flex;align-items:center;gap:10px}.yr-qrow .yr-q{flex:1}.yr-qrow .spk{flex:none;margin:0}

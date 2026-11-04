@@ -59,6 +59,13 @@
   if(spec.kind==='bilgi')return textQuestions(data,n,rng);
   return imageQuestions(data,spec.set,n,rng,spec.subject);
  }
+ /* Rövanş: önceki maçlarda sorulan sorular (exclude: soru kimlikleri) sona kalır; yeni sorular önce gelir.
+    Aynı tohum ve aynı exclude her telefonda aynı sırayı üretir. Konu bitince eski sorulara dönülür. */
+ function buildFresh(data,spec,seed,exclude){
+  if(!exclude||!exclude.length)return buildQuestions(data,spec,seed);
+  const n=Math.max(1,Math.min(spec.n||N_DEFAULT,20)),all=buildQuestions(data,{...spec,n:20},seed),ex=new Set(exclude);
+  return all.filter(q=>!ex.has(q.id)).concat(all.filter(q=>ex.has(q.id))).slice(0,n);
+ }
  function seedFor(seed,match){return (seed+(match|0)*7919)>>>0;}
  function taskLabel(room,titles){
   if(!room)return '';
@@ -76,13 +83,17 @@
  }
  /* ---- 1'e 1 Kapışma ----
     Her oyuncu, tur başına bir sayı yazar: >0 doğru (ms), <0 yanlış/geç/süre, boş (undefined) henüz yanıtlamadı.
-    Önce doğru basan puanı alır; aynı milisaniyede kurucu kazanır. */
+    Önce doğru basan puanı alır; iki doğru cevap TIE_MS'den yakınsa berabere (puan yok). */
+ /* İki telefon süreyi kendi saatiyle ölçer; ağ gecikmesi birkaç yüz ms fark yaratabilir.
+    Bu yüzden iki doğru cevap TIE_MS içinde ise tur berabere sayılır: kimse puan almaz. */
+ const TIE_MS=200;
  function duWho(a,b,iAmHost){
+  if(a>0&&b>0&&Math.abs(a-b)<TIE_MS)return 0;
   if(a>0&&(!(b>0)||a<b))return 1;
   if(b>0&&(!(a>0)||b<a))return 2;
-  if(a>0&&b>0&&a===b)return iAmHost?1:2;
   return 0;
  }
+ function duTie(a,b){return a>0&&b>0&&Math.abs(a-b)<TIE_MS;}
  function duScore(mine,theirs,iAmHost){
   const n=Math.min(mine.length,(theirs||[]).length),s=[0,0];
   for(let i=0;i<n;i++){if(mine[i]===undefined||mine[i]===null||theirs[i]===undefined||theirs[i]===null)continue;const w=duWho(mine[i],theirs[i],iAmHost);if(w===1)s[0]++;else if(w===2)s[1]++;}
@@ -91,6 +102,6 @@
  /* Kalan turlarda geri gelinemeyecek kadar öndeyse maç biter. */
  function duDecided(sc,played,total){const left=total-played;return Math.abs(sc[0]-sc[1])>left||played>=total;}
  function duResult(sc){return sc[0]>sc[1]?'win':sc[0]<sc[1]?'lose':'draw';}
- const api={labels,LIMITS,SEC_CHOICES,N_DEFAULT,MATCH_CHOICES,seeded,shuffle,slug,validCode,firstName,cleanNick,validNick,buildQuestions,seedFor,taskLabel,ranks,duWho,duScore,duDecided,duResult};
+ const api={labels,LIMITS,SEC_CHOICES,N_DEFAULT,MATCH_CHOICES,seeded,shuffle,slug,validCode,firstName,cleanNick,validNick,buildQuestions,buildFresh,seedFor,TIE_MS,duTie,taskLabel,ranks,duWho,duScore,duDecided,duResult};
  root.YarisModel=api;if(typeof module!=='undefined'&&module.exports)module.exports=api;
 })(typeof window!=='undefined'?window:globalThis);
