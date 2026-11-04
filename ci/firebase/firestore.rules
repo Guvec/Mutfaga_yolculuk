@@ -89,7 +89,12 @@ service cloud.firestore {
     || (resource.data.mode == 'race' && resource.data.status == 'lobby' && resource.data.host != request.auth.uid
       && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['cnt'])
       && request.resource.data.cnt is int && request.resource.data.cnt >= 1 && request.resource.data.cnt <= 8
-      && (request.resource.data.cnt == resource.data.cnt + 1 || request.resource.data.cnt == resource.data.cnt - 1)));
+      && ((request.resource.data.cnt == resource.data.cnt + 1
+            && existsAfter(/databases/$(database)/documents/oyunOdalari/$(code)/players/$(request.auth.uid))
+            && !exists(/databases/$(database)/documents/oyunOdalari/$(code)/players/$(request.auth.uid)))
+        || (request.resource.data.cnt == resource.data.cnt - 1
+            && exists(/databases/$(database)/documents/oyunOdalari/$(code)/players/$(request.auth.uid))
+            && !existsAfter(/databases/$(database)/documents/oyunOdalari/$(code)/players/$(request.auth.uid))))));
    allow delete: if signed() && (resource.data.host == request.auth.uid || !recent(resource.data.created));
 
    match /players/{uid} {
@@ -108,7 +113,7 @@ service cloud.firestore {
     allow get: if signed() && (request.auth.uid == uid || member());
     allow list: if signed() && member();
     allow create: if signed() && request.auth.uid == uid && room().status == 'lobby'
-     && (room().mode == 'race' || room().host == uid || room().guest == uid)
+     && (room().mode == 'race' || room().host == uid || room().guest == uid || getAfter(/databases/$(database)/documents/oyunOdalari/$(code)).data.guest == uid)
      && shape(request.resource.data);
     allow update: if signed() && request.auth.uid == uid && room().status in ['lobby','playing'] && shape(request.resource.data);
     allow delete: if signed() && (request.auth.uid == uid || room().host == request.auth.uid);

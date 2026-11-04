@@ -1,6 +1,6 @@
 /* Gerçek Firestore emülatörü gerekir (CI: npm run test:rooms). firebase@10.12.2 + @firebase/rules-unit-testing@3. */
 const fs=require('fs'),path=require('path'),{initializeTestEnvironment,assertSucceeds,assertFails}=require('@firebase/rules-unit-testing');
-const {doc,setDoc,getDoc,getDocs,collection,updateDoc,deleteDoc}=require('firebase/firestore');
+const {doc,setDoc,getDoc,getDocs,collection,updateDoc,deleteDoc,writeBatch}=require('firebase/firestore');
 (async()=>{
  const rules=fs.readFileSync(path.resolve(__dirname,'../../firebase/firestore.rules'),'utf8');
  const env=await initializeTestEnvironment({projectId:'demo-mesleki-yaris',firestore:{host:'127.0.0.1',port:8080,rules}});
@@ -35,15 +35,24 @@ const {doc,setDoc,getDoc,getDocs,collection,updateDoc,deleteDoc}=require('fireba
   await assertFails(setDoc(P(A,'ABC12','ayse'),pl({rid:created,ok:5,bad:0,n:3})),'doğru sayısı cevap sayısından çok olamaz');
   await assertFails(setDoc(P(A,'ABC12','ayse'),pl({rid:created,ok:0,bad:0,n:11})),'cevap sayısı soru sayısını aşamaz');
   await assertFails(setDoc(P(A,'ABC12','can'),pl({rid:created})),'başkası adına yazamaz');
-  await assertSucceeds(setDoc(P(A,'ABC12','ayse'),pl({rid:created,nick:'Ayşe'})));
-  await assertSucceeds(setDoc(P(B,'ABC12','can'),pl({rid:created,nick:'Can'})));
+  const join=(db,uid,nick,cnt)=>{const b=writeBatch(db);b.set(P(db,'ABC12',uid),pl({rid:created,nick}));b.update(R(db,'ABC12'),{cnt});return b.commit();};
+  await assertFails(updateDoc(R(A,'ABC12'),{cnt:2}),'oyuncu kaydı olmadan sayaç artmaz');
+  await assertFails(join(A,'ayse','Ayşe',3),'sayaç tek adımdan çok artmaz');
+  await assertSucceeds(join(A,'ayse','Ayşe',2));
+  await assertSucceeds(join(B,'can','Can',3));
   // oda üyeleri listeyi okur, dışarıdaki okuyamaz
   await assertSucceeds(getDocs(collection(A,'oyunOdalari','ABC12','players')));await assertFails(getDocs(collection(C,'oyunOdalari','ABC12','players')));await assertFails(getDoc(P(C,'ABC12','ayse')));
   // kapasite sayacı: katılan bir artırır, çıkan bir azaltır, başka değişiklik yok
-  await assertFails(updateDoc(R(A,'ABC12'),{cnt:5}),'tek adımdan çok artmaz');
-  await assertFails(updateDoc(R(A,'ABC12'),{cnt:9}));
-  await assertSucceeds(updateDoc(R(A,'ABC12'),{cnt:2}));await assertSucceeds(updateDoc(R(B,'ABC12'),{cnt:3}));
+  await assertFails(updateDoc(R(C,'ABC12'),{cnt:2}),'dışarıdaki sayaç değiştiremez');
   await assertFails(updateDoc(R(A,'ABC12'),{cnt:3,n:5}));
+  {const b=writeBatch(C);b.set(P(C,'ABC12','ece'),pl({rid:created,nick:'Ece'}));b.update(R(C,'ABC12'),{cnt:4});await assertSucceeds(b.commit());}
+  {const b=writeBatch(C);b.delete(P(C,'ABC12','ece'));b.update(R(C,'ABC12'),{cnt:3});await assertSucceeds(b.commit());}
+  {const b=writeBatch(C);b.set(P(C,'ABC12','ece'),pl({rid:created,nick:'Ece'}));b.update(R(C,'ABC12'),{cnt:4});await assertSucceeds(b.commit());}
+  {const b=writeBatch(C);b.delete(P(C,'ABC12','ece'));b.update(R(C,'ABC12'),{cnt:1});await assertFails(b.commit());}
+  {const b=writeBatch(C);b.delete(P(C,'ABC12','ece'));b.update(R(C,'ABC12'),{cnt:3});await assertSucceeds(b.commit());}
+  await env.withSecurityRulesDisabled(async ctx=>setDoc(doc(ctx.firestore(),'oyunOdalari','FULL1'),room({cnt:8,created:Date.now()})));
+  {const full=(await env.withSecurityRulesDisabled(async ctx=>(await getDoc(doc(ctx.firestore(),'oyunOdalari','FULL1'))).data().created));
+   const b=writeBatch(C);b.set(P(C,'FULL1','ece'),pl({rid:full,nick:'Ece'}));b.update(R(C,'FULL1'),{cnt:9});await assertFails(b.commit(),'9. kişi girmez');}
   // başlatma: yalnız kurucu, yalnız status alanı
   await assertFails(updateDoc(R(A,'ABC12'),{status:'playing'}));await assertFails(updateDoc(R(H,'ABC12'),{status:'playing',n:5}));await assertFails(updateDoc(R(H,'ABC12'),{seed:1}));
   await assertSucceeds(updateDoc(R(H,'ABC12'),{status:'playing'}));
@@ -60,6 +69,8 @@ const {doc,setDoc,getDoc,getDocs,collection,updateDoc,deleteDoc}=require('fireba
   await assertSucceeds(updateDoc(R(A,'DUEL1'),{guest:'ayse'}));
   await assertFails(updateDoc(R(B,'DUEL1'),{guest:'can'}),'yer dolu');
   await assertFails(setDoc(P(B,'DUEL1','can'),pl({rid:c2})),'üçüncü oyuncu giremez');
+  await env.withSecurityRulesDisabled(async ctx=>setDoc(doc(ctx.firestore(),'oyunOdalari','DUEL2'),room({mode:'duel',n:6,created:Date.now()})));
+  {const c3=(await env.withSecurityRulesDisabled(async ctx=>(await getDoc(doc(ctx.firestore(),'oyunOdalari','DUEL2'))).data().created));const b=writeBatch(A);b.update(R(A,'DUEL2'),{guest:'ayse'});b.set(P(A,'DUEL2','ayse'),pl({rid:c3,nick:'Ayşe'}));await assertSucceeds(b.commit());}
   await assertSucceeds(setDoc(P(A,'DUEL1','ayse'),pl({rid:c2,nick:'Ayşe'})));
   await assertSucceeds(setDoc(P(H,'DUEL1','host'),pl({rid:c2})));
   await assertSucceeds(updateDoc(P(A,'DUEL1','ayse'),{r:[512,-1,430],m:0,ts:Date.now()}));

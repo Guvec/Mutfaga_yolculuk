@@ -41,26 +41,28 @@
   }
   async peek(code){await this.connect();const r=await this.sdk.getDoc(this.room(code));return r.exists()?r.data():null;}
   /* Odaya girer. Kapışmada ikinci kişi "guest" yerini tek işlemde alır; üçüncü kişi giremez. */
-  async join(code,nick,pdata){
+  async join(code,nick,pdata,expectCreated){
    await this.connect();const fb=this.sdk,uid=this.uid;let room;
+   /* Kapasite sayacı ile oyuncu kaydı TEK işlemde yazılır: biri başarısız olursa ikisi de yazılmaz. */
    await fb.runTransaction(this.db,async tx=>{
     const r=await tx.get(this.room(code));if(!r.exists())throw Error('Oda bulunamadı. Kodu kontrol et.');room=r.data();
     if(room.created&&Date.now()-room.created>DAY)throw Error('Bu odanın süresi dolmuş.');
-    if(room.host===uid)return;
+    if(expectCreated&&room.created!==expectCreated)throw Error('Bu oda yeniden kurulmuş. Kodu yeniden gir.');
+    const mine={...pdata,rid:room.created};
+    if(room.host===uid){tx.set(this.player(code),mine);return;}
     if(room.status!=='lobby')throw Error(room.mode==='duel'?'Kapışma başlamış, katılamazsın.':'Yarış başlamış, katılamazsın.');
     if(room.mode==='duel'){
      if(room.guest&&room.guest!==uid)throw Error('Bu kapışma dolu.');
      if(!room.guest)tx.update(this.room(code),{guest:uid});
     }else{
-     /* Oyun Odası kapasitesi: kişi sayısı odanın "cnt" alanında tutulur, katılırken tek işlemde artar. */
-     const mine=await tx.get(this.player(code));
-     if(!mine.exists()){
+     const me=await tx.get(this.player(code));
+     if(!me.exists()){
       const c=room.cnt||1;if(c>=MAX_RACE)throw Error('Bu oda dolu (en çok '+MAX_RACE+' kişi).');
       tx.update(this.room(code),{cnt:c+1});
      }
     }
+    tx.set(this.player(code),mine);
    });
-   await fb.setDoc(this.player(code),{...pdata,rid:room.created});
    return room;
   }
   async setPlayer(code,pdata){await this.sdk.setDoc(this.player(code),pdata);}

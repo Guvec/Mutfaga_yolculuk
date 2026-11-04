@@ -21,7 +21,7 @@ const hub={rooms:{},n:0,ops:{
  peek(code){const r=hub.rooms[code];return r?r.room:null;},
  create(uid,spec,wanted){const code=wanted||('R'+Math.random().toString(36).slice(2,6).toUpperCase());if(hub.rooms[code])throw Error('Bu kod kullanılıyor. Başka bir kod seç.');const room={...spec,host:uid,status:'lobby',guest:null,created:Date.now(),qv:1};if(spec.mode==='race')room.cnt=1;hub.rooms[code]={room,players:{}};return {code,room};},
  join(uid,code,nick,pd){const r=hub.rooms[code];if(!r)throw Error('Oda bulunamadı. Kodu kontrol et.');const room=r.room;if(room.host!==uid){if(room.status!=='lobby')throw Error('Yarış başlamış, katılamazsın.');if(room.mode==='duel'){if(room.guest&&room.guest!==uid)throw Error('Bu kapışma dolu.');room.guest=uid;}else if(!r.players[uid]){if((room.cnt||1)>=8)throw Error('Bu oda dolu (en çok 8 kişi).');room.cnt=(room.cnt||1)+1;}}r.players[uid]={...pd,rid:room.created};return room;},
- set(uid,code,pd){const r=hub.rooms[code];if(!r)return;r.players[uid]={...pd};},
+ set(uid,code,pd){if(hub.fail)throw Error('ağ yok');const r=hub.rooms[code];if(!r)return;r.players[uid]={...pd};},
  start(uid,code){const r=hub.rooms[code];if(r.room.host!==uid)throw Error('izin yok');r.room.status='playing';},
  leave(uid,code,lobby,host){const r=hub.rooms[code];if(!r)return;if(lobby){if(r.players[uid]&&!host&&r.room.mode==='race'&&r.room.cnt>1)r.room.cnt--;delete r.players[uid];if(host)delete hub.rooms[code];}},
  state(code){const r=hub.rooms[code];return r?{room:r.room,players:Object.entries(r.players).map(([uid,p])=>({uid,...p}))}:{room:null,players:[]};}
@@ -146,6 +146,15 @@ const hub={rooms:{},n:0,ops:{
   const extra=[];for(let i=0;i<7;i++){const x=await phone(390);await joinRoom(x,'Oyuncu'+i,ccode);extra.push(x);}
   const ninth=await phone(390);await openMenu(ninth,'Dokuz');await ninth.fill('#yrCode',ccode);await ninth.getByRole('button',{name:'Odaya Gir'}).click();await ninth.waitForFunction(()=>YR.error.length>0);assert((await text(ninth)).includes('dolu'),'9. kişi girmemeli');
   await extra[0].evaluate(()=>yrLeaveNow());await ninth.getByRole('button',{name:'Odaya Gir'}).click();await ninth.waitForFunction(()=>YR.active,null,{timeout:8000});
+  // yazma hatası: son sonuç gidemezse uyarı çıkar, bağlantı gelince yeniden gönderilir
+  {const f1=await phone(390),f2=await phone(390);const fc=await createRoom(f1,'Fatma','race',{subject:'Baharatlar',set:2});await joinRoom(f2,'Fikret',fc);
+   await f1.getByRole('button',{name:'Yarışı başlat'}).click();for(const p of [f1,f2])await p.waitForFunction(()=>st.screen==='raceplay',null,{timeout:15000});
+   for(let i=0;i<9;i++)await raceAnswer(f1,true);
+   hub.fail=true;await f1.locator('.yr-opt').nth(await correctIdx(f1)).click();await f1.waitForFunction(()=>YR.g.ph==='fb');await f1.locator('#yrNext').click();
+   await f1.waitForFunction(()=>YR.warn.length>0,null,{timeout:8000});assert((await text(f1)).includes('Bağlantı sorunu'),'yazma hatası öğrenciye gösterilmeli');
+   hub.fail=false;const uid1=await f1.evaluate(()=>YR.g&&YR.nick&&Object.keys({}).length+0===0?document.title&&0:0);
+   const t0=Date.now();let done=false;while(Date.now()-t0<30000&&!done){done=Object.values(hub.rooms[fc].players).some(p=>p.nick==='Fatma'&&p.done);if(!done)await new Promise(r=>setTimeout(r,500));}
+   assert(done,'bitiş sonucu bağlantı gelince yeniden gönderilmeli');}
   // ---- 6) Davet bağlantısı kodu getirir; kurucu çıkarsa oda kapanır ----
   const inv=await phone(390,'?oda='+vcode);assert.equal(await inv.inputValue('#yrCode'),vcode);
   await v1.evaluate(()=>yrLeave());await v1.waitForFunction(()=>!YR.active);
