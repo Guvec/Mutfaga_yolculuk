@@ -4,7 +4,7 @@
 (function(root){
  'use strict';
  const labels={baharat:'Baharatlar','mutfak-araclari':'Mutfak Araçları','bulasik-makinesi-temizligi':'Bulaşık Yıkama ve Atık Yönetimi',kuver:'Kuver'};
- const LIMITS={race:{min:2,max:8},duel:{min:2,max:2}};
+ const LIMITS={race:{min:2,max:8},duel:{min:2,max:2},arena:{min:3,max:4}};
  const SEC_CHOICES=[15,20,30],N_DEFAULT=10,MATCH_CHOICES=[{n:5,name:'Kısa maç',note:'5 soru'},{n:10,name:'Uzun maç',note:'10 soru'}];
  function seeded(seed){let a=seed>>>0;return ()=>{a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return ((t^t>>>14)>>>0)/4294967296;};}
  function shuffle(a,rng){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(rng()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
@@ -94,6 +94,14 @@
   return 0;
  }
  function duTie(a,b){return a>0&&b>0&&Math.abs(a-b)<TIE_MS;}
+ /* Er Meydanı (3–4 kişi): tur başına her oyuncunun süresi (>0 doğru ms, <0 yanlış/süre, boş: yok).
+    En hızlı doğru cevap puan alır; ilk iki doğru TIE_MS'den yakınsa kimse almaz. Dönen: kazananın dizini ya da -1. */
+ function arWho(times){
+  let best=-1,bt=Infinity,second=Infinity;
+  times.forEach((t,i)=>{if(t>0){if(t<bt){second=bt;bt=t;best=i;}else if(t<second)second=t;}});
+  if(best<0)return -1;
+  return second-bt<TIE_MS?-1:best;
+ }
  function duScore(mine,theirs,iAmHost){
   const n=Math.min(mine.length,(theirs||[]).length),s=[0,0];
   for(let i=0;i<n;i++){if(mine[i]===undefined||mine[i]===null||theirs[i]===undefined||theirs[i]===null)continue;const w=duWho(mine[i],theirs[i],iAmHost);if(w===1)s[0]++;else if(w===2)s[1]++;}
@@ -102,6 +110,6 @@
  /* Kalan turlarda geri gelinemeyecek kadar öndeyse maç biter. */
  function duDecided(sc,played,total){const left=total-played;return Math.abs(sc[0]-sc[1])>left||played>=total;}
  function duResult(sc){return sc[0]>sc[1]?'win':sc[0]<sc[1]?'lose':'draw';}
- const api={labels,LIMITS,SEC_CHOICES,N_DEFAULT,MATCH_CHOICES,seeded,shuffle,slug,validCode,firstName,cleanNick,validNick,buildQuestions,buildFresh,seedFor,TIE_MS,duTie,taskLabel,ranks,duWho,duScore,duDecided,duResult};
+ const api={labels,LIMITS,SEC_CHOICES,N_DEFAULT,MATCH_CHOICES,seeded,shuffle,slug,validCode,firstName,cleanNick,validNick,buildQuestions,buildFresh,seedFor,TIE_MS,duTie,taskLabel,ranks,duWho,arWho,duScore,duDecided,duResult};
  root.YarisModel=api;if(typeof module!=='undefined'&&module.exports)module.exports=api;
 })(typeof window!=='undefined'?window:globalThis);

@@ -39,6 +39,7 @@ function yrCfg(k,v){YR.cfg[k]=v;if(k==='subject'){const s=YR_SUBJECTS.find(x=>x.
 function yrCfgKind(kind,set){YR.cfg.kind=kind;YR.cfg.set=set;render();}
 async function yrCreate(){
  if(YR.busy)return;const nick=yrNickGet(),c=YR.cfg,raw=c.code,wanted=YarisModel.slug(raw);
+ if(c.mode==='canavar'){cvStart(c);return;}
  if(String(raw||'').trim()&&!YarisModel.validCode(wanted)){YR.error='Oda kodu 3–10 harf ya da rakam olmalı.';render();return;}
  YR.busy=true;YR.error='';render();
  try{
@@ -84,7 +85,7 @@ async function yrEnter(code,room){
 function duelOr(a,b){return yrDuel()?a:b;}
 function yrReset(){
  YR.unsubs.forEach(f=>{try{f();}catch(e){}});YR.unsubs=[];if(YR.hb)clearInterval(YR.hb);if(YR.cd)clearInterval(YR.cd);if(YR.tm)clearInterval(YR.tm);
- if(DU&&DU.to){clearTimeout(DU.to);}YR.hb=YR.cd=YR.tm=null;YR.warn='';YR.pend=null;YR.active=false;YR.code=null;YR.room=null;YR.players=[];YR.qs=[];YR.seen={};YR.sig={};YR.started=false;YR.ast=false;YR.g=null;DU=null;YR.error='';
+ if(DU&&DU.to){clearTimeout(DU.to);}YR.hb=YR.cd=YR.tm=null;YR.warn='';YR.pend=null;YR.active=false;YR.code=null;YR.room=null;YR.players=[];YR.qs=[];YR.seen={};YR.sig={};YR.started=false;YR.ast=false;YR.g=null;DU=null;if(typeof AR!=='undefined'&&AR&&AR.to)clearTimeout(AR.to);if(typeof AR!=='undefined')AR=null;YR.error='';
 }
 /* ---------- oda ve oyuncu bildirimleri ---------- */
 function yrRoomChanged(room){
@@ -104,19 +105,21 @@ function yrPlayersChanged(list){
  }
  if(st.screen==='raceplay')yrRankUi();else if(st.screen==='raceover')render();
  if(DU)duSync();
+ if(typeof AR!=='undefined'&&AR)arSync();
 }
 function yrLost(p){return !!(p&&!p.done&&p.uid!==yrMe()&&YR.seen[p.uid]&&Date.now()-YR.seen[p.uid]>30000);}
 function yrBeat(){
  if(!YR.active||!YR.room)return;
  /* Oyun bitmişken yazılamayan son sonuç, bağlantı gelince yeniden gönderilir. */
- if(YR.pend&&((DU&&DU.over)||(YR.g&&YR.g.done))){yrSend(YR.pend);if(st.screen==='raceover')render();return;}
+ if(YR.pend&&((DU&&DU.over)||(YR.g&&YR.g.done)||(typeof AR!=='undefined'&&AR&&AR.over))){yrSend(YR.pend);if(st.screen==='raceover')render();return;}
  if(DU&&!DU.over)duWrite();
  else if(YR.g&&!YR.g.done)yrRaceWrite(false);
- else if(YR.room.status==='lobby'&&!DU&&!YR.g)yrService().setPlayer(YR.code,yrPlayerBase(YR.nick,YR.room.created)).catch(()=>{});
+ else if(YR.room.status==='lobby'&&!DU&&!YR.g&&!(typeof AR!=='undefined'&&AR))yrService().setPlayer(YR.code,yrPlayerBase(YR.nick,YR.room.created)).catch(()=>{});
  if(DU)duBeat();
+ if(typeof AR!=='undefined'&&AR){if(!AR.over)arWrite();arBeat();}
  if(st.screen==='raceover')render();
 }
-function yrStart(){if(!YR.host||yrDuel()||YR.players.length<2||YR.room.status!=='lobby')return;yrService().start(YR.code).catch(e=>yrSetError(e));}
+function yrStart(){if(!YR.host||yrDuel()||YR.players.length<YarisModel.LIMITS[YR.room.mode].min||YR.room.status!=='lobby')return;yrService().start(YR.code).catch(e=>yrSetError(e));}
 function yrLink(){return location.origin+location.pathname+'?oda='+encodeURIComponent(YR.code||'');}
 async function yrCopy(){let ok=false;try{await navigator.clipboard.writeText(yrLink());ok=true;}catch(e){}YR.notice=ok?'Bağlantı kopyalandı.':'Bağlantıyı kutudan seçip kopyalayabilirsin.';render();}
 function yrShare(){if(navigator.share)navigator.share({title:'Birlikte Oynayalım',text:'Oyuna katıl! Oda kodu: '+YR.code,url:yrLink()}).catch(e=>{if(!e||e.name!=='AbortError')yrCopy();});else yrCopy();}
@@ -126,13 +129,14 @@ function yrLeaveNow(){
  if(svc&&code&&YR.room){
   if(lobby)svc.leave(code,true,host).catch(()=>{});
   else if(DU){DU.quit=true;duWrite();}
+  else if(typeof AR!=='undefined'&&AR){AR.quit=true;arWrite();}
   else if(YR.g&&!YR.g.done){YR.g.done=true;yrRaceWrite(true);}
  }
  yrReset();YR.notice='';st.screen='racemenu';render();window.scrollTo(0,0);
 }
 function yrLeave(){
  if(!YR.active){go('home');return;}
- const playing=YR.room&&YR.room.status==='playing'&&!(YR.g&&YR.g.done)&&!(DU&&DU.over);
+ const playing=YR.room&&YR.room.status==='playing'&&!(YR.g&&YR.g.done)&&!(DU&&DU.over)&&!(typeof AR!=='undefined'&&AR&&AR.over);
  if(playing){modal('Oyundan çıkarsan oyun senin için biter. Çıkmak istiyor musun?',()=>{closeModal();yrLeaveNow();});return;}
  yrLeaveNow();
 }
@@ -140,6 +144,7 @@ function yrLeave(){
 function yrStartGame(){
  sesSus();YR.qs=yrBuild(YR.room,0);
  if(yrDuel()){duStart(0);return;}
+ if(YR.room.mode==='arena'){arStart();return;}
  st.screen='racecount';YR.count=3;render();
  YR.cd=setInterval(()=>{YR.count--;if(YR.count<=0){clearInterval(YR.cd);YR.cd=null;yrRaceBegin();return;}if(st.screen==='racecount')render();},1000);
 }
@@ -268,7 +273,7 @@ function duEnd(){
  /* Maç sonu: kısa ses efekti ve (sesli okuma açıksa) sonuç cümlesi. */
  if(typeof EFEKT!=='undefined'){const es={win:'win',lose:'kayip',draw:'bera'}[DU.result];if(es)EFEKT.cal(es);}
  if(typeof sesSoyle==='function'){const sm={win:'Kazandın! Tebrikler.',lose:'İyi mücadele! Rövanşta sen kazanabilirsin.',draw:'Berabere! İkiniz de iyi oynadınız.',left:'Rakip ayrıldı. Bu maçın sonucu sayılmadı.'}[DU.result];if(sm)sesSoyle(sm);}
- duWrite();if(typeof oduKazan==='function')oduKazan('kapisma',DU.result);st.screen='dover';render();window.scrollTo(0,0);
+ duWrite();if(typeof oduKazan==='function')oduKazan('kapisma',DU.result);if(DU.result==='win'&&typeof rkWinAdd==='function')rkWinAdd('oy-kapisma',1);st.screen='dover';render();window.scrollTo(0,0);
 }
 function duLeft(){if(!DU||DU.over)return;DU.left=true;duEnd();}
 function duRematch(){if(!DU||!DU.over||DU.want||DU.left)return;DU.want=true;duWrite();render();duOverSync();}
@@ -289,15 +294,18 @@ function yrSpeakText(q){return q.prompt+' '+q.choices.filter(c=>c.text).map(c=>c
 function yrQuestionHTML(q){return (q.image?'<img class="yr-img" src="'+esc(q.image)+'" alt="'+esc(q.imageAlt||'Soru görseli')+'">':'')+'<div class="yr-qrow"><h2 class="yr-q">'+esc(q.prompt)+'</h2>'+(typeof sesDugme==='function'?sesDugme(yrSpeakText(q),'Soruyu ve seçenekleri dinle'):'')+'</div>';}
 function yrMenuHTML(){
  const code=YR.codeDraft||new URLSearchParams(location.search).get('oda')||'',cfg=yrConfigured();
- return yrTop('Birlikte Oynayalım')+'<div class="wrap"><h1>Birlikte Oynayalım</h1><p class="sub">Arkadaşınla ya da sınıfla aynı sorulara birlikte cevap ver. Bu bölüm için internet gerekir.</p>'+(!cfg?'<p class="card" role="status">Oda bağlantısı henüz ayarlanmadı. Bireysel oyunları kullanabilirsin.</p>':'')+
+ return yrTop('Birlikte Oynayalım')+'<div class="wrap"><h1>Birlikte Oynayalım</h1><p class="sub">Arkadaşınla ya da sınıfla aynı sorulara birlikte cevap ver. Canavara Karşı Savaş dışındaki oyunlar için internet gerekir.</p>'+(!cfg?'<p class="card" role="status">Oda bağlantısı henüz ayarlanmadı. Bireysel oyunları kullanabilirsin.</p>':'')+
   '<p class="card" id="yrNick">Oyundaki adın: <b>'+esc(yrNickGet())+'</b></p>'+
-  '<button class="btn pri" onclick="yrCreateOpen(\'race\')"'+(cfg?'':' disabled')+'>Oyun Odası Kur<span class="yr-sm">Herkes aynı sorulara kendi hızında cevap verir. Canlı sıralama görünür.</span></button>'+
-  '<button class="btn" onclick="yrCreateOpen(\'duel\')"'+(cfg?'':' disabled')+'>1’e 1 Kapışma Kur<span class="yr-sm">İki kişi aynı soruya aynı anda bakar. Önce doğru basan puanı alır.</span></button>'+
+  '<button class="btn pri" onclick="yrCreateOpen(\'duel\')"'+(cfg?'':' disabled')+'>1’e 1 Kapışma Kur<span class="yr-sm">İki kişi aynı soruya aynı anda bakar. Önce doğru basan puanı alır.</span></button>'+
+  '<button class="btn pri" onclick="yrCreateOpen(\'arena\')"'+(cfg?'':' disabled')+'>Er Meydanı Kur<span class="yr-sm">3–4 kişi aynı soruya aynı anda bakar. Önce doğru basan puanı alır.</span></button>'+
+  '<button class="btn" onclick="yrCreateOpen(\'race\')"'+(cfg?'':' disabled')+'>Oyun Odası Kur<span class="yr-sm">Herkes aynı sorulara kendi hızında cevap verir. Doğru bilen puan alır.</span></button>'+
+  '<button class="btn" onclick="yrCreateOpen(\'canavar\')">Canavara Karşı Savaş<span class="yr-sm">Tek başına oynanır. İnternet gerekmez.</span></button>'+
+  '<button class="btn ghost" onclick="rkOpenBoard(\'oy-kapisma\')">🏅 Kapışma ve Er Meydanı sıralaması</button>'+
   (code?'<div class="yr-sep"></div><input id="yrCode" type="hidden" value="'+esc(code.toUpperCase())+'"><button class="btn pri" onclick="yrJoin()"'+(cfg&&!YR.busy?'':' disabled')+'>Davet edildiğin odaya gir</button>':'')+yrErr()+'</div>';
 }
 function yrCreateHTML(){
  const c=YR.cfg,s=YR_SUBJECTS.find(x=>x.id===c.subject),d=CONTENT[c.subject],titles=d&&d.setTitles||{};
- let h=yrTop(c.mode==='duel'?'1’e 1 Kapışma Kur':'Oyun Odası Kur')+'<div class="wrap"><h2>Konu</h2><div class="yr-chips">'+YR_SUBJECTS.map(x=>'<button class="yr-chip'+(c.subject===x.id?' on':'')+'" onclick="yrCfg(\'subject\',\''+x.id+'\')">'+esc(x.name)+'</button>').join('')+'</div>';
+ let h=yrTop({duel:'1’e 1 Kapışma Kur',arena:'Er Meydanı Kur',canavar:'Canavara Karşı Savaş'}[c.mode]||'Oyun Odası Kur')+'<div class="wrap"><h2>Konu</h2><div class="yr-chips">'+YR_SUBJECTS.map(x=>'<button class="yr-chip'+(c.subject===x.id?' on':'')+'" onclick="yrCfg(\'subject\',\''+x.id+'\')">'+esc(x.name)+'</button>').join('')+'</div>';
  if(c.subject==='kuver')h+='<h2>Kuver türü</h2><div class="yr-chips"><button class="yr-chip'+(c.set===1?' on':'')+'" onclick="yrCfgKind(\'kuver\',1)">Basit Kuver</button><button class="yr-chip'+(c.set===3?' on':'')+'" onclick="yrCfgKind(\'kuver\',3)">Tabldot Kuver</button></div>';
  else{
   h+='<h2>Sorular</h2><div class="yr-chips">';
@@ -307,19 +315,19 @@ function yrCreateHTML(){
   h+='</div>';
  }
  h+='<h2>Maç uzunluğu</h2><div class="yr-chips">'+YarisModel.MATCH_CHOICES.map(x=>'<button class="yr-chip'+(c.n===x.n?' on':'')+'" onclick="yrCfg(\'n\','+x.n+')">'+x.name+'<small>'+x.note+'</small></button>').join('')+'</div>';
- h+='<h2>Her soru için süre</h2><div class="yr-chips">'+YarisModel.SEC_CHOICES.map(x=>'<button class="yr-chip'+(c.lim===x?' on':'')+'" onclick="yrCfg(\'lim\','+x+')">'+x+' sn</button>').join('')+'</div>';
- h+='<button class="btn pri" onclick="yrCreate()"'+(YR.busy?' disabled':'')+'>'+(YR.busy?'Oda kuruluyor…':'Odayı kur')+'</button>'+yrErr()+'</div>';
+ if(c.mode!=='canavar')h+='<h2>Her soru için süre</h2><div class="yr-chips">'+YarisModel.SEC_CHOICES.map(x=>'<button class="yr-chip'+(c.lim===x?' on':'')+'" onclick="yrCfg(\'lim\','+x+')">'+x+' sn</button>').join('')+'</div>';
+ h+='<button class="btn pri" onclick="yrCreate()"'+(YR.busy?' disabled':'')+'>'+(c.mode==='canavar'?'Savaşa başla':YR.busy?'Oda kuruluyor…':'Odayı kur')+'</button>'+yrErr()+'</div>';
  return h;
 }
 function yrPlayersListHTML(){
  return YR.players.slice().sort((a,b)=>(b.uid===YR.room.host)-(a.uid===YR.room.host)||String(a.nick).localeCompare(String(b.nick),'tr')).map(p=>'<li class="yr-row'+(p.uid===yrMe()?' me':'')+'"><span class="yr-nm">'+(p.uid===YR.room.host?'👑 ':'🙂 ')+esc(p.nick)+(p.uid===yrMe()?' (Sen)':'')+'</span>'+(yrLost(p)?'<span class="yr-sc">📶 koptu</span>':'')+'</li>').join('');
 }
 function yrLobbyHTML(){
- const r=YR.room,duel=r.mode==='duel',cap=YarisModel.LIMITS[r.mode].max;
- let h=yrTop(duel?'1’e 1 Kapışma':'Oyun Odası')+'<div class="wrap"><p class="sub">'+esc(yrLabel(r))+' · '+r.n+' soru · her soru '+r.lim+' sn</p><h1 id="yrHeading" tabindex="-1">'+(duel?'Rakip bekleniyor':'Oyuncular geliyor')+'</h1>';
+ const r=YR.room,duel=r.mode==='duel',arena=r.mode==='arena',cap=YarisModel.LIMITS[r.mode].max,minP=YarisModel.LIMITS[r.mode].min;
+ let h=yrTop(duel?'1’e 1 Kapışma':arena?'Er Meydanı':'Oyun Odası')+'<div class="wrap"><p class="sub">'+esc(yrLabel(r))+' · '+r.n+' soru · her soru '+r.lim+' sn</p><h1 id="yrHeading" tabindex="-1">'+(duel?'Rakip bekleniyor':'Oyuncular geliyor')+'</h1>';
  h+='<h2>Oyuncular ('+YR.players.length+'/'+cap+')</h2><ul class="yr-list" id="yrList">'+yrPlayersListHTML()+'</ul>';
  if(duel)h+='<p class="card" role="status">⏳ '+(YR.players.length<2?'Rakip bekleniyor. İkinci kişi girince kapışma kendiliğinden başlar.':'Kapışma başlıyor…')+'</p>';
- else if(YR.host)h+='<button class="btn pri" onclick="yrStart()"'+(YR.players.length<2?' disabled':'')+'>Yarışı başlat</button>'+(YR.players.length<2?'<p class="sub">En az iki kişi gerekir.</p>':'');
+ else if(YR.host)h+='<button class="btn pri" onclick="yrStart()"'+(YR.players.length<minP?' disabled':'')+'>'+(arena?'Er Meydanı\'nı başlat':'Yarışı başlat')+'</button>'+(YR.players.length<minP?'<p class="sub">En az '+(minP===2?'iki':'üç')+' kişi gerekir.</p>':'');
  else h+='<p class="card" role="status">⏳ Odayı kuran kişi başlatınca oyun açılır.</p>';
  h+='<div class="card"><small>Davet bağlantısı</small><input id="yrInvite" class="inp" readonly value="'+esc(yrLink())+'"><div class="row"><button class="btn sm" onclick="yrCopy()">Kopyala</button><button class="btn sm" onclick="yrShare()">Paylaş</button></div><p role="status" class="sub">'+esc(YR.notice||'')+'</p></div>'+yrErr()+'<button class="btn ghost" onclick="yrLeave()">Odadan çık</button></div>';
  return h;

@@ -50,3 +50,6 @@
 .yr-vs small{display:block;font-size:13px;color:var(--muted)}
 @media(prefers-reduced-motion:no-preference){.yr-fill{transition:width .1s linear}}
 .yr-qrow{display:flex;align-items:center;gap:10px}.yr-qrow .yr-q{flex:1}.yr-qrow .spk{flex:none;margin:0}
+.cv-top{display:flex;align-items:center;gap:12px;margin:6px 0 10px}.cv-mon{font-size:54px;line-height:1}
+.cv-bars{flex:1}.cv-hp{height:16px;border-radius:10px;background:#e6ecee;overflow:hidden;border:1px solid var(--line)}.cv-hp>div{height:100%;background:#c0392b;transition:width .3s}
+.cv-can{font-size:22px;margin-top:2px}.ar-rank .hit{background:#e6f4ea}

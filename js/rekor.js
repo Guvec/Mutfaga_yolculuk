@@ -17,9 +17,11 @@ const RK_BOARDS=(()=>{const a=[];
  a.push({id:'kv-tabldot',subject:'kuver',kind:'kur',lvl:3,total:9,label:'Tabldot Kuver · Kuveri Kur'});
  const mt=[10,5,6,6,7,6,5,5,5,7,8,4,7,7,7];
  RK_MCQ['mutfak-araclari'].forEach((g,i)=>a.push({id:'ma-s'+String(i+1).padStart(2,'0'),subject:'mutfak-araclari',kind:'mcq',group:g,total:mt[i],label:g+' · Sorular'}));
+ a.push({id:'oy-kapisma',subject:'oyun',kind:'win',total:999,label:'1’e 1 Kapışma · kazanılan maç'});
+ a.push({id:'oy-arena',subject:'oyun',kind:'win',total:999,label:'Er Meydanı · kazanılan tur'});
  a.push({id:'bl-s1',subject:'bulasik-makinesi-temizligi',kind:'mcq',group:RK_MCQ['bulasik-makinesi-temizligi'][0],total:13,label:'Bütün bölümler · Sorular'});
  return a;})();
-const RK_SUBJECT_NAMES={baharat:'Baharatlar','mutfak-araclari':'Mutfak Araçları',kuver:'Kuver','bulasik-makinesi-temizligi':'Bulaşık Yıkama ve Atık Yönetimi'};
+const RK_SUBJECT_NAMES={baharat:'Baharatlar','mutfak-araclari':'Mutfak Araçları',kuver:'Kuver','bulasik-makinesi-temizligi':'Bulaşık Yıkama ve Atık Yönetimi',oyun:'Kapışma ve Er Meydanı'};
 const RK={cal:null,backend:null,busy:false,view:{board:null,period:'hafta',rows:null,state:'idle',err:''},msg:null};
 
 /* ---------- Yardımcılar ---------- */
@@ -50,6 +52,7 @@ function rkErrCode(e){return (e&&(e.code||e.message))||'';}
 
 /* İçerikteki gerçek kart/soru sayısı tablo sınırıyla aynı mı? Değilse o tablo sıralamaya yazılmaz. */
 function rkBoardValid(b){
+ if(b.kind==='win')return true;
  if(b.kind==='kur')return typeof LEVELS!=='undefined'&&LEVELS[b.lvl]&&LEVELS[b.lvl].items.length===b.total;
  const d=CONTENT[b.subject];if(!d)return false;
  if(b.kind==='match')return d.matches.filter(x=>x.set===b.set).length===b.total;
@@ -177,6 +180,20 @@ async function rkMaintenanceRun(){const all=rkProfAll(),clean=rkClean(),be=rkBac
  rkFlush(null);
 }
 
+/* ---------- Kapışma ve Er Meydanı sıralaması ----------
+   Telefonda toplam kazanılan sayı (genel ve haftalık) tutulur; her artışta sıralamaya yalnız büyüyen sayı yazılır. */
+function rkWinAdd(board,n){
+ n=n|0;if(n<=0||st.guest||!st.prof||!rkBoard(board))return;
+ const pid=rkPid(st.prof,true),p=rkProf(pid);
+ const all=ls('rk_win',{}),mine=all[pid]=all[pid]||{},b=mine[board]=mine[board]||{g:0,w:{}},wk='w'+rkWeekNo();
+ b.g=Math.min(999,(b.g|0)+n);b.w[wk]=Math.min(999,(b.w[wk]|0)+n);
+ Object.keys(b.w).forEach(k=>{if(k!==wk&&Number(k.slice(1))<rkWeekNo()-3)delete b.w[k];});
+ lsSet('rk_win',all);
+ if(p.status!=='in')return;
+ const q=rkQueue(),name=rkName(st.prof);
+ [['genel',b.g],['hafta',b.w[wk]]].forEach(([period,correct])=>q.push({qid:rkRandomId(),pid,board,period,name,correct,gen:p.gen,at:Date.now(),sess:null}));
+ lsSet('rk_queue',q);rkFlush(0);
+}
 /* ---------- Pekiştiriyorum verisi ---------- */
 /* Oturumdaki i. soru, i. yanıt satırıdır (sorular sırayla tek tek yanıtlanır); metin eşleşmezse metinle aranır. */
 function rkMcqRow(i,q){const s=st.sess,r=s.qs[i];if(r&&(r.qid?r.qid===q.id:r.q===q.prompt))return r;return s.qs.find(x=>x.qid===q.id)||null;}
@@ -333,13 +350,13 @@ function rkBoardHTML(){
  h+='<div class="card rk-pick"><label>Konu <select onchange="rkPickSubject(this.value)">'+Object.keys(RK_SUBJECT_NAMES).map(s=>'<option value="'+s+'"'+(s===b.subject?' selected':'')+'>'+esc(RK_SUBJECT_NAMES[s])+'</option>').join('')+'</select></label>';
  h+='<label>Çalışma <select onchange="rkOpenBoard(this.value)">'+RK_BOARDS.filter(x=>x.subject===b.subject).map(x=>'<option value="'+x.id+'"'+(x.id===b.id?' selected':'')+'>'+esc(x.label)+'</option>').join('')+'</select></label>';
  h+='<div class="rk-period" role="group" aria-label="Dönem"><button class="btn sm'+(v.period==='hafta'?' pri':'')+'" aria-pressed="'+(v.period==='hafta')+'" onclick="rkPickPeriod(\'hafta\')">Bu hafta</button><button class="btn sm'+(v.period==='genel'?' pri':'')+'" aria-pressed="'+(v.period==='genel')+'" onclick="rkPickPeriod(\'genel\')">Genel</button></div></div>';
- h+='<h2 class="rk-title">'+esc(RK_SUBJECT_NAMES[b.subject]+' · '+b.label)+'</h2><p class="note">'+(v.period==='hafta'?'Hafta: '+rkWeekLabel(rkWeekNo())+'. Liste her pazartesi yeniden başlar.<br>İnternetsiz tamamladığın sonuç, gönderildiği haftaya yazılır.':'Bu eğitim yılının en iyi sonuçları.')+'<br>Her öğrencinin en iyi doğru sayısı gösterilir.</p>';
+ h+='<h2 class="rk-title">'+esc(RK_SUBJECT_NAMES[b.subject]+' · '+b.label)+'</h2><p class="note">'+(v.period==='hafta'?'Hafta: '+rkWeekLabel(rkWeekNo())+'. Liste her pazartesi yeniden başlar.<br>İnternetsiz tamamladığın sonuç, gönderildiği haftaya yazılır.':'Bu eğitim yılının en iyi sonuçları.')+'<br>'+(b.kind==='win'?'Kazanılan sayı gösterilir.':'Her öğrencinin en iyi doğru sayısı gösterilir.')+'</p>';
  if(v.state==='offline')return h+'<p class="card" role="status">Sıralamayı görmek için internete bağlan.</p></div>';
  if(v.state==='loading'||v.state==='idle')return h+'<p class="card" role="status">Sıralama yükleniyor…</p></div>';
  if(v.state==='error')return h+'<p class="card" role="alert">'+esc(v.err)+'</p><button class="btn" onclick="rkLoadRows()">Yeniden dene</button></div>';
- const rows=rkSorted(v.rows||[]);if(!rows.length)return h+'<p class="card">Bu listede henüz sonuç yok. Uyguluyorum bölümünü bitiren ilk kişi sen olabilirsin.</p></div>';
+ const rows=rkSorted(v.rows||[]);if(!rows.length)return h+'<p class="card">Bu listede henüz sonuç yok. '+(b.kind==='win'?'İlk kazanan sen olabilirsin.':'Uyguluyorum bölümünü bitiren ilk kişi sen olabilirsin.')+'</p></div>';
  let shown=rows;const big=rows.length>100;if(big){shown=rows.slice(0,50);const me=rows.find(r=>r.pid===pid);if(me&&!shown.includes(me))shown=shown.concat([me]);}
- h+='<ol class="rk-rows">';shown.forEach(r=>{const rank=rows.filter(x=>x.correct>r.correct).length+1,me=r.pid===pid;h+='<li class="rk-row'+(me?' rk-me':'')+'"><span class="rk-rank">'+rank+'.</span><span class="rk-name">'+(rank===1&&v.period==='hafta'?'<span class="rk-crown" role="img" aria-label="Haftanın birincisi">👑</span>':'')+esc(r.name)+(me?' <b>(sen)</b>':'')+'</span><span class="rk-score">'+r.correct+' / '+b.total+'</span></li>';});
+ h+='<ol class="rk-rows">';shown.forEach(r=>{const rank=rows.filter(x=>x.correct>r.correct).length+1,me=r.pid===pid;h+='<li class="rk-row'+(me?' rk-me':'')+'"><span class="rk-rank">'+rank+'.</span><span class="rk-name">'+(rank===1&&v.period==='hafta'?'<span class="rk-crown" role="img" aria-label="Haftanın birincisi">👑</span>':'')+esc(r.name)+(me?' <b>(sen)</b>':'')+'</span><span class="rk-score">'+(b.kind==='win'?r.correct:r.correct+' / '+b.total)+'</span></li>';});
  h+='</ol>'+(big?'<p class="note">İlk 50 sonuç ve senin sıran gösteriliyor.</p>':'')+'</div>';
  return h;
 }

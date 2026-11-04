@@ -34,7 +34,7 @@
      else continue;
     }
     const data={...spec,host:this.uid,status:'lobby',guest:null,created:Date.now(),qv:1};
-    if(spec.mode==='race')data.cnt=1;
+    if(spec.mode==='race'||spec.mode==='arena')data.cnt=1;
     try{await fb.setDoc(ref,data);return {code,room:data};}catch(e){if(wanted)throw e;}
    }
    throw Error('Oda kurulamadı. Yeniden dene.');
@@ -57,7 +57,7 @@
     }else{
      const me=await tx.get(this.player(code));
      if(!me.exists()){
-      const c=room.cnt||1;if(c>=MAX_RACE)throw Error('Bu oda dolu (en çok '+MAX_RACE+' kişi).');
+      const c=room.cnt||1,cap=room.mode==='arena'?4:MAX_RACE;if(c>=cap)throw Error('Bu oda dolu (en çok '+cap+' kişi).');
       tx.update(this.room(code),{cnt:c+1});
      }
     }
@@ -76,7 +76,7 @@
    /* Salondan çıkan, kapasitede yer açar. */
    try{await fb.runTransaction(this.db,async tx=>{
     const r=await tx.get(this.room(code)),p=await tx.get(this.player(code));
-    if(p.exists()){tx.delete(this.player(code));if(r.exists()&&r.data().mode==='race'&&r.data().status==='lobby'&&(r.data().cnt||1)>1)tx.update(this.room(code),{cnt:(r.data().cnt||1)-1});}
+    if(p.exists()){tx.delete(this.player(code));if(r.exists()&&(r.data().mode==='race'||r.data().mode==='arena')&&r.data().status==='lobby'&&(r.data().cnt||1)>1)tx.update(this.room(code),{cnt:(r.data().cnt||1)-1});}
    });}catch(e){await fb.deleteDoc(this.player(code)).catch(()=>{});}
   }
   async remove(code){const fb=this.sdk,p=await fb.getDocs(fb.collection(this.db,COLL,code,'players'));for(let i=0;i<p.docs.length;i+=400){const b=fb.writeBatch(this.db);p.docs.slice(i,i+400).forEach(d=>b.delete(d.ref));await b.commit();}await fb.deleteDoc(this.room(code));}

@@ -23,6 +23,7 @@ function oduKazan(oyun,sonuc,ek){
  if(!oduVar())return 0;
  let n=0;
  if(oyun==='oda'){const t=ek&&ek.total|0,ok=ek&&ek.ok|0;if(!t)return 0;n=1+(ok>=Math.ceil(t/2)?1:0)+(ok===t?1:0);}
+ else if(oyun==='arena'){const r=ek&&ek.rank|0;n=r===1?3:r===2?2:r>2?1:0;}
  else n=(ODUL_KURAL[oyun]||{})[sonuc]|0;
  if(n<=0)return 0;
  const o=oduGet(st.prof),bu=oduBugun();if(o.g!==bu){o.g=bu;o.gp=0;}
