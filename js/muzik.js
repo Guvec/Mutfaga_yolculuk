@@ -5,10 +5,10 @@
    Müzik varsayılan olarak kapalıdır; öğrenci isterse açar. Tercih cihazda saklanır (mesleki-muzik: "acik" / "kapali"). */
 'use strict';
 var MUZIK=(function(){
- var PARCALAR=['assets/muzik/bach-prelud-do-major.mp3','assets/muzik/sakin-sabah.mp3','assets/muzik/aksam-isigi.mp3'];
+ var PARCALAR=['assets/muzik/bach-prelud-do-major.mp3','assets/muzik/sakin-sabah.mp3','assets/muzik/aksam-isigi.mp3','assets/muzik/satie-sade-gece.mp3','assets/muzik/pachelbel-kanon-sade.mp3','assets/muzik/beethoven-ay-isigi-sade.mp3','assets/muzik/beethoven-elise-icin-sade.mp3','assets/muzik/beethoven-nese-ode-sade.mp3','assets/muzik/brahms-besik-sarkisi-sade.mp3','assets/muzik/greensleeves-sade.mp3'];
  var ANAHTAR='mesleki-muzik',SES_DUZEYI=0.35;
  var tercih='kapali';try{tercih=localStorage.getItem(ANAHTAR)==='acik'?'acik':'kapali';}catch(e){}
- var audio=null,sira=0,bekleyenOkuma=null,konusmaTakip=null;
+ var audio=null,sira=Math.floor(Math.random()*PARCALAR.length),bekleyenOkuma=null,konusmaTakip=null;
  function kaydet(){try{localStorage.setItem(ANAHTAR,tercih);}catch(e){}}
  function hazirla(){
   if(audio)return audio;
@@ -35,6 +35,15 @@ var MUZIK=(function(){
    if((goruldu&&!konusuyor&&sure>400)||(!goruldu&&sure>3000)||sure>15000){clearInterval(konusmaTakip);konusmaTakip=null;cal();}
   },250);
  }
+ /* Bir kereye mahsus sıfırlama: eski sürümlerden kalan "müzik açık" tercihi sesli okumayı kapatıyordu.
+    Herkes müzik kapalı, sesli okuma açık başlar; müziği öğrenci isterse kendisi açar. */
+ try{
+  if(localStorage.getItem('mesleki-muzik-gecis')!=='1'){
+   localStorage.setItem('mesleki-muzik-gecis','1');
+   if(tercih==='acik'){tercih='kapali';kaydet();}
+   if(typeof SES!=='undefined'&&!SES.acik){SES.acik=true;try{lsSet('ses',true);}catch(e){}}
+  }
+ }catch(e){}
  // Müzik varsayılan olarak kapalıdır; sesli okuma açık başlar. Müziği öğrenci açtıysa sesli okuma kapalı başlar (iki ses aynı anda çalmaz).
  if(tercih==='acik'&&typeof SES!=='undefined'&&SES.acik){SES.acik=false;try{lsSet('ses',false);}catch(e){}}
  /* Bir kereye mahsus geçiş: eski sürümde müzik kendiliğinden açık geldiği için sesli okuma kapanıp kaydedilmişti.
