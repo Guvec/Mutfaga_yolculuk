@@ -14,10 +14,10 @@ const {chromium}=require('playwright'),http=require('http'),fs=require('fs'),pat
   await page.evaluate(()=>go('profiles'));
   assert.equal(await page.locator('#pname').count(),0);ok('Profil ekranında ad yazma kutusu yok');
   await page.getByRole('button',{name:/Yeni profil/}).click();
-  assert.equal(await page.evaluate(()=>st.screen),'pedit');assert.equal(await page.locator('.ad-tab button').count(),10);
+  assert.equal(await page.evaluate(()=>st.screen),'pedit');assert.equal(await page.locator('.ad-tab button').count(),11);
   ok('Karakter ekranı: 10 kategori sekmesi');
   // 2) 209 karakter, sıra korunmuş
-  const cnt=await page.evaluate(()=>[AD_KAR.length,AD_KAR[0][1],AD_KAR[208][1]]);assert.deepEqual(cnt,[209,'Cesur Panda','Altın Çöl']);ok('Liste: 209 karakter, sıra korunmuş');
+  const cnt=await page.evaluate(()=>[AD_KAR.length,AD_KAR[0][1],AD_KAR[208][1],AD_KAR[209][1],AD_KAR[219][1]]);assert.deepEqual(cnt,[220,'Cesur Panda','Altın Çöl','Aşçı Tavşan','Fırıncı Koala']);ok('Liste: 209 eski karakter sırası korunmuş, 11 mutfak karakteri sona eklenmiş');
   // 3) Panda (0) boşsa numarasız; alınmışsa numara
   await page.evaluate(()=>{adCat(0);adSet(0);});
   await page.getByRole('button',{name:'✅ Profili Oluştur'}).click();

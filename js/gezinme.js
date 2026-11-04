@@ -27,7 +27,7 @@ function gezinmeCik(){
    return;
   }
   if(typeof PHONE!=='undefined'&&PHONE.open&&typeof phoneCloseNames==='function'){phoneCloseNames();return;}
-  if(st.screen==='home'||st.screen==='welcome'){gezinmeCikisSor();return;}
+  if(st.screen==='home'||st.screen==='welcome'||st.screen==='giris'){gezinmeCikisSor();return;}
   // Oyun ekranında telefonun geri tuşu, üstteki "← Geri" düğmesiyle aynı yolu izler.
   var oyunda=(st.screen==='quiz'||st.screen==='board')&&!(typeof YR!=='undefined'&&YR.active);
   if(oyunda){oyunGeri();return;}
