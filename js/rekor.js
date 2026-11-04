@@ -352,7 +352,7 @@ function rkCrownShow(rows){
  const old=document.getElementById('rkCrown');if(old)old.remove();
  const shown=names.slice(0,3).map(esc).join(', ')+(names.length>3?' +'+(names.length-3):'');
  const d=document.createElement('div');d.id='rkCrown';d.className='rk-crownbox';d.setAttribute('role','status');d.setAttribute('aria-live','polite');
- d.innerHTML='<div class="rk-crowncard"><div class="rk-bigcrown" aria-hidden="true">👑</div><p class="rk-cl">Haftanın birincisi</p><p class="rk-cn">'+shown+'</p><p class="rk-ch">Kapatmak için dokun</p></div>';
+ d.innerHTML='<div class="rk-crowncard"><div class="rk-bigcrown" aria-hidden="true">👑</div><p class="rk-cl">Haftanın Mutfak Kaptanı</p><p class="rk-cn">'+shown+'</p><p class="rk-ch">Kapatmak için dokun</p></div>';
  const kapat=()=>{clearTimeout(d._t);d.remove();};d.onclick=kapat;d._t=setTimeout(kapat,4000);
  document.body.appendChild(d);
 }

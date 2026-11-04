@@ -167,7 +167,7 @@ function yrRaceAnswer(i){
 }
 function yrRaceNext(){
  const g=YR.g;if(!g||g.ph!=='fb')return;
- if(g.k+1>=YR.qs.length){g.done=true;g.ph='done';yrRaceWrite(true);if(typeof EFEKT!=='undefined')EFEKT.cal('win');st.screen='raceover';render();window.scrollTo(0,0);return;}
+ if(g.k+1>=YR.qs.length){g.done=true;g.ph='done';yrRaceWrite(true);if(typeof oduKazan==='function')oduKazan('oda',null,{ok:g.ok,total:YR.qs.length});if(typeof EFEKT!=='undefined')EFEKT.cal('win');st.screen='raceover';render();window.scrollTo(0,0);return;}
  g.k++;g.ph='q';g.pick=null;g.t0=performance.now();render();yrQTimer();
 }
 /* Yazma hatası sessizce yutulmaz: öğrenciye kısa uyarı çıkar, yazma düzelince kalkar. */
@@ -268,7 +268,7 @@ function duEnd(){
  /* Maç sonu: kısa ses efekti ve (sesli okuma açıksa) sonuç cümlesi. */
  if(typeof EFEKT!=='undefined'){const es={win:'win',lose:'kayip',draw:'bera'}[DU.result];if(es)EFEKT.cal(es);}
  if(typeof sesSoyle==='function'){const sm={win:'Kazandın! Tebrikler.',lose:'İyi mücadele! Rövanşta sen kazanabilirsin.',draw:'Berabere! İkiniz de iyi oynadınız.',left:'Rakip ayrıldı. Bu maçın sonucu sayılmadı.'}[DU.result];if(sm)sesSoyle(sm);}
- duWrite();st.screen='dover';render();window.scrollTo(0,0);
+ duWrite();if(typeof oduKazan==='function')oduKazan('kapisma',DU.result);st.screen='dover';render();window.scrollTo(0,0);
 }
 function duLeft(){if(!DU||DU.over)return;DU.left=true;duEnd();}
 function duRematch(){if(!DU||!DU.over||DU.want||DU.left)return;DU.want=true;duWrite();render();duOverSync();}
