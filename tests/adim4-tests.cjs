@@ -24,8 +24,8 @@ const FAKE=`window.REKOR_FAKE=(()=>{const prof={},rows={};let uid='u-cihaz';cons
  await p.goto('http://127.0.0.1:'+srv.address().port+'/');await p.waitForFunction(()=>typeof cvStart==='function'&&typeof arStart==='function'&&CONTENT['mutfak-araclari']);
  // ---- menü ----
  const mn=await p.evaluate(()=>{st.prof='🍳 Test';st.guest=false;const m=yrMenuHTML();YR.cfg.mode='canavar';const c=yrCreateHTML();YR.cfg.mode='arena';const a=yrCreateHTML();YR.cfg.mode='race';return {m,c,a};});
- for(const t of ['1’e 1 Kapışma Kur','Er Meydanı Kur','Oyun Odası Kur','Canavara Karşı Savaş','İnternet gerekmez','sıralaması'])assert(mn.m.includes(t),'menüde '+t);
- assert(!/Her soru için süre/.test(mn.c)&&/Savaşa başla/.test(mn.c),'Canavar: süre yok');assert(/Er Meydanı Kur/.test(mn.a)&&/Her soru için süre/.test(mn.a));
+ for(const t of ['1’e 1 Kapışma Kur','Er Meydanı Kur','Oyun Odası Kur','Meydan Okuma','İnternet gerekmez','sıralaması'])assert(mn.m.includes(t),'menüde '+t);
+ assert(!/Her soru için süre/.test(mn.c)&&/>Başla</.test(mn.c),'Canavar: süre yok');assert(/Er Meydanı Kur/.test(mn.a)&&/Her soru için süre/.test(mn.a));
  console.log('PASS menü: 4 mod, Canavar internetsiz, süre ayarı yalnız çok kişilide');
  // ---- Canavar: kazan ----
  const cv=await p.evaluate(async()=>{
@@ -42,7 +42,7 @@ const FAKE=`window.REKOR_FAKE=(()=>{const prof={},rows={};let uid='u-cihaz';cons
  assert.equal(cv.ikinci.length,5);const havuz=await p.evaluate(()=>CONTENT['mutfak-araclari'].matches.filter(x=>x.set===1).length);
  if(havuz>=10)assert(cv.ikinci.every(i=>!cv.ilk.includes(i)),'yeni savaşta yeni sorular');
  assert(cv.lose&&cv.lives===0);assert.equal(cv.puan2,4,'kaybetme 1 puan (toplam 4)');
- console.log('PASS Canavara Karşı Savaş: kazanma, kaybetme, yeni sorular, puan');
+ console.log('PASS Meydan Okuma: kazanma, kaybetme, yeni sorular, puan');
  // ---- Er Meydanı motoru ----
  const ar=await p.evaluate(async()=>{
   const writes=[];

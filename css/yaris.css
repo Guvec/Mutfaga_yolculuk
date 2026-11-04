@@ -53,3 +53,12 @@
 .cv-top{display:flex;align-items:center;gap:12px;margin:6px 0 10px}.cv-mon{font-size:54px;line-height:1}
 .cv-bars{flex:1}.cv-hp{height:16px;border-radius:10px;background:#e6ecee;overflow:hidden;border:1px solid var(--line)}.cv-hp>div{height:100%;background:#c0392b;transition:width .3s}
 .cv-can{font-size:22px;margin-top:2px}.ar-rank .hit{background:#e6f4ea}
+/* Sonuç kartı */
+.sn-kart{border:1px solid var(--line);border-radius:18px;overflow:hidden;background:var(--surface,#fff);margin:10px 0 14px;text-align:center}
+.sn-ust{background:linear-gradient(#0f7a74,#123d52);color:#fff;padding:18px 12px 14px}
+.sn-ust p{margin:2px 0}.sn-oyun{font-size:22px;font-weight:800}.sn-ad{font-size:17px;opacity:.9}.sn-alt{font-size:14px;opacity:.85}.sn-zaman{font-size:13px;opacity:.8}.sn-ek{font-weight:800;font-size:16px}
+.sn-puan{font-size:76px;font-weight:900;color:#ffe14d;line-height:1.05;margin-top:8px}.sn-pl{font-weight:800;letter-spacing:1px}
+.sn-serit{background:#ffe14d;color:#123d52;font-weight:900;font-size:20px;margin:12px;padding:10px;border-radius:14px}
+.sn-izgara{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:12px}
+.sn-tile{background:#f1f4f6;border-radius:12px;padding:10px 12px;text-align:left}.sn-tile small{display:block;color:#5b6b75;font-size:13px}.sn-tile b{font-size:24px}.sn-tile b.ok{color:#1b9a4f}.sn-tile b.bad{color:#d6453d}
+.sn-kart .btn{margin:0 12px 12px;width:calc(100% - 24px)}.sn-resim{width:100%;border-radius:8px;border:1px solid var(--line)}

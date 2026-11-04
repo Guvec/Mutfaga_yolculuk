@@ -166,13 +166,15 @@ function yrRaceAnswer(i){
  const q=YR.qs[g.k],raw=performance.now()-g.t0,ms=Math.min(Math.round(raw),YR.room.lim*1000);
  if(raw>YR.room.lim*1000)i=-1;/* süre dolduktan sonra gelen tıklama sayılmaz */
  g.ph='fb';g.pick=i;g.ms=ms;g.right=i>=0&&q.choices[i].id===q.correct;
+ (g.log=g.log||[]).push({ok:g.right,ms});
+ if(typeof EFEKT!=='undefined')EFEKT.cal(g.right?'dogru':'yanlis');
  if(g.right)g.ok++;else g.bad++;g.tt+=ms;
  if(YR.tm){clearInterval(YR.tm);YR.tm=null;}
  yrRaceWrite(false);render();
 }
 function yrRaceNext(){
  const g=YR.g;if(!g||g.ph!=='fb')return;
- if(g.k+1>=YR.qs.length){g.done=true;g.ph='done';yrRaceWrite(true);if(typeof oduKazan==='function')oduKazan('oda',null,{ok:g.ok,total:YR.qs.length});if(typeof EFEKT!=='undefined')EFEKT.cal('win');st.screen='raceover';render();window.scrollTo(0,0);return;}
+ if(g.k+1>=YR.qs.length){g.done=true;g.ph='done';yrRaceWrite(true);if(typeof oduKazan==='function')oduKazan('oda',null,{ok:g.ok,total:YR.qs.length});g.rapor=sonucUret('Oyun Odası',yrLabel(YR.room),['oda',YR.room.subject,YR.room.kind,YR.room.set,YR.room.n].join('|'),g.log,'');sonucSes(g.rapor,true);st.screen='raceover';render();window.scrollTo(0,0);return;}
  g.k++;g.ph='q';g.pick=null;g.t0=performance.now();render();yrQTimer();
 }
 /* Yazma hatası sessizce yutulmaz: öğrenciye kısa uyarı çıkar, yazma düzelince kalkar. */
@@ -271,7 +273,8 @@ function duEnd(){
  if(!DU||DU.over)return;DU.over=true;DU.ph='over';if(DU.to){clearTimeout(DU.to);DU.to=null;}if(YR.tm){clearInterval(YR.tm);YR.tm=null;}
  DU.result=DU.left?'left':YarisModel.duResult(DU.sc);
  /* Maç sonu: kısa ses efekti ve (sesli okuma açıksa) sonuç cümlesi. */
- if(typeof EFEKT!=='undefined'){const es={win:'win',lose:'kayip',draw:'bera'}[DU.result];if(es)EFEKT.cal(es);}
+ DU.rapor=sonucUret('1’e 1 Kapışma',yrLabel(YR.room),['kapisma',YR.room.subject,YR.room.kind,YR.room.set,YR.room.n].join('|'),DU.myR.filter(v=>v!==undefined&&v!==null).map(v=>({ok:v>0,ms:Math.abs(v)})),{win:'Kazandın!',lose:'Bu maçı kaybettin',draw:'Berabere',left:'Rakip ayrıldı'}[DU.result]||'');
+ if(typeof EFEKT!=='undefined'){const es={win:'win',lose:'kayip',draw:'bera'}[DU.result];if(DU.result==='win'&&DU.rapor.durum==='yeni')EFEKT.cal('rekor');else if(es)EFEKT.cal(es);}
  if(typeof sesSoyle==='function'){const sm={win:'Kazandın! Tebrikler.',lose:'İyi mücadele! Rövanşta sen kazanabilirsin.',draw:'Berabere! İkiniz de iyi oynadınız.',left:'Rakip ayrıldı. Bu maçın sonucu sayılmadı.'}[DU.result];if(sm)sesSoyle(sm);}
  duWrite();if(typeof oduKazan==='function')oduKazan('kapisma',DU.result);if(DU.result==='win'&&typeof rkWinAdd==='function')rkWinAdd('oy-kapisma',1);st.screen='dover';render();window.scrollTo(0,0);
 }
@@ -294,18 +297,18 @@ function yrSpeakText(q){return q.prompt+' '+q.choices.filter(c=>c.text).map(c=>c
 function yrQuestionHTML(q){return (q.image?'<img class="yr-img" src="'+esc(q.image)+'" alt="'+esc(q.imageAlt||'Soru görseli')+'">':'')+'<div class="yr-qrow"><h2 class="yr-q">'+esc(q.prompt)+'</h2>'+(typeof sesDugme==='function'?sesDugme(yrSpeakText(q),'Soruyu ve seçenekleri dinle'):'')+'</div>';}
 function yrMenuHTML(){
  const code=YR.codeDraft||new URLSearchParams(location.search).get('oda')||'',cfg=yrConfigured();
- return yrTop('Birlikte Oynayalım')+'<div class="wrap"><h1>Birlikte Oynayalım</h1><p class="sub">Arkadaşınla ya da sınıfla aynı sorulara birlikte cevap ver. Canavara Karşı Savaş dışındaki oyunlar için internet gerekir.</p>'+(!cfg?'<p class="card" role="status">Oda bağlantısı henüz ayarlanmadı. Bireysel oyunları kullanabilirsin.</p>':'')+
+ return yrTop('Birlikte Oynayalım')+'<div class="wrap"><h1>Birlikte Oynayalım</h1><p class="sub">Arkadaşınla ya da sınıfla aynı sorulara birlikte cevap ver. Meydan Okuma dışındaki oyunlar için internet gerekir.</p>'+(!cfg?'<p class="card" role="status">Oda bağlantısı henüz ayarlanmadı. Bireysel oyunları kullanabilirsin.</p>':'')+
   '<p class="card" id="yrNick">Oyundaki adın: <b>'+esc(yrNickGet())+'</b></p>'+
   '<button class="btn pri" onclick="yrCreateOpen(\'duel\')"'+(cfg?'':' disabled')+'>1’e 1 Kapışma Kur<span class="yr-sm">İki kişi aynı soruya aynı anda bakar. Önce doğru basan puanı alır.</span></button>'+
   '<button class="btn pri" onclick="yrCreateOpen(\'arena\')"'+(cfg?'':' disabled')+'>Er Meydanı Kur<span class="yr-sm">3–4 kişi aynı soruya aynı anda bakar. Önce doğru basan puanı alır.</span></button>'+
   '<button class="btn" onclick="yrCreateOpen(\'race\')"'+(cfg?'':' disabled')+'>Oyun Odası Kur<span class="yr-sm">Herkes aynı sorulara kendi hızında cevap verir. Doğru bilen puan alır.</span></button>'+
-  '<button class="btn" onclick="yrCreateOpen(\'canavar\')">Canavara Karşı Savaş<span class="yr-sm">Tek başına oynanır. İnternet gerekmez.</span></button>'+
+  '<button class="btn" onclick="yrCreateOpen(\'canavar\')">Meydan Okuma<span class="yr-sm">Mutfak Karmaşasına karşı tek başına oyna. İnternet gerekmez.</span></button>'+
   '<button class="btn ghost" onclick="rkOpenBoard(\'oy-kapisma\')">🏅 Kapışma ve Er Meydanı sıralaması</button>'+
   (code?'<div class="yr-sep"></div><input id="yrCode" type="hidden" value="'+esc(code.toUpperCase())+'"><button class="btn pri" onclick="yrJoin()"'+(cfg&&!YR.busy?'':' disabled')+'>Davet edildiğin odaya gir</button>':'')+yrErr()+'</div>';
 }
 function yrCreateHTML(){
  const c=YR.cfg,s=YR_SUBJECTS.find(x=>x.id===c.subject),d=CONTENT[c.subject],titles=d&&d.setTitles||{};
- let h=yrTop({duel:'1’e 1 Kapışma Kur',arena:'Er Meydanı Kur',canavar:'Canavara Karşı Savaş'}[c.mode]||'Oyun Odası Kur')+'<div class="wrap"><h2>Konu</h2><div class="yr-chips">'+YR_SUBJECTS.map(x=>'<button class="yr-chip'+(c.subject===x.id?' on':'')+'" onclick="yrCfg(\'subject\',\''+x.id+'\')">'+esc(x.name)+'</button>').join('')+'</div>';
+ let h=yrTop({duel:'1’e 1 Kapışma Kur',arena:'Er Meydanı Kur',canavar:'Meydan Okuma'}[c.mode]||'Oyun Odası Kur')+'<div class="wrap"><h2>Konu</h2><div class="yr-chips">'+YR_SUBJECTS.map(x=>'<button class="yr-chip'+(c.subject===x.id?' on':'')+'" onclick="yrCfg(\'subject\',\''+x.id+'\')">'+esc(x.name)+'</button>').join('')+'</div>';
  if(c.subject==='kuver')h+='<h2>Kuver türü</h2><div class="yr-chips"><button class="yr-chip'+(c.set===1?' on':'')+'" onclick="yrCfgKind(\'kuver\',1)">Basit Kuver</button><button class="yr-chip'+(c.set===3?' on':'')+'" onclick="yrCfgKind(\'kuver\',3)">Tabldot Kuver</button></div>';
  else{
   h+='<h2>Sorular</h2><div class="yr-chips">';
@@ -316,7 +319,7 @@ function yrCreateHTML(){
  }
  h+='<h2>Maç uzunluğu</h2><div class="yr-chips">'+YarisModel.MATCH_CHOICES.map(x=>'<button class="yr-chip'+(c.n===x.n?' on':'')+'" onclick="yrCfg(\'n\','+x.n+')">'+x.name+'<small>'+x.note+'</small></button>').join('')+'</div>';
  if(c.mode!=='canavar')h+='<h2>Her soru için süre</h2><div class="yr-chips">'+YarisModel.SEC_CHOICES.map(x=>'<button class="yr-chip'+(c.lim===x?' on':'')+'" onclick="yrCfg(\'lim\','+x+')">'+x+' sn</button>').join('')+'</div>';
- h+='<button class="btn pri" onclick="yrCreate()"'+(YR.busy?' disabled':'')+'>'+(c.mode==='canavar'?'Savaşa başla':YR.busy?'Oda kuruluyor…':'Odayı kur')+'</button>'+yrErr()+'</div>';
+ h+='<button class="btn pri" onclick="yrCreate()"'+(YR.busy?' disabled':'')+'>'+(c.mode==='canavar'?'Başla':YR.busy?'Oda kuruluyor…':'Odayı kur')+'</button>'+yrErr()+'</div>';
  return h;
 }
 function yrPlayersListHTML(){
@@ -347,6 +350,7 @@ function yrRaceHTML(){
 function yrOverHTML(){
  const all=yrAllDone(),r=YarisModel.ranks(yrAllPlayers()),me=r.find(p=>p.uid===yrMe()),med=['🥇','🥈','🥉'];
  let h=yrTop('Oyun Odası')+'<div class="wrap">'+yrWarnHTML()+'<h1 id="yrHeading" tabindex="-1">'+(all?'Yarış bitti!':'Bitirdin!')+'</h1>';
+ if(YR.g&&YR.g.rapor)h+=sonucGoster(YR.g.rapor);
  if(me)h+='<p class="card"><b>'+me.ok+' / '+YR.qs.length+' doğru.</b> '+(all?'Sıran: <b>'+me.rank+'.</b>'+(me.rank===1?' Tebrikler!':' İyi oynadın!'):'Diğer oyuncular bitirince son sıra belli olur.')+'</p>';
  h+='<ol class="yr-list yr-podium">'+r.map(p=>'<li class="yr-row'+(p.uid===yrMe()?' me':'')+'"><span class="yr-rk">'+(all&&p.rank<=3?med[p.rank-1]:p.rank+'.')+'</span><span class="yr-nm">'+esc(p.nick)+(p.uid===yrMe()?' (Sen)':(typeof frBtn==='function'?frBtn(p,false):''))+'</span><span class="yr-sc">'+p.ok+' doğru'+(p.done?'':(yrLost(p)?' · 📶':' · ⏳'))+'</span></li>').join('')+'</ol><button class="btn pri" onclick="yrLeave()">'+(all?'Oyundan çık':'Çık')+'</button></div>';
  return h;
@@ -372,7 +376,7 @@ function duPlayHTML(){
 function duOverHTML(){
  const r=DU.result,t=r==='left'?'Rakip ayrıldı ya da bağlantısı koptu. Bu maçın sonucu sayılmadı.':r==='win'?'🏆 Kazandın!':r==='lose'?'İyi mücadele! 💪':'Berabere! İkiniz de iyi oynadınız.',o=duOpp();
  let sub=r==='win'?'Tebrikler, '+esc(YR.nick)+'!':r==='lose'?'Rövanşta sen kazanabilirsin!':'Rövanş oynayabilirsiniz.';
- let h=yrTop('Kapışma bitti')+'<div class="wrap" style="text-align:center">'+yrWarnHTML()+'<h1 id="yrHeading" tabindex="-1">'+t+'</h1>'+duScoreHTML()+'<p class="sub">'+sub+'</p>';
+ let h=yrTop('Kapışma bitti')+'<div class="wrap" style="text-align:center">'+yrWarnHTML()+'<h1 id="yrHeading" tabindex="-1">'+t+'</h1>'+duScoreHTML()+'<p class="sub">'+sub+'</p>'+(DU.rapor?sonucGoster(DU.rapor):'');
  if(DU.left||!o||o.done)h+='<p class="sub">Rakip ayrıldı.</p>';
  else if(DU.want)h+='<button class="btn" disabled>⏳ '+esc(DU.onick)+' bekleniyor…</button>';
  else h+='<button class="btn pri" onclick="duRematch()">🔁 Rövanş'+(o&&(o.m|0)===DU.m+1?' · '+esc(DU.onick)+' hazır!':'')+'</button>';

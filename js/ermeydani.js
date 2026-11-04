@@ -70,7 +70,8 @@ function arEnd(){
  if(!AR||AR.over)return;AR.over=true;AR.ph='over';if(AR.to){clearTimeout(AR.to);AR.to=null;}if(YR.tm){clearInterval(YR.tm);YR.tm=null;}
  const r=arRanks(),me=r.find(p=>p.uid===yrMe());AR.final=me?me.rank:null;
  const top=AR.final===1&&r.filter(p=>p.rank===1).length===1;
- if(typeof EFEKT!=='undefined')EFEKT.cal(top?'win':'tur');
+ AR.rapor=sonucUret('Er Meydanı',yrLabel(YR.room),['arena',YR.room.subject,YR.room.kind,YR.room.set,YR.room.n].join('|'),AR.myR.filter(v=>v!==undefined&&v!==null).map(v=>({ok:v>0,ms:Math.abs(v)})),AR.final===1?'Sıralamada 1. oldun!':AR.final?'Sıralaman: '+AR.final+'.':'');
+ if(typeof EFEKT!=='undefined'){if(top&&AR.rapor.durum==='yeni')EFEKT.cal('rekor');else EFEKT.cal(top?'win':'tur');}
  if(typeof sesSoyle==='function')sesSoyle(top?'Er Meydanı\'nın birincisi sensin! Tebrikler.':AR.final===1?'Berabere birinci oldun! Tebrikler.':'Oyun bitti. Sıralamana bakabilirsin.');
  arWrite();
  if(typeof oduKazan==='function')oduKazan('arena',null,{rank:AR.final|0});
@@ -106,6 +107,7 @@ function arOverHTML(){
  const r=arRanks(),med=['🥇','🥈','🥉'],me=r.find(p=>p.uid===yrMe());
  const t=AR.final===1?'🏆 Birinci sensin!':'Oyun bitti';
  let h=yrTop('Er Meydanı bitti')+'<div class="wrap" style="text-align:center">'+yrWarnHTML()+'<h1 id="yrHeading" tabindex="-1">'+t+'</h1>';
+ if(AR.rapor)h+=sonucGoster(AR.rapor);
  h+='<ul class="yr-rank">'+r.map(p=>'<li class="yr-row'+(p.uid===yrMe()?' me':'')+'"><span class="yr-rk">'+(med[p.rank-1]||p.rank+'.')+'</span><span class="yr-nm">'+esc(p.nick)+(p.uid===yrMe()?' (Sen)':'')+'</span><span class="yr-sc">'+p.ok+' puan</span></li>').join('')+'</ul>';
  if(typeof frBtn==='function')r.filter(p=>p.uid!==yrMe()).forEach(p=>{h+=frBtn(p,true);});
  return h+'<button class="btn" onclick="rkOpenBoard(\'oy-arena\')">🏅 Er Meydanı sıralaması</button><button class="btn ghost" onclick="yrLeave()">Çık</button></div>';

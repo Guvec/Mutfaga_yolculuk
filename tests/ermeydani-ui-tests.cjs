@@ -54,7 +54,7 @@ const hub={rooms:{},n:0,ops:{
   const a=await phone(),b=await phone(),c=await phone();
   const nick={a:'🦊 Kurnaz Tilki',b:'🐼 Cesur Panda',c:'🐻 Sakin Ayı'};
   await openMenu(a,nick.a);
-  const mt=await text(a);for(const t of ['Er Meydanı Kur','1’e 1 Kapışma Kur','Oyun Odası Kur','Canavara Karşı Savaş'])assert(mt.includes(t),'menüde '+t);
+  const mt=await text(a);for(const t of ['Er Meydanı Kur','1’e 1 Kapışma Kur','Oyun Odası Kur','Meydan Okuma'])assert(mt.includes(t),'menüde '+t);
   await a.getByRole('button',{name:/Er Meydanı Kur/}).click();await a.getByRole('button',{name:/Kısa maç/}).click();
   await a.getByRole('button',{name:'Odayı kur'}).click();await a.waitForFunction(()=>YR.active&&st.screen==='racelobby');
   const code=await a.evaluate(()=>YR.code);
