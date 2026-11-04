@@ -35,14 +35,22 @@ const {chromium}=require('playwright'),http=require('http'),fs=require('fs'),pat
   const af=await d.evaluate(()=>({c:document.querySelector('#actor').className.trim(),t:document.querySelector('#actor').style.transform}));assert.equal(af.c,'actor rabbit');assert.equal(af.t,'translate(0px, 0px)');ok('Karakter değişince yürüyüş durur, karakter merkeze döner');
   await d.waitForTimeout(1500);assert.equal(await d.evaluate(()=>document.querySelector('#actor').className.trim()),'actor rabbit');ok('Eski hareket sonradan karışmaz');
   // ayrılırken yürüyüş
-  await d.locator('[data-food="honey"]').click();await d.waitForFunction(()=>document.querySelector('#actor').classList.contains('walking'));await d.click('#gStart');await d.waitForFunction(()=>st.screen==='pedit');
-  const ilk=await d.evaluate(()=>({tabs:[...document.querySelectorAll('.ad-tab button')].map(b=>b.innerText.replace(/\s+/g,' ').trim()),sel:AD_KAR[st.pe.e][2],ret:st.pe.ret}));
-  assert.equal(ilk.tabs.length,11);assert(/Mutfak/.test(ilk.tabs[0]));assert.equal(ilk.sel,10);assert.equal(ilk.ret,'profiles');
-  ok('İlk girişte profil yoksa isim seçimi açılır; Mutfak sekmesi ilk sırada ve mutfak karakteri seçili');
+  await d.locator('[data-food="honey"]').click();await d.waitForFunction(()=>document.querySelector('#actor').classList.contains('walking'));await d.evaluate(()=>{window.adClaim=async(e)=>({e,n:0,c:true});});await d.click('#gStart');await d.waitForFunction(()=>st.screen==='home'&&!!document.getElementById('adAskY'));
+  const ilk=await d.evaluate(()=>({kat:AD_KAR[adInfo(st.prof).e][2],txt:document.getElementById('adAskY').closest('.modal').innerText,sabit:adSabit(st.prof)}));
+  assert.equal(ilk.kat,10);assert(/Yeni oyun adın/.test(ilk.txt)&&/Beğenmezsen bir kez değiştirebilirsin/.test(ilk.txt));assert.equal(ilk.sabit,false);
+  ok('İlk girişte ad kendiliğinden (mutfak karakteri) verilir; "Beğendin mi?" penceresi çıkar');
+  const p0=await d.evaluate(()=>st.prof);
+  await d.evaluate(()=>{const e=Object.keys(AD_KAR).find(k=>AD_KAR[k][2]===10&&k!==adInfo(st.prof).e);window.__e2=e;adOpen(profiles().indexOf(st.prof),'profiles');});
+  await d.waitForFunction(()=>st.screen==='pedit');
+  await d.evaluate(()=>{st.pe.e=window.__e2;adSave();});
+  await d.waitForFunction(()=>profiles().length===1&&profiles()[0]!==undefined&&adSabit(profiles()[0]),null,{timeout:5000});
+  assert.notEqual(await d.evaluate(()=>profiles()[0]),p0);
+  await d.evaluate(()=>{adOpen(0,'profiles');});assert.notEqual(await d.evaluate(()=>st.screen),'pedit');
+  ok('Ad bir kez değiştirilir; sonra ad sabit kalır ve düzenleme açılmaz');
   await d.evaluate(()=>{guest();});await d.waitForFunction(()=>st.screen==='home');await d.waitForTimeout(1200);ok('Misafir olarak devam edince ana sayfa açılır');
   assert.equal(await d.evaluate(()=>!!document.querySelector('.gs')),false);
   // kılavuz
-  await d.evaluate(()=>go('giris'));await d.click('#gHelp');await d.waitForFunction(()=>st.screen==='guide');await d.evaluate(()=>back());await d.waitForFunction(()=>st.screen==='giris');ok('Kılavuz açılır, Geri açılış ekranına döner');
+  await d.evaluate(()=>{go('giris');});await d.waitForTimeout(300);await d.evaluate(()=>{const s=document.getElementById('sesDurum');if(s)s.remove();});await d.evaluate(()=>document.getElementById('gHelp').click());await d.waitForFunction(()=>st.screen==='guide');await d.evaluate(()=>back());await d.waitForFunction(()=>st.screen==='giris');ok('Kılavuz açılır, Geri açılış ekranına döner');
   // oyun ekranında slogan şeridi
   await d.evaluate(()=>{lsSet('profiles',['Deneme']);pickProfile('Deneme');st.subject='baharat';st.op='match';st.contentSet=1;startBoard('learn',12);});assert.equal(await d.locator('.gs-strip').count(),1);ok('Oyun ekranında sağ üstte "Herkes yemek yapabilir" şeridi');
   await d.evaluate(()=>go('home'));assert.equal(await d.locator('.gs-strip').count(),0);

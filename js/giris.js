@@ -109,8 +109,8 @@ function girisHTML(){return '<div class="gs"><header class="corner-controls"><bu
   $('#replay').onclick=function(){if(G.last)react(G.last);};
   $('#otherFoods').onclick=function(){stop(true);G.page=(G.page+1)%Math.ceil(G.foods.length/size());draw();say('Diğer besinler. Bir besin seç.');};
   $('#gStart').onclick=function(){GIRIS.dur();
-   /* İlk girişte profil yoksa isim (karakter) seçimi önce gelir; kayıtlı profil varsa "Kim çalışıyor?" açılır. Misafir seçeneği profil ekranında kalır. */
-   if(!st.prof&&!st.guest){if(profiles().length)go('profiles');else if(typeof adOpen==='function')adOpen(-1,'profiles');else go('home');return;}
+   /* İlk girişte profil yoksa ad kendiliğinden verilir ("Beğendin mi?" penceresi çıkar, bir kez değiştirilebilir); kayıtlı profil varsa "Kim çalışıyor?" açılır. Misafir seçeneği profil ekranında kalır. */
+   if(!st.prof&&!st.guest){if(profiles().length)go('profiles');else if(typeof adAuto==='function')adAuto();else go('home');return;}
    go('home');};
   $('#gHelp').onclick=function(){GIRIS.dur();kilavuzAc();};
  };

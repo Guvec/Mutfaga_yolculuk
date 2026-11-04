@@ -83,7 +83,7 @@ function adAsk(p){
  setTimeout(()=>{
   if(st.prof!==p||st.modalOpen||st.screen!=='home')return;
   st.modalOpen=true;pauseT();const ov=document.getElementById('ov');ov.className='on';
-  ov.innerHTML='<div class="modal" role="dialog" aria-modal="true" aria-labelledby="adAskT"><p style="font-size:60px;line-height:1.2;margin:0">'+adEmo(p)+'</p><p id="adAskT">Yeni oyun adın:<br><b style="font-size:22px">'+esc(adRest(p))+'</b><br>Beğendin mi?</p><div class="row"><button class="btn ghost" id="adAskN">✏️ Değiştir</button><button class="btn pri" id="adAskY">👍 Tamam</button></div></div>';
+  ov.innerHTML='<div class="modal" role="dialog" aria-modal="true" aria-labelledby="adAskT"><p style="font-size:60px;line-height:1.2;margin:0">'+adEmo(p)+'</p><p id="adAskT">Yeni oyun adın:<br><b style="font-size:22px">'+esc(adRest(p))+'</b><br>Beğendin mi?<br><small>Beğenmezsen bir kez değiştirebilirsin.</small></p><div class="row"><button class="btn ghost" id="adAskN">✏️ Değiştir</button><button class="btn pri" id="adAskY">👍 Tamam</button></div></div>';
   document.getElementById('adAskY').onclick=()=>{adDone(p);closeModal();};
   document.getElementById('adAskN').onclick=()=>{adDone(p);closeModal();adOpen(profiles().indexOf(p),'home');};
   document.getElementById('adAskY').focus();
@@ -97,7 +97,21 @@ function adKitchen(){return AD_KAT.length-1;}
 function adTabOrder(){const k=adKitchen(),o=[k];for(let j=0;j<AD_KAT.length;j++)if(j!==k)o.push(j);return o;}
 /* Yeni profilde rastgele bir mutfak karakteri seçili açılır. */
 function adRndKitchen(){const k=adKitchen(),l=[];AD_KAR.forEach((x,j)=>{if(x[2]===k)l.push(j);});return l.length?l[adRnd(0,l.length-1)]:adRnd(0,AD_KAR.length-1);}
+/* İlk giriş ve yeni profil: ad kendiliğinden (rastgele mutfak karakteri) verilir, "Beğendin mi?" penceresi çıkar. */
+async function adAuto(){
+ if(AD_STATE.auto)return;AD_STATE.auto=true;
+ try{
+  const r=await adClaim(adRndKitchen(),0,null),nw=adMake(r.e,r.n),l=profiles();
+  if(l.indexOf(nw)<0){l.push(nw);if(!lsSet('profiles',l)){adToast('Kayıt yapılamadı: tarayıcı depolaması kapalı olabilir');return;}}
+  const x=adMap();x[nw]=r;lsSet('ad_map',x);
+  const q=ls('ad_yeni',[]).filter(v=>v!==nw);q.push(nw);lsSet('ad_yeni',q);
+  pickProfile(nw);adAsk(nw);
+ }finally{AD_STATE.auto=false;}
+}
+/* Oyun adı bir kez değiştirilebilir: değiştirilince bilgide d=1 olur ve ad sabit kalır (telefondaki kayıt; sunucu denetimi ayrı adım). */
+function adSabit(p){const m=adInfo(p);return !!(m&&m.d);}
 function adOpen(i,ret){
+ if(i>=0&&adSabit(profiles()[i])){adToast('Oyun adın sabit: değiştirme hakkını kullandın.');return;}
  const p=i>=0?profiles()[i]:null,m=p?adInfo(p):null,e=m?m.e:adRndKitchen();
  st.pe={i,e,cat:AD_KAR[e][2],ret:ret||'profiles',busy:false};go('pedit');adCheck();
 }
@@ -135,6 +149,7 @@ async function adSave(){
  if(old&&om&&om.e===P.e){go(P.ret);return;}
  P.busy=true;if(b){b.disabled=true;b.textContent='⏳ Ad ayrılıyor…';}
  const r=await adClaim(P.e,0,old);P.busy=false;
+ if(old)r.d=1;/* değiştirme hakkı kullanıldı: ad artık sabit */
  const nw=adMake(r.e,r.n);
  if(old){adRename(old,nw,r);adRelease(om);adDone(old);adToast('Yeni adın: '+nw);go(P.ret);}
  else{
@@ -149,7 +164,7 @@ function adEditHTML(){
  let h=topBar(ed?'✏️ Profili Düzenle':'➕ Yeni Profil')+'<div class="wrap"><div class="card ad-prev" id="pe-pv">'+adPrev()+'</div>';
  h+='<h2>Karakterini seç</h2><div class="ad-tab" id="pe-tab">'+adTabs()+'</div><div class="ad-grid" id="pe-em">'+adGrid()+'</div>';
  h+='<button class="btn pri" id="pe-go" onclick="adSave()">'+(ed?'💾 Kaydet':'✅ Profili Oluştur')+'</button>';
- h+='<p class="note">Adını hazır karakterlerden seçersin, yazmazsın. Bir karakteri ilk alan numarasız alır; daha önce başkası aldıysa yanına numara eklenir (örn. #482).</p></div>';
+ h+='<p class="note">'+(ed?'<b>Adını bir kez değiştirebilirsin.</b> Değiştirince ad sabit kalır. ':'')+'Adını hazır karakterlerden seçersin, yazmazsın. Bir karakteri ilk alan numarasız alır; daha önce başkası aldıysa yanına numara eklenir (örn. #482).</p></div>';
  return h;
 }
 /* Ekran bağlantıları */
@@ -161,7 +176,9 @@ render=function(){
  if(st.screen==='profiles'){
   const inp=document.getElementById('pname');
   if(inp){const card=inp.closest('.card');if(card)card.innerHTML='<b>Yeni profil</b><p class="note" style="margin:4px 0 10px">Adını yazmazsın; hazır karakterlerden birini seçersin.</p><button class="btn pri" onclick="adOpen(-1,\'profiles\')">➕ Yeni profil</button>';}
-  document.querySelectorAll('.prof').forEach((row,i)=>{const del=row.querySelector('.del');if(del&&!row.querySelector('.ad-edit'))del.insertAdjacentHTML('beforebegin','<button class="del ad-edit" aria-label="Oyun adını değiştir" onclick="adOpen('+i+',\'profiles\')">✏️</button>');});
+  document.querySelectorAll('.prof').forEach((row,i)=>{const del=row.querySelector('.del');if(!del||row.querySelector('.ad-edit,.ad-lock'))return;
+   if(adSabit(profiles()[i]))del.insertAdjacentHTML('beforebegin','<span class="ad-lock" role="img" aria-label="Oyun adı sabit">🔒</span>');
+   else del.insertAdjacentHTML('beforebegin','<button class="del ad-edit" aria-label="Oyun adını bir kez değiştir" onclick="adOpen('+i+',\'profiles\')">✏️</button>');});
   setTimeout(adSync,0);
  }
  if(st.screen==='home'){setTimeout(adSync,0);if(st.prof)adAsk(st.prof);}
