@@ -141,6 +141,14 @@ function yrBeat(){
  if(st.screen==='raceover')render();
 }
 function yrSetReady(){if(!YR.room||YR.room.status!=='lobby')return;YR.ready=true;yrService().setPlayer(YR.code,yrPlayerBase(YR.nick,YR.room.created)).catch(yrSetError);render();}
+/* Başlat düğmesi kapalıysa nedeni yazılır; boş dönerse başlatılabilir. */
+function yrStartNeden(){
+ const L=YarisModel.LIMITS[YR.room.mode],n=YR.players.length;
+ if(n<L.min)return 'En az '+(L.min===2?'iki':'üç')+' kişi gerekir. Şu an '+n+' kişi var. Arkadaşların odaya girince düğme açılır.';
+ const y=YR.players.filter(p=>!p.loaded);
+ if(y.length)return y.map(p=>p.nick).join(', ')+' için sorular yükleniyor. Birkaç saniye bekle, düğme kendiliğinden açılır.';
+ return '';
+}
 function yrStart(){if(!YR.host||yrDuel()||YR.players.length<YarisModel.LIMITS[YR.room.mode].min||YR.players.some(p=>!p.loaded)||YR.room.status!=='lobby')return;yrService().start(YR.code).catch(e=>yrSetError(e));}
 function yrLink(){return location.origin+location.pathname+'?oda='+encodeURIComponent(YR.code||'');}
 async function yrCopy(){let ok=false;try{await navigator.clipboard.writeText(yrLink());ok=true;}catch(e){}YR.notice=ok?'Bağlantı kopyalandı.':'Bağlantıyı kutudan seçip kopyalayabilirsin.';render();}
@@ -362,7 +370,7 @@ function yrLobbyHTML(){
  h+='<h2>Oyuncular ('+YR.players.length+'/'+cap+')</h2><ul class="yr-list" id="yrList">'+yrPlayersListHTML()+'</ul>';
  h+='<p class="note">Seçtiğin karakterle katılıyorsun.</p><button class="btn pri" onclick="yrSetReady()"'+(YR.ready?' disabled':'')+'>'+(YR.ready?'Hazır':'Hazırım')+'</button>';
  if(duel)h+='<p class="card" role="status">'+(YR.players.length<2?'Rakip bekleniyor.':'İki oyuncu da hazır olunca kapışma başlar.')+'</p>';
- else if(YR.host)h+=(YR.players.some(p=>!p.ready)?'<p class="note" role="status">'+YR.players.filter(p=>!p.ready).length+' hazır değil.</p>':'')+'<button class="btn pri" onclick="yrStart()"'+(YR.players.length<minP||YR.players.some(p=>!p.loaded)?' disabled':'')+'>'+(arena?'Er Meydanı\'nı başlat':'Yarışı başlat')+'</button>'+(YR.players.length<minP?'<p class="sub">En az '+(minP===2?'iki':'üç')+' kişi gerekir.</p>':'');
+ else if(YR.host)h+=(YR.players.some(p=>!p.ready)?'<p class="note" role="status">'+YR.players.filter(p=>!p.ready).length+' hazır değil.</p>':'')+'<button class="btn pri" onclick="yrStart()" aria-describedby="yrStartNeden"'+(yrStartNeden()?' disabled':'')+'>'+(arena?'Er Meydanı\'nı başlat':'Yarışı başlat')+'</button><p class="sub" id="yrStartNeden" role="status">'+esc(yrStartNeden())+'</p>';
  else h+='<p class="card" role="status">⏳ Odayı kuran kişi başlatınca oyun açılır.</p>';
  h+=(typeof frLobbyHTML==='function'?frLobbyHTML():'')+'<div class="card"><small>Ya da bağlantıyla davet et</small><input id="yrInvite" class="inp" readonly value="'+esc(yrLink())+'"><div class="row"><button class="btn sm" onclick="yrCopy()">Kopyala</button><button class="btn sm" onclick="yrShare()">Paylaş</button></div><p role="status" class="sub">'+esc(YR.notice||'')+'</p></div>'+yrErr()+'<button class="btn ghost" onclick="yrLeave()">Odadan çık</button></div>';
  return h;
