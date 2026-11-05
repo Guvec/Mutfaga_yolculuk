@@ -9,9 +9,10 @@ const {chromium}=require('playwright'),http=require('http'),fs=require('fs'),pat
  async function device(){
   const browser=await chromium.launch({headless:true,executablePath:process.env.CHROMIUM_EXECUTABLE,args:['--no-sandbox','--disable-gpu']});browsers.push(browser);
   const c=await browser.newContext({viewport:{width:390,height:844}});
+  await c.route('**/js/ad.js',r=>r.fulfill({contentType:'text/javascript',body:fs.readFileSync(path.join(root,'js/ad.js'),'utf8').replace('function adMigrate(){','function adMigrate(){return;').replace('async function adSync(){','async function adSync(){return;')}));
   await c.route('**/js/yaris-ayar.js',r=>r.fulfill({contentType:'text/javascript',body:'window.YARIS_FIREBASE_CONFIG={projectId:"demo-mesleki-yaris",apiKey:"demo-test-key",authDomain:"demo-mesleki-yaris.firebaseapp.com"};'}));
   await c.route('https://www.gstatic.com/firebasejs/10.12.2/*',r=>r.fulfill({contentType:'text/javascript',body:fs.readFileSync(path.join(sdk,new URL(r.request().url()).pathname.split('/').pop()))}));
-  const p=await c.newPage();p.on('pageerror',e=>errors.push(e.message));await p.goto(url);await p.waitForFunction(()=>typeof rkFlush==='function'&&CONTENT.baharat&&CONTENT['mutfak-araclari']);p.ctx=c;return p;
+  const p=await c.newPage();p.on('pageerror',e=>errors.push(e.message));await p.goto(url);await p.waitForFunction(()=>typeof rkFlush==='function'&&CONTENT.baharat&&CONTENT['mutfak-araclari']);await p.evaluate(()=>{adMigrate=()=>{};AD_STATE.busy=true;rkBefore=async(b,fn)=>fn();});p.ctx=c;return p;
  }
  const play=(p,name,wrong,set=1)=>p.evaluate(([name,wrong,set])=>{if(!profiles().includes(name))lsSet('profiles',profiles().concat([name]));pickProfile(name);st.subject='baharat';st.op='match';st.contentSet=set;startBoard('check',12);const b=st.board;b.items.forEach((it,i)=>{const nm=i<wrong?b.items[(i+1)%wrong].answer:it.answer;tryPair(it.id,nm);});checkBoard();return st.sess.ok;},[name,wrong,set]);
  const settle=p=>p.waitForFunction(()=>!RK.busy&&!RK.maint&&!rkQueue().length,null,{timeout:20000});
@@ -22,7 +23,7 @@ const {chromium}=require('playwright'),http=require('http'),fs=require('fs'),pat
 
   assert.equal(await play(A,'Ali',2),10);await settle(A);await A.waitForFunction(()=>RK.msg&&/sıran/.test(RK.msg.cloud),null,{timeout:20000});
   const aid=await A.evaluate(()=>rkPid('Ali'));let rows=await list(A,G1);assert.equal(rows.find(r=>r.pid===aid).correct,10);rows=await list(A,H1);assert.equal(rows.find(r=>r.pid===aid).correct,10);
-  assert.deepEqual(Object.keys(rows.find(r=>r.pid===aid)).sort(),['correct','gen','name','pid','term','version']);ok('Gerçek kurallarla ilk sonuç genel ve haftalık tabloya yazıldı; açık satırda süre/hesap kimliği yok');
+  assert.deepEqual(Object.keys(rows.find(r=>r.pid===aid)).sort(),['correct','gen','name','pid','rank','term','version']);ok('Gerçek kurallarla ilk sonuç genel ve haftalık tabloya yazıldı; açık satırda süre/hesap kimliği yok');
 
   // Görünen ad değişince: önce ad, sonra puan ayrı işlemlerle; düşük sonuçta yalnız ad güncellenir.
   await A.evaluate(([p])=>{lsSet('rk_queue',[{qid:'n1',pid:p,board:'bh-e1',period:'genel',name:'Ali K',correct:11,gen:rkProf(p).gen,at:Date.now(),sess:1}]);rkFlush(null);},[aid]);await settle(A);
@@ -31,9 +32,9 @@ const {chromium}=require('playwright'),http=require('http'),fs=require('fs'),pat
   me=(await list(A,G1)).find(r=>r.pid===aid);assert.equal(me.name,'Ali');assert.equal(me.correct,11);ok('Ad değişikliği + yüksek sonuç, ad değişikliği + düşük sonuç kurallarla uyumlu');
 
   // Haftalık tablo reddedilirse (yanlış hafta) genel yazılır, haftalık başarısızlık öğrenciye ayrı söylenir.
-  await A.evaluate(()=>{window.__wk=rkWeekNo;rkWeekNo=()=>window.__wk()+5;});await play(A,'Ali',0);await settle(A);await A.waitForFunction(()=>RK.msg&&/yazılamadı/.test(RK.msg.cloud),null,{timeout:20000});
-  const msg=await A.evaluate(()=>RK.msg.cloud);assert(msg.includes('Bu haftaki sıralamaya yazılamadı')&&msg.includes('Genel sıran'),msg);await A.evaluate(()=>{rkWeekNo=window.__wk;});
-  me=(await list(A,G1)).find(r=>r.pid===aid);assert.equal(me.correct,12);ok('Kısmi başarısızlık: genel yazıldı, haftalık red ayrı bildirildi');
+  await A.evaluate(()=>{window.__wk=rkWeekNo;rkWeekNo=()=>window.__wk()+5;});await play(A,'Ali',0);await A.waitForFunction(()=>!RK.busy&&!RK.maint);
+  assert((await A.evaluate(()=>RK.msg.cloud)).includes('kaydediliyor'));assert(await A.evaluate(()=>rkQueue().length>0));await A.evaluate(()=>{rkWeekNo=window.__wk;rkFlush(null);});await settle(A);
+  me=(await list(A,G1)).find(r=>r.pid===aid);assert.equal(me.correct,12);ok('Kural reddinde öğrenciye yazma hatası gösterilmedi; sonuç kuyrukta tutulup tekrar gönderildi');
 
   // İkinci cihaz: farklı hesap, aynı listeyi görür; başkasının satırına yazamaz.
   await play(B,'Ayşe',0);await settle(B);const bid=await B.evaluate(()=>rkPid('Ayşe'));rows=await list(B,G1);assert(rows.some(r=>r.pid===aid)&&rows.some(r=>r.pid===bid));

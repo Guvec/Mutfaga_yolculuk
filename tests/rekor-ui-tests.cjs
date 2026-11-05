@@ -18,15 +18,18 @@ const FAKE=`window.REKOR_FAKE=(()=>{const prof={},rows={};let uid='u-cihaz';cons
  const ok=m=>console.log('PASS '+m);
  try{
   await page.goto('http://127.0.0.1:'+server.address().port);await page.waitForFunction(()=>typeof CONTENT!=='undefined'&&CONTENT.baharat&&CONTENT['mutfak-araclari']);
+  const kep=await page.evaluate(()=>{const rows=[{pid:'a',name:'Bir',correct:10,rank:3},{pid:'b',name:'İki',correct:10},{pid:'c',name:'Üç',correct:8,rank:2}];const host=document.createElement('div');host.innerHTML=rkRowsHTML(rows,'bh-e1','genel',10);const li=host.querySelectorAll('li');return {hats:[...li].map(x=>x.querySelectorAll('.rk-hat').length),rank:[...li].map(x=>x.querySelector('.rutbe-small')?.textContent||'')};});
+  assert.deepEqual(kep.hats,[1,1,0]);assert(kep.rank[0].includes('Aşçı'));assert.equal(kep.rank[1],'');assert(kep.rank[2].includes('Aşçı Yardımcısı'));ok('Kep eşit birincilerin hepsinde; rank olmayan satırda simge yok');
   const T=await page.evaluate(()=>RK_TERM+'~');
   const W=await page.evaluate(()=>rkWeekNo());
   // Bütün tabloların içerik sayıları kurallardaki sınırlarla aynı olmalı.
-  const invalid=await page.evaluate(()=>RK_BOARDS.filter(b=>!rkBoardValid(b)).map(b=>b.id));assert.deepEqual(invalid,[]);ok('39 tablonun kart/soru sayısı içerikle aynı');
+  const invalid=await page.evaluate(()=>RK_BOARDS.filter(b=>!rkBoardValid(b)).map(b=>b.id));assert.deepEqual(invalid,[]);ok('40 tablonun kart/soru sayısı içerikle aynı');
   const rulesBoards=fs.readFileSync(path.resolve(root,'../firebase/firestore.rules'),'utf8').match(/rkBoards\(\) \{ return \{([^}]*)\}/)[1];
   // Harita anahtarlarının yazılış sırası sıralama kuralı değildir; kimlik ve sınırları karşılaştır.
   const rulesEntries=Array.from(rulesBoards.matchAll(/'([^']+)':\s*(\d+)/g),m=>[m[1],Number(m[2])]).sort();
   const jsEntries=await page.evaluate(()=>RK_BOARDS.map(b=>[b.id,b.total]).sort());assert.deepEqual(rulesEntries,jsEntries);ok('Kurallardaki tablo kimlikleri ve puan sınırları uygulamayla birebir aynı');
 
+  await page.evaluate(()=>{rkBefore=async function(board,fn){return fn();};adMigrate=()=>{};});
   const play=async(name,wrong)=>page.evaluate(([name,wrong])=>{
    if(!profiles().includes(name))lsSet('profiles',profiles().concat([name]));pickProfile(name);
    st.subject='baharat';st.op='match';st.contentSet=1;startBoard('check',12);
@@ -36,9 +39,9 @@ const FAKE=`window.REKOR_FAKE=(()=>{const prof={},rows={};let uid='u-cihaz';cons
 
   assert.equal(await play('Ali',2),10);await settle();let t=await banner();assert(t.includes('İlk sonucun kaydedildi.'),t);await page.waitForFunction(()=>RK.msg&&/sıran/.test(RK.msg.cloud));t=await banner();assert(t.includes('Bu haftaki sıran: 1')&&t.includes('Genel sıran: 1'),t);ok('İlk sonuç: yerel kayıt + haftalık ve genel tabloya yazıldı');
   if(shots)await page.screenshot({path:shots+'/1-sonuc-390.png',fullPage:false});
-  assert.equal(await play('Ali',0),12);await settle();t=await banner();assert(t.includes('Yeni rekor!'),t);
+  assert.equal(await play('Ali',0),12);await settle();t=await banner();assert(t.includes('Yeni kişisel rekor!'),t);
   let rows=await page.evaluate(([a,b])=>[REKOR_FAKE.rows[a],REKOR_FAKE.rows[b]],[T+'bh-e1~genel',T+'bh-e1~w'+W]);assert.equal(Object.values(rows[0])[0].correct,12);assert.equal(Object.values(rows[1])[0].correct,12);
-  assert.deepEqual(Object.keys(Object.values(rows[0])[0]).sort(),['correct','gen','name','term','version']);ok('Yeni rekor; açık satırda yalnız ad, doğru, dönem, sürüm, nesil');
+  assert.deepEqual(Object.keys(Object.values(rows[0])[0]).sort(),['correct','gen','name','rank','term','version']);ok('Yeni rekor; açık satırda yalnız ad, doğru, dönem, sürüm, nesil');
   assert.equal(await play('Ali',3),9);await settle();t=await banner();assert(t.includes('En iyi sonucun korunuyor: 12 / 12'),t);rows=await page.evaluate(a=>REKOR_FAKE.rows[a],T+'bh-e1~genel');assert.equal(Object.values(rows)[0].correct,12);ok('Düşük sonuç rekoru bozmuyor, hata gibi gösterilmiyor');
 
   // Pekiştiriyorum: 3 yanlış listede; tur 2–4 hedef ve gerçek karışıklıklardan oluşan ad havuzuyla açılır.

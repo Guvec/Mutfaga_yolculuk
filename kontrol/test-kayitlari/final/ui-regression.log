@@ -1,0 +1,3 @@
+PASS 390px: cancel keeps selection; same choice is unchanged; atomic replacement; duplicate prevention; chosen label visible; no early correctness/score; image/enlargement targets separate; backdrop closes; final check scoring; no horizontal overflow
+PASS 1200px: cancel keeps selection; same choice is unchanged; atomic replacement; duplicate prevention; chosen label visible; no early correctness/score; image/enlargement targets separate; backdrop closes; final check scoring; no horizontal overflow
+PASS: no uncaught browser JavaScript errors. Desktop Chromium viewport tests; not physical Android.

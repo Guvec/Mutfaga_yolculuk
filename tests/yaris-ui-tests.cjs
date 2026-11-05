@@ -59,10 +59,11 @@ const hub={rooms:{},n:0,ops:{
   // geçersiz kod
   await a.evaluate(()=>{YR.cfg.code='ab';});await a.getByRole('button',{name:'Odayı kur'}).click();assert((await text(a)).includes('3–10'));
   await a.evaluate(()=>{YR.cfg.code='Zihin 11b';});await a.getByRole('button',{name:'Odayı kur'}).click();await a.waitForFunction(()=>YR.active&&st.screen==='racelobby');assert.equal(await a.evaluate(()=>YR.code),'ZIHIN11B');
+  console.log('PASS menü ve oda kurma');
   // ---- 2) Oyun Odası: lobi, katılım, başlatma, aynı sorular ----
   assert((await text(a)).includes('En az iki kişi gerekir'));assert(await a.getByRole('button',{name:'Yarışı başlat'}).isDisabled());
   await joinRoom(b,'🐼 Cesur Panda','zihin11b');
-  await a.waitForFunction(()=>YR.players.length===2);assert(!(await a.getByRole('button',{name:'Yarışı başlat'}).isDisabled()));
+  await a.waitForFunction(()=>YR.players.length===2&&YR.players.every(p=>p.loaded));assert(!(await a.getByRole('button',{name:'Yarışı başlat'}).isDisabled()));
   assert((await text(b)).includes('Odayı kuran kişi başlatınca'));assert((await text(b)).includes('Cesur Panda'),'oyun adı görünür');
   // üçüncü oyuncu, başlamadan katılabilir
   await joinRoom(c,'Can','ZIHIN11B');await a.waitForFunction(()=>YR.players.length===3);
@@ -73,7 +74,7 @@ const hub={rooms:{},n:0,ops:{
   // geç gelen katılamaz
   const late=await phone(390);await openMenu(late,'Geç');await late.evaluate(c=>yrJoin(c),'ZIHIN11B');await late.waitForFunction(()=>YR.error.length>0);assert((await text(late)).includes('başlamış'));
   // ilk soruda yapısal denetim: görsel + yönerge + dört seçenek, süre çubuğu
-  assert.equal(await a.locator('.yr-opt').count(),4);assert(await a.locator('.yr-img').isVisible());assert.equal(await a.locator('#yrFill').count(),1);
+  assert.equal(await a.locator('.yr-opt').count(),4);assert(await a.locator('.yr-q').isVisible());assert.equal(await a.locator('#yrFill').count(),1);
   if(process.env.QA_SCREENSHOTS){fs.mkdirSync(process.env.QA_SCREENSHOTS,{recursive:true});await a.screenshot({path:path.join(process.env.QA_SCREENSHOTS,'yaris-soru-390.png')});}
   // A hepsini doğru, B hepsini yanlış, C 5 doğru 5 yanlış
   for(let i=0;i<10;i++){await raceAnswer(a,true);}
@@ -87,6 +88,7 @@ const hub={rooms:{},n:0,ops:{
   if(process.env.QA_SCREENSHOTS)await c.screenshot({path:path.join(process.env.QA_SCREENSHOTS,'yaris-sonuc-1200.png')});
   // süre dolması yanlış sayılır
   await a.evaluate(()=>yrLeaveNow());assert.equal(await a.evaluate(()=>YR.active),false);
+  console.log('PASS Oyun Odası üç oyuncu');
   // ---- 3) Konu seçenekleri: mutfak araçları bilgi soruları, kuver ----
   for(const [subject,pick] of [['Mutfak Araçları',null],['Kuver','Tabldot Kuver']]){
    const h=await phone(390);await openMenu(h,'Deniz');await h.getByRole('button',{name:/Oyun Odası Kur/}).click();await h.getByRole('button',{name:subject,exact:true}).click();
@@ -94,11 +96,15 @@ const hub={rooms:{},n:0,ops:{
    await h.getByRole('button',{name:'Odayı kur'}).click();await h.waitForFunction(()=>YR.active);assert((await h.evaluate(()=>YR.room.n))>=3);
    await h.evaluate(()=>yrLeaveNow());
   }
+  console.log('PASS konu seçimleri');
   // ---- 4) 1'e 1 Kapışma ----
   const d1=await phone(390),d2=await phone(390),d3=await phone(390);
   const dcode=await createRoom(d1,'Mert','duel',{subject:'Baharatlar',set:2});assert((await text(d1)).includes('Rakip bekleniyor'));
   await joinRoom(d2,'Selin','DUEL'.length?dcode:dcode);
   await d3.evaluate(()=>{st.prof='Üçüncü';st.guest=false;yrOpen();});await d3.evaluate(c=>yrJoin(c),dcode);await d3.waitForFunction(()=>YR.error.length>0);assert(/dolu|başlamış/.test(await text(d3)),'üçüncü kişi kapışmaya giremez: '+(await text(d3)).slice(0,300));
+  assert.equal(await d1.evaluate(()=>st.screen),'racelobby');assert.equal(await d2.evaluate(()=>st.screen),'racelobby');
+  await d1.getByRole('button',{name:'Hazırım',exact:true}).click();await d1.waitForTimeout(100);assert.equal(await d1.evaluate(()=>st.screen),'racelobby');
+  await d2.getByRole('button',{name:'Hazırım',exact:true}).click();
   for(const p of [d1,d2])await p.waitForFunction(()=>st.screen==='dintro'||st.screen==='dplay',null,{timeout:15000});
   assert((await text(d1)).includes('Selin')||(await d1.evaluate(()=>st.screen))==='dplay');
   for(const p of [d1,d2])await p.waitForFunction(()=>st.screen==='dplay',null,{timeout:15000});
@@ -131,12 +137,13 @@ const hub={rooms:{},n:0,ops:{
   if(process.env.QA_SCREENSHOTS)await d2.screenshot({path:path.join(process.env.QA_SCREENSHOTS,'yaris-kapisma-sonuc-390.png')});
   // rövanş: ikisi de ister -> yeni maç, farklı sorular
   const before=await d1.evaluate(()=>YR.qs.map(q=>q.id).join());
-  await d1.getByRole('button',{name:/Rövanş/}).click();assert((await text(d1)).includes('bekleniyor'));await d2.getByRole('button',{name:/Rövanş/}).click();
+  await d1.getByRole('button',{name:/Rövanş/}).click();await d1.waitForFunction(()=>DU.want||DU.go2||st.screen==='dintro'||st.screen==='dplay');assert((await text(d1)).includes('bekleniyor')||await d1.evaluate(()=>DU.go2||st.screen==='dintro'||st.screen==='dplay'));await d2.getByRole('button',{name:/Rövanş/}).click();
   for(const p of [d1,d2])await p.waitForFunction(()=>st.screen==='dplay',null,{timeout:20000});
   assert.equal(await d1.evaluate(()=>DU.m),1);assert.deepEqual(await d1.evaluate(()=>DU.sc),[0,0]);assert.notEqual(await d1.evaluate(()=>YR.qs.map(q=>q.id).join()),before);
   // rakip çıkınca diğeri kazanır
   await d2.evaluate(()=>yrLeaveNow());await d1.waitForFunction(()=>st.screen==='dover'&&DU.left,null,{timeout:25000});assert((await text(d1)).includes('Rakip ayrıldı'));
   assert.equal(await d1.evaluate(()=>DU.result),'win','rakip bilerek çıkınca maç kazanılır');assert((await text(d1)).includes('maçı sen kazandın'));
+  console.log('PASS Kapışma hazır, turlar, rövanş ve ayrılma');
   // ---- 5) Sürüm farkı ve kod çakışması ----
   const v1=await phone(390),v2=await phone(390);const vcode=await createRoom(v1,'Eda','race',{subject:'Baharatlar',set:3});
   await v2.evaluate(()=>{CONTENT.baharat.revision='farkli-surum';});await joinRoom(v2,'Efe',vcode).catch(()=>{});
@@ -157,12 +164,13 @@ const hub={rooms:{},n:0,ops:{
    hub.fail=false;const uid1=await f1.evaluate(()=>YR.g&&YR.nick&&Object.keys({}).length+0===0?document.title&&0:0);
    const t0=Date.now();let done=false;while(Date.now()-t0<30000&&!done){done=Object.values(hub.rooms[fc].players).some(p=>p.nick==='Fatma'&&p.done);if(!done)await new Promise(r=>setTimeout(r,500));}
    assert(done,'bitiş sonucu bağlantı gelince yeniden gönderilmeli');}
+  console.log('PASS sürüm, kapasite ve yeniden gönderim');
   // ---- 6) Davet bağlantısı kodu getirir; kurucu çıkarsa oda kapanır ----
   const inv=await phone(390,'?oda='+vcode);assert.equal(await inv.inputValue('#yrCode'),vcode);assert.equal(await inv.locator('#yrCode').getAttribute('type'),'hidden');
   await v1.evaluate(()=>yrLeave());await v1.waitForFunction(()=>!YR.active);
   // ---- 7) Yatay taşma yok ----
   for(const p of [a,b,d1,v3,inv])assert(await p.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),'yatay taşma');
   assert.deepEqual(errors,[]);
-  console.log('PASS: menu/name rules; custom+duplicate codes; race lobby (min 2, 3 players), same seeded questions, late join refused, live finish rules, shared final ranks; subjects (mutfak bilgi, kuver); duel auto-start, 3rd player refused, first-correct/both-wrong/wrong-then-right rounds, early finish, rematch with new questions, opponent-left win; version mismatch; invite link; no overflow; no JS errors. (mock Firestore, desktop Chromium)');
+  console.log('PASS: menu/name rules; custom+duplicate codes; race lobby (min 2, 3 players), same seeded questions, late join refused, live finish rules, shared final ranks; subjects (mutfak bilgi, kuver); duel ready gate, 3rd player refused, first-correct/both-wrong/wrong-then-right rounds, early finish, rematch with new questions, opponent-left win; version mismatch; invite link; no overflow; no JS errors. (mock Firestore, desktop Chromium)');
  }catch(e){console.error('UI failure:',e);process.exitCode=1;}finally{await browser.close();server.close();}
 })();

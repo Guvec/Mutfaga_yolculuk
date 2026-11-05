@@ -1,0 +1,9 @@
+PASS Profil ekranında ad yazma kutusu yok
+PASS Karakter ekranı: 10 kategori sekmesi
+PASS Liste: 209 eski karakter sırası korunmuş, 11 mutfak karakteri sona eklenmiş
+PASS Boş karakter numarasız alındı
+PASS Alınmış karakterin yanına numara eklendi
+PASS Karakter değişince profil ve kayıtlar yeni ada taşındı
+PASS Gerçek adlı eski profil karaktere dönüştü; kayıtlar taşındı, eski rekor kimliği bırakıldı
+PASS Profil silinince karakter rezervasyonu bırakılır
+PASS Tarayıcıda yakalanmamış JavaScript hatası yok

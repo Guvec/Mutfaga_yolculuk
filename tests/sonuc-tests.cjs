@@ -20,7 +20,7 @@ const {chromium}=require('playwright'),http=require('http'),fs=require('fs'),pat
   o.r1={durum:CV.rapor.durum,puan:CV.rapor.puan,dogru:CV.rapor.dogru,yanlis:CV.rapor.yanlis,seri:CV.rapor.seri,top:CV.rapor.toplam,oyun:CV.rapor.oyun};
   o.sesA=calls.slice();
   const all=ls('rk_oyun',{});const k=Object.keys(all['🍳 Test'])[0];all['🍳 Test'][k]=10;lsSet('rk_oyun',all);
-  calls.length=0;cvNew();
+  calls.length=0;await cvNew();if(st.screen==='rkpre')rkPreGo();
   // ilk soru yanlış, sonra doğrular
   cvAns(CV.qs[0].choices.findIndex(c=>c.id!==CV.qs[0].correct));cvNext();
   while(!CV.over){cvAns(idx(CV.qs[CV.k]));cvNext();}

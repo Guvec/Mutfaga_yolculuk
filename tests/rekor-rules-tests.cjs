@@ -20,6 +20,15 @@ let n=0;const step=async(name,p)=>{await p;n++;console.log('PASS '+name);};
   await step('Profil gen 0 ve in ile açılmak zorunda',assertFails(setDoc(prof(a,pA),{owner:'ua',status:'in',gen:1})));
   await step('Profile fazladan alan eklenemez',assertFails(setDoc(prof(a,pA),{owner:'ua',status:'in',gen:0,x:1})));
   await step('Profil açılır',assertSucceeds(setDoc(prof(a,pA),{owner:'ua',status:'in',gen:0})));
+  for(const rank of [0,6,"3",2.5])await step('Geçersiz rank '+JSON.stringify(rank),assertFails(setDoc(row(a,TERM+'~bh-e3~genel',pA),r({rank}))));
+  for(const rank of [1,2,3,4,5]){await step('rank '+rank+' kabul',assertSucceeds(setDoc(row(a,TERM+'~bh-e3~genel',pA),r({rank}))));}
+  await step('rank olmayan eski yazım kabul',assertSucceeds(setDoc(row(a,TERM+'~bh-e4~genel',pA),r())));
+  await step('Haftalık metadata ve 25 puan kabul',assertSucceeds(setDoc(row(a,TERM+'~haftalik~w'+W,pA),r({correct:25,game:'haftalik',scope:'butun',total:25,contentVersion:'hafta-1-scope2-123',week:W}))));
+  await step('Haftalık 26 puan reddi',assertFails(setDoc(row(a,TERM+'~haftalik~w'+W,pA),r({correct:26,game:'haftalik',scope:'butun',total:25,contentVersion:'hafta-1-scope2-123',week:W}))));
+  await step('Ayar tablosuna yazım',assertSucceeds(setDoc(row(a,TERM+'~ayar-du-bh-a-g-0-15-20~genel',pA),r({correct:1,rank:2}))));
+  await step('Ayar tablosunda fazladan alan reddi',assertFails(setDoc(row(a,TERM+'~ayar-du-bh-a-g-0-15-20~genel',pA),r({correct:2,rank:2,extra:true}))));
+
+
   await step('Başkası profili okuyamaz',assertFails(getDoc(prof(b,pA))));
   await step('Sahibi profili okur',assertSucceeds(getDoc(prof(a,pA))));
   await step('Olmayan profil sorgulanabilir (açma öncesi)',assertSucceeds(getDoc(prof(a,pC))));

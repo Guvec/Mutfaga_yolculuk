@@ -35,7 +35,7 @@
    return fb.runTransaction(this.db,async tx=>{
     const [p,r]=await Promise.all([tx.get(this.profRef(pid)),tx.get(this.rowRef(table,pid))]);
     if(!p.exists()||p.data().status!=='in'||p.data().gen!==row.gen)return {stale:true};
-    if(r.exists()&&r.data().gen===row.gen){const old=r.data();if(old.correct>=row.correct)return {kept:true,best:old.correct};}
+    if(r.exists()&&r.data().gen===row.gen){const old=r.data();if(old.correct>=row.correct){if(Number.isInteger(row.rank)&&old.rank!==row.rank)tx.update(this.rowRef(table,pid),{rank:row.rank});return {kept:true,best:old.correct};}}
     tx.set(this.rowRef(table,pid),row);return {written:true,best:row.correct};
    });
   }

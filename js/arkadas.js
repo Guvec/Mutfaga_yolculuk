@@ -165,7 +165,7 @@ function frLobbyHTML(){
  if(!FR.ready)return h+'<small>⏳ Arkadaşların yükleniyor…</small></div>';
  const l=FR.list.slice().sort((a,b)=>(frOnline(b)?1:0)-(frOnline(a)?1:0)).slice(0,6);
  if(!l.length)return h+'<div class="ark-row"><small>Henüz arkadaşın yok.</small><button class="mini" onclick="frOpen()">👫 Arkadaş ekle</button></div></div>';
- l.forEach(o=>{const k=YR.code+'_'+o;h+='<div class="ark-row"><span>'+(frOnline(o)?'🟢':'⚪')+' <b>'+esc(FR.nick[o]||'…')+'</b></span>'+(FR_SENT[k]?'<small>✓ Çağrıldı</small>':'<button class="mini" onclick="frInviteTo(\''+o+'\')">⚔️ Çağır</button>')+'</div>';});
+ l.forEach(o=>{const k=YR.code+'_'+o;h+='<div class="ark-row"><span>'+(frOnline(o)?'🟢':'⚪')+' <b>'+esc(FR.nick[o]||'…')+'</b></span>'+(YR.players.some(p=>p.pid===o)?'<small>✓ Katıldı</small>':FR_SENT[k]?'<small>✓ Çağrıldı</small>':'<button class="mini" onclick="frInviteTo(\''+o+'\')">⚔️ Çağır</button>')+'</div>';});
  return h+'</div>';
 }
 async function frInviteTo(o){

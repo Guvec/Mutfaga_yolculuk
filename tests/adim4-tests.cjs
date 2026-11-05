@@ -35,7 +35,7 @@ const FAKE=`window.REKOR_FAKE=(()=>{const prof={},rows={};let uid='u-cihaz';cons
   while(!CV.over){const q=CV.qs[CV.k];cvAns(idx(q));cvNext();}
   out.win=CV.win;out.scrOver=st.screen;out.puan=oduGet(st.prof).p;
   // ikinci savaş: yeni sorular önce; üç yanlış → kaybet
-  cvNew();out.ikinci=CV.qs.map(q=>q.id);
+  await cvNew();if(st.screen==='rkpre')rkPreGo();out.ikinci=CV.qs.map(q=>q.id);
   while(!CV.over){const q=CV.qs[CV.k];const w=q.choices.findIndex(c=>c.id!==q.correct);cvAns(w);cvNext();}
   out.lose=!CV.win;out.lives=CV.lives;out.puan2=oduGet(st.prof).p;return out;});
  assert.equal(cv.scr,'cvplay');assert.equal(cv.hp0,3);assert.equal(cv.can,3);assert.equal(cv.win,true);assert.equal(cv.scrOver,'cvover');assert.equal(cv.puan,3,'kazanma 3 puan');

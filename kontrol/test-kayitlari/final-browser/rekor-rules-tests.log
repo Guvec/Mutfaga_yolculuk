@@ -1,0 +1,13 @@
+FetchError: request to http://127.0.0.1:8080/emulator/v1/projects/demo-mesleki-yaris:securityRules failed, reason: connect ECONNREFUSED 127.0.0.1:8080
+    at ClientRequest.<anonymous> (/workspace/scratch/ad88c7dc1a13/work/test-runtime/node_modules/node-fetch/lib/index.js:1491:11)
+    at ClientRequest.emit (node:events:514:28)
+    at emitErrorEvent (node:_http_client:114:11)
+    at Socket.socketErrorListener (node:_http_client:774:5)
+    at Socket.emit (node:events:514:28)
+    at emitErrorNT (node:internal/streams/destroy:170:8)
+    at emitErrorCloseNT (node:internal/streams/destroy:129:3)
+    at process.processTicksAndRejections (node:internal/process/task_queues:90:21) {
+  type: 'system',
+  errno: 'ECONNREFUSED',
+  code: 'ECONNREFUSED'
+}

@@ -1,0 +1,39 @@
+PASS Kep eşit birincilerin hepsinde; rank olmayan satırda simge yok
+PASS 39 tablonun kart/soru sayısı içerikle aynı
+PASS Kurallardaki tablo kimlikleri ve puan sınırları uygulamayla birebir aynı
+PASS İlk sonuç: yerel kayıt + haftalık ve genel tabloya yazıldı
+PASS Yeni rekor; açık satırda yalnız ad, doğru, dönem, sürüm, nesil
+PASS Düşük sonuç rekoru bozmuyor, hata gibi gösterilmiyor
+PASS Pekiştirme turu: tek bağımsız doğru maddeyi listeden çıkarmıyor
+PASS Aynı günkü doğru sayaca eklenmiyor
+PASS Aynı gün ikinci tur maddeyi listeden çıkarmıyor
+PASS İki ayrı günde bağımsız doğru yapılınca madde listeden çıkıyor
+PASS Puansız 12/18 yoklaması sıralamaya yazmıyor
+PASS Eşitler aynı sırada (1, 1), alfabetik; kendi satırı işaretli
+PASS Listeden çık: satırlar silindi, sonraki sonuç gönderilmedi
+PASS Listeye dön: yeni nesil (2) ile yazılıyor
+PASS Eski nesille bekleyen gönderim atılıyor
+PASS Çevrimdışı sonuç bağlantı gelince gönderildi
+PASS Birleşik soru denemesi (10 soru) sonlu, karışık ve ma-s01 tablosuna yazıldı
+PASS Öğreniyorum: kaynak sırası korunuyor
+PASS Bulaşık: 5 bölüm yerinde, bölüm denemesi sıralamaya yazmıyor, Bütün bölümler (13) yazıyor
+PASS Basit Kuver kendi tablosuna yazıldı, Tabldot ayrı
+PASS Kuver Pekiştiriyorum: yanlış yerleştirilen parçalar önce
+PASS Profil silinince sunucu durumu deleted, bütün satırlar silindi
+PASS Gönderim sürerken başka profilin kuyruktaki sonucu korunuyor
+PASS Gönderim sürerken silinen profilin bulut kaydı gönderim bitince temizleniyor
+PASS Puansız yoklama: puan 0, puan gösterilmiyor, kişisel rekor değişmiyor
+PASS Oda yarışı oturumu rekor, kuyruk ve Pekiştiriyorum yazmıyor
+PASS Aynı metinli iki soru Pekiştiriyorum sayaçlarında karışmıyor
+PASS Ulaşılamayan profil kuyruğu kilitlemiyor; diğer profilin sonucu gönderildi
+PASS Hiç yanlış yoksa tekrar düğmesi çıkmıyor
+PASS Oyun sonunda 6 yanlışlı öğrenciye "(4)" düğmesi çıkıyor (yalnız yanlışlar)
+PASS Tekrar turu yalnız 4 yanlış maddeyle açılıyor, doğru yapılan madde girmiyor, kalan 2 yanlış listede
+PASS Tekrar turu rekoru ve sıralamayı değiştirmiyor; aynı günkü doğrular maddeyi çıkarmıyor
+PASS Tekrar turu puan yazmıyor; başka profilde eski tekrar düğmesi çıkmıyor
+PASS Kuverde "Birlikte tekrar edelim" düğmesi çıkmıyor
+PASS Gönderimde oyun adı (karakter) olduğu gibi gider, boşluklar düzenlenir
+PASS Sıralamaya oyun adı gider, 40 karakterle sınırlı
+PASS İlk sonuçtan önce sıralama açıklaması görünüyor
+PASS Ana sayfadaki düğme Rekorlarım ekranını açıyor
+PASS Tarayıcıda yakalanmamış JavaScript hatası yok

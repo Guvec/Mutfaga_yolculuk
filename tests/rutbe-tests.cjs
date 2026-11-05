@@ -1,0 +1,20 @@
+const assert=require('assert'),r=require('../js/rutbe.js');let id=0;
+const event=(x={})=>({pid:'p',id:String(++id),table:'a',correct:10,total:10,at:Date.parse('2026-11-04T12:00:00Z'),...x});
+for(const total of [10,15,20,25])assert.equal(r.points(total,total),10);
+assert.equal(r.points(7,15),5);assert.equal(r.points(0,20),0);
+let s;for(let i=0;i<3;i++)s=r.complete(s,event()).state;assert.equal(s.mp,35);assert.equal(r.complete(s,event()).gain,0);
+assert.equal(r.complete(s,event({at:Date.parse('2026-11-04T21:00:00Z')})).gain,10);
+assert.equal(r.day(Date.parse('2026-11-04T20:59:59Z')),'2026-11-04');assert.equal(r.day(Date.parse('2026-11-04T21:00:00Z')),'2026-11-05');
+let m;for(let i=0;i<2;i++)m=r.complete(m,event({match:true,opponents:['q'],win:true})).state;assert.equal(m.mp,12);assert.equal(r.complete(m,event({match:true,opponents:['q'],win:true})).gain,0);assert.equal(r.complete(m,event({match:true,opponents:[null],win:true})).gain,0);
+assert.equal(r.complete(null,event({guest:true})).gain,0);assert.equal(r.complete(null,event({abandoned:true})).gain,0);
+assert.deepEqual(r.config.ranks.map(x=>x.name),['Çırak','Aşçı Yardımcısı','Aşçı','Kaptan','Şef Yardımcısı']);assert.deepEqual(r.config.ranks.map(x=>x.mp),[0,100,300,650,1100]);
+assert.equal(r.complete({mp:10,rank:5},event()).state.rank,5);
+for(const [prefix,n,badge] of [['ma-e',12,'arac'],['bh-e',8,'baharat']]){const best={};for(let i=1;i<=n;i++)best[prefix+i]=10;assert(r.badges({best})[badge]);best[prefix+n]=9;assert(!r.badges({best})[badge]);}
+assert(r.badges({best:{'kv-basit':5,'kv-tabldot':9}}).kuver);assert(!r.badges({best:{'kv-basit':4,'kv-tabldot':9}}).kuver);assert(!r.badges({best:{'kv-basit':5,'kv-tabldot':8}}).kuver);
+assert(r.badges({best:{'bl-e1':10,'bl-s1':11}}).temizlik);assert(!r.badges({best:{'bl-e1':9,'bl-s1':11}}).temizlik);assert(!r.badges({best:{'bl-e1':10,'bl-s1':10}}).temizlik);
+assert(r.badges({mixed:5,mixed70:true}).karisik);assert(!r.badges({mixed:4,mixed70:true}).karisik);assert(!r.badges({mixed:5}).karisik);
+assert(r.badges({beaten:{a:1,b:1,c:1,d:1,e:1}}).rekor);assert(!r.badges({beaten:{a:1,b:1,c:1,d:1}}).rekor);
+let w;for(let i=0;i<3;i++)w=r.complete(w,event({weekly:true,week:300,total:25,correct:25})).state;assert.equal(w.mp,30);assert.equal(r.complete(w,event({weekly:true,week:300,total:25,correct:25})).gain,0);
+let b=r.complete(null,event({correct:5})).state;assert.equal(r.complete(b,event({correct:6})).gain,9);b=r.complete(b,event({correct:6})).state;assert.equal(r.complete(b,event({correct:7})).gain,7);
+const e=event();const once=r.complete(null,e);assert.equal(r.complete(once.state,e).gain,0);
+console.log('PASS rütbe: formül; dört toplam; günlük/haftalık/rakip sınırı; misafir; yarım oturum; eşikler; düşmeme; tüm rozetlerin sınırları; Türkiye gün sınırı; bonus ve yinelenen kayıt.');

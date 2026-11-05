@@ -1,0 +1,14 @@
+UI failure: AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+
+  assert((await text(d1)).includes('bekleniyor'))
+
+    at /workspace/scratch/ad88c7dc1a13/work/repo/tests/yaris-ui-tests.cjs:137:56
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at process.processImmediate (node:internal/timers:541:9) {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}

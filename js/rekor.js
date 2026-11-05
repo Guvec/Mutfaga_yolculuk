@@ -52,7 +52,7 @@ function rkErrCode(e){return (e&&(e.code||e.message))||'';}
 
 /* İçerikteki gerçek kart/soru sayısı tablo sınırıyla aynı mı? Değilse o tablo sıralamaya yazılmaz. */
 function rkBoardValid(b){
- if(b.kind==='win')return true;
+ if(b.kind==='win'||b.kind==='weekly'||b.dynamic)return true;
  if(b.kind==='kur')return typeof LEVELS!=='undefined'&&LEVELS[b.lvl]&&LEVELS[b.lvl].items.length===b.total;
  const d=CONTENT[b.subject];if(!d)return false;
  if(b.kind==='match')return d.matches.filter(x=>x.set===b.set).length===b.total;
@@ -87,7 +87,7 @@ function rkAfterAssessment(){
  const all=rkBestAll(),mine=all[pid]||{},old=mine[b.id];
  let head,text;
  if(!old){head='İlk sonucun kaydedildi.';text='Bu denemede '+correct+' / '+b.total+' doğru.';}
- else if(correct>old.best){head='Yeni rekor!';text='Bu denemede '+correct+' / '+b.total+' doğru. Önceki en iyi sonucun: '+old.best+' / '+b.total+'.';}
+ else if(correct>old.best){head='Yeni kişisel rekor!';text='Bu denemede '+correct+' / '+b.total+' doğru. Önceki en iyi sonucun: '+old.best+' / '+b.total+'.';}
  else if(correct===old.best){head='En iyi sonucuna ulaştın.';text='Bu denemede '+correct+' / '+b.total+' doğru.';}
  else{head='Sonucun kaydedildi.';text='Bu denemede '+correct+' / '+b.total+' doğru. En iyi sonucun korunuyor: '+old.best+' / '+b.total+'.';}
  const better=!old||correct>old.best||(correct===old.best&&dur&&(!old.bestDur||dur<old.bestDur));
@@ -115,10 +115,12 @@ async function rkFlush(sessId){
    if(p.status!=='in'||item.gen!==p.gen){drop();continue;}
    if(!checked[item.pid]){let sp;try{sp=await be.ensureProfile(item.pid);}catch(e){if(!/permission/i.test(rkErrCode(e)))throw e;rkProfSet(item.pid,{status:'lost'});lsSet('rk_queue',rkQueue().filter(x=>x.pid!==item.pid));if(item.sess===sessId){outcome=outcome||{};outcome.genel={failed:true};}continue;}rkProfSet(item.pid,{status:sp.status,gen:sp.gen,synced:true});checked[item.pid]=sp;}
    const sp=checked[item.pid];if(sp.status!=='in'||sp.gen!==item.gen){drop();continue;}
-   const row={name:rkName(item.name),correct:item.correct,term:RK_TERM,version:RK_VERSION,gen:item.gen};
+   if(item.board==='haftalik'&&item.week!==rkWeekNo()){drop();continue;}
+   const row={name:rkName(item.name),correct:item.correct,term:RK_TERM,version:RK_VERSION,gen:item.gen,...(item.meta||{}),rank:typeof rutbeNumber==='function'?rutbeNumber(item.pid):1};
    let res=null,table=null;
-   const tries=item.period==='genel'?[rkTable(item.board,'genel')]:[0,1,-1].map(d=>rkTable(item.board,'hafta',rkWeekNo()+d));
-   for(const t of tries){try{rkCleanAdd(item.pid,t);res=await be.submit(t,item.pid,row);table=t;break;}catch(e){if(!/permission/i.test(rkErrCode(e)))throw e;}}
+   const tries=item.period==='genel'?[rkTable(item.board,'genel')]:item.board==='haftalik'?[rkTable(item.board,'hafta',item.week)]:[0,1,-1].map(d=>rkTable(item.board,'hafta',rkWeekNo()+d));
+   for(const t of tries){try{rkCleanAdd(item.pid,t);try{res=await be.submit(t,item.pid,row);}catch(rankError){if(!/permission/i.test(rkErrCode(rankError)))throw rankError;const legacy={...row};delete legacy.rank;res=await be.submit(t,item.pid,legacy);}table=t;break;}catch(e){if(!/permission/i.test(rkErrCode(e)))throw e;}}
+   if(!res){if(RK.msg&&RK.msg.sess===sessId)RK.msg.cloud='Sonucun kaydediliyor.';break;}
    drop();
    if(item.sess===sessId&&!res){outcome=outcome||{};outcome[item.period]={failed:true};}
    if(item.sess===sessId&&res)outcome=outcome||{};
@@ -129,6 +131,7 @@ async function rkFlush(sessId){
    for(const period of ['hafta','genel']){const o=outcome[period];if(!o)continue;if(o.failed){parts.push(period==='hafta'?'Bu haftaki sıralamaya yazılamadı':'Genel sıralamaya yazılamadı');continue;}const rows=await be.list(o.table);const r=rkRank(rows,pid);if(r)parts.push((period==='hafta'?'Bu haftaki sıran: ':'Genel sıran: ')+r.rank+(r.tie>1?' ('+r.tie+' kişiyle aynı sırada)':''));}
    const kept=outcome.genel&&outcome.genel.kept;RK.msg.cloud=parts.length?parts.join(' · ')+(kept?' · En iyi sonucun korunuyor.':'')+(Object.values(outcome).some(o=>o&&o.failed)?'. Sonucun bu telefonda kayıtlı.':''):'Bu sonuç sıralamaya gönderilmedi.';
   }
+  if(RK.msg&&RK.msg.sess===sessId&&rkQueue().some(x=>x.sess===sessId))RK.msg.cloud+=' · Sonucun kaydediliyor.';
  }catch(e){if(RK.msg&&RK.msg.sess===sessId)RK.msg.cloud='Sıralamaya şu anda ulaşılamadı. Sonucun telefonda kayıtlı; internet olduğunda yeniden gönderilir.';}
  finally{RK.busy=false;if(RK.again){RK.again=false;setTimeout(rkMaintenance,0);}}
  if(RK.msg&&RK.msg.sess===sessId&&['board','quiz','summary','spicereview'].includes(st.screen))render();
@@ -333,16 +336,16 @@ function rkRecordsHTML(){
 function rkOpenBoard(id){
  const pid=st.prof?rkPid(st.prof):null,mine=pid?(rkBestAll()[pid]||{}):{};
  const last=Object.entries(mine).sort((a,b)=>String(b[1].lastAt).localeCompare(String(a[1].lastAt)))[0];
- RK.view.board=id||RK.view.board||(last&&last[0])||'bh-e1';RK.view.rows=null;RK.view.state='idle';RK.view.err='';RK.view.crown=true;go('siralama');rkLoadRows();
+ RK.view.week=null;if(id&&rkDynamicBoard(id)&&!RK_BOARDS.some(b=>b.id===id))RK_BOARDS.push(rkDynamicBoard(id));RK.view.board=id||RK.view.board||(last&&last[0])||'bh-e1';RK.view.rows=null;RK.view.state='idle';RK.view.err='';RK.view.crown=true;go('siralama');rkLoadRows();
 }
 function rkPickSubject(sub){const b=RK_BOARDS.find(x=>x.subject===sub);if(b)rkOpenBoard(b.id);}
-function rkPickPeriod(p){RK.view.period=p;RK.view.rows=null;render();rkLoadRows();}
+function rkPickPeriod(p){RK.view.period=RK.view.board==='haftalik'?'hafta':p;RK.view.rows=null;render();rkLoadRows();}
 async function rkLoadRows(){
- const v=RK.view,key=v.board+'|'+v.period;if(!rkOnline()){v.state='offline';render();return;}
+ const v=RK.view,key=v.board+'|'+v.period+'|'+(v.week||'');if(!rkOnline()){v.state='offline';render();return;}
  v.state='loading';render();
- try{const be=rkBackend();if(!be)throw Error('NO_CONFIG');const rows=await be.list(rkTable(v.board,v.period==='genel'?'genel':'hafta'));if(v.board+'|'+v.period!==key)return;v.rows=rows;v.state='ready';}
- catch(e){if(v.board+'|'+v.period!==key)return;v.state='error';v.err=rkErrCode(e)==='NO_CONFIG'?'Sıralama bağlantısı ayarlanmadı.':'Sıralamaya şu anda ulaşılamadı.';}
- if(st.screen==='siralama'){render();if(v.crown&&v.state==='ready'&&v.period==='hafta'){v.crown=false;rkCrownShow(v.rows);}}
+ try{const be=rkBackend();if(!be)throw Error('NO_CONFIG');const rows=await be.list(rkTable(v.board,v.period==='genel'?'genel':'hafta',v.week));if(v.board+'|'+v.period+'|'+(v.week||'')!==key)return;v.rows=rows;v.state='ready';}
+ catch(e){if(v.board+'|'+v.period+'|'+(v.week||'')!==key)return;v.state='error';v.err=rkErrCode(e)==='NO_CONFIG'?'Sıralama bağlantısı ayarlanmadı.':'Sıralamaya şu anda ulaşılamadı.';}
+ if(st.screen==='siralama'){render();if(v.crown&&v.state==='ready'&&v.period==='hafta'&&v.board!=='haftalik'){v.crown=false;rkCrownShow(v.rows);}}
 }
 function rkBoardHTML(){
  const v=RK.view,b=rkBoard(v.board)||RK_BOARDS[0],pid=st.prof&&!st.guest?rkPid(st.prof):null;
@@ -350,14 +353,13 @@ function rkBoardHTML(){
  h+='<div class="card rk-pick"><label>Konu <select onchange="rkPickSubject(this.value)">'+Object.keys(RK_SUBJECT_NAMES).map(s=>'<option value="'+s+'"'+(s===b.subject?' selected':'')+'>'+esc(RK_SUBJECT_NAMES[s])+'</option>').join('')+'</select></label>';
  h+='<label>Çalışma <select onchange="rkOpenBoard(this.value)">'+RK_BOARDS.filter(x=>x.subject===b.subject).map(x=>'<option value="'+x.id+'"'+(x.id===b.id?' selected':'')+'>'+esc(x.label)+'</option>').join('')+'</select></label>';
  h+='<div class="rk-period" role="group" aria-label="Dönem"><button class="btn sm'+(v.period==='hafta'?' pri':'')+'" aria-pressed="'+(v.period==='hafta')+'" onclick="rkPickPeriod(\'hafta\')">Bu hafta</button><button class="btn sm'+(v.period==='genel'?' pri':'')+'" aria-pressed="'+(v.period==='genel')+'" onclick="rkPickPeriod(\'genel\')">Genel</button></div></div>';
- h+='<h2 class="rk-title">'+esc(RK_SUBJECT_NAMES[b.subject]+' · '+b.label)+'</h2><p class="note">'+(v.period==='hafta'?'Hafta: '+rkWeekLabel(rkWeekNo())+'. Liste her pazartesi yeniden başlar.<br>İnternetsiz tamamladığın sonuç, gönderildiği haftaya yazılır.':'Bu eğitim yılının en iyi sonuçları.')+'<br>'+(b.kind==='win'?'Kazanılan sayı gösterilir.':'Her öğrencinin en iyi doğru sayısı gösterilir.')+'</p>';
+ h+='<h2 class="rk-title">'+esc(RK_SUBJECT_NAMES[b.subject]+' · '+b.label)+'</h2><p class="note">'+(v.period==='hafta'?'Hafta: '+rkWeekLabel(v.week||rkWeekNo())+'. Liste her pazartesi yeniden başlar.<br>İnternetsiz tamamladığın sonuç, gönderildiği haftaya yazılır.':'Bu eğitim yılının en iyi sonuçları.')+'<br>'+(b.kind==='win'?'Kazanılan sayı gösterilir.':'Her öğrencinin en iyi doğru sayısı gösterilir.')+'</p>';
+ if(b.kind==='weekly')h+='<p class="card">'+(v.week&&v.week<rkWeekNo()?'Geçen haftanın birincisi':'Bu haftanın lideri')+' · Dört konu · 25 soru. Sınıf içi oyun sonuçlarıdır.</p>';
  if(v.state==='offline')return h+'<p class="card" role="status">Sıralamayı görmek için internete bağlan.</p></div>';
  if(v.state==='loading'||v.state==='idle')return h+'<p class="card" role="status">Sıralama yükleniyor…</p></div>';
  if(v.state==='error')return h+'<p class="card" role="alert">'+esc(v.err)+'</p><button class="btn" onclick="rkLoadRows()">Yeniden dene</button></div>';
  const rows=rkSorted(v.rows||[]);if(!rows.length)return h+'<p class="card">Bu listede henüz sonuç yok. '+(b.kind==='win'?'İlk kazanan sen olabilirsin.':'Uyguluyorum bölümünü bitiren ilk kişi sen olabilirsin.')+'</p></div>';
- let shown=rows;const big=rows.length>100;if(big){shown=rows.slice(0,50);const me=rows.find(r=>r.pid===pid);if(me&&!shown.includes(me))shown=shown.concat([me]);}
- h+='<ol class="rk-rows">';shown.forEach(r=>{const rank=rows.filter(x=>x.correct>r.correct).length+1,me=r.pid===pid;h+='<li class="rk-row'+(me?' rk-me':'')+'"><span class="rk-rank">'+rank+'.</span><span class="rk-name">'+(rank===1&&v.period==='hafta'?'<span class="rk-crown" role="img" aria-label="Haftanın birincisi">👑</span>':'')+esc(r.name)+(me?' <b>(sen)</b>':'')+'</span><span class="rk-score">'+(b.kind==='win'?r.correct:r.correct+' / '+b.total)+'</span></li>';});
- h+='</ol>'+(big?'<p class="note">İlk 50 sonuç ve senin sıran gösteriliyor.</p>':'')+'</div>';
+ h+=rkRowsHTML(rows,b.id,v.period,10)+'</div>';
  return h;
 }
 /* Sıralamaya her girişte haftanın birincisinin adı ortada taç animasyonuyla gösterilir. */

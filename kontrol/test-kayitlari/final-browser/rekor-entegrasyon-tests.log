@@ -1,0 +1,22 @@
+node:fs:621
+  return binding.open(
+                 ^
+
+Error: ENOENT: no such file or directory, open '/tmp/race13-qa/firebase-app.js'
+    at Object.openSync (node:fs:621:18)
+    at Object.readFileSync (node:fs:487:35)
+    at /workspace/scratch/ad88c7dc1a13/work/repo/tests/rekor-entegrasyon-tests.cjs:13:116
+    at RouteHandler._handleInternal (/opt/codex/runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright-core/lib/coreBundle.js:59786:11)
+    at RouteHandler._handleImpl (/opt/codex/runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright-core/lib/coreBundle.js:59753:29)
+    at /opt/codex/runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright-core/lib/coreBundle.js:59747:59
+    at AsyncLocalStorage.run (node:internal/async_local_storage/async_context_frame:65:14)
+    at _Zone.run (/opt/codex/runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright-core/lib/coreBundle.js:10149:40)
+    at RouteHandler.handle (/opt/codex/runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright-core/lib/coreBundle.js:59747:38)
+    at _BrowserContext._onRoute (/opt/codex/runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright-core/lib/coreBundle.js:61965:46) {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/tmp/race13-qa/firebase-app.js'
+}
+
+Node.js v24.22.1

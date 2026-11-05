@@ -208,11 +208,9 @@ function startBreak(){
 /* ===================== SEÇİM İŞLEMLERİ ===================== */
 function pickProfile(n){ st.prof=n; st.guest=false; go("home"); }
 function createProfile(){
-  var el=document.getElementById("pname"), n=(el.value||"").trim().replace(/\s+/g," ").slice(0,20);
-  if(!n){ el.focus(); return; }
-  var p=profiles(); if(p.indexOf(n)<0){ p.push(n); lsSet("profiles",p); }
-  pickProfile(n);
+  if(typeof adOpen==='function')adOpen(-1,'profiles');
 }
+
 function guest(){ st.prof=null; st.guest=true; go("home"); }
 function askDelProfile(n){
   modal("“"+esc(n)+"” profili ve bütün kayıtları silinsin mi?", function(){
@@ -333,9 +331,8 @@ function render(){
       h+='<div class="prof"><button class="menu-btn" onclick="pickProfile(profiles()['+i+'])"><b>'+esc(n)+'</b></button>'+
          '<button class="del" aria-label="Profili sil" onclick="askDelProfile(profiles()['+i+'])">🗑</button></div>';
     });
-    h+='</div><div class="card" style="margin-top:14px"><b>Yeni profil</b><p class="note" style="margin:4px 0 10px">Profil için adını yazman yeterli. Sıralamada yalnızca adın görünür.</p>'+
-       '<input type="text" id="pname" maxlength="20" placeholder="Adın" autocomplete="off">'+
-       '<div style="margin-top:10px"><button class="btn pri" onclick="createProfile()">Profil Oluştur</button></div></div>'+
+    h+='</div><div class="card" style="margin-top:14px"><b>Yeni profil</b><p class="note" style="margin:4px 0 10px">Karakterini seç. Seçtiğin karakterin adı oyun adın olur.</p>'+
+       '<div style="margin-top:10px"><button class="btn pri" onclick="createProfile()">➕ Yeni profil</button></div></div>'+
        '<div style="margin-top:14px"><button class="btn ghost" onclick="guest()">Misafir Olarak Devam Et</button>'+
        '<p class="note">Misafir oturumunda skor kaydedilmez.</p></div></div>';
     break;

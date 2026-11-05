@@ -6,19 +6,19 @@ let CV=null;
 const CV_CAN=3;
 function cvBuild(){
  const c=CV.cfg,seed=crypto.getRandomValues(new Uint32Array(1))[0];
- const qs=YarisModel.buildFresh(yrData(c.subject),{subject:c.subject,kind:c.kind,set:c.set,n:c.n},seed,CV.used);
+ const qs=YarisModel.buildScoped(yrAllData(),c,seed,CV.used);
  CV.used=CV.used.concat(qs.map(q=>q.id));return qs;
 }
 async function cvStart(c){
  YR.error='';
- try{await yrWithTimeout(yrReady(c.subject),9000);}catch(e){YR.error=yrErrText(e);render();return;}
- CV={cfg:{subject:c.subject,kind:c.kind,set:c.set,n:c.n||YarisModel.N_DEFAULT},used:[],qs:[],k:0,hp:0,hp0:0,lives:CV_CAN,ph:'q',pick:null,right:false,over:false,win:false,log:[],t0:0,str:0};
+ try{await yrWithTimeout(yrReady(yrScopeSubject(c)),9000);}catch(e){YR.error=yrErrText(e);render();return;}
+ CV={id:rkRandomId(),cfg:{subject:c.subject,scope:c.scope||'tek',kind:c.kind,set:c.set,n:c.n||YarisModel.N_DEFAULT},used:[],qs:[],k:0,hp:0,hp0:0,lives:CV_CAN,ph:'q',pick:null,right:false,over:false,win:false,log:[],t0:0,str:0};
  cvNew(true);
 }
 function cvNew(first){
  const qs=cvBuild();
- if(qs.length<3){CV=null;YR.error='Bu seçimde yeterli soru yok. Başka bir takım seç.';st.screen='racecreate';render();return;}
- Object.assign(CV,{qs,k:0,hp0:Math.ceil(qs.length*0.6),lives:CV_CAN,ph:'q',pick:null,right:false,over:false,win:false,log:[],str:0,rapor:null});CV.hp=CV.hp0;CV.t0=performance.now();
+ if(qs.length!==CV.cfg.n){CV=null;YR.error='Bu seçimde yeterli soru yok. Başka bir takım seç.';st.screen='racecreate';render();return;}
+ Object.assign(CV,{id:rkRandomId(),qs,k:0,hp0:Math.ceil(qs.length*0.6),lives:CV_CAN,ph:'q',pick:null,right:false,over:false,win:false,log:[],str:0,rapor:null});CV.hp=CV.hp0;CV.t0=performance.now();
  sesSus();st.screen='cvplay';render();window.scrollTo(0,0);
 }
 function cvAns(i){
@@ -35,7 +35,7 @@ function cvNext(){
 }
 function cvEnd(){
  CV.over=true;CV.win=CV.hp<=0;
- const c=CV.cfg;CV.rapor=sonucUret('Meydan Okuma',yrLabel({subject:c.subject,kind:c.kind,set:c.set}),['okuma',c.subject,c.kind,c.set,CV.qs.length].join('|'),CV.log,CV.win?'Karmaşayı yendin!':'Bu sefer karmaşa kazandı');
+ const c=CV.cfg;rkSettingSubmit({...c,mode:'canavar'},CV.log.filter(x=>x.ok).length);rutbeComplete({id:'cv-'+CV.id,table:['okuma',c.subject,c.scope,c.kind,c.set,c.n].join('|'),correct:CV.log.filter(x=>x.ok).length,total:CV.qs.length,scope:c.scope});CV.rapor=sonucUret('Meydan Okuma',yrLabel({subject:c.subject,kind:c.kind,set:c.set}),['okuma',c.subject,c.kind,c.set,CV.qs.length].join('|'),CV.log,CV.win?'Karmaşayı yendin!':'Bu sefer karmaşa kazandı');
  sonucSes(CV.rapor,CV.win);
  if(typeof sesSoyle==='function')sesSoyle(CV.win?'Karmaşayı yendin! Tebrikler.':'Bu sefer karmaşa kazandı. Tekrar deneyebilirsin.');
  if(typeof oduKazan==='function')oduKazan('canavar',CV.win?'win':'lose');
@@ -52,7 +52,7 @@ function cvPlayHTML(){
  return h+'<button class="btn ghost" onclick="cvLeave()">Oyundan çık</button></div>';
 }
 function cvOverHTML(){
- return yrTop('Oyun bitti')+'<div class="wrap" style="text-align:center"><h1 id="yrHeading" tabindex="-1">'+(CV.win?'🏆 Karmaşayı yendin!':'Bu sefer karmaşa kazandı')+'</h1>'+cvStatusHTML()+(CV.rapor?sonucGoster(CV.rapor):'')+'<p class="sub">'+(CV.win?'Güzel oynadın.':'Hiç sorun değil. Tekrar oynarken yeni sorular gelir.')+'</p><button class="btn pri" onclick="cvNew()">⚔️ Yeniden oyna</button><button class="btn ghost" onclick="cvExit()">Çık</button></div>';
+ return yrTop('Oyun bitti')+'<div class="wrap" style="text-align:center"><h1 id="yrHeading" tabindex="-1">'+(CV.win?'🏆 Karmaşayı yendin!':'Bu sefer karmaşa kazandı')+'</h1>'+cvStatusHTML()+(CV.rapor?sonucGoster(CV.rapor):'')+rkSettingInline({...CV.cfg,mode:'canavar'})+'<p class="sub">'+(CV.win?'Güzel oynadın.':'Hiç sorun değil. Tekrar oynarken yeni sorular gelir.')+'</p><button class="btn pri" onclick="cvNew()">⚔️ Yeniden oyna</button><button class="btn ghost" onclick="cvExit()">Çık</button></div>';
 }
 function cvExit(){CV=null;st.screen='racemenu';render();window.scrollTo(0,0);}
 function cvLeave(){

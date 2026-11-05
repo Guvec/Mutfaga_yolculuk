@@ -68,12 +68,29 @@
     Aynı tohum ve aynı exclude her telefonda aynı sırayı üretir. Konu bitince eski sorulara dönülür. */
  function buildFresh(data,spec,seed,exclude){
   if(!exclude||!exclude.length)return buildQuestions(data,spec,seed);
-  const n=Math.max(1,Math.min(spec.n||N_DEFAULT,20)),all=buildQuestions(data,{...spec,n:500,pool:true},seed),ex=new Set(exclude);
+  const n=Math.max(1,Math.min(spec.n||N_DEFAULT,20)),all=buildQuestions(data,{...spec,n:500,pool:true},seed),ex=new Set(exclude.map(id=>String(id).includes('|')?String(id).split('|').slice(1).join('|'):id));
   return all.filter(q=>!ex.has(q.id)).concat(all.filter(q=>ex.has(q.id))).slice(0,n);
+ }
+ /* Ortak kapsam yöntemi: kalan paylar sabit konu sırasıyla dağıtılır. */
+ const SUBJECT_ORDER=['mutfak-araclari','baharat','bulasik-makinesi-temizligi','kuver'];
+ function shares(n,subjects){return subjects.map((subject,i)=>({subject,n:Math.floor(n/subjects.length)+(i<n%subjects.length?1:0)}));}
+ function subjectPool(data,subject,spec,seed){
+  const d=data[subject],rng=seeded(seed),sp={subject,kind:subject==='kuver'?'kuver':'gorsel',set:subject==='kuver'?3:0,n:500,pool:true};
+  let qs=buildQuestions(d,sp,seed);
+  if(subject!=='kuver'&&(d.questions||[]).length)qs=qs.concat(textQuestions(d,500,rng));
+  return qs.map(q=>({...q,subject,id:subject+'|'+q.id}));
+ }
+ function buildScoped(data,spec,seed,exclude){
+  if(!spec.scope||spec.scope==='tek')return buildFresh(data[spec.subject],spec,seed,exclude).map(q=>({...q,subject:spec.subject,id:q.id.includes('|')?q.id:spec.subject+'|'+q.id}));
+  const parts=spec.distribution||shares(Math.min(spec.n||10,20),spec.scope==='butun'?SUBJECT_ORDER:[spec.subject]),used=new Set(exclude||[]),out=[];
+  parts.forEach(({subject,n},i)=>{const pool=subjectPool(data,subject,spec,seedFor(seed,i));const fresh=pool.filter(q=>!used.has(q.id)).concat(pool.filter(q=>used.has(q.id)));if(fresh.length<n)throw Error((labels[subject]||subject)+': '+n+' soru için havuz yetersiz ('+fresh.length+').');out.push(...fresh.slice(0,n));});
+  return shuffle(out,seeded(seed));
  }
  function seedFor(seed,match){return (seed+(match|0)*7919)>>>0;}
  function taskLabel(room,titles){
   if(!room)return '';
+  if(room.scope==='butun')return 'Bütün konular';
+  if(room.scope==='konu')return (labels[room.subject]||room.subject)+' · Konu içinde karışık';
   const base=labels[room.subject]||room.subject;
   if(room.kind==='kuver')return base+' · '+(room.set===3?'Tabldot Kuver':'Basit Kuver');
   if(room.kind==='bilgi')return base+' · Bilgi soruları';
@@ -115,6 +132,6 @@
  /* Kalan turlarda geri gelinemeyecek kadar öndeyse maç biter. */
  function duDecided(sc,played,total){const left=total-played;return Math.abs(sc[0]-sc[1])>left||played>=total;}
  function duResult(sc){return sc[0]>sc[1]?'win':sc[0]<sc[1]?'lose':'draw';}
- const api={labels,LIMITS,SEC_CHOICES,N_DEFAULT,MATCH_CHOICES,seeded,shuffle,slug,validCode,firstName,cleanNick,validNick,buildQuestions,buildFresh,seedFor,TIE_MS,duTie,taskLabel,ranks,duWho,arWho,duScore,duDecided,duResult};
+ const api={SUBJECT_ORDER,shares,buildScoped,subjectPool,labels,LIMITS,SEC_CHOICES,N_DEFAULT,MATCH_CHOICES,seeded,shuffle,slug,validCode,firstName,cleanNick,validNick,buildQuestions,buildFresh,seedFor,TIE_MS,duTie,taskLabel,ranks,duWho,arWho,duScore,duDecided,duResult};
  root.YarisModel=api;if(typeof module!=='undefined'&&module.exports)module.exports=api;
 })(typeof window!=='undefined'?window:globalThis);

@@ -1,0 +1,11 @@
+PASS Kullanım bilgisi yalnız Öğreniyorum'da (2 kart); Uyguluyorum'da yok
+PASS Oyun ekranında görünür "← Geri" var
+PASS Yanıt yokken Geri doğrudan çalışma biçimi ekranına döner
+PASS Çalışma biçimi → takım listesi
+PASS Takım listesi → konu menüsü
+PASS Yanıt varken onay sorusu çıkar
+PASS Hayır: oyunda kalır
+PASS Tarayıcı/telefon geri tuşu aynı soruyu sorar
+PASS Evet: yanıtlar silinir, yarım oturum kayıt listesinde kalmaz, süre durur
+PASS Kart ve büyütülmüş görselde object-fit: contain
+PASS Tarayıcıda JavaScript hatası yok

@@ -73,7 +73,7 @@ const hub={rooms:{},n:0,ops:{
   const idx=(p,right)=>p.evaluate(r=>{const q=YR.qs[AR.k];const ci=q.choices.findIndex(c=>c.id===q.correct);return r?ci:(ci+1)%4;},right);
   for(let k=0;k<n;k++){
    for(const p of [a,b,c,d])await p.waitForFunction(k=>st.screen==='aplay'&&AR.k===k&&AR.ph==='q',k,{timeout:20000});
-   const click=async(p,right)=>{const i=await idx(p,right);await p.locator('.yr-opt').nth(i).click();};
+   const click=async(p,right)=>{const i=await idx(p,right);await p.evaluate(ms=>{AR.t0=performance.now()-ms;},p===a?1000:p===b?3000:p===c?500:5000);await p.locator('.yr-opt').nth(i).click();};
    await click(c,false);await click(a,true);await b.waitForTimeout(700);await click(b,true);await d.waitForTimeout(1200);await click(d,true);
    for(const p of [a,b,c,d])await p.waitForFunction(k=>AR.win[k]!==undefined,k,{timeout:15000});
    const w=await Promise.all([a,b,c,d].map(p=>p.evaluate(k=>AR.win[k].uid,k)));assert(w.every(x=>x===w[0]&&x),'tur '+k+': dört telefon aynı kazananı hesapladı '+w);
@@ -81,7 +81,7 @@ const hub={rooms:{},n:0,ops:{
   }
   for(const p of [a,b,c,d])await p.waitForFunction(()=>st.screen==='aover',null,{timeout:20000});
   const ranks=await Promise.all([a,b,c,d].map(p=>p.evaluate(()=>arRanks().map(r=>r.nick+':'+r.ok+':'+r.rank).sort().join('|'))));assert(ranks.every(x=>x===ranks[0]),'dört telefonda aynı sıralama: '+ranks.join(' // '));
-  assert(ranks[0].includes('Kurnaz Tilki:5:1'),ranks[0]);assert((await text(a)).includes('Birinci sensin'));assert(!(await text(b)).includes('Birinci sensin'));
+  assert(ranks[0].includes('Kurnaz Tilki:5:1'),ranks[0]);assert((await text(a)).includes('Birinci sensin'),JSON.stringify(await a.evaluate(()=>({final:AR.final,me:yrMe(),sc:AR.sc,screen:st.screen,text:document.body.innerText}))));assert(!(await text(b)).includes('Birinci sensin'));
   assert((await text(a)).includes('Er Meydanı sıralaması'));
   const ow=await Promise.all([a,b].map(p=>p.evaluate(()=>oduGet(st.prof).p)));assert.deepEqual(ow,[3,2],'birinci 3 puan; 0 puanla ortak ikinci olan 2 puan');
   for(const p of [a,b,c,d]){const ov=await p.evaluate(()=>document.documentElement.scrollWidth>innerWidth+1);assert(!ov,'yatay taşma yok');}

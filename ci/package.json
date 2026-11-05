@@ -3,14 +3,16 @@
   "private": true,
   "description": "Yalnız geliştirme/test bağımlılıkları; site derleme gerektirmez.",
   "scripts": {
-    "test": "node site/tests/state-tests.cjs && node site/tests/speech-tests.cjs && node site/tests/yaris-model-tests.cjs",
+    "test": "node site/tests/state-tests.cjs && node site/tests/speech-tests.cjs && node site/tests/yaris-model-tests.cjs && node site/tests/rutbe-tests.cjs",
     "test:rooms": "firebase emulators:exec --only auth,firestore --project demo-mesleki-yaris --config firebase/firebase.json \"node site/tests/yaris-rules-tests.cjs && node site/tests/arkadas-rules-tests.cjs\"",
-    "test:rekor": "firebase emulators:exec --only auth,firestore --project demo-mesleki-yaris --config firebase/firebase.json \"node site/tests/rekor-rules-tests.cjs && node site/tests/yaris-rules-tests.cjs\""
+    "test:rekor": "firebase emulators:exec --only auth,firestore --project demo-mesleki-yaris --config firebase/firebase.json \"node site/tests/rekor-rules-tests.cjs && node site/tests/yaris-rules-tests.cjs\"",
+    "test:paket": "node site/tests/paket-akis-tests.cjs && node site/tests/paket-ui-tests.cjs"
   },
   "devDependencies": {
     "firebase": "10.12.2",
     "@firebase/rules-unit-testing": "3.0.2",
     "firebase-tools": "13.35.1",
-    "playwright": "1.62.1"
+    "playwright": "1.62.1",
+    "jsdom": "26.1.0"
   }
 }

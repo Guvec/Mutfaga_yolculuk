@@ -54,7 +54,7 @@ function adRename(o,nw,info){
 function adMigrate(){
  const map=adMap();
  profiles().slice().forEach(p=>{
-  const m=map[p];if(!m||!AD_KAR[m.e])return;
+  let m=map[p];if(!m||!AD_KAR[m.e]){const e=adRndKitchen();let n=adRnd(1000,9999);while(profiles().includes(adMake(e,n)))n=adRnd(1000,9999);m={e,n,c:false};adRename(p,adMake(e,n),m);return;}
   const nw=adMake(m.e,m.n);
   if(nw!==p&&profiles().indexOf(nw)<0)adRename(p,nw,m);
  });

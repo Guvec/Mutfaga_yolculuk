@@ -1,0 +1,5 @@
+PASS: all 8 sets / 96 assessment cards and 121 learning cards have short information; review inaccessible before checking; all-correct scoring and saved explanations.
+PASS 390px: wrong responses still receive information; visible fact/photo/name; keyboard and focus; correct speech text; previous/next/all 12; board/review/report return; score/time/attempts unchanged; no horizontal overflow.
+PASS 1200px: wrong responses still receive information; visible fact/photo/name; keyboard and focus; correct speech text; previous/next/all 12; board/review/report return; score/time/attempts unchanged; no horizontal overflow.
+PASS 844px: wrong responses still receive information; visible fact/photo/name; keyboard and focus; correct speech text; previous/next/all 12; board/review/report return; score/time/attempts unchanged; no horizontal overflow.
+PASS: no uncaught JavaScript errors. Viewport checks in desktop Chromium; no physical Android test.
