@@ -10,14 +10,15 @@ var AD_KAR=[['🐼','Cesur Panda',0],['🦊','Kurnaz Tilki',0],['🦘','Zıpzıp
 var AD_BASE=AD_KAR.length,AD_VAR=[];
 (function(){
  var SIF=['Sakin','Neşeli','Sevimli','Şirin','Zarif','Minik','Parlak','Nazik','Çevik','Gayretli','Sabırlı','Özenli'];
+ var NES=['Parlak','Zarif','Minik','Sevimli','Şirin','Renkli','Neşeli','Güzel','Şık','Canlı'],YIY=NES.filter(function(x){return x!=='Canlı';}).concat(['Taze','Lezzetli']);
  var ISL=['Şef','Garson','Fırıncı','Pastacı','Aşçı','Tatlıcı','Kurabiyeci'];
- var YASAK={'Peyniri':1,'Suyu':1,'Çiçeği':1,'Kaktüsü':1,'Palmiyesi':1,'Yaprağı':1,'Arabası':1,'Tırı':1,'Maskesi':1,'Haritası':1,'Kalesi':1,'Tozu':1,'Treni':1,'Kartanesi':1,'Adam':1};
+ var YASAK={'Peyniri':1,'Suyu':1,'Çiçeği':1,'Kaktüsü':1,'Palmiyesi':1,'Yaprağı':1,'Arabası':1,'Tırı':1,'Maskesi':1,'Haritası':1,'Kalesi':1,'Tozu':1,'Treni':1,'Kartanesi':1,'Adam':1,'Kurt':1,'Hayalet':1};
  var var_={},i,v,t;AD_KAR.forEach(function(k){var_[k[1]]=1;});
  for(i=0;i<AD_BASE;i++)AD_VAR[i]=[];
  for(v=0;v<7;v++)for(i=0;i<AD_BASE;i++){
   var k=AD_KAR[i],p=k[1].split(' '),mut=k[2]===10,son=p[p.length-1];
   if(!mut&&(p.length<2||YASAK[son]))continue;
-  var c=(mut?ISL:SIF).filter(function(s){return s!==p[0];});
+  var c=(mut?ISL:k[2]===0?SIF:(k[2]===1||k[2]===2)?YIY:NES).filter(function(s){return s!==p[0];});
   for(t=0;t<c.length;t++){
    var ad=c[(i+v+t)%c.length]+' '+(mut?p.slice(1).join(' '):son);
    if(!var_[ad]){var_[ad]=1;AD_KAR.push([k[0],ad,k[2],i]);AD_VAR[i].push(AD_KAR.length-1);break;}
