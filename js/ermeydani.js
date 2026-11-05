@@ -77,7 +77,7 @@ function arEnd(){
  const top=AR.final===1&&r.filter(p=>p.rank===1).length===1;
  AR.rapor=sonucUret('Er Meydanı',yrLabel(YR.room),['arena',YR.room.subject,YR.room.kind,YR.room.set,YR.room.n].join('|'),AR.myR.filter(v=>v!==undefined&&v!==null).map(v=>({ok:v>0,ms:Math.abs(v)})),AR.final===1?'Sıralamada 1. oldun!':AR.final?'Sıralaman: '+AR.final+'.':'');
  if(typeof EFEKT!=='undefined'){if(top&&AR.rapor.durum==='yeni')EFEKT.cal('rekor');else EFEKT.cal(top?'win':'tur');}
- if(typeof sesSoyle==='function')sesSoyle(top?'Er Meydanı\'nın birincisi sensin! Tebrikler.':AR.final===1?'Berabere birinci oldun! Tebrikler.':'Oyun bitti. Sıralamana bakabilirsin.');
+ if(typeof sesSoyle==='function')sesSoyle(top?'Er Meydanı\'nı kazandın. Tebrikler!':AR.final===1?'Berabere birinci oldun. Tebrikler!':'Oyun bitti. Sıralamana bakabilirsin.');
  rutbeMatch('arena',AR);if(AR.myR.length===AR.total)rkSettingSubmit(YR.room,AR.final===1?1:0);arWrite();
  if(typeof oduKazan==='function')oduKazan('arena',null,{rank:AR.final|0});
  if(typeof rkWinAdd==='function')rkWinAdd('oy-arena',arPts(yrMe()));

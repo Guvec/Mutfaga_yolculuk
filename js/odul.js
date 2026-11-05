@@ -41,7 +41,7 @@ function oduKazan(oyun,sonuc,ek){
 function oduDuyur(n,yeni){
  const m='+'+n+' puan'+(yeni.length?' · Yeni ödül: '+yeni.join(', '):'');
  if(typeof adToast==='function')adToast(m);
- if(yeni.length&&typeof sesSoyle==='function')sesSoyle('Yeni ödül kazandın! '+yeni.join('. '));
+ if(yeni.length&&typeof sesSoyle==='function')sesSoyle('Yeni bir ödülün var: '+yeni.join(', '));
  if(yeni.length&&typeof EFEKT!=='undefined')EFEKT.cal('win');
 }
 function oduKolSec(k){if(!oduVar()||!ODUL_KOL[k])return;const o=oduGet(st.prof);o.k=k;oduSet(st.prof,o);render();}

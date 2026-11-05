@@ -1,6 +1,9 @@
 Ses denemesi. Hazır olduğunda başlayabilirsin.
 Sesli okuma denemesi. Hazır olduğunda çalışmaya devam edebilirsin.
-Karmaşayı yendin! Tebrikler.
-Bu sefer karmaşa kazandı. Tekrar deneyebilirsin.
-Er Meydanı'nın birincisi sensin! Tebrikler.
-Süt içtim.
+Meydan okumayı kazandın. Tebrikler!
+Bu sefer olmadı. Çalıştıkça gelişirsin, tekrar deneyebilirsin.
+Er Meydanı'nı kazandın. Tebrikler!
+Berabere birinci oldun. Tebrikler!
+Oyun bitti. Sıralamana bakabilirsin.
+Doğru! Böyle devam.
+Yanlış. Doğru cevaba bak. Bir hakkın azaldı.
