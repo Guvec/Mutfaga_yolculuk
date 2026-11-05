@@ -6,6 +6,8 @@
      node tools/dilara-uret.cjs --liste eksik.json --limit 20     # deneme: ilk 20 metin
      node tools/dilara-uret.cjs --liste eksik.json                # hepsi
      node tools/dilara-uret.cjs --kuru --liste eksik.json         # üretmeden sayı ve karakter göster
+     --max-karakter 30000   # toplam karakter üst sınırı (kredi korumak için)
+     --model eleven_flash_v2_5   # daha ucuz model (kredi oranı ElevenLabs'te doğrulanmalı)
    --liste: metin dizisi içeren JSON (uygulamadaki "Ses ayarları > Listeyi kopyala" çıktısı) ya da satır başına bir metin içeren .txt
    Var olan klipler atlanır. Çıktı: audio/dilara/<özet>.mp3 ve audio/dilara/manifest.json */
 const fs=require('fs'),path=require('path'),vm=require('vm');
@@ -23,7 +25,8 @@ function oku(f){const s=fs.readFileSync(f,'utf8');if(f.endsWith('.json'))return 
  const ham=oku(lf),islenen=new Map();
  ham.forEach(m=>{const t=ctx.sesMetin(m);if(t)islenen.set(ctx.dilHash(t),t);});
  const yapilacak=[...islenen].filter(([h])=>!man.klip[h]||!fs.existsSync(path.join(dizin,h+'.mp3')));
- const sec=yapilacak.slice(0,limit),kar=sec.reduce((a,[,t])=>a+t.length,0);
+ const mk=Number(arg('--max-karakter'))||Infinity;let top=0;
+ const sec=yapilacak.slice(0,limit).filter(([,t])=>{if(top+t.length>mk)return false;top+=t.length;return true;}),kar=sec.reduce((a,[,t])=>a+t.length,0);
  console.log(`Listede ${islenen.size} ayrı metin; üretilecek ${sec.length}; yaklaşık ${kar} karakter.`);
  if(kuru)return;
  const key=process.env.ELEVENLABS_API_KEY,voice=process.env.DILARA_VOICE_ID;
@@ -31,7 +34,7 @@ function oku(f){const s=fs.readFileSync(f,'utf8');if(f.endsWith('.json'))return 
  fs.mkdirSync(dizin,{recursive:true});let ok=0,hata=0;
  for(const [h,t] of sec){
   try{
-   const r=await fetch(`https://api.elevenlabs.io/v1/text-to-speech/${voice}?output_format=mp3_44100_64`,{method:'POST',headers:{'xi-api-key':key,'Content-Type':'application/json',Accept:'audio/mpeg'},body:JSON.stringify({text:t,model_id:'eleven_multilingual_v2',language_code:'tr',voice_settings:{stability:0.55,similarity_boost:0.75}})});
+   const r=await fetch(`https://api.elevenlabs.io/v1/text-to-speech/${voice}?output_format=mp3_44100_64`,{method:'POST',headers:{'xi-api-key':key,'Content-Type':'application/json',Accept:'audio/mpeg'},body:JSON.stringify({text:t,model_id:(typeof arg('--model')==='string'?arg('--model'):'eleven_multilingual_v2'),language_code:'tr',voice_settings:{stability:0.55,similarity_boost:0.75}})});
    if(!r.ok)throw new Error(r.status+' '+(await r.text()).slice(0,120));
    fs.writeFileSync(path.join(dizin,h+'.mp3'),Buffer.from(await r.arrayBuffer()));
    man.klip[h]=1;fs.writeFileSync(mf,JSON.stringify(man));ok++;console.log(`+ ${h} ${t.slice(0,50)}`);
