@@ -29,7 +29,7 @@ var MUZIK=(function(){
   if(!acikMi()||!audio||audio.paused)return;
   durdur();clearInterval(konusmaTakip);var basla=Date.now(),goruldu=false;
   konusmaTakip=setInterval(function(){
-   var konusuyor=false;try{konusuyor=speechSynthesis.speaking||speechSynthesis.pending;}catch(e){}
+   var konusuyor=false;try{konusuyor=speechSynthesis.speaking||speechSynthesis.pending;}catch(e){}if(!konusuyor&&typeof SES!=='undefined'&&(SES.klipBekle||(SES.klip&&!SES.klip.paused&&!SES.klip.ended)))konusuyor=true;
    if(konusuyor)goruldu=true;
    var sure=Date.now()-basla;
    if((goruldu&&!konusuyor&&sure>400)||(!goruldu&&sure>3000)||sure>15000){clearInterval(konusmaTakip);konusmaTakip=null;cal();}
