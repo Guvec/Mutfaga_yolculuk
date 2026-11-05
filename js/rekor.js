@@ -1,3 +1,4 @@
+/* © 2026 Ali Arıkoğlu. Tüm hakları saklıdır. */
 /* Bireysel rekor, haftalık/genel sıralama ve Pekiştiriyorum turu (v15 taslak).
    Kurallar: sıralamayı yalnız doğru sayısı belirler; süre yalnız telefonda kalır; skoru yalnız Uyguluyorum yazar.
    Öğreniyorum, Pekiştiriyorum ve oda yarışı sıralamaya yazmaz. Tasarım: claude/oyun-siralama-tasarimi.md */

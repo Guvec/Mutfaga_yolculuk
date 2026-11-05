@@ -1,3 +1,4 @@
+/* © 2026 Ali Arıkoğlu. Tüm hakları saklıdır. */
 /* Ödüller: puan → tatlı / yemek koleksiyonu, Mutfak Yıldızı, Başarı Belgesi.
    Telefonda, profil adına göre saklanır. Açılan ödül geri alınmaz (toplam puan hiç azalmaz).
    Eşikler başlangıç taslağıdır; sınıfta denenip ayarlanabilir. */

@@ -1,3 +1,4 @@
+/* © 2026 Ali Arıkoğlu. Tüm hakları saklıdır. */
 'use strict';
 let spiceFilter='';
 function spiceLearningHTML(){

@@ -1,3 +1,4 @@
+/* © 2026 Ali Arıkoğlu. Tüm hakları saklıdır. */
 /* İşin Mutfağına Yolculuk — onaylı turkuvaz–yeşil ana sayfa tasarımı, konu listesi, gece modu. */
 :root{--bg:#fff;--teal:#00787c;--teal2:#e3f1ef;--navy:#163f31;--muted:#4f625a;--line:#cfdcd5;--surface:#fff;--soft:#eef4ef;--text:#26332e;--shadow:0 6px 20px #163f3112}
 body{color:var(--text);background:var(--bg);font-family:Tahoma,Verdana,"Segoe UI",Arial,sans-serif}button,input,select,textarea{font:inherit}

@@ -1,3 +1,4 @@
+/* © 2026 Ali Arıkoğlu. Tüm hakları saklıdır. */
 /* Uygulama kılavuzu: öğrencinin uygulamayı tek başına kullanabilmesi için kısa açıklamalar.
    Ana sayfadan ve Tüm konular ekranından açılır. Bir başlığa dokununca açılır. */
 'use strict';

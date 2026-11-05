@@ -1,3 +1,4 @@
+/* © 2026 Ali Arıkoğlu. Tüm hakları saklıdır. */
 /* Firebase web uygulaması yapılandırması. Bu alanlar istemciye açıktır. */
 window.YARIS_FIREBASE_CONFIG = {
   apiKey: "AIzaSyCJheeq8jsu4e7h9y7py1qDC8M-0N7a_QQ",

@@ -1,1 +1,2 @@
+/* © 2026 Ali Arıkoğlu. Tüm hakları saklıdır. */
 try{var t=localStorage.getItem('mesleki-tema');if(t!=='light'&&t!=='sepia'&&t!=='dark')t=localStorage.getItem('mesleki-gece')==='true'?'dark':'light';document.documentElement.dataset.theme=t;document.documentElement.style.colorScheme=t==='dark'?'dark':'light';}catch(e){document.documentElement.dataset.theme='light';}

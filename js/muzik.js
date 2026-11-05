@@ -1,3 +1,4 @@
+/* © 2026 Ali Arıkoğlu. Tüm hakları saklıdır. */
 /* Arka plan müziği. Müzik ile sesli okuma aynı anda açık olmaz:
    - Müzik açıkken sesli okuma kapalıdır. Eşleştirmede ada dokununca ad yine okunur; müzik o sırada kısa süre durur.
    - Sesli okuma açılınca müzik kapanır. Müzik yeniden açılmak istenirse uyarı çıkar.

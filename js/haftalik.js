@@ -1,3 +1,4 @@
+/* © 2026 Ali Arıkoğlu. Tüm hakları saklıdır. */
 /* Haftalık yarışma: sabit haftalık set, yerel deneme ve devam kaydı. Sunucu doğrulaması yoktur. */
 'use strict';
 const HAFTA_AYAR={attempts:3,distribution:[{subject:'mutfak-araclari',n:8},{subject:'baharat',n:7},{subject:'bulasik-makinesi-temizligi',n:5},{subject:'kuver',n:5}],contentVersion:'hafta-1'};

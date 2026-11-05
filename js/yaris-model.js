@@ -1,3 +1,4 @@
+/* © 2026 Ali Arıkoğlu. Tüm hakları saklıdır. */
 /* Birlikte Oynayalım: saf (arayüzsüz) model. Soru üretimi, kapışma kuralı ve sıralama burada.
    Aynı tohum (seed) her telefonda aynı soruları ve aynı seçenek sırasını üretir.
    Hiçbir şey ağa ya da ekrana dokunmaz; Node'da da çalışır (tests/yaris-model-tests.cjs). */

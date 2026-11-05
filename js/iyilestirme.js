@@ -1,3 +1,4 @@
+/* © 2026 Ali Arıkoğlu. Tüm hakları saklıdır. */
 'use strict';
 function sessionTimeLabel(r){return typeof r.duration==='number'?'Toplam '+fmtDur(r.duration):r.op==='match'?'Süre kaydı yok':'Ort. '+fmtS(r.qs.length?r.qs.reduce((n,q)=>n+(Number(q.s)||0),0)/r.qs.length:0);}
 // Ayrıntı metni kısa açıklamanın altında isteğe bağlı açılır.

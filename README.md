@@ -1,4 +1,8 @@
-# Mesleki Oyunlar — MEB düzenlemesi v9
+# İşin Mutfağına Yolculuk
+
+© 2026 Ali Arıkoğlu. Tüm hakları saklıdır. Yazılı izin olmadan kopyalanamaz, dağıtılamaz. Ayrıntı: LICENSE.
+
+## Önceki not (v9)
 
 Bu sürüm, kullanıcının gönderdiği Temel Mutfak ve Servis Becerileri 9 kitabının ilgili sınıflandırmalarıyla güncellendi. Canlı GitHub sitesine yüklenmedi.
 

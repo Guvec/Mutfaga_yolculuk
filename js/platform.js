@@ -1,3 +1,4 @@
+/* © 2026 Ali Arıkoğlu. Tüm hakları saklıdır. */
 /* Konu verileri oyun motorlarından ayrıdır. GitHub Pages üzerinde derleme gerekmez. */
 'use strict';
 const SUBJECTS = [

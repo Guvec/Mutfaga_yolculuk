@@ -1,3 +1,4 @@
+/* © 2026 Ali Arıkoğlu. Tüm hakları saklıdır. */
 /* Bireysel rekor bağlantısı. Oda yarışından ayrı Firebase uygulama örneği ve kalıcı (local) oturum kullanır;
    oda yarışının sekmeye bağlı oturumuna dokunmaz. SDK yalnız rekor gönderilirken ya da sıralama açılırken yüklenir. */
 (function(root){

@@ -1,3 +1,4 @@
+/* © 2026 Ali Arıkoğlu. Tüm hakları saklıdır. */
 /* Değerler tek yerden değişir. Yalnız pid bazlı yerel kayıt; sunucuya sadece rank yazılır. */
 const RUTBE_AYAR={maxMP:10,daily:3,firstBonus:5,recordBonus:3,matchMP:3,winMP:3,opponentDaily:2,weekly:3,ranks:[{name:'Çırak',mp:0},{name:'Aşçı Yardımcısı',mp:100},{name:'Aşçı',mp:300},{name:'Kaptan',mp:650},{name:'Şef Yardımcısı',mp:1100}]};
 (function(root){

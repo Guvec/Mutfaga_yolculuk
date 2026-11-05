@@ -1,3 +1,4 @@
+/* © 2026 Ali Arıkoğlu. Tüm hakları saklıdır. */
 /* Dilara sesi: hazır klip varsa o çalınır, yoksa cihazın Türkçe sesi kesintisiz devam eder.
    Klipler audio/dilara/manifest.json içinde listelenir. Eksik metinler cihazda kaydedilir (eksik ses listesi). */
 'use strict';

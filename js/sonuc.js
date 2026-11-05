@@ -1,3 +1,4 @@
+/* © 2026 Ali Arıkoğlu. Tüm hakları saklıdır. */
 /* Oyun sonu raporu: puan, doğru/yanlış, en iyi seri, rekor, ortalama süre. Ekranda kart, istenirse resim olarak kaydedilir.
    Puan = doğru sayısı × 10. Rekor, aynı oyun ve aynı soru ayarı için bu profilin telefondaki en iyi puanıdır. */
 'use strict';

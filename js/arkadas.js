@@ -1,3 +1,4 @@
+/* © 2026 Ali Arıkoğlu. Tüm hakları saklıdır. */
 /* Arkadaşlar (Matematik Canavarı sürüm 46 akışı). Oyuncu kodu (7 karakter) profile bağlıdır.
    Koleksiyonlar: yrKart/{kod} (ad kartı), yrKim/{uid} (bu cihazdaki aktif profil), yrDurum/{kod} (çevrim içi sinyali),
    yrFr/{a_b} (istek ve arkadaşlık), yrDav/{gönderen_alıcı_oda} (davet), yrEngel (engel; arayüzü sonra). Kurallar: ci/firebase/firestore.rules.

@@ -1,3 +1,4 @@
+/* © 2026 Ali Arıkoğlu. Tüm hakları saklıdır. */
 /* Telefon kullanımına göre görsel düzen. Oyun verileri ve puanlama korunur. */
 'use strict';
 var PHONE={open:false,expanded:false,returnIndex:0,wide:null};

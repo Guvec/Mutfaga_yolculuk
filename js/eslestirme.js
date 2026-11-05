@@ -1,3 +1,4 @@
+/* © 2026 Ali Arıkoğlu. Tüm hakları saklıdır. */
 /* Öğrenme ile bağımsız deneme ayrı kaydedilir. Süreler cevap yazılırken değil,
    etkin çalışma süresinden alınır. Tahtada bağımsız kart süresi türetilmez. */
 'use strict';

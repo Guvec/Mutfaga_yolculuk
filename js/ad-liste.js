@@ -1,3 +1,4 @@
+/* © 2026 Ali Arıkoğlu. Tüm hakları saklıdır. */
 /* Oyun adı karakterleri (Matematik Canavarı sürüm 46 listesi). SIRA DEĞİŞMEZ; yeni karakter yalnız sona eklenir.
    İnsan yüzü, bayrak, din, silah, hakaret ya da takılmaya açık ad yoktur. */
 'use strict';

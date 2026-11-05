@@ -1,3 +1,4 @@
+/* © 2026 Ali Arıkoğlu. Tüm hakları saklıdır. */
 'use strict';
 function yrMilestone(k,total){const text=k===total-1?'Son soru!':[15,20].includes(total)&&k===Math.ceil(total/2)?'Yarı yoldasın':'';if(!text)return;setTimeout(()=>{if(!['dplay','aplay'].includes(st.screen))return;const old=document.getElementById('yrMilestone');if(old)old.remove();const e=document.createElement('p');e.id='yrMilestone';e.className='card yr-milestone';e.setAttribute('role','status');e.textContent=text;const w=document.querySelector('#app .wrap');if(w)w.prepend(e);if(SES.acik)sesSoyle(text);setTimeout(()=>e.remove(),2000);},0);}
 function paketSes(){voiceSettings();const d=document.querySelector('#ov .modal');if(d){d.insertAdjacentHTML('afterbegin','<div class="row">'+muzikDugme()+'<button class="btn ses-ac" onclick="sesAcKapa();paketSes()">Sesli okuma: '+(SES.acik?'Açık':'Kapalı')+'</button></div>');}}

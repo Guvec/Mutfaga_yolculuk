@@ -1,3 +1,4 @@
+/* © 2026 Ali Arıkoğlu. Tüm hakları saklıdır. */
 /* Telefonun geri tuşu, uygulamadaki "← Geri" düğmesi gibi çalışır.
    Chrome, kullanıcı dokunmadan eklenen geçmiş kayıtlarını geri tuşunda atlar; bu yüzden kayıtlar
    yalnız dokunuş anında eklenir ve küçük bir tampon tutulur (Matematik Canavarı'ndaki yöntem). */

@@ -1,3 +1,4 @@
+/* © 2026 Ali Arıkoğlu. Tüm hakları saklıdır. */
 /* Oyun ayarına ait liderler ve sonuç altı sıralama. Okumalar ekran başına paylaşılır. */
 'use strict';
 const RK_INLINE=new Map();let RK_PRE=null;

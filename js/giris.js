@@ -1,3 +1,4 @@
+/* © 2026 Ali Arıkoğlu. Tüm hakları saklıdır. */
 /* Açılış ekranı: "Herkes yemek yapabilir". Ana sayfadan önce gelir; aşçı panda/tavşan dokunulan besine yürür, yer/içer ve tepki verir.
    Kodla çizilmiş SVG karakterler; tüm stiller css/giris.css içinde .gs altındadır. */
 'use strict';

@@ -1,3 +1,4 @@
+/* © 2026 Ali Arıkoğlu. Tüm hakları saklıdır. */
 /* Oyun girişlerini tek noktadan kapsar; ana sayfada soru açılmaz. */
 (function(){
  const games=['board','quiz','game','racemenu','racelobby','racecreate','racecount','raceplay','dintro','dplay','aintro','aplay','cvplay','haftaplay'];

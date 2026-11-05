@@ -1,3 +1,4 @@
+/* © 2026 Ali Arıkoğlu. Tüm hakları saklıdır. */
 /* Birlikte Oynayalım: öğrencilerin kendi kurduğu odalar.
    • Oyun Odası (2–8 kişi): herkes aynı soruları kendi hızında çözer, sıralama canlı görünür.
    • 1'e 1 Kapışma (2 kişi): aynı soru iki telefonda aynı anda çıkar; önce doğru basan puanı alır.

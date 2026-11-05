@@ -1,3 +1,4 @@
+/* © 2026 Ali Arıkoğlu. Tüm hakları saklıdır. */
 /* Çoktan seçmeli sorular: konu (grup) seçimi, kitaptaki sıra, A-B-C-D harfleri ve fotoğraflı seçenekler.
    Soru metni, seçenek sırası ve doğru harf kaynaktaki gibi kalır; sorular karıştırılmaz. */
 'use strict';

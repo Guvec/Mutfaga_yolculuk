@@ -1,3 +1,4 @@
+/* © 2026 Ali Arıkoğlu. Tüm hakları saklıdır. */
 
 /* ===================== AYARLAR VE DURUM ===================== */
 var VERSION = "Sürüm 2 · Mesleki Oyunlar";

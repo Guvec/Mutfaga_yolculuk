@@ -1,3 +1,4 @@
+/* © 2026 Ali Arıkoğlu. Tüm hakları saklıdır. */
 'use strict';
 const RUTBE_ROZET={arac:['Araçları Tanıyorum','Mutfak araçlarının 12 eşleştirme takımının her birinde en az 10/12.'],baharat:['Baharatları Tanıyorum','Baharatların 8 eşleştirme takımının her birinde en az 10/12.'],kuver:['Kuver Ustası','Basit Kuver 5/5 ve Tabldot Kuver 9/9.'],temizlik:['Temizlik ve Düzen','Bulaşık eşleştirme en az 10/12 ve bütün bölümler soruları en az 11/13.'],karisik:['Karışık Oyun Ustası','Bütün konular kapsamında 5 maç tamamla; en az birinde %70 doğru yap.'],rekor:['Kendi Rekorumu Aştım','En az 5 farklı tabloda kendi rekorunu geç.']};
 function rutbeAll(){return ls('rutbe',{});}

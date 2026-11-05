@@ -1,3 +1,4 @@
+/* © 2026 Ali Arıkoğlu. Tüm hakları saklıdır. */
 /* Oyun ekranlarında "← Geri": yanıt yoksa doğrudan, yanıt varsa onayla bir önceki ekrana döner.
    Yarıda bırakılan çalışma kaydedilmez, rekora ve sıralamaya yazılmaz. Telefonun geri tuşu da aynı yolu kullanır. */
 'use strict';

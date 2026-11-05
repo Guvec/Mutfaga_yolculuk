@@ -1,3 +1,4 @@
+/* © 2026 Ali Arıkoğlu. Tüm hakları saklıdır. */
 /* Meydan Okuma: tek başına, internetsiz. Rakip "Mutfak Karmaşası"dır.
    Doğru cevap karmaşaya vuruş olur, yanlış cevap bir can götürür. Süre baskısı yoktur: herkes kendi hızında çalışır.
    Sorular Oyun Odası ile aynı kaynaktan gelir; her yeni savaşta daha önce sorulmayanlar önce gelir. */

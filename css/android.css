@@ -1,3 +1,4 @@
+/* © 2026 Ali Arıkoğlu. Tüm hakları saklıdır. */
 /* Android ve küçük ekranlar için okunaklı, fotoğraf ağırlıklı arayüz. */
 :root{--bg:#f3f6f3;--teal:#0c6768;--navy:#193b3b;--muted:#526968;--line:#d6e2dd;--teal2:#e7f3ed;--gold:#e8b85b;--shadow:0 8px 24px rgba(24,66,57,.07)}
 html{color-scheme:light;scroll-padding-top:84px;overflow-x:clip}

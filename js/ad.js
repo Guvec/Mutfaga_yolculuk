@@ -1,3 +1,4 @@
+/* © 2026 Ali Arıkoğlu. Tüm hakları saklıdır. */
 /* Oyun adı: öğrenci ad yazmaz, hazır karakterlerden seçer (Matematik Canavarı sürüm 46 mantığı).
    Profil adı = "🦊 Kurnaz Tilki". Her karakter yalnız bir kişiye aittir (numara eklenmez); rezervasyon Firestore nm/{karakter_no}_0. Eski numaralı kayıtlar (#482) geçerli kalır.
    Yerel kayıt: ad_map {profil: {e: karakter sırası, n: numara, c: bulutta ayrıldı mı}}. İnternet yoksa numara sonra verilir. */

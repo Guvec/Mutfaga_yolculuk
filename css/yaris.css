@@ -1,3 +1,4 @@
+/* © 2026 Ali Arıkoğlu. Tüm hakları saklıdır. */
 /* Birlikte Oynayalım ekranları. Renkler tema değişkenlerinden gelir (açık, sepya, koyu). */
 .inp{display:block;width:100%;border:2px solid var(--line);border-radius:12px;padding:12px;font-size:17px;background:var(--surface,#fff);color:var(--navy);margin:4px 0 8px;min-height:50px}
 .wrap label{display:block;font-weight:bold;margin-top:12px}

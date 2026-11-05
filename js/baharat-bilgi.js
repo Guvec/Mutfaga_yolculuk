@@ -1,3 +1,4 @@
+/* © 2026 Ali Arıkoğlu. Tüm hakları saklıdır. */
 /* Bağımsız eşleştirme bitince açılan, puanlanmayan kısa ürün bilgileri. */
 'use strict';
 let spiceReviewIndex=0;

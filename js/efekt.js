@@ -1,3 +1,4 @@
+/* © 2026 Ali Arıkoğlu. Tüm hakları saklıdır. */
 /* Efekt sesleri (kazanma, "Bu tur senin") ve oyun girişindeki ses seçimi.
    - Efektler varsayılan olarak açıktır; tercih cihazda saklanır (mesleki-efekt: "acik" / "kapali").
    - Efekt çalarken müzik kısa süre durur, efekt bitince devam eder.

@@ -1,3 +1,4 @@
+/* © 2026 Ali Arıkoğlu. Tüm hakları saklıdır. */
 /* Er Meydanı (3–4 kişi): herkes aynı soruyu aynı anda görür; önce doğru basan puanı alır.
    Oda ve oyuncu altyapısı Oyun Odası ile aynıdır (yaris.js); tur sonucu her telefonda aynı kuralla hesaplanır:
    oyuncular kimliğe göre sıralanır, en hızlı doğru cevap puan alır, ilk iki doğru 200 ms'den yakınsa tur berabere sayılır. */

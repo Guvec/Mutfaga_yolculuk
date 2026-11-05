@@ -1,3 +1,4 @@
+/* © 2026 Ali Arıkoğlu. Tüm hakları saklıdır. */
 /* İşin Mutfağına Yolculuk — ana sayfa, tüm konular, gece modu ve üst çubuk düğmeleri.
    Yeni konu eklemek için: platform.js SUBJECTS listesine konuyu, aşağıdaki KONU_GORSEL listesine fotoğrafını ekleyin.
    Ana sayfada görünecek dört konu ONE_CIKAN listesinden seçilir. Fotoğrafı olmayan konu, adıyla birlikte sade kartta görünür. */

@@ -1,3 +1,4 @@
+/* © 2026 Ali Arıkoğlu. Tüm hakları saklıdır. */
 /* Birlikte Oynayalım: Firestore bağlantı katmanı. Firebase web SDK yalnız odaya bağlanma isteğinde yüklenir.
    Koleksiyon: oyunOdalari/{KOD} ve oyunOdalari/{KOD}/players/{uid}. Kurallar: ci/firebase/firestore.rules. */
 (function(root){

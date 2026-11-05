@@ -1,3 +1,4 @@
+/* © 2026 Ali Arıkoğlu. Tüm hakları saklıdır. */
 /* Oyun adı (karakter) seçimi ve arkadaşlar */
 .ad-prev{display:flex;align-items:center;gap:14px;position:sticky;top:0;z-index:2}
 .ad-av{width:64px;height:64px;border-radius:50%;font-size:38px;display:flex;align-items:center;justify-content:center;flex:none}

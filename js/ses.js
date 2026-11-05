@@ -1,3 +1,4 @@
+/* © 2026 Ali Arıkoğlu. Tüm hakları saklıdır. */
 /* Tarayıcının Türkçe sesini kullanır. Okuma, öğrencinin dinleme isteğiyle başlar.
    Kayıtlı insan sesi değildir; ses kalitesi ve çevrimdışı kullanım cihaza bağlıdır. */
 'use strict';
