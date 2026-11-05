@@ -3,3 +3,19 @@
 @media(max-width:480px){.rutbe-small{display:flex;margin-inline-start:0}.rk-row{gap:4px}.rk-inline{padding:10px}}
 
 .bname{min-height:48px}@media(min-width:1024px){.ses-secim button{min-height:56px;font-size:20px}}
+
+/* H1: küçük ekranda ses penceresi ve oyun ekranı sığdırma */
+.hafta-ust{display:flex;flex-wrap:wrap;justify-content:space-between;gap:2px 12px;margin:6px 0;font-size:15px}
+.hafta-alt{display:flex;gap:8px}.hafta-alt .btn{flex:1 1 0;min-width:0;margin-top:8px}
+.modal.ses-secim{display:flex;flex-direction:column;padding-bottom:0}
+.modal.ses-secim p{font-size:16px;margin:0 0 8px}
+.ses-btns{position:sticky;bottom:0;background:#fff;padding:8px 0 14px;margin-top:4px;border-top:1px solid var(--line)}
+.ses-btns .row{margin-bottom:8px}
+@media(max-width:480px){
+ body.oyun-ekrani .top{flex-wrap:wrap;gap:4px 6px;padding:6px 8px}
+ body.oyun-ekrani .top .ttl{order:-1;flex:1 1 100%;font-size:14px;line-height:1.2}
+ body.oyun-ekrani .top .who{display:none}
+ body.oyun-ekrani .top .back{flex:0 0 auto;min-height:44px}
+ body.oyun-ekrani .top .ses-ac{min-height:44px;padding:4px 6px;font-size:12px;flex:1 1 0}
+ .yr-img{max-height:22vh;max-height:22dvh}
+}
