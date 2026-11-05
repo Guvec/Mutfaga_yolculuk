@@ -204,11 +204,11 @@ service cloud.firestore {
   function yrFriend(p) { return yrHasKim() && exists(yrFrDoc(yrMe(), p)) && get(yrFrDoc(yrMe(), p)).data.st == 'ok'; }
   function yrOwns(p) { return signed() && exists(/databases/$(database)/documents/yrKart/$(p)) && get(/databases/$(database)/documents/yrKart/$(p)).data.owner == request.auth.uid; }
 
-  /* Oyun adı rezervasyonu: nm/{karakter_no}. Karakteri ilk alan numarasız alır; doluysa numara eklenir. Liste yok. */
+  /* Oyun adı rezervasyonu: nm/{karakter_no}. Her karakter yalnız bir kişiye aittir (anahtar karakter_0); eski numaralı kayıtlar geçerli. Liste yok. */
   match /nm/{k} {
    allow get: if signed();
    allow list: if false;
-   allow create: if signed() && k.matches('^[0-9]{1,3}_[0-9]{1,4}$')
+   allow create: if signed() && k.matches('^[0-9]{1,4}_[0-9]{1,4}$')
     && request.resource.data.keys().hasOnly(['u','t']) && request.resource.data.keys().hasAll(['u','t'])
     && request.resource.data.u == request.auth.uid && request.resource.data.t is int;
    allow update: if signed() && resource.data.u == request.auth.uid

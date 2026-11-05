@@ -34,3 +34,7 @@
 .odul-yild{font-size:34px;margin:4px 0}.odul-belge{width:100%;border:1px solid var(--line);border-radius:8px}
 .odul-kart .btn{width:100%}
 @media(max-width:360px){.odul-kol{grid-template-columns:repeat(3,1fr)}}
+.ad-adlar{grid-template-columns:repeat(2,1fr)}
+.ad-adlar button{min-height:56px;font-size:16px;font-weight:700}
+.ad-adlar button:disabled{opacity:.5;background:var(--bg,#f3f4f6)}
+.ad-adlar button small{display:block;font-size:12px;font-weight:600}
