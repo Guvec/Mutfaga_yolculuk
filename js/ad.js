@@ -213,7 +213,7 @@ render=function(){
   setTimeout(adSync,0);
  }
  if(st.screen==='home'){setTimeout(adSync,0);if(st.prof)adAsk(st.prof);}
- if(st.screen==='home'||st.screen==='profiles'){const app=document.getElementById('app');if(app&&!app.querySelector('.ad-paylas'))app.insertAdjacentHTML('beforeend','<div class="voice-tools ad-paylas"><button type="button" class="btn sm" onclick="uygulamaPaylas()">📤 Uygulamayı paylaş</button></div>');}
+ if(st.screen==='home'||st.screen==='profiles'){const app=document.getElementById('app');if(app&&!app.querySelector('.ad-paylas'))app.insertAdjacentHTML('beforeend','<div class="voice-tools ad-paylas"><button type="button" class="btn sm" onclick="uygulamaPaylas()">📤 Uygulamayı paylaş</button> <button type="button" class="btn sm" onclick="uygulamaGuncelle()">🔄 Güncelle</button></div>');}
 };
 back=function(){if(st.screen==='pedit'){go(st.pe&&st.pe.ret==='home'?'home':'profiles');return;}AD_BACK();};
 createProfile=function(){adOpen(-1,'profiles');};
@@ -224,4 +224,15 @@ async function uygulamaPaylas(){
  const url=location.origin+location.pathname,data={title:'İşin Mutfağına Yolculuk',text:'Mutfak bilgisini oyunla öğreniyoruz. Sen de dene:',url};
  try{if(navigator.share){await navigator.share(data);return;}}catch(e){if(e&&e.name==='AbortError')return;}
  try{await navigator.clipboard.writeText(url);adToast('Bağlantı kopyalandı.');}catch(e){adToast(url);}
+}
+
+/* Güncelle: yeni sürümü denetler, eski önbelleği temizler ve sayfayı yeniler. Kayıtlı profil ve sonuçlar silinmez. İnternet yoksa yapılmaz (çevrimdışı kullanım bozulmasın). */
+async function uygulamaGuncelle(){
+ if(!navigator.onLine){adToast('İnternet yok. Güncellemek için internete bağlan.');return;}
+ adToast('Güncelleniyor…');
+ try{
+  if('serviceWorker' in navigator){const r=await navigator.serviceWorker.getRegistration();if(r)await r.update();}
+  if(window.caches){const ks=await caches.keys();await Promise.all(ks.filter(k=>k.indexOf('mesleki-oyunlar')===0).map(k=>caches.delete(k)));}
+ }catch(e){}
+ setTimeout(()=>location.reload(),500);
 }
