@@ -30,10 +30,12 @@ function boardFinished(){st.sess.duration=tStop();st.kDone=true;saveProgress();}
 function tapImg(id){
  const b=st.board;if(st.kDone||st.inBreak||st.modalOpen||b.checked)return;boardIntroClose();
  if(st.practice==='learn'&&b.res[id]!==undefined){sesSoyle(boardItem(id).answer+'. '+boardItem(id).explanation);return;}
- if(b.selName){tryPair(id,b.selName);return;}
- if(b.sel!==id)st.lastRes=null;b.sel=id;render();
+ if(b.selName){tryPair(id,b.selName);}else {
+ if(b.sel!==id)st.lastRes=null;b.sel=id;render();}
+ if(st.practice==='learn'&&boardItem(id).task)sesSoyle(boardItem(id).task);
 }
-function tapName(i){const b=st.board,n=b.names[i];if(st.kDone||st.inBreak||st.modalOpen||b.checked||(boardUsed(n)&&(!b.sel||b.pair[b.sel]!==n)))return;boardIntroClose();if(b.sel){tryPair(b.sel,n);return;}(typeof sesAdOku==='function'?sesAdOku:sesSoyle)(sesAd(n));b.selName=b.selName===n?null:n;render();}
+function tapName(i){const b=st.board,n=b.names[i];if(st.kDone||st.inBreak||st.modalOpen||b.checked||(boardUsed(n)&&(!b.sel||b.pair[b.sel]!==n)))return;boardIntroClose();if(b.sel){tryPair(b.sel,n);}else{b.selName=b.selName===n?null:n;render();}(typeof sesAdOku==='function'?sesAdOku:sesSoyle)(sesAd(n));}
+
 function tryPair(id,name){
  const b=st.board,it=boardItem(id);if(!it||b.checked||st.kDone||(boardUsed(name)&&b.pair[id]!==name)||b.res[id]!==undefined||!b.names.includes(name))return;
  if(st.practice==='check'&&b.pair[id]===name){b.sel=null;b.selName=null;st.lastRes=null;render();return;}

@@ -8,7 +8,7 @@ const {chromium}=require('playwright'),http=require('http'),fs=require('fs'),pat
  await ctx.addInitScript(()=>{try{sessionStorage.setItem('mesleki-ses-secim','1');}catch(e){}});
  const page=await ctx.newPage();const errors=[];page.on('pageerror',e=>errors.push(e.message));const ok=m=>console.log('PASS '+m);
  try{
-  await page.goto('http://127.0.0.1:'+server.address().port);await page.waitForFunction(()=>typeof oyunGeri==='function'&&typeof startBoard==='function');
+  await require('./helpers/sound-choice.cjs')(page);await page.goto('http://127.0.0.1:'+server.address().port);await page.waitForFunction(()=>typeof oyunGeri==='function'&&typeof startBoard==='function');
   const setup=p=>page.evaluate(p=>{lsSet('profiles',['Deneme']);lsSet('records',[]);pickProfile('Deneme');st.subject='baharat';st.op='match';st.contentSet=1;startBoard(p,12);},p);
   // İpucu: yalnız Öğreniyorum'da
   await setup('learn');const nLearn=await page.locator('.card-task').count();const withTask=await page.evaluate(()=>st.board.items.filter(i=>i.task).length);

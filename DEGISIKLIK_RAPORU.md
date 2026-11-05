@@ -255,3 +255,46 @@ Eklenenler:
 - `tests/rutbe-tests.cjs`
 
 Ek olarak bu rapor, test kayıtları ve iki istenen önizleme kontrol klasörüne kondu.
+
+
+## Paket S — eşleştirme sesleri (05.11.2026)
+- Ad kartı, görsel seçili olsa da eşleştirmeden sonra ve aynı kullanıcı eyleminde okunur. Yeni okuma önceki okumayı keser.
+- Öğreniyorum görselinde yalnız task okunur; değerlendirmede görsel sessizdir. Eşleşmiş öğrenme görselindeki ad+açıklama korunur.
+- Sessiz modda açıklama düğmesi de sessizdir; müzikte yalnız ad kartı okunur. Sesi dene bilinçli bir test eylemi olarak mevcut tercihi değiştirmeden geçici okur.
+- Oyun girişinde ses seçimi; profil seçimi başına bir kez. Cihaz tercihleri localStorage üzerinde kalır. Esc/odak tuzağı/odak dönüşü mevcut modal altyapısını kullanır. Oyun üstüne durum ve ayarlar düğmesi eklenir; ayarlardan müzik ve efekt açılır.
+- Sesi dene, Türkçe ses yok uyarısı, 1024px üzeri 56px/20px düğmeler, en az 48px ad kartları. Önbellek v46.
+
+### Doğrulama
+- node tests/ses-esleme-tests.cjs: PASS; sahte okuma ile seçili/seçili olmayan görsel, önce eşleşme, Sessiz, müzikte yalnız ad, task, değerlendirme. Modal mock: bir kez gösterim, süre durdurma çağrısı, seçim kaydı, Türkçe ses uyarısı.
+- node tests/state-tests.cjs: düzeltme sonrası PASS.
+- Tüm 28 tests/*.cjs dosyası çalıştırılmaya çalışıldı; ilk turda 6 geçti. State testi uyumluluğu düzeltildi ve ayrıca geçti (toplam 7). Gerçek çıktılar kontrol/paket-S altında. Diğer 21 test tamamlanamadı: Chromium kapanması/başlatılamaması, 8 saniye sınırı veya Firebase emülatörüne bağlantı bulunmaması. Önceki paketlerdeki test sonuçları bu tur için geçerli sayılmadı.
+- Android Chrome ve iPad Safari: cihazda denenmedi. Masaüstü Chromium gerçek ilk tıklama konuşması ve Tab/Enter: çalıştırılamadı. Gerçek hoparlör çıkışı doğrulanmadı.
+
+### Belirsiz kalanlar
+- Tarayıcıda odak dönüşü, Enter/Boşluk, dar/geniş ekran görünümü ve tüm oyun girişleri gerçek tarayıcıyla henüz doğrulanamadı; native button ve mevcut modal altyapısı kullanılıyor.
+- Türkçe ses listesi başlangıçta boşken sonradan yüklenebilir; giriş uyarısı açılışta ve 2,5 saniye sonra güncellenir. Mevcut konuşma bekleme/yazılı yedek korunur.
+- Bu teslim fiziksel cihaz ve tarayıcı kontrolleri tamamlanmış nihai sürüm olarak sunulmaz. GitHub'a push yapılmadı.
+
+
+## Paket S düzeltmesi — son doğrulama
+Bu bölüm önceki Paket S test durumunun yerine geçer. Taban, teslim edilen mutfaga_yolculuk_paket_S.zip dosyasıdır. Paket V bu teslimde yoktur.
+
+### Sonuç
+28 adet tests/*.cjs dosyası node ile çalıştırıldı: 28 geçti, 0 başarısız, 0 çalıştırılmadı. Masaüstü Chromium arayüz testleri ve Auth/Firestore emülatörlü dört test dahildir. Son çıktılar kontrol/ses-duzeltme altında; summary.txt dosyasında her testin adı ve çıkış kodu var. final-* ve yaris-stable.log son tekrarları gösterir; eski çalıştırma kayıtları tarihçe olarak kalabilir. Kuralların geçersiz yazıları reddettiğini sınayan testlerde PERMISSION_DENIED satırları beklenen sonuçtur; süreçlerin çıkış kodu 0'dır.
+
+### Nedenler ve düzeltmeler
+1. Ses seçimi: profil seçiminde bayrağı sıfırlamak, Paket S'nin profil başına bir kez sorma şartının parçasıdır. Önceki testler başlangıçta bayrak yazıp yeni profil seçince bu bayrağın korunacağını varsayıyordu. Oyun penceresi tıklamaları engelliyordu. İlgili arayüz testleri şimdi tests/helpers/sound-choice.cjs aracılığıyla gerçek Sessiz düğmesini seçiyor; üretim fonksiyonları veya kayıt bayrakları test uğruna değiştirilmedi. Ses penceresinin kendisi ayrıca test edildi.
+2. Efekt: yalnız muzik.js+efekt.js yüklenen testte sesTurkce yoktu. Uyarı artık bu yardımcı varsa onu, yoksa güvenli biçimde tarayıcının ses listesini kullanır; hata fırlatmaz. Testin closeModal sahtesi de gerçek modal gibi modalOpen durumunu temizler.
+3. Geri: düğme DOM'da görünürken ses penceresi tıklamayı engelliyordu. Gerçek ses seçimi sonrası geri testi; doğrudan dönüş, yanıt varsa onay, Hayır, Evet ve tarayıcı geri adımlarını geçti.
+4. Dar ekran: Paket S üst çubuğa ikinci bir ses düğmesi ekleyerek seçenekleri ekran altına itiyordu. Artık mevcut .ses-ac düğmesi ayarlara bağlanır, ikinci düğme eklenmez. 390x650 seçenek görünürlüğü testi geçti. Ayar kapanınca odak bu düğmeye döner.
+5. Eski adim5 ses beklentisi, Sessiz modda açıklama düğmesinin zorla okumasını bekliyordu. Paket S Sessiz modda hiçbir okuma istemediği için test bu onaylı davranışa güncellendi. Müzikte ad okuma ve açık okumada konuşma ayrı testlerle korunuyor.
+6. Yarış testinde tur fazları tam beklenmiyor, ikinci tıklama hatası catch ile yutuluyor ve iki ayrı cihazın zamanları otomasyon gecikmesine bırakılıyordu. Test şimdi iki oyuncunun aynı soru fazında olmasını bekliyor; bilinen 500/1500ms yanıt zamanlarıyla gerçek DOM düğmelerini ve normal duAns/duWrite akışını çalıştırıyor. Tur zaten sonuçlanmışsa ikinci düğmenin devre dışı kalmasını açıkça denetliyor. Kazanan, iki yanlış, yanlış-doğru, rövanş ve ayrılma beklentileri korunuyor. Üretim Kapışma/Er Meydanı hesaplamaları değiştirilmedi.
+
+### Çalıştırma koşullarının somut düzeltmesi
+Önceki /tmp/chromium dosyası 0 bayttı. Paketli Chromium yeniden çıkarıldı ve çalışır executable ile testler yürütüldü. Emülatör başka komutun ağ bağlamında başlatıldığında 127.0.0.1:8080 bağlantısı reddediliyordu; firebase emulators:exec içinde testlerle aynı bağlamda çalıştırıldı. Üç kural testi ve gerçek SDK entegrasyonu geçti. Önceki 8/10 saniyelik kesmeler kullanılmadı; uzun yarış testi tamamlanıncaya kadar beklendi.
+
+### Ek ses doğrulaması
+Tam sayfada: ana sayfada ses sorusu yok; oyun girişinde bir kez; profil değişiminde yeniden; Sesi dene; Enter/Boşluk okuma; hover/Tab odağında okuma yok; tek ses kontrolü; görünür Geri; Esc; ayar kapanınca odak dönüşü; Türkçe ses yok uyarısı geçti. Konuşma motoru sahtedir; fiziksel hoparlör/Android/iPad testi yapıldığı iddia edilmez.
+
+### Belirsiz kalanlar
+Bu görevde çalıştırılmayan otomatik test yoktur. Fiziksel Android ve iPad ses çıkışı denenmedi. GitHub'a push yapılmadı.

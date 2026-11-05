@@ -90,11 +90,6 @@ function sesAdOku(metin){
  MUZIK.okumaIcinDuraklat();
 }
 /* 🔊 düğmesine sesli okuma kapalıyken dokunulursa sessiz kalmaz; nasıl açılacağı yazılır. */
-function sesDugmeOku(i){
- if(SES.acik){sesSoyle(SES.sira[i]);return;}
- /* Bilerek dokunulan 🔊 ayar kapalı olsa da okur; ayar yalnız kendiliğinden okumayı belirler. */
- SES.acik=true;try{sesSoyle(SES.sira[i]);}finally{SES.acik=false;}
- if(SES.pending)SES.pending.zorla=true;
- if(MUZIK.acikMi())MUZIK.okumaIcinDuraklat();
-}
+function sesDugmeOku(i){if(SES.acik)sesSoyle(SES.sira[i]);}
+
 sesDugme=function(t,label){var i=SES.sira.push(t)-1;return '<button type="button" class="spk" aria-label="'+esc(label||'Sesli dinle')+'" onclick="event.stopPropagation();sesDugmeOku('+i+')">🔊</button>';};

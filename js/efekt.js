@@ -51,18 +51,21 @@ var EFEKT=(function(){
 function efektAcKapa(){EFEKT.ayarla(!EFEKT.acikMi());document.querySelectorAll('.efekt-ac').forEach(function(b){b.textContent='Efekt sesleri: '+(EFEKT.acikMi()?'Açık':'Kapalı');b.setAttribute('aria-pressed',String(EFEKT.acikMi()));});}
 function efektDugme(){if(!EFEKT.var())return '';return '<button type="button" class="btn sm efekt-ac" aria-pressed="'+EFEKT.acikMi()+'" onclick="efektAcKapa()">Efekt sesleri: '+(EFEKT.acikMi()?'Açık':'Kapalı')+'</button>';}
 
-/* Oyuna girişte: sesli okuma mı, müzik mi, sessiz mi? Her tarayıcı oturumunda bir kez sorulur. */
+/* Profil seçimi başına bir kez; tercihler cihazda kalır. */
 function sesSecimiSor(){
+ if(st.modalOpen)return;
  try{if(sessionStorage.getItem('mesleki-ses-secim')==='1')return;sessionStorage.setItem('mesleki-ses-secim','1');}catch(e){}
- modalFocus=document.activeElement;st.modalOpen=true;pauseT();
+ if(st.modalOpen)return;
+ modalFocus=document.activeElement;st.modalOpen=true;pauseT();sesSus();
  var ov=document.getElementById('ov');ov.className='on';
- ov.innerHTML='<div class="modal" role="dialog" aria-modal="true" aria-labelledby="sesSecimBaslik"><h2 id="sesSecimBaslik">Oyunda ne duymak istersin?</h2>'
-  +'<p><b>Sesli okuma:</b> Soruyu ve seçenekleri bir ses sana okur.</p><p><b>Müzik:</b> Sakin bir müzik çalar.</p><p class="sub">İkisi aynı anda açılmaz. Birini seç.</p>'
-  +'<div class="row"><button class="btn pri" id="sesSecOku">Sesli okuma</button><button class="btn pri" id="sesSecMuzik">Müzik</button><button class="btn" id="sesSecSessiz">Sessiz</button></div>'
-  +'<div class="row">'+efektDugme()+'</div></div>';
- var kapat=function(){closeModal();render();};
+ ov.innerHTML='<div class="modal ses-secim" role="dialog" aria-modal="true" aria-labelledby="sesSecimBaslik"><h2 id="sesSecimBaslik">Oyunda ne duymak istersin?</h2><p>Sesli okuma: Ad ve soruları bir ses okur. Kartlara dokununca adı duyarsın.</p><p>Müzik: Sakin müzik çalar. Müzik açıkken yalnız ad kartlarına dokununca ad okunur.</p><p>Sessiz: Ses olmaz.</p><p>Bunu oyunun üstündeki ses düğmesinden istediğin zaman değiştirebilirsin.</p><p>Sınıfta tahtadan oynuyorsan Sessiz veya Müzik daha rahat olabilir.</p><p id="sesSecUyari" role="status"></p><div class="row"><button class="btn pri" id="sesSecOku">Sesli okuma</button><button class="btn pri" id="sesSecMuzik">Müzik</button><button class="btn" id="sesSecSessiz">Sessiz</button></div><div class="row"><button class="btn" id="sesSecDene">Sesi dene</button><button class="btn" onclick="closeModal()">Kapat</button></div></div>';
+ var kapat=function(){closeModal();document.querySelectorAll('.ses-paket-ayar').forEach(b=>{b.textContent='Ses: '+(SES.acik?'Sesli okuma':MUZIK.acikMi()?'Müzik':'Sessiz');});};
  document.getElementById('sesSecOku').onclick=function(){MUZIK.kapat();SES.acik=true;lsSet('ses',true);kapat();};
  document.getElementById('sesSecMuzik').onclick=function(){MUZIK.ac();kapat();};
  document.getElementById('sesSecSessiz').onclick=function(){MUZIK.kapat();SES.acik=false;lsSet('ses',false);EFEKT.ayarla(false);sesSus();kapat();};
- document.getElementById(SES.acik?'sesSecOku':MUZIK.acikMi()?'sesSecMuzik':'sesSecOku').focus();
+ document.getElementById('sesSecDene').onclick=function(){var once=SES.acik;SES.acik=true;try{sesSoyle('Ses denemesi. Hazır olduğunda başlayabilirsin.');}finally{SES.acik=once;}if(SES.pending)SES.pending.zorla=true;MUZIK.okumaIcinDuraklat();};
+ function turkceSesler(){if(typeof sesTurkce==='function')return sesTurkce();try{return speechSynthesis.getVoices().filter(v=>/^tr(?:-|_|$)/i.test(v.lang));}catch(e){return [];}}
+ function uyari(){var el=document.getElementById('sesSecUyari');if(el)el.textContent=turkceSesler().length?'':'Bu cihazda Türkçe ses bulunamadı. Sesli okuma çalışmayabilir. Müzik veya Sessiz seçebilirsin.';}
+ uyari();setTimeout(uyari,2500);
+ document.getElementById('sesSecOku').focus();
 }

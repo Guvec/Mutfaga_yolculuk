@@ -36,7 +36,7 @@ const hub={rooms:{},n:0,ops:{
   await c.route('**/js/yaris-baglanti.js',r=>r.fulfill({contentType:'text/javascript',body:MOCK}));
   await c.route('**/js/yaris-ayar.js',r=>r.fulfill({contentType:'text/javascript',body:'window.YARIS_FIREBASE_CONFIG={projectId:"demo-test",apiKey:"demo"};'}));
   const p=await c.newPage();await p.addInitScript(()=>{try{sessionStorage.setItem('mesleki-ses-secim','1');}catch(e){}});p.on('pageerror',e=>errors.push(e.message));p.on('console',m=>{if(m.type()==='error'&&!/Failed to load resource/.test(m.text()))errors.push(m.text());});
-  await p.goto(url+'/'+query);await p.waitForFunction(()=>typeof yrOpen==='function'&&CONTENT.baharat&&CONTENT['mutfak-araclari']);await p.evaluate(()=>{const o=duResolve;duResolve=function(){o();(window.__ws=window.__ws||[]).push([DU.m,DU.k,DU.w]);};});return p;
+  await require('./helpers/sound-choice.cjs')(p);await p.goto(url+'/'+query);await p.waitForFunction(()=>typeof yrOpen==='function'&&CONTENT.baharat&&CONTENT['mutfak-araclari']);await p.evaluate(()=>{const o=duResolve;duResolve=function(){o();(window.__ws=window.__ws||[]).push([DU.m,DU.k,DU.w]);};});return p;
  }
  const text=p=>p.locator('#app').innerText();
  async function openMenu(p,nick){await p.evaluate(n=>{st.prof=n;st.guest=false;yrOpen();},nick);}
@@ -111,9 +111,12 @@ const hub={rooms:{},n:0,ops:{
   assert.deepEqual(await d1.evaluate(()=>YR.qs.map(q=>q.id)),await d2.evaluate(()=>YR.qs.map(q=>q.id)));
   // tur 1: Mert doğru basar, Selin sonra doğru basar -> Mert alır
   async function duRound(first,second,firstRight=true,secondRight=true){
-   const k=await first.evaluate(()=>DU.k);
-   await first.locator('.yr-opt').nth(firstRight?await correctIdx(first):await wrongIdx(first)).click();
-   if(second)await second.locator('.yr-opt').nth(secondRight?await correctIdx(second):await wrongIdx(second)).click({timeout:3000}).catch(()=>{});
+   await first.waitForFunction(()=>DU.ph==='q');const k=await first.evaluate(()=>DU.k);
+   if(second)await second.waitForFunction(k=>DU.k===k&&DU.ph==='q',k);
+   // İki cihazın başlangıç saatleri ve Playwright kararlılık beklemesi puanı belirlemesin.
+   // Bilinen yanıt süreleri; gerçek DOM düğmesi ve normal duAns/duWrite akışı.
+   await first.evaluate(right=>{DU.t0=performance.now()-500;const q=YR.qs[DU.k],i=q.choices.findIndex(c=>right?c.id===q.correct:c.id!==q.correct);document.querySelectorAll('.yr-opt')[i].click();},firstRight);
+   if(second){const action=await second.evaluate(({k,right})=>{if(DU.k!==k)throw Error('İkinci oyuncu farklı soruda');if(DU.ph!=='q')return 'resolved';DU.t0=performance.now()-1500;const q=YR.qs[k],i=q.choices.findIndex(c=>right?c.id===q.correct:c.id!==q.correct);document.querySelectorAll('.yr-opt')[i].click();return 'clicked';},{k,right:secondRight});assert(action==='clicked'||firstRight,'İlk oyuncu yanlışken ikinci oyuncu cevap verebilmeli');}
    for(const p of [first,second].filter(Boolean))await p.waitForFunction(k=>DU.k>k||(DU.k===k&&DU.ph==='res')||DU.over,k,{timeout:15000});
   }
   await d1.waitForTimeout(300);

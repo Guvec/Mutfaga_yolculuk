@@ -53,10 +53,10 @@ const {chromium}=require('playwright'),http=require('http'),fs=require('fs'),pat
   AR={k:0,total:5,myR:[2500],win:[],sc:{},ph:'wait',over:false,quit:false,to:null,lim:20000,t0:0,pick:null,why:'ok',res:null,final:null};
   arSync();const r={ph:AR.ph,win:AR.win[0]&&AR.win[0].uid,html:arScoreHTML()};clearTimeout(AR.to);return r;});
  assert.strictEqual(lv.ph,'res','çıkan oyuncu beklenmez');assert.strictEqual(lv.win,'u1');assert(/oyundan çıktı/.test(lv.html),'çıkan oyuncu etiketi');
- /* 7) Sesli okuma kapalıyken bilerek basılan 🔊 yine okur; ayar kapalı kalır */
+ /* 7) Paket S: Sessiz modda açıklama düğmesi sessiz kalır; ayar değişmez */
  const sp=await p.evaluate(()=>{let n=0;const old=speechSynthesis.speak.bind(speechSynthesis);speechSynthesis.speak=u=>{n++;};
-  SES.acik=false;SES.sira=['Deneme metni'];sesDugmeOku(0);window.__sp=n;return {n,acik:SES.acik};});
- assert.strictEqual(sp.n>=1||await p.evaluate(()=>!!SES.pending),true,'kapalıyken 🔊 okumayı başlatır');assert.strictEqual(sp.acik,false,'ayar kapalı kalır');
+  sesSus();MUZIK.kapat();SES.acik=false;SES.sira=['Deneme metni'];sesDugmeOku(0);window.__sp=n;return {n,acik:SES.acik};});
+ assert.strictEqual(sp.n,0,'Sessiz modda açıklama okunmaz');assert.strictEqual(await p.evaluate(()=>!!SES.pending),false,'bekleyen açıklama yok');assert.strictEqual(sp.acik,false,'ayar kapalı kalır');
  assert.deepStrictEqual(errs,[],'JS hatası yok: '+errs.join('|'));
  console.log('adim5-tests geçti');await br.close();srv.close();
 })().catch(e=>{console.error(e);process.exit(1);});
