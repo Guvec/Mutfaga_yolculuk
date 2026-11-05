@@ -35,7 +35,11 @@
    return fb.runTransaction(this.db,async tx=>{
     const [p,r]=await Promise.all([tx.get(this.profRef(pid)),tx.get(this.rowRef(table,pid))]);
     if(!p.exists()||p.data().status!=='in'||p.data().gen!==row.gen)return {stale:true};
-    if(r.exists()&&r.data().gen===row.gen){const old=r.data();if(old.correct>=row.correct){if(Number.isInteger(row.rank)&&old.rank!==row.rank)tx.update(this.rowRef(table,pid),{rank:row.rank});return {kept:true,best:old.correct};}}
+    if(r.exists()&&r.data().gen===row.gen){const old=r.data();
+     /* Doğru sayısı eşitse yalnız daha kısa süre (haftalık) satırı günceller. */
+     const shorter=Number.isInteger(row.dur)&&(!Number.isInteger(old.dur)||row.dur<old.dur);
+     if(old.correct>row.correct||(old.correct===row.correct&&!shorter)){if(Number.isInteger(row.rank)&&old.rank!==row.rank)tx.update(this.rowRef(table,pid),{rank:row.rank});return {kept:true,best:old.correct};}
+     if(old.correct===row.correct){const upd={dur:row.dur};if(Number.isInteger(row.rank)&&old.rank!==row.rank)upd.rank=row.rank;tx.update(this.rowRef(table,pid),upd);return {written:true,best:old.correct};}}
     tx.set(this.rowRef(table,pid),row);return {written:true,best:row.correct};
    });
   }

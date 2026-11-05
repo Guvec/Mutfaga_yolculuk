@@ -12,7 +12,7 @@ const br=await chromium.launch(),pg=await br.newPage();
 await pg.route('**/*',r=>r.fulfill({body:'<body><div id="ov"></div></body>',contentType:'text/html'}));await pg.goto('https://t.test/');
 await pg.evaluate(()=>{window.plays=[];window.Audio=function(src){this.src=src;this.paused=true;this.volume=1;this.addEventListener=()=>{};this.pause=()=>{this.paused=true;plays.push('pause:'+this.src)};this.play=()=>{this.paused=false;plays.push('play:'+this.src);return Promise.resolve()};};
  window.st={modalOpen:false};window.pauseT=()=>{};window.resumeT=()=>{};window.closeModal=()=>{st.modalOpen=false;const o=document.getElementById('ov');o.className='';o.innerHTML='';};window.render=()=>{};window.lsSet=()=>{};window.sesSus=()=>{};window.sesAcKapa=()=>{};window.SES={acik:true};window.modalFocus=null;window.sesDugme=()=>{};window.sesSoyle=()=>{};
- window.esc=s=>String(s).replace(/[&<>"]/g,'');window.rkSorted=rows=>rows.slice().sort((a,b)=>b.correct-a.correct||String(a.name).localeCompare(String(b.name),'tr'));});
+ window.esc=s=>String(s).replace(/[&<>"]/g,'');window.rkSorted=rows=>rows.slice().sort((a,b)=>b.correct-a.correct||String(a.name).localeCompare(String(b.name),'tr'));window.rkBetter=(a,b)=>a.correct>b.correct;window.rkSame=(a,b)=>a.correct===b.correct;window.rkFmtDur=s=>String(s);});
 for(const f of ['js/muzik.js','js/efekt.js']) await pg.addScriptTag({content:read(f).replace(/^'use strict';/m,'')});
 const rk=read('js/rekor.js');
 await pg.addScriptTag({content:rk.match(/function rkCrownNames[\s\S]*?\n}\nfunction rkCrownShow[\s\S]*?\n}\n/)[0]});

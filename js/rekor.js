@@ -119,7 +119,9 @@ async function rkFlush(sessId){
    const row={name:rkName(item.name),correct:item.correct,term:RK_TERM,version:RK_VERSION,gen:item.gen,...(item.meta||{}),rank:typeof rutbeNumber==='function'?rutbeNumber(item.pid):1};
    let res=null,table=null;
    const tries=item.period==='genel'?[rkTable(item.board,'genel')]:item.board==='haftalik'?[rkTable(item.board,'hafta',item.week)]:[0,1,-1].map(d=>rkTable(item.board,'hafta',rkWeekNo()+d));
-   for(const t of tries){try{rkCleanAdd(item.pid,t);try{res=await be.submit(t,item.pid,row);}catch(rankError){if(!/permission/i.test(rkErrCode(rankError)))throw rankError;const legacy={...row};delete legacy.rank;res=await be.submit(t,item.pid,legacy);}table=t;break;}catch(e){if(!/permission/i.test(rkErrCode(e)))throw e;}}
+   /* Kural henüz yeni alanları tanımıyorsa sırayla süresiz/rütbesiz eski biçime inilir (uygulama ve kural sırası önemli değildir). */
+   const variants=[row],noRank={...row};delete noRank.rank;variants.push(noRank);if('dur' in row){const noDur={...row};delete noDur.dur;const noBoth={...noDur};delete noBoth.rank;variants.push(noDur,noBoth);}
+   for(const t of tries){try{rkCleanAdd(item.pid,t);let last=null;for(const v of variants){try{res=await be.submit(t,item.pid,v);last=null;break;}catch(er){if(!/permission/i.test(rkErrCode(er)))throw er;last=er;}}if(last)throw last;table=t;break;}catch(e){if(!/permission/i.test(rkErrCode(e)))throw e;}}
    if(!res){if(RK.msg&&RK.msg.sess===sessId)RK.msg.cloud='Sonucun kaydediliyor.';break;}
    drop();
    if(item.sess===sessId&&!res){outcome=outcome||{};outcome[item.period]={failed:true};}
@@ -137,8 +139,13 @@ async function rkFlush(sessId){
  if(RK.msg&&RK.msg.sess===sessId&&['board','quiz','summary','spicereview'].includes(st.screen))render();
 }
 /* Sıra: kendisinden daha çok doğru yapan kişi sayısı + 1. Eşitler aynı sırayı paylaşır; ekranda alfabetik dizilir. */
-function rkSorted(rows){return rows.slice().sort((a,b)=>b.correct-a.correct||String(a.name).localeCompare(String(b.name),'tr'));}
-function rkRank(rows,pid){const me=rows.find(r=>r.pid===pid);if(!me)return null;return {rank:rows.filter(r=>r.correct>me.correct).length+1,tie:rows.filter(r=>r.correct===me.correct).length,row:me};}
+/* Eşit doğruda (yalnız haftalık satırlarda bulunan) daha kısa süre öne geçer; süresi olmayan satır altta sayılır. */
+function rkDurV(r){return Number.isInteger(r.dur)&&r.dur>0?r.dur:Infinity;}
+function rkBetter(a,b){return a.correct>b.correct||(a.correct===b.correct&&rkDurV(a)<rkDurV(b));}
+function rkSame(a,b){return a.correct===b.correct&&rkDurV(a)===rkDurV(b);}
+function rkFmtDur(s){const m=Math.floor(s/60);return String(m).padStart(2,'0')+':'+String(s%60).padStart(2,'0');}
+function rkSorted(rows){return rows.slice().sort((a,b)=>b.correct-a.correct||(rkDurV(a)===rkDurV(b)?0:rkDurV(a)<rkDurV(b)?-1:1)||String(a.name).localeCompare(String(b.name),'tr'));}
+function rkRank(rows,pid){const me=rows.find(r=>r.pid===pid);if(!me)return null;return {rank:rows.filter(r=>rkBetter(r,me)).length+1,tie:rows.filter(r=>rkSame(r,me)).length,row:me};}
 
 /* ---------- Listeden çık / listeye dön / profil silme ---------- */
 async function rkCleanup(pid){const be=rkBackend();for(const t of (rkClean()[pid]||[]).slice()){try{await be.removeRow(t,pid);rkCleanDel(pid,t);}catch(e){if(/not.?found/i.test(rkErrCode(e)))rkCleanDel(pid,t);else throw e;}}return !(rkClean()[pid]||[]).length;}
@@ -364,7 +371,7 @@ function rkBoardHTML(){
 }
 /* Sıralamaya her girişte haftanın birincisinin adı ortada taç animasyonuyla gösterilir. */
 function rkCrownNames(rows){
- const r=rkSorted(rows||[]);if(!r.length)return [];const top=r[0].correct;return r.filter(x=>x.correct===top).map(x=>x.name);
+ const r=rkSorted(rows||[]);if(!r.length)return [];const top=r[0];return r.filter(x=>rkSame(x,top)).map(x=>x.name);
 }
 function rkCrownShow(rows){
  const names=rkCrownNames(rows);if(!names.length)return;

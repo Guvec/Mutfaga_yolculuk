@@ -11,7 +11,7 @@ var GIRIS={foods:[
 {id:'cheese',name:'Peynir',icon:'🧀',type:'food',effect:'happy',text:'Peynirden bir lokma aldım.'},
 {id:'apple',name:'Elma',icon:'🍎',type:'food',effect:'happy',text:'Elmayı ısırdım. Çıtır çıtır!'},
 {id:'carrot',name:'Havuç',icon:'🥕',type:'food',effect:'happy',text:'Havuçtan bir lokma aldım.'},
-{id:'milk',name:'Süt',icon:'🥛',type:'drink',effect:'milky',text:'Süt içtim. Dudağımda süt izi kaldı!'},
+{id:'milk',name:'Süt',icon:'🥛',type:'drink',effect:'milky',text:'Süt içtim.'},
 {id:'ayran',name:'Ayran',icon:'🥛',type:'drink',effect:'milky',text:'Ayran içtim.'},
 {id:'water',name:'Su',icon:'💧',type:'drink',effect:'relaxed',text:'Su içtim. Susuzluğum geçti.'},
 {id:'tea',name:'Çay',icon:'🍵',type:'drink',effect:'relaxed',text:'Çay soğudu. Küçük bir yudum içtim.'},

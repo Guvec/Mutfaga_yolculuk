@@ -156,11 +156,12 @@ service cloud.firestore {
    function profAfter() { return getAfter(/databases/$(database)/documents/rekorProfiller/$(pid)).data; }
    function total() { let b = rkParts(table)[1]; return b in rkBoards() ? rkBoards()[b] : (b.matches('^ayar-cv-.*') ? int(b.split('-')[6]) : 999); }
    function shape(d) {
-    return d.keys().hasAll(['name','correct','term','version','gen']) && d.keys().hasOnly(['name','correct','term','version','gen','rank','game','scope','total','contentVersion','week'])
+    return d.keys().hasAll(['name','correct','term','version','gen']) && d.keys().hasOnly(['name','correct','term','version','gen','rank','game','scope','total','contentVersion','week','dur'])
      && (!('rank' in d) || (d.rank is int && d.rank >= 1 && d.rank <= 5))
      && (rkParts(table)[1] == 'haftalik'
        ? (d.keys().hasAll(['game','scope','total','contentVersion','week']) && d.game == 'haftalik' && d.scope == 'butun' && d.total == 25 && d.contentVersion is string && d.contentVersion.matches('^hafta-1-scope2-[0-9]{1,10}$') && d.week is int && rkParts(table)[2] == 'w' + string(d.week))
        : !d.keys().hasAny(['game','scope','total','contentVersion','week']))
+     && (!('dur' in d) || (rkParts(table)[1] == 'haftalik' && d.dur is int && d.dur >= 1 && d.dur <= 86400))
      && d.name is string && d.name.size() >= 1 && d.name.size() <= 40
      && d.name.matches('.*[^\\s].*') && !d.name.matches('.*[\\r\\n].*')
      && d.correct is int && d.correct >= 0 && d.correct <= total()
@@ -175,7 +176,8 @@ service cloud.firestore {
    allow create: if (rkParts(table)[1] != 'haftalik' || rkParts(table)[2] != 'genel') && rkWritable(table) && shape(request.resource.data) && live();
    allow update: if (rkParts(table)[1] != 'haftalik' || rkParts(table)[2] != 'genel') && rkWritable(table) && shape(request.resource.data) && live() && (
     resource.data.gen < prof().gen
-    || (request.resource.data.diff(resource.data).affectedKeys().hasOnly(['correct','rank']) && request.resource.data.correct > resource.data.correct)
+    || (request.resource.data.diff(resource.data).affectedKeys().hasOnly(['correct','rank','dur']) && request.resource.data.correct > resource.data.correct)
+    || (rkParts(table)[1] == 'haftalik' && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['dur','rank']) && request.resource.data.diff(resource.data).affectedKeys().hasAny(['dur']) && 'dur' in request.resource.data && request.resource.data.correct == resource.data.correct && (!('dur' in resource.data) || request.resource.data.dur < resource.data.dur))
     || (request.resource.data.diff(resource.data).affectedKeys().hasOnly(['rank']) && request.resource.data.diff(resource.data).affectedKeys().hasAny(['rank']) && request.resource.data.correct == resource.data.correct)
     || (request.resource.data.diff(resource.data).affectedKeys().hasOnly(['name']) && request.resource.data.name != resource.data.name));
    allow delete: if signed() && exists(/databases/$(database)/documents/rekorProfiller/$(pid))
