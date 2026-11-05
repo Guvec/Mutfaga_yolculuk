@@ -159,7 +159,7 @@ service cloud.firestore {
     return d.keys().hasAll(['name','correct','term','version','gen']) && d.keys().hasOnly(['name','correct','term','version','gen','rank','game','scope','total','contentVersion','week','dur'])
      && (!('rank' in d) || (d.rank is int && d.rank >= 1 && d.rank <= 5))
      && (rkParts(table)[1] == 'haftalik'
-       ? (d.keys().hasAll(['game','scope','total','contentVersion','week']) && d.game == 'haftalik' && d.scope == 'butun' && d.total == 25 && d.contentVersion is string && d.contentVersion.matches('^hafta-1-scope2-[0-9]{1,10}$') && d.week is int && rkParts(table)[2] == 'w' + string(d.week))
+       ? (d.keys().hasAll(['game','scope','total','contentVersion','week']) && d.game == 'haftalik' && d.scope == 'butun' && d.total == 25 && d.contentVersion is string && d.contentVersion.matches('^hafta-[0-9]{1,2}-scope2-[0-9]{1,10}$') && d.week is int && rkParts(table)[2] == 'w' + string(d.week))
        : !d.keys().hasAny(['game','scope','total','contentVersion','week']))
      && (!('dur' in d) || (rkParts(table)[1] == 'haftalik' && d.dur is int && d.dur >= 1 && d.dur <= 86400))
      && d.name is string && d.name.size() >= 1 && d.name.size() <= 40

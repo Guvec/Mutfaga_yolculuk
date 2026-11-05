@@ -1,7 +1,7 @@
 /* © 2026 Ali Arıkoğlu. Tüm hakları saklıdır. */
 /* Haftalık yarışma: sabit haftalık set, yerel deneme ve devam kaydı. Sunucu doğrulaması yoktur. */
 'use strict';
-const HAFTA_AYAR={attempts:3,distribution:[{subject:'mutfak-araclari',n:8},{subject:'baharat',n:7},{subject:'bulasik-makinesi-temizligi',n:5},{subject:'kuver',n:5}],contentVersion:'hafta-1'};
+const HAFTA_AYAR={attempts:3,distribution:[{subject:'mutfak-araclari',n:9},{subject:'baharat',n:8},{subject:'bulasik-makinesi-temizligi',n:3},{subject:'kuver',n:5}],contentVersion:'hafta-2'};
 let HAFTA=null,HAFTA_ERROR='';
 /* Çalışma süresi: yukarı sayar. Mola, gizli sekme, açık pencere (ses seçimi vb.) ve ekran dışı bekleme sayılmaz.
    Süre yalnız eşit doğru sayısında sıralamayı belirler; cihazda ölçülür, sunucuda doğrulanmaz. */

@@ -27,8 +27,11 @@ render=function(){
  TELIF_RENDER();const app=document.getElementById('app');if(!app)return;
  if(st.screen==='welcome'&&!app.querySelector('.telif'))app.insertAdjacentHTML('beforeend',telifHTML());
  /* Ana sayfa ve profil ekranı: paylaş ve güncelle (render zincirinin en sonunda eklenir, başka ekran kodu silmesin). */
+ if(st.screen==='giris'&&!app.querySelector('.ad-paylas')){const gs=app.querySelector('.gs')||app;gs.insertAdjacentHTML('beforeend','<div class="voice-tools ad-paylas ad-giris"><button type="button" class="btn sm" onclick="uygulamaPaylas()">📤 Uygulamayı paylaş</button> <button type="button" class="btn sm" onclick="uygulamaGuncelle()">🔄 Güncelle</button></div>');}
  if((st.screen==='home'||st.screen==='profiles')&&!app.querySelector('.ad-paylas'))app.insertAdjacentHTML('beforeend','<div class="voice-tools ad-paylas"><button type="button" class="btn sm" onclick="uygulamaPaylas()">📤 Uygulamayı paylaş</button> <button type="button" class="btn sm" onclick="uygulamaGuncelle()">🔄 Güncelle</button></div>');
 };
+/* Giriş ekranı bu dosyadan önce çizildiği için paylaş ve güncelle düğmeleri bir kez burada eklenir. */
+(function(){if(st.screen!=='giris')return;const app=document.getElementById('app');if(!app||app.querySelector('.ad-paylas'))return;(app.querySelector('.gs')||app).insertAdjacentHTML('beforeend','<div class="voice-tools ad-paylas ad-giris"><button type="button" class="btn sm" onclick="uygulamaPaylas()">📤 Uygulamayı paylaş</button> <button type="button" class="btn sm" onclick="uygulamaGuncelle()">🔄 Güncelle</button></div>');})();
 /* Ses ayarları penceresine Sakin mod anahtarı ve Hakkında düğmesi. */
 const TELIF_AYAR=voiceSettings;
 voiceSettings=function(){
