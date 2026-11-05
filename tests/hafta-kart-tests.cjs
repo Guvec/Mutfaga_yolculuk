@@ -14,4 +14,16 @@ await p.evaluate(()=>{go('home')});await p.waitForTimeout(800);
 ok('ana sayfa kartı',await p.evaluate(()=>!!document.querySelector('.hafta-kart')));
 await p.evaluate(()=>{st.screen='giris';render();});
 ok('giriş ekranında paylaş/güncelle',await p.evaluate(()=>document.querySelectorAll('.ad-giris button').length===2||!!document.querySelector('.ad-paylas')));
-await b.close();process.exit(fail?1:0);})();
+await b.close();global.__f=fail;})();
+/* Ses seçim ekranı ve sürüm (ayrı tarayıcı oturumu). */
+(async()=>{const b=await chromium.launch(),p=await b.newPage({viewport:{width:390,height:780}});let fail=0;const ok=(n,c)=>{console.log((c?'OK  ':'FAIL ')+n);if(!c)fail++;};
+await p.addInitScript(()=>{try{localStorage.setItem('test-ses-soru','1');}catch(e){}});
+await p.goto('file://'+path.resolve(__dirname,'..','index.html'));await p.waitForTimeout(1500);
+ok('ilk girişte ses seçim ekranı',await p.locator('#ov [data-ses-soru]').count()===3);
+ok('Güncelle düğmesinde sürüm',(await p.locator('.ad-paylas').last().textContent()).includes('v'+await p.evaluate(()=>APP_SURUM)));
+await p.locator('[data-ses-soru="muzik"]').click();
+const r=await p.evaluate(()=>({muzik:MUZIK.acikMi(),ses:SES.acik,k:localStorage.getItem('mesleki-ses-soru')}));
+ok('Müzik seçilince müzik açık, sesli okuma kapalı, tercih saklı',r.muzik&&!r.ses&&r.k==='1');
+await p.evaluate(()=>sesSoruGoster());await p.waitForTimeout(300);
+ok('ikinci girişte ekran çıkmaz',await p.locator('#ov [data-ses-soru]').count()===0);
+await b.close();await new Promise(r=>setTimeout(r,500));process.exit(fail||global.__f?1:0);})();

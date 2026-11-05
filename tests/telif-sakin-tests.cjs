@@ -17,7 +17,7 @@ const {chromium}=require('playwright'),http=require('http'),fs=require('fs'),pat
  assert.ok((await p.textContent('.telif')).includes(L));assert.ok((await p.textContent('.telif')).includes('izinsiz kopyalanamaz, çoğaltılamaz, dağıtılamaz ve yeniden yayımlanamaz'));
  assert.equal(await p.getAttribute('.telif','aria-label'),'Telif hakkı 2026 Ali Arıkoğlu. Tüm hakları saklıdır.');ok('Karşılama ekranında telif satırı ve ekran okuyucu etiketi var');
  await p.evaluate(()=>{st.guest=true;st.prof='Misafir';go('home');});assert.equal(await p.locator('.telif').count(),0);
- assert.ok(await p.locator('button:has-text("Güncelle")').count()>0);assert.ok(await p.locator('button:has-text("Uygulamayı paylaş")').count()>0);
+ assert.ok(await p.locator('button:has-text("Güncelle")').count()>0);assert.ok(await p.locator('button[aria-label="Uygulamayı paylaş"]').count()>0);
  await p.context().setOffline(true);await p.locator('button:has-text("Güncelle")').first().click();assert.ok((await p.textContent('#toast')).includes('İnternet yok'));await p.context().setOffline(false);ok('Ana sayfada Güncelle ve Paylaş düğmeleri var; internet yokken güncelleme yapılmaz');
  await p.evaluate(()=>{go('profiles');});assert.equal(await p.locator('.telif').count(),0);ok('Ana sayfa ve diğer ekranlarda telif satırı yok');
  // 2) Hakkında
