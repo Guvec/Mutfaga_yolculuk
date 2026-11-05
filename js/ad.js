@@ -213,7 +213,6 @@ render=function(){
   setTimeout(adSync,0);
  }
  if(st.screen==='home'){setTimeout(adSync,0);if(st.prof)adAsk(st.prof);}
- if(st.screen==='home'||st.screen==='profiles'){const app=document.getElementById('app');if(app&&!app.querySelector('.ad-paylas'))app.insertAdjacentHTML('beforeend','<div class="voice-tools ad-paylas"><button type="button" class="btn sm" onclick="uygulamaPaylas()">📤 Uygulamayı paylaş</button> <button type="button" class="btn sm" onclick="uygulamaGuncelle()">🔄 Güncelle</button></div>');}
 };
 back=function(){if(st.screen==='pedit'){go(st.pe&&st.pe.ret==='home'?'home':'profiles');return;}AD_BACK();};
 createProfile=function(){adOpen(-1,'profiles');};

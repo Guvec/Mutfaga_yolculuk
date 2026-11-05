@@ -23,7 +23,12 @@ function hakkindaAc(){
 }
 /* Karşılama ekranına telif satırı; oyun ve yarış ekranlarına konmaz. */
 const TELIF_RENDER=render;
-render=function(){TELIF_RENDER();if(st.screen==='welcome'){const app=document.getElementById('app');if(app&&!app.querySelector('.telif'))app.insertAdjacentHTML('beforeend',telifHTML());}};
+render=function(){
+ TELIF_RENDER();const app=document.getElementById('app');if(!app)return;
+ if(st.screen==='welcome'&&!app.querySelector('.telif'))app.insertAdjacentHTML('beforeend',telifHTML());
+ /* Ana sayfa ve profil ekranı: paylaş ve güncelle (render zincirinin en sonunda eklenir, başka ekran kodu silmesin). */
+ if((st.screen==='home'||st.screen==='profiles')&&!app.querySelector('.ad-paylas'))app.insertAdjacentHTML('beforeend','<div class="voice-tools ad-paylas"><button type="button" class="btn sm" onclick="uygulamaPaylas()">📤 Uygulamayı paylaş</button> <button type="button" class="btn sm" onclick="uygulamaGuncelle()">🔄 Güncelle</button></div>');
+};
 /* Ses ayarları penceresine Sakin mod anahtarı ve Hakkında düğmesi. */
 const TELIF_AYAR=voiceSettings;
 voiceSettings=function(){
