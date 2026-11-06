@@ -1,0 +1,283 @@
+{
+  "source": "Temel Mutfak ve Servis Becerileri 9, s.35 ve 38",
+  "note": "Örnek ölçüler evrensel ürün standardı değildir. Küçük kaşıklarda yalnız göreli boy gösterilir.",
+  "figures": [
+    {
+      "id": "guncel-001",
+      "family": "duz",
+      "image": "assets/karsilastirma/guncel-001.svg",
+      "peers": [
+        "guncel-001",
+        "guncel-004",
+        "guncel-005"
+      ],
+      "dimensions": [
+        25,
+        19,
+        16
+      ]
+    },
+    {
+      "id": "guncel-004",
+      "family": "duz",
+      "image": "assets/karsilastirma/guncel-004.svg",
+      "peers": [
+        "guncel-001",
+        "guncel-004",
+        "guncel-005"
+      ],
+      "dimensions": [
+        25,
+        19,
+        16
+      ]
+    },
+    {
+      "id": "guncel-005",
+      "family": "duz",
+      "image": "assets/karsilastirma/guncel-005.svg",
+      "peers": [
+        "guncel-004",
+        "guncel-005",
+        "guncel-001"
+      ],
+      "dimensions": [
+        19,
+        16,
+        25
+      ]
+    },
+    {
+      "id": "meb-001",
+      "family": "buyuk-duz",
+      "image": "assets/karsilastirma/meb-001.svg",
+      "peers": [
+        "meb-001",
+        "guncel-001",
+        "meb-002"
+      ],
+      "dimensions": [
+        30,
+        25,
+        22
+      ]
+    },
+    {
+      "id": "meb-002",
+      "family": "buyuk-duz",
+      "image": "assets/karsilastirma/meb-002.svg",
+      "peers": [
+        "guncel-001",
+        "meb-002",
+        "meb-001"
+      ],
+      "dimensions": [
+        25,
+        22,
+        30
+      ]
+    },
+    {
+      "id": "guncel-003",
+      "family": "cukur",
+      "image": "assets/karsilastirma/guncel-003.svg",
+      "peers": [
+        "meb-003",
+        "guncel-003",
+        "guncel-002"
+      ],
+      "dimensions": [
+        20,
+        27,
+        24
+      ]
+    },
+    {
+      "id": "guncel-002",
+      "family": "cukur",
+      "image": "assets/karsilastirma/guncel-002.svg",
+      "peers": [
+        "guncel-002",
+        "meb-003",
+        "guncel-003"
+      ],
+      "dimensions": [
+        24,
+        20,
+        27
+      ]
+    },
+    {
+      "id": "meb-003",
+      "family": "cukur",
+      "image": "assets/karsilastirma/meb-003.svg",
+      "peers": [
+        "meb-003",
+        "guncel-003",
+        "guncel-002"
+      ],
+      "dimensions": [
+        20,
+        27,
+        24
+      ]
+    },
+    {
+      "id": "guncel-018",
+      "family": "catal",
+      "image": "assets/karsilastirma/guncel-018.svg",
+      "peers": [
+        "guncel-021",
+        "guncel-018",
+        "guncel-020"
+      ],
+      "dimensions": [
+        16,
+        20,
+        18
+      ]
+    },
+    {
+      "id": "guncel-020",
+      "family": "catal",
+      "image": "assets/karsilastirma/guncel-020.svg",
+      "peers": [
+        "guncel-020",
+        "guncel-021",
+        "guncel-018"
+      ],
+      "dimensions": [
+        18,
+        16,
+        20
+      ]
+    },
+    {
+      "id": "guncel-021",
+      "family": "catal",
+      "image": "assets/karsilastirma/guncel-021.svg",
+      "peers": [
+        "guncel-021",
+        "guncel-018",
+        "guncel-020"
+      ],
+      "dimensions": [
+        16,
+        20,
+        18
+      ]
+    },
+    {
+      "id": "guncel-019",
+      "family": "bicak",
+      "image": "assets/karsilastirma/guncel-019.svg",
+      "peers": [
+        "guncel-019",
+        "meb-009",
+        "meb-011"
+      ],
+      "dimensions": [
+        23,
+        21,
+        18
+      ]
+    },
+    {
+      "id": "meb-009",
+      "family": "bicak",
+      "image": "assets/karsilastirma/meb-009.svg",
+      "peers": [
+        "meb-011",
+        "guncel-019",
+        "meb-009"
+      ],
+      "dimensions": [
+        18,
+        23,
+        21
+      ]
+    },
+    {
+      "id": "meb-011",
+      "family": "bicak",
+      "image": "assets/karsilastirma/meb-011.svg",
+      "peers": [
+        "meb-009",
+        "meb-011",
+        "guncel-019"
+      ],
+      "dimensions": [
+        21,
+        18,
+        23
+      ]
+    },
+    {
+      "id": "guncel-023",
+      "family": "kasik",
+      "image": "assets/karsilastirma/guncel-023.svg",
+      "peers": [
+        "meb-010",
+        "guncel-024",
+        "guncel-023"
+      ],
+      "dimensions": [
+        19,
+        17,
+        21
+      ]
+    },
+    {
+      "id": "meb-010",
+      "family": "kasik",
+      "image": "assets/karsilastirma/meb-010.svg",
+      "peers": [
+        "guncel-023",
+        "meb-010",
+        "guncel-024"
+      ],
+      "dimensions": [
+        21,
+        19,
+        17
+      ]
+    },
+    {
+      "id": "guncel-024",
+      "family": "kasik",
+      "image": "assets/karsilastirma/guncel-024.svg",
+      "peers": [
+        "guncel-024",
+        "guncel-023",
+        "meb-010"
+      ],
+      "dimensions": [
+        17,
+        21,
+        19
+      ]
+    },
+    {
+      "id": "guncel-025",
+      "family": "kucuk-kasik",
+      "image": "assets/karsilastirma/guncel-025.svg",
+      "peers": [
+        "guncel-024",
+        "guncel-025",
+        "meb-017"
+      ],
+      "dimensions": null
+    },
+    {
+      "id": "meb-017",
+      "family": "kucuk-kasik",
+      "image": "assets/karsilastirma/meb-017.svg",
+      "peers": [
+        "guncel-025",
+        "meb-017",
+        "guncel-024"
+      ],
+      "dimensions": null
+    }
+  ]
+}

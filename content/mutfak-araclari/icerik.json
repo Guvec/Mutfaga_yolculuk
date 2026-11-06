@@ -2989,11 +2989,11 @@
   "matches": [
     {
       "id": "meb-001",
-      "prompt": "Bu örneğin doğru adını seç.",
-      "image": "assets/meb-servis/meb-001.jpg",
-      "imageAlt": "Adı sorulan örneğin fotoğrafı.",
+      "prompt": "Üçgenle işaretlenen aracın adı nedir?",
+      "image": "assets/karsilastirma/meb-001.svg",
+      "imageAlt": "Üç araç arasından üçgenle işaretlenen örnek",
       "answer": "Servis (kuver) tabağı",
-      "hint": "Bu tabağa doğrudan yemek konmaz. Diğer tabaklardan büyük olan örneği incele.",
+      "hint": "Üçgenin gösterdiği aracın boyunu ve biçimini diğer örneklerle karşılaştır.",
       "explanation": "Kuverin ortasında, diğer tabakların altında kullanılan büyük düz tabaktır.",
       "detail": "Kuverin ortasında, diğer tabakların altında kullanılan büyük düz tabaktır. Bu tabağa doğrudan yemek konmaz. Diğer tabaklardan büyük olan örneği incele.",
       "classificationGroup": "Düz tabaklar",
@@ -3005,21 +3005,22 @@
         "revision": "MEB sınıflandırmasıyla eklenen örnek"
       },
       "set": 1,
-      "task": "Diğer tabakların altına konan, bu dizinin en büyük düz örneği.",
+      "task": "Üçgenin gösterdiği örneği incele. Diğer tabakların altına konan, bu dizinin en büyük düz örneği.",
       "assessmentConstruct": "Görsel ve verilen kullanım bilgisini adla ilişkilendirme. Kullanım amacı yalnız fotoğrafın biçiminden çıkarılmaz.",
       "disla": [
         "Ana yemek tabağı",
         "Antre tabağı",
         "Tatlı tabağı",
         "Ekmek tabağı"
-      ]
+      ],
+      "comparison": true
     },
     {
       "id": "guncel-001",
       "set": 1,
-      "prompt": "Bu aracın adı nedir?",
-      "image": "assets/mutfak-araclari/guncel-001.jpg",
-      "imageAlt": "Adı sorulan aracın fotoğrafı.",
+      "prompt": "Üçgenle işaretlenen aracın adı nedir?",
+      "image": "assets/karsilastirma/guncel-001.svg",
+      "imageAlt": "Üç araç arasından üçgenle işaretlenen örnek",
       "answer": "Ana yemek tabağı",
       "explanation": "Ana yemeği sunmak için kullanılan düz tabaktır. Bu örnek, tatlı ve ekmek tabaklarından büyüktür.",
       "source": {
@@ -3035,24 +3036,25 @@
         }
       },
       "detail": "Düz tabaklar grubundadır. Yemek doğrudan bu tabağa konur. Kuver tabağı ise başka tabakların altında durur. Tabak temiz kenarından tutulur.",
-      "hint": "Düz yüzeyine ve aynı ölçekte gösterilen diğer tabaklarla boy farkına bak.",
+      "hint": "Üçgenin gösterdiği aracın boyunu ve biçimini diğer örneklerle karşılaştır.",
       "classificationGroup": "Düz tabaklar",
-      "task": "Ana yemek servisi için seçilen büyük düz örnek.",
+      "task": "Üçgenin gösterdiği örneği incele. Ana yemek servisi için seçilen büyük düz örnek.",
       "assessmentConstruct": "Görsel ve verilen kullanım bilgisini adla ilişkilendirme. Kullanım amacı yalnız fotoğrafın biçiminden çıkarılmaz.",
       "disla": [
         "Servis (kuver) tabağı",
         "Antre tabağı",
         "Tatlı tabağı",
         "Ekmek tabağı"
-      ]
+      ],
+      "comparison": true
     },
     {
       "id": "meb-002",
-      "prompt": "Bu örneğin doğru adını seç.",
-      "image": "assets/meb-servis/meb-002.jpg",
-      "imageAlt": "Adı sorulan örneğin fotoğrafı.",
+      "prompt": "Üçgenle işaretlenen aracın adı nedir?",
+      "image": "assets/karsilastirma/meb-002.svg",
+      "imageAlt": "Üç araç arasından üçgenle işaretlenen örnek",
       "answer": "Antre tabağı",
-      "hint": "Bu örnek ana yemek tabağından küçük, tatlı tabağından büyüktür.",
+      "hint": "Üçgenin gösterdiği aracın boyunu ve biçimini diğer örneklerle karşılaştır.",
       "explanation": "Başlangıç yemeklerini sunmak için kullanılan düz tabaktır.",
       "detail": "Başlangıç yemeklerini sunmak için kullanılan düz tabaktır. Bu örnek ana yemek tabağından küçük, tatlı tabağından büyüktür.",
       "classificationGroup": "Düz tabaklar",
@@ -3064,21 +3066,22 @@
         "revision": "MEB sınıflandırmasıyla eklenen örnek"
       },
       "set": 1,
-      "task": "Başlangıç yemekleri için seçilen orta boy düz örnek.",
+      "task": "Üçgenin gösterdiği örneği incele. Başlangıç yemekleri için seçilen orta boy düz örnek.",
       "assessmentConstruct": "Görsel ve verilen kullanım bilgisini adla ilişkilendirme. Kullanım amacı yalnız fotoğrafın biçiminden çıkarılmaz.",
       "disla": [
         "Servis (kuver) tabağı",
         "Ana yemek tabağı",
         "Tatlı tabağı",
         "Ekmek tabağı"
-      ]
+      ],
+      "comparison": true
     },
     {
       "id": "guncel-004",
       "set": 1,
-      "prompt": "Bu aracın adı nedir?",
-      "image": "assets/mutfak-araclari/guncel-004.jpg",
-      "imageAlt": "Adı sorulan aracın fotoğrafı.",
+      "prompt": "Üçgenle işaretlenen aracın adı nedir?",
+      "image": "assets/karsilastirma/guncel-004.svg",
+      "imageAlt": "Üç araç arasından üçgenle işaretlenen örnek",
       "answer": "Tatlı tabağı",
       "explanation": "Tatlı sunumunda kullanılan düz tabaktır. Bu örnek ana yemek tabağından küçük, ekmek tabağından büyüktür.",
       "source": {
@@ -3094,23 +3097,24 @@
         }
       },
       "detail": "Düz tabaklar grubundadır. Bu karşılaştırmada aynı ölçekteki örnekler kullanılır. Tatlı tabağı temiz kenarından tutulur.",
-      "hint": "Aynı ölçekte gösterilen düz tabakların boylarını karşılaştır.",
+      "hint": "Üçgenin gösterdiği aracın boyunu ve biçimini diğer örneklerle karşılaştır.",
       "classificationGroup": "Düz tabaklar",
-      "task": "Tatlı servisi için seçilen küçük düz örnek.",
+      "task": "Üçgenin gösterdiği örneği incele. Tatlı servisi için seçilen küçük düz örnek.",
       "assessmentConstruct": "Görsel ve verilen kullanım bilgisini adla ilişkilendirme. Kullanım amacı yalnız fotoğrafın biçiminden çıkarılmaz.",
       "disla": [
         "Servis (kuver) tabağı",
         "Ana yemek tabağı",
         "Antre tabağı",
         "Ekmek tabağı"
-      ]
+      ],
+      "comparison": true
     },
     {
       "id": "guncel-005",
       "set": 1,
-      "prompt": "Bu aracın adı nedir?",
-      "image": "assets/mutfak-araclari/guncel-005.jpg",
-      "imageAlt": "Adı sorulan aracın fotoğrafı.",
+      "prompt": "Üçgenle işaretlenen aracın adı nedir?",
+      "image": "assets/karsilastirma/guncel-005.svg",
+      "imageAlt": "Üç araç arasından üçgenle işaretlenen örnek",
       "answer": "Ekmek tabağı",
       "explanation": "Ekmek sunumunda kullanılan küçük düz tabaktır.",
       "source": {
@@ -3126,23 +3130,24 @@
         }
       },
       "detail": "Düz tabaklar grubundadır. Fincan tabağındaki oturma yuvası bu örnekte yoktur. Kuverde çatalların sol üst tarafında yer alır.",
-      "hint": "Küçük ve düz yüzeyine bak; ortasında fincan yuvası yoktur.",
+      "hint": "Üçgenin gösterdiği aracın boyunu ve biçimini diğer örneklerle karşılaştır.",
       "classificationGroup": "Düz tabaklar",
-      "task": "Ekmek servisi için seçilen en küçük düz örnek.",
+      "task": "Üçgenin gösterdiği örneği incele. Ekmek servisi için seçilen en küçük düz örnek.",
       "assessmentConstruct": "Görsel ve verilen kullanım bilgisini adla ilişkilendirme. Kullanım amacı yalnız fotoğrafın biçiminden çıkarılmaz.",
       "disla": [
         "Servis (kuver) tabağı",
         "Ana yemek tabağı",
         "Antre tabağı",
         "Tatlı tabağı"
-      ]
+      ],
+      "comparison": true
     },
     {
       "id": "guncel-002",
       "set": 1,
-      "prompt": "Bu aracın adı nedir?",
-      "image": "assets/mutfak-araclari/guncel-002.jpg",
-      "imageAlt": "Adı sorulan aracın fotoğrafı.",
+      "prompt": "Üçgenle işaretlenen aracın adı nedir?",
+      "image": "assets/karsilastirma/guncel-002.svg",
+      "imageAlt": "Üç araç arasından üçgenle işaretlenen örnek",
       "answer": "Çorba tabağı",
       "explanation": "Çorbanın sunulduğu çukur tabaktır. Gövdesi kâseye göre daha yayvandır.",
       "source": {
@@ -3158,22 +3163,23 @@
         }
       },
       "detail": "Çukur tabaklar grubundadır. Dışa açılan kenarı ve içindeki çukurluk sıvı yemeğin sunumuna uygundur. Sıcak tabak kuru lito beziyle tutulur. Çorba kâsesiyle aynı kap değildir.",
-      "hint": "Yayvan gövdesine, dışa açılan kenarına ve iç çukurluğuna bak.",
+      "hint": "Üçgenin gösterdiği aracın boyunu ve biçimini diğer örneklerle karşılaştır.",
       "classificationGroup": "Çukur tabaklar",
-      "task": "Çorba servisi için seçilen çukur örnek.",
+      "task": "Üçgenin gösterdiği örneği incele. Çorba servisi için seçilen çukur örnek.",
       "assessmentConstruct": "Görsel ve verilen kullanım bilgisini adla ilişkilendirme. Kullanım amacı yalnız fotoğrafın biçiminden çıkarılmaz.",
       "disla": [
         "Çukur yemek tabağı",
         "Makarna tabağı"
-      ]
+      ],
+      "comparison": true
     },
     {
       "id": "meb-003",
-      "prompt": "Bu örneğin doğru adını seç.",
-      "image": "assets/meb-servis/meb-003.jpg",
-      "imageAlt": "Adı sorulan örneğin fotoğrafı.",
+      "prompt": "Üçgenle işaretlenen aracın adı nedir?",
+      "image": "assets/karsilastirma/meb-003.svg",
+      "imageAlt": "Üç araç arasından üçgenle işaretlenen örnek",
       "answer": "Çukur yemek tabağı",
-      "hint": "Bu örnekte çukurluk ve dışa açılan kenar birlikte görülür.",
+      "hint": "Üçgenin gösterdiği aracın boyunu ve biçimini diğer örneklerle karşılaştır.",
       "explanation": "Sulu ve soslu yemeklerin sunumunda kullanılan çukur tabaktır.",
       "detail": "Sulu ve soslu yemeklerin sunumunda kullanılan çukur tabaktır. Bu örnekte çukurluk ve dışa açılan kenar birlikte görülür.",
       "classificationGroup": "Çukur tabaklar",
@@ -3185,19 +3191,20 @@
         "revision": "MEB sınıflandırmasıyla eklenen örnek"
       },
       "set": 1,
-      "task": "Soslu yemek servisi için seçilen çukur örnek.",
+      "task": "Üçgenin gösterdiği örneği incele. Soslu yemek servisi için seçilen çukur örnek.",
       "assessmentConstruct": "Görsel ve verilen kullanım bilgisini adla ilişkilendirme. Kullanım amacı yalnız fotoğrafın biçiminden çıkarılmaz.",
       "disla": [
         "Çorba tabağı",
         "Makarna tabağı"
-      ]
+      ],
+      "comparison": true
     },
     {
       "id": "guncel-003",
       "set": 1,
-      "prompt": "Bu aracın adı nedir?",
-      "image": "assets/mutfak-araclari/guncel-003.jpg",
-      "imageAlt": "Adı sorulan aracın fotoğrafı.",
+      "prompt": "Üçgenle işaretlenen aracın adı nedir?",
+      "image": "assets/karsilastirma/guncel-003.svg",
+      "imageAlt": "Üç araç arasından üçgenle işaretlenen örnek",
       "answer": "Makarna tabağı",
       "explanation": "Geniş, düz kenarı ve ortasında çukur bölümü olan makarna tabağıdır.",
       "source": {
@@ -3213,14 +3220,15 @@
         }
       },
       "detail": "Çukur tabaklar grubundadır. Makarna orta bölüme yerleştirilir. Fotoğrafta geniş kenar belirgindir. Tabakların biçimi modele göre değişebilir.",
-      "hint": "Geniş ve düz kenarla çukur ortayı birlikte incele.",
+      "hint": "Üçgenin gösterdiği aracın boyunu ve biçimini diğer örneklerle karşılaştır.",
       "classificationGroup": "Çukur tabaklar",
-      "task": "Makarna servisi için seçilen, geniş kenarlı çukur örnek.",
+      "task": "Üçgenin gösterdiği örneği incele. Makarna servisi için seçilen, geniş kenarlı çukur örnek.",
       "assessmentConstruct": "Görsel ve verilen kullanım bilgisini adla ilişkilendirme. Kullanım amacı yalnız fotoğrafın biçiminden çıkarılmaz.",
       "disla": [
         "Çorba tabağı",
         "Çukur yemek tabağı"
-      ]
+      ],
+      "comparison": true
     },
     {
       "id": "meb-004",
@@ -3592,9 +3600,9 @@
     {
       "id": "guncel-018",
       "set": 3,
-      "prompt": "Bu aracın adı nedir?",
-      "image": "assets/mutfak-araclari/guncel-018.jpg",
-      "imageAlt": "Adı sorulan aracın fotoğrafı.",
+      "prompt": "Üçgenle işaretlenen aracın adı nedir?",
+      "image": "assets/karsilastirma/guncel-018.svg",
+      "imageAlt": "Üç araç arasından üçgenle işaretlenen örnek",
       "answer": "Ana yemek çatalı",
       "explanation": "Ana yemek takımındaki büyük çataldır. Bu örneğin dört dişi vardır.",
       "source": {
@@ -3609,21 +3617,22 @@
         }
       },
       "detail": "Ana yemek takımları grubundadır. Tabakların soluna yerleştirilir. Bu örnek antre ve tatlı çatalından uzundur. Ortak ölçekte boylar karşılaştırılır.",
-      "hint": "Dört dişine ve diğer çatallarla boy farkına bak.",
+      "hint": "Üçgenin gösterdiği aracın boyunu ve biçimini diğer örneklerle karşılaştır.",
       "classificationGroup": "Ana yemek takımları",
-      "task": "Ana yemek için seçilen bu dizinin büyük çatalı.",
+      "task": "Üçgenin gösterdiği örneği incele. Ana yemek için seçilen bu dizinin büyük çatalı.",
       "assessmentConstruct": "Görsel ve verilen kullanım bilgisini adla ilişkilendirme. Kullanım amacı yalnız fotoğrafın biçiminden çıkarılmaz.",
       "disla": [
         "Antre çatalı",
         "Tatlı çatalı"
-      ]
+      ],
+      "comparison": true
     },
     {
       "id": "guncel-019",
       "set": 3,
-      "prompt": "Bu aracın adı nedir?",
-      "image": "assets/mutfak-araclari/guncel-019.jpg",
-      "imageAlt": "Adı sorulan aracın fotoğrafı.",
+      "prompt": "Üçgenle işaretlenen aracın adı nedir?",
+      "image": "assets/karsilastirma/guncel-019.svg",
+      "imageAlt": "Üç araç arasından üçgenle işaretlenen örnek",
       "answer": "Ana yemek bıçağı",
       "explanation": "Ana yemek takımındaki büyük bıçaktır. Fotoğrafta ince tırtıklı bir sofra modeli görülür.",
       "source": {
@@ -3638,21 +3647,22 @@
         }
       },
       "detail": "Ana yemek takımları grubundadır. Tabağın sağında, kesici ağzı tabağa dönük durur. Bıçak sapından tutulur.",
-      "hint": "Bıçağın uzun gövdesine ve kesici kenarına bak.",
+      "hint": "Üçgenin gösterdiği aracın boyunu ve biçimini diğer örneklerle karşılaştır.",
       "classificationGroup": "Ana yemek takımları",
-      "task": "Ana yemek için seçilen bu dizinin büyük bıçağı.",
+      "task": "Üçgenin gösterdiği örneği incele. Ana yemek için seçilen bu dizinin büyük bıçağı.",
       "assessmentConstruct": "Görsel ve verilen kullanım bilgisini adla ilişkilendirme. Kullanım amacı yalnız fotoğrafın biçiminden çıkarılmaz.",
       "disla": [
         "Antre bıçağı",
         "Tatlı bıçağı"
-      ]
+      ],
+      "comparison": true
     },
     {
       "id": "guncel-023",
       "set": 3,
-      "prompt": "Bu aracın adı nedir?",
-      "image": "assets/mutfak-araclari/guncel-023.jpg",
-      "imageAlt": "Adı sorulan aracın fotoğrafı.",
+      "prompt": "Üçgenle işaretlenen aracın adı nedir?",
+      "image": "assets/karsilastirma/guncel-023.svg",
+      "imageAlt": "Üç araç arasından üçgenle işaretlenen örnek",
       "answer": "Çorba kaşığı",
       "explanation": "Ana yemek takımındaki büyük kaşıktır. Çorba kaşığı adıyla da kullanılır.",
       "source": {
@@ -3667,22 +3677,23 @@
         }
       },
       "detail": "Ana yemek takımları grubundadır. Bu örnek antre ve tatlı kaşığından uzundur. Kaşığın ağız bölümü fotoğrafta oval ve çukurdur. Kaşık sapından tutulur.",
-      "hint": "Ağız bölümünü ve ortak ölçekteki diğer kaşıklarla boy farkını incele.",
+      "hint": "Üçgenin gösterdiği aracın boyunu ve biçimini diğer örneklerle karşılaştır.",
       "classificationGroup": "Ana yemek takımları",
-      "task": "Çorba için seçilen bu dizinin büyük kaşığı.",
+      "task": "Üçgenin gösterdiği örneği incele. Çorba için seçilen bu dizinin büyük kaşığı.",
       "assessmentConstruct": "Görsel ve verilen kullanım bilgisini adla ilişkilendirme. Kullanım amacı yalnız fotoğrafın biçiminden çıkarılmaz.",
       "disla": [
         "Antre kaşığı",
         "Tatlı kaşığı",
         "Balık kaşığı"
-      ]
+      ],
+      "comparison": true
     },
     {
       "id": "guncel-020",
       "set": 3,
-      "prompt": "Bu aracın adı nedir?",
-      "image": "assets/mutfak-araclari/guncel-020.jpg",
-      "imageAlt": "Adı sorulan aracın fotoğrafı.",
+      "prompt": "Üçgenle işaretlenen aracın adı nedir?",
+      "image": "assets/karsilastirma/guncel-020.svg",
+      "imageAlt": "Üç araç arasından üçgenle işaretlenen örnek",
       "answer": "Antre çatalı",
       "explanation": "Başlangıç yemeklerinde kullanılan orta boy çataldır. Antre çatalı olarak adlandırılır.",
       "source": {
@@ -3697,22 +3708,23 @@
         }
       },
       "detail": "Antre takımları grubundadır. Bu örnek ana yemek çatalından kısa, tatlı çatalından uzundur. Dört dişi vardır. Sıcak ve soğuk başlangıç yemeklerinde kullanılır.",
-      "hint": "Ortak ölçekteki ana yemek ve tatlı çatallarıyla boyunu karşılaştır.",
+      "hint": "Üçgenin gösterdiği aracın boyunu ve biçimini diğer örneklerle karşılaştır.",
       "classificationGroup": "Antre takımları",
-      "task": "Başlangıç yemeği için seçilen orta boy çatal.",
+      "task": "Üçgenin gösterdiği örneği incele. Başlangıç yemeği için seçilen orta boy çatal.",
       "assessmentConstruct": "Görsel ve verilen kullanım bilgisini adla ilişkilendirme. Kullanım amacı yalnız fotoğrafın biçiminden çıkarılmaz.",
       "disla": [
         "Ana yemek çatalı",
         "Tatlı çatalı"
-      ]
+      ],
+      "comparison": true
     },
     {
       "id": "meb-009",
-      "prompt": "Bu örneğin doğru adını seç.",
-      "image": "assets/meb-servis/meb-009.jpg",
-      "imageAlt": "Adı sorulan örneğin fotoğrafı.",
+      "prompt": "Üçgenle işaretlenen aracın adı nedir?",
+      "image": "assets/karsilastirma/meb-009.svg",
+      "imageAlt": "Üç araç arasından üçgenle işaretlenen örnek",
       "answer": "Antre bıçağı",
-      "hint": "Bu örnek ana yemek bıçağından kısa, tatlı bıçağından uzundur.",
+      "hint": "Üçgenin gösterdiği aracın boyunu ve biçimini diğer örneklerle karşılaştır.",
       "explanation": "Başlangıç yemeklerinde kullanılan orta boy sofra bıçağıdır.",
       "detail": "Başlangıç yemeklerinde kullanılan orta boy sofra bıçağıdır. Bu örnek ana yemek bıçağından kısa, tatlı bıçağından uzundur.",
       "classificationGroup": "Antre takımları",
@@ -3724,20 +3736,21 @@
         "revision": "MEB sınıflandırmasıyla eklenen örnek"
       },
       "set": 3,
-      "task": "Başlangıç yemeği için seçilen orta boy bıçak.",
+      "task": "Üçgenin gösterdiği örneği incele. Başlangıç yemeği için seçilen orta boy bıçak.",
       "assessmentConstruct": "Görsel ve verilen kullanım bilgisini adla ilişkilendirme. Kullanım amacı yalnız fotoğrafın biçiminden çıkarılmaz.",
       "disla": [
         "Ana yemek bıçağı",
         "Tatlı bıçağı"
-      ]
+      ],
+      "comparison": true
     },
     {
       "id": "meb-010",
-      "prompt": "Bu örneğin doğru adını seç.",
-      "image": "assets/meb-servis/meb-010.jpg",
-      "imageAlt": "Adı sorulan örneğin fotoğrafı.",
+      "prompt": "Üçgenle işaretlenen aracın adı nedir?",
+      "image": "assets/karsilastirma/meb-010.svg",
+      "imageAlt": "Üç araç arasından üçgenle işaretlenen örnek",
       "answer": "Antre kaşığı",
-      "hint": "Ortak ölçekte büyük çorba kaşığıyla ve tatlı kaşığıyla karşılaştır.",
+      "hint": "Üçgenin gösterdiği aracın boyunu ve biçimini diğer örneklerle karşılaştır.",
       "explanation": "Antre takımında yer alan orta boy kaşıktır.",
       "detail": "Antre takımında yer alan orta boy kaşıktır. Ortak ölçekte büyük çorba kaşığıyla ve tatlı kaşığıyla karşılaştır.",
       "classificationGroup": "Antre takımları",
@@ -3749,19 +3762,20 @@
         "revision": "MEB sınıflandırmasıyla eklenen örnek"
       },
       "set": 3,
-      "task": "Berrak çorba ve komposto için seçilen orta boy kaşık.",
+      "task": "Üçgenin gösterdiği örneği incele. Berrak çorba ve komposto için seçilen orta boy kaşık.",
       "assessmentConstruct": "Görsel ve verilen kullanım bilgisini adla ilişkilendirme. Kullanım amacı yalnız fotoğrafın biçiminden çıkarılmaz.",
       "disla": [
         "Çorba kaşığı",
         "Tatlı kaşığı"
-      ]
+      ],
+      "comparison": true
     },
     {
       "id": "guncel-021",
       "set": 3,
-      "prompt": "Bu aracın adı nedir?",
-      "image": "assets/mutfak-araclari/guncel-021.jpg",
-      "imageAlt": "Adı sorulan aracın fotoğrafı.",
+      "prompt": "Üçgenle işaretlenen aracın adı nedir?",
+      "image": "assets/karsilastirma/guncel-021.svg",
+      "imageAlt": "Üç araç arasından üçgenle işaretlenen örnek",
       "answer": "Tatlı çatalı",
       "explanation": "Tatlı takımındaki küçük çataldır. Bu örneğin dört dişi vardır.",
       "source": {
@@ -3776,22 +3790,23 @@
         }
       },
       "detail": "Tatlı takımları grubundadır. Bu örnek ana yemek ve antre çatalından kısadır. Geniş dış dişli pasta çatalıyla biçimini karşılaştır. Temiz çatal sapından tutulur.",
-      "hint": "Dört dişini ve diğer çatallardan kısa olan gövdesini karşılaştır.",
+      "hint": "Üçgenin gösterdiği aracın boyunu ve biçimini diğer örneklerle karşılaştır.",
       "classificationGroup": "Tatlı takımları",
-      "task": "Tatlı için seçilen küçük dört dişli çatal.",
+      "task": "Üçgenin gösterdiği örneği incele. Tatlı için seçilen küçük dört dişli çatal.",
       "assessmentConstruct": "Görsel ve verilen kullanım bilgisini adla ilişkilendirme. Kullanım amacı yalnız fotoğrafın biçiminden çıkarılmaz.",
       "disla": [
         "Ana yemek çatalı",
         "Antre çatalı"
-      ]
+      ],
+      "comparison": true
     },
     {
       "id": "meb-011",
-      "prompt": "Bu örneğin doğru adını seç.",
-      "image": "assets/meb-servis/meb-011.jpg",
-      "imageAlt": "Adı sorulan örneğin fotoğrafı.",
+      "prompt": "Üçgenle işaretlenen aracın adı nedir?",
+      "image": "assets/karsilastirma/meb-011.svg",
+      "imageAlt": "Üç araç arasından üçgenle işaretlenen örnek",
       "answer": "Tatlı bıçağı",
-      "hint": "Bu örnek ana yemek ve antre bıçağından kısadır.",
+      "hint": "Üçgenin gösterdiği aracın boyunu ve biçimini diğer örneklerle karşılaştır.",
       "explanation": "Tatlı ve meyve servisinde kullanılan küçük sofra bıçağıdır.",
       "detail": "Tatlı ve meyve servisinde kullanılan küçük sofra bıçağıdır. Bu örnek ana yemek ve antre bıçağından kısadır.",
       "classificationGroup": "Tatlı takımları",
@@ -3803,19 +3818,20 @@
         "revision": "MEB sınıflandırmasıyla eklenen örnek"
       },
       "set": 3,
-      "task": "Meyve ve tatlı için seçilen küçük bıçak.",
+      "task": "Üçgenin gösterdiği örneği incele. Meyve ve tatlı için seçilen küçük bıçak.",
       "assessmentConstruct": "Görsel ve verilen kullanım bilgisini adla ilişkilendirme. Kullanım amacı yalnız fotoğrafın biçiminden çıkarılmaz.",
       "disla": [
         "Ana yemek bıçağı",
         "Antre bıçağı"
-      ]
+      ],
+      "comparison": true
     },
     {
       "id": "guncel-024",
       "set": 3,
-      "prompt": "Bu aracın adı nedir?",
-      "image": "assets/mutfak-araclari/guncel-024.jpg",
-      "imageAlt": "Adı sorulan aracın fotoğrafı.",
+      "prompt": "Üçgenle işaretlenen aracın adı nedir?",
+      "image": "assets/karsilastirma/guncel-024.svg",
+      "imageAlt": "Üç araç arasından üçgenle işaretlenen örnek",
       "answer": "Tatlı kaşığı",
       "explanation": "Tatlı takımında yer alan küçük kaşıktır. Kaşıkla yenen tatlılarda kullanılır.",
       "source": {
@@ -3830,21 +3846,22 @@
         }
       },
       "detail": "Tatlı takımları grubundadır. Bu örnek ana yemek ve antre kaşığından kısa, çay kaşığından uzundur. Takımların boyları modele göre değişebilir.",
-      "hint": "Ortak ölçekteki büyük ve küçük kaşıklarla boyunu karşılaştır.",
+      "hint": "Üçgenin gösterdiği aracın boyunu ve biçimini diğer örneklerle karşılaştır.",
       "classificationGroup": "Tatlı takımları",
-      "task": "Puding gibi tatlılar için seçilen küçük kaşık.",
+      "task": "Üçgenin gösterdiği örneği incele. Puding gibi tatlılar için seçilen küçük kaşık.",
       "assessmentConstruct": "Görsel ve verilen kullanım bilgisini adla ilişkilendirme. Kullanım amacı yalnız fotoğrafın biçiminden çıkarılmaz.",
       "disla": [
         "Antre kaşığı",
         "Çay kaşığı"
-      ]
+      ],
+      "comparison": true
     },
     {
       "id": "guncel-025",
       "set": 3,
-      "prompt": "Bu aracın adı nedir?",
-      "image": "assets/mutfak-araclari/guncel-025.jpg",
-      "imageAlt": "Adı sorulan aracın fotoğrafı.",
+      "prompt": "Üçgenle işaretlenen aracın adı nedir?",
+      "image": "assets/karsilastirma/guncel-025.svg",
+      "imageAlt": "Üç araç arasından üçgenle işaretlenen örnek",
       "answer": "Çay kaşığı",
       "explanation": "Çayda şekeri karıştırmak için kullanılan küçük kaşıktır. Tatlı kaşığına göre küçüktür.",
       "source": {
@@ -3853,22 +3870,23 @@
         "card": 10
       },
       "detail": "Ne için kullanılır? Çayda şekeri karıştırmak için kullanılan küçük kaşıktır.\nNasıl kullanılır? Çay tabağına ya da fincan tabağına, bardağın ya da fincanın sağına konur; sapı sağa bakar. Kullanılmış kaşık şekerliğe sokulmaz; şeker temiz ve kuru kaşıkla alınır.\nFarkı nedir? Tatlı kaşığına göre küçüktür.",
-      "hint": "Çatal, bıçak ve kaşığı ayır. Aynı takımdaki boylarını karşılaştır.",
+      "hint": "Üçgenin gösterdiği aracın boyunu ve biçimini diğer örneklerle karşılaştır.",
       "classificationGroup": "Özel amaçlı takımlar",
-      "task": "Çayı karıştırmak için seçilen küçük kaşık.",
+      "task": "Üçgenin gösterdiği örneği incele. Çayı karıştırmak için seçilen küçük kaşık.",
       "assessmentConstruct": "Görsel ve verilen kullanım bilgisini adla ilişkilendirme. Kullanım amacı yalnız fotoğrafın biçiminden çıkarılmaz.",
       "disla": [
         "Kahve kaşığı",
         "Tatlı kaşığı"
-      ]
+      ],
+      "comparison": true
     },
     {
       "id": "meb-017",
-      "prompt": "Bu örneğin doğru adını seç.",
-      "image": "assets/meb-servis/meb-017.jpg",
-      "imageAlt": "Adı sorulan örneğin fotoğrafı.",
+      "prompt": "Üçgenle işaretlenen aracın adı nedir?",
+      "image": "assets/karsilastirma/meb-017.svg",
+      "imageAlt": "Üç araç arasından üçgenle işaretlenen örnek",
       "answer": "Kahve kaşığı",
-      "hint": "Ortak ölçekte çay ve tatlı kaşıklarıyla karşılaştır.",
+      "hint": "Üçgenin gösterdiği aracın boyunu ve biçimini diğer örneklerle karşılaştır.",
       "explanation": "Kahve servisinde kullanılan küçük kaşık örneğidir.",
       "detail": "Kahve servisinde kullanılan küçük kaşık örneğidir. Ortak ölçekte çay ve tatlı kaşıklarıyla karşılaştır.",
       "classificationGroup": "Özel amaçlı takımlar",
@@ -3880,12 +3898,13 @@
         "revision": "MEB sınıflandırmasıyla eklenen örnek"
       },
       "set": 3,
-      "task": "Kahveyi karıştırmak için seçilen en küçük kaşık.",
+      "task": "Üçgenin gösterdiği örneği incele. Kahveyi karıştırmak için seçilen en küçük kaşık.",
       "assessmentConstruct": "Görsel ve verilen kullanım bilgisini adla ilişkilendirme. Kullanım amacı yalnız fotoğrafın biçiminden çıkarılmaz.",
       "disla": [
         "Çay kaşığı",
         "Tatlı kaşığı"
-      ]
+      ],
+      "comparison": true
     },
     {
       "id": "meb-024",
@@ -6135,5 +6154,5 @@
     "v10: Kullanım amacı yalnız biçimden belirlenemeyen kartlarda kullanım bilgisi sorunun parçasıdır. Bunların puanı, yalnız görselden bağımsız tanıma olarak yorumlanmaz.",
     "v10: Metal takımlar ve tabaklarda fotoğraf çerçevesi korunur. Büyütme mutlak santimetre ölçüsü vermez; kullanım bilgisi ve takım içindeki göreli ölçek birlikte ele alınır."
   ],
-  "revision": "v16-20261105"
+  "revision": "v16-20261105-karsilastirma-20261106"
 }
