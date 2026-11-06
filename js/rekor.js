@@ -417,7 +417,7 @@ askDelProfile=function(n){
  const pid=rkPid(n),cloud=pid&&(rkProf(pid).synced||(rkClean()[pid]||[]).length||rkQueue().some(x=>x.pid===pid));
  if(cloud&&!rkOnline()){modal('Bu profilin sıralamada kayıtları var. Profili silmek için internete bağlan.',closeModal);const no=document.getElementById('mNo'),yes=document.getElementById('mYes');if(no)no.remove();if(yes){yes.textContent='Tamam';yes.focus();}return;}
  modal('“'+esc(n)+'” profili ve bütün kayıtları silinsin mi? Sıralamadaki satırları da kaldırılır.',function(){
-  lsSet('profiles',profiles().filter(x=>x!==n));lsSet('records',records().filter(r=>r.p!==n));rkForgetProfile(n);closeModal();render();
+  lsSet('profiles',profiles().filter(x=>x!==n));lsSet('records',records().filter(r=>r.p!==n));rkForgetProfile(n);profilSilindi(n);closeModal();render();
  });
 };
 render=function(){

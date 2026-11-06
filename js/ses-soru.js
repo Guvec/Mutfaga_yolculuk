@@ -5,7 +5,7 @@
 var SES_SORU_ANAHTAR='mesleki-ses-soru';
 function sesSoruGoster(){
  try{if(localStorage.getItem(SES_SORU_ANAHTAR)==='1')return;}catch(e){}
- if(st.screen!=='giris'||st.modalOpen)return;
+ if(!['giris','home','racemenu'].includes(st.screen)||st.modalOpen)return;
  /* Otomatik tarayıcı testlerinde (webdriver) gösterilmez; test için 'test-ses-soru' anahtarı konur. */
  try{if(navigator.webdriver&&!localStorage.getItem('test-ses-soru'))return;}catch(e){}
  var simdi=MUZIK.acikMi()?'muzik':SES.acik?'okuma':'sessiz';

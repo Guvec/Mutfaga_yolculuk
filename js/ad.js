@@ -42,6 +42,7 @@ async function adRelease(m){
 function adRename(o,nw,info){
  const l=profiles(),i=l.indexOf(o);if(i<0)return;
  l[i]=nw;lsSet('profiles',l);
+ if(ls('sonProfil',null)===o)lsSet('sonProfil',nw);
  const rc=records();let ch=false;rc.forEach(r=>{if(r&&r.p===o){r.p=nw;ch=true;}});if(ch)lsSet('records',rc);
  const wasChar=!!adInfo(o);
  if(typeof rkIds==='function'){
@@ -85,15 +86,8 @@ async function adSync(){
  AD_STATE.busy=false;if(changed&&st.screen==='profiles')render();
 }
 function adAsk(p){
- if(ls('ad_yeni',[]).indexOf(p)<0)return;
- setTimeout(()=>{
-  if(st.prof!==p||st.modalOpen||st.screen!=='home')return;
-  st.modalOpen=true;pauseT();const ov=document.getElementById('ov');ov.className='on';
-  ov.innerHTML='<div class="modal" role="dialog" aria-modal="true" aria-labelledby="adAskT"><p style="font-size:60px;line-height:1.2;margin:0">'+adEmo(p)+'</p><p id="adAskT">Yeni oyun adın:<br><b style="font-size:22px">'+esc(adRest(p))+'</b><br>Beğendin mi?<br><small>Beğenmezsen bir kez değiştirebilirsin.</small></p><div class="row"><button class="btn ghost" id="adAskN">✏️ Değiştir</button><button class="btn pri" id="adAskY">👍 Tamam</button></div></div>';
-  document.getElementById('adAskY').onclick=()=>{adDone(p);closeModal();};
-  document.getElementById('adAskN').onclick=()=>{adDone(p);closeModal();adOpen(profiles().indexOf(p),'home');};
-  document.getElementById('adAskY').focus();
- },450);
+ /* Değiştirme hakkı sağ üstteki profil ayrıntısında; girişte pencere açılmaz. */
+ adDone(p);
 }
 function adDone(p){lsSet('ad_yeni',ls('ad_yeni',[]).filter(x=>x!==p));}
 
@@ -103,7 +97,7 @@ function adKitchen(){return AD_KAT.length-1;}
 function adTabOrder(){const k=adKitchen(),o=[k];for(let j=0;j<AD_KAT.length;j++)if(j!==k)o.push(j);return o;}
 /* Yeni profilde rastgele bir mutfak karakteri seçili açılır. */
 function adRndKitchen(){const k=adKitchen(),l=[];AD_KAR.forEach((x,j)=>{if(x[2]===k)l.push(j);});return l.length?l[adRnd(0,l.length-1)]:adRnd(0,AD_KAR.length-1);}
-/* İlk giriş ve yeni profil: ad kendiliğinden (rastgele mutfak karakteri) verilir, "Beğendin mi?" penceresi çıkar. */
+/* İlk profil oluşturulunca ad üstte görünür; bir kez değiştirme profil ayrıntısındadır. */
 async function adAuto(){
  if(AD_STATE.auto)return;AD_STATE.auto=true;
  try{
@@ -174,6 +168,7 @@ function adCheck(){
 async function adSave(){
  const P=st.pe,b=document.getElementById('pe-go');if(!P||P.busy)return;
  const old=P.i>=0?profiles()[P.i]:null,om=old?adInfo(old):null;
+ if(old&&adSabit(old)){adToast('Oyun adını değiştirme hakkını kullandın.');return;}
  if(old&&om&&om.e===P.e){go(P.ret);return;}
  if(P.av[P.e]===false){adToast('Bu ad alınmış. Başka birini seç.');return;}
  P.busy=true;if(b){b.disabled=true;b.textContent='⏳ Ad ayrılıyor…';}
@@ -214,7 +209,7 @@ render=function(){
  }
  if(st.screen==='home'){setTimeout(adSync,0);if(st.prof)adAsk(st.prof);}
 };
-back=function(){if(st.screen==='pedit'){go(st.pe&&st.pe.ret==='home'?'home':'profiles');return;}AD_BACK();};
+back=function(){if(st.screen==='pedit'){go(st.pe&&st.pe.ret||'profiles');return;}AD_BACK();};
 createProfile=function(){adOpen(-1,'profiles');};
 window.addEventListener('online',()=>{adSync();});
 

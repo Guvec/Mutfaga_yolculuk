@@ -40,14 +40,16 @@ function yrLabel(room){return YarisModel.taskLabel(room,yrTitles(room.subject));
 function yrHasName(){return !!(st.prof&&!st.guest);}
 async function yrNeedName(){
  if(yrHasName())return true;
+ if(typeof profilDevamEt==='function'&&profilDevamEt())return true;
  if(typeof adAuto!=='function'||profiles().length>0)return false;
  try{await adAuto();}catch(e){}
  return yrHasName();
 }
 function yrOpen(){
  sesSus();YR.error='';
+ if(!yrHasName()&&typeof profilDevamEt==='function')profilDevamEt();
  if(!yrHasName()){
-  if(profiles().length>0){go('profiles');return;}
+  if(profiles().length>0){st.profileReturn='racemenu';go('profiles');return;}
   yrNeedName().then(ok=>{if(ok){st.screen='racemenu';render();window.scrollTo(0,0);}});return;
  }
  st.screen='racemenu';render();window.scrollTo(0,0);
@@ -73,7 +75,7 @@ async function yrCreate(){
 }
 async function yrJoin(code){
  if(YR.busy)return;
- if(!yrHasName()){const e0=document.getElementById('yrCode');if(e0)YR.codeDraft=YarisModel.slug(e0.value);const ok=await yrNeedName();if(!ok){go('profiles');return;}st.screen='racemenu';render();}
+ if(!yrHasName()){const e0=document.getElementById('yrCode');if(e0)YR.codeDraft=YarisModel.slug(e0.value);const ok=await yrNeedName();if(!ok){st.profileReturn='racemenu';go('profiles');return;}st.screen='racemenu';render();}
  const nick=yrNickOk();if(!nick)return;
  const e=document.getElementById('yrCode'),c=YarisModel.slug(code!==undefined?code:(e?e.value:''));
  YR.codeDraft=c;

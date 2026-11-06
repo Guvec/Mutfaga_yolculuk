@@ -81,6 +81,22 @@ function ls(k,def){ try{ var v=localStorage.getItem(PRE+k); return v?JSON.parse(
 function lsSet(k,v){ try{ localStorage.setItem(PRE+k,JSON.stringify(v)); return true; }catch(e){ return false; } }
 function profiles(){ return ls("profiles",[]); }
 function records(){ return ls("records",[]); }
+/* Son profil bu cihazda hatırlanır; misafir seçimi yalnız mevcut oturumu etkiler. */
+function profilDevamEt(){
+  if(st.guest)return false;
+  var p=profiles();if(!Array.isArray(p))return false;
+  if(st.prof&&p.indexOf(st.prof)>=0)return true;
+  var son=ls('sonProfil',null);
+  if(son!==null&&p.indexOf(son)<0){lsSet('sonProfil',null);return false;}
+  if(son===null&&p.length===1)son=p[0];
+  if(!son||p.indexOf(son)<0)return false;
+  st.prof=son;st.guest=false;lsSet('sonProfil',son);return true;
+}
+function profilSilindi(n){
+  if(ls('sonProfil',null)===n)lsSet('sonProfil',null);
+  if(st.prof===n){st.prof=null;st.guest=false;}
+}
+if(profilDevamEt())st.screen='home';
 
 /* ===================== YARDIMCILAR ===================== */
 function esc(s){ return String(s).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];}); }
@@ -207,16 +223,17 @@ function startBreak(){
 }
 
 /* ===================== SEÇİM İŞLEMLERİ ===================== */
-function pickProfile(n){ st.prof=n; st.guest=false; go("home"); }
+function pickProfile(n){ st.prof=n; st.guest=false; if(profiles().indexOf(n)>=0)lsSet('sonProfil',n);var target=st.profileReturn==='racemenu'?'racemenu':'home';st.profileReturn=null;go(target); }
 function createProfile(){
   if(typeof adOpen==='function')adOpen(-1,'profiles');
 }
 
-function guest(){ st.prof=null; st.guest=true; go("home"); }
+function guest(){ st.prof=null; st.guest=true; st.profileReturn=null; go("home"); }
 function askDelProfile(n){
   modal("“"+esc(n)+"” profili ve bütün kayıtları silinsin mi?", function(){
     lsSet("profiles",profiles().filter(function(x){return x!==n;}));
     lsSet("records",records().filter(function(r){return r.p!==n;}));
+    profilSilindi(n);
     closeModal(); render();
   });
 }
@@ -231,7 +248,7 @@ function back(){
 }
 function topBar(title, noBack){
   return '<div class="top">'+(noBack?'':'<button class="back" onclick="back()">← Geri</button>')+
-    '<div class="ttl">'+esc(title)+'</div><div class="who">'+esc(st.guest?"Misafir":(st.prof||""))+'</div></div>';
+    '<div class="ttl">'+esc(title)+'</div><div class="who">'+(typeof profilDugme==='function'?profilDugme():esc(st.guest?"Misafir":(st.prof||"")))+'</div></div>';
 }
 function itemImg(k, extra){
   var it=ITEMS[k], size = it.w ? 'width:'+it.w+'%' : 'height:'+it.h+'%';

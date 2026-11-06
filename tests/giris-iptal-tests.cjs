@@ -1,0 +1,31 @@
+/* Açılış tepkilerinde son seçim ve ekrandan ayrılma; gerçek DOM ve denetimli saat. */
+const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path');
+const {JSDOM}=require('jsdom');
+(async()=>{
+ const dom=new JSDOM('<main id="app"></main>',{runScripts:'outside-only',pretendToBeVisual:true,url:'https://example.test/'}),w=dom.window;
+ const timers=new Map();let id=0;
+ w.setTimeout=fn=>{timers.set(++id,fn);return id;};w.clearTimeout=n=>timers.delete(n);
+ w.st={screen:'home'};w.SES={acik:false};w.render=()=>{};w.back=()=>{};w.sesSus=()=>{};
+ require('node:vm').runInContext(fs.readFileSync(path.join(__dirname,'../js/giris.js'),'utf8'),dom.getInternalVMContext());
+ w.document.getElementById('app').innerHTML=w.girisHTML();
+ assert.equal(w.document.querySelector('h1').textContent,'İşin Mutfağına Yolculuk');
+ assert.equal(w.document.querySelector('.tagline').textContent,'Öğren, uygula, keşfet.');
+ assert.equal(w.document.querySelector('h1 img'),null);
+w.st.screen='giris';w.GIRIS.motion=false;w.GIRIS.kur();
+ const click=x=>w.document.querySelector('[data-food="'+x+'"]').click();
+ const tick=async()=>{const due=[...timers.values()];timers.clear();due.forEach(fn=>fn());await Promise.resolve();await Promise.resolve();};
+ click('cake');assert.equal(timers.size,1);
+ click('lemon');assert.equal(timers.size,1,'Önceki besinin beklemesi iptal edilmeli');
+ await tick();assert.equal(w.document.getElementById('speech').textContent,'Limon ekşi.');
+ w.GIRIS.dur();assert.equal(timers.size,0,'Ayrılırken bekleyen tepki kalmamalı');
+ assert.equal(w.document.getElementById('held').innerHTML,'');
+ assert.equal(w.document.getElementById('actor').style.transform,'translate(0px,0px)');
+ click('cake');Object.defineProperty(w.document,'hidden',{configurable:true,value:true});
+ w.document.dispatchEvent(new w.Event('visibilitychange'));await tick();
+ assert.equal(w.document.getElementById('speech').textContent,'Kek','Gizli sekmede yeni tepki başlamamalı');
+ assert.equal(w.document.getElementById('held').innerHTML,'');
+ assert.equal(w.document.getElementById('actor').className,'actor ');
+ assert.equal(w.document.querySelectorAll('.food.consumed').length,0);
+ assert.equal(timers.size,0);w.GIRIS.dur();dom.window.close();
+ console.log('PASS: son seçim, bekleyen hareketin iptali, ayrılma temizliği ve gizli sekme');
+})().catch(e=>{console.error(e);process.exitCode=1;});

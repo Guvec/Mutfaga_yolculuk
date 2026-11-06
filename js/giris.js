@@ -1,5 +1,5 @@
 /* © 2026 Ali Arıkoğlu. Tüm hakları saklıdır. */
-/* Açılış ekranı: "Herkes yemek yapabilir". Ana sayfadan önce gelir; aşçı panda/tavşan dokunulan besine yürür, yer/içer ve tepki verir.
+/* Açılış ekranı: "İşin Mutfağına Yolculuk". Ana sayfadan önce gelir; aşçı panda/tavşan dokunulan besine yürür, yer/içer ve tepki verir.
    Kodla çizilmiş SVG karakterler; tüm stiller css/giris.css içinde .gs altındadır. */
 'use strict';
 var GIRIS={foods:[
@@ -20,18 +20,20 @@ var GIRIS={foods:[
  character:'panda',motion:true,last:null,run:0,travel:null,page:0,mobile:null};
 GIRIS.motion=!(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches);
 function girisHTML(){return '<div class="gs"><header class="corner-controls"><button type="button" id="gMotion" aria-pressed="true">◉ Hareket açık</button><button type="button" id="gSound" aria-pressed="false">♫ Sesli okuma</button></header>'+
- '<main class="welcome"><h1 class="gs-slogan"><img src="assets/giris/herkes-yemek-yapabilir.png" alt="Herkes yemek yapabilir" width="1400" height="146"></h1><div class="choice" aria-label="Aşçını seç"><button type="button" id="panda" class="selected" aria-pressed="true">🐼 Panda</button><button type="button" id="rabbit" aria-pressed="false">🐰 Tavşan</button></div>'+
+ '<main class="welcome"><h1 class="gs-slogan">İşin Mutfağına Yolculuk</h1><div class="choice" aria-label="Aşçını seç"><button type="button" id="panda" class="selected" aria-pressed="true">🐼 Panda</button><button type="button" id="rabbit" aria-pressed="false">🐰 Tavşan</button></div>'+
  `<section class="scene" aria-label="Besinlerle etkileşen aşçı maskot"><div class="glow"></div><div class="floor" aria-hidden="true"></div><div id="foods" class="food-grid"></div><div id="actor" class="actor"><div class="chef-visual"><svg id="chef" viewBox="0 0 400 510" role="img" aria-label="Turkuaz önlüklü aşçı panda"><defs><radialGradient id="fur"><stop stop-color="#fffefa"/><stop offset="1" stop-color="#e9e4da"/></radialGradient><linearGradient id="apron" x2="1" y2="1"><stop stop-color="#24b8b0"/><stop offset="1" stop-color="#06736e"/></linearGradient><linearGradient id="dark" x2="1" y2="1"><stop stop-color="#454d50"/><stop offset="1" stop-color="#1a2428"/></linearGradient><filter id="shadow"><feDropShadow dx="0" dy="7" stdDeviation="5" flood-color="#254d45" flood-opacity=".15"/></filter></defs><ellipse cx="200" cy="482" rx="111" ry="14" fill="#bfd7cb" opacity=".55"/><g id="body" filter="url(#shadow)"><g id="leftFoot"><ellipse cx="153" cy="453" rx="36" ry="26" class="limb"/></g><g id="rightFoot"><ellipse cx="247" cy="453" rx="36" ry="26" class="limb"/></g><path d="M119 302Q200 268 281 302L286 413Q200 448 114 413Z" fill="url(#fur)" stroke="#d8e0d7" stroke-width="2"/><g id="leftArm"><ellipse cx="114" cy="348" rx="27" ry="53" transform="rotate(22 114 348)" class="limb"/><path d="M105 301Q133 294 142 321L128 340 89 327Z" fill="#fff" stroke="#ccdcd7" stroke-width="2"/></g><g id="rightArm"><ellipse cx="286" cy="348" rx="27" ry="53" transform="rotate(-22 286 348)" class="limb"/><path d="M295 301Q267 294 258 321L272 340 311 327Z" fill="#fff" stroke="#ccdcd7" stroke-width="2"/></g><path d="M145 324L155 368H245L255 324 273 331 269 381 292 429Q200 459 108 429L131 381 127 331Z" fill="url(#apron)"/><path d="M135 373Q200 385 266 373" fill="none" stroke="#086e68" stroke-width="11"/><path d="M170 393H230V425H170Z" fill="none" stroke="#77d4ca" stroke-width="2"/><path d="M260 378Q307 350 301 384Q300 400 267 383Q306 408 285 420L262 386" fill="#07908a" stroke="#087b75" stroke-width="2"/><g fill="#9da8a3" stroke="#fff" stroke-width="2"><circle cx="175" cy="325" r="6"/><circle cx="225" cy="325" r="6"/><circle cx="175" cy="348" r="6"/><circle cx="225" cy="348" r="6"/></g>
 <g id="head"><g class="panda-ears"><circle cx="102" cy="163" r="40" fill="url(#dark)"/><circle cx="298" cy="163" r="40" fill="url(#dark)"/></g><g class="rabbit-ears"><ellipse cx="124" cy="108" rx="29" ry="88" transform="rotate(-15 124 108)" fill="url(#fur)"/><ellipse cx="276" cy="108" rx="29" ry="88" transform="rotate(15 276 108)" fill="url(#fur)"/><ellipse cx="124" cy="108" rx="15" ry="65" transform="rotate(-15 124 108)" fill="#efa5a0"/><ellipse cx="276" cy="108" rx="15" ry="65" transform="rotate(15 276 108)" fill="#efa5a0"/></g><ellipse cx="200" cy="231" rx="119" ry="94" fill="url(#fur)"/><g class="patches" fill="url(#dark)"><ellipse cx="145" cy="227" rx="37" ry="42" transform="rotate(22 145 227)"/><ellipse cx="255" cy="227" rx="37" ry="42" transform="rotate(-22 255 227)"/></g><g class="open-eyes"><g fill="white"><ellipse cx="151" cy="225" rx="22" ry="28"/><ellipse cx="249" cy="225" rx="22" ry="28"/></g><g fill="#75462c"><ellipse cx="155" cy="230" rx="16" ry="21"/><ellipse cx="245" cy="230" rx="16" ry="21"/></g><g fill="#17272a"><ellipse cx="157" cy="232" rx="10" ry="16"/><ellipse cx="243" cy="232" rx="10" ry="16"/></g><g fill="white"><circle cx="151" cy="222" r="6"/><circle cx="237" cy="222" r="6"/></g></g><g class="squint" fill="none" stroke="#273436" stroke-width="7" stroke-linecap="round"><path d="M134 217L158 229 135 241M266 217L242 229 265 241"/></g><g class="relax-eyes" fill="none" stroke="#273436" stroke-width="6" stroke-linecap="round"><path d="M133 231Q150 212 168 231M232 231Q250 212 267 231"/></g><g fill="#ecb6a8" opacity=".55"><ellipse cx="119" cy="264" rx="20" ry="11"/><ellipse cx="281" cy="264" rx="20" ry="11"/></g><ellipse cx="200" cy="271" rx="46" ry="31" fill="#fffaf0"/><path id="nose" d="M184 254Q200 247 216 254Q219 260 200 269Q181 260 184 254" fill="#263336"/><path class="smile" d="M172 276Q200 292 228 276Q220 312 200 311Q180 310 172 276" fill="#51312c"/><path class="smile" d="M184 300Q200 287 216 300Q200 316 184 300" fill="#ec8e87"/><ellipse class="sour-mouth" cx="200" cy="289" rx="8" ry="12" fill="#8a5147"/><ellipse class="chew-mouth" cx="200" cy="287" rx="16" ry="9" fill="#51312c"/><path class="milk" d="M177 273Q188 266 200 274Q213 266 224 273L225 280Q211 285 200 279Q188 285 175 280Z" fill="white" stroke="#d8e1dc" stroke-width="1"/><g class="tears" fill="#68c4e8"><path d="M120 242Q105 266 121 269Q136 267 120 242"/><path d="M280 242Q265 266 281 269Q296 267 280 242"/></g><g id="hat" fill="white" stroke="#d6e1db" stroke-width="2"><path d="M139 153L133 119Q105 112 119 85Q129 69 148 74Q146 43 176 42Q193 23 215 43Q247 35 251 68Q278 64 284 90Q289 113 264 122L261 153Z"/><path d="M139 134Q200 119 261 134V157Q200 143 139 157Z" fill="#f7f9f4"/><path d="M155 79Q147 99 158 120M197 58V116M241 79Q249 99 240 120" fill="none" stroke="#e5ebe5" stroke-width="5" stroke-linecap="round"/></g></g></g></svg><div id="held" aria-hidden="true"></div><div class="napkin" aria-hidden="true">▱</div><div class="wave" aria-hidden="true">〰</div></div></div></section>
 <div id="speech" class="speech" role="status" aria-live="polite">Bir besine dokun, aşçı dostunun tepkisini izle.</div><div class="small-actions"><button id="otherFoods">Diğer besinler ↻</button><span id="pageLabel" class="page-label"></span><button id="replay" disabled aria-label="Son tepkiyi tekrar izle">↻ Tekrar izle</button></div>
 `+
- '<p class="tagline">Öğren, uygula, pekiştir.</p><button type="button" class="start" id="gStart">Çalışmaya başla</button><button type="button" class="guide-button" id="gHelp">📖 Uygulama kılavuzu</button></main></div>';}
+ '<p class="tagline">Öğren, uygula, keşfet.</p><button type="button" class="start" id="gStart">Çalışmaya başla</button><button type="button" class="guide-button" id="gHelp">📖 Uygulama kılavuzu</button></main></div>';}
 (function(){
  var G=GIRIS;
  function $(s){return document.querySelector(s);}
  function actor(){return $('#actor');}
  function size(){return G.mobile&&G.mobile.matches?4:6;}
- function wait(ms,t){return new Promise(function(r){setTimeout(function(){r(t===G.run);},ms);});}
+ var pendingWaits=[];
+ function clearWaits(){pendingWaits.splice(0).forEach(function(w){clearTimeout(w.id);w.resolve(false);});}
+ function wait(ms,t){return new Promise(function(r){var w={resolve:r,id:null};w.id=setTimeout(function(){var i=pendingWaits.indexOf(w);if(i>=0)pendingWaits.splice(i,1);r(t===G.run&&!document.hidden);},ms);pendingWaits.push(w);});}
  function say(t){var s=$('#speech');if(s)s.textContent=t;if(typeof sesSoyle==='function'&&SES.acik)sesSoyle(t);}
  function art(id){
   var c='viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"',d={
@@ -45,7 +47,7 @@ function girisHTML(){return '<div class="gs"><header class="corner-controls"><bu
  }
  function classes(x){var a=actor();if(a)a.className='actor '+(G.character==='rabbit'?'rabbit ':'')+(x||'');}
  function stop(center){
-  G.run++;var a=actor();
+  G.run++;clearWaits();var a=actor();
   if(G.travel){var tr=a?getComputedStyle(a).transform:'none';try{G.travel.cancel();}catch(e){}G.travel=null;if(a)a.style.transform=tr==='none'?'translate(0px,0px)':tr;}
   classes();if(a&&center)a.style.transform='translate(0px,0px)';
   var h=$('#held');if(h)h.innerHTML='';
@@ -110,19 +112,21 @@ function girisHTML(){return '<div class="gs"><header class="corner-controls"><bu
   $('#replay').onclick=function(){if(G.last)react(G.last);};
   $('#otherFoods').onclick=function(){stop(true);G.page=(G.page+1)%Math.ceil(G.foods.length/size());draw();say('Diğer besinler. Bir besin seç.');};
   $('#gStart').onclick=function(){GIRIS.dur();
-   /* İlk girişte profil yoksa ad kendiliğinden verilir ("Beğendin mi?" penceresi çıkar, bir kez değiştirilebilir); kayıtlı profil varsa "Kim çalışıyor?" açılır. Misafir seçeneği profil ekranında kalır. */
+   if(!st.prof&&!st.guest&&typeof profilDevamEt==='function')profilDevamEt();
+   /* Kayıtlı profil doğrudan devam eder; profil seçimi yalnız gerektiğinde açılır. */
    if(!st.prof&&!st.guest){if(profiles().length)go('profiles');else if(typeof adAuto==='function')adAuto();else go('home');return;}
    go('home');};
   $('#gHelp').onclick=function(){GIRIS.dur();kilavuzAc();};
  };
- GIRIS.dur=function(){G.run++;if(G.travel){try{G.travel.cancel();}catch(e){}G.travel=null;}if(typeof sesSus==='function')sesSus();};
+ GIRIS.dur=function(){stop(true);};
+ document.addEventListener('visibilitychange',function(){if(document.hidden&&st.screen==='giris')GIRIS.dur();});
 })();
 (function(){
  var G_RENDER=render,G_BACK=back;
  render=function(){
   if(st.screen==='giris'){if(typeof SES!=='undefined')SES.sira=[];GIRIS.dur();document.getElementById('app').innerHTML=girisHTML();GIRIS.kur();document.body.dataset.screen='giris';return;}
   GIRIS.dur();G_RENDER();
-  if(st.screen==='quiz'||st.screen==='board'||(typeof YR_SCREENS!=='undefined'&&YR_SCREENS.includes(st.screen))){var tp=document.querySelector('#app .top');if(tp&&!document.querySelector('.gs-strip'))tp.insertAdjacentHTML('afterend','<div class="gs-strip" aria-hidden="true">Herkes yemek yapabilir</div>');}
+  if(st.screen==='quiz'||st.screen==='board'||(typeof YR_SCREENS!=='undefined'&&YR_SCREENS.includes(st.screen))){var tp=document.querySelector('#app .top');if(tp&&!document.querySelector('.gs-strip'))tp.insertAdjacentHTML('afterend','<div class="gs-strip" aria-hidden="true">İşin Mutfağına Yolculuk</div>');}
  };
  back=function(){if(st.screen==='giris')return;G_BACK();};
  if(st.screen==='welcome'){st.screen='giris';render();}
