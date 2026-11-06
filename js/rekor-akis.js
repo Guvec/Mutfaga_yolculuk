@@ -32,7 +32,7 @@ const FLOW_BOARD=startBoard,FLOW_START=startSession,FLOW_CONTENT=startContent;
 startBoard=function(practice,size){const args=arguments;return practice==='check'&&size===12?rkBefore(rkBoardBefore('board'),()=>FLOW_BOARD.apply(this,args)):FLOW_BOARD.apply(this,args);};
 startSession=function(){const args=arguments;return st.practice==='check'?rkBefore(rkBoardBefore('kuver'),()=>FLOW_START.apply(this,args)):FLOW_START.apply(this,args);};
 startContent=function(){const args=arguments;return st.practice==='check'?rkBefore(rkBoardBefore('mcq'),()=>FLOW_CONTENT.apply(this,args)):FLOW_CONTENT.apply(this,args);};
-function rkDuelBoard(room){return room&&room.mode==='duel'?'oy-kapisma':room&&room.mode==='arena'?'oy-arena':null;}
+function rkDuelBoard(room){return room&&room.mode==='duel'?'oy-kapisma':room&&room.mode==='arena'?(room.av===2?'oy-arena2':'oy-arena'):null;}
 function rkCountdownHTML(){return YR.leaderRows&&YR.leaderRows.length?'<section class="card"><b>Bu oyunun liderleri</b>'+rkRowsHTML(YR.leaderRows,YR.leaderBoard,'genel',3)+'</section>':'';}
 function rkCountLeaders(room){YR.leaderRows=null;const b=rkSettingBoard(room);if(!b||!rkBackend())return;YR.leaderBoard=b.id;const start=Date.now(),code=YR.code;rkBackend().list(rkTable(b.id,'genel')).then(rows=>{if(Date.now()-start>2000||YR.code!==code||!['dintro','aintro'].includes(st.screen)||!rows.length)return;YR.leaderRows=rows;render();}).catch(()=>{});}
 function rkSettingBoard(c){

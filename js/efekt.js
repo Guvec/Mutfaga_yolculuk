@@ -7,6 +7,7 @@
 var EFEKT=(function(){
  /* Sesler kodla üretilir (lisans sorunu yok, dosya yok). Her nota: [frekans Hz, başlangıç sn, süre sn]. */
  var NOTA={
+  kilic:[[2200,0,.025],[3300,.02,.04],[1760,.06,.08],[880,.12,.12]],
   tur:[[659.25,0,.12],[880,.12,.22]],
   win:[[523.25,0,.15],[659.25,.15,.15],[783.99,.3,.15],[1046.5,.45,.5]],
   kayip:[[392,0,.2],[329.63,.2,.35]],
@@ -17,7 +18,7 @@ var EFEKT=(function(){
   can:[[220,0,.14],[164.81,.14,.14],[130.81,.28,.3]],
   seri:[[659.25,0,.09],[783.99,.09,.09],[987.77,.18,.09],[1318.5,.27,.35]],
   rekor:[[523.25,0,.12],[659.25,.12,.12],[783.99,.24,.12],[1046.5,.36,.14],[783.99,.5,.1],[1046.5,.6,.1],[1318.5,.7,.6]]
- },DUZEY={win:0.3,tur:0.26,kayip:0.2,bera:0.2,dogru:0.24,yanlis:0.18,vurus:0.28,can:0.2,seri:0.27,rekor:0.3},ANAHTAR='mesleki-efekt';
+ },DUZEY={kilic:0.16,win:0.3,tur:0.26,kayip:0.2,bera:0.2,dogru:0.24,yanlis:0.18,vurus:0.28,can:0.2,seri:0.27,rekor:0.3},ANAHTAR='mesleki-efekt';
  var tercih='acik',AC=null;try{tercih=localStorage.getItem(ANAHTAR)==='kapali'?'kapali':'acik';}catch(e){}
  function acikMi(){return tercih==='acik';}
  function ayarla(v){tercih=v?'acik':'kapali';try{localStorage.setItem(ANAHTAR,tercih);}catch(e){}}

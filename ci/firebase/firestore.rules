@@ -62,10 +62,19 @@ service cloud.firestore {
    function room() { return get(/databases/$(database)/documents/oyunOdalari/$(code)).data; }
    function member() { return signed() && exists(/databases/$(database)/documents/oyunOdalari/$(code)/players/$(request.auth.uid)); }
    function recent(ms) { return request.time.toMillis() - ms < 86400000; }
+   function arena2() { return room().mode == 'arena' && ('av' in room()) && room().av == 2; }
+   function rosterReady(d) {
+    return d.roster is list && d.roster.size() >= 3 && d.roster.size() <= 4 && d.roster.size() == resource.data.cnt
+     && d.roster.toSet().size() == d.roster.size() && request.auth.uid in d.roster
+     && get(/databases/$(database)/documents/oyunOdalari/$(code)/players/$(d.roster[0])).data.loaded == true
+     && get(/databases/$(database)/documents/oyunOdalari/$(code)/players/$(d.roster[1])).data.loaded == true
+     && get(/databases/$(database)/documents/oyunOdalari/$(code)/players/$(d.roster[2])).data.loaded == true
+     && (d.roster.size() == 3 || get(/databases/$(database)/documents/oyunOdalari/$(code)/players/$(d.roster[3])).data.loaded == true);
+   }
    allow get: if signed();
    allow list: if false;
    allow create: if signed() && code.matches('^[A-Z0-9]{3,10}$')
-    && request.resource.data.keys().hasOnly(['host','hostNick','mode','subject','kind','set','n','lim','seed','rev','created','status','guest','qv','cnt','scope'])
+    && request.resource.data.keys().hasOnly(['host','hostNick','mode','subject','kind','set','n','lim','seed','rev','created','status','guest','qv','cnt','scope','av','roster'])
     && request.resource.data.keys().hasAll(['host','hostNick','mode','subject','kind','set','n','lim','seed','rev','created','status','guest','qv'])
     && request.resource.data.host == request.auth.uid && request.resource.data.status == 'lobby' && request.resource.data.guest == null
     && request.resource.data.mode in ['race','duel','arena']
@@ -73,7 +82,11 @@ service cloud.firestore {
     && (!('scope' in request.resource.data) || request.resource.data.scope in ['tek','konu','butun'])
     && request.resource.data.kind in ['gorsel','bilgi','kuver']
     && request.resource.data.set is int && request.resource.data.set >= 0 && request.resource.data.set <= 12
-    && request.resource.data.n is int && request.resource.data.n >= 3 && request.resource.data.n <= 20
+    && request.resource.data.n is int && (request.resource.data.mode == 'arena'
+      ? (request.resource.data.av == 2 && request.resource.data.roster == [] && request.resource.data.n == 75 && request.resource.data.lim == 15
+         && request.resource.data.scope == 'butun' && request.resource.data.subject == 'mutfak-araclari' && request.resource.data.kind == 'gorsel' && request.resource.data.set == 0
+         && request.resource.data.rev.matches('^arena2-.*') && request.resource.data.cnt == 1)
+      : (!request.resource.data.keys().hasAny(['av','roster']) && request.resource.data.n >= 3 && request.resource.data.n <= 20))
     && request.resource.data.lim in [15,20,30]
     && request.resource.data.seed is int && request.resource.data.seed >= 0 && request.resource.data.seed <= 4294967295
     && request.resource.data.rev is string && request.resource.data.rev.size() <= 40
@@ -83,7 +96,7 @@ service cloud.firestore {
     && request.resource.data.created is int && request.resource.data.created > request.time.toMillis() - 3600000 && request.resource.data.created < request.time.toMillis() + 3600000;
    allow update: if signed() && (
     (resource.data.host == request.auth.uid && resource.data.status == 'lobby' && request.resource.data.status == 'playing'
-      && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['status']))
+      && (arena2()? (request.resource.data.diff(resource.data).affectedKeys().hasOnly(['status','roster']) && rosterReady(request.resource.data)) : request.resource.data.diff(resource.data).affectedKeys().hasOnly(['status'])))
     || (resource.data.mode == 'duel' && resource.data.status == 'lobby' && resource.data.host != request.auth.uid
       && resource.data.guest == null && request.resource.data.guest == request.auth.uid
       && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['guest']))
@@ -100,27 +113,47 @@ service cloud.firestore {
 
    match /players/{uid} {
     function shape(d) {
-     return d.keys().hasOnly(['nick','score','ok','bad','n','tt','done','ts','rid','m','r','pr','pid','ready','loaded'])
+     return d.keys().hasOnly(['nick','score','ok','bad','n','tt','done','ts','rid','m','r','pr','pid','ready','loaded','left'])
       && d.keys().hasAll(['nick','score','ok','bad','n','tt','done','ts','rid'])
       && d.nick is string && d.nick.size() >= 1 && d.nick.size() <= 40
-      && d.score is int && d.score >= 0 && d.score <= 60
-      && d.ok is int && d.ok >= 0 && d.ok <= 60 && d.bad is int && d.bad >= 0 && d.bad <= 60
-      && d.n is int && d.n >= 0 && d.n <= 60 && d.n <= room().n && d.ok + d.bad <= d.n && d.tt is int && d.tt >= 0
+      && d.score is int && d.score >= 0 && d.score <= (arena2()?75:60)
+      && d.ok is int && d.ok >= 0 && d.ok <= (arena2()?75:60) && d.bad is int && d.bad >= 0 && d.bad <= (arena2()?4:60)
+      && d.n is int && d.n >= 0 && d.n <= (arena2()?75:60) && d.n <= room().n && d.ok + d.bad <= d.n && d.tt is int && d.tt >= 0
       && (!('loaded' in d) || d.loaded is bool)
       && (!('ready' in d) || d.ready is bool)
       && d.done is bool && d.ts is int && d.rid == room().created
       && (!('m' in d) || (d.m is int && d.m >= 0 && d.m <= 50))
-      && (!('r' in d) || (d.r is list && d.r.size() <= 60))
+      && (!('r' in d) || (d.r is list && d.r.size() <= (arena2()?75:60)))
       && (!('pr' in d) || (d.pr is list && d.pr.size() <= 60))
+      && (arena2()? (d.keys().hasAll(['r','left']) && d.left is bool && d.r.size() == d.n && d.ok + d.bad == d.n && d.score == d.ok) : !d.keys().hasAny(['left']))
       && (!('pid' in d) || (yrPidOk(d.pid) && yrKimOk(uid) && get(/databases/$(database)/documents/yrKim/$(uid)).data.pid == d.pid));
+    }
+    function arenaProgress(d) {
+     let o = resource.data;
+     let v = d.n > 0 ? d.r[d.n-1] : 0;
+     let ms = v > 0 ? v : -v;
+     let sec = 15 - int(o.ok / 5);
+     return d.nick == o.nick && d.ts <= request.time.toMillis()+60000 && d.ts >= request.time.toMillis()-60000
+      && (o.done
+       ? d.diff(o).affectedKeys().hasOnly(['ts'])
+       : ((d.n == o.n && d.r == o.r && d.ok == o.ok && d.bad == o.bad && d.tt == o.tt
+            && ((d.done == o.done && !d.left) || (room().status == 'playing' && d.done && d.left)))
+          || (room().status == 'playing' && d.n == o.n+1 && d.r == o.r.concat([v]) && v is int && v != 0 && ms <= (sec < 7 ? 7000 : sec*1000)
+            && d.tt == o.tt+ms && d.ok == o.ok+(v>0?1:0) && d.bad == o.bad+(v<0?1:0)
+            && !d.left && d.done == (d.bad == 4 || d.n == room().n))));
     }
     allow get: if signed() && (request.auth.uid == uid || member());
     allow list: if signed() && member();
     allow create: if signed() && request.auth.uid == uid && room().status == 'lobby'
      && (room().mode in ['race','arena'] || room().host == uid || room().guest == uid || getAfter(/databases/$(database)/documents/oyunOdalari/$(code)).data.guest == uid)
-     && shape(request.resource.data);
-    allow update: if signed() && request.auth.uid == uid && room().status in ['lobby','playing'] && shape(request.resource.data);
-    allow delete: if signed() && (request.auth.uid == uid || room().host == request.auth.uid);
+     && shape(request.resource.data) && (!arena2() || (request.resource.data.n == 0 && request.resource.data.tt == 0 && !request.resource.data.done && !request.resource.data.left));
+    allow update: if signed() && request.auth.uid == uid && room().status in ['lobby','playing'] && shape(request.resource.data)
+     && (!arena2() || arenaProgress(request.resource.data));
+    allow update: if signed() && request.auth.uid != uid && member() && arena2() && room().status == 'playing'
+     && !resource.data.done && request.time.toMillis()-resource.data.ts > 60000
+     && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['done','left'])
+     && request.resource.data.done == true && request.resource.data.left == true;
+    allow delete: if signed() && (request.auth.uid == uid || room().host == request.auth.uid) && (!arena2() || room().status == 'lobby');
    }
   }
 
@@ -128,7 +161,7 @@ service cloud.firestore {
      Oda kuralları yukarıda değişmeden durur. Tablo kimliği: dönem~tablo~dönemlik ('genel' veya 'w<hafta>').
      Hafta, Türkiye saatiyle (UTC+3) pazartesi 00:00'da başlar ve sunucu saatine (request.time) göre denetlenir. */
   function rkTerm() { return '2026-2027'; }
-  function rkBoards() { return {'haftalik':25, 'oy-kapisma': 999, 'oy-arena': 999, 'bh-e1': 12, 'bh-e2': 12, 'bh-e3': 12, 'bh-e4': 12, 'bh-e5': 12, 'bh-e6': 12, 'bh-e7': 12, 'bh-e8': 12, 'ma-e1': 12, 'ma-e2': 12, 'ma-e3': 12, 'ma-e4': 12, 'ma-e5': 12, 'ma-e6': 12, 'ma-e7': 12, 'ma-e8': 12, 'ma-e9': 12, 'ma-e10': 12, 'ma-e11': 12, 'ma-e12': 12, 'bl-e1': 12, 'kv-basit': 5, 'kv-tabldot': 9, 'ma-s01': 10, 'ma-s02': 5, 'ma-s03': 6, 'ma-s04': 6, 'ma-s05': 7, 'ma-s06': 6, 'ma-s07': 5, 'ma-s08': 5, 'ma-s09': 5, 'ma-s10': 7, 'ma-s11': 8, 'ma-s12': 4, 'ma-s13': 7, 'ma-s14': 7, 'ma-s15': 7, 'bl-s1': 13}; }
+  function rkBoards() { return {'haftalik':25, 'oy-kapisma': 999, 'oy-arena': 999, 'oy-arena2': 999, 'bh-e1': 12, 'bh-e2': 12, 'bh-e3': 12, 'bh-e4': 12, 'bh-e5': 12, 'bh-e6': 12, 'bh-e7': 12, 'bh-e8': 12, 'ma-e1': 12, 'ma-e2': 12, 'ma-e3': 12, 'ma-e4': 12, 'ma-e5': 12, 'ma-e6': 12, 'ma-e7': 12, 'ma-e8': 12, 'ma-e9': 12, 'ma-e10': 12, 'ma-e11': 12, 'ma-e12': 12, 'bl-e1': 12, 'kv-basit': 5, 'kv-tabldot': 9, 'ma-s01': 10, 'ma-s02': 5, 'ma-s03': 6, 'ma-s04': 6, 'ma-s05': 7, 'ma-s06': 6, 'ma-s07': 5, 'ma-s08': 5, 'ma-s09': 5, 'ma-s10': 7, 'ma-s11': 8, 'ma-s12': 4, 'ma-s13': 7, 'ma-s14': 7, 'ma-s15': 7, 'bl-s1': 13}; }
   function rkVersion() { return 1; }
   function rkWeekNow() { return (request.time.toMillis() + 10800000 + 259200000) / 604800000; }
   function rkParts(table) { return table.split('~'); }

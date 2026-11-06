@@ -11,6 +11,8 @@ const MOCK=`(function(){
   async join(code,nick,pd){await this.connect();return window.__hub('join',this.uid,code,nick,pd);}
   async setPlayer(code,pd){return window.__hub('set',this.uid,code,pd);}
   async start(code){return window.__hub('start',this.uid,code);}
+  async getPlayer(code){const s=await window.__hub('state',code);return s.players.find(p=>p.uid===this.uid);}
+  async arenaExpire(){return;}
   async leave(code,lobby,host){return window.__hub('leave',this.uid,code,lobby,host);}
   watch(code,onRoom,onPlayers){let last='';const t=setInterval(async()=>{const s=await window.__hub('state',code);const j=JSON.stringify(s);if(j!==last){last=j;onRoom(s.room);onPlayers(s.players);}},60);return [()=>clearInterval(t)];}
  }
@@ -22,9 +24,9 @@ const hub={rooms:{},n:0,ops:{
  create(uid,spec,wanted){const code=wanted||('R'+Math.random().toString(36).slice(2,6).toUpperCase());if(hub.rooms[code])throw Error('Bu kod kullanılıyor. Başka bir kod seç.');const room={...spec,host:uid,status:'lobby',guest:null,created:Date.now(),qv:1};if(spec.mode==='race'||spec.mode==='arena')room.cnt=1;hub.rooms[code]={room,players:{}};return {code,room};},
  join(uid,code,nick,pd){const r=hub.rooms[code];if(!r)throw Error('Oda bulunamadı. Kodu kontrol et.');const room=r.room;if(room.host!==uid){if(room.status!=='lobby')throw Error('Yarış başlamış, katılamazsın.');if(room.mode==='duel'){if(room.guest&&room.guest!==uid)throw Error('Bu kapışma dolu.');room.guest=uid;}else if(!r.players[uid]){if((room.cnt||1)>=(room.mode==='arena'?4:8))throw Error('Bu oda dolu (en çok '+(room.mode==='arena'?4:8)+' kişi).');room.cnt=(room.cnt||1)+1;}}r.players[uid]={...pd,rid:room.created};return room;},
  set(uid,code,pd){if(hub.fail)throw Error('ağ yok');const r=hub.rooms[code];if(!r)return;r.players[uid]={...pd};},
- start(uid,code){const r=hub.rooms[code];if(r.room.host!==uid)throw Error('izin yok');r.room.status='playing';},
+ start(uid,code){const r=hub.rooms[code];if(r.room.host!==uid)throw Error('izin yok');if(r.room.mode==='arena')r.room.roster=Object.keys(r.players).sort();r.room.status='playing';},
  leave(uid,code,lobby,host){const r=hub.rooms[code];if(!r)return;if(lobby){if(r.players[uid]&&!host&&r.room.mode==='race'&&r.room.cnt>1)r.room.cnt--;delete r.players[uid];if(host)delete hub.rooms[code];}},
- state(code){const r=hub.rooms[code];return r?{room:r.room,players:Object.entries(r.players).map(([uid,p])=>({uid,...p}))}:{room:null,players:[]};}
+ state(code){const r=hub.rooms[code];return r?{room:r.room,players:Object.entries(r.players).map(([uid,p])=>({uid,...p,pending:false,fromCache:false}))}:{room:null,players:[]};}
 }};
 (async()=>{
  const server=http.createServer((req,res)=>{const u=new URL(req.url,'http://x');const f=path.resolve(root,'.'+(u.pathname==='/'?'/index.html':decodeURIComponent(u.pathname)));if(!f.startsWith(root)||!fs.existsSync(f)||fs.statSync(f).isDirectory()){res.writeHead(404);res.end();return;}const ext=path.extname(f);res.writeHead(200,{'content-type':{'.html':'text/html','.js':'text/javascript','.css':'text/css','.json':'application/json','.jpg':'image/jpeg','.png':'image/png','.webp':'image/webp'}[ext]||'application/octet-stream'});fs.createReadStream(f).pipe(res);});
@@ -54,7 +56,7 @@ const hub={rooms:{},n:0,ops:{
   const nick={a:'🦊 Kurnaz Tilki',b:'🐼 Cesur Panda',c:'🐻 Sakin Ayı'};
   await openMenu(a,nick.a);
   const mt=await text(a);for(const t of ['Er Meydanı Kur','1’e 1 Kapışma Kur','Oyun Odası Kur','Meydan Okuma'])assert(mt.includes(t),'menüde '+t);
-  await a.getByRole('button',{name:/Er Meydanı Kur/}).click();await a.evaluate(()=>{YR.cfg.n=5;});
+  await a.getByRole('button',{name:/Er Meydanı Kur/}).click();
   await a.getByRole('button',{name:'Odayı kur'}).click();await a.waitForFunction(()=>YR.active&&st.screen==='racelobby');
   const code=await a.evaluate(()=>YR.code);
   assert((await text(a)).includes('En az üç kişi gerekir'));assert(await a.getByRole('button',{name:/Er Meydanı.nı başlat/}).isDisabled());
@@ -69,24 +71,19 @@ const hub={rooms:{},n:0,ops:{
   for(const p of [a,b,c,d])await p.waitForFunction(()=>st.screen==='aplay',null,{timeout:15000});
   assert.equal(await a.locator('.yr-opt').count(),4);assert(await a.locator('.spk').count()>=1,'Dinle düğmesi');
   const qs=await Promise.all([a,b,c,d].map(p=>p.evaluate(()=>YR.qs.map(q=>q.id+':'+q.correct).join(','))));assert(qs.every(x=>x===qs[0]),'dört telefonda aynı sorular');
-  const n=await a.evaluate(()=>AR.total);assert.equal(n,5);
-  const idx=(p,right)=>p.evaluate(r=>{const q=YR.qs[AR.k];const ci=q.choices.findIndex(c=>c.id===q.correct);return r?ci:(ci+1)%4;},right);
-  for(let k=0;k<n;k++){
-   for(const p of [a,b,c,d])await p.waitForFunction(k=>st.screen==='aplay'&&AR.k===k&&AR.ph==='q',k,{timeout:20000});
-   const click=async(p,right)=>{const i=await idx(p,right);await p.evaluate(ms=>{AR.t0=performance.now()-ms;},p===a?1000:p===b?3000:p===c?500:5000);await p.locator('.yr-opt').nth(i).click();};
-   await click(c,false);await click(a,true);await b.waitForTimeout(700);await click(b,true);await d.waitForTimeout(1200);await click(d,true);
-   for(const p of [a,b,c,d])await p.waitForFunction(k=>AR.win[k]!==undefined,k,{timeout:15000});
-   const w=await Promise.all([a,b,c,d].map(p=>p.evaluate(k=>AR.win[k].uid,k)));assert(w.every(x=>x===w[0]&&x),'tur '+k+': dört telefon aynı kazananı hesapladı '+w);
-   const mine=await a.evaluate(()=>yrMe());assert.equal(w[0],mine,'en hızlı doğru (a) turu aldı');
+  assert.equal(await a.evaluate(()=>AR.total),75);
+  const answer=async(p,right,ms)=>p.evaluate(([right,ms])=>{const q=YR.qs[AR.k],i=q.choices.findIndex(c=>c.id===q.correct);AR.t0=performance.now()-ms;arAns(right?i:(i+1)%4);if(!AR.over)arNext();},[right,ms]);
+  await answer(a,true,200);assert.equal(await a.evaluate(()=>AR.k),1);assert.equal(await b.evaluate(()=>AR.k),0);
+  for(const [p,correct,ms] of [[a,4,200],[b,3,300],[c,1,500],[d,4,400]]){
+   for(let k=0;k<correct;k++)await answer(p,true,ms);
+   for(let k=0;k<4;k++)await answer(p,false,ms);
   }
-  for(const p of [a,b,c,d])await p.waitForFunction(()=>st.screen==='aover',null,{timeout:20000});
-  const ranks=await Promise.all([a,b,c,d].map(p=>p.evaluate(()=>arRanks().map(r=>r.nick+':'+r.ok+':'+r.rank).sort().join('|'))));assert(ranks.every(x=>x===ranks[0]),'dört telefonda aynı sıralama: '+ranks.join(' // '));
-  assert(ranks[0].includes('Kurnaz Tilki:5:1'),ranks[0]);assert((await text(a)).includes('Birinci sensin'),JSON.stringify(await a.evaluate(()=>({final:AR.final,me:yrMe(),sc:AR.sc,screen:st.screen,text:document.body.innerText}))));assert(!(await text(b)).includes('Birinci sensin'));
-  assert((await text(a)).includes('Er Meydanı sıralaması'));
-  const ow=await Promise.all([a,b].map(p=>p.evaluate(()=>oduGet(st.prof).p)));assert.deepEqual(ow,[3,2],'birinci 3 puan; 0 puanla ortak ikinci olan 2 puan');
+  for(const p of [a,b,c,d])await p.waitForFunction(()=>st.screen==='aover'&&AR.finalized,null,{timeout:20000});
+  const ranks=await Promise.all([a,b,c,d].map(p=>p.evaluate(()=>arRanks().map(r=>r.nick+':'+r.ok+':'+r.rank).sort().join('|'))));assert(ranks.every(x=>x===ranks[0]),'dört telefonda aynı kesin sıralama');
+  assert(ranks[0].includes('Kurnaz Tilki:5:1'),ranks[0]);assert((await text(a)).includes('Birinci sensin'));assert(!(await text(b)).includes('Birinci sensin'));
   for(const p of [a,b,c,d]){const ov=await p.evaluate(()=>document.documentElement.scrollWidth>innerWidth+1);assert(!ov,'yatay taşma yok');}
   assert.deepEqual(errors,[],'JS hatası yok: '+errors.join('|'));
-  console.log('PASS Er Meydanı (4 telefon): lobi sınırları, aynı sorular, turlar aynı kazananı verir, sıralama, ödül puanı');
+  console.log('PASS Er Meydanı (4 telefon): lobi sınırları, aynı sorular, bağımsız ilerleme, dört yanlışta bitiş, aynı kesin sıralama');
  }catch(e){console.error(e);process.exitCode=1;}
  await browser.close();server.close();
 })();
