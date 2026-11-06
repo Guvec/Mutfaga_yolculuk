@@ -24,3 +24,19 @@ body[data-screen=aplay] .ar-play{padding-bottom:8px}
 @media(max-height:540px) and (min-width:600px){.ar-play .yr-qside{display:grid;grid-template-columns:180px 1fr}.ar-play .yr-img{height:100px;max-height:100px}.ar-play .yr-opts{grid-template-columns:1fr 1fr}.ar-play .yr-opt{min-height:48px}.ar-play .yr-qa{display:grid!important;grid-template-columns:1fr 1fr;gap:12px}.ar-play .yr-qside{display:flex}}
 
 .ar-network{font-size:12px;line-height:1.25;margin:2px 0;min-height:15px;color:var(--text,#26332e)}
+
+/* Sonuç ve lider alanları kaydırılacak rapordan önce gelir. */
+.ar-winner{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:8px;padding:12px;border:1px solid currentColor;border-radius:16px}
+.ar-winner span:last-child{flex-basis:100%;text-align:center}.ar-winner-crown{font-size:40px}.ar-final-ranks{margin-top:12px}.ar-home-leaders{max-width:1160px;margin:12px auto;padding:0 12px}.ar-crown{margin-inline-end:6px}.ar-over .ar-rank{margin:0}
+/* Dar telefon: geri bildirim ve ileri düğmesine yer bırak. */
+@media(max-width:600px){body[data-screen=aplay] .ar-play .yr-img{height:min(19dvh,140px);max-height:140px}}
+/* Oyun sırasında üstte tek satır gezinme; profil ana sayfada erişilebilir. */
+body.yr-oyun .top .who{display:none}
+body.yr-oyun .top:has(.paket-sound) .ses-ac{display:none}
+body.yr-oyun .top .back{min-height:48px;padding:4px 8px;font-size:14px}
+body.yr-oyun .wrap>.btn.ghost{display:none}
+@media(max-width:600px){
+ body.yr-oyun .yr-img{max-height:min(19dvh,140px)}
+ body.yr-oyun .yr-feedback .yr-img{max-height:100px}
+ body.yr-oyun .yr-qrow{gap:6px}
+}

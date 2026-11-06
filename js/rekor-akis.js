@@ -5,17 +5,17 @@ const RK_INLINE=new Map();let RK_PRE=null;
 function rkHat(period){return '<img class="rk-hat" src="assets/tasarim/sef-kepi-128.png" width="128" height="128" alt=""><span class="sr-only">'+(period==='hafta'?'Haftanın birincisi':'Genel birinci')+'</span>';}
 function rkRowsHTML(rows,board,period,limit){
  const b=rkBoard(board),sorted=rkSorted(rows||[]),pid=!st.guest&&st.prof?rkPid(st.prof):null,shown=sorted.slice(0,limit||10),mine=sorted.find(r=>r.pid===pid);if(mine&&!shown.includes(mine)&&limit!==3)shown.push(mine);
- return '<ol class="rk-rows">'+shown.map(r=>{const rank=sorted.filter(x=>rkBetter(x,r)).length+1;return '<li class="rk-row'+(r.pid===pid?' rk-me':'')+'"><span class="rk-rank">'+(rank===2?'🥈':rank===3?'🥉':rank+'.')+'</span><span class="rk-name">'+(rank===1?rkHat(period):'')+esc(r.name)+(r.pid===pid?' <b>(sen)</b>':'')+(typeof rutbeLabel==='function'?rutbeLabel(r.rank):'')+'</span><span class="rk-score">'+r.correct+(b&&b.kind!=='win'?' / '+b.total:'')+(Number.isInteger(r.dur)&&r.dur>0?' · '+rkFmtDur(r.dur):'')+'</span></li>';}).join('')+'</ol>';
+ return '<ol class="rk-rows">'+shown.map(r=>{const rank=sorted.filter(x=>rkBetter(x,r)).length+1;return '<li class="rk-row'+(r.pid===pid?' rk-me':'')+'"><span class="rk-rank">'+(rank===2?'🥈':rank===3?'🥉':rank+'.')+'</span><span class="rk-name">'+(rank===1?(board==='oy-arena2'?'<span class="ar-crown" role="img" aria-label="Birinci">👑</span>':rkHat(period)):'')+esc(r.name)+(r.pid===pid?' <b>(sen)</b>':'')+(typeof rutbeLabel==='function'?rutbeLabel(r.rank):'')+'</span><span class="rk-score">'+r.correct+(b&&b.kind!=='win'?' / '+b.total:'')+(Number.isInteger(r.dur)&&r.dur>0?' · '+rkFmtDur(r.dur):'')+'</span></li>';}).join('')+'</ol>';
 }
 function rkGap(rows,b){if(st.guest||!st.prof)return '';const pid=rkPid(st.prof),me=rows.find(r=>r.pid===pid);if(!me)return '';const higher=rkSorted(rows).filter(r=>rkBetter(r,me)),equal=rows.find(r=>r.pid!==pid&&rkSame(r,me));if(!higher.length)return equal?esc(equal.name)+' ile aynı puandasın. Zirveye ortak oldun!':RK.msg&&RK.msg.board===b.id&&['Yeni kişisel rekor!','İlk sonucun kaydedildi.'].includes(RK.msg.head)?'Bu oyunda zirveye çıktın!':'Zirvedesin.';if(equal)return esc(equal.name)+' ile aynı puandasın.';const next=higher[higher.length-1];return esc(next.name)+"’i geçmek için "+(next.correct-me.correct+1)+' '+(b.kind==='win'?'galibiyet':'doğru')+' daha.';}
 function rkInlineKey(board,period,week){return rkTable(board,period||'genel',week);}
-function rkInlineHTML(board,period,week){
+function rkInlineHTML(board,period,week,limit){
  if(!rkBoard(board))return '';const key=rkInlineKey(board,period,week),entry=RK_INLINE.get(key);
  if(!entry){RK_INLINE.set(key,{state:'loading'});rkInlineLoad(board,period,week);return '<section class="card rk-inline" role="status">Sıralama yükleniyor…</section>';}
  if(entry.state==='error')return '<section class="card rk-inline" role="status">Sıralamaya şu anda ulaşılamadı.</section>';
  if(entry.state==='loading')return '<section class="card rk-inline" role="status">Sonucun kaydediliyor.</section>';
  if(!entry.rows.length)return '<section class="card rk-inline">Bu listede henüz sonuç yok.</section>';
- return '<section class="card rk-inline"><h2>İlgili sıralama</h2>'+rkRowsHTML(entry.rows,board,period,10)+'<p role="status">'+rkGap(entry.rows,rkBoard(board))+'</p></section>';
+ return '<section class="card rk-inline"><h2>İlgili sıralama</h2>'+rkRowsHTML(entry.rows,board,period,limit||10)+'<p role="status">'+rkGap(entry.rows,rkBoard(board))+'</p></section>';
 }
 async function rkInlineLoad(board,period,week){const key=rkInlineKey(board,period,week);try{const be=rkBackend();if(!be)throw Error('NO_CONFIG');const rows=await be.list(key);RK_INLINE.set(key,{state:'ready',rows});}catch(e){RK_INLINE.set(key,{state:'error'});}render();}
 function rkInlineRefresh(){RK_INLINE.clear();}
@@ -53,3 +53,14 @@ cvStart=function(c){const b=rkSettingBoard({...c,mode:'canavar'});return rkBefor
 cvNew=function(first){if(first)return FLOW_CV_NEW(first);const b=rkSettingBoard({...CV.cfg,mode:'canavar'});return rkBefore(b&&b.id,()=>FLOW_CV_NEW(false));};
 
 function rkSettingInline(c){const b=rkSettingBoard(c);return b?rkInlineHTML(b.id,'genel'):'';}
+
+/* Genel Er Meydanı lideri ana sayfada, konu kartlarından önce görünür. */
+const AR_LEADER_RENDER=render;
+render=function(){
+ AR_LEADER_RENDER();
+ if(st.screen==='pekmenu'&&!st.guest&&st.prof){const d=arReviewData(),items=d&&d.all[d.pid]&&d.all[d.pid].items||[],count=items.filter(q=>q.subject===st.subject).length,wrap=document.querySelector('#app .wrap');if(count&&wrap&&!wrap.querySelector('.ar-review-link')){const empty=wrap.querySelector('p.card');if(empty&&empty.textContent.startsWith('Bu konuda tekrar edilecek'))empty.textContent='Er Meydanı yanlışlarını üstteki düğmeden çalışabilirsin.';wrap.insertAdjacentHTML('afterbegin','<button class="btn pri ar-review-link" onclick="arReviewOpen(st.subject)">Er Meydanı yanlışlarını çalış ('+count+')</button>');}}
+ if(st.screen!=='home')return;
+ const app=document.getElementById('app');if(!app||app.querySelector('.ar-home-leaders'))return;
+ const html='<div class="ar-home-leaders">'+rkInlineHTML('oy-arena2','genel',undefined,3).replace('İlgili sıralama','Er Meydanı liderleri · kazanılan oyun')+'</div>',header=app.querySelector('.design-header');
+ if(header)header.insertAdjacentHTML('afterend',html);else app.insertAdjacentHTML('afterbegin',html);
+};

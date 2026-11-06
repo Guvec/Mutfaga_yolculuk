@@ -16,6 +16,14 @@ const {doc,setDoc,updateDoc,deleteDoc,getDoc,writeBatch}=require('firebase/fires
  try{
   await env.clearFirestore();
   await check('Arena2 75 kabul',setDoc(room('MAKE75'),base()));
+  await check('Arena3 bütün konular 75 kabul',setDoc(room('ALL75'),base({rev:'arena3-test'})));
+  for(const [i,subject]of ['baharat','mutfak-araclari','bulasik-makinesi-temizligi','kuver'].entries())await check('Arena3 tek konu '+subject+' kabul',setDoc(room('SUB'+i),base({subject,scope:'konu',n:17,rev:'arena3-test'})));
+  await check('Arena3 76 reddi',setDoc(room('NEW76'),base({rev:'arena3-test',n:76})),false);
+  await check('Arena3 iki soru reddi',setDoc(room('NEW2'),base({rev:'arena3-test',n:2})),false);
+  await check('Arena3 tek takım kapsamı reddi',setDoc(room('NEWSCOPE'),base({rev:'arena3-test',scope:'tek'})),false);
+  await check('Arena3 bilinmeyen konu reddi',setDoc(room('NEWSUB'),base({rev:'arena3-test',subject:'bilinmeyen',scope:'konu'})),false);
+  await check('Arena3 bütün konularda farklı kanonik konu reddi',setDoc(room('NEWCAN'),base({rev:'arena3-test',subject:'kuver'})),false);
+
   await check('Arena2 76 reddi',setDoc(room('MAKE76'),base({n:76})),false);
   await check('Arena2 eksik av reddi',setDoc(room('NOAV'),Object.fromEntries(Object.entries(base()).filter(([k])=>k!=='av'))),false);
   await check('Arena2 dolu başlangıç roster reddi',setDoc(room('BADRST'),base({roster:['host','alice','bob']})),false);

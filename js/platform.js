@@ -99,7 +99,7 @@ resolve=function(r){
   const q=st.q,s=tStop();st.done=true;st.res=r;
   if(r===1){st.sess.ok++;st.sess.s+=10;}else if(r===2){st.sess.fix++;st.sess.s+=5;}else st.sess.bad++;
   st.sess.qs.push({selectedAnswer:(q.responses||[]).at(-1)?.text||null,firstAnswer:(q.responses||[])[0]?.text||null,attempts:q.responses||[],attemptCount:(q.responses||[]).length,assessment:st.practice==='check',q:q.set&&q.source&&q.source.card?q.set+'. takım, '+q.source.card+'. kart':q.prompt,a:q.correctText,r,s,hintUsed:st.practice!=='check'&&st.tries>0,source:q.source});
-  st.lastRes={cls:r===1?'ok':'fix',head:r===1?'Doğru! +10 puan':r===2?'Düzelttin! +5 puan':'Doğru yanıt: '+q.correctText,text:q.explanation||''};saveProgress();render();
+  st.lastRes={cls:r===1?'ok':'fix',head:r===1?'Doğru! +10 puan':r===2?'Düzelttin! +5 puan':'Doğru yanıt: '+q.correctText,text:q.explanation||''};if(hizliTebrik(st.sess,r===1,s*1000))st.lastRes.head='Çok hızlısın, minik şef! ⚡ +10 puan';saveProgress();render();
 };
 quizHtml=function(){
   if(st.op!=='kur'&&st.op!=='ad')return contentQuizHTML();

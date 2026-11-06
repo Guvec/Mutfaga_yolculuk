@@ -61,7 +61,7 @@
     }else{
      const me=await tx.get(this.player(code));
      if(!me.exists()){
-      const c=room.cnt||1,cap=room.mode==='arena'?4:MAX_RACE;if(c>=cap)throw Error('Bu oda dolu (en çok '+cap+' kişi).');
+      const c=room.cnt||1,cap=room.mode==='arena'?(/^arena4-/.test(room.rev||'')?10:4):MAX_RACE;if(c>=cap)throw Error('Bu oda dolu (en çok '+cap+' kişi).');
       tx.update(this.room(code),{cnt:c+1});
      }
     }
@@ -78,7 +78,7 @@
    const ps=await fb.getDocs(fb.collection(this.db,COLL,code,'players')),uids=ps.docs.map(p=>p.id).sort();
    await fb.runTransaction(this.db,async tx=>{
     const s=await tx.get(this.room(code)),r=s.data();if(!s.exists()||r.host!==this.uid||r.status!=='lobby')throw Error('Oda başlatılamadı.');
-    if(uids.length<3||uids.length>4||uids.length!==r.cnt)throw Error('Oyuncu listesi değişti. Yeniden başlat.');
+    if(uids.length<3||uids.length>(/^arena4-/.test(r.rev||'')?10:4)||uids.length!==r.cnt)throw Error('Oyuncu listesi değişti. Yeniden başlat.');
     const rows=await Promise.all(uids.map(uid=>tx.get(this.player(code,uid))));if(rows.some(p=>!p.exists()||!p.data().loaded))throw Error('Soruların yüklenmesi bekleniyor.');
     tx.update(this.room(code),{status:'playing',roster:uids});
    });

@@ -85,3 +85,35 @@ body.yr-oyun .yr-prog:focus{outline:none}
  body.yr-oyun .yr-opt{min-height:48px;font-size:16px}
  body.yr-oyun .yr-q{font-size:16px}
 }
+
+/* Soru ekranları: ikincil bilgi açılır; cevaplar ve ileri düğmesi önceliklidir.
+   İçerik kesilmez; büyük yazı ve açık ayrıntılar gerektiğinde doğal kayar. */
+body.yr-oyun .wrap{max-width:920px;padding:4px 12px 8px}
+body.yr-oyun .yr-live-ranks{font-size:14px;margin:0 0 2px}
+body.yr-oyun .yr-live-ranks summary,body.yr-oyun .yr-explain summary{min-height:32px;display:flex;align-items:center;cursor:pointer;text-decoration:underline}
+body.yr-oyun .yr-img{max-height:min(21dvh,160px)}
+body.yr-oyun .yr-opt{min-height:48px;padding:6px 8px;font-size:16px;line-height:1.25}
+body.yr-oyun .yr-opts{gap:6px;margin:4px 0}
+body.yr-oyun .yr-opt .yr-let{width:26px;height:26px}
+body.yr-oyun .yr-cimg{max-height:min(10dvh,76px)}
+body.yr-oyun .yr-fb{padding:6px 10px;margin:4px 0;font-size:16px;line-height:1.25}
+body.yr-oyun .wrap>.btn{min-height:48px;margin:3px 0;padding:6px 12px;font-size:16px}
+body.yr-oyun .yr-side{display:flex;align-items:center;justify-content:center;gap:8px;padding:3px 6px}
+body.yr-oyun .yr-side small{font-size:13px;line-height:1.15}
+body.yr-oyun .yr-side b{font-size:22px}
+body.yr-oyun .cv-top{gap:8px;margin:2px 0}
+body.yr-oyun .cv-mon{font-size:30px}
+body.yr-oyun .cv-can{font-size:16px}
+body.yr-oyun .cv-hp{height:10px}
+body.yr-oyun .yr-err{padding:5px 8px;margin:3px 0;font-size:14px}
+@media(min-width:700px){
+ body.yr-oyun .yr-qa{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:16px;align-items:center}
+ body.yr-oyun .yr-img{max-height:min(30dvh,240px)}
+ body.yr-oyun .yr-opts{grid-template-columns:1fr}
+}
+@media(orientation:landscape) and (max-height:560px){
+ body.yr-oyun .yr-img{max-height:30dvh}
+ body.yr-oyun .yr-qa{gap:8px}
+ body.yr-oyun .yr-opts{grid-template-columns:1fr 1fr}
+ body.yr-oyun .yr-opts.long{grid-template-columns:1fr}
+}

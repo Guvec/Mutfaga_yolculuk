@@ -154,6 +154,12 @@ function newQ(keepMsg){
 }
 
 /* ===================== CEVAPLAMA ===================== */
+/* Üç hızlı doğru sonrası, en sık 45 saniyede bir; yanlış/ikinci deneme övülmez. */
+function hizliTebrik(state,correct,ms){
+ if(!state)return false;state.hizSeri=correct&&ms>0&&ms<=4000?(state.hizSeri||0)+1:0;
+ const now=Date.now();if(state.hizSeri<3||state.hizSon&&now-state.hizSon<45000)return false;
+ state.hizSeri=0;state.hizSon=now;return true;
+}
 function answer(v){
   if(st.done || st.tries>=2 || !st.q) return;
   var right = st.op==="kur" ? (v===st.q.key) : (v===st.q.ans);
@@ -180,6 +186,7 @@ function resolve(r){
   if(r===1) st.lastRes={cls:"ok", head:"Doğru! +"+PTS+" puan", text:info};
   else if(r===2) st.lastRes={cls:"fix", head:"Düzelttin! +5 puan. İkinci denemede buldun.", text:info};
   else st.lastRes={cls:"fix", head: st.op==="kur" ? "Doğru yer burası." : "Doğru cevap: "+it.AD, text:info};
+  if(hizliTebrik(S,r===1,s*1000))st.lastRes.head='Çok hızlısın, minik şef! ⚡ +'+PTS+' puan';
   saveProgress();
   render();
 }
@@ -223,7 +230,7 @@ function startBreak(){
 }
 
 /* ===================== SEÇİM İŞLEMLERİ ===================== */
-function pickProfile(n){ st.prof=n; st.guest=false; if(profiles().indexOf(n)>=0)lsSet('sonProfil',n);var target=st.profileReturn==='racemenu'?'racemenu':'home';st.profileReturn=null;go(target); }
+function pickProfile(n){ st.prof=n; st.guest=false; if(profiles().indexOf(n)>=0)lsSet('sonProfil',n);var target=['racemenu','raceinvite'].includes(st.profileReturn)?st.profileReturn:'home';st.profileReturn=null;go(target); }
 function createProfile(){
   if(typeof adOpen==='function')adOpen(-1,'profiles');
 }
@@ -246,8 +253,20 @@ function back(){
   var m={profiles:"welcome", home:"profiles", level:"home", summary:"home", history:"home"};
   go(m[st.screen]||"home");
 }
+function anaSayfa(){
+ if(typeof YR!=='undefined'&&YR.active){yrLeave('home');return;}
+ if(st.screen==='raceinvite'&&typeof yrInviteCancel==='function'){yrInviteCancel();return;}
+ if(typeof CV!=='undefined'&&CV&&['cvplay','cvover'].includes(st.screen)){cvLeave('home');return;}
+ if(typeof oyundaMi==='function'&&oyundaMi()){
+  const quit=()=>{closeModal();oyunVazgec();go('home');};
+  if(!st.kDone&&oyunYanitli()){modal('Ana sayfaya dönülürse bu çalışmadaki yanıtlar silinecek.',quit);return;}
+  quit();return;
+ }
+ if(st.screen==='haftaplay'&&typeof haftaSave==='function')haftaSave();
+ if(typeof sesSus==='function')sesSus();go('home');
+}
 function topBar(title, noBack){
-  return '<div class="top">'+(noBack?'':'<button class="back" onclick="back()">← Geri</button>')+
+  return '<div class="top">'+(noBack?'':'<button class="back" onclick="back()">← Geri</button><button class="back home-shortcut" onclick="anaSayfa()">Ana sayfa</button>')+
     '<div class="ttl">'+esc(title)+'</div><div class="who">'+(typeof profilDugme==='function'?profilDugme():esc(st.guest?"Misafir":(st.prof||"")))+'</div></div>';
 }
 function itemImg(k, extra){

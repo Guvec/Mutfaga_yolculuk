@@ -48,18 +48,18 @@ function cvStatusHTML(){
 }
 function cvPlayHTML(){
  const q=CV.qs[CV.k],fb=CV.ph==='fb',last=CV.hp<=0||CV.lives<=0||CV.k+1>=CV.qs.length;
- let h=yrTop('Meydan Okuma')+'<div class="wrap">'+cvStatusHTML()+'<p class="yr-prog" id="yrHeading" tabindex="-1">Soru '+(CV.k+1)+' / '+CV.qs.length+'</p>'+yrQuestionHTML(q)+yrChoicesHTML(q,'cvAns',fb?{pick:CV.pick}:null);
- if(fb)h+='<div class="yr-fb '+(CV.right?'ok':'bad')+'" role="status"><b>'+(CV.right?'✓ Doğru! Böyle devam.':'Yanlış. Doğru cevaba bak. Bir hakkın azaldı.')+'</b>'+(CV.right?'':'<br>Doğru cevap: <b>'+esc(q.choices.find(c=>c.id===q.correct).text||q.correct)+'</b>')+(q.explanation?'<p>'+esc(q.explanation)+'</p>':'')+'</div><button class="btn pri" onclick="cvNext()" id="cvNext">'+(last?'Sonucu gör':'Sonraki soru')+'</button>';
+ let h=yrTop('Meydan Okuma')+'<div class="wrap'+(fb?' yr-feedback':'')+'">'+cvStatusHTML()+'<p class="yr-prog" id="yrHeading" tabindex="-1">Soru '+(CV.k+1)+' / '+CV.qs.length+'</p>'+yrQuestionHTML(q)+yrChoicesHTML(q,'cvAns',fb?{pick:CV.pick}:null);
+ if(fb)h+='<div class="yr-fb '+(CV.right?'ok':'bad')+'" role="status"><b>'+(CV.right?'✓ Doğru! Böyle devam.':'Yanlış. Bir hakkın azaldı.')+'</b>'+(CV.right?'':'<br>Doğru cevap: <b>'+esc(q.choices.find(c=>c.id===q.correct).text||q.correct)+'</b>')+yrExplanationHTML(q)+'</div><button class="btn pri" onclick="cvNext()" id="cvNext">'+(last?'Sonucu gör':'Sonraki soru')+'</button>';
  return h+'<button class="btn ghost" onclick="cvLeave()">Oyundan çık</button></div>';
 }
 function cvOverHTML(){
  return yrTop('Oyun bitti')+'<div class="wrap" style="text-align:center"><h1 id="yrHeading" tabindex="-1">'+(CV.win?'🏆 Meydan okumayı kazandın!':'Bu sefer olmadı')+'</h1>'+cvStatusHTML()+(CV.rapor?sonucGoster(CV.rapor):'')+rkSettingInline({...CV.cfg,mode:'canavar'})+'<p class="sub">'+(CV.win?'Emeğin sonuç verdi.':'Hata yapmak öğrenmenin parçası. Tekrar oynarken yeni sorular gelir.')+'</p><button class="btn pri" onclick="cvNew()">⚔️ Yeniden oyna</button><button class="btn ghost" onclick="cvExit()">Çık</button></div>';
 }
-function cvExit(){CV=null;st.screen='racemenu';render();window.scrollTo(0,0);}
-function cvLeave(){
- if(!CV){cvExit();return;}
- if(CV.over||CV.ph==='q'&&CV.k===0&&CV.lives===CV_CAN&&CV.hp===CV.hp0){cvExit();return;}
- modal('Oyundan çıkarsan bu oyun biter. Çıkmak istiyor musun?',()=>{closeModal();cvExit();});
+function cvExit(target){CV=null;st.screen=target==='home'?'home':'racemenu';render();window.scrollTo(0,0);}
+function cvLeave(target){
+ if(!CV){cvExit(target);return;}
+ if(CV.over||CV.ph==='q'&&CV.k===0&&CV.lives===CV_CAN&&CV.hp===CV.hp0){cvExit(target);return;}
+ modal('Oyundan çıkarsan bu oyun biter. Çıkmak istiyor musun?',()=>{closeModal();cvExit(target);});
 }
 YR_SCREENS.push('cvplay','cvover');
 const CV_SCR=yrScreenHTML;

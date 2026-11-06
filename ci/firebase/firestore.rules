@@ -63,13 +63,20 @@ service cloud.firestore {
    function member() { return signed() && exists(/databases/$(database)/documents/oyunOdalari/$(code)/players/$(request.auth.uid)); }
    function recent(ms) { return request.time.toMillis() - ms < 86400000; }
    function arena2() { return room().mode == 'arena' && ('av' in room()) && room().av == 2; }
+   function arenaErrorLimit() { return room().rev.matches('^arena[34]-.*') ? 7 : 4; }
    function rosterReady(d) {
-    return d.roster is list && d.roster.size() >= 3 && d.roster.size() <= 4 && d.roster.size() == resource.data.cnt
+    return d.roster is list && d.roster.size() >= 3 && d.roster.size() <= (resource.data.rev.matches('^arena4-.*') ? 10 : 4) && d.roster.size() == resource.data.cnt
      && d.roster.toSet().size() == d.roster.size() && request.auth.uid in d.roster
      && get(/databases/$(database)/documents/oyunOdalari/$(code)/players/$(d.roster[0])).data.loaded == true
      && get(/databases/$(database)/documents/oyunOdalari/$(code)/players/$(d.roster[1])).data.loaded == true
      && get(/databases/$(database)/documents/oyunOdalari/$(code)/players/$(d.roster[2])).data.loaded == true
-     && (d.roster.size() == 3 || get(/databases/$(database)/documents/oyunOdalari/$(code)/players/$(d.roster[3])).data.loaded == true);
+     && (d.roster.size() <= 3 || get(/databases/$(database)/documents/oyunOdalari/$(code)/players/$(d.roster[3])).data.loaded == true)
+     && (d.roster.size() <= 4 || get(/databases/$(database)/documents/oyunOdalari/$(code)/players/$(d.roster[4])).data.loaded == true)
+     && (d.roster.size() <= 5 || get(/databases/$(database)/documents/oyunOdalari/$(code)/players/$(d.roster[5])).data.loaded == true)
+     && (d.roster.size() <= 6 || get(/databases/$(database)/documents/oyunOdalari/$(code)/players/$(d.roster[6])).data.loaded == true)
+     && (d.roster.size() <= 7 || get(/databases/$(database)/documents/oyunOdalari/$(code)/players/$(d.roster[7])).data.loaded == true)
+     && (d.roster.size() <= 8 || get(/databases/$(database)/documents/oyunOdalari/$(code)/players/$(d.roster[8])).data.loaded == true)
+     && (d.roster.size() <= 9 || get(/databases/$(database)/documents/oyunOdalari/$(code)/players/$(d.roster[9])).data.loaded == true);
    }
    allow get: if signed();
    allow list: if false;
@@ -83,9 +90,10 @@ service cloud.firestore {
     && request.resource.data.kind in ['gorsel','bilgi','kuver']
     && request.resource.data.set is int && request.resource.data.set >= 0 && request.resource.data.set <= 12
     && request.resource.data.n is int && (request.resource.data.mode == 'arena'
-      ? (request.resource.data.av == 2 && request.resource.data.roster == [] && request.resource.data.n == 75 && request.resource.data.lim == 15
-         && request.resource.data.scope == 'butun' && request.resource.data.subject == 'mutfak-araclari' && request.resource.data.kind == 'gorsel' && request.resource.data.set == 0
-         && request.resource.data.rev.matches('^arena2-.*') && request.resource.data.cnt == 1)
+      ? (request.resource.data.av == 2 && request.resource.data.roster == [] && request.resource.data.kind == 'gorsel' && request.resource.data.set == 0 && request.resource.data.cnt == 1
+         && ((request.resource.data.rev.matches('^arena2-.*') && request.resource.data.lim == 15 && request.resource.data.n == 75 && request.resource.data.scope == 'butun' && request.resource.data.subject == 'mutfak-araclari')
+          || ((request.resource.data.rev.matches('^arena3-.*') && request.resource.data.lim == 15 || request.resource.data.rev.matches('^arena4-.*') && request.resource.data.lim == 20) && request.resource.data.n >= 3 && request.resource.data.n <= 75
+           && (request.resource.data.scope == 'konu' || (request.resource.data.scope == 'butun' && request.resource.data.subject == 'mutfak-araclari')))))
       : (!request.resource.data.keys().hasAny(['av','roster']) && request.resource.data.n >= 3 && request.resource.data.n <= 20))
     && request.resource.data.lim in [15,20,30]
     && request.resource.data.seed is int && request.resource.data.seed >= 0 && request.resource.data.seed <= 4294967295
@@ -96,13 +104,13 @@ service cloud.firestore {
     && request.resource.data.created is int && request.resource.data.created > request.time.toMillis() - 3600000 && request.resource.data.created < request.time.toMillis() + 3600000;
    allow update: if signed() && (
     (resource.data.host == request.auth.uid && resource.data.status == 'lobby' && request.resource.data.status == 'playing'
-      && (arena2()? (request.resource.data.diff(resource.data).affectedKeys().hasOnly(['status','roster']) && rosterReady(request.resource.data)) : request.resource.data.diff(resource.data).affectedKeys().hasOnly(['status'])))
+      && ((resource.data.mode == 'arena' && ('av' in resource.data) && resource.data.av == 2)? (request.resource.data.diff(resource.data).affectedKeys().hasOnly(['status','roster']) && rosterReady(request.resource.data)) : request.resource.data.diff(resource.data).affectedKeys().hasOnly(['status'])))
     || (resource.data.mode == 'duel' && resource.data.status == 'lobby' && resource.data.host != request.auth.uid
       && resource.data.guest == null && request.resource.data.guest == request.auth.uid
       && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['guest']))
     || (resource.data.mode in ['race','arena'] && resource.data.status == 'lobby' && resource.data.host != request.auth.uid
       && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['cnt'])
-      && request.resource.data.cnt is int && request.resource.data.cnt >= 1 && request.resource.data.cnt <= (resource.data.mode == 'arena' ? 4 : 8)
+      && request.resource.data.cnt is int && request.resource.data.cnt >= 1 && request.resource.data.cnt <= (resource.data.mode == 'arena' ? (resource.data.rev.matches('^arena4-.*') ? 10 : 4) : 8)
       && ((request.resource.data.cnt == resource.data.cnt + 1
             && existsAfter(/databases/$(database)/documents/oyunOdalari/$(code)/players/$(request.auth.uid))
             && !exists(/databases/$(database)/documents/oyunOdalari/$(code)/players/$(request.auth.uid)))
@@ -117,7 +125,7 @@ service cloud.firestore {
       && d.keys().hasAll(['nick','score','ok','bad','n','tt','done','ts','rid'])
       && d.nick is string && d.nick.size() >= 1 && d.nick.size() <= 40
       && d.score is int && d.score >= 0 && d.score <= (arena2()?75:60)
-      && d.ok is int && d.ok >= 0 && d.ok <= (arena2()?75:60) && d.bad is int && d.bad >= 0 && d.bad <= (arena2()?4:60)
+      && d.ok is int && d.ok >= 0 && d.ok <= (arena2()?75:60) && d.bad is int && d.bad >= 0 && d.bad <= (arena2()?arenaErrorLimit():60)
       && d.n is int && d.n >= 0 && d.n <= (arena2()?75:60) && d.n <= room().n && d.ok + d.bad <= d.n && d.tt is int && d.tt >= 0
       && (!('loaded' in d) || d.loaded is bool)
       && (!('ready' in d) || d.ready is bool)
@@ -132,7 +140,8 @@ service cloud.firestore {
      let o = resource.data;
      let v = d.n > 0 ? d.r[d.n-1] : 0;
      let ms = v > 0 ? v : -v;
-     let sec = 15 - int(o.ok / 5);
+     let modern = room().rev.matches('^arena4-.*');
+     let sec = (modern ? 20 : 15) - int(o.ok / (modern ? 6 : 5));
      return d.nick == o.nick && d.ts <= request.time.toMillis()+60000 && d.ts >= request.time.toMillis()-60000
       && (o.done
        ? d.diff(o).affectedKeys().hasOnly(['ts'])
@@ -140,7 +149,7 @@ service cloud.firestore {
             && ((d.done == o.done && !d.left) || (room().status == 'playing' && d.done && d.left)))
           || (room().status == 'playing' && d.n == o.n+1 && d.r == o.r.concat([v]) && v is int && v != 0 && ms <= (sec < 7 ? 7000 : sec*1000)
             && d.tt == o.tt+ms && d.ok == o.ok+(v>0?1:0) && d.bad == o.bad+(v<0?1:0)
-            && !d.left && d.done == (d.bad == 4 || d.n == room().n))));
+            && !d.left && d.done == (d.bad == arenaErrorLimit() || d.n == room().n))));
     }
     allow get: if signed() && (request.auth.uid == uid || member());
     allow list: if signed() && member();
