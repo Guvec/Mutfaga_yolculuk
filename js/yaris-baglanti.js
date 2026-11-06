@@ -50,6 +50,9 @@
     if(room.created&&Date.now()-room.created>DAY)throw Error('Bu odanın süresi dolmuş.');
     if(expectCreated&&room.created!==expectCreated)throw Error('Bu oda yeniden kurulmuş. Kodu yeniden gir.');
     const mine={...pdata,rid:room.created};
+    const existing=await tx.get(this.player(code));
+    if(room.status==='playing'&&room.mode==='arena'&&room.av===2&&room.roster.includes(uid)&&existing.exists())return;
+    if(room.status!=='lobby')throw Error('Oyun başlamış. Yeni katılımcı alınmıyor.');
     if(room.host===uid){tx.set(this.player(code),mine);return;}
     if(room.status!=='lobby')throw Error(room.mode==='duel'?'Kapışma başlamış, katılamazsın.':'Yarış başlamış, katılamazsın.');
     if(room.mode==='duel'){
@@ -67,8 +70,20 @@
    return room;
   }
   async setPlayer(code,pdata){await this.sdk.setDoc(this.player(code),pdata);}
-  async start(code){await this.sdk.updateDoc(this.room(code),{status:'playing'});}
-  watch(code,onRoom,onPlayers,onError){const fb=this.sdk;return [fb.onSnapshot(this.room(code),s=>onRoom(s.exists()?s.data():null),onError),fb.onSnapshot(fb.collection(this.db,COLL,code,'players'),s=>onPlayers(s.docs.map(d=>({uid:d.id,...d.data()}))),onError)];}
+  async getPlayer(code){const p=await this.sdk.getDoc(this.player(code));return p.exists()?p.data():null;}
+  async arenaExpire(code,uid){await this.sdk.updateDoc(this.player(code,uid),{done:true,left:true});}
+  async start(code){
+   const fb=this.sdk,snap=await fb.getDoc(this.room(code));if(!snap.exists())throw Error('Oda bulunamadı.');
+   if(snap.data().mode!=='arena'){await fb.updateDoc(this.room(code),{status:'playing'});return;}
+   const ps=await fb.getDocs(fb.collection(this.db,COLL,code,'players')),uids=ps.docs.map(p=>p.id).sort();
+   await fb.runTransaction(this.db,async tx=>{
+    const s=await tx.get(this.room(code)),r=s.data();if(!s.exists()||r.host!==this.uid||r.status!=='lobby')throw Error('Oda başlatılamadı.');
+    if(uids.length<3||uids.length>4||uids.length!==r.cnt)throw Error('Oyuncu listesi değişti. Yeniden başlat.');
+    const rows=await Promise.all(uids.map(uid=>tx.get(this.player(code,uid))));if(rows.some(p=>!p.exists()||!p.data().loaded))throw Error('Soruların yüklenmesi bekleniyor.');
+    tx.update(this.room(code),{status:'playing',roster:uids});
+   });
+  }
+  watch(code,onRoom,onPlayers,onError){const fb=this.sdk;return [fb.onSnapshot(this.room(code),s=>onRoom(s.exists()?s.data():null),onError),fb.onSnapshot(fb.collection(this.db,COLL,code,'players'),{includeMetadataChanges:true},s=>onPlayers(s.docs.map(d=>({uid:d.id,...d.data(),pending:d.metadata.hasPendingWrites,fromCache:s.metadata.fromCache||d.metadata.fromCache}))),onError)];}
   /* Salonda çıkan oyuncu kaydını siler; kurucu çıkarsa oda da silinir. Oyun başladıktan sonra kayıt kalır (sonuç görünsün). */
   async leave(code,lobby,host){
    const fb=this.sdk;

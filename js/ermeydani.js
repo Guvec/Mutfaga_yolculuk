@@ -1,129 +1,112 @@
 /* © 2026 Ali Arıkoğlu. Tüm hakları saklıdır. */
-/* Er Meydanı (3–4 kişi): herkes aynı soruyu aynı anda görür; önce doğru basan puanı alır.
-   Oda ve oyuncu altyapısı Oyun Odası ile aynıdır (yaris.js); tur sonucu her telefonda aynı kuralla hesaplanır:
-   oyuncular kimliğe göre sıralanır, en hızlı doğru cevap puan alır, ilk iki doğru 200 ms'den yakınsa tur berabere sayılır. */
+/* Er Meydanı 2: herkes kendi hızında; final yalnız ortak, bitmiş kayıtlardan üretilir. */
 'use strict';
 let AR=null;
-const AR_WAIT_MS=2000;
 function arOn(){return !!(YR.room&&YR.room.mode==='arena');}
-function arSorted(){return YR.players.slice().sort((a,b)=>a.uid<b.uid?-1:a.uid>b.uid?1:0);}
-function arGone(p){return p.uid!==yrMe()&&(!!p.done||!!(YR.seen[p.uid]&&Date.now()-YR.seen[p.uid]>45000));}
-function arPts(uid){return AR&&AR.sc[uid]|0;}
+function arSorted(){return YR.players.filter(p=>AR&&AR.roster.includes(p.uid)).slice().sort((a,b)=>String(a.uid).localeCompare(String(b.uid)));}
+function arGone(p){return !!p.left;}
+function arPts(uid){const p=arRanks().find(p=>p.uid===uid);return p?p.ok:0;}
+function arCacheKey(){return YR.code+'|'+YR.room.created+'|'+yrMe();}
+function arCache(){const all=ls('arena_devam',{});all[arCacheKey()]={r:AR.myR.slice(),deadline:AR.deadline||0,k:AR.k};const keys=Object.keys(all);while(keys.length>20)delete all[keys.shift()];lsSet('arena_devam',all);}
 function arStart(){
  if(YR.tm){clearInterval(YR.tm);YR.tm=null;}
- AR={k:-1,total:YR.qs.length,myR:[],win:[],sc:{},ph:'intro',over:false,quit:false,to:null,lim:YR.room.lim*1000,t0:0,pick:null,why:'',res:null,final:null};
+ const p=YR.resumePlayer,cache=ls('arena_devam',{})[arCacheKey()],remote=p&&Array.isArray(p.r)?p.r:[];
+ let r=remote.slice();if(cache&&!p?.done&&Array.isArray(cache.r)&&remote.every((v,i)=>cache.r[i]===v)&&ArenaModel.stats(cache.r).n===cache.r.length)r=cache.r.slice();
+ AR={k:r.length,total:YR.qs.length,myR:r,roster:YR.room.roster.slice(),ph:'intro',over:!!p?.done,quit:!!p?.left,finalized:false,awarded:false,final:null,pick:null,t0:0,lim:15000,to:null,expiring:new Set()};
+ for(let n=remote.length+1;n<=r.length;n++){const part=r.slice(0,n),ps=ArenaModel.stats(part);yrSend(arRow(part,ps.bad>=4||n>=AR.total,false));}
+ if(AR.over){AR.ph='over';st.screen='aover';render();arSync();return;}
+ if(ArenaModel.stats(r).bad>=4||r.length>=AR.total){arEnd();return;}
+ if(typeof EFEKT!=='undefined')EFEKT.cal('kilic');
  rkCountLeaders(YR.room);st.screen='aintro';YR.count=3;render();
  if(YR.cd)clearInterval(YR.cd);
- YR.cd=setInterval(()=>{YR.count--;if(YR.count<=0){clearInterval(YR.cd);YR.cd=null;if(st.screen==='aintro'&&AR)arRound(0);return;}if(st.screen==='aintro')render();},1000);
+ YR.cd=setInterval(()=>{YR.count--;if(YR.count<=0){clearInterval(YR.cd);YR.cd=null;if(st.screen==='aintro'&&AR)arRound(AR.myR.length,cache);return;}if(st.screen==='aintro')render();},1000);
  arWrite();
 }
+function arRow(r,done,left){const s=ArenaModel.stats(r);return {nick:YR.nick,score:s.ok,ok:s.ok,bad:s.bad,n:s.n,tt:s.tt,done:!!done,left:!!left,ts:Date.now(),rid:YR.room.created,m:0,r:r.slice(),pr:[]};}
 function arWrite(){
  if(!AR||!yrTransport||!YR.room)return;
- const pts=Math.min(arPts(yrMe()),AR.myR.length);
- yrSend({nick:YR.nick,score:pts,ok:pts,bad:0,n:Math.min(AR.myR.length,60),tt:0,done:!!(AR.over||AR.quit),ts:Date.now(),rid:YR.room.created,m:0,r:AR.myR.slice(),pr:[]});
+ return yrSend(arRow(AR.myR,AR.over||AR.quit,AR.quit));
 }
-function arRound(k){
+function arRound(k,resume){
  if(!AR||AR.over)return;
- AR.k=k;yrMilestone(k,AR.total);AR.ph='q';AR.t0=performance.now();AR.res=null;AR.pick=null;
- st.screen='aplay';render();
- if(YR.tm)clearInterval(YR.tm);YR.tm=setInterval(arTick,80);
+ if(AR.to){clearTimeout(AR.to);AR.to=null;}
+ const s=ArenaModel.stats(AR.myR);AR.k=k;AR.ph='q';AR.pick=null;AR.why='';AR.lim=ArenaModel.limit(s.ok);
+ const remaining=resume&&resume.k===k?Math.min(AR.lim,Math.max(0,resume.deadline-Date.now())):AR.lim;
+ AR.t0=performance.now()-(AR.lim-remaining);AR.deadline=Date.now()+remaining;arCache();st.screen='aplay';render();
+ if(YR.tm)clearInterval(YR.tm);YR.tm=setInterval(arTick,80);arTick();
 }
 function arTick(){
  if(!AR||AR.ph!=='q'||st.screen!=='aplay')return;
- const el=performance.now()-AR.t0,left=Math.max(0,AR.lim-el),f=document.getElementById('yrFill'),t=document.getElementById('yrSec');
- if(f){f.style.width=(left/AR.lim*100)+'%';f.className='yr-fill'+(left<AR.lim*.25?' low':'');}
- if(t)t.textContent=Math.ceil(left/1000)+' sn';
- if(el>=AR.lim)arMine(-AR.lim,'time');
+ const elapsed=performance.now()-AR.t0,left=Math.max(0,AR.lim-elapsed),f=document.getElementById('yrFill'),t=document.getElementById('yrSec');
+ if(f){f.style.width=(left/AR.lim*100)+'%';f.className='yr-fill'+(left<AR.lim*.25?' low':'');}if(t)t.textContent=Math.ceil(left/1000)+' sn';
+ if(elapsed>=AR.lim)arMine(-AR.lim,'time');
 }
 function arAns(i){
- if(!AR||AR.ph!=='q')return;
- const q=YR.qs[AR.k],ms=Math.max(1,Math.round(performance.now()-AR.t0));
- if(ms>AR.lim){arMine(-AR.lim,'time');return;}
- AR.pick=i;const ok=q.choices[i].id===q.correct;
- arMine(ok?ms:-ms,ok?'ok':'bad');
+ if(!AR||AR.over||AR.ph!=='q')return;const q=YR.qs[AR.k];if(!q||!q.choices[i])return;
+ const elapsed=performance.now()-AR.t0;if(elapsed>=AR.lim){arMine(-AR.lim,'time');return;}
+ AR.pick=i;const ok=q.choices[i].id===q.correct,ms=Math.max(1,Math.round(elapsed));arMine(ok?ms:-ms,ok?'ok':'bad');
 }
 function arMine(v,why){
- if(!AR||AR.ph!=='q')return;
- AR.ph='wait';AR.why=why;if(YR.tm){clearInterval(YR.tm);YR.tm=null;}
- AR.myR[AR.k]=Math.round(v);arWrite();render();arSync();
- /* Doğru bilen oyuncu, diğerlerinin cevabını en fazla AR_WAIT_MS bekler; ağ gecikmesi yüzünden takılı kalmaz. */
- if(why==='ok'&&AR.ph==='wait'){const a=AR,kk=a.k;a.fto=setTimeout(()=>{if(AR!==a||a.over||a.ph!=='wait'||a.k!==kk)return;a.force=a.force||{};a.force[kk]=1;arSync();},AR_WAIT_MS);}
+ if(!AR||AR.over||AR.ph!=='q')return;
+ if(YR.tm){clearInterval(YR.tm);YR.tm=null;}AR.ph='fb';AR.why=why;AR.myR.push(v);arCache();
+ if(typeof EFEKT!=='undefined')EFEKT.cal(v>0?'dogru':'yanlis');
+ const s=ArenaModel.stats(AR.myR);if(s.bad>=4||s.n>=AR.total){arEnd();return;}
+ arWrite();render();const a=AR;a.to=setTimeout(()=>{if(AR===a&&a.ph==='fb'&&!a.over)arNext();},v>0?350:1400);
 }
-/* Her telefon, turun sonucunu aynı kuralla ve aynı veriyle hesaplar. */
+function arNext(){if(!AR||AR.over||AR.ph!=='fb')return;arRound(AR.myR.length);}
+function arRanks(){return ArenaModel.ranks(arSorted());}
+function arEnd(left){
+ if(!AR||AR.over)return;AR.over=true;AR.quit=!!left;AR.ph='over';if(AR.to){clearTimeout(AR.to);AR.to=null;}if(YR.tm){clearInterval(YR.tm);YR.tm=null;}
+ arCache();arWrite();st.screen='aover';render();window.scrollTo(0,0);arSync();
+}
 function arSync(){
- if(!AR||AR.over)return;
- if(AR.ph!=='wait')return;
- const k=AR.k,ps=arSorted(),me=yrMe();
- const f=AR.force&&AR.force[k],val=p=>p.uid===me?AR.myR[k]:(((p.r||[])[k]===undefined||(p.r||[])[k]===null)&&f?-1:(p.r||[])[k]);
- const live=ps.filter(p=>!arGone(p));
- if(!live.length||!live.every(p=>val(p)!==undefined&&val(p)!==null))return;
- const times=ps.map(val),w=YarisModel.arWho(times),uid=w>=0?ps[w].uid:null;
- AR.win[k]={uid,times:ps.map((p,i)=>({uid:p.uid,nick:p.uid===me?YR.nick:p.nick,t:times[i]}))};
- if(uid)AR.sc[uid]=(AR.sc[uid]|0)+1;
- if(AR.fto){clearTimeout(AR.fto);AR.fto=null;}
- AR.ph='res';AR.res=AR.win[k];
- if(uid===me&&typeof EFEKT!=='undefined')EFEKT.cal('tur');
- render();arWrite();
- const last=k+1>=AR.total;
- AR.to=setTimeout(()=>{if(!AR||AR.over)return;if(last)arEnd();else if(st.screen==='aplay')arRound(k+1);},last?2200:2600);
-}
-function arRanks(){
- const me=yrMe();
- return YarisModel.ranks(YR.players.map(p=>({...p,nick:p.uid===me?YR.nick:p.nick,ok:arPts(p.uid)})));
-}
-function arEnd(){
- if(!AR||AR.over)return;AR.over=true;AR.ph='over';if(AR.to){clearTimeout(AR.to);AR.to=null;}if(AR.fto){clearTimeout(AR.fto);AR.fto=null;}if(YR.tm){clearInterval(YR.tm);YR.tm=null;}
- const r=arRanks(),me=r.find(p=>p.uid===yrMe());AR.final=me?me.rank:null;
- const top=AR.final===1&&r.filter(p=>p.rank===1).length===1;
- AR.rapor=sonucUret('Er Meydanı',yrLabel(YR.room),['arena',YR.room.subject,YR.room.kind,YR.room.set,YR.room.n].join('|'),AR.myR.filter(v=>v!==undefined&&v!==null).map(v=>({ok:v>0,ms:Math.abs(v)})),AR.final===1?'Sıralamada 1. oldun!':AR.final?'Sıralaman: '+AR.final+'.':'');
- if(typeof EFEKT!=='undefined'){if(top&&AR.rapor.durum==='yeni')EFEKT.cal('rekor');else EFEKT.cal(top?'win':'tur');}
- if(typeof sesSoyle==='function')sesSoyle(top?'Er Meydanı\'nı kazandın. Tebrikler!':AR.final===1?'Berabere birinci oldun. Tebrikler!':'Oyun bitti. Sıralamana bakabilirsin.');
- rutbeMatch('arena',AR);if(AR.myR.length===AR.total)rkSettingSubmit(YR.room,AR.final===1?1:0);arWrite();
- if(typeof oduKazan==='function')oduKazan('arena',null,{rank:AR.final|0});
- if(typeof rkWinAdd==='function')rkWinAdd('oy-arena',arPts(yrMe()));
- st.screen='aover';render();window.scrollTo(0,0);
+ if(!AR||!YR.room)return;
+ const own=arSorted().find(p=>p.uid===yrMe());
+ if(own?.done&&own.pending===false&&own.fromCache===false){
+  AR.myR=own.r.slice();AR.over=true;AR.quit=!!own.left;AR.ph='over';
+  if(YR.tm){clearInterval(YR.tm);YR.tm=null;}if(AR.to){clearTimeout(AR.to);AR.to=null;}
+  if(YR.writer&&YR.writer.code===YR.code&&YR.writer.rid===YR.room.created){YR.writer.retired=true;YR.writer.items=[];YR.pend=null;YR.warn='';}
+  arCache();st.screen='aover';
+ }
+ if(ArenaModel.complete(AR.roster,arSorted())&&AR.over){
+  AR.finalized=true;const rows=arRanks(),me=rows.find(p=>p.uid===yrMe());AR.final=me?.rank||null;
+  if(!AR.awarded&&me&&!me.left){AR.awarded=true;const top=AR.final===1,key=arCacheKey(),awards=ls('arena_odul',{});
+   if(awards[key])AR.rapor={...awards[key].rapor,zaman:new Date(awards[key].rapor.zaman)};
+   else{
+    AR.rapor=sonucUret('Er Meydanı',yrLabel(YR.room),'arena2|ma-bh|75',me.r.map(v=>({ok:v>0,ms:Math.abs(v)})),top?'Sıralamada 1. oldun.':'');
+    awards[key]={rapor:AR.rapor,at:Date.now()};
+    if(lsSet('arena_odul',awards)){
+     rutbeMatch('arena',AR);if(typeof oduKazan==='function')oduKazan('arena',null,{rank:AR.final|0});
+     if(top&&me.ok>0&&typeof rkWinAdd==='function')rkWinAdd('oy-arena2',1);
+    }
+    if(typeof EFEKT!=='undefined')EFEKT.cal(top?'win':'tur');
+   }
+  }
+ }
+ if(st.screen==='aover')render();else if(st.screen==='aplay'){const e=document.getElementById('arRank');if(e)e.innerHTML=arScoreHTML();}
 }
 function arBeat(){
- if(!AR||AR.over)return;
- const ps=YR.players.filter(p=>p.uid!==yrMe());
- if(AR.k>=0&&ps.length&&ps.every(arGone)){arEnd();return;}/* herkes ayrıldı */
+ if(!AR)return;
+ for(const p of arSorted())if(!p.done&&p.uid!==yrMe()&&Date.now()-p.ts>65000&&!AR.expiring.has(p.uid)){
+  AR.expiring.add(p.uid);yrService().arenaExpire(YR.code,p.uid).catch(()=>{}).finally(()=>{if(AR)AR.expiring.delete(p.uid);});
+ }
  arSync();
 }
-/* ---------- ekranlar ---------- */
-function arScoreHTML(){
- const r=arRanks();
- return '<ul class="yr-rank ar-rank" aria-label="Puanlar">'+r.map(p=>'<li class="yr-row'+(p.uid===yrMe()?' me':'')+(AR.res&&AR.res.uid===p.uid?' hit':'')+'"><span class="yr-rk">'+p.rank+'.</span><span class="yr-nm">'+esc(p.nick)+(p.uid===yrMe()?' (Sen)':'')+(arGone(p)?(p.done?' · oyundan çıktı':' 📶'):'')+'</span><span class="yr-sc">'+p.ok+' puan</span></li>').join('')+'</ul>';
-}
-function arIntroHTML(){return '<div class="yr-full"><p>'+esc(yrLabel(YR.room))+' · '+(AR?AR.total:YR.room.n)+' soru</p><h1>⚔️ Er Meydanı</h1><div class="yr-big" id="yrHeading" tabindex="-1" role="status">'+Math.max(1,YR.count)+'</div><p>Önce doğru basan puanı alır. Hazır ol!</p>'+rkCountdownHTML()+'</div>';}
+function arScoreHTML(){return '<ul class="yr-rank ar-rank">'+arRanks().map(p=>'<li class="yr-row'+(p.uid===yrMe()?' me':'')+'"><span class="yr-rk">'+(p.rank||'—')+'</span><span class="yr-nm">'+esc(p.nick)+(p.uid===yrMe()?' (Sen)':'')+(p.left?' · ayrıldı':p.done?' · bitti':'')+'</span><span class="yr-sc">'+p.ok+' doğru · '+p.n+'/'+AR.total+'</span></li>').join('')+'</ul>';}
+function arIntroHTML(){return '<div class="yr-full"><p>Baharatlar ve Mutfak Araçları · En çok 75 soru</p><h1>Er Meydanı</h1><div class="yr-big" id="yrHeading" tabindex="-1" role="status">'+Math.max(1,YR.count)+'</div><p>Kendi hızında ilerle. Dört yanlışta denemen biter.</p>'+rkCountdownHTML()+'</div>';}
 function arPlayHTML(){
- const q=YR.qs[AR.k],asking=AR.ph==='q';
- let h=yrTop('Er Meydanı')+'<div class="wrap">'+yrWarnHTML()+arScoreHTML()+'<p class="yr-prog" id="yrHeading" tabindex="-1">Soru '+(AR.k+1)+' / '+AR.total+'</p>';
- if(asking)h+='<div class="yr-bar" aria-hidden="true"><div class="yr-fill" id="yrFill"></div></div><p class="yr-sec" id="yrSec">'+YR.room.lim+' sn</p>';
- h+=yrQuestionHTML(q)+yrChoicesHTML(q,'arAns',asking?null:{pick:AR.pick});
- if(AR.ph==='wait'){if(YR.players.some(yrLost))h+='<p role="status">Bağlantısı koptu olabilir. Bekleyebilir ya da çıkabilirsin.</p>';const m={ok:'✓ Doğru! Diğerlerinin cevabına bakılıyor…',bad:'Yanlış! Bu soruda kilitlendin. Diğerleri bekleniyor…',time:'Süre doldu. Diğerleri bekleniyor…'}[AR.why]||'Sonuç bekleniyor…';h+='<p class="yr-wait" role="status">'+m+'</p>';}
- if(AR.ph==='res'){
-  const r=AR.res,s=n=>(Math.round(Math.abs(n)/100)/10).toFixed(1).replace('.',','),w=r.uid&&r.times.find(x=>x.uid===r.uid);
-  const msg=r.uid===yrMe()?'<b>🎉 Bu tur senin!</b><br><small>'+s(w.t)+' sn</small>':r.uid?'<b>⚡ '+esc(w.nick)+' bildi!</b><br><small>'+s(w.t)+' sn</small>':(r.times.filter(x=>x.t>0).length>=2?'<b>🤝 En hızlı iki kişi aynı anda bildi.</b><br><small>Bu turda puan yok.</small>':'<b>Kimse bilemedi.</b><br><small>Doğrusu: '+esc(q.choices.find(c=>c.id===q.correct).text||q.correct)+'</small>');
-  h+='<div class="yr-fb '+(r.uid===yrMe()?'ok':r.uid?'bad':'')+'" role="status">'+msg+(q.explanation?'<p>'+esc(q.explanation)+'</p>':'')+'</div>';
- }
- return h+'<button class="btn ghost" onclick="yrLeave()">Er Meydanı\'ndan çık</button></div>';
+ const q=YR.qs[AR.k],s=ArenaModel.stats(AR.myR),asking=AR.ph==='q',correct=q.choices.find(c=>c.id===q.correct);
+ return yrTop('Er Meydanı')+'<div class="wrap ar-play"><div class="ar-status"><strong>'+s.ok+' doğru</strong><span>Yanlış: '+s.bad+' / 4</span><span>Soru '+(AR.k+1)+' / '+AR.total+'</span></div>'+(YR.warn?'<p class="ar-network" role="status">Bağlantı bekleniyor; sonuçlar saklanıyor.</p>':'')+
+ '<div class="yr-bar" aria-hidden="true"><div class="yr-fill" id="yrFill"></div></div><p class="yr-sec" id="yrSec">'+(asking?Math.ceil(AR.lim/1000)+' sn':'')+'</p>'+yrQuestionHTML(q)+yrChoicesHTML(q,'arAns',asking?null:{pick:AR.pick})+
+ '<div class="ar-feedback" role="status">'+(asking?'':AR.why==='ok'?'Doğru!':(AR.why==='time'?'Süre doldu. ':'')+'Doğru yanıt: '+esc(correct.text))+'</div>'+
+ (asking?'':'<button type="button" class="btn pri ar-next" onclick="arNext()">Sıradaki soru</button>')+
+ '<details class="ar-score"><summary>Canlı sıralama</summary><div id="arRank">'+arScoreHTML()+'</div></details></div>';
 }
 function arOverHTML(){
- const r=arRanks(),med=['🥇','🥈','🥉'],me=r.find(p=>p.uid===yrMe());
- const t=AR.final===1?'🏆 Birinci sensin!':'Oyun bitti';
- let h=yrTop('Er Meydanı bitti')+'<div class="wrap" style="text-align:center">'+yrWarnHTML()+'<h1 id="yrHeading" tabindex="-1">'+t+'</h1>';
- if(AR.rapor)h+=sonucGoster(AR.rapor)+rkSettingInline(YR.room);
- h+='<ul class="yr-rank">'+r.map(p=>'<li class="yr-row'+(p.uid===yrMe()?' me':'')+'"><span class="yr-rk">'+(med[p.rank-1]||p.rank+'.')+'</span><span class="yr-nm">'+esc(p.nick)+(p.uid===yrMe()?' (Sen)':'')+'</span><span class="yr-sc">'+p.ok+' puan</span></li>').join('')+'</ul>';
- if(typeof frBtn==='function')r.filter(p=>p.uid!==yrMe()).forEach(p=>{h+=frBtn(p,true);});
- return h+'<button class="btn" onclick="rkOpenBoard(\'oy-arena\')">🏅 Er Meydanı sıralaması</button><button class="btn ghost" onclick="yrLeave()">Çık</button></div>';
+ const s=ArenaModel.stats(AR.myR),pending=!AR.finalized;
+ return yrTop('Er Meydanı sonucu')+'<div class="wrap"><h1 id="yrHeading" tabindex="-1">'+(pending?'Denemen bitti':AR.final===1?'Birinci sensin!':'Oyun tamamlandı')+'</h1><p>'+s.ok+' doğru · '+s.bad+' yanlış · '+s.n+' soru</p>'+yrWarnHTML()+
+ (pending?'<p role="status">Ortak sonuçlar bekleniyor. Sıralama henüz kesinleşmedi.</p>':'<p>Kesin sıralama · Eşit doğruda toplam yanıt süresi kullanılır.</p>')+arScoreHTML()+
+ (AR.rapor?sonucGoster(AR.rapor):'')+(!pending?'<button type="button" class="btn" onclick="rkOpenBoard(\'oy-arena2\')">Er Meydanı sıralaması</button>':'')+(!pending&&typeof frBtn==='function'?arRanks().filter(p=>p.uid!==yrMe()).map(p=>frBtn(p,true)).join(''):'')+'<button type="button" class="btn" onclick="yrLeave()">Çık</button></div>';
 }
 YR_SCREENS.push('aintro','aplay','aover');
-const AR_SCR=yrScreenHTML;
-yrScreenHTML=function(){
- switch(st.screen){
-  case 'aintro':return AR?arIntroHTML():yrMenuHTML();
-  case 'aplay':return AR?arPlayHTML():yrMenuHTML();
-  case 'aover':return AR?arOverHTML():yrMenuHTML();
- }
- return AR_SCR();
-};
+const AR_SCR=yrScreenHTML;yrScreenHTML=function(){switch(st.screen){case 'aintro':return AR?arIntroHTML():yrMenuHTML();case 'aplay':return AR?arPlayHTML():yrMenuHTML();case 'aover':return AR?arOverHTML():yrMenuHTML();}return AR_SCR();};
