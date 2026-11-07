@@ -281,7 +281,7 @@ function rkPekStart(kind,arg,opts){
   st.op='mcq';const qs=getData().questions,pick=items.filter(x=>x.kind==='q').slice(0,LIM||8).map(x=>qs.find(q=>q.id===x.id)).filter(Boolean);
   if(!pick.length){go('pekmenu');return;}
   const kq=knownItem&&knownItem.kind==='q'?qs.find(q=>q.id===knownItem.id):null;
-  st.practice='pek';st.mcqGroup='Pekiştiriyorum';st.pekRound={kind:'q'};st.contentItems=shuffle(pick).map(mcqShuffled);if(kq&&!pick.includes(kq))st.contentItems.push(mcqShuffled(kq));st.contentIndex=0;st.contentSet=null;
+  st.practice='pek';st.mcqGroup='Pekiştiriyorum';st.pekRound={kind:'q'};st.contentItems=mcqUnique(shuffle(pick).concat(kq?[kq]:[])).map(mcqShuffled);st.contentIndex=0;st.contentSet=null;
   st.sess={id:Date.now(),p:st.prof,t:new Date().toISOString(),op:'mcq',subject:st.subject,practice:'pek',total:st.contentItems.length,group:'Pekiştiriyorum',s:0,ok:0,fix:0,bad:0,br:0,qs:[]};
   st.savedMsg='';contentNext();st.screen='quiz';render();window.scrollTo(0,0);return;
  }

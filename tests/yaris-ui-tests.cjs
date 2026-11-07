@@ -27,7 +27,7 @@ const hub={rooms:{},n:0,ops:{
  state(code){const r=hub.rooms[code];return r?{room:r.room,players:Object.entries(r.players).map(([uid,p])=>({uid,...p,pending:false,fromCache:false}))}:{room:null,players:[]};}
 }};
 (async()=>{
- const server=http.createServer((req,res)=>{const u=new URL(req.url,'http://x');const f=path.resolve(root,'.'+(u.pathname==='/'?'/index.html':decodeURIComponent(u.pathname)));if(!f.startsWith(root)||!fs.existsSync(f)||fs.statSync(f).isDirectory()){res.writeHead(404);res.end();return;}const ext=path.extname(f);res.writeHead(200,{'content-type':{'.html':'text/html','.js':'text/javascript','.css':'text/css','.json':'application/json','.jpg':'image/jpeg','.png':'image/png','.webp':'image/webp'}[ext]||'application/octet-stream'});fs.createReadStream(f).pipe(res);});
+ const server=http.createServer((req,res)=>{const u=new URL(req.url,'http://x');const f=path.resolve(root,'.'+(u.pathname==='/'?'/index.html':decodeURIComponent(u.pathname)));if(!f.startsWith(root)||!fs.existsSync(f)||fs.statSync(f).isDirectory()){res.writeHead(404);res.end();return;}const ext=path.extname(f);res.writeHead(200,{'content-type':{'.html':'text/html','.js':'text/javascript','.css':'text/css','.json':'application/json','.jpg':'image/jpeg','.png':'image/png','.webp':'image/webp','.svg':'image/svg+xml','.jpeg':'image/jpeg'}[ext]||'application/octet-stream'});fs.createReadStream(f).pipe(res);});
  await new Promise(r=>server.listen(0,r));const url='http://localhost:'+server.address().port;
  const browser=await chromium.launch(),errors=[];
  async function phone(width=390,query=''){
@@ -38,7 +38,7 @@ const hub={rooms:{},n:0,ops:{
   const p=await c.newPage();await p.addInitScript(()=>{try{sessionStorage.setItem('mesleki-ses-secim','1');}catch(e){}});p.on('pageerror',e=>errors.push(e.message));p.on('console',m=>{if(m.type()==='error'&&!/Failed to load resource/.test(m.text()))errors.push(m.text());});
   await require('./helpers/sound-choice.cjs')(p);await p.goto(url+'/'+query);await p.waitForFunction(()=>typeof yrOpen==='function'&&CONTENT.baharat&&CONTENT['mutfak-araclari']);await p.evaluate(()=>{const o=duResolve;duResolve=function(){o();(window.__ws=window.__ws||[]).push([DU.m,DU.k,DU.w]);};});return p;
  }
- const text=p=>p.locator('#app').innerText();
+ const text=async p=>(await p.locator('#app').innerText()).replace(/\s+/g,' ');
  async function openMenu(p,nick){await p.evaluate(n=>{st.prof=n;st.guest=false;yrOpen();},nick);}
  async function createRoom(p,nick,mode,cfg={}){
   await openMenu(p,nick);await p.getByRole('button',{name:mode==='duel'?/Kapışma Kur/:/Oyun Odası Kur/}).click();
@@ -64,7 +64,7 @@ const hub={rooms:{},n:0,ops:{
   assert((await text(a)).includes('En az iki kişi gerekir'));assert(await a.getByRole('button',{name:'Yarışı başlat'}).isDisabled());
   await joinRoom(b,'🐼 Cesur Panda','zihin11b');
   await a.waitForFunction(()=>YR.players.length===2&&YR.players.every(p=>p.loaded));assert(!(await a.getByRole('button',{name:'Yarışı başlat'}).isDisabled()));
-  assert((await text(b)).includes('Odayı kuran kişi başlatınca'));assert((await text(b)).includes('Cesur Panda'),'oyun adı görünür');
+  assert((await text(b)).includes('Odayı kuran kişi başlatınca'));await b.waitForFunction(()=>YR.players.length>=2);assert((await text(b)).includes('Cesur Panda'),'oyun adı görünür');
   // üçüncü oyuncu, başlamadan katılabilir
   await joinRoom(c,'Can','ZIHIN11B');await a.waitForFunction(()=>YR.players.length===3);
   await a.getByRole('button',{name:'Yarışı başlat'}).click();
@@ -93,7 +93,7 @@ const hub={rooms:{},n:0,ops:{
   for(const [subject,pick] of [['Mutfak Araçları',null],['Kuver','Tabldot Kuver']]){
    const h=await phone(390);await openMenu(h,'Deniz');await h.getByRole('button',{name:/Oyun Odası Kur/}).click();await h.getByRole('button',{name:subject,exact:true}).click();
    if(pick)await h.getByRole('button',{name:pick,exact:true}).click();else await h.getByRole('button',{name:'Bilgi soruları'}).click();
-   await h.getByRole('button',{name:'Odayı kur'}).click();await h.waitForFunction(()=>YR.active);assert((await h.evaluate(()=>YR.room.n))>=3);
+   await h.getByRole('button',{name:'Odayı kur'}).click();await h.waitForFunction(()=>YR.active,null,{timeout:10000}).catch(async e=>{throw Error(e.message+' '+JSON.stringify(await h.evaluate(()=>({cfg:YR.cfg,error:YR.error}))))});assert((await h.evaluate(()=>YR.room.n))>=3);
    await h.evaluate(()=>yrLeaveNow());
   }
   console.log('PASS konu seçimleri');
@@ -149,8 +149,8 @@ const hub={rooms:{},n:0,ops:{
   console.log('PASS Kapışma hazır, turlar, rövanş ve ayrılma');
   // ---- 5) Sürüm farkı ve kod çakışması ----
   const v1=await phone(390),v2=await phone(390);const vcode=await createRoom(v1,'Eda','race',{subject:'Baharatlar',set:3});
-  await v2.evaluate(()=>{CONTENT.baharat.revision='farkli-surum';});await joinRoom(v2,'Efe',vcode).catch(()=>{});
-  assert((await text(v2)).includes('farklı sürümdeki'));
+  await v2.evaluate(()=>{CONTENT.baharat.revision='farkli-surum';});await openMenu(v2,'Efe');await v2.evaluate(c=>yrJoin(c),vcode);await v2.waitForFunction(()=>YR.error.length>0);
+  assert((await text(v2)).includes('Oda sürümü farklı'));
   const v3=await phone(390);await openMenu(v3,'Ece');await v3.getByRole('button',{name:/Oyun Odası Kur/}).click();await v3.evaluate(c=>{YR.cfg.code=c;},vcode);await v3.getByRole('button',{name:'Odayı kur'}).click();await v3.waitForFunction(()=>YR.error.length>0);assert((await text(v3)).includes('kullanılıyor'));
   assert.equal(Object.keys(hub.rooms[vcode].players).length,1,'sürümü uyuşmayan telefon listeye girmedi');
   // kapasite: 8 kişilik oda, 9. kişi girmez; biri çıkınca yer açılır
@@ -169,7 +169,7 @@ const hub={rooms:{},n:0,ops:{
    assert(done,'bitiş sonucu bağlantı gelince yeniden gönderilmeli');}
   console.log('PASS sürüm, kapasite ve yeniden gönderim');
   // ---- 6) Davet bağlantısı kodu getirir; kurucu çıkarsa oda kapanır ----
-  const inv=await phone(390,'?oda='+vcode);assert.equal(await inv.inputValue('#yrCode'),vcode);assert.equal(await inv.locator('#yrCode').getAttribute('type'),'hidden');
+  const inv=await phone(390,'?oda='+vcode);await inv.waitForFunction(()=>YR.invite||YR.active);assert.equal(await inv.evaluate(()=>YR.invite?YR.invite.code:YR.code),vcode);assert.equal(await inv.locator('input#yrNick').count(),0);
   await v1.evaluate(()=>yrLeave());await v1.waitForFunction(()=>!YR.active);
   // ---- 7) Yatay taşma yok ----
   for(const p of [a,b,d1,v3,inv])assert(await p.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),'yatay taşma');

@@ -2,7 +2,7 @@
   "questions": [
     {
       "id": "b-bd-1-1",
-      "prompt": "Makinede bulaşık yıkamak için hangi ürün seçilir?",
+      "prompt": "Bulaşık makinesinde yıkama yapmak için hangi ürün kullanılır?",
       "choices": [
         {
           "id": "A",
@@ -29,42 +29,44 @@
         "file": "Bulaşık Yıkama ve Atık Yönetimi.docx",
         "question": "1"
       },
-      "hint": "Yanlış ürün fazla köpürerek makineden taşabilir."
+      "hint": "Makine için üretilmiş bulaşık deterjanı kullanılır. El sabunu ve elde bulaşık deterjanı bu amaçla kullanılmaz.",
+      "reviewNumber": 96
     },
     {
       "id": "b-bd-1-2",
-      "prompt": "Yıkamadan önce hangi bulaşık eldiveni seçilir?",
+      "prompt": "Bulaşık eldiveninin parmağı yırtılmıştır. Ne yapılır?",
       "choices": [
         {
           "id": "A",
-          "text": "İçi ıslak olan"
+          "text": "Yırtık bölüm bantlanır."
         },
         {
           "id": "B",
-          "text": "Parmağı yırtık olan"
+          "text": "Üzerine ikinci eldiven giyilir."
         },
         {
           "id": "C",
-          "text": "İçi kuru ve sağlam olan"
+          "text": "Eldiven yenisiyle değiştirilir."
         },
         {
           "id": "D",
-          "text": "Dışı yağlı olan"
+          "text": "Yırtık bölüm içe kıvrılır."
         }
       ],
       "correct": "C",
       "group": "1. Bölüm",
       "chapter": 1,
-      "explanation": "Temiz, sağlam ve içi kuru eldiven seçilir; kullanılmadan önce kontrol edilir.",
+      "explanation": "Yırtılmış bulaşık eldiveni kullanılmaz. Temiz, sağlam ve içi kuru bir eldiven seçilir.",
       "source": {
         "file": "Bulaşık Yıkama ve Atık Yönetimi.docx",
         "question": "2"
       },
-      "hint": "Yırtık yerden deterjanlı su ele ulaşabilir."
+      "hint": "Yırtılmış bulaşık eldiveni kullanılmaz. Temiz, sağlam ve içi kuru bir eldiven seçilir.",
+      "reviewNumber": 97
     },
     {
       "id": "b-bd-2-1",
-      "prompt": "Kaplamalı tava hangi araçla yıkanır?",
+      "prompt": "Yapışmaz kaplamalı tava hangi araçla yıkanır?",
       "choices": [
         {
           "id": "A",
@@ -91,89 +93,93 @@
         "file": "Bulaşık Yıkama ve Atık Yönetimi.docx",
         "question": "1"
       },
-      "hint": "Metal tel kaplamayı çizebilir."
+      "hint": "Kaplamayı çizmeyen ve üreticinin uygun gördüğü temizleme aracı kullanılır.",
+      "reviewNumber": 98,
+      "equivalenceKey": "kaplama-temizlik"
     },
     {
       "id": "b-bd-2-2",
-      "prompt": "Durulama neden yapılır?",
+      "prompt": "Deterjanla yıkanan bulaşıklar neden durulanır?",
       "choices": [
         {
           "id": "A",
-          "text": "Kabı bezle kurulamak için"
+          "text": "Kurumalarını geciktirmek için"
         },
         {
           "id": "B",
-          "text": "Yemek artıklarını ıslatmak için"
+          "text": "Suda beklemelerini sağlamak için"
         },
         {
           "id": "C",
-          "text": "Yeni deterjan eklemek için"
+          "text": "Deterjanın etkisini artırmak için"
         },
         {
           "id": "D",
-          "text": "Deterjanı suyla uzaklaştırmak için"
+          "text": "Deterjan kalıntılarını uzaklaştırmak için"
         }
       ],
       "correct": "D",
       "group": "2. Bölüm",
       "chapter": 2,
-      "explanation": "Temiz suyla durulama, deterjanı ve gevşeyen kirleri uzaklaştırır.",
+      "explanation": "Temiz suyla durulama, deterjan kalıntılarını ve gevşeyen kirleri uzaklaştırır.",
       "source": {
         "file": "Bulaşık Yıkama ve Atık Yönetimi.docx",
         "question": "2"
       },
-      "hint": "Yıkanan kabın üzerinde köpük kalmamalıdır."
+      "hint": "Temiz suyla durulama, deterjan kalıntılarını ve gevşeyen kirleri uzaklaştırır.",
+      "reviewNumber": 99
     },
     {
       "id": "b-bd-2-3",
-      "prompt": "Yıkama suyu kirlenmiştir. Ne yapılır?",
+      "prompt": "Elde bulaşık yıkarken kullanılan su kirlenmiştir. Ne yapılır?",
       "choices": [
         {
           "id": "A",
-          "text": "Suya deterjan eklenir."
+          "text": "Deterjan eklenir."
         },
         {
           "id": "B",
-          "text": "Aynı suyla devam edilir."
+          "text": "Yıkamaya devam edilir."
         },
         {
           "id": "C",
-          "text": "Kirli su değiştirilir."
+          "text": "Yıkama suyu değiştirilir."
         },
         {
           "id": "D",
-          "text": "Suya temiz su eklenir."
+          "text": "Üzerine temiz su eklenir."
         }
       ],
       "correct": "C",
       "group": "2. Bölüm",
       "chapter": 2,
-      "explanation": "Kirli su boşaltılır ve yıkama için temiz su hazırlanır; yalnız su veya deterjan eklemek yeterli değildir.",
+      "explanation": "Kirli su boşaltılır ve temiz yıkama suyu hazırlanır. Kirli suyun üzerine su veya deterjan eklemek yeterli değildir.",
       "source": {
         "file": "Bulaşık Yıkama ve Atık Yönetimi.docx",
         "question": "3"
       },
-      "hint": "Deterjan eklemek, suyun içindeki kirleri dışarı çıkarmaz."
+      "hint": "Kirli su boşaltılır ve temiz yıkama suyu hazırlanır. Kirli suyun üzerine su veya deterjan eklemek yeterli değildir.",
+      "reviewNumber": 100
     },
     {
       "id": "b-bd-3-1",
-      "prompt": "Makine kapalı ve soğuktur. Püskürtme kolu kepçeye takılmaktadır. Ne yapılır?",
+      "prompt": "Yıkama başlamadan önce bulaşık makinesinin sepetleri kontrol edilmektedir. Kepçe, püskürtme kolunun dönmesini engelliyorsa ne yapılır?",
       "choices": [
         {
           "id": "A",
-          "text": "Kepçe yerinde bırakılır."
+          "text": "Püskürtme kolu zorla çevrilir."
         },
         {
           "id": "B",
-          "text": "Kepçe aşağı bastırılır."
+          "text": "Kepçe sepete doğru bastırılır."
         },
         {
           "id": "C",
-          "text": "Kepçenin yeri değiştirilir."
+          "text": "Kepçe uygun bir yere yerleştirilir."
         },
         {
           "id": "D",
-          "text": "Makine hemen çalıştırılır."
+          "text": "Püskürtme kolu çıkarılır."
         }
       ],
       "correct": "C",
@@ -184,15 +190,16 @@
         "file": "Bulaşık Yıkama ve Atık Yönetimi.docx",
         "question": "1"
       },
-      "hint": "Kolun bulaşıklara su püskürtebilmesi için serbestçe dönmesi gerekir."
+      "hint": "Kepçe, kolun dönüşünü engellemeyecek biçimde yeniden yerleştirilir.",
+      "reviewNumber": 101
     },
     {
       "id": "b-bd-3-2",
-      "prompt": "Deterjan tableti konmadan önce eller nasıl hazırlanır?",
+      "prompt": "Bulaşık makinesi deterjan tableti konmadan önce eller nasıl hazırlanır?",
       "choices": [
         {
           "id": "A",
-          "text": "Yıkanır ve kurulanır."
+          "text": "Yıkanır ve tamamen kurulanır."
         },
         {
           "id": "B",
@@ -204,7 +211,7 @@
         },
         {
           "id": "D",
-          "text": "Yıkamadan eldiven giyilir."
+          "text": "Yıkanmadan eldiven giyilir."
         }
       ],
       "correct": "A",
@@ -215,7 +222,9 @@
         "file": "Bulaşık Yıkama ve Atık Yönetimi.docx",
         "question": "2"
       },
-      "hint": "Nem, tabletin yüzeyini çözündürüp ele yapışmasına yol açabilir."
+      "hint": "Eller yıkanıp tamamen kurulanır. Ürünün etiketindeki korunma talimatlarına uyulur.",
+      "reviewNumber": 102,
+      "equivalenceKey": "tablet-kuru-el"
     },
     {
       "id": "b-bd-4-2",
@@ -246,15 +255,16 @@
         "file": "Bulaşık Yıkama ve Atık Yönetimi.docx",
         "question": "2"
       },
-      "hint": "Su şişesine doldurulan temizlik ürünü içecek sanılabilir."
+      "hint": "Ürün kendi etiketli ambalajında saklanır; adı ve kullanım uyarıları korunur.",
+      "reviewNumber": 103
     },
     {
       "id": "b-bd-4-3",
-      "prompt": "Gaz kokusu alan öğrenci ne yapar?",
+      "prompt": "Bulaşık atölyesinde gaz kokusu alan öğrenci ne yapar?",
       "choices": [
         {
           "id": "A",
-          "text": "Uzaklaşıp öğretmene bildirir."
+          "text": "Uzaklaşır ve öğretmene haber verir."
         },
         {
           "id": "B",
@@ -277,31 +287,33 @@
         "file": "Bulaşık Yıkama ve Atık Yönetimi.docx",
         "question": "3"
       },
-      "hint": "Cihazı denemek ve düğmelere dokunmak tehlikeyi artırabilir."
+      "hint": "Öğrenci güvenli alana uzaklaşır ve öğretmene haber verir; gaz kaçağına müdahale etmez.",
+      "reviewNumber": 104,
+      "equivalenceKey": "gaz-kokusu"
     },
     {
       "id": "atik-yeni-1",
-      "prompt": "Atığın uygun kutusu nasıl belirlenir?",
+      "prompt": "Bir atığın hangi kutuya atılacağı nasıl belirlenir?",
       "choices": [
         {
           "id": "A",
-          "text": "Kutunun rengine bakılarak karar verilir."
+          "text": "Kutunun yalnız rengine bakılır."
         },
         {
           "id": "B",
-          "text": "Kutunun etiketindeki atık türü okunur."
+          "text": "Kutunun rengi ve üzerindeki işaretler kontrol edilir."
         },
         {
           "id": "C",
-          "text": "En yakın kutuya atılır."
+          "text": "Kutunun yakınlığına bakılır."
         },
         {
           "id": "D",
-          "text": "Kapağı en kolay açılan kutu seçilir."
+          "text": "Kutunun büyüklüğüne bakılır."
         }
       ],
       "correct": "B",
-      "explanation": "Kutunun kabul ettiği atık türü etiketinden kontrol edilir; okulun toplama düzenine uyulur.",
+      "explanation": "Kutunun rengi, yazısı ve atık türünü gösteren simgesi birlikte kontrol edilir. Okulun atık toplama düzenine uyulur.",
       "group": "5. Bölüm · Atık yönetimi",
       "chapter": 5,
       "source": {
@@ -309,19 +321,20 @@
         "section": "Atık yönetimi",
         "adaptation": "Kaynak metinden yeni soru"
       },
-      "hint": "Yalnız renge bakmak, atığın yanlış kutuya atılmasına yol açabilir."
+      "hint": "Kutunun rengi, yazısı ve atık türünü gösteren simgesi birlikte kontrol edilir. Okulun atık toplama düzenine uyulur.",
+      "reviewNumber": 105
     },
     {
       "id": "atik-yeni-2",
-      "prompt": "Kızartmadan kalan sıcak yağ için öğrenci ne yapar?",
+      "prompt": "Kızartmadan kalan yağ hâlâ sıcaktır. Öğrenci ne yapar?",
       "choices": [
         {
           "id": "A",
-          "text": "Evyeye döker."
+          "text": "Yağı evyeye döker."
         },
         {
           "id": "B",
-          "text": "Başka kaba taşır."
+          "text": "Başka kaba aktarır."
         },
         {
           "id": "C",
@@ -341,7 +354,8 @@
         "section": "Atık yönetimi",
         "adaptation": "Kaynak metinden yeni soru"
       },
-      "hint": "Sıçrayan sıcak yağ cildi yakabilir."
+      "hint": "Öğrenci sıcak yağa ve kabına dokunmadan öğretmene haber verir. Soğutma ve toplama işini öğretmen yönetir.",
+      "reviewNumber": 106
     },
     {
       "id": "atik-yeni-3",
@@ -349,7 +363,7 @@
       "choices": [
         {
           "id": "A",
-          "text": "Dokunmadan öğretmene bildirir."
+          "text": "Dokunmadan öğretmene haber verir."
         },
         {
           "id": "B",
@@ -357,11 +371,11 @@
         },
         {
           "id": "C",
-          "text": "Süngerle parçaları toplar."
+          "text": "Parçaları süngerle toplar."
         },
         {
           "id": "D",
-          "text": "Torbayı eliyle bastırır."
+          "text": "Çöp torbasını eliyle bastırır."
         }
       ],
       "correct": "A",
@@ -373,11 +387,12 @@
         "section": "Atık yönetimi",
         "adaptation": "Kaynak metinden yeni soru"
       },
-      "hint": "Cam parçaları süngeri veya torbayı delip eli kesebilir."
+      "hint": "Öğrenci kırık camı toplamaz ve torbayı sıkıştırmaz; öğretmene haber verir.",
+      "reviewNumber": 107
     },
     {
       "id": "atik-yeni-4",
-      "prompt": "Yemek israfını azaltmak için tabağa ne kadar yemek alınır?",
+      "prompt": "Yemek israfını azaltmak için öğrenci tabağına ne kadar yemek alır?",
       "choices": [
         {
           "id": "A",
@@ -393,11 +408,11 @@
         },
         {
           "id": "D",
-          "text": "Yenebilecek kadar"
+          "text": "Yiyebileceği kadar"
         }
       ],
       "correct": "D",
-      "explanation": "Porsiyon kişinin ihtiyacına göre alınır; yenmeyecek kadar yemek almak atığı artırır.",
+      "explanation": "Öğrenci tabağına yiyebileceği miktarda yemek alır. Gereğinden fazla alıp bırakmak yemek israfına neden olur.",
       "group": "5. Bölüm · Atık yönetimi",
       "chapter": 5,
       "source": {
@@ -405,7 +420,8 @@
         "section": "Atık yönetimi",
         "adaptation": "Kaynak metinden yeni soru"
       },
-      "hint": "Tabakta bırakılan yemekler atığa dönüşebilir."
+      "hint": "Öğrenci tabağına yiyebileceği miktarda yemek alır. Gereğinden fazla alıp bırakmak yemek israfına neden olur.",
+      "reviewNumber": 108
     }
   ],
   "matches": [
@@ -640,5 +656,5 @@
       "Tekstil"
     ]
   },
-  "revision": "v1-20261105"
+  "revision": "soru-denetimi-20261107-v1"
 }
