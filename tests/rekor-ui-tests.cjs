@@ -24,7 +24,7 @@ const FAKE=`window.REKOR_FAKE=(()=>{const prof={},rows={};let uid='u-cihaz';cons
   const W=await page.evaluate(()=>rkWeekNo());
   // Bütün tabloların içerik sayıları kurallardaki sınırlarla aynı olmalı.
   const invalid=await page.evaluate(()=>RK_BOARDS.filter(b=>!rkBoardValid(b)).map(b=>b.id));assert.deepEqual(invalid,[]);ok('40 tablonun kart/soru sayısı içerikle aynı');
-  const rulesBoards=fs.readFileSync(path.resolve(root,'../firebase/firestore.rules'),'utf8').match(/rkBoards\(\) \{ return \{([^}]*)\}/)[1];
+  const rulesBoards=fs.readFileSync(path.resolve(root,'ci/firebase/firestore.rules'),'utf8').match(/rkBoards\(\) \{ return \{([^}]*)\}/)[1];
   // Harita anahtarlarının yazılış sırası sıralama kuralı değildir; kimlik ve sınırları karşılaştır.
   const rulesEntries=Array.from(rulesBoards.matchAll(/'([^']+)':\s*(\d+)/g),m=>[m[1],Number(m[2])]).sort();
   const jsEntries=await page.evaluate(()=>RK_BOARDS.map(b=>[b.id,b.total]).sort());assert.deepEqual(rulesEntries,jsEntries);ok('Kurallardaki tablo kimlikleri ve puan sınırları uygulamayla birebir aynı');
@@ -120,10 +120,10 @@ const FAKE=`window.REKOR_FAKE=(()=>{const prof={},rows={};let uid='u-cihaz';cons
   const race=await page.evaluate(()=>{pickProfile('Ali');const before=JSON.stringify([rkBestAll(),rkPekAll(),rkQueue()]);st.subject='mutfak-araclari';st.op='match';st.contentSet=7;startBoard('check',12);st.sess.race={room:'TEST'};st.board.items.forEach((it,i)=>tryPair(it.id,st.board.items[(i+1)%12].answer));checkBoard();YR.active=false;render();return before===JSON.stringify([rkBestAll(),rkPekAll(),rkQueue()]);});
   assert.equal(race,true);ok('Oda yarışı oturumu rekor, kuyruk ve Pekiştiriyorum yazmıyor');
   // Aynı metinli iki soru Pekiştiriyorum'da karışmaz.
-  const dup=await page.evaluate(()=>{st.subject='mutfak-araclari';st.op='mcq';const qs=getData().questions.filter(q=>q.prompt.startsWith('Çiğ et sızdırmaz'));const pid=rkPid('Ali');const m=rkPek(pid);qs.forEach(q=>m['q|mutfak-araclari|'+q.id]={kind:'q',subject:'mutfak-araclari',id:q.id,streak:1,wrong:[],at:1});rkPekSave(pid,m);
-   st.mcqGroup=null;rkPekStart('q');const first=st.contentItems.find(q=>q.prompt.startsWith('Çiğ et sızdırmaz'));let g=0;while(!st.kDone&&g++<20){const q=st.q;answer(q.id===first.id?q.choices.find(c=>c.id!==q.correct).id:q.correct);nextQ();}
-   const left=rkPek(pid);return {n:qs.length,firstLeft:!!left['q|mutfak-araclari|'+first.id],otherLeft:qs.filter(q=>q.id!==first.id).some(q=>!!left['q|mutfak-araclari|'+q.id])};});
-  assert.equal(dup.n,2);assert.equal(dup.firstLeft,true);assert.equal(dup.otherLeft,false);ok('Aynı metinli iki soru Pekiştiriyorum sayaçlarında karışmıyor');
+  const dup=await page.evaluate(()=>{st.subject='mutfak-araclari';st.op='mcq';const qs=getData().questions.filter(q=>['m-kd-103-1','m-bd-3-6'].includes(q.id));const pid=rkPid('Ali');const m={};qs.forEach(q=>m['q|mutfak-araclari|'+q.id]={kind:'q',subject:'mutfak-araclari',id:q.id,streak:1,wrong:[],at:1});rkPekSave(pid,m);
+   st.mcqGroup=null;rkPekStart('q');const first=st.contentItems.find(q=>['m-kd-103-1','m-bd-3-6'].includes(q.id));let g=0;while(!st.kDone&&g++<20){const q=st.q;answer(q.id===first.id?q.choices.find(c=>c.id!==q.correct).id:q.correct);nextQ();}
+   const left=rkPek(pid);return {n:qs.length,firstLeft:!!left['q|mutfak-araclari|'+first.id],otherLeft:qs.filter(q=>q.id!==first.id).some(q=>!!left['q|mutfak-araclari|'+q.id]),asked:st.contentItems.filter(q=>q.equivalenceKey==='cig-et-raf').length};});
+  assert.equal(dup.n,2);assert.equal(dup.firstLeft,true);assert.equal(dup.otherLeft,true);assert.equal(dup.asked,1);ok('Eşdeğer iki sorudan biri soruluyor; sorulmayan madde doğru sayılmıyor');
   // Bu telefondan ulaşılamayan profil (başka oturuma ait) kuyruğu kilitlemez; diğer profilin sonucu gönderilir.
   const lost=await page.evaluate(async()=>{const be=REKOR_FAKE,ens=be.ensureProfile;const x='xxxxxxxxxxxxxxxxxxxx',y=rkPid('Ayşe2',true);rkProfSet(x,{status:'in',gen:0});rkProfSet(y,{status:'in',gen:0});be.ensureProfile=async p=>{if(p===x){const e=Error('permission-denied');e.code='permission-denied';throw e;}return ens(p);};
    lsSet('rk_queue',[{qid:'l1',pid:x,board:'bh-e5',period:'genel',name:'Eski',correct:3,gen:0,at:1,sess:1},{qid:'l2',pid:y,board:'bh-e5',period:'genel',name:'Ayşe2',correct:6,gen:0,at:1,sess:1}]);await rkFlush(null);be.ensureProfile=ens;return {q:rkQueue().length,st:rkProf(x).status,row:!!(REKOR_FAKE.rows[RK_TERM+'~bh-e5~genel']||{})[y]};});

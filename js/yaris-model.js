@@ -17,6 +17,7 @@
  function cleanNick(s){return String(s||'').replace(/\s+/g,' ').trim().slice(0,40);}
  function validNick(s){if(typeof s!=='string')return false;const t=s.replace(/\s+/g,' ').trim();return t.length>=1&&t.length<=40&&!/[<>\u0000-\u001f]/.test(t);}
  function uniq(a){return Array.from(new Set(a));}
+ function uniqueQuestions(items){const seen=new Set();return items.filter(q=>{const key=q.equivalenceKey||q.id;if(seen.has(key))return false;seen.add(key);return true;});}
  function finalize(base,choicesText,correctText,rng,extra){
   const order=shuffle(choicesText,rng),ids=['A','B','C','D'];
   return {...base,...extra,choices:order.map((t,i)=>({id:ids[i],text:t})),correct:ids[order.indexOf(correctText)]};
@@ -34,15 +35,15 @@
    pool=pool.filter(x=>!(it.disla||[]).includes(x));
    if(pool.length<3)throw new Error(it.id+': en az üç farklı çeldirici gerekir.');
    pool=shuffle(pool,rng).slice(0,3);
-   return finalize({id:it.id,prompt:it.kok||IMG_PROMPT[subject]||'Bu görselde ne var?',image:it.image,imageAlt:it.imageAlt||'Adı sorulan nesnenin fotoğrafı.'},[it.answer].concat(pool),it.answer,rng,{explanation:it.explanation||'',hint:it.hint||''});
+   return finalize({id:it.id,prompt:it.comparison?'Üçgenin gösterdiği aracın adı nedir?':it.kok||IMG_PROMPT[subject]||'Bu görselde ne var?',image:it.image,imageAlt:it.imageAlt||'Adı sorulan nesnenin fotoğrafı.',equivalenceKey:it.equivalenceKey,comparisonPosition:it.comparisonPosition},[it.answer].concat(pool),it.answer,rng,{explanation:it.explanation||'',hint:it.hint||''});
   });
  }
  /* Metin sorusu: seçenek bir fotoğraf olabilir (metni boş, image dolu). Doğru seçenek özgün harfinden bulunur. */
  function textQuestions(d,n,rng){
-  return shuffle(d.questions,rng).slice(0,n).map(q=>{
-   const order=shuffle(q.choices,rng),ids=['A','B','C','D'];
+  return uniqueQuestions(shuffle(d.questions,rng)).slice(0,n).map(q=>{
+   const order=q.choiceOrder?q.choices.slice():shuffle(q.choices,rng),ids=['A','B','C','D'];
    const choices=order.map((c,i)=>{const o={id:ids[i],text:c.text||''};if(c.image){o.image=c.image;o.alt=c.alt||('Seçenek '+ids[i]+' fotoğrafı');}return o;});
-   return {id:q.id,prompt:q.prompt,explanation:q.explanation||'',hint:q.hint||'',choices,correct:ids[order.findIndex(c=>c.id===q.correct)]};
+   return {id:q.id,prompt:q.prompt,image:q.image,imageAlt:q.imageAlt,explanation:q.explanation||'',hint:q.hint||'',choices,correct:ids[order.findIndex(c=>c.id===q.correct)],equivalenceKey:q.equivalenceKey,choiceOrder:q.choiceOrder,emphasis:q.emphasis};
   });
  }
  /* Kuver: parçanın adı (görselden) ve parçanın yeri (adından). */
@@ -79,12 +80,12 @@
   const d=data[subject],rng=seeded(seed),sp={subject,kind:subject==='kuver'?'kuver':'gorsel',set:subject==='kuver'?3:0,n:500,pool:true};
   let qs=buildQuestions(d,sp,seed);
   if(subject!=='kuver'&&(d.questions||[]).length)qs=qs.concat(textQuestions(d,500,rng));
-  return qs.map(q=>({...q,subject,id:subject+'|'+q.id}));
+  return uniqueQuestions(qs).map(q=>({...q,subject,id:subject+'|'+q.id}));
  }
  function buildScoped(data,spec,seed,exclude){
   if(!spec.scope||spec.scope==='tek')return buildFresh(data[spec.subject],spec,seed,exclude).map(q=>({...q,subject:spec.subject,id:q.id.includes('|')?q.id:spec.subject+'|'+q.id}));
-  const parts=spec.distribution||shares(Math.min(spec.n||10,20),spec.scope==='butun'?SUBJECT_ORDER:[spec.subject]),used=new Set(exclude||[]),out=[];
-  parts.forEach(({subject,n},i)=>{const pool=subjectPool(data,subject,spec,seedFor(seed,i));const fresh=pool.filter(q=>!used.has(q.id)).concat(pool.filter(q=>used.has(q.id)));if(fresh.length<n)throw Error((labels[subject]||subject)+': '+n+' soru için havuz yetersiz ('+fresh.length+').');out.push(...fresh.slice(0,n));});
+  const parts=spec.distribution||shares(Math.min(spec.n||10,20),spec.scope==='butun'?SUBJECT_ORDER:[spec.subject]),used=new Set(exclude||[]),out=[],skills=new Set();
+  parts.forEach(({subject,n},i)=>{const pool=subjectPool(data,subject,spec,seedFor(seed,i)).filter(q=>!skills.has(q.equivalenceKey||q.id));const fresh=pool.filter(q=>!used.has(q.id)).concat(pool.filter(q=>used.has(q.id)));if(fresh.length<n)throw Error((labels[subject]||subject)+': '+n+' soru için havuz yetersiz ('+fresh.length+').');const take=fresh.slice(0,n);take.forEach(q=>skills.add(q.equivalenceKey||q.id));out.push(...take);});
   return shuffle(out,seeded(seed));
  }
  function seedFor(seed,match){return (seed+(match|0)*7919)>>>0;}

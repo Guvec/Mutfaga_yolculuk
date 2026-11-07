@@ -1,0 +1,108 @@
+1¦Görselde gösterilen geniş kenarlı ve çukur orta bölümlü tabak hangisidir?¦Tatlı tabağı¦Makarna tabağı¦Ana yemek tabağı¦Ekmek tabağı¦B
+2¦Türk kahvesi fincanı hangi tabakla servis edilir?¦Kahve fincanı tabağı¦Tatlı tabağı¦Ekmek tabağı¦Makarna tabağı¦A
+3¦Reçeli küçük porsiyonlar hâlinde sunmak için hangi kap kullanılır?¦Salata kâsesi¦Çorba kâsesi¦Kahvaltılık kâse¦Şekerlik¦C
+4¦Servis için çorba kâsesi nasıl doldurulur?¦Ağız kenarına kadar doldurulur.¦Ağız kenarının altında boşluk kalacak şekilde doldurulur.¦Çorba dışına taşacak kadar doldurulur.¦Ağzına kadar doldurulup kapağı kapatılır.¦B
+5¦Konuğun oturduğu yerden bakıldığında ekmek tabağı nereye yerleştirilir?¦Çatalların sol üst tarafına¦Çatalların sağ alt tarafına¦Bıçakların sağ üst tarafına¦Bıçakların sağ alt tarafına¦A
+6¦Bir dilim pasta servis etmek için hangi tabak seçilir?¦Çorba tabağı¦Makarna tabağı¦Ekmek tabağı¦Tatlı tabağı¦D
+7¦Yemek bulunan tabak nasıl tutulur?¦Başparmak tabağın iç yüzeyine bastırılarak¦Tabak iş önlüğüne yaslanarak¦İç yüzeye dokunmadan dış kenardan desteklenerek¦Parmaklar yiyeceğe değecek biçimde yerleştirilerek¦C
+8¦Portakal suyu servisinde hangi kap seçilir?¦Çay bardağı¦Türk kahvesi fincanı¦Çorba kâsesi¦Meyve suyu bardağı¦D
+9¦Türk kahvesinin yanında hangi içecek sunulur?¦Su¦Meyve suyu¦Ayran¦Süt¦A
+10¦İçinde sıcak çay bulunan kulplu fincan nereden tutulur?¦Gövdesinden¦Ağız kenarından¦Kulpundan¦Tabanından¦C
+11¦Konuğun oturduğu yerden bakıldığında ana yemek çatalı nereye yerleştirilir?¦Tabağın sağına¦Tabağın soluna¦Tabağın üst tarafına¦Tabağın içine¦B
+12¦Sütlaç ve muhallebi yemek için hangi kaşık kullanılır?¦Çorba kaşığı¦Çay kaşığı¦Servis kaşığı¦Tatlı kaşığı¦D
+13¦Ekmeğe tereyağı sürmek için hangi bıçak kullanılır?¦Ana yemek bıçağı¦Ekmek bıçağı¦Tereyağı bıçağı¦Sebze bıçağı¦C
+14¦Kuverde ana yemek bıçağının keskin kenarı hangi yöne bakar?¦Konuğa¦Bardağa¦Tabağa¦Kuverin dışına¦C
+15¦Şekerlikten toz şeker alırken kaşığın durumu nasıl olmalıdır?¦Temiz ve kuru¦Temiz ancak ıslak¦Çayda kullanılmış, sonra kurulanmış¦Kullanılmış, yalnız suyla çalkalanmış¦A
+16¦Servis sırasında ısıtılmış tabağı taşırken elin korunması için ne kullanılır?¦Islak temizlik bezi¦Masa silmek için kullanılan bez¦Kuru ancak bulaşık silmekte kullanılmış bez¦Katlanmış, temiz ve kuru lito bezi¦D
+17¦Tepside taşınacak ağır kap hangi konuma yerleştirilir?¦Tepsinin orta bölümüne¦Tepsinin sol kenarına¦Tepsinin sağ kenarına¦Tepsinin ön kenarına¦A
+18¦Masayı silmek için hangi bez kullanılır?¦Servis sırasında kullanılan lito bezi¦Bulaşık kurulama bezi¦El kurulamak için kullanılan havlu¦Yalnız masa temizliği için ayrılmış bez¦D
+19¦Servis arabası kapı eşiğinden nasıl geçirilir?¦Hızla itilerek¦Tek tarafı kaldırılarak¦Yavaş ve kontrollü biçimde itilerek¦Üzerindeki kaplara dayanılıp çekilerek¦C
+20¦Üç raflı servis arabasında ağır kaplar hangi rafa yerleştirilir?¦Üst rafa¦Orta rafa¦Alt rafa¦Raf ayrımı yapılmadan herhangi bir rafa¦C
+21¦Servis sırasında lito bezi kirlenirse ne yapılır?¦Kurutulup kullanılmaya devam edilir.¦Temiz lito beziyle değiştirilir.¦Kirli kısmı içe katlanarak kullanılır.¦Silkelenip kullanılmaya devam edilir.¦B
+22¦Pirinç veya bulgur pilavı hazırlamak için hangi tencere seçilir?¦Çorba tenceresi¦Makarna tenceresi¦Pilav tenceresi¦Süt tenceresi¦C
+23¦Türk kahvesi ocakta hangi kapta pişirilir?¦Demlik¦Süt tenceresi¦Çaydanlık¦Cezve¦D
+24¦Fırından yeni çıkan çok sıcak tepsi hangi araçla tutulur?¦Kuru ve ısıya dayanıklı fırın eldiveni¦Islak fırın eldiveni¦Tek kullanımlık eldiven¦Masa silme bezi¦A
+25¦Yapışmaz kaplamalı tavada omleti çevirmek için hangi araç seçilir?¦Silikon kaplı çırpma teli¦Çelik çevirme spatulası¦Silikon çevirme spatulası¦Çelik servis kaşığı¦C
+26¦Fırından çıkan sıcak cam kap nereye yerleştirilir?¦Islak bezin üzerine¦Soğuk mermer tezgâha¦Kuru ve ısıya dayanıklı altlığa¦Yanan ocak gözünün üzerine¦C
+27¦Muffin kalıbına konacak hamur miktarı nasıl belirlenir?¦Kalıbın ağız kenarına göre¦Reçetede belirtilen miktara göre¦Kalan hamurun tamamına göre¦Diğer kalıpların büyüklüğüne göre¦B
+28¦Ekmek dilimlemek için hangi bıçak kullanılır?¦Tereyağı bıçağı¦Ekmek bıçağı¦Sebze bıçağı¦Ana yemek bıçağı¦B
+29¦Kesme tahtası doğrama sırasında kayıyorsa ne yapılır?¦Tezgâhın kenarına çekilir.¦Yiyecek elde tutularak kesilir.¦Altına kaydırmaz mat yerleştirilir.¦Sabitlenmeden doğramaya devam edilir.¦C
+30¦Kek için limonun sarı kabuğunu ince parçalar hâlinde rendelemek amacıyla hangi araç kullanılır?¦İri rende¦İnce rende¦Sebze soyacağı¦Sebze dilimleyici¦B
+31¦Karıştırma kabının iç yüzeyinde kalan hamuru toplamak için hangi araç kullanılır?¦Çırpma teli¦Servis kepçesi¦Çevirme spatulası¦Silikon sıyırma spatulası¦D
+32¦Kapalı mutfak makası taşınırken ucu hangi yöne bakar?¦Aşağı¦Öne¦Yana¦Yukarı¦A
+33¦Bıçakla doğrama yapılırken yiyeceği tutan elin parmak uçları nasıl tutulur?¦Dışa doğru açılır.¦Yukarı doğru uzatılır.¦İçe doğru bükülür.¦Bıçağın önüne doğru uzatılır.¦C
+34¦Bıçak elden kayıp düşerken ne yapılır?¦Bıçağı tutmak için el uzatılır.¦Bıçağın düşeceği yerden uzaklaşılır.¦Bıçağın düşeceği yere eğilinir.¦Bıçak havadayken sapından yakalanır.¦B
+35¦Unu gram olarak tartmak için hangi araç kullanılır?¦Ölçü kabı¦Ölçü kaşığı¦Mutfak terazisi¦Su bardağı¦C
+36¦Çorbayı tencereden kâseye almak için hangi araç kullanılır?¦Kevgir¦Kepçe¦Ayaklı süzgeç¦Tel süzgeç¦B
+37¦Fırının içindeki havanın sıcaklığını ölçmek için hangi araç kullanılır?¦Buzdolabı termometresi¦Şeker termometresi¦Kızartma yağı termometresi¦Fırın termometresi¦D
+38¦Çalışır durumdaki mutfak terazisine boş kap konmuştur. Kabın ağırlığını ölçümden çıkarmak için hangi düğmeye basılır?¦Açma¦Birim¦Dara¦Kapatma¦C
+39¦200 ml sütü tek seferde ölçmek için hangi araç seçilir?¦200 ml çizgisi bulunan ölçü kabı¦Yalnız gram gösteren mutfak terazisi¦15 ml ölçü kaşığı¦100 ml çay bardağı¦A
+40¦Yan yüzünde ölçü çizgileri bulunan kaptaki sıvı seviyesi nasıl okunur?¦Kap düz zemindeyken sıvı seviyesine göz hizasından bakılır.¦Kap düz zemindeyken sıvı seviyesine yukarıdan bakılır.¦Kap yana eğilerek sıvı seviyesine yandan bakılır.¦Kap havaya kaldırılarak sıvı seviyesine aşağıdan bakılır.¦A
+41¦Hamuru açıp inceltmek için hangi araç kullanılır?¦Hamur kazıyıcı¦Merdane¦Kurabiye kalıbı¦Pasta spatulası¦B
+42¦Kremayı pastanın üzerine yayıp düzeltmek için hangi araç kullanılır?¦Çırpma teli¦Mutfak fırçası¦Pasta spatulası¦Çevirme spatulası¦C
+43¦Fırından çıkan kurabiyeler soğutulmak için nereye yerleştirilir?¦Buzdolabı rafına¦Kesme tahtasına¦Karıştırma kabına¦Soğutma teline¦D
+44¦Sıkma torbasına krema doldurulurken kremanın yukarıdan taşması nasıl önlenir?¦Torba ağzına kadar doldurulur.¦Torbanın ağzı açık bırakılıp elle bastırılır.¦Üstte boşluk bırakılır ve üst kısım bükülerek kapatılır.¦Torba iki elle ortasından sıkıca tutulur.¦C
+45¦Çiğ yumurtaya değen mutfak fırçasındaki kalıntılar nasıl temizlenir?¦Kâğıt havluyla silinerek¦Deterjanlı suyla yıkanıp durulanarak¦Soğuk suda bekletilerek¦Yumurta kuruduktan sonra silkelenerek¦B
+46¦Temel işlevi su kaynatmak olan elektrikli cihaz hangisidir?¦Tost makinesi¦Su ısıtıcısı¦Türk kahvesi makinesi¦Mikrodalga fırın¦B
+47¦Atölyede mikrodalga fırında ısıtma yapılırken aşağıdakilerden hangisi kullanılmaz?¦Mikrodalgaya uygun porselen tabak¦Mikrodalgaya uygun cam kap¦Mikrodalgaya uygun kapak¦Alüminyum folyo¦D
+48¦Atölyede gaz kokusu alan öğrenci ne yapar?¦Kaynağı bulmak için ocağı yakar.¦Gaz kokusunu kontrol etmek için düğmeleri çevirir.¦Kokunun yayılmaması için pencereyi kapatır.¦Tehlikeli alandan uzaklaşır ve öğretmene haber verir.¦D
+49¦Sıcak fırının kapağı açılırken yüz nerede tutulur?¦Kapak açıklığından uzakta¦Fırının içini yakından görecek konumda¦Açılan kapağın hemen üzerinde¦Çıkan buharın önünde¦A
+50¦Mikrodalga fırında ısıtılan yemeğin bekleme süresi neye göre belirlenir?¦Yiyecek ve cihaz talimatına göre¦Yalnız kabın büyüklüğüne göre¦Yalnız yemeğin görünüşüne göre¦Yalnız kabın dış sıcaklığına göre¦A
+51¦Çorba, cihazın kullanım talimatına uygun sıcaklığa getirilmiştir. Çorbayı bıçaklı ucuyla püre yapmak için hangi araç kullanılır?¦El mikseri¦Hamur yoğurma makinesi¦El blenderi¦Çırpma teli¦C
+52¦Kremayı iki çırpıcı ucuyla çırpan ve çalışırken elde tutulan elektrikli cihaz hangisidir?¦El mikseri¦El blenderi¦Smoothie blenderi¦Stand mikseri¦A
+53¦Smoothie blenderinin en yüksek dolum çizgisi neyi gösterir?¦Kapağın takılacağı yeri¦Haznenin en fazla doldurulacağı düzeyi¦Bıçağın takılacağı yeri¦Cihazın hız ayarını¦B
+54¦El mikserinin çırpıcı uçları hangi durumda takılır?¦Cihaz kapalı, fişi prize takılıyken¦Cihaz açık, fişi prize takılıyken¦Hız ayarı sıfırda, fişi prize takılıyken¦Cihaz kapalı, fişi prizden çekilmişken¦D
+55¦Hamur yoğurma makinesinin hareketli parçaları tamamen durmuştur. Yoğurucu kanca takılırken makine hangi durumda olmalıdır?¦Açık, fişi prize takılı¦Kapalı, fişi prize takılı¦Açık, fişi prizden çekilmiş¦Kapalı, fişi prizden çekilmiş¦D
+56¦Sızdırmaz kaba konmuş çiğ et, buzdolabının hangi rafında saklanır?¦En üst rafta¦En alt rafta¦Kapak rafında¦Orta rafta¦B
+57¦Un saklamak için hangi kap seçilir?¦Temiz, kuru ve kapaklı kavanoz¦Temiz, kuru ve açık karıştırma kabı¦Temiz, kapaklı ve içi ıslak kavanoz¦Kuru, kapaklı ve içinde yemek kalıntısı bulunan kap¦A
+58¦Artan pişmiş yemek güvenli biçimde soğutulmuş ve 4 °C veya altında saklanmıştır. Daha kısa bir süre belirtilmemişse genel olarak önerilen en uzun saklama aralığı hangisidir?¦1–2 gün¦3–4 gün¦5–6 gün¦7–8 gün¦B
+59¦Ortam sıcaklığı 32 °C’yi aşmamaktadır. Sıcak tutulmayan, çabuk bozulan pişmiş yemek en geç kaç saat içinde buzdolabına alınmalıdır?¦2 saat¦4 saat¦6 saat¦12 saat¦A
+60¦Güvenli koşullarda saklanmış artan pişmiş yemek yeniden ısıtılmaktadır. Yemeğin iç sıcaklığı en az kaç dereceye ulaştırılır?¦40 °C¦60 °C¦75 °C¦90 °C¦C
+61¦Buzdolabının soğutucu bölümü için kullanılan üst sıcaklık sınırı hangisidir?¦+4 °C¦+10 °C¦+15 °C¦+20 °C¦A
+62¦Dondurucu bölüm hangi sıcaklıkta veya daha soğuk tutulur?¦−18 °C¦−5 °C¦0 °C¦+4 °C¦A
+63¦Yapışmaz kaplamalı tava nasıl temizlenir?¦Süngerin sert yüzüyle ovulur.¦Süngerin yumuşak yüzüyle yıkanır.¦Metal bulaşık teliyle ovulur.¦Bıçak ucuyla kazınır.¦B
+64¦Bulaşık makinesinin üst sepetine bardaklar nasıl yerleştirilir?¦Ağızları yukarı bakacak şekilde¦Yan yatırılarak¦Ağızları aşağı bakacak şekilde¦İç içe geçirilerek¦C
+65¦Bulaşık makinesi deterjan tableti hazneye konurken eller nasıl olmalıdır?¦Deterjanlı¦Islak¦Kuru¦Yağlı¦C
+66¦Tabaklar kurulama rafında nasıl durmalıdır?¦Üst üste yığılmış¦Yatay ve ağızları yukarı dönük¦İç içe geçirilmiş¦Dik ve aralıklı¦D
+67¦Tabak bulaşık makinesine konmadan önce üzerindeki büyük yemek artıklarına ne yapılır?¦Evyeye dökülür.¦Bulaşık makinesinin tabanına dökülür.¦Peçeteyle birlikte makineye konur.¦Uygun atık kabına sıyrılır.¦D
+68¦Bulaşık yıkama işi bitince süngere ne yapılır?¦Yıkanır, durulanır ve sıkılarak kurumaya bırakılır.¦Yıkanır, durulanır ve ıslak olarak kapalı kaba konur.¦Yıkanır ve deterjanlı suyun içinde bırakılır.¦Durulanmadan sıkılır ve kullanılmış bezin üzerine konur.¦A
+69¦Bulaşık süngeri hangi durumda yenisiyle değiştirilir?¦Üzerinde köpük kaldığında¦Durulama sırasında ıslandığında¦Yıprandığında veya kötü koktuğunda¦Kullanıldıktan sonra kuruduğunda¦C
+70¦Bu atölyede yıkanan eller hangisiyle kurulanır?¦Temizlik beziyle¦Kâğıt havluyla¦Lito beziyle¦İş önlüğüyle¦B
+71¦Fırından çıkan sıcak tepsi hangi araçla tutulur?¦Kuru fırın eldiveniyle¦Tek kullanımlık eldivenle¦Bulaşık eldiveniyle¦Mutfak önlüğüyle¦A
+72¦Mutfakta bone hangi amaçla kullanılır?¦Elleri sıcaktan korumak¦Giysileri lekeden korumak¦Yiyeceğe saç düşmesini önlemek¦Ellerin deterjanla temasını azaltmak¦C
+73¦Bulaşık eldiveni hangi amaçla kullanılır?¦Hamur yoğurmak¦Sıcak tepsi tutmak¦Çiğ et doğramak¦Ellerin deterjanla temasını azaltmak¦D
+74¦Tek kullanımlık eldiven takılmadan önce ellere hangi işlem yapılır?¦Yalnız kurulama yapılır.¦Krem sürülür.¦Yalnız suyla ıslatılır.¦Yıkama ve kurulama yapılır.¦D
+75¦Fotoğraflardan hangisi makarna tabağıdır?¦@assets/sorular-guncel/m-bd-1-1-A.jpg¦@assets/sorular-guncel/m-bd-1-1-B.jpg¦@assets/sorular-guncel/m-bd-1-1-C.jpg¦@assets/sorular-guncel/m-bd-1-1-D.jpg¦B
+76¦Aynı takımdaki kaşıklar ortak ölçekte gösterilmiştir. Tatlı kaşığı hangisidir?¦@assets/karsilastirma/kasik-secim-A.svg¦@assets/karsilastirma/kasik-secim-B.svg¦@assets/karsilastirma/kasik-secim-C.svg¦@assets/karsilastirma/kasik-secim-D.svg¦D
+77¦Ortasında fincanın oturacağı çukur bölüm bulunan tabak hangi fotoğraftadır?¦@assets/sorular-guncel/m-bd-1-3-A.jpg¦@assets/sorular-guncel/m-bd-1-3-B.jpg¦@assets/sorular-guncel/m-bd-1-3-C.jpg¦@assets/sorular-guncel/m-bd-1-3-D.jpg¦C
+78¦Servis sırasında lito bezi kirlenmiştir. Ne yapılır?¦Temiz lito beziyle değiştirilir.¦Kirli kısmı içe katlanarak kullanılır.¦Silkelenip yeniden kullanılır.¦Kurutulup servise devam edilir.¦A
+79¦Öğretilen servis düzeninde Türk kahvesi fincanının kulpu hangi yöne çevrilir?¦Konuğun soluna¦Konuğa doğru¦Konuktan uzağa¦Konuğun sağına¦D
+80¦Servise hazırlanmış sürahinin dış yüzeyi ıslaktır. Taşımadan önce ne yapılır?¦Temiz ve kuru bezle kurulanır.¦Islak yüzeyi iş önlüğüne yaslanır.¦Tepsinin kenarına yerleştirilir.¦Islak gövdesinden sıkıca tutulur.¦A
+81¦Ortak kaptaki pilavı konuğun tabağına almak için hangi kaşık kullanılır?¦Konuğun yemek kaşığı¦Tatlı kaşığı¦Servis kaşığı¦Çay kaşığı¦C
+82¦Fotoğraflardan hangisi cezvedir?¦@assets/sorular-guncel/m-bd-2-1-A.jpg¦@assets/sorular-guncel/m-bd-2-1-B.jpg¦@assets/sorular-guncel/m-bd-2-1-C.jpg¦@assets/sorular-guncel/m-bd-2-1-D.jpg¦C
+83¦Fotoğraflardan hangisi kevgirdir?¦@assets/sorular-guncel/m-bd-2-2-A.jpg¦@assets/sorular-guncel/m-bd-2-2-B.jpg¦@assets/sorular-guncel/m-bd-2-2-C.jpg¦@assets/sorular-guncel/m-bd-2-2-D.jpg¦B
+84¦Fotoğraflardan hangisi ince rendedir?¦@assets/sorular-guncel/m-bd-2-3-A.jpg¦@assets/sorular-guncel/m-bd-2-3-B.jpg¦@assets/sorular-guncel/m-bd-2-3-C.jpg¦@assets/sorular-guncel/m-bd-2-3-D.jpg¦D
+85¦Reçetede 200 g un kullanılacağı yazmaktadır. Un hangi araçla ölçülür?¦Ölçü kabı¦Mutfak terazisi¦Ölçü kaşığı¦Su bardağı¦B
+86¦Yapışmaz kaplamalı tavada yiyecek çevirmek için hangi araç kullanılır?¦Metal çatal¦Bıçak¦Metal kaşık¦Silikon çevirme spatulası¦D
+87¦Atölyede tavadaki yağ alev almıştır. Öğrenci ne yapar?¦Yağın üzerine su döker.¦Tavayı ocaktan alıp taşır.¦Uzaklaşır ve öğretmene haber verir.¦Tavayı kapakla kapatmaya çalışır.¦C
+88¦Fırından çıkarılacak sıcak börek tepsisi hangi araçla tutulur?¦Lito beziyle¦Tek kullanımlık eldivenle¦Islak bezle¦Kuru fırın eldiveniyle¦D
+89¦Fotoğraflardan hangisi çay makinesidir?¦@assets/sorular-guncel/m-bd-3-1-A.jpg¦@assets/sorular-guncel/m-bd-3-1-B.jpg¦@assets/sorular-guncel/m-bd-3-1-C.jpg¦@assets/sorular-guncel/m-bd-3-1-D.jpg¦C
+90¦Fotoğraflardan hangisi el blenderidir?¦@assets/sorular-guncel/m-bd-3-2-A.jpg¦@assets/sorular-guncel/m-bd-3-2-B.jpg¦@assets/sorular-guncel/m-bd-3-2-C.jpg¦@assets/sorular-guncel/m-bd-3-2-D.jpg¦A
+91¦Kuru gıda kavanozu hangi fotoğraftadır?¦@assets/sorular-guncel/m-bd-3-3-A.jpg¦@assets/sorular-guncel/m-bd-3-3-B.jpg¦@assets/sorular-guncel/m-bd-3-3-C.jpg¦@assets/sorular-guncel/m-bd-3-3-D.jpg¦B
+92¦Mikrodalga fırında kullanılacak cam kabın hangi özelliği kontrol edilir?¦Kapağının metal olması¦Dışının folyoyla kaplanması¦Mikrodalgaya uygunluğunun belirtilmesi¦Kenarının metal süslü olması¦C
+93¦El mikserinin çırpıcı uçları hangi durumda çıkarılır?¦Mikser düşük hızda çalışırken¦Mikser kapalı, fişi prize takılıyken¦Fiş çekilmiş ancak çırpıcılar hâlâ dönerken¦Mikser kapalı, fişi çekilmiş ve çırpıcıları durmuşken¦D
+94¦Sızdırmaz kaba konmuş çiğ et, buzdolabının hangi rafına yerleştirilir?¦En üst rafa¦Kapak rafına¦En alt rafa¦Orta rafa¦C
+95¦Atölyede gaz kokusu alan öğrenci ne yapar?¦Uzaklaşır ve öğretmene haber verir.¦Ocağı yakarak kontrol eder.¦Ocağın düğmelerini çevirir.¦Gaz kokusunun kaynağını arar.¦A
+96¦Bulaşık makinesinde yıkama yapmak için hangi ürün kullanılır?¦Bulaşık makinesi deterjanı¦Sıvı el sabunu¦Yüzey temizleyici¦Elde bulaşık deterjanı¦A
+97¦Bulaşık eldiveninin parmağı yırtılmıştır. Ne yapılır?¦Yırtık bölüm bantlanır.¦Üzerine ikinci eldiven giyilir.¦Eldiven yenisiyle değiştirilir.¦Yırtık bölüm içe kıvrılır.¦C
+98¦Yapışmaz kaplamalı tava hangi araçla yıkanır?¦Metal bulaşık teli¦Yumuşak bulaşık süngeri¦Sert metal kazıyıcı¦Sert kıllı fırça¦B
+99¦Deterjanla yıkanan bulaşıklar neden durulanır?¦Kurumalarını geciktirmek için¦Suda beklemelerini sağlamak için¦Deterjanın etkisini artırmak için¦Deterjan kalıntılarını uzaklaştırmak için¦D
+100¦Elde bulaşık yıkarken kullanılan su kirlenmiştir. Ne yapılır?¦Deterjan eklenir.¦Yıkamaya devam edilir.¦Yıkama suyu değiştirilir.¦Üzerine temiz su eklenir.¦C
+101¦Yıkama başlamadan önce bulaşık makinesinin sepetleri kontrol edilmektedir. Kepçe, püskürtme kolunun dönmesini engelliyorsa ne yapılır?¦Püskürtme kolu zorla çevrilir.¦Kepçe sepete doğru bastırılır.¦Kepçe uygun bir yere yerleştirilir.¦Püskürtme kolu çıkarılır.¦C
+102¦Bulaşık makinesi deterjan tableti konmadan önce eller nasıl hazırlanır?¦Yıkanır ve tamamen kurulanır.¦Yalnız suyla ıslatılır.¦Islak bezle silinir.¦Yıkanmadan eldiven giyilir.¦A
+103¦Temizlik ürünü hangi kapta saklanır?¦Boş su şişesinde¦Kendi etiketli ambalajında¦Boş yemek kabında¦Etiketsiz bir şişede¦B
+104¦Bulaşık atölyesinde gaz kokusu alan öğrenci ne yapar?¦Uzaklaşır ve öğretmene haber verir.¦Cihazı çalıştırıp kontrol eder.¦Düğmeleri açıp kapatır.¦Kokunun kaynağını arar.¦A
+105¦Bir atığın hangi kutuya atılacağı nasıl belirlenir?¦Kutunun yalnız rengine bakılır.¦Kutunun rengi ve üzerindeki işaretler kontrol edilir.¦Kutunun yakınlığına bakılır.¦Kutunun büyüklüğüne bakılır.¦B
+106¦Kızartmadan kalan yağ hâlâ sıcaktır. Öğrenci ne yapar?¦Yağı evyeye döker.¦Başka kaba aktarır.¦Öğretmene haber verir.¦Çöp torbasına boşaltır.¦C
+107¦Atıkların arasında kırık bardak gören öğrenci ne yapar?¦Dokunmadan öğretmene haber verir.¦Parçaları eliyle ayırır.¦Parçaları süngerle toplar.¦Çöp torbasını eliyle bastırır.¦A
+108¦Yemek israfını azaltmak için öğrenci tabağına ne kadar yemek alır?¦Tabağın alabileceği kadar¦Arkadaşının aldığı kadar¦Her yemekten iki porsiyon¦Yiyebileceği kadar¦D

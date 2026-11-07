@@ -1,6 +1,6 @@
 /* © 2026 Ali Arıkoğlu. Tüm hakları saklıdır. */
 /* Çoktan seçmeli sorular: konu (grup) seçimi, kitaptaki sıra, A-B-C-D harfleri ve fotoğraflı seçenekler.
-   Soru metni, seçenek sırası ve doğru harf kaynaktaki gibi kalır; sorular karıştırılmaz. */
+   Kalıcı madde kimlikleri korunur. Sayısal ve alfabetik seçenek sırası sabittir. */
 'use strict';
 const MCQ_PREV_START=startContent,MCQ_PREV_RENDER=render,MCQ_PREV_QUIZ=contentQuizHTML;
 /* Sıralama denemeleri için birleşen gruplar. Ortak hedefi olan küçük gruplar tek deneme olur. */
@@ -15,16 +15,20 @@ function mcqGroups(){const d=getData();if(st.op!=='mcq')return [];
   (MCQ_MERGE[st.subject]||[]).forEach(m=>{if(m.whole){list.push({label:m.label,whole:true,parts:m.parts.slice()});return;}const i=list.findIndex(g=>m.parts.includes(g.label));if(i<0)return;const first=list[i];list=list.filter(g=>!m.parts.includes(g.label));list.splice(i,0,{label:m.label,chapter:first.chapter,parts:m.parts.slice()});});
   return list.map(g=>({...g,count:qs.filter(q=>g.parts.includes(q.group)).length})).filter(g=>g.count);}
 function mcqGroupParts(label){const g=mcqGroups().find(x=>x.label===label);return g?g.parts:[label];}
-/* Uyguluyorum ve Pekiştiriyorum'da soru sırası ve seçenek yeri karışır; harfler A-B-C-D olarak yeniden dizilir.
+/* Uyguluyorum ve Pekiştiriyorum'da sorular ve sırası serbest seçenekler karışır; harfler yeniden eşlenir.
    Öğreniyorum'da kaynak sırası korunur. */
-function mcqShuffled(q){const letters=['A','B','C','D','E','F'];const ch=shuffle(q.choices);let correct=q.correct;const choices=ch.map((c,i)=>{const id=letters[i];if(c.id===q.correct)correct=id;return {...c,id};});return {...q,choices,correct};}
+function mcqUnique(items){const seen=new Set();return items.filter(q=>{const key=q.equivalenceKey||q.id;if(seen.has(key))return false;seen.add(key);return true;});}
+function mcqPromptHTML(q){let h=esc(q.prompt);for(const word of q.emphasis||[])h=h.replace(esc(word),'<strong class="question-negative">'+esc(word)+'</strong>');return h;}
+function mcqShuffled(q){const letters=['A','B','C','D','E','F'];const ch=q.choiceOrder?q.choices.slice():shuffle(q.choices);let correct=q.correct;const choices=ch.map((c,i)=>{const id=letters[i];if(c.id===q.correct)correct=id;return {...c,id};});return {...q,choices,correct};}
 function pickGroup(i){st.mcqGroup=mcqGroups()[i].label;go('mcqmode');}
 function mcqBegin(mode){st.practice=mode;startContent();}
 startContent=function(setNo){
   if(st.op!=='mcq'||!mcqGroups().length)return MCQ_PREV_START(setNo);
   if(!st.mcqGroup){go('content');return;}
   const parts=mcqGroupParts(st.mcqGroup);let items=getData().questions.filter(q=>parts.includes(q.group));
-  if(st.practice==='check')items=shuffle(items).map(mcqShuffled);
+  if(st.practice==='check')items=shuffle(items);
+  items=mcqUnique(items);
+  if(st.practice==='check')items=items.map(mcqShuffled);
   st.contentItems=items.slice();st.contentIndex=0;st.brk=0;st.kDone=false;st.done=false;st.inBreak=false;st.contentSet=null;
   st.sess={id:Date.now(),p:st.guest?'Misafir':st.prof,t:new Date().toISOString(),op:'mcq',subject:st.subject,practice:st.practice||'learn',total:items.length,group:st.mcqGroup,s:0,ok:0,fix:0,bad:0,br:0,qs:[]};
   st.savedMsg=st.guest?'Misafir oturumu: sonuçlar kaydedilmiyor.':'';contentNext();st.screen='quiz';render();window.scrollTo(0,0);
@@ -47,7 +51,7 @@ contentQuizHTML=function(){
   if(st.op!=='mcq'||!st.q||!st.q.group)return MCQ_PREV_QUIZ();
   const q=st.q;
   let h=topBar(subjectName()+' · '+q.group)+'<div class="wrap">'+statsHtml();
-  h+='<section class="card"><h2>'+esc(q.prompt)+'</h2>'+(q.image?'<img class="content-image match-image" src="'+esc(q.image)+'" alt="'+esc(q.imageAlt||'Soru fotoğrafı')+'">':'');
+  h+='<section class="card"><h2>'+mcqPromptHTML(q)+'</h2>'+(q.image?'<img class="content-image match-image" src="'+esc(q.image)+'" alt="'+esc(q.imageAlt||'Soru fotoğrafı')+'">':'');
   const pic=q.choices.some(c=>c.image);
   h+='<div class="opts'+(pic?' opts-pic':' opts-mcq')+'">';
   q.choices.forEach(c=>{const dis=st.done||st.tries>=2||st.wrong.includes(c.id);
