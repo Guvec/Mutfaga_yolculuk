@@ -1,0 +1,98 @@
+/* Keep source edges and the target triangle inside every photograph box. */
+.question-negative{text-decoration:underline;text-underline-offset:.15em;font-weight:900}
+.arac-board [hidden]{display:none!important}
+.arac-board,.arac-board *{min-width:0;box-sizing:border-box}
+.arac-board .btn{margin:0}
+.arac-board .stats{margin-bottom:6px}
+.arac-board .lesson-progress{margin-bottom:6px}
+.arac-board .board-gallery{display:flex;flex-direction:column;gap:8px}
+.arac-board .board-imgs{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;align-items:start}
+.arac-board .bimg{padding:5px;overflow:visible}
+.arac-board .bimg-btn{height:clamp(140px,21dvh,220px);min-height:0;overflow:visible}
+.arac-board .bimg-btn img{width:100%;height:100%;max-width:100%;max-height:100%;aspect-ratio:auto;object-fit:contain}
+.arac-board .bimg-tools{flex-wrap:nowrap;min-height:48px}
+.arac-board .bimg-tools .blbl{flex:1 1 auto;width:auto;line-height:1.2;font-size:14px;min-height:0}
+.arac-board .bimg .bimg-tools .zoom-btn{flex:0 0 48px;margin:0}
+.arac-board .card-task{font-size:14px;line-height:1.25;margin:5px 1px}
+.arac-board .board-pager,.arac-board .name-pager{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.arac-board .board-pager .btn,.arac-board .name-pager .btn{min-height:48px;padding:8px 12px;font-size:16px;flex:0 0 auto;width:auto}
+.arac-board .board-pager span,.arac-board .name-pager span{text-align:center;font-size:15px;font-weight:bold}
+.arac-board .board-side .msg{max-height:none;overflow:visible;margin:0;padding:8px;line-height:1.3}
+.arac-board .board-side .msg span{display:block}
+.arac-board .board-names{gap:6px}
+.arac-board .bname{min-height:48px;padding:7px;font-size:16px;line-height:1.25;overflow-wrap:anywhere}
+.arac-board .foot{margin:10px 0 0;gap:8px}
+.arac-board .foot .btn{min-height:48px;padding:9px}
+.arac-session .voice-tools{display:flex;flex-direction:row;flex-wrap:nowrap;width:100%;max-width:1400px;box-sizing:border-box;margin:8px auto;padding:0 12px;gap:8px}
+.arac-session .voice-tools .btn{flex:1;min-width:0;min-height:48px;padding:8px;font-size:15px}
+.modal.zoom{width:min(900px,100%);max-width:900px;max-height:calc(100dvh - 24px);padding:12px;display:flex;flex-direction:column;gap:8px;overflow:auto}
+.modal.zoom img{display:block;width:100%;min-height:0;height:auto;max-height:calc(100dvh - 116px);object-fit:contain;flex:1 1 auto;margin:0}
+.modal.zoom .btn{flex:none;min-height:48px;margin:0}
+@media(min-width:760px) and (min-height:501px){
+ .arac-board{padding:10px 16px;max-width:1400px}
+ .arac-board .board{grid-template-columns:minmax(0,1fr) minmax(320px,35%);align-items:start;gap:12px}
+ .arac-board .board-side{position:static;gap:6px}
+ .arac-board .board-help{font-size:15px;margin:4px 0 8px}
+}
+@media(min-width:1100px) and (min-height:501px){
+ .arac-board .board-names{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+@media(max-width:759px), (max-height:500px){
+ .arac-session .top{padding:4px 8px;gap:4px;min-height:56px;flex-wrap:wrap}
+ .arac-session .top .ttl{font-size:14px;flex:1}
+ .arac-session .top .who{display:none}
+ .arac-session .top .back,.arac-session .top .ses-ac{flex:0 0 48px;width:48px;min-width:48px;min-height:48px;padding:4px;font-size:13px;line-height:1.2}
+ .arac-session .top .muzik-ac,.arac-session .top .theme-toggle{flex:1 1 48px;min-width:48px;min-height:48px;padding:4px;font-size:12px;line-height:1.2}
+ .arac-session .top .ttl{order:-1;flex:1 0 100%;width:100%}
+ .arac-board{padding:8px 10px 10px}
+ .arac-board .stats{margin:0 0 4px;font-size:14px;gap:5px}
+ .arac-board .lesson-progress{margin:4px 0;height:6px}
+ .arac-board .board-help{font-size:15px;line-height:1.25;margin:4px 0 6px;padding:0;position:static}
+ .arac-board .phone-board-controls{margin:0 0 6px;gap:0}
+ .arac-board .phone-steps{display:none}
+ .arac-board .phone-name-toggle{min-height:48px;padding:8px;margin:0}
+ .arac-board .board{display:block}
+ .arac-board .board-imgs{display:block}
+ .arac-board .bimg-btn{height:clamp(150px,31dvh,290px)}
+ .arac-board .bimg-tools .blbl{display:block!important}
+ .arac-board .bimg-tools{min-height:48px}
+ .arac-board .card-task{display:none}
+ .arac-board .board-pager{margin-top:0}
+ .arac-board .board-pager .zoom-btn{position:static;flex:0 0 48px;width:48px;height:48px;min-height:48px;padding:0;border:1px solid var(--line);border-radius:12px;font-size:22px;background:#fff}
+ .arac-board .board-pager .btn{width:48px;font-size:0;line-height:1}
+ .arac-board .board-pager .btn:first-child::after{content:'←';font-size:22px}
+ .arac-board .board-pager .btn:last-child::after{content:'→';font-size:22px}
+ .arac-board .board-side.name-sheet-open{padding:10px;left:8px;right:8px;bottom:calc(8px + env(safe-area-inset-bottom));gap:6px;max-height:calc(100dvh - 16px - env(safe-area-inset-top) - env(safe-area-inset-bottom));overflow:auto}
+ .arac-board .phone-sheet-header{flex:none}
+ .arac-board .phone-sheet-title h2{font-size:20px;margin:0}
+ .arac-board .phone-sheet-selected{display:block;margin:0}
+ .arac-board .phone-sheet-selected img{display:block;width:100%;height:clamp(100px,24dvh,210px);object-fit:contain}
+ .arac-board .phone-sheet-selected p{font-size:15px;line-height:1.25;margin:4px 0}
+ .arac-board .phone-sheet-selected .card-task{display:block;font-size:14px;max-height:70px;overflow:auto}
+ .arac-board .board-names{grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;overflow:visible;flex:none;grid-auto-rows:auto;padding:2px}
+ .arac-board .bname{min-height:48px;font-size:16px;padding:7px;line-height:1.25}
+ .arac-board .name-pager{flex:none}
+ .arac-board .phone-feedback{font-size:14px;padding:8px;margin:4px 0;max-height:150px;overflow:auto}
+ .arac-board .phone-feedback p{margin:4px 0}
+ .arac-board .saved:empty{display:none}
+}
+@media(max-height:500px){
+ .arac-board .bimg-btn{height:140px}
+ .arac-board .phone-sheet-selected{display:flex;align-items:center;gap:8px}
+ .arac-board .phone-sheet-selected img{width:180px;height:110px;flex:none}
+ .arac-board .board-names{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+@media(max-width:759px) and (max-height:700px){
+ .arac-session .gs-strip{display:none}
+ .arac-board .bimg-btn{height:190px}
+ .arac-board .board-pager .btn{width:48px;font-size:0;line-height:1}
+ .arac-board .board-pager .btn:first-child::after{content:'←';font-size:22px}
+ .arac-board .board-pager .btn:last-child::after{content:'→';font-size:22px}
+ .arac-board .foot .btn{min-height:48px;white-space:nowrap}
+ .arac-board .foot{margin-top:6px}
+ .arac-board .board-help{font-size:15px;line-height:1.25}
+ /* The header's sound button opens the same settings and stops speech. */
+ .arac-session .voice-tools{display:none}
+ .arac-board{padding-bottom:4px}
+ .arac-board .phone-sheet-selected img{height:clamp(90px,22dvh,150px)}
+}

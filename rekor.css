@@ -1,0 +1,43 @@
+/* © 2026 Ali Arıkoğlu. Tüm hakları saklıdır. */
+/* Rekorlarım, sıralama ve Pekiştiriyorum. Mevcut renklerle uyumlu, beyaz zemin. */
+.rk-tabs{display:flex;gap:8px;margin:4px 0 14px}
+.rk-tabs .btn{flex:1;min-height:48px}
+.rk-part h2,.rk-title{font-size:1.05rem;margin:0 0 6px}
+.rk-part p{margin:4px 0 10px}
+.rk-list{display:flex;flex-direction:column;gap:8px;margin-bottom:14px}
+.rk-rec{display:flex;flex-direction:column;align-items:stretch;gap:10px;padding:12px;border:1px solid #d3dfdf;border-radius:12px;background:#fff}
+.rk-rec>div{display:flex;flex-direction:column;gap:3px}
+.rk-rec span{overflow-wrap:break-word}
+@media (min-width:760px){.rk-rec{flex-direction:row;align-items:center;justify-content:space-between}.rk-rec .btn{width:auto;flex:none}}
+.rk-pick{display:flex;flex-direction:column;gap:10px}
+.rk-pick label{display:flex;flex-direction:column;gap:4px;font-weight:600}
+.rk-pick select{min-height:48px;font-size:1rem;padding:6px 8px;border:1px solid #9fb5b7;border-radius:10px;background:#fff;max-width:100%}
+.rk-period{display:flex;gap:8px}
+.rk-period .btn{flex:1;min-height:44px}
+.rk-rows{list-style:none;margin:8px 0;padding:0;display:flex;flex-direction:column;gap:6px}
+.rk-row{display:grid;grid-template-columns:3.2em 1fr auto;align-items:center;gap:8px;padding:10px 12px;border:1px solid #d3dfdf;border-radius:10px;background:#fff;font-size:1.05rem}
+.rk-row.rk-me{border:2px solid #0f6e72;background:#e6f1f1}
+.rk-rank{font-weight:700;color:#0f6e72}
+.rk-name{overflow-wrap:anywhere}
+.rk-score{font-weight:700;white-space:nowrap}
+.rk-banner,.rk-tekrar{border-left:6px solid #0f6e72}
+.rk-banner strong,.rk-tekrar strong{display:block;font-size:1.1rem;margin-bottom:4px}
+.rk-banner p,.rk-tekrar p{margin:4px 0}
+.rk-banner .btn,.rk-tekrar .btn{margin:6px 6px 0 0}
+.rk-banner.rk-new{border-left-color:#23804f;background:#f1faf4}
+html[data-theme=dark] :is(.rk-rec,.rk-row,.rk-pick select){background:var(--surface);color:var(--text);border-color:var(--line)}
+html[data-theme=dark] .rk-row.rk-me{background:var(--teal2);border:2px solid var(--teal)}
+html[data-theme=dark] .rk-rank,html[data-theme=sepia] .rk-rank{color:var(--teal)}
+html[data-theme=dark] .rk-banner.rk-new{background:#1d3b2c;border-left-color:#6fcf97}
+
+.rk-crown{margin-right:4px}
+.rk-crownbox{position:fixed;inset:0;z-index:60;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.45);animation:rkFade .3s}
+.rk-crowncard{background:var(--surface,#fff);color:var(--navy,#123);border-radius:20px;padding:24px 32px;text-align:center;max-width:86vw;box-shadow:0 8px 30px rgba(0,0,0,.35);animation:rkPop .6s cubic-bezier(.2,1.4,.4,1)}
+.rk-bigcrown{font-size:72px;line-height:1;animation:rkDrop .8s ease-out}
+.rk-cl{margin:8px 0 0;font-size:16px}
+.rk-cn{margin:4px 0;font-size:28px;font-weight:700;overflow-wrap:anywhere}
+.rk-ch{margin:8px 0 0;font-size:13px;opacity:.7}
+@keyframes rkFade{from{opacity:0}to{opacity:1}}
+@keyframes rkPop{from{transform:scale(.6)}to{transform:scale(1)}}
+@keyframes rkDrop{from{transform:translateY(-60px) rotate(-12deg);opacity:0}to{transform:none;opacity:1}}
+.rk-cal-kart img{display:block;width:100%;max-height:260px;object-fit:contain;border-radius:12px;background:#fff}.rk-cal-kart h2{margin:10px 0 4px}.rk-cal .btn{margin-top:10px;width:100%}

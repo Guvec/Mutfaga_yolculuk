@@ -1,0 +1,42 @@
+/* © 2026 Ali Arıkoğlu. Tüm hakları saklıdır. */
+body[data-screen=aplay] .top{padding:2px 8px;gap:6px;min-height:48px}
+body[data-screen=aplay] .top .ttl{display:none}
+body[data-screen=aplay] .top button.profile-self{padding-top:4px;padding-bottom:4px;min-height:48px}
+.ar-play{width:100%;max-width:760px;padding:6px 12px 12px}
+body[data-screen=aplay] .ar-play{padding-bottom:8px}
+.ar-status{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:14px;line-height:1.3;margin:2px 0 5px}
+.ar-play .yr-sec{margin:2px 0;font-size:16px;min-height:21px}
+.ar-play .yr-bar{height:7px;margin:3px 0}
+.ar-play .yr-qa{display:block!important;margin:0}
+.ar-play .yr-qside{display:flex;flex-direction:column;align-items:center;gap:4px}
+.ar-play .yr-img{display:block;width:100%;height:min(24dvh,174px);max-height:174px;object-fit:contain;object-position:center;margin:0}
+.ar-play .yr-qrow{display:flex;align-items:center;gap:6px;width:100%}
+.ar-play .yr-q{font-size:18px;line-height:1.25;margin:4px 0;flex:1}
+.ar-play .spk{min-width:48px;min-height:48px;flex:none}
+.ar-play .yr-opts{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin:5px 0}
+.ar-play .yr-opt{min-height:52px;padding:7px 10px;font-size:17px;line-height:1.2;white-space:normal}
+.ar-feedback{min-height:22px;line-height:1.3;font-size:15px;margin:3px 0}
+.ar-next{margin:2px 0;min-height:48px;padding:8px 12px}
+.ar-score{margin-top:4px;font-size:14px}
+.ar-score summary{min-height:48px;display:flex;align-items:center;cursor:pointer}
+.ar-rank{margin:3px 0}
+@media(max-width:600px){.ar-play .yr-opts{grid-template-columns:1fr}.ar-play .yr-opt{min-height:48px;font-size:16px}.ar-play .yr-q{font-size:17px}.ar-play .yr-img{height:min(21dvh,150px);max-height:150px}}
+@media(max-height:540px) and (min-width:600px){.ar-play .yr-qside{display:grid;grid-template-columns:180px 1fr}.ar-play .yr-img{height:100px;max-height:100px}.ar-play .yr-opts{grid-template-columns:1fr 1fr}.ar-play .yr-opt{min-height:48px}.ar-play .yr-qa{display:grid!important;grid-template-columns:1fr 1fr;gap:12px}.ar-play .yr-qside{display:flex}}
+
+.ar-network{font-size:12px;line-height:1.25;margin:2px 0;min-height:15px;color:var(--text,#26332e)}
+
+/* Sonuç ve lider alanları kaydırılacak rapordan önce gelir. */
+.ar-winner{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:8px;padding:12px;border:1px solid currentColor;border-radius:16px}
+.ar-winner span:last-child{flex-basis:100%;text-align:center}.ar-winner-crown{font-size:40px}.ar-final-ranks{margin-top:12px}.ar-home-leaders{max-width:1160px;margin:12px auto;padding:0 12px}.ar-crown{margin-inline-end:6px}.ar-over .ar-rank{margin:0}
+/* Dar telefon: geri bildirim ve ileri düğmesine yer bırak. */
+@media(max-width:600px){body[data-screen=aplay] .ar-play .yr-img{height:min(19dvh,140px);max-height:140px}}
+/* Oyun sırasında üstte tek satır gezinme; profil ana sayfada erişilebilir. */
+body.yr-oyun .top .who{display:none}
+body.yr-oyun .top:has(.paket-sound) .ses-ac{display:none}
+body.yr-oyun .top .back{min-height:48px;padding:4px 8px;font-size:14px}
+body.yr-oyun .wrap>.btn.ghost{display:none}
+@media(max-width:600px){
+ body.yr-oyun .yr-img{max-height:min(19dvh,140px)}
+ body.yr-oyun .yr-feedback .yr-img{max-height:100px}
+ body.yr-oyun .yr-qrow{gap:6px}
+}

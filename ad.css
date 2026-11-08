@@ -1,0 +1,41 @@
+/* © 2026 Ali Arıkoğlu. Tüm hakları saklıdır. */
+/* Oyun adı (karakter) seçimi ve arkadaşlar */
+.ad-prev{display:flex;align-items:center;gap:14px;position:sticky;top:0;z-index:2}
+.ad-av{width:64px;height:64px;border-radius:50%;font-size:38px;display:flex;align-items:center;justify-content:center;flex:none}
+.ad-pn{display:flex;flex-direction:column;font-size:22px;font-weight:800}
+.ad-pn small{font-size:15px;font-weight:500;color:var(--muted);margin-top:3px}
+.ad-tab{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin:6px 0 12px}
+.ad-tab button{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;min-height:60px;padding:4px 2px;border:2px solid var(--line);background:var(--surface,#fff);color:var(--navy);border-radius:12px;font-size:12px;font-weight:600;line-height:1.15}
+.ad-tab button span{font-size:24px;line-height:1}
+.ad-lock{display:inline-flex;align-items:center;padding:0 10px;font-size:20px}
+.ad-tab button:first-child{grid-column:1/-1;flex-direction:row;gap:8px;min-height:52px;font-size:16px;font-weight:800}
+.ad-tab button.on{background:var(--teal);border-color:var(--teal);color:#fff}
+.ad-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:4px 0 16px}
+.ad-grid button{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;min-height:92px;border:2px solid var(--line);background:var(--surface,#fff);color:var(--navy);border-radius:14px;padding:8px 4px;font-size:14px;font-weight:600;line-height:1.2}
+.ad-grid button span{font-size:34px;line-height:1}
+.ad-grid button.on{border-color:var(--teal);box-shadow:inset 0 0 0 2px var(--teal)}
+#toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);max-width:88vw;background:#123;color:#fff;border-radius:12px;padding:10px 16px;font-size:15px;opacity:0;transition:opacity .25s;z-index:80;pointer-events:none;text-align:center}
+@media(max-width:360px){.ad-tab{grid-template-columns:repeat(4,1fr)}}
+/* Arkadaşlar */
+.ark-box{text-align:center}
+.ark-code{font-size:30px;letter-spacing:3px;font-weight:800;margin:6px 0}
+.ark-btns{display:flex;gap:8px;justify-content:center;margin-top:8px}
+.ark-btns .btn{flex:1}
+.ark-row{display:flex;align-items:center;justify-content:space-between;gap:8px;border:1px solid var(--line);border-radius:12px;padding:9px 12px;margin:6px 0;background:var(--surface,#fff)}
+.ark-row small{color:var(--muted)}
+.ark-live{padding:10px 12px}
+.ark-lvh{font-weight:700;margin-bottom:4px}
+.mini{border:2px solid var(--teal);background:var(--surface,#fff);color:var(--navy);border-radius:10px;padding:6px 10px;min-height:40px;font-weight:700}
+/* Ödüller */
+.odul-sec{display:grid;gap:10px;margin:10px 0}.odul-big{font-size:30px;line-height:1.4}
+.odul-ozet{text-align:center;font-size:20px}
+.odul-kol{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin:8px 0 12px}
+.odul-oge{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;min-height:84px;border:2px solid var(--line);border-radius:12px;background:var(--surface,#fff);opacity:.7;text-align:center}
+.odul-oge.acik{opacity:1;border-color:var(--teal)}.odul-oge span{font-size:30px;line-height:1}.odul-oge small{font-size:11px;line-height:1.1}
+.odul-yild{font-size:34px;margin:4px 0}.odul-belge{width:100%;border:1px solid var(--line);border-radius:8px}
+.odul-kart .btn{width:100%}
+@media(max-width:360px){.odul-kol{grid-template-columns:repeat(3,1fr)}}
+.ad-adlar{grid-template-columns:repeat(2,1fr)}
+.ad-adlar button{min-height:56px;font-size:16px;font-weight:700}
+.ad-adlar button:disabled{opacity:.5;background:var(--bg,#f3f4f6)}
+.ad-adlar button small{display:block;font-size:12px;font-weight:600}
