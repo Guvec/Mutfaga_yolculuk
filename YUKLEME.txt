@@ -1,6 +1,17 @@
-SÜRÜM: v13 — TAM SİTE + YARIŞ ODALARI
-GitHub Pages köküne site klasörünün İÇİNDEKİLERİNİ yükleyin; .nojekyll dahil.
-Mevcut bireysel oyunlar çalışır. Yarışta yalnız Kendimi Deniyorum vardır.
-Firebase web ayarları henüz girilmedi; çevrimiçi oda bağlantısı kapalıdır.
-YARIS_KURULUM.txt içindeki kurulum tamamlanmadan telefonlar arasında yarış yapılamaz.
-Canlı siteye yükleme yapılmadı.
+YÜKLEME NOTU — 8 Kasım 2026
+
+ZIP'i açın. Mutfaga_yolculuk klasörünün İÇİNDEKİLERİNİ mevcut sitenin
+depo köküne aktarın; .nojekyll dosyasını da koruyun.
+index.html, js, css, assets ve sw.js depo kökünde aynı düzeyde olmalıdır.
+ZIP dosyasını tek başına depoya koymak siteyi güncellemez.
+Site için derleme veya npm kurulumu gerekmez.
+
+Ana sayfada Sıralama düğmesi vardır; ayrı Er Meydanı lider alanı kaldırıldı.
+Firebase web ayarları js/yaris-ayar.js içinde mevcuttur. Canlı Firebase
+yetkileri ve cihazlar arası yarış bu kontrolde doğrulanmadı.
+ci/firebase/firestore.rules dosyasını GitHub'a aktarmak Firebase kurallarını
+kendiliğinden yayımlamaz.
+
+Tarif çalışmaları ve haftalık görevler henüz hazırlanıyor.
+Önbellek sürümü v67'ye yükseltildi.
+Bu paket bu görevde GitHub'a gönderilmedi.
