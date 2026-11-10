@@ -63,8 +63,8 @@ function yrArenaTopic(topic){
  if(topic!=='butun'&&!YR_SUBJECTS.some(x=>x.id===topic))return;
  Object.assign(YR.cfg,{arenaTopic:topic,scope:topic==='ikili'||topic==='butun'?'butun':'konu',subject:topic==='ikili'||topic==='butun'?'mutfak-araclari':topic,kind:'gorsel',set:0,n:75,lim:20});render();
 }
-function yrCfg(k,v){YR.cfg[k]=v;if(k==='scope')YR.cfg.set=v==='tek'?1:0;if(k==='subject'){const s=YR_SUBJECTS.find(x=>x.id===v);YR.cfg.kind=v==='kuver'?'kuver':'gorsel';YR.cfg.set=v==='kuver'?1:YR.cfg.scope==='tek'?1:0;}render();}
-function yrCfgKind(kind,set){YR.cfg.kind=kind;YR.cfg.set=YR.cfg.scope==='tek'&&kind!=='kuver'?Math.max(1,YR.cfg.set||1):set;render();}
+function yrCfg(k,v){YR.cfg[k]=v;if(k==='scope')YR.cfg.set=0;if(k==='subject'){const s=YR_SUBJECTS.find(x=>x.id===v);YR.cfg.kind=v==='kuver'?'kuver':'gorsel';YR.cfg.set=v==='kuver'?1:0;}render();}
+function yrCfgKind(kind,set){YR.cfg.kind=kind;YR.cfg.set=set;render();}
 async function yrCreate(){
  if(YR.busy)return;const nick=yrNickGet(),c=YR.cfg,raw=c.code,wanted=YarisModel.slug(raw);
  if(c.mode==='canavar'){cvStart(c);return;}
@@ -380,7 +380,6 @@ function yrCreateHTML(){
  if(c.mode==='arena')return yrTop('Er Meydanı Kur')+'<div class="wrap"><h1>Er Meydanı</h1>'+arLeadersHTML()+'<h2>Konu</h2><div class="yr-chips">'+[{id:'butun',name:'Tüm konular'},...YR_SUBJECTS].map(x=>'<button type="button" class="yr-chip'+((c.arenaTopic||'butun')===x.id?' on':'')+'" aria-pressed="'+((c.arenaTopic||'butun')===x.id)+'" onclick="yrArenaTopic(\''+x.id+'\')"'+(YR.busy?' disabled':'')+'>'+esc(x.name)+'</button>').join('')+'</div><p>En çok 75 farklı soru · 3–10 kişi. Seçilen konunun havuzu daha küçükse tüm soruları kullanır.</p><p>Herkes kendi hızında ilerler. Yedi yanlışta denemen biter.</p><p>Süre 20 saniyeyle başlar; her 6 doğru cevapta 1 saniye azalır, en az 7 saniye olur.</p><button class="btn pri" onclick="yrCreate()"'+(YR.busy?' disabled':'')+'>Odayı kur</button>'+yrErr()+'</div>';
  let h=yrTop({duel:'1’e 1 Kapışma Kur',arena:'Er Meydanı Kur',canavar:'Meydan Okuma'}[c.mode]||'Oyun Odası Kur')+'<div class="wrap"><h2>Konu</h2><div class="yr-chips">'+YR_SUBJECTS.map(x=>'<button class="yr-chip'+(c.subject===x.id?' on':'')+'" onclick="yrCfg(\'subject\',\''+x.id+'\')">'+esc(x.name)+'</button>').join('')+'</div>';
  h+='<h2>Kapsam</h2><div class="yr-chips">'+[['tek','Tek konu'],['konu','Konu içinde karışık'],['butun','Bütün konular']].map(x=>'<button class="yr-chip'+(c.scope===x[0]?' on':'')+'" onclick="yrCfg(\'scope\',\''+x[0]+'\')">'+x[1]+'</button>').join('')+'</div>';
- if(c.scope==='tek'&&c.subject!=='kuver')h+='<label>Takım <select onchange="yrCfg(\'set\',Number(this.value))">'+Array.from({length:s.sets},(_,i)=>'<option value="'+(i+1)+'"'+(c.set===i+1?' selected':'')+'>'+(i+1)+'. takım</option>').join('')+'</select></label>';
  if(c.subject==='kuver')h+='<h2>Kuver türü</h2><div class="yr-chips"><button class="yr-chip'+(c.set===1?' on':'')+'" onclick="yrCfgKind(\'kuver\',1)">Basit Kuver</button><button class="yr-chip'+(c.set===3?' on':'')+'" onclick="yrCfgKind(\'kuver\',3)">Tabldot Kuver</button></div>';
  else{
   h+='<h2>Sorular</h2><div class="yr-chips">';
