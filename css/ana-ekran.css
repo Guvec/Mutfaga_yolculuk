@@ -137,3 +137,9 @@ html[data-theme=yuksek] .ae-home{--ae-w1:#fff;--ae-w2:#f2f2f2}
 .kaptan-kart small{display:block;font-size:12px;font-weight:700;opacity:.8}
 .kaptan-kart strong{display:block;font-size:18px}
 .kaptan-kart div>span{font-size:14px}
+
+/* İlk giriş müzik sorusu */
+.muzik-ilk{text-align:center}
+.modal.muzik-ilk .muzik-ilk-nota{margin:0;font-size:46px!important;line-height:1;color:var(--ae-mint,#0a8f86)}
+.muzik-ilk h2{margin:6px 0 4px;font-size:26px}
+.muzik-ilk .row{display:grid;grid-template-columns:1fr;gap:10px;margin:14px 0 8px}
