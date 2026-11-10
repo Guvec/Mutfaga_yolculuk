@@ -14,18 +14,23 @@ const OLD_QUIZ = quizHtml, OLD_ITEM = itemImg;
 VERSION='Sürüm · 04.11.2026 · Takım kapakları ve birlikte tekrar'; // Her yüklemede tarih güncellenir.
 st.subject='kuver'; st.practice='learn';
 LEVELS={
-  1:{name:'Basit Kuver', items:['yemek_catali','yemek_bicagi','pecete','corba_kasigi','su_bardagi']},
-  3:{name:'Tabldot Kuver', items:['yemek_catali','yemek_bicagi','pecete','corba_kasigi','su_bardagi','ekmek_tabagi','tereyagi_bicagi','tatli_catali','tatli_kasigi']}
+  1:{name:'Basit Kuver', items:['yemek_catali','yemek_bicagi','pecete','su_bardagi']},
+  3:{name:'Tabldot Kuver', items:['yemek_catali','yemek_bicagi','pecete','corba_kasigi','tatli_kasigi','su_bardagi']}
 };
 ITEMS.kuver_tabagi.kural='Bu çalışmada kuver tabağı konuğun önüne, masa kenarından iki parmak (yaklaşık 2 cm) içeri konur.';
 ITEMS.corba_kasigi.ayirt='Çorba içmek için kullanılır. Tatlı kaşığından büyüktür.';
-ITEMS.pecete.kural='Bu kuverde peçeteyi çatalın soluna koyuyoruz.';
-ITEMS.pecete.ayirt='Peçete ağız çevresini ve elleri silmek için kullanılır. Bu düzende çatalın solundadır.';
 ITEMS.yemek_catali.kural='Yemek çatalı tabağın soluna konur. Ana yemek bıçağıyla birlikte kullanılır.';
 ITEMS.yemek_bicagi.kural='Yemek bıçağı tabağın sağına konur. Keskin ağzı tabağa bakar.';
 ITEMS.corba_kasigi.kural='Bu menüde çorba önce servis edilir. Çorba kaşığı bıçağın sağına, en dışa konur.';
 ITEMS.tatli_catali.kural='Bu düzende tatlı çatalı tabağın üst tarafına konur. Sapı sola bakar.';
 const PLACE_LABEL={yemek_catali:'Tabağın solu',yemek_bicagi:'Tabağın sağı',pecete:'En sol bölüm',corba_kasigi:'Sağ dış bölüm',su_bardagi:'Sağ üst bölüm',ekmek_tabagi:'Sol üst bölüm',tereyagi_bicagi:'Sol üstteki tabağın sağ kenarı',tatli_catali:'Tabağın üstündeki alt sıra',tatli_kasigi:'Tabağın üstündeki üst sıra'};
+/* Kuver türüne göre peçete yeri: Basit kuverde tabağın üstü, Tabldot kuverde çatalın solu. */
+const PECETE_ILK=Object.assign({},ITEMS.pecete);
+function kvUygula(l){
+  const p=ITEMS.pecete;
+  if(l===1){Object.assign(p,{x:53.3,y:61.4,mx:53.3,my:61.4,yer:'Tabağın üstü',kural:'Bu kuverde peçete tabağın üstüne konur.',ayirt:'Peçete ağız çevresini ve elleri silmek için kullanılır. Bu düzende tabağın üstündedir.'});PLACE_LABEL.pecete='Tabağın üstü';}
+  else{Object.assign(p,{x:PECETE_ILK.x,y:PECETE_ILK.y,mx:PECETE_ILK.mx,my:PECETE_ILK.my,yer:'Çatalın solu',kural:'Bu kuverde peçete çatalın soluna konur.',ayirt:'Peçete ağız çevresini ve elleri silmek için kullanılır. Bu düzende çatalın solundadır.'});PLACE_LABEL.pecete='En sol bölüm';}
+}
 function subjectName(){ return SUBJECTS.find(s=>s.id===st.subject).name; }
 /* Takım adı: "6. takım · Pişirme kapları ve bıçaklar" (başlık varsa). */
 function setName(n){const d=(typeof getData==='function'&&getData())||{};return n+'. takım'+(d.setTitles&&d.setTitles[n]?' · '+d.setTitles[n]:'');}
@@ -37,8 +42,7 @@ function glassHTML(cls='',style=''){
 itemImg=function(k,extra){if(k!=='su_bardagi')return OLD_ITEM(k,extra);return glassHTML('it'+(extra||''),'left:86%;top:19%;width:18%;aspect-ratio:1');};
 function thumb(k){return k==='su_bardagi'?glassHTML('glass-thumb'):'<img src="'+IMG[k]+'" alt="'+esc(ITEMS[k].ad)+'">';}
 function exampleHTML(){
-  if(st.lvl===3)return '<img class="done-photo" src="'+IMG.ornek_kuver+'" alt="Tabldot kuver örneği">';
-  return '<div class="table" role="img" aria-label="Çorba ve ana yemek menüsü için basit kuver örneği">'+['kuver_tabagi'].concat(LEVELS[1].items).map(k=>itemImg(k)).join('')+'</div>';
+  return st.lvl===3?'<img class="done-photo" src="assets/kuver/tabldot-kuver-ornek.jpg" alt="Tabldot kuver örneği">':'<img class="done-photo" src="assets/kuver/basit-kuver-ornek.jpg" alt="Basit kuver örneği">';
 }
 catName=function(r){
   if(r.subject && r.subject!=='kuver')return (SUBJECTS.find(s=>s.id===r.subject)||{name:r.subject}).name+' · '+({mcq:'Çoktan Seçmeli Sorular',match:'Eşleştirme',word:'Kelime Kartları'}[r.op]||r.op)+(r.set?' · '+r.set+'. takım':'')+(r.op==='match'&&r.set?(r.practice==='check'?' · Uyguluyorum':' · Öğreniyorum'):'');
@@ -48,10 +52,11 @@ catName=function(r){
 back=function(){const m={profiles:'welcome',home:'profiles',subject:'home',level:'subject',mode:'level',summary:'subject',history:'home',content:'subject',classification:'subject'};go(m[st.screen]||'home');};
 function openSubject(id){st.subject=id;go('subject');}
 pickOp=function(op){st.op=op;go(op==='kur'?'level':'mode');};
-pickLevel=function(l){st.lvl=l;go('mode');};
+pickLevel=function(l){st.lvl=l;kvUygula(l);go('mode');};
 function choosePractice(v){st.practice=v;startSession();}
 startSession=function(){
   if(st.op!=='kur'&&st.op!=='ad'){startContent();return;}
+  if(st.op==='kur')kvUygula(st.lvl);
   st.kDone=false;st.done=false;st.q=null; // önceki oturumun 'tamamlandı' durumu yeni oturuma taşınmasın
   OLD_START(); st.sess.subject=st.subject;st.sess.practice=st.practice;
   if(st.op==='kur')st.sess.variant=st.lvl===3?'tabldot':'basit';
@@ -186,7 +191,7 @@ render=function(){
     if(st.subject==='mutfak-araclari')h+=menuButton('Servis takımlarını tanı','Tabakları, metal takımları ve servis kaplarını gruplarıyla öğren.',"go('classification')");
     if(st.subject!=='kuver'&&!(typeof yolKonuVar==='function'&&yolKonuVar(st.subject)))h+=menuButton('Eşleştirme','12 görseli doğru adla eşleştir.',"pickContent('match')");
     if(st.subject!=='baharat'&&st.subject!=='kuver')h+=menuButton('Çoktan Seçmeli Sorular','Bu konuya ait sorular.',"pickContent('mcq')");h+='</div></div>';
-  }else if(st.screen==='level')h=topBar('Kuveri Kur')+'<div class="wrap"><h1>Kuver seç</h1><div class="list">'+menuButton('Basit Kuver','6 parça · Çorba ve ana yemek menüsü. Kuver tabağı hazır.',"pickLevel(1)")+menuButton('Tabldot Kuver','10 parça · Bu çalışmanın örnek düzenine göre.',"pickLevel(3)")+'</div></div>';
+  }else if(st.screen==='level')h=topBar('Kuveri Kur')+'<div class="wrap"><h1>Kuver seç</h1><div class="list">'+menuButton('Basit Kuver','4 parça · Çatal, bıçak, peçete ve su bardağı. Kuver tabağı hazır.',"pickLevel(1)")+menuButton('Tabldot Kuver','6 parça · Çorba ve tatlı kaşığı da var. Kuver tabağı hazır.',"pickLevel(3)")+'</div></div>';
   else if(st.screen==='mode')h=topBar('Çalışma biçimi')+'<div class="wrap"><h1>Nasıl çalışalım?</h1><div class="list">'+menuButton('Öğreniyorum','İpucu ve ikinci deneme ile çalış.',"choosePractice('learn')")+menuButton('Uyguluyorum','Her soruyu bir kez yanıtla. Sonra açıklamayı incele.',"choosePractice('check')")+'</div><p class="note">Her oturumda 1 mola hakkın var.</p></div>';
   else if(st.screen==='content'){
     const d=getData(),a=st.op==='mcq'?d.questions:st.op==='match'?d.matches:d.words;

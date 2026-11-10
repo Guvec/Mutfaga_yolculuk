@@ -93,7 +93,7 @@ const FAKE=`window.REKOR_FAKE=(()=>{const prof={},rows={};let uid='u-cihaz';cons
   ok('Bulaşık: 5 bölüm yerinde, bölüm denemesi sıralamaya yazmıyor, Bütün bölümler (13) yazıyor');
 
   // Kuver: Basit ve Tabldot ayrı tablolar.
-  const kv=await page.evaluate(()=>{st.subject='kuver';st.op='kur';st.lvl=1;st.practice='check';startSession();let g=0;while(!st.kDone&&g++<20){answer(st.q.key);nextQ();}return st.sess.ok;});assert.equal(kv,5);await settle();assert.equal(await page.evaluate(a=>Object.values(REKOR_FAKE.rows[a]||{})[0].correct,T+'kv-basit~genel'),5);assert.equal(await page.evaluate(a=>!!REKOR_FAKE.rows[a],T+'kv-tabldot~genel'),false);ok('Basit Kuver kendi tablosuna yazıldı, Tabldot ayrı');
+  const kv=await page.evaluate(()=>{st.subject='kuver';st.op='kur';st.lvl=1;st.practice='check';startSession();let g=0;while(!st.kDone&&g++<20){answer(st.q.key);nextQ();}return st.sess.ok;});assert.equal(kv,4);await settle();assert.equal(await page.evaluate(a=>Object.values(REKOR_FAKE.rows[a]||{})[0].correct,T+'kv-basit~genel'),4);assert.equal(await page.evaluate(a=>!!REKOR_FAKE.rows[a],T+'kv-tabldot~genel'),false);ok('Basit Kuver kendi tablosuna yazıldı, Tabldot ayrı');
   // Kuver Pekiştiriyorum: yanlış parçalar önce gelir.
   await page.evaluate(()=>{st.lvl=3;st.practice='check';startSession();let g=0;while(!st.kDone&&g++<30){if(['tatli_kasigi','su_bardagi'].includes(st.q.key)){answer('yemek_catali'===st.q.key?'pecete':'yemek_catali');showSol();}else answer(st.q.key);nextQ();}});await settle();
   const order=await page.evaluate(()=>{rkPekStart('k',3);return st.order.slice(0,2).sort().join(',');});assert.equal(order,'su_bardagi,tatli_kasigi');ok('Kuver Pekiştiriyorum: yanlış yerleştirilen parçalar önce');
