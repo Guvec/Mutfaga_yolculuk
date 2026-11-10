@@ -533,3 +533,6 @@ if(new URLSearchParams(location.search).has('oda')){
  st.screen='raceinvite';render();Promise.resolve().then(yrInviteResume);
 }
 window.addEventListener('online',()=>{if(st.screen==='raceinvite')yrInviteResume();});
+
+/* Ana sayfadaki Birlikte Oyna düğmesi (v3.0'da tasarım.js temizlenirken silinmişti). */
+window.tasarimOda=function(){yrOpen();};

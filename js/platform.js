@@ -127,9 +127,9 @@ function getData(){return CONTENT[st.subject]||{questions:[],matches:[],words:[]
 function contentArr(){const d=getData();return st.op==='mcq'?d.questions:st.op==='match'?d.matches:d.words;}
 function classificationHTML(){
  const d=getData(),groups=d.classification||[],items=d.matches||[];
- let h=topBar('Servis takımlarını tanı').replace('back()',"go('subject')")+'<div class="wrap"><h1>Servis takımlarını tanı</h1><p class="card">Önce grupları incele. Sonra eşleştirme oyununda çalış. Benzer tabak ve metal takımların boylarını birlikte karşılaştır. Görseli büyütmek için üzerine dokun.</p>';
+ let h=topBar('Servis takımlarını tanı').replace('back()',"go('subject')")+'<div class="wrap"><h1>Servis takımlarını tanı</h1><p class="card">Önce grupları incele. Sonra '+(st.subject==='mutfak-araclari'?'Yolculuğum’da':'eşleştirme oyununda')+' çalış. Benzer tabak ve metal takımların boylarını birlikte karşılaştır. Görseli büyütmek için üzerine dokun.</p>';
  groups.forEach((g,i)=>{h+='<details class="card classification-group"'+(i===0?' open':'')+'><summary>'+esc(g.title)+'</summary><div class="classification-grid">';g.items.forEach(id=>{const it=items.find(x=>x.id===id);if(!it)return;h+='<article class="classification-item"><a href="'+esc(it.image)+'" target="_blank" rel="noopener" aria-label="'+esc(it.answer)+' görselini büyüt"><img src="'+esc(it.image)+'" alt="'+esc(it.answer)+'"></a><h2>'+esc(it.answer)+'</h2><p>'+esc(it.explanation)+'</p>'+sesDugme(it.answer+'. '+it.explanation)+'</article>';});h+='</div></details>';});
- return h+'<button class="btn pri" onclick="pickContent(\'match\')">Eşleştirme oyununa geç</button></div>';
+ return h+(st.subject==='mutfak-araclari'?'<button class="btn pri" onclick="yolAc(\'mutfak-araclari\')">Yolculuğuma geç</button>':'<button class="btn pri" onclick="pickContent(\'match\')">Eşleştirme oyununa geç</button>')+'</div>';
 }
 
 /* Kartlarda "set" alanı varsa oturum takım takım yapılır (ör. Mutfak Araçları: 11 takım × 12 kart). */

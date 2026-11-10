@@ -113,3 +113,46 @@ div.yol-dugum.bitti{display:flex}
 html[data-sakin="1"] .yol-bar *,html[data-sakin="1"] .yol-sayfa *{transition:none!important;animation:none!important}
 @media(min-width:760px){.yol-gorsel-sec{grid-template-columns:repeat(4,1fr)}.yol-ogr{grid-template-columns:repeat(6,1fr)}}
 @media(max-width:360px){.yol-asama span{font-size:10.5px}.yol-ogr{grid-template-columns:repeat(2,1fr)}}
+/* Ana sayfa düğmesi */
+.yol-ev-btn{display:grid;place-items:center;padding:0!important;font-size:0}
+.yol-ev-btn svg{display:block}
+.yol-bar{gap:8px}
+.yol-bar-ttl b{font-size:17px}
+/* Soru ekranı: kaydırmadan sığsın, cevap seçilebilir/değiştirilebilir */
+.yol-soru-sayfa{gap:8px;padding-top:8px;padding-bottom:16px}
+.yol-soru-sayfa .yol-etiket{margin:0}
+.yol-soru-sayfa .yol-asama{margin:0}
+.yol-soru-kart{display:grid;gap:6px;padding:8px 10px}
+.yol-soru-sayfa .yol-img{max-height:22svh;max-height:22vh;width:auto;max-width:100%}
+.yol-soru-satir{display:flex;align-items:center;justify-content:center;gap:10px}
+.yol-soru-satir .yol-soru{margin:0;font-size:20px}
+.yol-ses.ik{flex:0 0 48px;width:48px;min-height:48px;padding:0;font-size:22px;border-radius:14px}
+.yol-soru-sayfa .yol-secenek{gap:8px}
+.yol-soru-sayfa .yol-sec{min-height:52px;padding:6px 12px;font-size:18px}
+.yol-sec.sec,.yol-gsec.sec{border-color:var(--teal,#0b5c5f);background:var(--soft,#e3f0ef);border-width:3px}
+.yol-sec.sec .yol-let{background:var(--teal,#0b5c5f);color:#fff}
+.yol-soru-sayfa .yol-gorsel-sec{gap:8px}
+.yol-soru-sayfa .yol-gsec{padding:4px}
+.yol-soru-sayfa .yol-gsec img{aspect-ratio:4/3;max-height:calc((100svh - 330px)/2);max-height:calc((100vh - 330px)/2);min-height:84px}
+.yol-gsec.sec em{color:var(--teal,#0b5c5f)}
+.yol-nav{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:2px}
+.yol-nav .yol-btn{min-height:52px;width:100%}
+.yol-nav .yol-btn:disabled{opacity:.45;cursor:default}
+@media(max-height:700px){.yol-soru-sayfa .yol-img{max-height:16svh;max-height:16vh}.yol-soru-sayfa .yol-sec{min-height:46px}}
+/* Onay ve inceleme */
+.yol-onay{display:grid;gap:8px}
+.yol-onay-sat{display:flex;align-items:center;gap:10px;width:100%;padding:6px 10px;border:2px solid var(--line,#b9c6c6);border-radius:14px;background:var(--surface,#fff);color:var(--navy,#123);font-family:inherit;text-align:left;cursor:pointer;min-height:56px}
+.yol-onay-no{flex:0 0 28px;height:28px;border-radius:50%;background:var(--teal,#0b5c5f);color:#fff;display:grid;place-items:center;font-weight:700;font-size:15px}
+.yol-onay-sat img{width:56px;height:42px;object-fit:contain;background:#fff;border-radius:8px;flex:none}
+.yol-onay-ad{flex:1;min-width:0;display:grid;gap:1px}
+.yol-onay-ad small{font-size:12px;color:var(--muted,#566);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.yol-onay-ad b{font-size:16px}
+.yol-onay-de{font-size:13px;font-weight:700;color:var(--teal,#0b5c5f)}
+.yol-inc-cift{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.yol-inc-k{margin:0;display:grid;gap:4px;padding:6px;border:3px solid var(--line,#b9c6c6);border-radius:14px;background:var(--surface,#fff);text-align:center}
+.yol-inc-k img{width:100%;aspect-ratio:4/3;max-height:22svh;object-fit:contain;background:#fff;border-radius:10px}
+.yol-inc-k figcaption{display:grid;font-size:15px}
+.yol-inc-k.ok{border-color:var(--ok,#2b7a45);background:var(--okbg,#e3f1e6)}
+.yol-inc-k.bad{border-color:var(--bad,#a3281d);background:var(--badbg,#f7e3de)}
+.yol-inc .yol-acik-kart{display:grid;gap:8px}
+.yol-inc .yol-acik-kart p{margin:0}

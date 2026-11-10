@@ -184,9 +184,9 @@ window.yolSerbestBaslat=function(tur){
  if(tur==='esles'){Y.phase='esles';yolEslesHazirla();}else{Y.phase='s3';Y.qs=yolSorular(Y.node,'s3',Y.tohum,false);}
  render();
 };
-function yolKaydet(){if(!Y||Y.mode!=='oyun')return;const s=yolS();s.cur={id:Y.node.id,phase:Y.phase,k:Y.k,tohum:Y.tohum,destek:Y.destek,sk:Y.sk,sure:Y.sure|0};yolYaz(s);}
+function yolKaydet(){if(!Y||Y.mode!=='oyun')return;const s=yolS();s.cur={id:Y.node.id,phase:Y.phase,k:['s1','s2','s3'].includes(Y.phase)?0:Y.k,tohum:Y.tohum,destek:Y.destek,sk:Y.sk,sure:Y.sure|0};yolYaz(s);}
 function yolFazHazirla(){
- Y.pick=null;
+ Y.pick=null;Y.sub='soru';Y.donOnay=false;
  if(['s1','s2','s3'].includes(Y.phase)){Y.qs=yolSorular(Y.node,Y.phase,Y.tohum,Y.destek);}
  if(Y.phase==='esles'){yolEslesHazirla();}
 }
@@ -212,26 +212,46 @@ window.yolSonraki=function(){
   Y.phase='s1';Y.k=0;yolFazHazirla();yolKaydet();render();return;
  }
  if(['s1','s2','s3'].includes(Y.phase)){
-  if(Y.pick===null)return;
-  if(Y.k<Y.qs.length-1){Y.k++;Y.pick=null;yolKaydet();render();return;}
-  const dogru=Y.qs.filter(q=>q.cevap===q.dogru).length;Y.sk[Y.phase]=dogru;
-  if(Y.mode==='tekrar'){Y.phase='tbitti';Y.fark=dogru;render();return;}
-  if(Y.mode==='serbest'){Y.phase='sbitti';Y.fark=dogru;render();return;}
-  if(Y.phase==='s1'){Y.phase='s2';Y.k=0;yolFazHazirla();yolKaydet();render();return;}
-  if(Y.phase==='s2'){Y.phase='s3';Y.k=0;yolFazHazirla();yolKaydet();render();return;}
-  /* son aşama: geçme kararı */
-  if(dogru>=YOL_AYAR.gecme){Y.phase='esles';Y.k=0;yolFazHazirla();yolKaydet();render();return;}
-  const s=yolS();s.fails[Y.node.id]=(s.fails[Y.node.id]||0)+1;s.cur=null;yolYaz(s);
-  Y.phase='basarisiz';Y.fark=dogru;render();return;
+  if(Y.sub==='inceleme'){yolIncSonraki();return;}
+  if(Y.sub==='onay')return;
+  const q=Y.qs[Y.k];if(!q||q.sel==null)return;
+  if(Y.donOnay||Y.k>=Y.qs.length-1){Y.sub='onay';Y.donOnay=false;render();return;}
+  Y.k++;Y.pick=yolIdx(Y.qs[Y.k]);render();return;
  }
 };
+function yolIdx(q){return q.sel==null?null:q.sec.findIndex(c=>c.id===q.sel);}
+window.yolOnceki=function(){
+ if(!Y||!['s1','s2','s3'].includes(Y.phase)||Y.sub==='inceleme')return;
+ if(Y.sub==='onay'){Y.sub='soru';Y.k=Y.qs.length-1;Y.pick=yolIdx(Y.qs[Y.k]);render();return;}
+ if(Y.k>0){Y.k--;Y.pick=yolIdx(Y.qs[Y.k]);render();}
+};
+window.yolGit=function(k){if(!Y||Y.sub!=='onay'||!Y.qs[k])return;Y.sub='soru';Y.donOnay=true;Y.k=k;Y.pick=yolIdx(Y.qs[k]);render();};
+/* Cevaplar onaylanınca doğruluk belirlenir; yanlışlar doğru cevabıyla tek tek gösterilir. */
+window.yolOnayla=function(){
+ if(!Y||Y.sub!=='onay')return;
+ Y.qs.forEach(q=>{q.cevap=q.sel;const c=q.sec.find(x=>x.id===q.sel);
+  if(q.cevap===q.dogru)q.tkCikti=yolTkDogru(q.item);
+  else q.tkEklendi=yolTkYanlis(q.item,q.tip==='gorsel'?yolItemAd(q.cevap):(c&&c.text));});
+ const dogru=Y.qs.filter(q=>q.cevap===q.dogru).length;Y.sk[Y.phase]=dogru;Y.fark=dogru;
+ Y.yanlis=Y.qs.map((q,i)=>i).filter(i=>Y.qs[i].cevap!==Y.qs[i].dogru);
+ if(!Y.yanlis.length){yolFazBitir();return;}
+ Y.sub='inceleme';Y.ik=0;render();
+};
+window.yolIncSonraki=function(){if(!Y||Y.sub!=='inceleme')return;if(Y.ik<Y.yanlis.length-1){Y.ik++;render();return;}yolFazBitir();};
+function yolFazBitir(){
+ const dogru=Y.fark;Y.sub='soru';Y.donOnay=false;
+ if(Y.mode==='tekrar'){Y.phase='tbitti';render();return;}
+ if(Y.mode==='serbest'){Y.phase='sbitti';render();return;}
+ if(Y.phase==='s1'){Y.phase='s2';Y.k=0;yolFazHazirla();yolKaydet();render();return;}
+ if(Y.phase==='s2'){Y.phase='s3';Y.k=0;yolFazHazirla();yolKaydet();render();return;}
+ /* son aşama: geçme kararı */
+ if(dogru>=YOL_AYAR.gecme){Y.phase='esles';Y.k=0;yolFazHazirla();yolKaydet();render();return;}
+ const s=yolS();s.fails[Y.node.id]=(s.fails[Y.node.id]||0)+1;s.cur=null;yolYaz(s);
+ Y.phase='basarisiz';Y.fark=dogru;render();
+}
 window.yolCevap=function(i){
- if(!Y||!['s1','s2','s3'].includes(Y.phase)||Y.pick!==null)return;
- const q=Y.qs[Y.k];if(!q.sec[i])return;q.cevap=q.sec[i].id;Y.pick=i;
- if(q.cevap===q.dogru)q.tkCikti=yolTkDogru(q.item);
- else q.tkEklendi=yolTkYanlis(q.item,q.tip==='gorsel'?yolItemAd(q.cevap):q.sec[i].text);
- render();
-
+ if(!Y||!['s1','s2','s3'].includes(Y.phase)||(Y.sub&&Y.sub!=='soru'))return;
+ const q=Y.qs[Y.k];if(!q||!q.sec[i])return;q.sel=q.sec[i].id;Y.pick=i;render();
 };
 window.yolYenidenDene=function(){
  if(!Y)return;const s=yolS(),fails=s.fails[Y.node.id]||0,destek=fails>=YOL_AYAR.destekDeneme;
@@ -258,6 +278,7 @@ function yolTamamla(){
  }
  render();
 }
+window.yolAnaSayfa=function(){if(Y&&Y.mode==='oyun')yolKaydet();sesSus();go('home');};
 window.yolKapat=function(){yolKaydet();go('yolum');};
 /* Süre kum saatiyle gösterilir: ileri akar, hiç bitmez. Hareket kapalıyken kum akmaz (saat dönmez). */
 setInterval(function(){
@@ -276,7 +297,7 @@ function yolKonuAdi(){return (typeof KONU_GORSEL!=='undefined'&&KONU_GORSEL[YOL_
 function yolSureYaz(n){n=n|0;return String(Math.floor(n/60)).padStart(2,'0')+':'+String(n%60).padStart(2,'0');}
 const YOL_KUM='<svg viewBox="0 0 24 24" width="22" height="22" focusable="false"><path d="M6 2h12v4.5L13.2 12l4.800 5.500V22H6v-4.500L10.800 12 6 6.500z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M8.500 5h7L12 9z" fill="currentColor"/><path d="M8 20l4-4 4 4z" fill="currentColor"/></svg>';
 function yolBar(baslik,alt,geri,sure){
- return '<header class="yol-bar"><button type="button" class="yol-geri-btn" onclick="'+geri+'" aria-label="Geri">‹</button><div class="yol-bar-ttl"><b>'+esc(baslik)+'</b>'+(alt?'<span>'+esc(alt)+'</span>':'')+'</div>'+(sure?'<div class="yol-sure" role="timer" aria-label="Geçen süre"><span class="yol-kum" aria-hidden="true">'+YOL_KUM+'</span><b id="yolSureT">'+yolSureYaz(Y.sure)+'</b></div>':'<span class="yol-sure-bos"></span>')+'</header>';
+ return '<header class="yol-bar"><button type="button" class="yol-geri-btn" onclick="'+geri+'" aria-label="Geri">‹</button><button type="button" class="yol-geri-btn yol-ev-btn" onclick="yolAnaSayfa()" aria-label="Ana sayfa"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M3 11.5 12 4l9 7.5M5.5 10v9.5h5v-6h3v6h5V10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div class="yol-bar-ttl"><b>'+esc(baslik)+'</b>'+(alt?'<span>'+esc(alt)+'</span>':'')+'</div>'+(sure?'<div class="yol-sure" role="timer" aria-label="Geçen süre"><span class="yol-kum" aria-hidden="true">'+YOL_KUM+'</span><b id="yolSureT">'+yolSureYaz(Y.sure)+'</b></div>':'<span class="yol-sure-bos"></span>')+'</header>';
 }
 function yolAyak(oyun){
  return '<footer class="yol-ayak"><p>'+(oyun?'İstediğin zaman çıkabilirsin. Geri geldiğinde kaldığın yerden devam edersin.':'İstediğin zaman çıkabilirsin.')+'</p><div class="yol-ayar"><button type="button" onclick="sesAcKapa()">Sesli okuma: '+(SES.acik?'Açık':'Kapalı')+'</button><button type="button" onclick="sakinDegistir();render()">Hareket: '+(sakinAcik()?'Kapalı':'Açık')+'</button></div></footer>';
@@ -346,32 +367,47 @@ function yolOgrenHTML(){
   '<div class="yol-kart yol-ogren"><img class="yol-img" src="'+esc(it.image)+'" alt="'+esc(it.imageAlt||it.answer)+'"><h2 class="yol-ad">'+esc(it.answer)+'</h2><p class="yol-acik">'+esc(it.explanation||'')+'</p>'+yolSesBtn(it.answer+'. '+(it.explanation||''),'Adını ve açıklamasını dinle')+'</div>'+
   '<div class="yol-alt">'+(Y.k>0?'<button type="button" class="yol-btn ikinci" onclick="Y.k--;render()">‹ Önceki</button>':'<span></span>')+'<button type="button" class="yol-btn" onclick="yolSonraki()">'+(son?(Y.mode==='oyun'?'Sorulara geç ›':'Kapat'):'Sonraki ›')+'</button></div>'+yolAyak(Y.mode==='oyun')+'</div>';
 }
+function yolSesIk(t,etiket){Y.oku=Y.oku||[];const i=Y.oku.push(t)-1;return '<button type="button" class="spk yol-ses ik" aria-label="'+esc(etiket||'Sesli dinle')+'" onclick="yolSoyleIdx('+i+')">🔊</button>';}
+function yolSoruMetni(q){return q.tip==='gorsel'?'“'+q.ad+'” hangisidir?':(q.item.kok||q.item.prompt||'Görselin adı nedir?');}
 function yolSoruHTML(){
- const q=Y.qs[Y.k],cevaplandi=Y.pick!==null,ok=cevaplandi&&q.cevap===q.dogru,L='ABCDE',nes=yolK().nesne;
- const soruYazi=q.tip==='gorsel'?'“'+q.ad+'” hangisidir?':(q.item.kok||q.item.prompt||'Görselin adı nedir?');
- let h=yolBar(yolKonuAdi(),'','yolKapat()',true)+'<div class="yol-sayfa'+(cevaplandi?' cevaplandi':'')+'">'+yolUst()+'<div class="yol-say"><span>Soru '+(Y.k+1)+' / '+Y.qs.length+'</span>'+yolSeg(Y.k,Y.qs.length,cevaplandi)+'</div>';
+ if(Y.sub==='onay')return yolOnayHTML();
+ if(Y.sub==='inceleme')return yolIncelemeHTML();
+ const q=Y.qs[Y.k],sel=q.sel,L='ABCDE',soruYazi=yolSoruMetni(q),son=Y.k===Y.qs.length-1;
+ let h=yolBar(yolKonuAdi(),'','yolKapat()',true)+'<div class="yol-sayfa yol-soru-sayfa">'+yolUst()+'<div class="yol-say"><span>Soru '+(Y.k+1)+' / '+Y.qs.length+'</span>'+yolSeg(Y.k,Y.qs.length,sel!=null)+'</div>';
  if(q.tip==='gorsel'){
-  h+='<div class="yol-kart yol-soru-kart"><h2 class="yol-soru">'+esc(soruYazi)+'</h2>'+(cevaplandi?'':yolSesBtn(soruYazi,'Soruyu sesli oku'))+'</div><div class="yol-gorsel-sec">';
-  q.sec.forEach((c,i)=>{let cls='yol-gsec';if(cevaplandi){if(c.id===q.dogru)cls+=' ok';else if(q.cevap===c.id)cls+=' bad';}
-   h+='<button type="button" class="'+cls+'" onclick="yolCevap('+i+')"'+(cevaplandi?' disabled':'')+' aria-label="'+L[i]+'. '+esc(c.alt)+'"><img src="'+esc(c.image)+'" alt=""><span class="yol-let">'+L[i]+'</span>'+(cevaplandi&&c.id===q.dogru?'<em>✓ Doğru cevap</em>':cevaplandi&&q.cevap===c.id?'<em>✕ Yanlış · senin cevabın</em>':'')+'</button>';});
+  h+='<div class="yol-kart yol-soru-kart"><div class="yol-soru-satir"><h2 class="yol-soru">'+esc(soruYazi)+'</h2>'+yolSesIk(soruYazi,'Soruyu sesli oku')+'</div></div><div class="yol-gorsel-sec">';
+  q.sec.forEach((c,i)=>{const on=c.id===sel;
+   h+='<button type="button" class="yol-gsec'+(on?' sec':'')+'" aria-pressed="'+on+'" onclick="yolCevap('+i+')" aria-label="'+L[i]+'. '+esc(c.alt)+'"><img src="'+esc(c.image)+'" alt=""><span class="yol-let">'+L[i]+'</span>'+(on?'<em>Seçtin</em>':'')+'</button>';});
   h+='</div>';
  }else{
-  if(cevaplandi)h+='<div class="yol-kart yol-mini"><img src="'+esc(q.item.image)+'" alt="'+esc(q.item.imageAlt||'Soru görseli')+'"><b>'+esc(soruYazi)+'</b></div>';
-  else h+='<div class="yol-kart yol-soru-kart"><img class="yol-img" src="'+esc(q.item.image)+'" alt="'+esc(q.item.imageAlt||'Soru görseli')+'"><h2 class="yol-soru">'+esc(soruYazi)+'</h2>'+yolSesBtn(soruYazi,'Soruyu sesli oku')+'</div>';
-  h+='<div class="yol-secenek">';
-  q.sec.forEach((c,i)=>{let cls='yol-sec';if(cevaplandi){if(c.id===q.dogru)cls+=' ok';else if(q.cevap===c.id)cls+=' bad';}
-   const ik=cevaplandi&&c.id===q.dogru?'<span class="yol-ik ok" aria-hidden="true">✓</span>':cevaplandi&&q.cevap===c.id?'<span class="yol-ik bad" aria-hidden="true">✕</span>':'<span class="yol-let">'+L[i]+'</span>';
-   h+='<button type="button" class="'+cls+'" onclick="yolCevap('+i+')"'+(cevaplandi?' disabled':'')+'>'+ik+'<span class="yol-sec-ad"><b>'+esc(c.text)+'</b>'+(cevaplandi&&c.id===q.dogru?'<em>Doğru cevap</em>':cevaplandi&&q.cevap===c.id?'<em>Yanlış · senin cevabın</em>':'')+'</span></button>';});
+  h+='<div class="yol-kart yol-soru-kart"><img class="yol-img" src="'+esc(q.item.image)+'" alt="'+esc(q.item.imageAlt||'Soru görseli')+'"><div class="yol-soru-satir"><h2 class="yol-soru">'+esc(soruYazi)+'</h2>'+yolSesIk(soruYazi,'Soruyu sesli oku')+'</div></div><div class="yol-secenek">';
+  q.sec.forEach((c,i)=>{const on=c.id===sel;
+   h+='<button type="button" class="yol-sec'+(on?' sec':'')+'" aria-pressed="'+on+'" onclick="yolCevap('+i+')"><span class="yol-let">'+(on?'✓':L[i])+'</span><span class="yol-sec-ad"><b>'+esc(c.text)+'</b></span></button>';});
   h+='</div>';
  }
- if(cevaplandi){
-  const son=Y.k===Y.qs.length-1,etiket=son?(Y.phase==='s3'||Y.mode!=='oyun'?'Sonucu gör':'Sonraki aşama'):'Sonraki soru';
-  h+='<section class="yol-kart yol-acik-kart" role="status"><h3>'+(ok?'✓ Doğru · ':'✕ Yanlış · ')+esc(q.ad)+'</h3><p>'+esc(q.item.explanation||'')+'</p>'+yolSesBtn((ok?'Doğru. ':'Yanlış. Doğru cevap: '+q.ad+'. ')+(q.item.explanation||''),'Açıklamayı sesli oku')+'</section>';
-  if(!ok&&q.tkEklendi)h+='<p class="yol-not">Bu '+nes+' Tekrar Çalışması’na kendiliğinden eklendi. Puan kaybı olmaz.</p>';
-  if(ok&&q.tkCikti)h+='<p class="yol-not ok">Tebrikler! Bu '+nes+' Tekrar Çalışması listesinden çıktı.</p>';
-  h+='<div class="yol-sonraki"><button type="button" class="yol-btn" onclick="yolSonraki()">'+etiket+' ›</button></div>';
+ h+='<div class="yol-nav">'+(Y.k>0?'<button type="button" class="yol-btn ikinci" onclick="yolOnceki()">‹ Önceki</button>':'<span></span>')+'<button type="button" class="yol-btn" onclick="yolSonraki()"'+(sel==null?' disabled':'')+'>'+(son||Y.donOnay?'Gözden geçir':'Sonraki')+' ›</button></div>';
+ return h+'</div>';
+}
+function yolOnayHTML(){
+ const L='ABCDE';
+ let h=yolBar(yolKonuAdi(),'','yolKapat()',true)+'<div class="yol-sayfa">'+yolUst()+'<h1>Cevaplarından emin misin?</h1><p class="yol-not">Değiştirmek istediğin soruya dokun. “Evet” dediğinde doğru cevaplar gösterilir.</p><div class="yol-onay">';
+ Y.qs.forEach((q,i)=>{const c=q.sec.find(x=>x.id===q.sel),gor=q.tip==='gorsel';
+  h+='<button type="button" class="yol-onay-sat" onclick="yolGit('+i+')" aria-label="'+(i+1)+'. soru, cevabını değiştir"><span class="yol-onay-no">'+(i+1)+'</span><img src="'+esc(gor?(c&&c.image):q.item.image)+'" alt=""><span class="yol-onay-ad"><small>'+esc(gor?'“'+q.ad+'” için seçtiğin görsel':yolSoruMetni(q))+'</small><b>'+esc(gor?'Görsel '+L[q.sec.indexOf(c)]:(c?c.text:'—'))+'</b></span><span class="yol-onay-de" aria-hidden="true">Değiştir</span></button>';});
+ h+='</div><div class="yol-nav"><button type="button" class="yol-btn ikinci" onclick="yolOnceki()">‹ Sorulara dön</button><button type="button" class="yol-btn" onclick="yolOnayla()">Evet, bitirdim ›</button></div></div>';
+ return h;
+}
+function yolIncelemeHTML(){
+ const q=Y.qs[Y.yanlis[Y.ik]],sec=q.sec.find(c=>c.id===q.cevap),dog=q.sec.find(c=>c.id===q.dogru),gor=q.tip==='gorsel',soruYazi=yolSoruMetni(q),nes=yolK().nesne,son=Y.ik===Y.yanlis.length-1;
+ let h=yolBar(yolKonuAdi(),'','yolKapat()',true)+'<div class="yol-sayfa yol-inc">'+yolUst()+'<p class="yol-etiket">Yanlışlarını inceleyelim · '+(Y.ik+1)+' / '+Y.yanlis.length+'</p>';
+ if(gor){
+  h+='<div class="yol-kart yol-soru-kart"><div class="yol-soru-satir"><h2 class="yol-soru">'+esc(soruYazi)+'</h2></div></div><div class="yol-inc-cift"><figure class="yol-inc-k bad"><img src="'+esc(sec.image)+'" alt=""><figcaption><b>✕ Senin seçtiğin</b><span>'+esc(yolItemAd(q.cevap)||sec.alt)+'</span></figcaption></figure><figure class="yol-inc-k ok"><img src="'+esc(dog.image)+'" alt=""><figcaption><b>✓ Doğru cevap</b><span>'+esc(q.ad)+'</span></figcaption></figure></div>';
+ }else{
+  h+='<div class="yol-kart yol-soru-kart"><img class="yol-img" src="'+esc(q.item.image)+'" alt="'+esc(q.item.imageAlt||'Soru görseli')+'"><div class="yol-soru-satir"><h2 class="yol-soru">'+esc(soruYazi)+'</h2></div></div><div class="yol-secenek"><div class="yol-sec bad"><span class="yol-ik bad" aria-hidden="true">✕</span><span class="yol-sec-ad"><b>'+esc(sec.text)+'</b><em>Senin cevabın</em></span></div><div class="yol-sec ok"><span class="yol-ik ok" aria-hidden="true">✓</span><span class="yol-sec-ad"><b>'+esc(dog.text)+'</b><em>Doğru cevap</em></span></div></div>';
  }
- return h+yolAyak(Y.mode==='oyun')+'</div>';
+ h+='<section class="yol-kart yol-acik-kart" role="status"><p>'+esc(q.item.explanation||'')+'</p>'+yolSesIk('Doğru cevap: '+q.ad+'. '+(q.item.explanation||''),'Açıklamayı dinle')+'</section>';
+ if(q.tkEklendi)h+='<p class="yol-not">Bu '+nes+' Tekrar Çalışması’na kendiliğinden eklendi. Puan kaybı olmaz.</p>';
+ h+='<div class="yol-nav"><span></span><button type="button" class="yol-btn" onclick="yolIncSonraki()">'+(son?(Y.mode==='oyun'&&Y.phase==='s3'?'Devam':'Devam'):'Sonraki yanlış')+' ›</button></div></div>';
+ return h;
 }
 function yolEslesHTML(){
  const m=Y.m,eslesti=id=>m.eslesen.includes(id);
