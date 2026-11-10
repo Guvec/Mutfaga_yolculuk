@@ -22,6 +22,7 @@ const RK_BOARDS=(()=>{const a=[];
  a.push({id:'oy-arena',subject:'oyun',kind:'win',total:999,label:'Er Meydanı (önceki sürüm) · kazanılan tur'});
  a.push({id:'oy-arena2',subject:'oyun',kind:'win',total:999,label:'Er Meydanı · kazanılan oyun'});
  a.push({id:'bl-s1',subject:'bulasik-makinesi-temizligi',kind:'mcq',group:RK_MCQ['bulasik-makinesi-temizligi'][0],total:13,label:'Bütün bölümler · Sorular'});
+ a.forEach(b=>{if(/^(ma|bh)-e\d+$/.test(b.id))b.gizli=true;}); /* 12'li eşleştirme tabloları: bu iki konuda 12'li eşleştirme kalktı, tablolar sıralamada gösterilmez */
  return a;})();
 const RK_SUBJECT_NAMES={baharat:'Baharatlar','mutfak-araclari':'Mutfak Araçları',kuver:'Kuver','bulasik-makinesi-temizligi':'Bulaşık Yıkama ve Atık Yönetimi',oyun:'Kapışma ve Er Meydanı'};
 const RK={cal:null,backend:null,busy:false,view:{board:null,period:'hafta',rows:null,state:'idle',err:''},msg:null};
@@ -345,9 +346,9 @@ function rkRecordsHTML(){
 function rkOpenBoard(id){
  const pid=st.prof?rkPid(st.prof):null,mine=pid?(rkBestAll()[pid]||{}):{};
  const last=Object.entries(mine).sort((a,b)=>String(b[1].lastAt).localeCompare(String(a[1].lastAt)))[0];
- RK.view.week=null;if(id&&rkDynamicBoard(id)&&!RK_BOARDS.some(b=>b.id===id))RK_BOARDS.push(rkDynamicBoard(id));RK.view.board=id||RK.view.board||(last&&last[0])||'bh-e1';RK.view.rows=null;RK.view.state='idle';RK.view.err='';RK.view.crown=true;go('siralama');rkLoadRows();
+ RK.view.week=null;if(id&&rkDynamicBoard(id)&&!RK_BOARDS.some(b=>b.id===id))RK_BOARDS.push(rkDynamicBoard(id));RK.view.board=id||RK.view.board||(last&&last[0]&&!(rkBoard(last[0])||{}).gizli&&last[0])||'haftalik';RK.view.rows=null;RK.view.state='idle';RK.view.err='';RK.view.crown=true;go('siralama');rkLoadRows();
 }
-function rkPickSubject(sub){const b=RK_BOARDS.find(x=>x.subject===sub);if(b)rkOpenBoard(b.id);}
+function rkPickSubject(sub){const b=RK_BOARDS.find(x=>x.subject===sub&&!x.gizli);if(b)rkOpenBoard(b.id);}
 function rkPickPeriod(p){RK.view.period=RK.view.board==='haftalik'?'hafta':p;RK.view.rows=null;render();rkLoadRows();}
 async function rkLoadRows(){
  const v=RK.view,key=v.board+'|'+v.period+'|'+(v.week||'');if(!rkOnline()){v.state='offline';render();return;}
@@ -357,10 +358,10 @@ async function rkLoadRows(){
  if(st.screen==='siralama'){render();if(v.crown&&v.state==='ready'&&v.period==='hafta'&&v.board!=='haftalik'){v.crown=false;rkCrownShow(v.rows);}}
 }
 function rkBoardHTML(){
- const v=RK.view,b=rkBoard(v.board)||RK_BOARDS[0],pid=st.prof&&!st.guest?rkPid(st.prof):null;
+ const v=RK.view,b=rkBoard(v.board)||RK_BOARDS.find(x=>!x.gizli),pid=st.prof&&!st.guest?rkPid(st.prof):null;
  let h=topBar('Sıralama')+'<div class="wrap">'+rkTabs('siralama');if(typeof kaptanKartHTML==='function')h+=kaptanKartHTML();
- h+='<div class="card rk-pick"><label>Konu <select onchange="rkPickSubject(this.value)">'+Object.keys(RK_SUBJECT_NAMES).map(s=>'<option value="'+s+'"'+(s===b.subject?' selected':'')+'>'+esc(RK_SUBJECT_NAMES[s])+'</option>').join('')+'</select></label>';
- h+='<label>Çalışma <select onchange="rkOpenBoard(this.value)">'+RK_BOARDS.filter(x=>x.subject===b.subject).map(x=>'<option value="'+x.id+'"'+(x.id===b.id?' selected':'')+'>'+esc(x.label)+'</option>').join('')+'</select></label>';
+ h+='<div class="card rk-pick"><label>Konu <select onchange="rkPickSubject(this.value)">'+Object.keys(RK_SUBJECT_NAMES).filter(s=>RK_BOARDS.some(x=>x.subject===s&&!x.gizli)).map(s=>'<option value="'+s+'"'+(s===b.subject?' selected':'')+'>'+esc(RK_SUBJECT_NAMES[s])+'</option>').join('')+'</select></label>';
+ h+='<label>Çalışma <select onchange="rkOpenBoard(this.value)">'+RK_BOARDS.filter(x=>x.subject===b.subject&&!x.gizli).map(x=>'<option value="'+x.id+'"'+(x.id===b.id?' selected':'')+'>'+esc(x.label)+'</option>').join('')+'</select></label>';
  h+='<div class="rk-period" role="group" aria-label="Dönem"><button class="btn sm'+(v.period==='hafta'?' pri':'')+'" aria-pressed="'+(v.period==='hafta')+'" onclick="rkPickPeriod(\'hafta\')">Bu hafta</button><button class="btn sm'+(v.period==='genel'?' pri':'')+'" aria-pressed="'+(v.period==='genel')+'" onclick="rkPickPeriod(\'genel\')">Genel</button></div></div>';
  h+='<h2 class="rk-title">'+esc(RK_SUBJECT_NAMES[b.subject]+' · '+b.label)+'</h2><p class="note">'+(v.period==='hafta'?'Hafta: '+rkWeekLabel(v.week||rkWeekNo())+'. Liste her pazartesi yeniden başlar.<br>İnternetsiz tamamladığın sonuç, gönderildiği haftaya yazılır.':'Bu eğitim yılının en iyi sonuçları.')+'<br>'+(b.kind==='win'?'Kazanılan sayı gösterilir.':'Her öğrencinin en iyi doğru sayısı gösterilir.')+'</p>';
  if(b.kind==='weekly')h+='<p class="card">'+(v.week&&v.week<rkWeekNo()?'Geçen haftanın birincisi':'Bu haftanın lideri')+' · Dört konu · 75 soru · 7. yanlışta biter. Sınıf içi oyun sonuçlarıdır.</p>';
@@ -434,7 +435,7 @@ render=function(){
  if(st.screen==='pekcalis'){app.innerHTML=rkCalisHTML();const hb=document.getElementById('rkCalBaslik');if(hb)hb.focus();return;}
  RK_RENDER();
  if(st.screen==='home'){const list=app.querySelector('.wrap .list');if(list)list.insertAdjacentHTML('beforeend',menuButton(st.guest?'Sıralama':'Rekorlarım ve Sıralama',st.guest?'Uyguluyorum sonuçlarının haftalık ve genel listesi.':'Kendi en iyi sonuçların, haftalık ve genel liste.',st.guest?"rkOpenBoard()":"go('rekor')"));}
- if(st.screen==='subject'&&!st.guest&&!rkRaceActive()){const list=app.querySelector('.wrap .list'),n=rkPekItems(st.subject).length;if(list){list.insertAdjacentHTML('beforeend',menuButton('Pekiştiriyorum'+(n?' ('+n+')':''),n?'Uyguluyorum\'da yanlış yaptıklarını tekrar et.':'Uyguluyorum\'da yanlış yaptığın maddeler burada toplanır.',"go('pekmenu')"));const nb=list.lastElementChild;if(nb)nb.classList.add('activity-card');}}
+ if(st.screen==='subject'&&!st.guest&&!rkRaceActive()&&!(typeof yolKonuVar==='function'&&yolKonuVar(st.subject))){const list=app.querySelector('.wrap .list'),n=rkPekItems(st.subject).length;if(list){list.insertAdjacentHTML('beforeend',menuButton('Pekiştiriyorum'+(n?' ('+n+')':''),n?'Uyguluyorum\'da yanlış yaptıklarını tekrar et.':'Uyguluyorum\'da yanlış yaptığın maddeler burada toplanır.',"go('pekmenu')"));const nb=list.lastElementChild;if(nb)nb.classList.add('activity-card');}}
  if(['mode','boardmode','mcqmode'].includes(st.screen)){const list=app.querySelector('.wrap .list'),ranked=st.screen==='boardmode'?!!RK_SUBJ[st.subject]:st.screen==='mode'?st.op==='kur':RK_BOARDS.some(x=>x.kind==='mcq'&&x.subject===st.subject&&x.group===st.mcqGroup);
   const _pid=!st.guest&&st.prof?rkPid(st.prof):null,_first=ranked&&!st.guest&&!!st.prof&&(!_pid||(!rkProf(_pid).synced&&rkProf(_pid).status==='in'));const note=ranked?'Uyguluyorum sonucun Rekorlarım\'a ve sıralamaya yazılır. Öğreniyorum yazılmaz.'+(_first?' Sıralamada yalnız adın görünür. İstemezsen Rekorlarım ekranından listeden çıkabilirsin.':''):st.screen==='mcqmode'?'Bu bölümün sonucu sıralamaya yazılmaz. Sıralama için “Bütün bölümler” denemesini çöz.':'Bu çalışmanın sonucu sıralamaya yazılmaz.';
   if(list)list.insertAdjacentHTML('afterend','<p class="note">'+note+'</p>');}

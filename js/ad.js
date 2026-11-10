@@ -49,7 +49,6 @@ function adRename(o,nw,info){
   if(wasChar){const ids=rkIds();if(ids[o]){ids[nw]=ids[o];delete ids[o];lsSet('rk_ids',ids);}}
   else if(typeof rkForgetProfile==='function')rkForgetProfile(o);
  }
- {const od=ls('odul',{});if(od[o]){od[nw]=od[o];delete od[o];lsSet('odul',od);}}
  const m=adMap();delete m[o];m[nw]=info;lsSet('ad_map',m);
  if(st.prof===o)st.prof=nw;
  if(typeof arkRenamed==='function')arkRenamed(o,nw);

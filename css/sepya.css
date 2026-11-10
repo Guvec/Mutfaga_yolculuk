@@ -2,7 +2,7 @@
 /* Sepya okuma teması. Yalnız renkler değişir; düzen, yazı boyutu ve görseller aynı kalır.
    Gece temasının seçici listesiyle aynıdır, renkleri sıcak krem ve koyu kahverengidir.
    Metin/arka plan çiftleri WCAG AA (en az 4,5:1) için hesaplanmıştır. */
-html[data-theme=sepia]{--bg:#f3ead4;--surface:#fbf6e8;--soft:#ebe0c4;--teal:#0b5c5f;--teal2:#e2d9bb;--navy:#33291a;--text:#3a3020;--muted:#65563f;--line:#94814f;--ok:#25643a;--okbg:#e1e9cb;--bad:#9c2f1d;--badbg:#f2dccd;--fix:#7d5210;--fixbg:#efdfb6;--shadow:0 6px 20px #5a46281f}
+html[data-theme=sepia]{--bg:#f8f2e3;--surface:#fffbf1;--soft:#f1e8d0;--teal:#0b5c5f;--teal2:#e8e1c7;--navy:#3a3020;--text:#40362a;--muted:#6a5c45;--line:#cdbd92;--ok:#2a6a3e;--okbg:#e8eed6;--bad:#a23a28;--badbg:#f6e5d9;--fix:#7d5210;--fixbg:#f3e6c2;--shadow:0 4px 14px #5a462814}
 html[data-theme=sepia] body,html[data-theme=sepia] #app{background:var(--bg);color:var(--text)}
 html[data-theme=sepia] :is(.card,.menu-btn,.btn,.chip,.next,.msg,.modal,.top,.set-card,.bname,.phone-sheet,.phone-name-sheet,.stats,.race-bar,.race-ranks li){background-color:var(--surface);color:var(--text);border-color:var(--line)}
 html[data-theme=sepia] :is(input,select,textarea){background:var(--surface);color:var(--text);border-color:var(--line)}

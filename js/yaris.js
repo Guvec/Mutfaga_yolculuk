@@ -343,7 +343,7 @@ function duEnd(){
  DU.rapor=sonucUret('1’e 1 Kapışma',yrLabel(YR.room),['kapisma',YR.room.subject,YR.room.kind,YR.room.set,YR.room.n].join('|'),DU.myR.filter(v=>v!==undefined&&v!==null).map(v=>({ok:v>0,ms:Math.abs(v)})),{win:DU.forfeit?'Rakip oyundan çıktı':'Kazandın!',lose:'Bu maçı kaybettin',draw:'Berabere',left:'Rakip ayrıldı'}[DU.result]||'');
  if(typeof EFEKT!=='undefined'){const es={win:'win',lose:'kayip',draw:'bera'}[DU.result];if(DU.result==='win'&&DU.rapor.durum==='yeni')EFEKT.cal('rekor');else if(es)EFEKT.cal(es);}
  if(typeof sesSoyle==='function'){const sm={win:DU.forfeit?'Rakip oyundan çıktı. Maçı sen kazandın.':'Kazandın! Tebrikler.',lose:'İyi mücadele! Rövanşta sen kazanabilirsin.',draw:'Berabere! İkiniz de iyi oynadınız.',left:'Rakip ayrıldı. Bu maçın sonucu sayılmadı.'}[DU.result];if(sm)sesSoyle(sm);}
- rutbeMatch('kapisma',DU);if(!DU.left)rkSettingSubmit(YR.room,DU.result==='win'?1:0);duWrite();if(typeof oduKazan==='function')oduKazan('kapisma',DU.result);if(DU.result==='win'&&typeof rkWinAdd==='function')rkWinAdd('oy-kapisma',1);st.screen='dover';render();window.scrollTo(0,0);
+ rutbeMatch('kapisma',DU);if(!DU.left)rkSettingSubmit(YR.room,DU.result==='win'?1:0);duWrite();if(DU.result==='win'&&typeof rkWinAdd==='function')rkWinAdd('oy-kapisma',1);st.screen='dover';render();window.scrollTo(0,0);
 }
 /* Rakip oyundan bilerek çıktıysa (quit) maçı sen kazanırsın; bağlantısı koptuysa sonuç sayılmaz. */
 function duLeft(quit){if(!DU||DU.over)return;DU.left=true;DU.forfeit=!!quit;duEnd();}

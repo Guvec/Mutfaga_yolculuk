@@ -79,7 +79,7 @@ function arSync(){
     AR.rapor=sonucUret('Er Meydanı',yrLabel(YR.room),(yrArenaSelected(YR.room)?'arena3|'+YR.room.scope+'|'+YR.room.subject+'|'+YR.room.n+'|'+YR.room.rev:'arena2|ma-bh|75'),me.r.map(v=>({ok:v>0,ms:Math.abs(v)})),top?'Sıralamada 1. oldun.':'');
     awards[key]={rapor:AR.rapor,at:Date.now()};
     if(lsSet('arena_odul',awards)){
-     rutbeMatch('arena',AR);if(typeof oduKazan==='function')oduKazan('arena',null,{rank:AR.final|0});
+     rutbeMatch('arena',AR);
      if(top&&me.ok>0&&typeof rkWinAdd==='function')rkWinAdd('oy-arena2',1);
     }
     if(typeof EFEKT!=='undefined')EFEKT.cal(top?'win':'tur');

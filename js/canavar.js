@@ -39,7 +39,6 @@ function cvEnd(){
  const c=CV.cfg;rkSettingSubmit({...c,mode:'canavar'},CV.log.filter(x=>x.ok).length);rutbeComplete({id:'cv-'+CV.id,table:['okuma',c.subject,c.scope,c.kind,c.set,c.n].join('|'),correct:CV.log.filter(x=>x.ok).length,total:CV.qs.length,scope:c.scope});CV.rapor=sonucUret('Meydan Okuma',yrLabel({subject:c.subject,kind:c.kind,set:c.set}),['okuma',c.subject,c.kind,c.set,CV.qs.length].join('|'),CV.log,CV.win?'Karmaşayı yendin!':'Bu sefer karmaşa kazandı');
  sonucSes(CV.rapor,CV.win);
  if(typeof sesSoyle==='function')sesSoyle(CV.win?'Meydan okumayı kazandın. Tebrikler!':'Bu sefer olmadı. Çalıştıkça gelişirsin, tekrar deneyebilirsin.');
- if(typeof oduKazan==='function')oduKazan('canavar',CV.win?'win':'lose');
  st.screen='cvover';render();window.scrollTo(0,0);
 }
 function cvStatusHTML(){

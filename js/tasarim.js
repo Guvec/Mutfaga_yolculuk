@@ -23,10 +23,11 @@ var HAZIRLANIYOR=['beslenme-ilkeleri'];
  const sesYazi=()=>'Sesli okuma: '+(SES.acik?'Açık':'Kapalı');
  const hoparlor=()=>'<svg class="design-spk" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 9h4l5-4v14l-5-4H4z" fill="currentColor"/>'+(SES.acik?'<path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>':'<path d="M16 9l5 6M21 9l-5 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>')+'</svg>';
  const muzik=()=>typeof muzikDugme==='function'?muzikDugme():'';
- const beforeTopBar=topBar;topBar=function(title,noBack){let html=beforeTopBar(title,noBack);html=html.replace(/(class="ses-ac"[^>]*>)[^<]*/,'$1'+sesYazi());const end=html.lastIndexOf('</div>');return html.slice(0,end)+muzik()+themeButton()+html.slice(end);};
+ const sesIkon=()=>SES.acik?'🔊':'🔇';
+ const beforeTopBar=topBar;topBar=function(title,noBack){let html=beforeTopBar(title,noBack);return html.replace(/(class="ses-ac"[^>]*>)[^<]*/,'$1'+sesIkon());};
  /* Konu sayfasının üstüne konunun fotoğrafı eğimli küçük kapak olarak eklenir. */
  function konuKapak(){const g=KONU_GORSEL[st.subject];const h1=document.querySelector('#app .wrap > h1');if(!g||!g.foto||!h1||document.querySelector('.design-subject-cover'))return;h1.insertAdjacentHTML('beforebegin','<div class="design-subject-cover" aria-hidden="true"><img src="'+g.foto+'" alt=""></div>');h1.classList.add('design-page-title');}
- function decorate(){document.body.dataset.screen=st.screen;const top=document.querySelector('.top');if(top&&!top.querySelector('.theme-toggle'))top.insertAdjacentHTML('beforeend',muzik()+themeButton());document.querySelectorAll('.top .ses-ac').forEach(b=>{b.textContent=sesYazi();});if(st.screen==='subject')konuKapak();applyTheme();}
+ function decorate(){document.body.dataset.screen=st.screen;document.querySelectorAll('.top .ses-ac:not(.ses-paket-ayar)').forEach(b=>{b.textContent=sesIkon();});if(st.screen==='subject')konuKapak();applyTheme();}
   const beforeRender=render;render=function(){
   if(st.screen==='welcome'||st.screen==='home'){if(typeof SES!=='undefined')SES.sira=[];document.getElementById('app').innerHTML='';}
   else beforeRender();
