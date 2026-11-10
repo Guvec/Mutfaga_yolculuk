@@ -248,7 +248,8 @@ window.yolEsAd=function(id){
  render();
 };
 function yolTamamla(){
- const s=yolS();s.done[Y.node.id]=1;s.cur=null;yolYaz(s);Y.phase='bitti';
+ const s=yolS(),once=!!s.done[Y.node.id];s.done[Y.node.id]=1;s.cur=null;yolYaz(s);Y.phase='bitti';
+ Y.yeniLezzet=(!once&&Y.node.tur==='bolum'&&typeof lezzetYeni==='function')?lezzetYeni():null;
  /* Mutfak Puanı ilerlemeden gelir: bitirilen bölüm ve etap sonu (her biri yalnız ilk kez). Yeniden çözmek puan vermez. */
  if(typeof rutbeComplete==='function'){
   const k=yolK().kisa,plan=yolPlan(),tum=plan&&plan.every(n=>s.done[n.id]);
@@ -389,6 +390,7 @@ function yolBittiHTML(){
  const plan=yolPlan(),s=yolS(),sira=yolSiradaki(plan,s),son=Y.node.tur==='son',nes=yolK().nesne;
  let h=yolBar(yolKonuAdi(),'','yolKapat()',false)+'<div class="yol-sayfa"><h1><span aria-hidden="true">✓</span> '+(son?'Etap tamamlandı':'Bölüm tamamlandı')+'</h1>';
  if(!son){h+='<p class="yol-yon">Bu bölümde öğrendiklerin. Dokununca adı okunur.</p><div class="yol-ogr">'+Y.node.items.map(it=>'<button type="button" class="yol-ogr-k" onclick="yolSoyleOge(\''+it.id+'\')"><img src="'+esc(it.image)+'" alt="'+esc(it.imageAlt||it.answer)+'"><span>'+esc(it.answer)+'</span></button>').join('')+'</div>';}
+ if(Y.yeniLezzet){const z=Y.yeniLezzet;h+='<section class="yol-kart lz-yeni" role="status"><h2>Yeni lezzet açıldı!</h2><div class="lz-yeni-s">'+lzFoto(z,'lz-foto kucuk')+'<b>'+esc(z.ad)+'</b></div><button type="button" class="yol-btn ikinci" onclick="go(\'lezzet\')">Lezzetleri Keşfet ›</button></section>';}
  h+='<p class="yol-kart yol-sonuc" role="status">'+yolOgrenilen(plan,s)+' / '+yolToplam(plan)+' '+yolK().nesneBelirtme+' öğrendin.'+(sira?' Sıradaki: <b>'+esc(yolAd(sira))+'</b> açıldı.':' Bütün bölümler tamamlandı.')+'</p><div class="yol-alt"><button type="button" class="yol-btn ikinci" onclick="go(\'yolum\')">Yolculuğum</button>'+(sira?'<button type="button" class="yol-btn" onclick="yolBaslat(\''+sira.id+'\')">Devam et ›</button>':'')+'</div></div>';
  return h;
 }

@@ -1,0 +1,29 @@
+/* © 2026 Ali Arıkoğlu. Tüm hakları saklıdır. Lezzetleri Keşfet */
+.lz-sekme{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.lz-sekme button{min-height:48px;border:2px solid var(--line,#c9d4d4);border-radius:14px;background:var(--surface,#fff);color:var(--navy,#123);font:700 16px Arial,sans-serif;cursor:pointer}
+.lz-sekme button.on{background:var(--teal,#0b5c5f);border-color:var(--teal,#0b5c5f);color:#fff}
+.lz-tez-satir{display:flex;align-items:flex-end;gap:10px}
+.lz-dost{flex:0 0 92px;width:92px;height:auto;max-height:92px;object-fit:contain}
+.lz-tez-raf{flex:1;display:flex;flex-wrap:wrap;gap:8px;min-height:84px;align-items:flex-end;padding:8px;border-bottom:6px solid var(--line,#c9d4d4);border-radius:10px 10px 0 0}
+.lz-bos{margin:0;color:var(--muted,#566);font-size:15px!important}
+.lz-tez-oge{display:grid;justify-items:center;gap:2px;padding:4px 6px;border:2px solid var(--teal,#0b5c5f);border-radius:12px;background:var(--surface,#fff);color:var(--navy,#123);font-family:inherit;cursor:pointer;min-width:72px}
+.lz-tez-oge b{font-size:14px}.lz-tez-oge small{font-size:11px;color:var(--muted,#566)}
+.lz-konus{font-weight:700;color:var(--navy,#123)}
+.lz-izgara{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.lz-kart{display:grid;gap:8px;padding:10px;border:2px solid var(--line,#d5dfdf);border-radius:18px;background:var(--surface,#fff);text-align:center;align-content:start}
+.lz-kart.kilit{background:var(--soft,#eef1f0);opacity:.9}
+.lz-dinle{display:grid;justify-items:center;gap:2px;border:0;background:transparent;color:var(--navy,#123);font-family:inherit;cursor:pointer;padding:0}
+.lz-dinle b,.lz-kart>b{font-size:18px}.lz-dinle small{font-size:13px;color:var(--muted,#566)}
+.lz-foto{display:grid;place-items:center;width:100%;max-width:150px;aspect-ratio:1/1;border-radius:14px;background:#fff;overflow:hidden}
+.lz-foto img{width:100%;height:100%;object-fit:contain}
+.lz-foto .lz-emoji{display:none;font-size:64px;line-height:1}
+.lz-foto.yok .lz-emoji{display:block}
+.lz-foto.kucuk{max-width:48px;border-radius:10px}.lz-foto.kucuk .lz-emoji{font-size:32px}
+.lz-kilit{font-size:13px;color:var(--muted,#566);font-weight:700}
+.lz-kart.kilit .lz-foto{filter:grayscale(1);opacity:.55}
+.lz-koy{min-height:48px!important;font-size:16px!important}
+.lz-not{text-align:center}
+@media(min-width:700px){.lz-izgara{grid-template-columns:repeat(3,1fr)}}
+
+.lz-yeni-s{display:flex;align-items:center;gap:12px}.lz-yeni-s b{font-size:20px}
+.lz-dost-e{display:grid;place-items:center;font-size:64px;line-height:1}
