@@ -27,11 +27,11 @@
  function sureYazi(s){if(!Number.isInteger(s))return '';return String(Math.floor(s/60)).padStart(2,'0')+':'+String(s%60).padStart(2,'0');}
  window.kaptanRozetHTML=function(){
   const c=K.veri;if(!c||!c.kayit)return '';const k=c.kayit,ben=benMi(k);
-  return '<button type="button" class="ae-kaptan" onclick="kaptanAc()" aria-label="Haftanın Kaptanı: '+esc(k.ad)+'"><span aria-hidden="true">👑</span><b>'+(ben?'Kaptan sensin':esc(k.ad))+'</b></button>';
+  return '<button type="button" class="ae-kaptan" onclick="kaptanAc()" aria-label="Haftanın Kaptanı: '+esc(k.ad)+'"><span aria-hidden="true">👑</span><b>'+(ben?'Kaptan':esc(k.ad))+'</b></button>';
  };
  window.kaptanKartHTML=function(){
   const c=K.veri;if(!c||!c.kayit)return '';const k=c.kayit,ben=benMi(k),t=sureYazi(k.sure);
-  return '<div class="card kaptan-kart" role="status"><span class="kaptan-tac" aria-hidden="true">👑</span><div><small>Haftanın Kaptanı'+(k.gecen?' · geçen hafta':'')+'</small><strong>'+(ben?'Bu hafta kaptan sensin':esc(k.ad))+'</strong><span>'+k.dogru+' doğru'+(t?' · '+t:'')+'</span></div></div>';
+  return '<div class="card kaptan-kart" role="status"><span class="kaptan-tac" aria-hidden="true">👑</span><div><small>Haftanın Kaptanı'+(k.gecen?' · geçen hafta':'')+'</small><strong>'+esc(k.ad)+'</strong><span>'+k.dogru+' doğru'+(t?' · '+t:'')+'</span></div></div>';
  };
  window.kaptanAc=function(){
   const c=K.veri;if(!c||!c.kayit)return;const k=c.kayit,t=sureYazi(k.sure);
