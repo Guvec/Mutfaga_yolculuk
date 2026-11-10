@@ -338,7 +338,7 @@ function rkRecordsHTML(){
  Object.keys(RK_SUBJECT_NAMES).forEach(sub=>{
   const bs=RK_BOARDS.filter(b=>b.subject===sub&&mine[b.id]);if(!bs.length)return;
   h+='<h2 class="grp-h">'+esc(RK_SUBJECT_NAMES[sub])+'</h2><div class="rk-list">';
-  bs.forEach(b=>{const r=mine[b.id];h+='<div class="rk-rec"><div><b>'+esc(b.label)+'</b><span>En iyi sonucun: <b>'+r.best+' / '+b.total+'</b>'+(r.bestDur?' · '+fmtDur(r.bestDur):'')+'</span><span class="note">Son deneme: '+r.last+' / '+b.total+' · '+rkFmtDate(r.lastAt)+'</span></div><button class="btn sm" onclick="rkOpenBoard(\''+b.id+'\')">Sıralama</button></div>';});
+  bs.forEach(b=>{const r=mine[b.id];h+='<div class="rk-rec"><div><b>'+esc(b.label)+'</b><span>En iyi sonucun: <b>'+r.best+' / '+b.total+'</b>'+(r.bestDur?' · '+fmtDur(r.bestDur):'')+'</span><span class="note">Son deneme: '+r.last+' / '+b.total+' · '+rkFmtDate(r.lastAt)+'</span></div>'+(b.gizli?'':'<button class="btn sm" onclick="rkOpenBoard(\''+b.id+'\')">Sıralama</button>')+'</div>';});
   h+='</div>';
  });
  return h+'<p class="note">Süre yalnız bu telefonda tutulur, sıralamayı etkilemez.</p></div>';

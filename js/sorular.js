@@ -6,7 +6,8 @@ const MCQ_PREV_START=startContent,MCQ_PREV_RENDER=render,MCQ_PREV_QUIZ=contentQu
 /* Sıralama denemeleri için birleşen gruplar. Ortak hedefi olan küçük gruplar tek deneme olur. */
 const MCQ_MERGE={
   'mutfak-araclari':[{label:'Tabaklar, kâseler, bardaklar ve fincanlar',parts:['Tabaklar ve kâseler','Bardaklar ve fincanlar']}],
-  'bulasik-makinesi-temizligi':[{label:'Bulaşık Yıkama ve Atık Yönetimi · Bütün bölümler',whole:true,parts:['1. Bölüm','2. Bölüm','3. Bölüm','4. Bölüm','5. Bölüm · Atık yönetimi','Genel tekrar · Set 1','Genel tekrar · Set 2','Genel tekrar · Set 3','Genel tekrar · Set 4']}]
+  'bulasik-makinesi-temizligi':[{label:'Bulaşık Yıkama ve Atık Yönetimi · Bütün bölümler',whole:true,parts:['1. Bölüm','2. Bölüm','3. Bölüm','4. Bölüm','5. Bölüm · Atık yönetimi','Genel tekrar · Set 1','Genel tekrar · Set 2','Genel tekrar · Set 3','Genel tekrar · Set 4']}],
+  'beslenme-ilkeleri':[{label:'Beslenme İlkeleri · Bütün bölümler',whole:true,parts:['1. Bölüm · Yeterli ve dengeli beslenme','2. Bölüm · Besin ögeleri ve besin grupları','3. Bölüm · Besin seçimi ve porsiyonlar','4. Bölüm · Şekerler, su ve içecekler','5. Bölüm · Alışveriş, etiket ve gıda güvenliği','6. Bölüm · Sürdürülebilir beslenme ve Türk mutfağı','Genel tekrar · Set 1','Genel tekrar · Set 2','Genel tekrar · Set 3','Genel tekrar · Set 4','Genel tekrar · Set 5','Genel tekrar · Set 6']}]
 };
 /* whole: bölümler yerinde kalır, ayrıca bütün soruları içeren tek deneme listenin sonuna eklenir. */
 function mcqGroups(){const d=getData();if(st.op!=='mcq')return [];
@@ -20,7 +21,7 @@ function mcqGroupParts(label){const g=mcqGroups().find(x=>x.label===label);retur
 function mcqUnique(items){const seen=new Set();return items.filter(q=>{const key=q.equivalenceKey||q.id;if(seen.has(key))return false;seen.add(key);return true;});}
 function mcqPromptHTML(q){let h=esc(q.prompt);for(const word of q.emphasis||[])h=h.replace(esc(word),'<strong class="question-negative">'+esc(word)+'</strong>');return h;}
 function mcqShuffled(q){const letters=['A','B','C','D','E','F'];const ch=q.choiceOrder?q.choices.slice():shuffle(q.choices);let correct=q.correct;const choices=ch.map((c,i)=>{const id=letters[i];if(c.id===q.correct)correct=id;return {...c,id};});return {...q,choices,correct};}
-function pickGroup(i){st.mcqGroup=mcqGroups()[i].label;go('mcqmode');}
+function pickGroup(i){const gs=mcqGroups(),g=gs[i];if(g.whole&&mcqKalan(gs).length)return;st.mcqGroup=g.label;go('mcqmode');}
 function mcqBegin(mode){st.practice=mode;startContent();}
 startContent=function(setNo){
   if(st.op!=='mcq'||!mcqGroups().length)return MCQ_PREV_START(setNo);
@@ -37,11 +38,17 @@ const MCQ_PREV_PICK=pickContent;
 pickContent=function(op){st.mcqGroup=null;MCQ_PREV_PICK(op);};
 const MCQ_PREV_CAT=catName;
 catName=function(r){const s=MCQ_PREV_CAT(r);return r.op==='mcq'&&r.group?s+' · '+r.group:s;};
+/* "Bütün bölümler" kilidi: öğrenci diğer bölümlerin hepsini en az bir kez bitirince açılır. Misafirde kayıt tutulmadığı için kilit uygulanmaz. */
+function mcqKalan(gs){
+  if(st.guest||!st.prof)return [];
+  const done=new Set(records().filter(r=>r.p===st.prof&&r.op==='mcq'&&r.subject===st.subject&&r.total>0&&(r.qs||[]).length>=r.total).map(r=>r.group));
+  return gs.filter(g=>!g.whole&&!done.has(g.label));
+}
 function mcqListHTML(){
   const gs=mcqGroups();let h=topBar(subjectName())+'<div class="wrap"><h1>Çoktan Seçmeli Sorular</h1><p class="sub">Bir konu seç.</p>';
   let ch=null;
   gs.forEach((g,i)=>{
-    if(g.whole){if(ch!==null)h+='</div>';ch=null;h+='<h2 class="grp-h">Bütün bölümler</h2><div class="list set-list grp-list">'+menuButton('Bütün bölümler',g.count+' soru · Sıralamaya bu deneme yazılır',"pickGroup("+i+")")+'</div>';return;}
+    if(g.whole){if(ch!==null)h+='</div>';ch=null;const kal=mcqKalan(gs);h+='<h2 class="grp-h">Bütün bölümler</h2><div class="list set-list grp-list">'+(kal.length?'<div class="menu-btn preparing" aria-disabled="true"><b>🔒 Bütün bölümler</b><span>Kilitli · Önce şu bölümleri bitir: '+kal.length+' bölüm kaldı</span></div>':menuButton('Bütün bölümler',g.count+' soru',"pickGroup("+i+")"))+'</div>';return;}
     if(g.chapter&&g.chapter!==ch){if(ch!==null)h+='</div>';ch=g.chapter;h+='<h2 class="grp-h">'+(g.chapterLabel||ch+'. Bölüm')+'</h2><div class="list set-list grp-list">';}
     h+=menuButton(g.label.replace(/^\d\. Bölüm · /,'').replace(/^Genel tekrar · /,''),g.count+' soru',"pickGroup("+i+")");
   });
