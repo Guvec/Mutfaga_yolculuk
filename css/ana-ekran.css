@@ -122,7 +122,7 @@ html[data-theme=yuksek] .ae-home{--ae-w1:#fff;--ae-w2:#f2f2f2}
 @media(min-width:412px) and (max-width:799px){.ae-profile strong{font-size:13.5px!important}.ae-paths{flex-basis:43%!important}}
 
 /* Yeni sürüm bildirimi */
-.yeni-surum{position:fixed;left:50%;bottom:16px;transform:translateX(-50%);z-index:9999;display:flex;align-items:center;gap:12px;padding:10px 12px 10px 16px;border-radius:14px;background:var(--ae-ink,#16373b);color:#fff;font:700 14px Arial,sans-serif;box-shadow:0 6px 18px rgba(0,0,0,.28)}
+.yeni-surum{position:fixed;left:50%;top:12px;transform:translateX(-50%);z-index:9999;display:flex;align-items:center;gap:12px;padding:10px 12px 10px 16px;border-radius:14px;background:var(--ae-ink,#16373b);color:#fff;font:700 14px Arial,sans-serif;box-shadow:0 6px 18px rgba(0,0,0,.28)}
 .yeni-surum button{min-height:44px;padding:0 16px;border:0;border-radius:10px;background:#fff;color:var(--ae-ink,#16373b);font:700 14px Arial,sans-serif;cursor:pointer}
 
 /* Haftanın Kaptanı */
