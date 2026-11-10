@@ -184,7 +184,7 @@ render=function(){
     // Kelime Kartları, 12'li eşleştirmenin tekrarı olduğu için menüden kaldırıldı.
     if(st.subject==='baharat')h+=menuButton('Ürünleri açıklamalarıyla tanı','Sıvılar, tozlar ve diğer ürünler. Bu bölüm puanlanmaz.',"go('spicelearn')");
     if(st.subject==='mutfak-araclari')h+=menuButton('Servis takımlarını tanı','Tabakları, metal takımları ve servis kaplarını gruplarıyla öğren.',"go('classification')");
-    if(st.subject!=='kuver')h+=menuButton('Eşleştirme','12 görseli doğru adla eşleştir.',"pickContent('match')");
+    if(st.subject!=='kuver'&&!(typeof yolKonuVar==='function'&&yolKonuVar(st.subject)))h+=menuButton('Eşleştirme','12 görseli doğru adla eşleştir.',"pickContent('match')");
     if(st.subject!=='baharat'&&st.subject!=='kuver')h+=menuButton('Çoktan Seçmeli Sorular','Bu konuya ait sorular.',"pickContent('mcq')");h+='</div></div>';
   }else if(st.screen==='level')h=topBar('Kuveri Kur')+'<div class="wrap"><h1>Kuver seç</h1><div class="list">'+menuButton('Basit Kuver','6 parça · Çorba ve ana yemek menüsü. Kuver tabağı hazır.',"pickLevel(1)")+menuButton('Tabldot Kuver','10 parça · Bu çalışmanın örnek düzenine göre.',"pickLevel(3)")+'</div></div>';
   else if(st.screen==='mode')h=topBar('Çalışma biçimi')+'<div class="wrap"><h1>Nasıl çalışalım?</h1><div class="list">'+menuButton('Öğreniyorum','İpucu ve ikinci deneme ile çalış.',"choosePractice('learn')")+menuButton('Uyguluyorum','Her soruyu bir kez yanıtla. Sonra açıklamayı incele.',"choosePractice('check')")+'</div><p class="note">Her oturumda 1 mola hakkın var.</p></div>';

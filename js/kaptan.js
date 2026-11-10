@@ -1,10 +1,10 @@
 /* © 2026 Ali Arıkoğlu. Tüm hakları saklıdır. */
 /* Haftanın Kaptanı: Haftalık Mutfak Yarışması'nın bu haftaki birincisi (en çok doğru; eşitse en kısa süre).
-   Bu hafta henüz sonuç yoksa geçen haftanın birincisi gösterilir. Yalnız karakter profili adı görünür.
+   Bu hafta henüz sonuç yoksa rozet görünmez (geçen hafta gösterilmez). Yalnız karakter profili adı görünür.
    Veri, sıralamayla aynı Firebase tablosundan okunur; bağlantı yoksa rozet hiç görünmez. */
 (function(){
  'use strict';
- const KEY='kaptan_onbellek',SURE=10*60*1000;
+ const KEY='kaptan_onbellek2',SURE=10*60*1000;
  const K={veri:null,bekliyor:false,deneme:0};
  function sirala(rows){
   return rows.filter(r=>r&&Number.isInteger(r.correct)&&r.correct>0&&typeof r.name==='string').sort((a,b)=>b.correct-a.correct||((Number.isInteger(a.dur)?a.dur:1e9)-(Number.isInteger(b.dur)?b.dur:1e9))||a.name.localeCompare(b.name,'tr'));
@@ -16,9 +16,8 @@
   if(!rkOnline()||K.deneme>=2)return;
   K.bekliyor=true;K.deneme++;
   try{
-   const w=rkWeekNo();let rows=await getir(w),gecen=false;
-   if(!rows.length){rows=await getir(w-1);gecen=true;}
-   const r=rows[0],kayit=r?{ad:rkName(r.name),dogru:r.correct,sure:Number.isInteger(r.dur)?r.dur:null,gecen}:null;
+   const w=rkWeekNo(),rows=await getir(w);
+   const r=rows[0],kayit=r?{ad:rkName(r.name),dogru:r.correct,sure:Number.isInteger(r.dur)?r.dur:null,gecen:false}:null;
    const c2={ts:Date.now(),hafta:w,kayit};lsSet(KEY,c2);K.veri=kayit?c2:null;K.deneme=0;
    if(['home','siralama'].includes(st.screen)&&!st.modalOpen)render();
   }catch(e){}finally{K.bekliyor=false;}

@@ -1,18 +1,25 @@
 /* © 2026 Ali Arıkoğlu. Tüm hakları saklıdır. */
-/* Mutfak Araçları · Öğrenme yolu (Parça 2a): etap > bölüm, kilit, bölüm içi akış, açıklama, 6'lı eşleştirme, Yolculuğum.
-   Bölüm = 6 araç. Etap = 4 bölüm + etap sonu eşleştirmesi. Bütün sayılar YOL_AYAR içinde tek yerden ayarlanır.
+/* Mutfak Araçları ve Baharat · Öğrenme yolu (Parça 2a): etap > bölüm, kilit, bölüm içi akış, açıklama, 6'lı eşleştirme, Yolculuğum.
+   Bölüm = 6 öğe. Etap = 4 bölüm + etap sonu eşleştirmesi. Bütün sayılar YOL_AYAR içinde tek yerden ayarlanır.
    Akış: Öğren -> addan görsele (4 seçenek) -> görselden ada (4 seçenek) -> görselden ada (5 seçenek) -> 6'lı eşleştirme.
    Geçme ölçütü son aşamadadır (görselden ada, 5 seçenek). İlk iki aşama öğretir, geçmeyi belirlemez. */
 'use strict';
 const YOL_AYAR={
  subject:'mutfak-araclari',
- bolumOgesi:6,        /* bir bölümdeki araç sayısı */
+ bolumOgesi:6,        /* bir bölümdeki öğe sayısı */
  etapBolum:4,         /* bir etaptaki bölüm sayısı */
  gecme:5,             /* son aşamada 6 sorudan en az kaç doğru */
- destekDeneme:2,      /* bu kadar başarısız denemeden sonra Öğren + 4 seçenekle yeniden başlar */
- /* Birbirine benzeyen takımlar aynı bölümde karşılaşmasın diye iki takım grubu sırayla kullanılır. */
- gruplar:[[1,4,7,10,5,12],[2,6,8,11,3,9]]
+ destekDeneme:2       /* bu kadar başarısız denemeden sonra Öğren + 4 seçenekle yeniden başlar */
 };
+/* Konuya özel ayarlar. Mutfak Araçları: iki takım grubu sırayla kullanılır (benzer takımlar aynı bölümde karşılaşmasın).
+   Baharat: her etapta her takımdan 3 öğe; her takım bir bölümde yer almaz (bir bölümde aynı takımdan en çok 1 öğe),
+   zor sayılan öğeler (taze yapraklar: takım 3 ve zorAd listesindeki taze fesleğen) bölümlere dağıtılır (bir bölümde en çok 1), aynı ürünün farklı biçimleri ayrı bölümlere konur. */
+const YOL_KONU={
+ 'mutfak-araclari':{kisa:'ma',nesne:'araç',nesneBelirtme:'aracı',nesneler:'araçlara',aynilar:'aynı araçları',giris:'Araçları sırayla öğren. Bölüm bölüm ilerle, kaldığın yerden devam et.',tur:'gruplu',gruplar:[[1,4,7,10,5,12],[2,6,8,11,3,9]]},
+ 'baharat':{kisa:'bh',nesne:'ürün',nesneBelirtme:'ürünü',nesneler:'ürünlere',aynilar:'aynı ürünleri',giris:'Baharat ve aromatik ürünleri sırayla öğren. Bölüm bölüm ilerle, kaldığın yerden devam et.',tur:'dagit',zorTakim:3,zorAd:['TAZE YEŞİL FESLEĞEN']}
+};
+function yolKonuVar(id){return !!YOL_KONU[id];}
+function yolK(){return YOL_KONU[YOL_AYAR.subject]||YOL_KONU['mutfak-araclari'];}
 const YOL_ASAMA=[{id:'s1',ad:'Görseli bul'},{id:'s2',ad:'4 seçenek'},{id:'s3',ad:'5 seçenek'}];
 let Y=null; /* açık bölüm durumu */
 
@@ -21,32 +28,63 @@ function yolHash(s){let h=2166136261>>>0;for(const c of String(s)){h^=c.charCode
 function yolRng(s){return YarisModel.seeded(yolHash(s));}
 function yolKar(a,s){return YarisModel.shuffle(a,yolRng(s));}
 function yolVeri(){const d=typeof CONTENT!=='undefined'?CONTENT[YOL_AYAR.subject]:null;return d&&Array.isArray(d.matches)?d:null;}
-let YOL_PLAN=null,YOL_PLAN_REV='';
+const YOL_PLANLAR={};
+function yolKok(a){return String(a||'').replace(/\(.*?\)/g,' ').replace(/\bTAZE\b/g,' ').replace(/\s+/g,' ').trim();}
+/* Baharat: bir etabın 24 öğesini 4 bölüme dağıtır. Kurallar: aynı takımdan ve aynı üründen en çok 1 öğe, zor öğe en çok 1.
+   Tohumlu karıştırma ve geri izleme ile kural dışına çıkmaz; belirleyicidir (her cihazda aynı plan). */
+function yolDagit(oge,e){
+ const B=YOL_AYAR.etapBolum,N=YOL_AYAR.bolumOgesi;
+ for(let deneme=0;deneme<400;deneme++){
+  const sira=yolKar(oge,'dagit'+e+'#'+deneme),bol=Array.from({length:B},()=>[]);let adim=0;
+  const uygun=(b,x)=>bol[b].length<N&&!bol[b].some(y=>y.set===x.set||yolKok(y.answer)===yolKok(x.answer))&&!(x.zor&&bol[b].some(y=>y.zor));
+  const yerles=i=>{
+   if(i===sira.length)return true;if(++adim>4000)return false;const x=sira[i];
+   const adaylar=[...Array(B).keys()].filter(b=>uygun(b,x)).sort((p,q)=>bol[p].length-bol[q].length||p-q);
+   for(const b of adaylar){bol[b].push(x);if(yerles(i+1))return true;bol[b].pop();}
+   return false;
+  };
+  if(yerles(0))return bol.map(b=>yolKar(b,'ic'+e));
+ }
+ return null;
+}
 function yolPlan(){
  const d=yolVeri();if(!d)return null;
- const rev=d.revision||String(d.matches.length);if(YOL_PLAN&&YOL_PLAN_REV===rev)return YOL_PLAN;
+ const sb=YOL_AYAR.subject,K=yolK();
+ const rev=(d.revision||String(d.matches.length))+'|'+sb;if(YOL_PLANLAR[sb]&&YOL_PLANLAR[sb].rev===rev)return YOL_PLANLAR[sb].nodes;
  const bySet={};d.matches.forEach(m=>{(bySet[m.set]=bySet[m.set]||[]).push(m);});
- const per=YOL_AYAR.bolumOgesi*YOL_AYAR.etapBolum/YOL_AYAR.gruplar.length/YOL_AYAR.gruplar[0].length; /* her takımdan etap başına araç */
- const etapSayisi=Math.floor(Math.min(...Object.values(bySet).map(a=>a.length))/per);
+ const takimlar=Object.keys(bySet).map(Number).sort((a,b)=>a-b);
  const nodes=[];
- for(let e=0;e<etapSayisi;e++){
-  const etapOgeleri=[];
-  for(let b=0;b<YOL_AYAR.etapBolum;b++){
-   const grup=YOL_AYAR.gruplar[b%YOL_AYAR.gruplar.length],kat=Math.floor(b/YOL_AYAR.gruplar.length);
-   const items=grup.map(s=>(bySet[s]||[])[e*per+kat]).filter(Boolean);
-   etapOgeleri.push(...items);
-   nodes.push({id:'e'+(e+1)+'b'+(b+1),etap:e+1,tur:'bolum',no:b+1,items});
+ if(K.tur==='gruplu'){
+  const per=YOL_AYAR.bolumOgesi*YOL_AYAR.etapBolum/K.gruplar.length/K.gruplar[0].length; /* her takımdan etap başına öğe */
+  const etapSayisi=Math.floor(Math.min(...Object.values(bySet).map(a=>a.length))/per);
+  for(let e=0;e<etapSayisi;e++){
+   const etapOgeleri=[];
+   for(let b=0;b<YOL_AYAR.etapBolum;b++){
+    const grup=K.gruplar[b%K.gruplar.length],kat=Math.floor(b/K.gruplar.length);
+    const items=grup.map(s=>(bySet[s]||[])[e*per+kat]).filter(Boolean);
+    etapOgeleri.push(...items);
+    nodes.push({id:'e'+(e+1)+'b'+(b+1),etap:e+1,tur:'bolum',no:b+1,items});
+   }
+   nodes.push({id:'e'+(e+1)+'s',etap:e+1,tur:'son',no:0,items:etapOgeleri});
   }
-  nodes.push({id:'e'+(e+1)+'s',etap:e+1,tur:'son',no:0,items:etapOgeleri});
+ }else{
+  const per=YOL_AYAR.bolumOgesi*YOL_AYAR.etapBolum/takimlar.length; /* her takımdan etap başına öğe */
+  const etapSayisi=Number.isInteger(per)&&per>0?Math.floor(Math.min(...takimlar.map(t=>bySet[t].length))/per):0;
+  for(let e=0;e<etapSayisi;e++){
+   const oge=[];takimlar.forEach(t=>oge.push(...bySet[t].slice(e*per,e*per+per).map(x=>(x.set===K.zorTakim||(K.zorAd||[]).includes(x.answer))?Object.assign({},x,{zor:true}):x)));
+   const bol=yolDagit(oge,e);if(!bol)return null;
+   bol.forEach((items,b)=>nodes.push({id:'e'+(e+1)+'b'+(b+1),etap:e+1,tur:'bolum',no:b+1,items}));
+   nodes.push({id:'e'+(e+1)+'s',etap:e+1,tur:'son',no:0,items:oge});
+  }
  }
- YOL_PLAN=nodes;YOL_PLAN_REV=rev;return nodes;
+ YOL_PLANLAR[sb]={rev,nodes};return nodes;
 }
 function yolAd(n){return n.tur==='son'?'Etap '+n.etap+' · Etap sonu':'Etap '+n.etap+' · Bölüm '+n.no;}
 
 /* ---------- Kayıt (profil başına, bu cihazda) ---------- */
 function yolKey(){return st.guest?'misafir':(st.prof||'misafir');}
-function yolS(){const a=ls('yol_ma',{})||{},s=a[yolKey()]||{};return {done:s.done||{},fails:s.fails||{},cur:s.cur||null};}
-function yolYaz(s){const a=ls('yol_ma',{})||{};a[yolKey()]=s;lsSet('yol_ma',a);}
+function yolS(){const a=ls('yol_'+yolK().kisa,{})||{},s=a[yolKey()]||{};return {done:s.done||{},fails:s.fails||{},cur:s.cur||null};}
+function yolYaz(s){const k='yol_'+yolK().kisa,a=ls(k,{})||{};a[yolKey()]=s;lsSet(k,a);}
 function yolAcik(plan,s,i){return i===0||!!s.done[plan[i-1].id];}
 function yolSiradaki(plan,s){const i=plan.findIndex(n=>!s.done[n.id]);return i<0?null:plan[i];}
 function yolOgrenilen(plan,s){return plan.filter(n=>n.tur==='bolum'&&s.done[n.id]).reduce((t,n)=>t+n.items.length,0);}
@@ -76,7 +114,7 @@ function yolSorular(node,asama,tohum,destek){
 }
 
 /* ---------- Giriş ve durum ---------- */
-function yolAc(){go('yolum');}
+function yolAc(id){if(id&&YOL_KONU[id])YOL_AYAR.subject=id;go('yolum');}
 function yolBaslat(id,gozat){
  const plan=yolPlan();if(!plan)return;const i=plan.findIndex(n=>n.id===id),s=yolS();if(i<0)return;
  if(!gozat&&!yolAcik(plan,s,i))return;
@@ -99,8 +137,9 @@ function yolFazHazirla(){
  if(Y.phase==='esles'){yolEslesHazirla();}
 }
 function yolEslesHazirla(){
- const g=new Set(),havuz=[];
- for(const it of yolKar(Y.node.items,Y.tohum+'m')){if(!g.has(it.answer)){g.add(it.answer);havuz.push(it);}}
+ /* Aynı ad ve aynı ürünün farklı biçimi bir arada çıkmaz; zor sayılan öğeden (taze yaprak) en çok 1 gelir. */
+ const g=new Set(),havuz=[];let zor=0;
+ for(const it of yolKar(Y.node.items,Y.tohum+'m')){const k=yolKok(it.answer);if(g.has(k))continue;if(it.zor&&zor>=1)continue;g.add(k);if(it.zor)zor++;havuz.push(it);}
  const sec=havuz.slice(0,YOL_AYAR.bolumOgesi);
  Y.m={ogeler:sec,gorseller:yolKar(sec,Y.tohum+'mg'),adlar:yolKar(sec,Y.tohum+'ma'),sel:null,eslesen:[],hata:0,mesaj:'',mesajTur:''};
 }
@@ -163,8 +202,8 @@ function yolumHTML(){
  const s=yolS(),sira=yolSiradaki(plan,s),ogr=yolOgrenilen(plan,s),top=yolToplam(plan);
  let h=topBar('Yolculuğum')+'<div class="wrap yol-wrap"><h1>Yolculuğum</h1>';
  h+='<section class="card yol-devam" aria-label="Kaldığın yer">';
- if(sira){h+='<small>Kaldığın yer</small><strong>'+esc(yolAd(sira))+'</strong><span>'+ogr+' / '+top+' aracı öğrendin</span><button class="btn pri yol-buyuk" onclick="yolBaslat(\''+sira.id+'\')">'+(s.cur&&s.cur.id===sira.id?'Devam et':'Başla')+'</button>';}
- else h+='<small>Tebrikler</small><strong>Bütün bölümleri tamamladın</strong><span>'+ogr+' / '+top+' aracı öğrendin</span>';
+ if(sira){h+='<small>Kaldığın yer</small><strong>'+esc(yolAd(sira))+'</strong><span>'+ogr+' / '+top+' '+yolK().nesneBelirtme+' öğrendin</span><button class="btn pri yol-buyuk" onclick="yolBaslat(\''+sira.id+'\')">'+(s.cur&&s.cur.id===sira.id?'Devam et':'Başla')+'</button>';}
+ else h+='<small>Tebrikler</small><strong>Bütün bölümleri tamamladın</strong><span>'+ogr+' / '+top+' '+yolK().nesneBelirtme+' öğrendin</span>';
  h+='</section>';
  const etaplar=[...new Set(plan.map(n=>n.etap))];
  for(const e of etaplar){
@@ -201,7 +240,7 @@ function yolSoruHTML(){
    h+='<button class="'+cls+'" onclick="yolCevap('+i+')"'+(cevaplandi?' disabled':'')+' aria-label="'+L[i]+'. '+esc(c.alt)+'"><img src="'+esc(c.image)+'" alt=""><span class="yol-let">'+L[i]+'</span>'+(cevaplandi&&c.id===q.dogru?'<em>✓ Doğru cevap</em>':cevaplandi&&q.cevap===c.id?'<em>✕ Senin cevabın</em>':'')+'</button>';});
   h+='</div>';
  }else{
-  h+='<img class="yol-img" src="'+esc(q.item.image)+'" alt="'+esc(q.item.imageAlt||'Soru görseli')+'"><h2 class="yol-soru">'+esc(q.item.kok||q.item.prompt||'Bu aracın adı nedir?')+'</h2><div class="yol-secenek">';
+  h+='<img class="yol-img" src="'+esc(q.item.image)+'" alt="'+esc(q.item.imageAlt||'Soru görseli')+'"><h2 class="yol-soru">'+esc(q.item.kok||q.item.prompt||'Görselin adı nedir?')+'</h2><div class="yol-secenek">';
   q.sec.forEach((c,i)=>{let cls='yol-sec';if(cevaplandi){if(c.id===q.dogru)cls+=' ok';else if(q.cevap===c.id)cls+=' bad';}
    h+='<button class="'+cls+'" onclick="yolCevap('+i+')"'+(cevaplandi?' disabled':'')+'><span class="yol-let">'+L[i]+'</span><span class="yol-sec-ad">'+esc(c.text)+'</span>'+(cevaplandi&&c.id===q.dogru?'<em>✓ Doğru cevap</em>':cevaplandi&&q.cevap===c.id?'<em>✕ Yanlış · senin cevabın</em>':'')+'</button>';});
   h+='</div>';
@@ -217,20 +256,20 @@ function yolEslesHTML(){
  const m=Y.m,eslesti=id=>m.eslesen.includes(id);
  let h=topBar(yolAd(Y.node)).replace('back()','yolKapat()')+'<div class="wrap yol-wrap">'+(Y.node.tur==='bolum'?yolAsamaSeridi():'<h1>Etap sonu eşleştirmesi</h1>')+
   '<h2 class="yol-soru">Her görseli adıyla eşleştir</h2><p class="yol-yon">Önce bir görsele, sonra adına dokun. '+m.eslesen.length+' / '+m.ogeler.length+' eşleşti.</p><div class="yol-es">';
- h+='<div class="yol-es-sut" aria-label="Görseller">'+m.gorseller.map(it=>'<button class="yol-es-g'+(eslesti(it.id)?' ok':'')+(m.sel===it.id?' sec':'')+'" onclick="yolEsGorsel(\''+it.id+'\')"'+(eslesti(it.id)?' disabled':'')+' aria-pressed="'+(m.sel===it.id)+'" aria-label="Görsel: '+esc(it.imageAlt||'araç')+(eslesti(it.id)?', eşleşti':'')+'"><img src="'+esc(it.image)+'" alt="">'+(eslesti(it.id)?'<em>✓</em>':'')+'</button>').join('')+'</div>';
+ h+='<div class="yol-es-sut" aria-label="Görseller">'+m.gorseller.map(it=>'<button class="yol-es-g'+(eslesti(it.id)?' ok':'')+(m.sel===it.id?' sec':'')+'" onclick="yolEsGorsel(\''+it.id+'\')"'+(eslesti(it.id)?' disabled':'')+' aria-pressed="'+(m.sel===it.id)+'" aria-label="Görsel: '+esc(it.imageAlt||yolK().nesne)+(eslesti(it.id)?', eşleşti':'')+'"><img src="'+esc(it.image)+'" alt="">'+(eslesti(it.id)?'<em>✓</em>':'')+'</button>').join('')+'</div>';
  h+='<div class="yol-es-sut" aria-label="Adlar">'+m.adlar.map(it=>'<button class="yol-es-a'+(eslesti(it.id)?' ok':'')+'" onclick="yolEsAd(\''+it.id+'\')"'+(eslesti(it.id)?' disabled':'')+'>'+(eslesti(it.id)?'✓ ':'')+esc(it.answer)+'</button>').join('')+'</div></div>';
  h+='<p class="yol-mesaj '+m.mesajTur+'" role="status">'+(m.mesaj?(m.mesajTur==='ok'?'✓ ':m.mesajTur==='bad'?'✕ ':'')+esc(m.mesaj):'')+'</p></div>';
  return h;
 }
 function yolBasarisizHTML(){
  const s=yolS(),fails=s.fails[Y.node.id]||0,destek=fails>=YOL_AYAR.destekDeneme;
- return topBar(yolAd(Y.node)).replace('back()','yolKapat()')+'<div class="wrap yol-wrap"><h1>Bu sefer olmadı</h1><p class="card yol-sonuc" role="status"><b>'+Y.fark+' / '+Y.qs.length+' doğru</b><br>Bölümü geçmek için en az '+YOL_AYAR.gecme+' doğru gerekir. Bir sonraki denemede '+(destek?'önce araçlara yeniden bakacaksın ve soruların 4 seçeneği olacak.':'aynı araçları yeniden çalışacaksın.')+'</p><div class="yol-alt"><button class="btn" onclick="go(\'yolum\')">Yolculuğum</button><button class="btn pri" onclick="yolYenidenDene()">Yeniden dene</button></div></div>';
+ return topBar(yolAd(Y.node)).replace('back()','yolKapat()')+'<div class="wrap yol-wrap"><h1>Bu sefer olmadı</h1><p class="card yol-sonuc" role="status"><b>'+Y.fark+' / '+Y.qs.length+' doğru</b><br>Bölümü geçmek için en az '+YOL_AYAR.gecme+' doğru gerekir. Bir sonraki denemede '+(destek?'önce '+yolK().nesneler+' yeniden bakacaksın ve soruların 4 seçeneği olacak.':yolK().aynilar+' yeniden çalışacaksın.')+'</p><div class="yol-alt"><button class="btn" onclick="go(\'yolum\')">Yolculuğum</button><button class="btn pri" onclick="yolYenidenDene()">Yeniden dene</button></div></div>';
 }
 function yolBittiHTML(){
  const plan=yolPlan(),s=yolS(),sira=yolSiradaki(plan,s),son=Y.node.tur==='son';
  let h=topBar(yolAd(Y.node)).replace('back()','yolKapat()')+'<div class="wrap yol-wrap"><h1><span aria-hidden="true">✓</span> '+(son?'Etap tamamlandı':'Bölüm tamamlandı')+'</h1>';
  if(!son){h+='<p class="yol-yon">Bu bölümde öğrendiklerin. Dokununca adı okunur.</p><div class="yol-ogr">'+Y.node.items.map(it=>'<button class="yol-ogr-k" onclick="yolSoyleIdx('+(Y.oku.push(it.answer)-1)+')"><img src="'+esc(it.image)+'" alt="'+esc(it.imageAlt||it.answer)+'"><span>'+esc(it.answer)+'</span></button>').join('')+'</div>';}
- h+='<p class="card yol-sonuc" role="status">'+yolOgrenilen(plan,s)+' / '+yolToplam(plan)+' aracı öğrendin.'+(sira?' Sıradaki: <b>'+esc(yolAd(sira))+'</b> açıldı.':' Bütün bölümler tamamlandı.')+'</p><div class="yol-alt"><button class="btn" onclick="go(\'yolum\')">Yolculuğum</button>'+(sira?'<button class="btn pri" onclick="yolBaslat(\''+sira.id+'\')">Devam et ›</button>':'')+'</div></div>';
+ h+='<p class="card yol-sonuc" role="status">'+yolOgrenilen(plan,s)+' / '+yolToplam(plan)+' '+yolK().nesneBelirtme+' öğrendin.'+(sira?' Sıradaki: <b>'+esc(yolAd(sira))+'</b> açıldı.':' Bütün bölümler tamamlandı.')+'</p><div class="yol-alt"><button class="btn" onclick="go(\'yolum\')">Yolculuğum</button>'+(sira?'<button class="btn pri" onclick="yolBaslat(\''+sira.id+'\')">Devam et ›</button>':'')+'</div></div>';
  return h;
 }
 function yolPlayHTML(){
@@ -249,7 +288,7 @@ render=function(){
  if(app&&st.screen==='yolum'){app.innerHTML=yolumHTML();return;}
  if(app&&st.screen==='yolplay'){app.innerHTML=yolPlayHTML();return;}
  YOL_RENDER();
- if(app&&st.screen==='subject'&&st.subject===YOL_AYAR.subject){const l=app.querySelector('.list');if(l&&!l.querySelector('.yol-giris'))l.insertAdjacentHTML('afterbegin','<button class="menu-btn yol-giris" onclick="yolAc()"><b>Yolculuğum</b><span>Araçları sırayla öğren. Bölüm bölüm ilerle, kaldığın yerden devam et.</span></button>');}
+ if(app&&st.screen==='subject'&&YOL_KONU[st.subject]){YOL_AYAR.subject=st.subject;const l=app.querySelector('.list');if(l&&!l.querySelector('.yol-giris'))l.insertAdjacentHTML('afterbegin','<button class="menu-btn yol-giris" onclick="yolAc(\''+st.subject+'\')"><b>Yolculuğum</b><span>'+esc(YOL_KONU[st.subject].giris)+'</span></button>');}
 };
 back=function(){
  if(st.screen==='yolplay'){yolKaydet();go('yolum');return;}
