@@ -4269,7 +4269,10 @@
         "card": 11,
         "revision": "MEB sınıflandırmasıyla eklenen örnek"
       },
-      "set": 2
+      "set": 2,
+      "disla": [
+        "Şekerlik"
+      ]
     },
     {
       "id": "meb-020",
@@ -4288,7 +4291,13 @@
         "card": 12,
         "revision": "MEB sınıflandırmasıyla eklenen örnek"
       },
-      "set": 2
+      "set": 2,
+      "disla": [
+        "Demlik",
+        "Çaydanlık",
+        "Şekerlik",
+        "Sütlük"
+      ]
     },
     {
       "id": "guncel-018",
@@ -4638,7 +4647,10 @@
         "card": 12,
         "revision": "MEB sınıflandırmasıyla eklenen örnek"
       },
-      "set": 3
+      "set": 3,
+      "disla": [
+        "Balık çatalı"
+      ]
     },
     {
       "id": "meb-012",
@@ -4657,7 +4669,10 @@
         "card": 1,
         "revision": "MEB sınıflandırmasıyla eklenen örnek"
       },
-      "set": 4
+      "set": 4,
+      "disla": [
+        "Pasta çatalı"
+      ]
     },
     {
       "id": "meb-013",
@@ -5123,7 +5138,10 @@
         "card": 1
       },
       "detail": "Ne için kullanılır? Çayı demlemek için kullanılan küçük, kapaklı kaptır. Atölyede çay makinesinin üst haznesi olarak kullanılır.\nNasıl kullanılır?\n1.Demlik çay makinesinin üstüne yerleştirilir.\n2.Demliğe soğuk su konur.\n3.Çay suyun üstüne eklenir; dibe çökmesi beklenir.\nÇay makinesinin kullanımı 100. kartta anlatılmıştır.\nDikkat: Isınan demliğin gövdesine dokunulmaz; demlik sapından tutulur.",
-      "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak."
+      "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak.",
+      "disla": [
+        "Çay ve kahve servis potu"
+      ]
     },
     {
       "id": "guncel-038",

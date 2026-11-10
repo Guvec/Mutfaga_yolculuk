@@ -127,9 +127,9 @@ function yolTkDogru(item){
 function yolSoru(item,tip,node,tohum,destek){
  const ad=item.answer;
  if(tip==='s1'&&!item.comparison){
-  const havuz=node.items.filter(x=>!x.comparison&&x.id!==item.id);
+  const havuz=node.items.filter(x=>!x.comparison&&x.id!==item.id&&!(item.disla||[]).includes(x.answer)&&!(x.disla||[]).includes(item.answer));
   if(havuz.length>=3){
-   const dig=yolKar(havuz,tohum+item.id+'g').slice(0,3);
+   const celis=(x,y)=>(x.disla||[]).includes(y.answer)||(y.disla||[]).includes(x.answer),dig=[];for(const x of yolKar(havuz,tohum+item.id+'g')){if(dig.length>=3)break;if(!dig.some(y=>celis(x,y)))dig.push(x);}if(dig.length<3)dig.splice(0,dig.length,...yolKar(havuz,tohum+item.id+'g').slice(0,3));
    const sec=yolKar([item,...dig],tohum+item.id+'G').map(x=>({id:x.id,image:x.image,alt:x.imageAlt||x.answer}));
    return {tip:'gorsel',item,ad,sec,dogru:item.id};
   }
