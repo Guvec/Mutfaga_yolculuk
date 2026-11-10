@@ -1,9 +1,5 @@
 /* © 2026 Ali Arıkoğlu. Tüm hakları saklıdır. */
-/* Arka plan müziği. Müzik ile sesli okuma aynı anda açık olmaz:
-   - Müzik açıkken sesli okuma kapalıdır. Eşleştirmede ada dokununca ad yine okunur; müzik o sırada kısa süre durur.
-   - Sesli okuma açılınca müzik kapanır. Müzik yeniden açılmak istenirse uyarı çıkar.
-   - Müzik açıksa, tarayıcılar sesi ancak ilk dokunuştan sonra başlattığı için müzik sayfadaki ilk dokunuşla başlar.
-   Müzik varsayılan olarak kapalıdır; öğrenci isterse açar. Tercih cihazda saklanır (mesleki-muzik: "acik" / "kapali"). */
+/* Müzik ve sesli okuma bağımsız tercihlerdir; okumada müzik duraklar. */
 'use strict';
 var MUZIK=(function(){
  var PARCALAR=['assets/muzik/bach-prelud-do-major.mp3','assets/muzik/sakin-sabah.mp3','assets/muzik/aksam-isigi.mp3','assets/muzik/satie-sade-gece.mp3','assets/muzik/pachelbel-kanon-sade.mp3','assets/muzik/beethoven-ay-isigi-sade.mp3','assets/muzik/beethoven-elise-icin-sade.mp3','assets/muzik/beethoven-nese-ode-sade.mp3','assets/muzik/brahms-besik-sarkisi-sade.mp3','assets/muzik/greensleeves-sade.mp3'];
@@ -23,7 +19,7 @@ var MUZIK=(function(){
  function durdur(){if(audio)audio.pause();}
  function acikMi(){return tercih==='acik';}
  function etiketleriYenile(){document.querySelectorAll('.muzik-ac').forEach(function(b){b.textContent='Müzik: '+(acikMi()?'Açık':'Kapalı');b.setAttribute('aria-pressed',String(acikMi()));});}
- function ac(){tercih='acik';kaydet();if(typeof SES!=='undefined'&&SES.acik){SES.acik=false;lsSet('ses',false);sesSus();}cal();}
+ function ac(){tercih='acik';kaydet();cal();}
  function kapat(){tercih='kapali';kaydet();durdur();}
  /* Ad okunurken müzik kısa süre durur, konuşma bitince devam eder. onend her cihazda gelmediği için konuşma durumu yoklanır. */
  function okumaIcinDuraklat(){
@@ -40,25 +36,6 @@ var MUZIK=(function(){
  var efektDurdurdu=false;
  function efektIcinDuraklat(){if(!acikMi()||!audio||audio.paused)return;efektDurdurdu=true;durdur();}
  function efektBitti(){if(!efektDurdurdu)return;efektDurdurdu=false;if(!konusmaTakip)cal();}
- /* Bir kereye mahsus sıfırlama: eski sürümlerden kalan "müzik açık" tercihi sesli okumayı kapatıyordu.
-    Herkes müzik kapalı, sesli okuma açık başlar; müziği öğrenci isterse kendisi açar. */
- try{
-  if(localStorage.getItem('mesleki-muzik-gecis')!=='1'){
-   localStorage.setItem('mesleki-muzik-gecis','1');
-   if(tercih==='acik'){tercih='kapali';kaydet();}
-   if(typeof SES!=='undefined'&&!SES.acik){SES.acik=true;try{lsSet('ses',true);}catch(e){}}
-  }
- }catch(e){}
- // Müzik varsayılan olarak kapalıdır; sesli okuma açık başlar. Müziği öğrenci açtıysa sesli okuma kapalı başlar (iki ses aynı anda çalmaz).
- if(tercih==='acik'&&typeof SES!=='undefined'&&SES.acik){SES.acik=false;try{lsSet('ses',false);}catch(e){}}
- /* Bir kereye mahsus geçiş: eski sürümde müzik kendiliğinden açık geldiği için sesli okuma kapanıp kaydedilmişti.
-    Müzik tercihi hiç seçilmemişse bu kapalılık öğrencinin seçimi değildir; sesli okuma açılır. */
- try{
-  if(localStorage.getItem('mesleki-ses-gecis')!=='1'){
-   localStorage.setItem('mesleki-ses-gecis','1');
-   if(localStorage.getItem(ANAHTAR)===null&&typeof SES!=='undefined'&&!SES.acik){SES.acik=true;lsSet('ses',true);}
-  }
- }catch(e){}
  function ilkDokunus(){document.removeEventListener('pointerdown',ilkDokunus,true);document.removeEventListener('keydown',ilkDokunus,true);cal();}
  document.addEventListener('pointerdown',ilkDokunus,true);document.addEventListener('keydown',ilkDokunus,true);
  document.addEventListener('visibilitychange',function(){if(document.hidden)durdur();else if(audio&&!konusmaTakip)cal();});
@@ -68,20 +45,10 @@ var MUZIK=(function(){
 function muzikDugme(){return '<button type="button" class="muzik-ac" aria-pressed="'+MUZIK.acikMi()+'" onclick="muzikAcKapa()">Müzik: '+(MUZIK.acikMi()?'Açık':'Kapalı')+'</button>';}
 function muzikAcKapa(){
  if(MUZIK.acikMi()){MUZIK.kapat();render();return;}
- if(typeof SES!=='undefined'&&SES.acik){muzikUyari();return;}
  MUZIK.ac();render();
 }
-function muzikUyari(){
- modalFocus=document.activeElement;st.modalOpen=true;pauseT();
- var ov=document.getElementById('ov');ov.className='on';
- ov.innerHTML='<div class="modal" role="dialog" aria-modal="true" aria-labelledby="muzikUyariBaslik"><h2 id="muzikUyariBaslik">Müzik açılsın mı?</h2><p>Müzik açılırsa sesli okuma kapanır.</p><div class="row"><button class="btn pri" id="muzikEvet">Müziği aç</button><button class="btn" id="muzikHayir">Vazgeç</button></div></div>';
- document.getElementById('muzikEvet').onclick=function(){closeModal();MUZIK.ac();render();};
- document.getElementById('muzikHayir').onclick=closeModal;
- document.getElementById('muzikHayir').focus();
-}
-/* Sesli okuma açılınca müzik kapanır. */
-var MUZIK_SES_ACKAPA=sesAcKapa;
-sesAcKapa=function(){if(!SES.acik&&MUZIK.acikMi())MUZIK.kapat();MUZIK_SES_ACKAPA();};
+/* Müzik, okumayı kapatmadan açılır. */
+function muzikUyari(){MUZIK.ac();render();}
 /* Müzik açıkken (sesli okuma kapalı) eşleştirmede adın kendisi yine okunur; diğer okumalar kapalı kalır. */
 function sesAdOku(metin){
  if(SES.acik){sesSoyle(metin);return;}

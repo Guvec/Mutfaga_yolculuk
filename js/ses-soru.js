@@ -20,6 +20,6 @@ function sesSoruSec(k){
  try{localStorage.setItem(SES_SORU_ANAHTAR,'1');}catch(e){}
  if(k==='muzik'){MUZIK.ac();}
  else{if(MUZIK.acikMi())MUZIK.kapat();var ac=k==='okuma';if(SES.acik!==ac){SES.acik=ac;lsSet('ses',ac);if(!ac)sesSus();}}
- closeModal();if(typeof MUZIK.etiketleriYenile==='function')MUZIK.etiketleriYenile();
+ closeModal();render();if(typeof MUZIK.etiketleriYenile==='function')MUZIK.etiketleriYenile();
 }
 setTimeout(sesSoruGoster,400);

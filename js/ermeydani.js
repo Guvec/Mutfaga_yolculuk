@@ -4,7 +4,7 @@
 let AR=null;
 function arErrors(){return ArenaModel.errorLimit(YR.room);}
 function arStats(r){return ArenaModel.stats(r,arErrors(),YR.room);}
-function arLeadersHTML(){return typeof rkInlineHTML==='function'?rkInlineHTML('oy-arena2','genel',undefined,3).replace('İlgili sıralama','Er Meydanı liderleri · kazanılan oyun')+'<button type="button" class="btn sm" onclick="go(\'rekor\')">Rekorlarım</button>':'';}
+function arLeadersHTML(){return '<button type="button" class="btn sm" onclick="rkOpenBoard(\'oy-arena2\')">Sıralama</button>';}
 function arOn(){return !!(YR.room&&YR.room.mode==='arena');}
 function arSorted(){return YR.players.filter(p=>AR&&AR.roster.includes(p.uid)).slice().sort((a,b)=>String(a.uid).localeCompare(String(b.uid)));}
 function arGone(p){return !!p.left;}

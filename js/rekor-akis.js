@@ -54,13 +54,9 @@ cvNew=function(first){if(first)return FLOW_CV_NEW(first);const b=rkSettingBoard(
 
 function rkSettingInline(c){const b=rkSettingBoard(c);return b?rkInlineHTML(b.id,'genel'):'';}
 
-/* Genel Er Meydanı lideri ana sayfada, konu kartlarından önce görünür. */
+/* Er Meydanı yanlışlarını pekiştirme ekranına bağlar. */
 const AR_LEADER_RENDER=render;
 render=function(){
  AR_LEADER_RENDER();
  if(st.screen==='pekmenu'&&!st.guest&&st.prof){const d=arReviewData(),items=d&&d.all[d.pid]&&d.all[d.pid].items||[],count=items.filter(q=>q.subject===st.subject).length,wrap=document.querySelector('#app .wrap');if(count&&wrap&&!wrap.querySelector('.ar-review-link')){const empty=wrap.querySelector('p.card');if(empty&&empty.textContent.startsWith('Bu konuda tekrar edilecek'))empty.textContent='Er Meydanı yanlışlarını üstteki düğmeden çalışabilirsin.';wrap.insertAdjacentHTML('afterbegin','<button class="btn pri ar-review-link" onclick="arReviewOpen(st.subject)">Er Meydanı yanlışlarını çalış ('+count+')</button>');}}
- if(st.screen!=='home')return;
- const app=document.getElementById('app');if(!app||app.querySelector('.ar-home-leaders'))return;
- const html='<div class="ar-home-leaders">'+rkInlineHTML('oy-arena2','genel',undefined,3).replace('İlgili sıralama','Er Meydanı liderleri · kazanılan oyun')+'</div>',header=app.querySelector('.design-header');
- if(header)header.insertAdjacentHTML('afterend',html);else app.insertAdjacentHTML('afterbegin',html);
 };
