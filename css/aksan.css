@@ -1,0 +1,22 @@
+/* © 2026 Ali Arıkoğlu. Tüm hakları saklıdır. */
+/* Çerçeve (aksan) rengi: ayarlardan seçilir; Turkuaz varsayılandır (öznitelik yok). Beyaz yazıyla kontrast en az 4,5:1. */
+html[data-aksan=okyanus]{--teal:#1F5FA8;--teal2:#e3edf8;--acc:#1F5FA8;--acc-l:#3b82d4;--acc-d:#163f73}
+html[data-aksan=orman]{--teal:#2B7A45;--teal2:#e2f1e7;--acc:#2B7A45;--acc-l:#47a369;--acc-d:#1d5731}
+html[data-aksan=bordo]{--teal:#8E2A3B;--teal2:#f5e3e6;--acc:#8E2A3B;--acc-l:#b5485a;--acc-d:#661d2a}
+html[data-aksan=kehribar]{--teal:#B45F06;--teal2:#fbead4;--acc:#B45F06;--acc-l:#dd8a2e;--acc-d:#85450a}
+html[data-aksan=mor]{--teal:#6B3FA0;--teal2:#ece3f6;--acc:#6B3FA0;--acc-l:#8f63c6;--acc-d:#4c2a76}
+/* Gece temasında açık tonlar kullanılır (koyu zeminde okunur). */
+html[data-theme=dark][data-aksan=okyanus]{--teal:#9cc4f2;--teal2:#243a52;--acc:#9cc4f2;--acc-l:#b6d4f7;--acc-d:#7aaee8}
+html[data-theme=dark][data-aksan=orman]{--teal:#9bd8ac;--teal2:#234232;--acc:#9bd8ac;--acc-l:#b4e5c2;--acc-d:#7dc693}
+html[data-theme=dark][data-aksan=bordo]{--teal:#f0a9b5;--teal2:#4a2830;--acc:#f0a9b5;--acc-l:#f6c0c9;--acc-d:#e58c9b}
+html[data-theme=dark][data-aksan=kehribar]{--teal:#f1c079;--teal2:#46341d;--acc:#f1c079;--acc-l:#f6d197;--acc-d:#e8aa4f}
+html[data-theme=dark][data-aksan=mor]{--teal:#cbb0ec;--teal2:#372a4a;--acc:#cbb0ec;--acc-l:#d9c4f3;--acc-d:#b896e2}
+html[data-theme=dark][data-aksan] .btn.pri{background:var(--acc);border-color:var(--acc);color:#14202a}
+html[data-aksan] .btn.pri{background:var(--teal)}
+/* Ayar penceresindeki renk seçici */
+.aksan-sec{margin:10px 0 6px;text-align:left}
+.aksan-sec>p{margin:0 0 6px;font-weight:700}
+.aksan-sw{display:flex;gap:6px;flex-wrap:wrap}
+.aksan-sw button{position:relative;width:44px;height:44px;min-height:44px;border-radius:50%;border:3px solid #fff;box-shadow:0 0 0 2px var(--line,#cfd9d9);padding:0;cursor:pointer;color:#fff;font-size:22px;line-height:1;display:grid;place-items:center}
+.aksan-sw button[aria-pressed=true]{box-shadow:0 0 0 4px var(--navy,#1b3540)}
+.aksan-ad{display:block;margin-top:6px;font-size:14px}

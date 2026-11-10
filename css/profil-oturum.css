@@ -1,5 +1,5 @@
 /* © 2026 Ali Arıkoğlu. Tüm hakları saklıdır. */
-.profile-self{font:inherit;font-weight:700;min-height:48px;min-width:48px;max-width:240px;padding:8px 12px;border:2px solid var(--teal,#087f79);border-radius:12px;background:var(--surface,#fff);color:var(--navy,#163f31);cursor:pointer;overflow-wrap:anywhere;white-space:normal;line-height:1.3}
+.profile-self{font:inherit;font-weight:700;min-height:48px;min-width:48px;max-width:240px;padding:8px 12px;border:2px solid var(--teal,var(--acc,#087f79));border-radius:12px;background:var(--surface,#fff);color:var(--navy,#163f31);cursor:pointer;overflow-wrap:anywhere;white-space:normal;line-height:1.3}
 .top button.profile-self{max-width:200px;flex-shrink:1;font-size:14px}
 .top .who{max-width:200px;min-width:0}
 body.yr-oyun .top .who{display:block;margin-left:auto}

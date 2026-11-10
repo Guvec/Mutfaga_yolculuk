@@ -17,8 +17,9 @@ var EFEKT=(function(){
   vurus:[[196,0,.05],[392,.05,.07],[880,.11,.2]],
   can:[[220,0,.14],[164.81,.14,.14],[130.81,.28,.3]],
   seri:[[659.25,0,.09],[783.99,.09,.09],[987.77,.18,.09],[1318.5,.27,.35]],
+  tik:[[1320,0,.03]],
   rekor:[[523.25,0,.12],[659.25,.12,.12],[783.99,.24,.12],[1046.5,.36,.14],[783.99,.5,.1],[1046.5,.6,.1],[1318.5,.7,.6]]
- },DUZEY={kilic:0.16,win:0.3,tur:0.26,kayip:0.2,bera:0.2,dogru:0.24,yanlis:0.18,vurus:0.28,can:0.2,seri:0.27,rekor:0.3},ANAHTAR='mesleki-efekt';
+ },DUZEY={kilic:0.16,win:0.3,tur:0.26,kayip:0.2,bera:0.2,dogru:0.24,yanlis:0.18,vurus:0.28,can:0.2,seri:0.27,tik:0.12,rekor:0.3},ANAHTAR='mesleki-efekt';
  var tercih='acik',AC=null;try{tercih=localStorage.getItem(ANAHTAR)==='kapali'?'kapali':'acik';}catch(e){}
  function acikMi(){return tercih==='acik';}
  function ayarla(v){tercih=v?'acik':'kapali';try{localStorage.setItem(ANAHTAR,tercih);}catch(e){}}
@@ -28,7 +29,26 @@ var EFEKT=(function(){
   try{AC=new C();}catch(e){AC=null;}return AC;
  }
  function muzik(f){try{if(typeof MUZIK!=='undefined')MUZIK[f]();}catch(e){}}
+ /* Alkış: kısa süzülmüş gürültü patlamaları (dosya yok, lisans sorunu yok). */
+ function alkis(){
+  var c=baglam();if(!c)return false;
+  try{
+   if(c.state==='suspended'&&c.resume)c.resume();
+   muzik('efektIcinDuraklat');
+   var n=c.sampleRate*0.06,tampon=c.createBuffer(1,n,c.sampleRate),d=tampon.getChannelData(0);
+   for(var i=0;i<n;i++)d[i]=(Math.random()*2-1)*Math.pow(1-i/n,2);
+   var t0=c.currentTime+0.03,vur=18;
+   for(var k=0;k<vur;k++){
+    var b=t0+k*0.075+Math.random()*0.04,src=c.createBufferSource(),f=c.createBiquadFilter(),g=c.createGain();
+    src.buffer=tampon;f.type='bandpass';f.frequency.value=1500+Math.random()*2200;f.Q.value=0.8;
+    g.gain.value=0.22*(1-k/vur*0.6);src.connect(f);f.connect(g);g.connect(c.destination);src.start(b);
+   }
+   setTimeout(function(){muzik('efektBitti');},Math.round((vur*0.075+0.3)*1000));
+   return true;
+  }catch(e){muzik('efektBitti');return false;}
+ }
  function cal(ad){
+  if(ad==='alkis')return acikMi()?alkis():false;
   if(!acikMi()||!NOTA[ad])return false;
   var c=baglam();if(!c)return false;
   var bitti=false,son=function(){if(bitti)return;bitti=true;muzik('efektBitti');};

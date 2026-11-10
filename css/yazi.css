@@ -1,0 +1,6 @@
+/* © 2026 Ali Arıkoğlu. Tüm hakları saklıdır. */
+/* Lexend (SIL Open Font License 1.1; lisans: assets/yazi/Lexend-OFL.txt). Uygulamanın içinde barınır, dışarıdan çağrılmaz.
+   Latin ve Latin-genişletilmiş harfler (ı İ ğ Ğ ş Ş ç Ç ö Ö ü Ü dâhil) alt kümeye alınmıştır. */
+@font-face{font-family:'Lexend';src:url('../assets/yazi/lexend-var.woff') format('woff');font-weight:100 900;font-style:normal;font-display:swap}
+html body,html body *:not(svg):not(svg *):not(code):not(pre){font-family:'Lexend',Arial,Tahoma,sans-serif!important}
+html body{letter-spacing:-.005em}

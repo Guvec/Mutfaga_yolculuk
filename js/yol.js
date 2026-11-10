@@ -286,7 +286,6 @@ setInterval(function(){
  if(!['ogren','s1','s2','s3','esles'].includes(Y.phase))return;
  Y.sure=(Y.sure|0)+1;
  const e=document.getElementById('yolSureT');if(e)e.textContent=yolSureYaz(Y.sure);
- const k=document.querySelector('.yol-kum');if(k&&!sakinAcik()&&Y.sure%6===0)k.classList.toggle('ters');
  if(Y.mode==='oyun'&&Y.sure%15===0)yolKaydet();
 },1000);
 
@@ -295,7 +294,7 @@ const YOL_EK={1:"i",2:"yi",3:"ü",4:"ü"};
 const YOL_DEN={1:"1'den",2:"2'den",3:"3'ten",4:"4'ten",5:"5'ten",6:"6'dan"};
 function yolKonuAdi(){return (typeof KONU_GORSEL!=='undefined'&&KONU_GORSEL[YOL_AYAR.subject])?KONU_GORSEL[YOL_AYAR.subject].ad:YOL_AYAR.subject;}
 function yolSureYaz(n){n=n|0;return String(Math.floor(n/60)).padStart(2,'0')+':'+String(n%60).padStart(2,'0');}
-const YOL_KUM='<svg viewBox="0 0 24 24" width="22" height="22" focusable="false"><path d="M6 2h12v4.5L13.2 12l4.800 5.500V22H6v-4.500L10.800 12 6 6.500z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M8.500 5h7L12 9z" fill="currentColor"/><path d="M8 20l4-4 4 4z" fill="currentColor"/></svg>';
+const YOL_KUM='<svg class="kum-svg" viewBox="0 0 32 48" width="26" height="39" focusable="false" aria-hidden="true"><defs><clipPath id="kumU"><path d="M6 5H26V10C26 17 19 21 17.2 24C19 27 26 31 26 38V43H6V38C6 31 13 27 14.8 24C13 21 6 17 6 10Z"/></clipPath></defs><g class="kum-g"><path d="M6 5H26V10C26 17 19 21 17.2 24C19 27 26 31 26 38V43H6V38C6 31 13 27 14.8 24C13 21 6 17 6 10Z" fill="rgba(255,255,255,.55)"/><g clip-path="url(#kumU)"><path class="kum-ust" d="M5 5H27V24H5Z" fill="#E0A93B"/><path class="kum-alt" d="M5 43V39C10 36 13 31 16 30C19 31 22 36 27 39V43Z" fill="#E0A93B"/><line class="kum-akis" x1="16" y1="23" x2="16" y2="40" stroke="#E0A93B" stroke-width="1.3" stroke-dasharray="2 2"/></g><path d="M6 5H26V10C26 17 19 21 17.2 24C19 27 26 31 26 38V43H6V38C6 31 13 27 14.8 24C13 21 6 17 6 10Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><rect x="3" y="2" width="26" height="3.4" rx="1.7" fill="currentColor"/><rect x="3" y="42.6" width="26" height="3.4" rx="1.7" fill="currentColor"/></g></svg>';
 function yolBar(baslik,alt,geri,sure){
  return '<header class="yol-bar"><button type="button" class="yol-geri-btn" onclick="'+geri+'" aria-label="Geri">‹</button><button type="button" class="yol-geri-btn yol-ev-btn" onclick="yolAnaSayfa()" aria-label="Ana sayfa"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M3 11.5 12 4l9 7.5M5.5 10v9.5h5v-6h3v6h5V10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div class="yol-bar-ttl"><b>'+esc(baslik)+'</b>'+(alt?'<span>'+esc(alt)+'</span>':'')+'</div>'+(sure?'<div class="yol-sure" role="timer" aria-label="Geçen süre"><span class="yol-kum" aria-hidden="true">'+YOL_KUM+'</span><b id="yolSureT">'+yolSureYaz(Y.sure)+'</b></div>':'<span class="yol-sure-bos"></span>')+'</header>';
 }

@@ -33,7 +33,10 @@ const {chromium}=require('playwright'),http=require('http'),fs=require('fs'),pat
   // 4) Değiştirme: kayıtlar yeni ada taşınır, eski rezervasyon bırakılır
   await page.evaluate(()=>{lsSet('records',[{p:'🐼 Sakin Panda',t:new Date().toISOString(),qs:[]}]);});
   await page.evaluate(()=>{const i=profiles().indexOf('🐼 Sakin Panda');adOpen(i,'profiles');adSet(1);});
-  await page.getByRole('button',{name:'💾 Kaydet'}).click();await page.waitForFunction(()=>st.screen==='profiles');
+  // Son hak uyarısı: Hayır derse hiçbir şey değişmez; Evet derse değişir
+  await page.getByRole('button',{name:'💾 Kaydet'}).click();await page.getByRole('button',{name:'Hayır, vazgeç'}).click();
+  assert.equal(await page.evaluate(()=>profiles().includes('🐼 Sakin Panda')&&!document.getElementById('adOnayKapi')),true);ok('Son hak uyarısı: Hayır deyince karakter değişmedi');
+  await page.getByRole('button',{name:'💾 Kaydet'}).click();await page.getByRole('button',{name:'Evet, değiştir'}).click();await page.waitForFunction(()=>st.screen==='profiles');
   const after=await page.evaluate(()=>({p:profiles(),r:records().map(x=>x.p)}));
   assert(after.p.includes('🦊 Kurnaz Tilki')&&!after.p.includes('🐼 Sakin Panda'));assert.deepEqual(after.r,['🦊 Kurnaz Tilki']);ok('Karakter değişince profil ve kayıtlar yeni ada taşındı');
   // 5) Eski gerçek adlı profil: açılışta karakter alır, kayıtlar taşınır, rekor kimliği sıfırlanır
