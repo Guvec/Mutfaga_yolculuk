@@ -58,7 +58,7 @@ function aracBoardDecorate(){
   tools.hidden=true;
  }
  const intro=side.querySelector('.msg');
- if(st.lastRes&&st.lastRes.intro&&intro)intro.innerHTML='<b>'+(marked?'Üçgenin gösterdiği aracın adını seç.':'Görseli seç, adını bul.')+'</b><span>12 görsel · 18 ad</span>';
+ if(st.lastRes&&st.lastRes.intro&&intro)intro.innerHTML='<b>'+(marked?'Üçgenin gösterdiği aracın adını seç.':'Görseli seç, adını bul.')+'</b><span>Görselleri adlarıyla eşleştir</span>';
  pictures.querySelectorAll('.bimg-btn').forEach((button,i)=>{const item=st.board.items[i];if(item&&item.comparison)button.setAttribute('aria-label',(i+1)+'. görsel. Üç araç var; üçgen '+item.comparisonPosition+'. aracı gösteriyor.'+(st.board.pair[item.id]?' Eşlenen ad: '+st.board.pair[item.id]:''));});
  if(aracSmall()&&PHONE.open&&!st.kDone){
   const buttons=[...side.querySelectorAll('.bname')];

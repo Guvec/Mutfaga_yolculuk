@@ -1,9 +1,0 @@
-PASS Gerçek kurallarla ilk sonuç genel ve haftalık tabloya yazıldı; açık satırda süre/hesap kimliği yok
-PASS Ad değişikliği + yüksek sonuç, ad değişikliği + düşük sonuç kurallarla uyumlu
-PASS Kural reddinde öğrenciye yazma hatası gösterilmedi; sonuç kuyrukta tutulup tekrar gönderildi
-PASS İki ayrı cihaz aynı listeyi görüyor; başka cihaz yabancı satıra yazamıyor
-PASS Listeden çık: sunucudaki satırlar silindi, sonraki sonuç yazılmadı
-PASS Listeye dön: yeni nesil (2) ile yazıldı
-PASS Puansız yoklama: geçmiş kaydında puan 0 (yenileme sonrası), gönderim çağrısı 0
-PASS Çevrimdışı profil silme engellendi; çevrimiçi silmede durum deleted ve satırlar silindi
-PASS Tarayıcıda yakalanmamış JavaScript hatası yok (gerçek SDK + emülatör; fiziksel Android değil)

@@ -8,7 +8,7 @@ function boardActive(){boardSetsFill();return st.op==='match'&&contentSets().len
 startContent=function(setNo){if(!boardActive())return BOARD_PREV_START(setNo);if(setNo!==undefined){st.contentSet=setNo;go('boardmode');return;}startBoard(st.practice||'learn');};
 back=function(){if(st.screen==='boardmode'){go('content');return;}BOARD_PREV_BACK();};
 function boardDistractors(n,items){const on=new Set(items.map(x=>x.answer));return [...new Set((getData().distractors||{})[String(n)]||[])].filter(x=>!on.has(x));}
-function boardIntro(n,e){return 'Bu oyunda '+n+' görsel ve '+(n+e)+' ad var. Bir görsele dokun, ardından o görselin adını seç. Tüm görselleri bu şekilde eşleştir. Her görsel için farklı bir ad seç. Adlardan '+e+' tanesi hiçbir görselle eşleşmez.';}
+function boardIntro(n,e){return 'Bir görsele dokun, ardından o görselin adını seç. Tüm görselleri bu şekilde eşleştir. Her görsel için farklı bir ad seç. Bazı adların görseli yoktur.';}
 function startBoard(practice,size,variant){
  st.practice=practice;let items=contentArr().filter(x=>x.set===st.contentSet).slice().sort((a,b)=>(a.currentBoardCard||a.source.card||0)-(b.currentBoardCard||b.source.card||0));
  const full=items.slice();size=practice==='check'?12:(size||12);items=shuffle(items);items=items.slice(0,size);

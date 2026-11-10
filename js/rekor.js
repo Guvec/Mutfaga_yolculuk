@@ -294,7 +294,7 @@ function rkPekStart(kind,arg,opts){
   shuffle(full.filter(x=>!its.includes(x)).map(x=>x.answer)).forEach(n=>{if(names.length<its.length+2)add(n);});
   st.practice='learn';st.pekRound={kind:'m',set:arg};
   st.board={items:shuffle(its),names:shuffle(names),extra:names.length-its.length,pair:{},sel:null,selName:null,tries:{},res:{},attempts:{},responseTime:{},checked:false,size:its.length,variant:true};
-  st.lastRes={cls:'',head:'Pekiştiriyorum: '+its.length+' görsel ve '+names.length+' ad var.',text:'Bir görsele dokun, sonra adını seç. Bazı adlar hiçbir görselle eşleşmez.',intro:true};
+  st.lastRes={cls:'',head:'Pekiştiriyorum: görselleri adlarıyla eşleştir.',text:'Bir görsele dokun, sonra adını seç. Bazı adların görseli yoktur.',intro:true};
   st.sess={id:Date.now(),p:st.prof,t:new Date().toISOString(),op:'match',subject:st.subject,practice:'pek',set:arg,s:0,ok:0,fix:0,bad:0,br:0,total:its.length,qs:[]};
   st.savedMsg='';if(typeof PHONE!=='undefined'){PHONE.open=false;PHONE.expanded=false;}tStart();st.screen='board';render();window.scrollTo(0,0);return;
  }

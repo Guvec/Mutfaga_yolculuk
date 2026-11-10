@@ -12,7 +12,7 @@ function sesSoruGoster(){
  function d(k,ikon,ad,not){return '<button class="btn'+(simdi===k?' pri':'')+'" data-ses-soru="'+k+'" aria-pressed="'+(simdi===k)+'">'+ikon+' '+ad+'<br><small>'+not+'</small></button>';}
  modalFocus=document.activeElement;st.modalOpen=true;pauseT();
  var ov=document.getElementById('ov');ov.className='on';
- ov.innerHTML='<div class="modal" role="dialog" aria-modal="true" aria-labelledby="sesSoruBaslik"><h2 id="sesSoruBaslik">Nasıl çalışmak istersin?</h2><p>Birini seç. Sonra Ses ayarları\'ndan değiştirebilirsin.</p><div class="ses-soru-liste">'+d('okuma','🔊','Sesli okuma','Soruları sesli okur.')+d('muzik','🎵','Müzik','Arkada sakin müzik çalar.')+d('sessiz','🔇','Sessiz','Ses çalmaz.')+'</div></div>';
+ ov.innerHTML='<div class="modal" role="dialog" aria-modal="true" aria-labelledby="sesSoruBaslik"><h2 id="sesSoruBaslik">Nasıl çalışmak istersin?</h2><p>Birini seç. Sonra ana sayfadaki ⚙ düğmesinden değiştirebilirsin.</p><div class="ses-soru-liste">'+d('okuma','🔊','Sesli okuma','Soruları sesli okur.')+d('muzik','🎵','Müzik','Arkada sakin müzik çalar.')+d('sessiz','🔇','Sessiz','Ses çalmaz.')+'</div></div>';
  ov.querySelectorAll('[data-ses-soru]').forEach(function(b){b.onclick=function(){sesSoruSec(b.getAttribute('data-ses-soru'));};});
  var ilk=ov.querySelector('.pri')||ov.querySelector('button');if(ilk)ilk.focus();
 }

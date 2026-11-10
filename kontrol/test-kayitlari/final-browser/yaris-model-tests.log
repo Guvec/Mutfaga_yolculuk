@@ -1,2 +1,0 @@
-PASS: seeded questions (baharat 8, mutfak 12, bulaşık, kuver 1/3, bilgi) have 4 distinct choices; deterministic; rematch differs; duel first-correct rule, ties to host, early finish; shared ranks; first name only; room code slug.
-PASS dengeli kapsam: 10/15/20 dağılım, sabit kalan pay, kimlik, tohum, rövanş; haftalık 8/7/5/5; boş havuz hatası.

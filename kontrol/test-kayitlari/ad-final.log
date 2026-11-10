@@ -1,9 +1,0 @@
-PASS Profil ekranında ad yazma kutusu yok
-FAIL locator.click: Timeout 30000ms exceeded.
-Call log:
-[2m  - waiting for getByRole('button', { name: /Yeni profil/ })[22m
-
-    at /workspace/scratch/ad88c7dc1a13/work/repo/tests/ad-tests.cjs:16:55 {
-  log: [ "  - waiting for getByRole('button', { name: /Yeni profil/ })" ],
-  name: 'TimeoutError'
-}

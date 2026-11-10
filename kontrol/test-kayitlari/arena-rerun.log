@@ -1,9 +1,0 @@
-AssertionError [ERR_ASSERTION]: en hızlı doğru (a) turu aldı
-    at /workspace/scratch/ad88c7dc1a13/work/repo/tests/ermeydani-ui-tests.cjs:80:51 {
-  generatedMessage: false,
-  code: 'ERR_ASSERTION',
-  actual: 'u2',
-  expected: 'u1',
-  operator: '==',
-  diff: 'simple'
-}

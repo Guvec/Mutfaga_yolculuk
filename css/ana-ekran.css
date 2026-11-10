@@ -143,3 +143,17 @@ html[data-theme=yuksek] .ae-home{--ae-w1:#fff;--ae-w2:#f2f2f2}
 .modal.muzik-ilk .muzik-ilk-nota{margin:0;font-size:46px!important;line-height:1;color:var(--ae-mint,#0a8f86)}
 .muzik-ilk h2{margin:6px 0 4px;font-size:26px}
 .muzik-ilk .row{display:grid;grid-template-columns:1fr;gap:10px;margin:14px 0 8px}
+
+/* Mutfak Kitabım kartı: başlık, altında "Devam et / Çalışmaya başla" düğmesi; kartın geri kalanı Mutfak Kitabım'ı açar. */
+.ae-book{position:relative}
+.ae-book-txt{display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:5px;flex:0 0 auto;min-width:0;position:relative;z-index:2}
+.ae-book .ae-book-txt strong{font-size:24px!important;line-height:1.05}
+.ae-book-hit{position:absolute!important;inset:0;z-index:1;width:100%;border:0!important;border-radius:20px;background:transparent!important;min-height:0!important;padding:0}
+.ae-book-hit::after{content:"›";position:absolute;right:12px;top:50%;transform:translateY(-50%);font-size:34px;color:#0b6a6c;pointer-events:none}
+.ae-devam{display:inline-flex;align-items:center;gap:7px;min-height:44px!important;padding:4px 12px 4px 6px;border:0;border-radius:24px;background:#0f8f85;color:#fff!important;text-align:left;box-shadow:0 2px 5px #0b5f5a44;position:relative;z-index:3}
+.ae-devam-play{flex:0 0 30px;height:30px;border-radius:50%;background:#fff;color:#0f8f85;display:grid;place-items:center;font-size:13px;padding-left:2px}
+.ae-devam-txt{display:flex;flex-direction:column;line-height:1.15}
+.ae-devam-txt b{font-size:15px}.ae-devam-txt small{font-size:12px;opacity:.95}
+.ae-book>.ae-book-img{margin-right:30px}
+html[data-theme=dark] .ae-book-hit::after{color:#b9e8d7}
+.ae-book-txt{pointer-events:none}.ae-book-txt .ae-devam{pointer-events:auto}

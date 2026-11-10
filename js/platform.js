@@ -2,9 +2,9 @@
 /* Konu verileri oyun motorlarından ayrıdır. GitHub Pages üzerinde derleme gerekmez. */
 'use strict';
 const SUBJECTS = [
-  {id:'baharat', name:'Baharatlar ve Diğer Mutfak Ürünleri', desc:'8 takım · 12 görsel ve 18 ad · Ayrıca açıklamalı ürün bankası.'},
+  {id:'baharat', name:'Baharatlar ve Diğer Mutfak Ürünleri', desc:'Baharat ve aromatik ürünleri tanı. Görsele bak, adını öğren.'},
   {id:'kuver', name:'Kuver', desc:'Basit kuver ve tabldot kuver çalışmaları.'},
-  {id:'mutfak-araclari', name:'Mutfak Araçları', desc:'144 örnek · 12 takım · Her takımda 12 görsel ve 18 ad.'},
+  {id:'mutfak-araclari', name:'Mutfak Araçları', desc:'Mutfak araçlarını tanı. Görsele bak, adını öğren.'},
   {id:'beslenme-ilkeleri', name:'Beslenme İlkeleri', desc:'Hazırlanıyor.'},
   {id:'bulasik-makinesi-temizligi', name:'Bulaşık Yıkama ve Atık Yönetimi', desc:'Elde yıkama, makinede yıkama ve atıkları ayırma.'}
 ];

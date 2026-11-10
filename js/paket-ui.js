@@ -32,7 +32,6 @@ render=function(){
  PAKET_RENDER();
  if(st.screen==='siralama'&&RK.view.board==='haftalik'){const general=app.querySelector("button[onclick=\"rkPickPeriod('genel')\"]");if(general)general.remove();}
  if(st.screen==='home'){const wrap=app.querySelector('.design-wrap')||app.querySelector('.wrap');if(wrap){wrap.insertAdjacentHTML('beforeend',rkHomeHTML());}}
- if(['dplay','dover','aplay','aover','raceplay','raceover'].includes(st.screen)){const w=app.querySelector('.top');if(w)w.insertAdjacentHTML('beforeend','<button class="back paket-sound" onclick="paketSes()" aria-label="Efekt, müzik ve sesli okuma ayarları">Ses ayarları</button>');}
  if(['board','quiz','summary','spicereview'].includes(st.screen)&&st.sess&&rkSessionDone()){const b=rkBoardForSession();if(b){const w=app.querySelector('.wrap')||app.querySelector('.quiz .side');if(w)w.insertAdjacentHTML('beforeend',rkInlineHTML(b.id,'genel'));}}
 };
 back=function(){if(['rutbe','haftamenu','haftaover'].includes(st.screen)){go('home');return;}if(st.screen==='haftaplay'){haftaSave();haftaOpen();return;}if(st.screen==='rkpre'){const from=RK_PRE&&RK_PRE.from;RK_PRE=null;go(from||'home');return;}PAKET_BACK();};

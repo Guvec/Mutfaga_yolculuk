@@ -90,6 +90,17 @@ function yolSiradaki(plan,s){const i=plan.findIndex(n=>!s.done[n.id]);return i<0
 function yolOgrenilen(plan,s){return plan.filter(n=>n.tur==='bolum'&&s.done[n.id]).reduce((t,n)=>t+n.items.length,0);}
 function yolToplam(plan){return plan.filter(n=>n.tur==='bolum').reduce((t,n)=>t+n.items.length,0);}
 
+/* Ana sayfa "Devam et / Çalışmaya başla" düğmesi için: bir konunun sıradaki bölümü. */
+function yolDevamBilgi(id){
+ if(!YOL_KONU[id])return null;
+ const onceki=YOL_AYAR.subject;YOL_AYAR.subject=id;
+ try{
+  const plan=yolPlan();if(!plan)return null;
+  const s=yolS(),n=yolSiradaki(plan,s),basladi=Object.keys(s.done).length>0||!!s.cur;
+  return {id,basladi,bitti:!n,alt:n?yolAd(n):'Tüm bölümler bitti'};
+ }finally{YOL_AYAR.subject=onceki;}
+}
+
 /* ---------- Sorular ---------- */
 function yolSoru(item,tip,node,tohum,destek){
  const ad=item.answer;

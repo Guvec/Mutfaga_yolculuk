@@ -42,7 +42,6 @@ function extraReport(){const s=st.sess;return '<section class="card audit-report
 const U_RENDER=render;
 render=function(){U_RENDER();const app=document.getElementById('app');if(!app)return;
  if(st.screen==='summary')app.insertAdjacentHTML('beforeend',extraReport());
- if(st.screen!=='welcome')app.insertAdjacentHTML('beforeend','<div class="voice-tools"><button class="btn sm" onclick="voiceSettings()">Ses ayarları</button><button class="btn sm" onclick="sesSus()">Sesi durdur</button></div>');
 };
 const U_BACK=back;
 back=function(){if(st.screen==='mcqmode'){go('content');return;}U_BACK();};
