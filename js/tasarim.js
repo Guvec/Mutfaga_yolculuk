@@ -11,7 +11,7 @@ var KONU_GORSEL={
  'beslenme-ilkeleri':{ad:'Beslenme İlkeleri',foto:'assets/tasarim/konu-beslenme.jpg'}
 };
 var ONE_CIKAN=['baharat','mutfak-araclari','kuver','bulasik-makinesi-temizligi'];
-var HAZIRLANIYOR=['beslenme-ilkeleri'];
+var HAZIRLANIYOR=[];
 (function(){
  const root=document.documentElement;
  let theme='light';

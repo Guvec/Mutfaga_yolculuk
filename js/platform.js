@@ -5,7 +5,7 @@ const SUBJECTS = [
   {id:'baharat', name:'Baharatlar ve Diğer Mutfak Ürünleri', desc:'Baharat ve aromatik ürünleri tanı. Görsele bak, adını öğren.'},
   {id:'kuver', name:'Kuver', desc:'Basit kuver ve tabldot kuver çalışmaları.'},
   {id:'mutfak-araclari', name:'Mutfak Araçları', desc:'Mutfak araçlarını tanı. Görsele bak, adını öğren.'},
-  {id:'beslenme-ilkeleri', name:'Beslenme İlkeleri', desc:'Hazırlanıyor.'},
+  {id:'beslenme-ilkeleri', name:'Beslenme İlkeleri', desc:'Yeterli ve dengeli beslenme, besin ögeleri ve gıda güvenliği.'},
   {id:'bulasik-makinesi-temizligi', name:'Bulaşık Yıkama ve Atık Yönetimi', desc:'Elde yıkama, makinede yıkama ve atıkları ayırma.'}
 ];
 const CONTENT = Object.create(null);
@@ -180,7 +180,7 @@ function contentQuizHTML(){
 render=function(){
   let h=null;
   if(st.screen==='welcome')h='<div class="welcome"><img src="assets/acilis-kolaj.jpg" alt="Tabldot kuver, çorba tenceresi, çırpma teli ve bulaşık makinesi"><h1>Mesleki Oyunlar</h1><p class="sub">Yiyecek ve İçecek Hizmetleri</p><button class="btn pri start" onclick="go(\'profiles\')">Başlayalım</button><p class="ver">'+VERSION+'</p></div>';
-  else if(st.screen==='home')h=topBar('Konu klasörleri')+'<div class="wrap"><h1>Ne çalışalım?</h1><p class="sub">Bir konu seç.</p><div class="list">'+SUBJECTS.map(s=>s.id==='beslenme-ilkeleri'?'<div class="menu-btn preparing" aria-disabled="true"><b>'+esc(s.name)+'</b><span>Hazırlanıyor</span></div>':menuButton(s.name,s.desc,"openSubject('"+s.id+"')")).join('')+(st.guest?'':menuButton('Çalışma Geçmişim','Son 14 günün sonuçları.',"go('history')"))+'</div></div>';
+  else if(st.screen==='home')h=topBar('Konu klasörleri')+'<div class="wrap"><h1>Ne çalışalım?</h1><p class="sub">Bir konu seç.</p><div class="list">'+SUBJECTS.map(s=>menuButton(s.name,s.desc,"openSubject('"+s.id+"')")).join('')+(st.guest?'':menuButton('Çalışma Geçmişim','Son 14 günün sonuçları.',"go('history')"))+'</div></div>';
   else if(st.screen==='classification')h=classificationHTML();
   else if(st.screen==='subject'){
     h=topBar(subjectName())+'<div class="wrap"><h1>'+subjectName()+'</h1><div class="list">';
@@ -189,7 +189,7 @@ render=function(){
     // Kelime Kartları, 12'li eşleştirmenin tekrarı olduğu için menüden kaldırıldı.
     if(st.subject==='baharat')h+=menuButton('Ürünleri açıklamalarıyla tanı','Sıvılar, tozlar ve diğer ürünler. Bu bölüm puanlanmaz.',"go('spicelearn')");
     if(st.subject==='mutfak-araclari')h+=menuButton('Servis takımlarını tanı','Tabakları, metal takımları ve servis kaplarını gruplarıyla öğren.',"go('classification')");
-    if(st.subject!=='kuver'&&!(typeof yolKonuVar==='function'&&yolKonuVar(st.subject)))h+=menuButton('Eşleştirme','12 görseli doğru adla eşleştir.',"pickContent('match')");
+    if(st.subject!=='kuver'&&st.subject!=='beslenme-ilkeleri'&&!(typeof yolKonuVar==='function'&&yolKonuVar(st.subject)))h+=menuButton('Eşleştirme','12 görseli doğru adla eşleştir.',"pickContent('match')");
     if(st.subject!=='baharat'&&st.subject!=='kuver')h+=menuButton('Çoktan Seçmeli Sorular','Bu konuya ait sorular.',"pickContent('mcq')");h+='</div></div>';
   }else if(st.screen==='level')h=topBar('Kuveri Kur')+'<div class="wrap"><h1>Kuver seç</h1><div class="list">'+menuButton('Basit Kuver','4 parça · Çatal, bıçak, peçete ve su bardağı. Kuver tabağı hazır.',"pickLevel(1)")+menuButton('Tabldot Kuver','6 parça · Çorba ve tatlı kaşığı da var. Kuver tabağı hazır.',"pickLevel(3)")+'</div></div>';
   else if(st.screen==='mode')h=topBar('Çalışma biçimi')+'<div class="wrap"><h1>Nasıl çalışalım?</h1><div class="list">'+menuButton('Öğreniyorum','İpucu ve ikinci deneme ile çalış.',"choosePractice('learn')")+menuButton('Uyguluyorum','Her soruyu bir kez yanıtla. Sonra açıklamayı incele.',"choosePractice('check')")+'</div><p class="note">Her oturumda 1 mola hakkın var.</p></div>';
