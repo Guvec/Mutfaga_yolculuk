@@ -1,0 +1,69 @@
+/* © 2026 Ali Arıkoğlu. Tüm hakları saklıdır. Mutfak Araçları öğrenme yolu */
+.yol-wrap{max-width:640px;margin:0 auto;padding-bottom:28px}
+.yol-wrap h1{margin:8px 0 10px}
+.yol-devam{display:grid;gap:4px;margin-bottom:12px}
+.yol-devam small{font-weight:700;color:var(--muted)}
+.yol-devam strong{font-size:22px;color:var(--navy)}
+.yol-devam span{color:var(--muted);font-size:15px}
+.yol-buyuk{margin-top:8px;min-height:56px;font-size:19px}
+.yol-etap h2{margin:0 0 10px;font-size:19px}
+.yol-ok{color:var(--ok)}
+.yol-dugmeler{display:grid;grid-template-columns:repeat(auto-fit,minmax(104px,1fr));gap:8px}
+.yol-dugme{display:grid;justify-items:center;gap:2px;min-height:76px;padding:8px 6px;border:2px solid var(--line);border-radius:14px;background:var(--surface,#fff);color:var(--navy);font-family:inherit;cursor:pointer}
+.yol-dugme b{font-size:15px}
+.yol-dugme small{font-size:12px;color:var(--muted)}
+.yol-dugme>span{font-size:18px;line-height:1.1}
+.yol-dugme.bitti{border-color:var(--ok);background:var(--okbg)}
+.yol-dugme.simdi{border-color:var(--teal);box-shadow:0 0 0 3px var(--teal2)}
+.yol-dugme.kilit{opacity:.65;cursor:not-allowed;background:var(--bg)}
+.yol-serit{display:flex;flex-wrap:wrap;gap:6px;list-style:none;margin:6px 0 10px;padding:0}
+.yol-serit li{padding:5px 10px;border-radius:999px;border:1.5px solid var(--line);font-size:13px;font-weight:700;color:var(--muted);background:var(--surface,#fff)}
+.yol-serit li.bitti{border-color:var(--ok);color:var(--ok)}
+.yol-serit li.simdi{border-color:var(--teal);background:var(--teal);color:#fff}
+.yol-say{margin:4px 0;font-weight:700;color:var(--muted)}
+.yol-kart{display:grid;gap:10px;justify-items:center;text-align:center;padding:12px;border:2px solid var(--line);border-radius:16px;background:var(--surface,#fff)}
+.yol-img{width:100%;max-width:340px;max-height:42vh;object-fit:contain;border-radius:12px;background:#fff;margin:4px auto;display:block}
+.yol-ad{margin:0;font-size:24px;color:var(--navy)}
+.yol-acik{margin:0;font-size:17px;line-height:1.45;text-align:left}
+.yol-ses{min-height:48px;padding:8px 16px;border:2px solid var(--teal);border-radius:12px;background:var(--surface,#fff);color:var(--teal);font:700 16px Arial,sans-serif;cursor:pointer}
+.yol-alt{display:flex;justify-content:space-between;gap:10px;margin-top:14px}
+.yol-alt .btn{flex:1;min-height:54px;font-size:18px}
+.yol-soru{margin:8px 0;font-size:21px;line-height:1.35;color:var(--navy)}
+.yol-secenek{display:grid;gap:8px}
+.yol-sec{position:relative;display:flex;align-items:center;gap:10px;width:100%;min-height:60px;padding:8px 12px;border:2px solid var(--line);border-radius:14px;background:var(--surface,#fff);color:var(--navy);font:700 18px Arial,sans-serif;text-align:left;cursor:pointer;flex-wrap:wrap}
+.yol-sec .yol-sec-ad{flex:1;overflow-wrap:anywhere}
+.yol-sec em,.yol-gsec em{flex-basis:100%;font-style:normal;font-size:14px;font-weight:700}
+.yol-let{flex:none;display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:50%;background:var(--teal2);color:var(--navy);font-weight:700}
+.yol-sec.ok,.yol-gsec.ok{border-color:var(--ok);background:var(--okbg)}
+.yol-sec.ok em,.yol-gsec.ok em{color:var(--ok)}
+.yol-sec.bad,.yol-gsec.bad{border-color:var(--bad);background:var(--badbg)}
+.yol-sec.bad em,.yol-gsec.bad em{color:var(--bad)}
+.yol-sec:disabled,.yol-gsec:disabled{opacity:1}
+.yol-gorsel-sec{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.yol-gsec{position:relative;display:grid;gap:4px;justify-items:center;padding:6px;border:2px solid var(--line);border-radius:14px;background:var(--surface,#fff);color:var(--navy);font-family:inherit;cursor:pointer}
+.yol-gsec img{width:100%;aspect-ratio:1/1;object-fit:contain;border-radius:10px;background:#fff}
+.yol-gsec .yol-let{position:absolute;left:8px;top:8px}
+.yol-geri{margin-top:12px;padding:12px;border-radius:14px;border:2px solid var(--line)}
+.yol-geri.ok{border-color:var(--ok);background:var(--okbg)}
+.yol-geri.bad{border-color:var(--bad);background:var(--badbg)}
+.yol-geri b{font-size:19px}
+.yol-geri p{margin:6px 0 10px;font-size:17px;line-height:1.45}
+.yol-yon{margin:0 0 10px;color:var(--muted)}
+.yol-es{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.yol-es-sut{display:grid;gap:8px;align-content:start}
+.yol-es-g{position:relative;padding:4px;border:2px solid var(--line);border-radius:12px;background:#fff;cursor:pointer}
+.yol-es-g img{width:100%;aspect-ratio:4/3;object-fit:contain;display:block}
+.yol-es-g.sec{border-color:var(--teal);box-shadow:0 0 0 3px var(--teal2)}
+.yol-es-g.ok{border-color:var(--ok);background:var(--okbg)}
+.yol-es-g em{position:absolute;right:6px;top:4px;font-style:normal;font-weight:700;color:var(--ok)}
+.yol-es-a{min-height:64px;padding:8px;border:2px solid var(--line);border-radius:12px;background:var(--surface,#fff);color:var(--navy);font:700 16px Arial,sans-serif;cursor:pointer;overflow-wrap:anywhere}
+.yol-es-a.ok{border-color:var(--ok);background:var(--okbg);color:var(--ok)}
+.yol-mesaj{min-height:26px;margin:10px 0 0;font-weight:700}
+.yol-mesaj.ok{color:var(--ok)}.yol-mesaj.bad{color:var(--bad)}
+.yol-ogr{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px;margin-bottom:12px}
+.yol-ogr-k{display:grid;gap:4px;justify-items:center;padding:6px;border:2px solid var(--line);border-radius:12px;background:var(--surface,#fff);color:var(--navy);font:700 14px Arial,sans-serif;cursor:pointer}
+.yol-ogr-k img{width:100%;aspect-ratio:4/3;object-fit:contain;background:#fff;border-radius:8px}
+.yol-sonuc{font-size:17px;line-height:1.5}
+.yol-giris{border-color:var(--teal)!important}
+html[data-sakin="1"] .yol-wrap *{transition:none!important;animation:none!important}
+@media(min-width:760px){.yol-gorsel-sec{grid-template-columns:repeat(4,1fr)}}
