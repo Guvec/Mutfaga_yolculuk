@@ -7,7 +7,7 @@ function day(ms){return new Date((ms===undefined?Date.now():ms)+10800000).toISOS
 function points(ok,total){return total>0?Math.max(0,Math.min(RUTBE_AYAR.maxMP,Math.round(RUTBE_AYAR.maxMP*ok/total))):0;}
 function level(mp){return RUTBE_AYAR.ranks.reduce((n,r,i)=>mp>=r.mp?i+1:n,1);}
 function badges(s){const b=s.best||{},full=(prefix,n)=>Array.from({length:n},(_,i)=>b[prefix+(i+1)]>=10).every(Boolean);return {
- arac:b['yol-ma-tamam']>=1,baharat:b['yol-bh-tamam']>=1,kuver:b['kv-basit']>=5&&b['kv-tabldot']>=9,temizlik:b['bl-e1']>=10&&b['bl-s1']>=11,karisik:(s.mixed||0)>=5&&!!s.mixed70,rekor:Object.keys(s.beaten||{}).length>=5};}
+ arac:b['yol-ma-tamam']>=1,baharat:b['yol-bh-tamam']>=1,kuver:b['kv-basit']>=5&&b['kv-tabldot']>=9,temizlik:b['bl-e1']>=10&&b['bl-s1']>=55,karisik:(s.mixed||0)>=5&&!!s.mixed70,rekor:Object.keys(s.beaten||{}).length>=5};}
 function complete(old,event){
  const s=JSON.parse(JSON.stringify(old||{mp:0,rank:1})),e=event||{};let gain=0;
  if(e.guest||!e.pid||!e.id||!e.total||e.correct<0||e.correct>e.total||e.abandoned)return {state:s,gain:0,newBadges:[],rankUp:false};

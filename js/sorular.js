@@ -6,7 +6,7 @@ const MCQ_PREV_START=startContent,MCQ_PREV_RENDER=render,MCQ_PREV_QUIZ=contentQu
 /* Sıralama denemeleri için birleşen gruplar. Ortak hedefi olan küçük gruplar tek deneme olur. */
 const MCQ_MERGE={
   'mutfak-araclari':[{label:'Tabaklar, kâseler, bardaklar ve fincanlar',parts:['Tabaklar ve kâseler','Bardaklar ve fincanlar']}],
-  'bulasik-makinesi-temizligi':[{label:'Bulaşık Yıkama ve Atık Yönetimi · Bütün bölümler',whole:true,parts:['1. Bölüm','2. Bölüm','3. Bölüm','4. Bölüm','5. Bölüm · Atık yönetimi']}]
+  'bulasik-makinesi-temizligi':[{label:'Bulaşık Yıkama ve Atık Yönetimi · Bütün bölümler',whole:true,parts:['1. Bölüm','2. Bölüm','3. Bölüm','4. Bölüm','5. Bölüm · Atık yönetimi','Genel tekrar · Set 1','Genel tekrar · Set 2','Genel tekrar · Set 3','Genel tekrar · Set 4']}]
 };
 /* whole: bölümler yerinde kalır, ayrıca bütün soruları içeren tek deneme listenin sonuna eklenir. */
 function mcqGroups(){const d=getData();if(st.op!=='mcq')return [];
@@ -42,8 +42,8 @@ function mcqListHTML(){
   let ch=null;
   gs.forEach((g,i)=>{
     if(g.whole){if(ch!==null)h+='</div>';ch=null;h+='<h2 class="grp-h">Bütün bölümler</h2><div class="list set-list grp-list">'+menuButton('Bütün bölümler',g.count+' soru · Sıralamaya bu deneme yazılır',"pickGroup("+i+")")+'</div>';return;}
-    if(g.chapter&&g.chapter!==ch){if(ch!==null)h+='</div>';ch=g.chapter;h+='<h2 class="grp-h">'+ch+'. Bölüm</h2><div class="list set-list grp-list">';}
-    h+=menuButton(g.label.replace(/^\d\. Bölüm · /,''),g.count+' soru',"pickGroup("+i+")");
+    if(g.chapter&&g.chapter!==ch){if(ch!==null)h+='</div>';ch=g.chapter;h+='<h2 class="grp-h">'+(g.chapterLabel||ch+'. Bölüm')+'</h2><div class="list set-list grp-list">';}
+    h+=menuButton(g.label.replace(/^\d\. Bölüm · /,'').replace(/^Genel tekrar · /,''),g.count+' soru',"pickGroup("+i+")");
   });
   return h+(ch!==null?'</div>':'')+'</div>';
 }

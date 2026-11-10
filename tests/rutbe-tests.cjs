@@ -13,7 +13,7 @@ for(const [key,badge] of [['yol-ma-tamam','arac'],['yol-bh-tamam','baharat']]){a
 /* Yolculuk ilerlemesi: bölüm ilk kez bitince puan verir, yeniden çözmek puan vermez */
 {const ev=(id,puan)=>({pid:'p',id,table:id,correct:1,total:1,ilerleme:true,puan,at:Date.parse('2026-11-10T09:00:00Z')});let a=r.complete(null,ev('yol-ma-e1b1',r.config.yolBolum));assert(a.gain===r.config.yolBolum);let b=r.complete(a.state,{...ev('yol-ma-e1b1',r.config.yolBolum),id:'baska-oturum'});assert(b.gain===0);let c=r.complete(b.state,ev('yol-ma-e1s',r.config.yolEtap));assert(c.gain===r.config.yolEtap&&c.state.mp===r.config.yolBolum+r.config.yolEtap);}
 assert(r.badges({best:{'kv-basit':5,'kv-tabldot':9}}).kuver);assert(!r.badges({best:{'kv-basit':4,'kv-tabldot':9}}).kuver);assert(!r.badges({best:{'kv-basit':5,'kv-tabldot':8}}).kuver);
-assert(r.badges({best:{'bl-e1':10,'bl-s1':11}}).temizlik);assert(!r.badges({best:{'bl-e1':9,'bl-s1':11}}).temizlik);assert(!r.badges({best:{'bl-e1':10,'bl-s1':10}}).temizlik);
+assert(r.badges({best:{'bl-e1':10,'bl-s1':55}}).temizlik);assert(!r.badges({best:{'bl-e1':9,'bl-s1':55}}).temizlik);assert(!r.badges({best:{'bl-e1':10,'bl-s1':54}}).temizlik);
 assert(r.badges({mixed:5,mixed70:true}).karisik);assert(!r.badges({mixed:4,mixed70:true}).karisik);assert(!r.badges({mixed:5}).karisik);
 assert(r.badges({beaten:{a:1,b:1,c:1,d:1,e:1}}).rekor);assert(!r.badges({beaten:{a:1,b:1,c:1,d:1}}).rekor);
 let w;for(let i=0;i<3;i++)w=r.complete(w,event({weekly:true,week:300,total:25,correct:25})).state;assert.equal(w.mp,30);assert.equal(r.complete(w,event({weekly:true,week:300,total:25,correct:25})).gain,0);

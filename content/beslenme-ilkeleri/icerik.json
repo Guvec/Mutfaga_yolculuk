@@ -1,5 +1,3561 @@
 {
- "questions": [],
+ "questions": [
+  {
+   "id": "bs-1-1",
+   "prompt": "Hangi öğünde üç farklı besin grubu vardır?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Bulgur pilavı, yoğurt ve salata"
+    },
+    {
+     "id": "B",
+     "text": "Pirinç pilavı, ekmek ve makarna"
+    },
+    {
+     "id": "C",
+     "text": "Yoğurt, peynir ve ayran"
+    },
+    {
+     "id": "D",
+     "text": "Elma, armut ve portakal"
+    }
+   ],
+   "correct": "A",
+   "group": "1. Bölüm · Yeterli ve dengeli beslenme",
+   "chapter": 1,
+   "explanation": "Bulgur tahıl, yoğurt süt ürünü, salata sebzedir. Diğer seçenekler aynı gruptandır.",
+   "source": {
+    "file": "Yeterli ve Dengeli Beslenme (Tasarımlı).docx",
+    "section": "Bölüm 1 tekrar soruları",
+    "question": "1"
+   },
+   "hint": "Bulgur tahıl, yoğurt süt ürünü, salata sebzedir. Diğer seçenekler aynı gruptandır.",
+   "reviewNumber": 161
+  },
+  {
+   "id": "bs-1-2",
+   "prompt": "Hangi meyve seçimi çeşitlilik sağlar?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Her gün yalnız elma"
+    },
+    {
+     "id": "B",
+     "text": "Her gün iki elma"
+    },
+    {
+     "id": "C",
+     "text": "Bir gün iki elma, ertesi gün bir elma"
+    },
+    {
+     "id": "D",
+     "text": "Farklı günlerde elma ve armut"
+    }
+   ],
+   "correct": "D",
+   "group": "1. Bölüm · Yeterli ve dengeli beslenme",
+   "chapter": 1,
+   "explanation": "Çeşitlilik için farklı besinler seçilir. Aynı meyvenin miktarını değiştirmek çeşitlilik sağlamaz.",
+   "source": {
+    "file": "Yeterli ve Dengeli Beslenme (Tasarımlı).docx",
+    "section": "Bölüm 1 tekrar soruları",
+    "question": "2"
+   },
+   "hint": "Çeşitlilik için farklı besinler seçilir. Aynı meyvenin miktarını değiştirmek çeşitlilik sağlamaz.",
+   "reviewNumber": 162
+  },
+  {
+   "id": "bs-1-3",
+   "prompt": "Sağlıklı yemek tabağı neyi göstermeye yardım eder?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Yemeğin pişirme süresini"
+    },
+    {
+     "id": "B",
+     "text": "Alışverişte ödenecek tutarı"
+    },
+    {
+     "id": "C",
+     "text": "Öğündeki besin gruplarını"
+    },
+    {
+     "id": "D",
+     "text": "Öğrencinin günlük enerji gereksinimini"
+    }
+   ],
+   "correct": "C",
+   "group": "1. Bölüm · Yeterli ve dengeli beslenme",
+   "chapter": 1,
+   "explanation": "Sağlıklı yemek tabağı, öğünde hangi besin gruplarının bulunduğunu gösterir.",
+   "source": {
+    "file": "Yeterli ve Dengeli Beslenme (Tasarımlı).docx",
+    "section": "Bölüm 1 tekrar soruları",
+    "question": "3"
+   },
+   "hint": "Sağlıklı yemek tabağı, öğünde hangi besin gruplarının bulunduğunu gösterir.",
+   "reviewNumber": 163
+  },
+  {
+   "id": "bs-1-4",
+   "prompt": "Beslenme piramidinin “daha seyrek” katmanında hangi besinler vardır?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Balık ve deniz ürünleri"
+    },
+    {
+     "id": "B",
+     "text": "Kırmızı et ve tatlılar"
+    },
+    {
+     "id": "C",
+     "text": "Yumurta ve yoğurt"
+    },
+    {
+     "id": "D",
+     "text": "Sebze ve kuru baklagiller"
+    }
+   ],
+   "correct": "B",
+   "group": "1. Bölüm · Yeterli ve dengeli beslenme",
+   "chapter": 1,
+   "explanation": "Kırmızı et ve tatlılar daha seyrek yer verilen besinlerdir.",
+   "source": {
+    "file": "Yeterli ve Dengeli Beslenme (Tasarımlı).docx",
+    "section": "Bölüm 1 tekrar soruları",
+    "question": "4"
+   },
+   "hint": "Kırmızı et ve tatlılar daha seyrek yer verilen besinlerdir.",
+   "reviewNumber": 164
+  },
+  {
+   "id": "bs-1-5",
+   "prompt": "Vücudun gereksinimlerini karşılamak için yiyecek ve içecek tüketilmesine ne denir?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Porsiyon"
+    },
+    {
+     "id": "B",
+     "text": "Beslenme"
+    },
+    {
+     "id": "C",
+     "text": "Etiket"
+    },
+    {
+     "id": "D",
+     "text": "Ambalaj"
+    }
+   ],
+   "correct": "B",
+   "group": "1. Bölüm · Yeterli ve dengeli beslenme",
+   "chapter": 1,
+   "explanation": "Yiyecek ve içeceklerle vücudun gereksinimlerini karşılamaya beslenme denir.",
+   "source": {
+    "file": "Yeterli ve Dengeli Beslenme (Tasarımlı).docx",
+    "section": "Bölüm 1 tekrar soruları",
+    "question": "5"
+   },
+   "hint": "Yiyecek ve içeceklerle vücudun gereksinimlerini karşılamaya beslenme denir.",
+   "reviewNumber": 165
+  },
+  {
+   "id": "bs-1-6",
+   "prompt": "Yürümek ve çalışmak için vücudun gereksinimi olan şey hangisidir?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Enerji"
+    },
+    {
+     "id": "B",
+     "text": "Etiket"
+    },
+    {
+     "id": "C",
+     "text": "Porsiyon"
+    },
+    {
+     "id": "D",
+     "text": "Ambalaj"
+    }
+   ],
+   "correct": "A",
+   "group": "1. Bölüm · Yeterli ve dengeli beslenme",
+   "chapter": 1,
+   "explanation": "Vücut yürümek ve çalışmak için enerjiye gereksinim duyar.",
+   "source": {
+    "file": "Yeterli ve Dengeli Beslenme (Tasarımlı).docx",
+    "section": "Bölüm 1 tekrar soruları",
+    "question": "6"
+   },
+   "hint": "Vücut yürümek ve çalışmak için enerjiye gereksinim duyar.",
+   "reviewNumber": 166
+  },
+  {
+   "id": "bs-1-7",
+   "prompt": "Dengeli bir öğünle ilgili hangi bilgi doğrudur?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Bütün besinlerden eşit miktarda yenir."
+    },
+    {
+     "id": "B",
+     "text": "Her öğünde aynı besin yenir."
+    },
+    {
+     "id": "C",
+     "text": "Yalnız en sevilen besin seçilir."
+    },
+    {
+     "id": "D",
+     "text": "Miktarlar gereksinime ve besine göre değişir."
+    }
+   ],
+   "correct": "D",
+   "group": "1. Bölüm · Yeterli ve dengeli beslenme",
+   "chapter": 1,
+   "explanation": "Dengeli öğünde her besinden eşit miktar yenmez. Miktarlar gereksinime ve besine göre değişir.",
+   "source": {
+    "file": "Yeterli ve Dengeli Beslenme (Tasarımlı).docx",
+    "section": "Bölüm 1 tekrar soruları",
+    "question": "7"
+   },
+   "hint": "Dengeli öğünde her besinden eşit miktar yenmez. Miktarlar gereksinime ve besine göre değişir.",
+   "reviewNumber": 167
+  },
+  {
+   "id": "bs-1-8",
+   "prompt": "Beslenme piramidi neyi anlatmaya yardım eder?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Besinlerin raf ömrünü"
+    },
+    {
+     "id": "B",
+     "text": "Besinlerin fiyatını"
+    },
+    {
+     "id": "C",
+     "text": "Besinlerin seçilme sıklığını"
+    },
+    {
+     "id": "D",
+     "text": "Besinlerin pişirme süresini"
+    }
+   ],
+   "correct": "C",
+   "group": "1. Bölüm · Yeterli ve dengeli beslenme",
+   "chapter": 1,
+   "explanation": "Beslenme piramidi, hangi besine ne sıklıkla yer verileceğini anlatmaya yardım eder.",
+   "source": {
+    "file": "Yeterli ve Dengeli Beslenme (Tasarımlı).docx",
+    "section": "Bölüm 1 tekrar soruları",
+    "question": "8"
+   },
+   "hint": "Beslenme piramidi, hangi besine ne sıklıkla yer verileceğini anlatmaya yardım eder.",
+   "reviewNumber": 168
+  },
+  {
+   "id": "bs-2-1",
+   "prompt": "Yumurtada bulunan hangi besin ögesi vücut dokularının yenilenmesine yardım eder?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Su"
+    },
+    {
+     "id": "B",
+     "text": "Posa"
+    },
+    {
+     "id": "C",
+     "text": "Protein"
+    },
+    {
+     "id": "D",
+     "text": "Karbonhidrat"
+    }
+   ],
+   "correct": "C",
+   "group": "2. Bölüm · Besin ögeleri ve besin grupları",
+   "chapter": 2,
+   "explanation": "Protein büyümede ve vücut dokularının yenilenmesinde görev alır.",
+   "source": {
+    "file": "Yeterli ve Dengeli Beslenme (Tasarımlı).docx",
+    "section": "Bölüm 2 tekrar soruları",
+    "question": "1"
+   },
+   "hint": "Protein büyümede ve vücut dokularının yenilenmesinde görev alır.",
+   "reviewNumber": 169
+  },
+  {
+   "id": "bs-2-2",
+   "prompt": "Sütte bulunan hangi mineral kemik ve dişlerin yapısına katılır?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Demir"
+    },
+    {
+     "id": "B",
+     "text": "Kalsiyum"
+    },
+    {
+     "id": "C",
+     "text": "İyot"
+    },
+    {
+     "id": "D",
+     "text": "Sodyum"
+    }
+   ],
+   "correct": "B",
+   "group": "2. Bölüm · Besin ögeleri ve besin grupları",
+   "chapter": 2,
+   "explanation": "Kalsiyum kemik ve dişlerin yapısında bulunur.",
+   "source": {
+    "file": "Yeterli ve Dengeli Beslenme (Tasarımlı).docx",
+    "section": "Bölüm 2 tekrar soruları",
+    "question": "2"
+   },
+   "hint": "Kalsiyum kemik ve dişlerin yapısında bulunur.",
+   "reviewNumber": 170
+  },
+  {
+   "id": "bs-2-3",
+   "prompt": "Hangi besin ekmek ve tahıllar grubundadır?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Bulgur"
+    },
+    {
+     "id": "B",
+     "text": "Nohut"
+    },
+    {
+     "id": "C",
+     "text": "Patates"
+    },
+    {
+     "id": "D",
+     "text": "Ceviz"
+    }
+   ],
+   "correct": "A",
+   "group": "2. Bölüm · Besin ögeleri ve besin grupları",
+   "chapter": 2,
+   "explanation": "Bulgur tahıldır. Nohut kuru baklagil, ceviz yağlı tohumdur.",
+   "source": {
+    "file": "Yeterli ve Dengeli Beslenme (Tasarımlı).docx",
+    "section": "Bölüm 2 tekrar soruları",
+    "question": "3"
+   },
+   "hint": "Bulgur tahıldır. Nohut kuru baklagil, ceviz yağlı tohumdur.",
+   "reviewNumber": 171
+  },
+  {
+   "id": "bs-2-4",
+   "prompt": "Hangi besin kuru baklagildir?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Pirinç"
+    },
+    {
+     "id": "B",
+     "text": "Yulaf"
+    },
+    {
+     "id": "C",
+     "text": "Bulgur"
+    },
+    {
+     "id": "D",
+     "text": "Mercimek"
+    }
+   ],
+   "correct": "D",
+   "group": "2. Bölüm · Besin ögeleri ve besin grupları",
+   "chapter": 2,
+   "explanation": "Mercimek kuru baklagildir. Diğerleri tahıldır.",
+   "source": {
+    "file": "Yeterli ve Dengeli Beslenme (Tasarımlı).docx",
+    "section": "Bölüm 2 tekrar soruları",
+    "question": "4"
+   },
+   "hint": "Mercimek kuru baklagildir. Diğerleri tahıldır.",
+   "reviewNumber": 172
+  },
+  {
+   "id": "bs-2-5",
+   "prompt": "Bulgurdaki nişasta hangi besin ögesi türündendir?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Protein"
+    },
+    {
+     "id": "B",
+     "text": "Yağ"
+    },
+    {
+     "id": "C",
+     "text": "Vitamin"
+    },
+    {
+     "id": "D",
+     "text": "Karbonhidrat"
+    }
+   ],
+   "correct": "D",
+   "group": "2. Bölüm · Besin ögeleri ve besin grupları",
+   "chapter": 2,
+   "explanation": "Ekmek ve bulgurdaki nişasta karbonhidrattır.",
+   "source": {
+    "file": "Yeterli ve Dengeli Beslenme (Tasarımlı).docx",
+    "section": "Bölüm 2 tekrar soruları",
+    "question": "5"
+   },
+   "hint": "Ekmek ve bulgurdaki nişasta karbonhidrattır.",
+   "reviewNumber": 173
+  },
+  {
+   "id": "bs-2-6",
+   "prompt": "Bağırsakların düzenli çalışmasına yardım eden besin lifine ne denir?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Protein"
+    },
+    {
+     "id": "B",
+     "text": "Laktoz"
+    },
+    {
+     "id": "C",
+     "text": "Posa"
+    },
+    {
+     "id": "D",
+     "text": "Mineral"
+    }
+   ],
+   "correct": "C",
+   "group": "2. Bölüm · Besin ögeleri ve besin grupları",
+   "chapter": 2,
+   "explanation": "Posa, besin lifidir. Bağırsakların düzenli çalışmasına katkı sağlar.",
+   "source": {
+    "file": "Yeterli ve Dengeli Beslenme (Tasarımlı).docx",
+    "section": "Bölüm 2 tekrar soruları",
+    "question": "6"
+   },
+   "hint": "Posa, besin lifidir. Bağırsakların düzenli çalışmasına katkı sağlar.",
+   "reviewNumber": 174
+  },
+  {
+   "id": "bs-2-7",
+   "prompt": "Hangi besinler yağlı tohumlar arasında yer alır?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Nohut ve mercimek"
+    },
+    {
+     "id": "B",
+     "text": "Ceviz ve fındık"
+    },
+    {
+     "id": "C",
+     "text": "Bulgur ve yulaf"
+    },
+    {
+     "id": "D",
+     "text": "Yoğurt ve peynir"
+    }
+   ],
+   "correct": "B",
+   "group": "2. Bölüm · Besin ögeleri ve besin grupları",
+   "chapter": 2,
+   "explanation": "Ceviz ve fındık yağlı tohumlardır.",
+   "source": {
+    "file": "Yeterli ve Dengeli Beslenme (Tasarımlı).docx",
+    "section": "Bölüm 2 tekrar soruları",
+    "question": "7"
+   },
+   "hint": "Ceviz ve fındık yağlı tohumlardır.",
+   "reviewNumber": 175
+  },
+  {
+   "id": "bs-2-8",
+   "prompt": "C vitamini hangisine örnektir?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Besin ögesine"
+    },
+    {
+     "id": "B",
+     "text": "Besin grubuna"
+    },
+    {
+     "id": "C",
+     "text": "Ara öğüne"
+    },
+    {
+     "id": "D",
+     "text": "Etikete"
+    }
+   ],
+   "correct": "A",
+   "group": "2. Bölüm · Besin ögeleri ve besin grupları",
+   "chapter": 2,
+   "explanation": "C vitamini bir besin ögesidir.",
+   "source": {
+    "file": "Yeterli ve Dengeli Beslenme (Tasarımlı).docx",
+    "section": "Bölüm 2 tekrar soruları",
+    "question": "8"
+   },
+   "hint": "C vitamini bir besin ögesidir.",
+   "reviewNumber": 176
+  },
+  {
+   "id": "bs-3-1",
+   "prompt": "Koyu renkli ekmeğin tam tahıllı olup olmadığını anlamak için neye bakılır?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "İçindekiler listesine"
+    },
+    {
+     "id": "B",
+     "text": "Dilimlerin kalınlığına"
+    },
+    {
+     "id": "C",
+     "text": "Kabuğun koyuluğuna"
+    },
+    {
+     "id": "D",
+     "text": "Paketin büyüklüğüne"
+    }
+   ],
+   "correct": "A",
+   "group": "3. Bölüm · Besin seçimi ve porsiyonlar",
+   "chapter": 3,
+   "explanation": "Yalnız koyu renk yeterli değildir. Tam tahıl unu içindekiler listesinden kontrol edilir.",
+   "source": {
+    "file": "Yeterli ve Dengeli Beslenme (Tasarımlı).docx",
+    "section": "Bölüm 3 tekrar soruları",
+    "question": "1"
+   },
+   "hint": "Yalnız koyu renk yeterli değildir. Tam tahıl unu içindekiler listesinden kontrol edilir.",
+   "reviewNumber": 177
+  },
+  {
+   "id": "bs-3-2",
+   "prompt": "Rehberde iki ince dilim ekmek için hangi ağırlık örnek verilir?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "25 g"
+    },
+    {
+     "id": "B",
+     "text": "90 g"
+    },
+    {
+     "id": "C",
+     "text": "130 g"
+    },
+    {
+     "id": "D",
+     "text": "50 g"
+    }
+   ],
+   "correct": "D",
+   "group": "3. Bölüm · Besin seçimi ve porsiyonlar",
+   "chapter": 3,
+   "explanation": "Rehberde iki ince dilim ekmek için 50 g örnek verilir.",
+   "source": {
+    "file": "Yeterli ve Dengeli Beslenme (Tasarımlı).docx",
+    "section": "Bölüm 3 tekrar soruları",
+    "question": "2"
+   },
+   "hint": "Rehberde iki ince dilim ekmek için 50 g örnek verilir.",
+   "reviewNumber": 178
+  },
+  {
+   "id": "bs-3-3",
+   "prompt": "Öğle yemeğinde bulgur ve yoğurt var. Hangi seçenek öğüne bir sebze ekler?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Ekmek"
+    },
+    {
+     "id": "B",
+     "text": "Pirinç pilavı"
+    },
+    {
+     "id": "C",
+     "text": "Salata"
+    },
+    {
+     "id": "D",
+     "text": "Mercimek yemeği"
+    }
+   ],
+   "correct": "C",
+   "group": "3. Bölüm · Besin seçimi ve porsiyonlar",
+   "chapter": 3,
+   "explanation": "Salata sebzedir. Bulgur tahıl, yoğurt süt ürünüdür.",
+   "source": {
+    "file": "Yeterli ve Dengeli Beslenme (Tasarımlı).docx",
+    "section": "Bölüm 3 tekrar soruları",
+    "question": "3"
+   },
+   "hint": "Salata sebzedir. Bulgur tahıl, yoğurt süt ürünüdür.",
+   "reviewNumber": 179
+  },
+  {
+   "id": "bs-3-4",
+   "prompt": "Hangi kahvaltıda üç farklı besin grubundan örnek vardır?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Yoğurt, kefir ve peynir"
+    },
+    {
+     "id": "B",
+     "text": "Yumurta, ekmek ve domates"
+    },
+    {
+     "id": "C",
+     "text": "Ekmek, yulaf ve simit"
+    },
+    {
+     "id": "D",
+     "text": "Elma, armut ve muz"
+    }
+   ],
+   "correct": "B",
+   "group": "3. Bölüm · Besin seçimi ve porsiyonlar",
+   "chapter": 3,
+   "explanation": "Yumurta, ekmek ve domates üç ayrı gruptandır.",
+   "source": {
+    "file": "Yeterli ve Dengeli Beslenme (Tasarımlı).docx",
+    "section": "Bölüm 3 tekrar soruları",
+    "question": "4"
+   },
+   "hint": "Yumurta, ekmek ve domates üç ayrı gruptandır.",
+   "reviewNumber": 180
+  },
+  {
+   "id": "bs-3-5",
+   "prompt": "İki ekmek diliminin ağırlığı neyle ölçülür?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Sıvı ölçüsüyle"
+    },
+    {
+     "id": "B",
+     "text": "Mutfak tartısıyla"
+    },
+    {
+     "id": "C",
+     "text": "Yemek kaşığıyla"
+    },
+    {
+     "id": "D",
+     "text": "Termometreyle"
+    }
+   ],
+   "correct": "B",
+   "group": "3. Bölüm · Besin seçimi ve porsiyonlar",
+   "chapter": 3,
+   "explanation": "Katı bir besinin ağırlığı mutfak tartısıyla ölçülür.",
+   "source": {
+    "file": "Yeterli ve Dengeli Beslenme (Tasarımlı).docx",
+    "section": "Bölüm 3 tekrar soruları",
+    "question": "5"
+   },
+   "hint": "Katı bir besinin ağırlığı mutfak tartısıyla ölçülür.",
+   "reviewNumber": 181
+  },
+  {
+   "id": "bs-3-6",
+   "prompt": "Ana öğünlerin arasında yenilen küçük öğüne ne denir?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Ara öğün"
+    },
+    {
+     "id": "B",
+     "text": "Ana öğün"
+    },
+    {
+     "id": "C",
+     "text": "Porsiyon"
+    },
+    {
+     "id": "D",
+     "text": "Net miktar"
+    }
+   ],
+   "correct": "A",
+   "group": "3. Bölüm · Besin seçimi ve porsiyonlar",
+   "chapter": 3,
+   "explanation": "Ana öğünlerin arasındaki küçük öğüne ara öğün denir.",
+   "source": {
+    "file": "Yeterli ve Dengeli Beslenme (Tasarımlı).docx",
+    "section": "Bölüm 3 tekrar soruları",
+    "question": "6"
+   },
+   "hint": "Ana öğünlerin arasındaki küçük öğüne ara öğün denir.",
+   "reviewNumber": 182
+  },
+  {
+   "id": "bs-3-7",
+   "prompt": "Ekşi mayalı yazan ekmek için hangi bilgi doğrudur?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Her zaman tam tahıllıdır."
+    },
+    {
+     "id": "B",
+     "text": "Her zaman beyaz undan yapılır."
+    },
+    {
+     "id": "C",
+     "text": "Ekmeğin rengi un türünü gösterir."
+    },
+    {
+     "id": "D",
+     "text": "Un türü için içindekiler listesine bakılır."
+    }
+   ],
+   "correct": "D",
+   "group": "3. Bölüm · Besin seçimi ve porsiyonlar",
+   "chapter": 3,
+   "explanation": "Ekşi maya, mayalama yöntemini gösterir. Un türü içindekiler listesinden anlaşılır.",
+   "source": {
+    "file": "Yeterli ve Dengeli Beslenme (Tasarımlı).docx",
+    "section": "Bölüm 3 tekrar soruları",
+    "question": "7"
+   },
+   "hint": "Ekşi maya, mayalama yöntemini gösterir. Un türü içindekiler listesinden anlaşılır.",
+   "reviewNumber": 183
+  },
+  {
+   "id": "bs-3-8",
+   "prompt": "Bir paketin içeriği için hangi bilgi doğrudur?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Bir paket her zaman bir porsiyondur."
+    },
+    {
+     "id": "B",
+     "text": "Porsiyon sayısı paketin rengine göre belirlenir."
+    },
+    {
+     "id": "C",
+     "text": "Aynı pakette birden fazla porsiyon bulunabilir."
+    },
+    {
+     "id": "D",
+     "text": "Paket ve porsiyon aynı şeydir."
+    }
+   ],
+   "correct": "C",
+   "group": "3. Bölüm · Besin seçimi ve porsiyonlar",
+   "chapter": 3,
+   "explanation": "Paket ve porsiyon aynı değildir. Bir pakette birden fazla porsiyon olabilir.",
+   "source": {
+    "file": "Yeterli ve Dengeli Beslenme (Tasarımlı).docx",
+    "section": "Bölüm 3 tekrar soruları",
+    "question": "8"
+   },
+   "hint": "Paket ve porsiyon aynı değildir. Bir pakette birden fazla porsiyon olabilir.",
+   "reviewNumber": 184
+  },
+  {
+   "id": "bs-4-1",
+   "prompt": "Atölyede susayan öğrenci ilk olarak hangi içeceği seçer?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Şekerli kola"
+    },
+    {
+     "id": "B",
+     "text": "Enerji içeceği"
+    },
+    {
+     "id": "C",
+     "text": "İçme suyu"
+    },
+    {
+     "id": "D",
+     "text": "Meyve suyu"
+    }
+   ],
+   "correct": "C",
+   "group": "4. Bölüm · Şekerler, su ve içecekler",
+   "chapter": 4,
+   "explanation": "Susayınca ilk seçenek içme suyudur.",
+   "source": {
+    "file": "Yeterli ve Dengeli Beslenme (Tasarımlı).docx",
+    "section": "Bölüm 4 tekrar soruları",
+    "question": "1"
+   },
+   "hint": "Susayınca ilk seçenek içme suyudur.",
+   "reviewNumber": 185
+  },
+  {
+   "id": "bs-4-2",
+   "prompt": "Sade ayrandaki doğal şeker nereden gelir?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Tuzdan"
+    },
+    {
+     "id": "B",
+     "text": "Sütten"
+    },
+    {
+     "id": "C",
+     "text": "Sudan"
+    },
+    {
+     "id": "D",
+     "text": "Yoğurt kabından"
+    }
+   ],
+   "correct": "B",
+   "group": "4. Bölüm · Şekerler, su ve içecekler",
+   "chapter": 4,
+   "explanation": "Ayran yoğurtla hazırlanır. Doğal şeker sütten gelir.",
+   "source": {
+    "file": "Yeterli ve Dengeli Beslenme (Tasarımlı).docx",
+    "section": "Bölüm 4 tekrar soruları",
+    "question": "2"
+   },
+   "hint": "Ayran yoğurtla hazırlanır. Doğal şeker sütten gelir.",
+   "reviewNumber": 186
+  },
+  {
+   "id": "bs-4-3",
+   "prompt": "İki içeceğin şeker miktarı karşılaştırılırken hangi bilgiler kullanılır?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Aynı hacim için şeker değerleri"
+    },
+    {
+     "id": "B",
+     "text": "Ambalaj büyüklüğü"
+    },
+    {
+     "id": "C",
+     "text": "İçindekiler listesinin uzunluğu"
+    },
+    {
+     "id": "D",
+     "text": "Paketin rengi"
+    }
+   ],
+   "correct": "A",
+   "group": "4. Bölüm · Şekerler, su ve içecekler",
+   "chapter": 4,
+   "explanation": "Karşılaştırma için aynı miktardaki, örneğin 100 mL’deki şeker değerlerine bakılır.",
+   "source": {
+    "file": "Yeterli ve Dengeli Beslenme (Tasarımlı).docx",
+    "section": "Bölüm 4 tekrar soruları",
+    "question": "3"
+   },
+   "hint": "Karşılaştırma için aynı miktardaki, örneğin 100 mL’deki şeker değerlerine bakılır.",
+   "reviewNumber": 187
+  },
+  {
+   "id": "bs-4-4",
+   "prompt": "İki ayranın tuzu karşılaştırılırken etiketin hangi satırına bakılır?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Enerji"
+    },
+    {
+     "id": "B",
+     "text": "Şekerler"
+    },
+    {
+     "id": "C",
+     "text": "Protein"
+    },
+    {
+     "id": "D",
+     "text": "Tuz"
+    }
+   ],
+   "correct": "D",
+   "group": "4. Bölüm · Şekerler, su ve içecekler",
+   "chapter": 4,
+   "explanation": "Tuz miktarı etiketteki tuz satırından okunur.",
+   "source": {
+    "file": "Yeterli ve Dengeli Beslenme (Tasarımlı).docx",
+    "section": "Bölüm 4 tekrar soruları",
+    "question": "4"
+   },
+   "hint": "Tuz miktarı etiketteki tuz satırından okunur.",
+   "reviewNumber": 188
+  },
+  {
+   "id": "bs-4-5",
+   "prompt": "Bütün elma meyve suyuna göre daha fazla besin lifi sağlar. Besin lifine başka ne denir?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Laktoz"
+    },
+    {
+     "id": "B",
+     "text": "Tuz"
+    },
+    {
+     "id": "C",
+     "text": "Enerji"
+    },
+    {
+     "id": "D",
+     "text": "Posa"
+    }
+   ],
+   "correct": "D",
+   "group": "4. Bölüm · Şekerler, su ve içecekler",
+   "chapter": 4,
+   "explanation": "Besin lifine posa da denir.",
+   "source": {
+    "file": "Yeterli ve Dengeli Beslenme (Tasarımlı).docx",
+    "section": "Bölüm 4 tekrar soruları",
+    "question": "5"
+   },
+   "hint": "Besin lifine posa da denir.",
+   "reviewNumber": 189
+  },
+  {
+   "id": "bs-4-6",
+   "prompt": "Şeker eklenmese bile meyve suyundaki şekerler WHO’ya göre hangi şeker grubundadır?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Posa"
+    },
+    {
+     "id": "B",
+     "text": "Laktoz"
+    },
+    {
+     "id": "C",
+     "text": "Serbest şeker"
+    },
+    {
+     "id": "D",
+     "text": "Nişasta"
+    }
+   ],
+   "correct": "C",
+   "group": "4. Bölüm · Şekerler, su ve içecekler",
+   "chapter": 4,
+   "explanation": "Meyve suyundaki şekerler serbest şeker grubundadır.",
+   "source": {
+    "file": "Yeterli ve Dengeli Beslenme (Tasarımlı).docx",
+    "section": "Bölüm 4 tekrar soruları",
+    "question": "6"
+   },
+   "hint": "Meyve suyundaki şekerler serbest şeker grubundadır.",
+   "reviewNumber": 190
+  },
+  {
+   "id": "bs-4-7",
+   "prompt": "Bir küp şekerin ağırlığı nasıl öğrenilir?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Rengine bakılır."
+    },
+    {
+     "id": "B",
+     "text": "Tartıyla ölçülür."
+    },
+    {
+     "id": "C",
+     "text": "Tadına bakılır."
+    },
+    {
+     "id": "D",
+     "text": "Paketin resmine bakılır."
+    }
+   ],
+   "correct": "B",
+   "group": "4. Bölüm · Şekerler, su ve içecekler",
+   "chapter": 4,
+   "explanation": "Küp şekerin ağırlığı tartıyla ölçülebilir.",
+   "source": {
+    "file": "Yeterli ve Dengeli Beslenme (Tasarımlı).docx",
+    "section": "Bölüm 4 tekrar soruları",
+    "question": "7"
+   },
+   "hint": "Küp şekerin ağırlığı tartıyla ölçülebilir.",
+   "reviewNumber": 191
+  },
+  {
+   "id": "bs-4-8",
+   "prompt": "Şeker eklenmemiş meyve suyu için hangi bilgi doğrudur?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Meyvenin doğal şekerini içerebilir."
+    },
+    {
+     "id": "B",
+     "text": "Hiç şeker içermez."
+    },
+    {
+     "id": "C",
+     "text": "Şeker değeri etikette yazılmaz."
+    },
+    {
+     "id": "D",
+     "text": "Su yerine sınırsız içilir."
+    }
+   ],
+   "correct": "A",
+   "group": "4. Bölüm · Şekerler, su ve içecekler",
+   "chapter": 4,
+   "explanation": "Meyve suyu, meyvenin doğal şekerlerini içerebilir. Suyun yerine kullanılmaz.",
+   "source": {
+    "file": "Yeterli ve Dengeli Beslenme (Tasarımlı).docx",
+    "section": "Bölüm 4 tekrar soruları",
+    "question": "8"
+   },
+   "hint": "Meyve suyu, meyvenin doğal şekerlerini içerebilir. Suyun yerine kullanılmaz.",
+   "reviewNumber": 192
+  },
+  {
+   "id": "bs-5-1",
+   "prompt": "Markette sızdıran bir yoğurt ambalajı görülüyor. Ne yapılır?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Rafta bırakılır ve görevliye haber verilir."
+    },
+    {
+     "id": "B",
+     "text": "Satın alınır ve hemen tüketilir."
+    },
+    {
+     "id": "C",
+     "text": "Satın almak için yalnız tarihe bakılır."
+    },
+    {
+     "id": "D",
+     "text": "Paket silinerek satın alınır."
+    }
+   ],
+   "correct": "A",
+   "group": "5. Bölüm · Alışveriş, etiket ve gıda güvenliği",
+   "chapter": 5,
+   "explanation": "Sızdıran ambalaj güvenli değildir. Ürün alınmaz, görevliye haber verilir.",
+   "source": {
+    "file": "Yeterli ve Dengeli Beslenme (Tasarımlı).docx",
+    "section": "Bölüm 5 tekrar soruları",
+    "question": "1"
+   },
+   "hint": "Sızdıran ambalaj güvenli değildir. Ürün alınmaz, görevliye haber verilir.",
+   "reviewNumber": 193
+  },
+  {
+   "id": "bs-5-2",
+   "prompt": "Yoğurdun son tüketim tarihi geçmiş. Öğrenci ne yapar?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Kokusu normalse yer."
+    },
+    {
+     "id": "B",
+     "text": "Buzdolabına koyup ertesi gün yer."
+    },
+    {
+     "id": "C",
+     "text": "Bir kaşık tadar, sonra karar verir."
+    },
+    {
+     "id": "D",
+     "text": "Tüketmeden öğretmene haber verir."
+    }
+   ],
+   "correct": "D",
+   "group": "5. Bölüm · Alışveriş, etiket ve gıda güvenliği",
+   "chapter": 5,
+   "explanation": "Tarihi geçen ürün tadılmaz ve tüketilmez. Öğretmene haber verilir.",
+   "source": {
+    "file": "Yeterli ve Dengeli Beslenme (Tasarımlı).docx",
+    "section": "Bölüm 5 tekrar soruları",
+    "question": "2"
+   },
+   "hint": "Tarihi geçen ürün tadılmaz ve tüketilmez. Öğretmene haber verilir.",
+   "reviewNumber": 194
+  },
+  {
+   "id": "bs-5-3",
+   "prompt": "Çiğ tavuk maşası pişmiş yemeğe değdi. Servisten önce ne yapılır?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Maşa değiştirilir ve yemek servis edilir."
+    },
+    {
+     "id": "B",
+     "text": "Maşanın değdiği yer silinir ve servis edilir."
+    },
+    {
+     "id": "C",
+     "text": "Yemek servis edilmeden öğretmene haber verilir."
+    },
+    {
+     "id": "D",
+     "text": "Yemek başka kaba aktarılıp servis edilir."
+    }
+   ],
+   "correct": "C",
+   "group": "5. Bölüm · Alışveriş, etiket ve gıda güvenliği",
+   "chapter": 5,
+   "explanation": "Çiğ tavuk mikrop bulaştırabilir. Yemek servis edilmez, öğretmene haber verilir.",
+   "source": {
+    "file": "Yeterli ve Dengeli Beslenme (Tasarımlı).docx",
+    "section": "Bölüm 5 tekrar soruları",
+    "question": "3"
+   },
+   "hint": "Çiğ tavuk mikrop bulaştırabilir. Yemek servis edilmez, öğretmene haber verilir.",
+   "reviewNumber": 195
+  },
+  {
+   "id": "bs-5-4",
+   "prompt": "Süt alerjisi olan öğrenci yoğurt etiketinde hangi bilgiyi kontrol eder?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Paketteki toplam miktarı"
+    },
+    {
+     "id": "B",
+     "text": "İçindekiler ve alerjen bilgisini"
+    },
+    {
+     "id": "C",
+     "text": "Şekerler satırını"
+    },
+    {
+     "id": "D",
+     "text": "Paket üzerindeki resmi"
+    }
+   ],
+   "correct": "B",
+   "group": "5. Bölüm · Alışveriş, etiket ve gıda güvenliği",
+   "chapter": 5,
+   "explanation": "Alerji için içindekiler ve alerjen bilgisi okunur.",
+   "source": {
+    "file": "Yeterli ve Dengeli Beslenme (Tasarımlı).docx",
+    "section": "Bölüm 5 tekrar soruları",
+    "question": "4"
+   },
+   "hint": "Alerji için içindekiler ve alerjen bilgisi okunur.",
+   "reviewNumber": 196
+  },
+  {
+   "id": "bs-5-5",
+   "prompt": "Paketteki ürünün toplam miktarı etikette ne olarak yazılır?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "STT"
+    },
+    {
+     "id": "B",
+     "text": "Net miktar"
+    },
+    {
+     "id": "C",
+     "text": "TETT"
+    },
+    {
+     "id": "D",
+     "text": "Üretim yeri"
+    }
+   ],
+   "correct": "B",
+   "group": "5. Bölüm · Alışveriş, etiket ve gıda güvenliği",
+   "chapter": 5,
+   "explanation": "Paketin içindeki ürünün toplam miktarı net miktar olarak yazılır.",
+   "source": {
+    "file": "Yeterli ve Dengeli Beslenme (Tasarımlı).docx",
+    "section": "Bölüm 5 tekrar soruları",
+    "question": "5"
+   },
+   "hint": "Paketin içindeki ürünün toplam miktarı net miktar olarak yazılır.",
+   "reviewNumber": 197
+  },
+  {
+   "id": "bs-5-6",
+   "prompt": "Ürünün uygun saklandığında özelliklerini koruduğu tarih, etikette hangi kısaltmayla gösterilebilir?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "TETT"
+    },
+    {
+     "id": "B",
+     "text": "STT"
+    },
+    {
+     "id": "C",
+     "text": "TSE"
+    },
+    {
+     "id": "D",
+     "text": "KDV"
+    }
+   ],
+   "correct": "A",
+   "group": "5. Bölüm · Alışveriş, etiket ve gıda güvenliği",
+   "chapter": 5,
+   "explanation": "TETT, tavsiye edilen tüketim tarihidir. STT son tüketim tarihidir ve geçince ürün tüketilmez.",
+   "source": {
+    "file": "Yeterli ve Dengeli Beslenme (Tasarımlı).docx",
+    "section": "Bölüm 5 tekrar soruları",
+    "question": "6"
+   },
+   "hint": "TETT, tavsiye edilen tüketim tarihidir. STT son tüketim tarihidir ve geçince ürün tüketilmez.",
+   "reviewNumber": 198
+  },
+  {
+   "id": "bs-5-7",
+   "prompt": "Gıda hazırlamadan önce eller nasıl yıkanır?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Yalnız suyla durulanır."
+    },
+    {
+     "id": "B",
+     "text": "Peçeteyle silinir."
+    },
+    {
+     "id": "C",
+     "text": "Önlüğe silinir."
+    },
+    {
+     "id": "D",
+     "text": "Sabunla yıkanır."
+    }
+   ],
+   "correct": "D",
+   "group": "5. Bölüm · Alışveriş, etiket ve gıda güvenliği",
+   "chapter": 5,
+   "explanation": "Eller sabunla yıkanır.",
+   "source": {
+    "file": "Yeterli ve Dengeli Beslenme (Tasarımlı).docx",
+    "section": "Bölüm 5 tekrar soruları",
+    "question": "7"
+   },
+   "hint": "Eller sabunla yıkanır.",
+   "reviewNumber": 199
+  },
+  {
+   "id": "bs-5-8",
+   "prompt": "Paketi açılan bir ürün için ne yapılır?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Saklama bilgisine bakılmaz."
+    },
+    {
+     "id": "B",
+     "text": "Her zaman oda sıcaklığında bırakılır."
+    },
+    {
+     "id": "C",
+     "text": "Açıldıktan sonraki saklama koşulu ve kullanım süresi kontrol edilir."
+    },
+    {
+     "id": "D",
+     "text": "Ürün tadılarak karar verilir."
+    }
+   ],
+   "correct": "C",
+   "group": "5. Bölüm · Alışveriş, etiket ve gıda güvenliği",
+   "chapter": 5,
+   "explanation": "Açılan üründe açıldıktan sonraki saklama koşulu ve kullanım süresi okunur.",
+   "source": {
+    "file": "Yeterli ve Dengeli Beslenme (Tasarımlı).docx",
+    "section": "Bölüm 5 tekrar soruları",
+    "question": "8"
+   },
+   "hint": "Açılan üründe açıldıktan sonraki saklama koşulu ve kullanım süresi okunur.",
+   "reviewNumber": 200
+  },
+  {
+   "id": "bs-6-1",
+   "prompt": "Evde bulgur var, tarif için salatalık eksik. Alışveriş listesine ne yazılır?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Bulgur"
+    },
+    {
+     "id": "B",
+     "text": "Bulgur ve salatalık"
+    },
+    {
+     "id": "C",
+     "text": "Salatalık"
+    },
+    {
+     "id": "D",
+     "text": "Bulgur ve pirinç"
+    }
+   ],
+   "correct": "C",
+   "group": "6. Bölüm · Sürdürülebilir beslenme ve Türk mutfağı",
+   "chapter": 6,
+   "explanation": "Listeye yalnız eksik olan yazılır.",
+   "source": {
+    "file": "Yeterli ve Dengeli Beslenme (Tasarımlı).docx",
+    "section": "Bölüm 6 tekrar soruları",
+    "question": "1"
+   },
+   "hint": "Listeye yalnız eksik olan yazılır.",
+   "reviewNumber": 201
+  },
+  {
+   "id": "bs-6-2",
+   "prompt": "Tarif için dört domates gerekiyor. İsrafı azaltmak için ne yapılır?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "En büyük domates paketi alınır."
+    },
+    {
+     "id": "B",
+     "text": "Dört domates alınır."
+    },
+    {
+     "id": "C",
+     "text": "Listedeki miktardan fazla alınır."
+    },
+    {
+     "id": "D",
+     "text": "Domates miktarı ölçülmeden hazırlanır."
+    }
+   ],
+   "correct": "B",
+   "group": "6. Bölüm · Sürdürülebilir beslenme ve Türk mutfağı",
+   "chapter": 6,
+   "explanation": "İsrafı azaltmak için tarifteki miktar kadar alınır.",
+   "source": {
+    "file": "Yeterli ve Dengeli Beslenme (Tasarımlı).docx",
+    "section": "Bölüm 6 tekrar soruları",
+    "question": "2"
+   },
+   "hint": "İsrafı azaltmak için tarifteki miktar kadar alınır.",
+   "reviewNumber": 202
+  },
+  {
+   "id": "bs-6-3",
+   "prompt": "Yemekhanede israfı azaltmak için yemek nasıl alınır?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Yenebilecek miktarda alınır."
+    },
+    {
+     "id": "B",
+     "text": "Tabağa sığdığı kadar alınır."
+    },
+    {
+     "id": "C",
+     "text": "Servisteki en büyük porsiyon alınır."
+    },
+    {
+     "id": "D",
+     "text": "Arkadaşın aldığı kadar alınır."
+    }
+   ],
+   "correct": "A",
+   "group": "6. Bölüm · Sürdürülebilir beslenme ve Türk mutfağı",
+   "chapter": 6,
+   "explanation": "Yenebilecek miktarda alınan yemek israfı azaltır.",
+   "source": {
+    "file": "Yeterli ve Dengeli Beslenme (Tasarımlı).docx",
+    "section": "Bölüm 6 tekrar soruları",
+    "question": "3"
+   },
+   "hint": "Yenebilecek miktarda alınan yemek israfı azaltır.",
+   "reviewNumber": 203
+  },
+  {
+   "id": "bs-6-4",
+   "prompt": "Hangi seçim bir kuru baklagil ile bir tahılı bir araya getirir?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Yoğurt ve peynir"
+    },
+    {
+     "id": "B",
+     "text": "Domates ve salatalık"
+    },
+    {
+     "id": "C",
+     "text": "Elma ve portakal"
+    },
+    {
+     "id": "D",
+     "text": "Nohut yemeği ve bulgur pilavı"
+    }
+   ],
+   "correct": "D",
+   "group": "6. Bölüm · Sürdürülebilir beslenme ve Türk mutfağı",
+   "chapter": 6,
+   "explanation": "Nohut kuru baklagil, bulgur tahıldır.",
+   "source": {
+    "file": "Yeterli ve Dengeli Beslenme (Tasarımlı).docx",
+    "section": "Bölüm 6 tekrar soruları",
+    "question": "4"
+   },
+   "hint": "Nohut kuru baklagil, bulgur tahıldır.",
+   "reviewNumber": 204
+  },
+  {
+   "id": "bs-6-5",
+   "prompt": "Alışverişten önce evdeki besinler kontrol edilir. Eksikler nereye yazılır?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Fiyat etiketine"
+    },
+    {
+     "id": "B",
+     "text": "Ambalajın üstüne"
+    },
+    {
+     "id": "C",
+     "text": "Buzdolabı kapağına"
+    },
+    {
+     "id": "D",
+     "text": "Alışveriş listesine"
+    }
+   ],
+   "correct": "D",
+   "group": "6. Bölüm · Sürdürülebilir beslenme ve Türk mutfağı",
+   "chapter": 6,
+   "explanation": "Eksikler alışveriş listesine yazılır.",
+   "source": {
+    "file": "Yeterli ve Dengeli Beslenme (Tasarımlı).docx",
+    "section": "Bölüm 6 tekrar soruları",
+    "question": "5"
+   },
+   "hint": "Eksikler alışveriş listesine yazılır.",
+   "reviewNumber": 205
+  },
+  {
+   "id": "bs-6-6",
+   "prompt": "Pazarda mevsiminde bulunan sebzelerden ne kadar alınır?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "İndirimli paketin tamamı"
+    },
+    {
+     "id": "B",
+     "text": "En büyük torba"
+    },
+    {
+     "id": "C",
+     "text": "Kullanılacak kadar"
+    },
+    {
+     "id": "D",
+     "text": "Evdekinden iki kat"
+    }
+   ],
+   "correct": "C",
+   "group": "6. Bölüm · Sürdürülebilir beslenme ve Türk mutfağı",
+   "chapter": 6,
+   "explanation": "Mevsim sebzesinden de kullanılacak kadar alınır.",
+   "source": {
+    "file": "Yeterli ve Dengeli Beslenme (Tasarımlı).docx",
+    "section": "Bölüm 6 tekrar soruları",
+    "question": "6"
+   },
+   "hint": "Mevsim sebzesinden de kullanılacak kadar alınır.",
+   "reviewNumber": 206
+  },
+  {
+   "id": "bs-6-7",
+   "prompt": "Şüpheli bir yiyecek için ne yapılır?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "İsraf olmasın diye tüketilir."
+    },
+    {
+     "id": "B",
+     "text": "Tüketilmez, öğretmene haber verilir."
+    },
+    {
+     "id": "C",
+     "text": "Tadılarak karar verilir."
+    },
+    {
+     "id": "D",
+     "text": "Kokusu normalse yenir."
+    }
+   ],
+   "correct": "B",
+   "group": "6. Bölüm · Sürdürülebilir beslenme ve Türk mutfağı",
+   "chapter": 6,
+   "explanation": "Şüpheli gıda tüketilmez. Öğretmene haber verilir.",
+   "source": {
+    "file": "Yeterli ve Dengeli Beslenme (Tasarımlı).docx",
+    "section": "Bölüm 6 tekrar soruları",
+    "question": "7"
+   },
+   "hint": "Şüpheli gıda tüketilmez. Öğretmene haber verilir.",
+   "reviewNumber": 207
+  },
+  {
+   "id": "bs-6-8",
+   "prompt": "Mevsim salatası nasıl hazırlanabilir?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Mevsim sebzeleriyle"
+    },
+    {
+     "id": "B",
+     "text": "Mevsimi geçmiş sebzelerle"
+    },
+    {
+     "id": "C",
+     "text": "Sebze kullanılmadan"
+    },
+    {
+     "id": "D",
+     "text": "Yalnız paketli soslarla"
+    }
+   ],
+   "correct": "A",
+   "group": "6. Bölüm · Sürdürülebilir beslenme ve Türk mutfağı",
+   "chapter": 6,
+   "explanation": "Mevsim salatası mevsim sebzeleriyle hazırlanabilir.",
+   "source": {
+    "file": "Yeterli ve Dengeli Beslenme (Tasarımlı).docx",
+    "section": "Bölüm 6 tekrar soruları",
+    "question": "8"
+   },
+   "hint": "Mevsim salatası mevsim sebzeleriyle hazırlanabilir.",
+   "reviewNumber": 208
+  },
+  {
+   "id": "bs-g1-1",
+   "prompt": "Kahvaltıda ekmek yerine aynı besin grubundan hangisi seçilebilir?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Yulaf"
+    },
+    {
+     "id": "B",
+     "text": "Haşlanmış yumurta"
+    },
+    {
+     "id": "C",
+     "text": "Yoğurt"
+    },
+    {
+     "id": "D",
+     "text": "Salatalık"
+    }
+   ],
+   "correct": "A",
+   "group": "Genel tekrar · Set 1",
+   "chapter": 7,
+   "explanation": "Ekmek ve yulaf tahıl grubundadır.",
+   "source": {
+    "file": "Yeterli ve Dengeli Beslenme (Tasarımlı).docx",
+    "section": "Genel tekrar",
+    "question": "1"
+   },
+   "hint": "Ekmek ve yulaf tahıl grubundadır.",
+   "reviewNumber": 209
+  },
+  {
+   "id": "bs-g1-2",
+   "prompt": "Bir içeceğin 100 mL’sinde 5 g şeker var. 200 mL’lik şişenin tamamında kaç gram şeker vardır?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "2,5 g"
+    },
+    {
+     "id": "B",
+     "text": "5 g"
+    },
+    {
+     "id": "C",
+     "text": "15 g"
+    },
+    {
+     "id": "D",
+     "text": "10 g"
+    }
+   ],
+   "correct": "D",
+   "group": "Genel tekrar · Set 1",
+   "chapter": 7,
+   "explanation": "200 mL, 100 mL’nin iki katıdır. 5 g × 2 = 10 g.",
+   "source": {
+    "file": "Yeterli ve Dengeli Beslenme (Tasarımlı).docx",
+    "section": "Genel tekrar",
+    "question": "2"
+   },
+   "hint": "200 mL, 100 mL’nin iki katıdır. 5 g × 2 = 10 g.",
+   "reviewNumber": 210
+  },
+  {
+   "id": "bs-g1-3",
+   "prompt": "Açıldıktan sonra soğukta saklanması gereken bir ürün nereye konur?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Kuru gıda rafına"
+    },
+    {
+     "id": "B",
+     "text": "Servis tezgâhına"
+    },
+    {
+     "id": "C",
+     "text": "Buzdolabına"
+    },
+    {
+     "id": "D",
+     "text": "Sıcak tutma dolabına"
+    }
+   ],
+   "correct": "C",
+   "group": "Genel tekrar · Set 1",
+   "chapter": 7,
+   "explanation": "Soğukta saklanacak ürün buzdolabına konur.",
+   "source": {
+    "file": "Yeterli ve Dengeli Beslenme (Tasarımlı).docx",
+    "section": "Genel tekrar",
+    "question": "3"
+   },
+   "hint": "Soğukta saklanacak ürün buzdolabına konur.",
+   "reviewNumber": 211
+  },
+  {
+   "id": "bs-g1-4",
+   "prompt": "Bir besinin ağırlığını gram olarak ölçmek için hangi araç kullanılır?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Ölçü kabı"
+    },
+    {
+     "id": "B",
+     "text": "Mutfak tartısı"
+    },
+    {
+     "id": "C",
+     "text": "Sıvı ölçüsü"
+    },
+    {
+     "id": "D",
+     "text": "Yemek kaşığı"
+    }
+   ],
+   "correct": "B",
+   "group": "Genel tekrar · Set 1",
+   "chapter": 7,
+   "explanation": "Gram ağırlıktır. Ağırlık tartıyla ölçülür.",
+   "source": {
+    "file": "Yeterli ve Dengeli Beslenme (Tasarımlı).docx",
+    "section": "Genel tekrar",
+    "question": "4"
+   },
+   "hint": "Gram ağırlıktır. Ağırlık tartıyla ölçülür.",
+   "reviewNumber": 212
+  },
+  {
+   "id": "bs-g1-5",
+   "prompt": "Alışverişte israfı azaltmak için ne yapılır?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Gereğinden fazla ürün alınır."
+    },
+    {
+     "id": "B",
+     "text": "İhtiyaç kadar ürün alınır."
+    },
+    {
+     "id": "C",
+     "text": "Her indirimli üründen alınır."
+    },
+    {
+     "id": "D",
+     "text": "Evdeki besinlere bakılmadan alışveriş yapılır."
+    }
+   ],
+   "correct": "B",
+   "group": "Genel tekrar · Set 1",
+   "chapter": 7,
+   "explanation": "İhtiyaç kadar alışveriş gıda israfını azaltır.",
+   "source": {
+    "file": "Yeterli ve Dengeli Beslenme (Tasarımlı).docx",
+    "section": "Genel tekrar",
+    "question": "5"
+   },
+   "hint": "İhtiyaç kadar alışveriş gıda israfını azaltır.",
+   "reviewNumber": 213
+  },
+  {
+   "id": "bs-g1-6",
+   "prompt": "Krakerlerin paket ve porsiyon boyları farklı. Tuzunu eşit miktarda karşılaştırmak için etikette hangi bilgi okunur?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "100 g’daki tuz"
+    },
+    {
+     "id": "B",
+     "text": "Paket başına tuz"
+    },
+    {
+     "id": "C",
+     "text": "Porsiyon başına tuz"
+    },
+    {
+     "id": "D",
+     "text": "Ürünün fiyatı"
+    }
+   ],
+   "correct": "A",
+   "group": "Genel tekrar · Set 1",
+   "chapter": 7,
+   "explanation": "Boyutları farklı ürünler 100 g’daki değerlerle karşılaştırılır.",
+   "source": {
+    "file": "Yeterli ve Dengeli Beslenme (Tasarımlı).docx",
+    "section": "Genel tekrar",
+    "question": "6"
+   },
+   "hint": "Boyutları farklı ürünler 100 g’daki değerlerle karşılaştırılır.",
+   "reviewNumber": 214
+  },
+  {
+   "id": "bs-g1-7",
+   "prompt": "Öğrenci çiğ tavuğa dokunduktan sonra salata hazırlayacak. Önce ne yapar?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Ellerini önlüğüne siler."
+    },
+    {
+     "id": "B",
+     "text": "Ellerini peçeteyle siler."
+    },
+    {
+     "id": "C",
+     "text": "Ellerini yalnız suyla durular."
+    },
+    {
+     "id": "D",
+     "text": "Ellerini sabunla yıkar."
+    }
+   ],
+   "correct": "D",
+   "group": "Genel tekrar · Set 1",
+   "chapter": 7,
+   "explanation": "Çiğ tavuktan sonra eller sabunla yıkanır.",
+   "source": {
+    "file": "Yeterli ve Dengeli Beslenme (Tasarımlı).docx",
+    "section": "Genel tekrar",
+    "question": "7"
+   },
+   "hint": "Çiğ tavuktan sonra eller sabunla yıkanır.",
+   "reviewNumber": 215
+  },
+  {
+   "id": "bs-g1-8",
+   "prompt": "Süt ürünlerindeki doğal şekerin adı nedir?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Posa"
+    },
+    {
+     "id": "B",
+     "text": "Nişasta"
+    },
+    {
+     "id": "C",
+     "text": "Laktoz"
+    },
+    {
+     "id": "D",
+     "text": "Kafein"
+    }
+   ],
+   "correct": "C",
+   "group": "Genel tekrar · Set 1",
+   "chapter": 7,
+   "explanation": "Laktoz sütün doğal şekeridir.",
+   "source": {
+    "file": "Yeterli ve Dengeli Beslenme (Tasarımlı).docx",
+    "section": "Genel tekrar",
+    "question": "8"
+   },
+   "hint": "Laktoz sütün doğal şekeridir.",
+   "reviewNumber": 216
+  },
+  {
+   "id": "bs-g1-9",
+   "prompt": "Öğrenci iki farklı günde iki farklı meyve seçmek istiyor. Hangi seçim bunu sağlar?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "İki farklı boy elma"
+    },
+    {
+     "id": "B",
+     "text": "Kırmızı ve yeşil elma"
+    },
+    {
+     "id": "C",
+     "text": "Elma ve armut"
+    },
+    {
+     "id": "D",
+     "text": "Dilimlenmiş ve bütün elma"
+    }
+   ],
+   "correct": "C",
+   "group": "Genel tekrar · Set 1",
+   "chapter": 7,
+   "explanation": "Farklı meyve, farklı besin demektir.",
+   "source": {
+    "file": "Yeterli ve Dengeli Beslenme (Tasarımlı).docx",
+    "section": "Genel tekrar",
+    "question": "9"
+   },
+   "hint": "Farklı meyve, farklı besin demektir.",
+   "reviewNumber": 217
+  },
+  {
+   "id": "bs-g1-10",
+   "prompt": "Salatanın yanına bulgur eklenirse öğüne hangi gruptan bir besin eklenmiş olur?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Süt ve ürünleri"
+    },
+    {
+     "id": "B",
+     "text": "Ekmek ve tahıllar"
+    },
+    {
+     "id": "C",
+     "text": "Meyveler"
+    },
+    {
+     "id": "D",
+     "text": "Yağlı tohumlar"
+    }
+   ],
+   "correct": "B",
+   "group": "Genel tekrar · Set 1",
+   "chapter": 7,
+   "explanation": "Bulgur tahıldır.",
+   "source": {
+    "file": "Yeterli ve Dengeli Beslenme (Tasarımlı).docx",
+    "section": "Genel tekrar",
+    "question": "10"
+   },
+   "hint": "Bulgur tahıldır.",
+   "reviewNumber": 218
+  },
+  {
+   "id": "bs-g2-1",
+   "prompt": "Ekmeğin yapımında tam buğday unu kullanıldığı nasıl anlaşılır?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "İçindekiler listesi okunur."
+    },
+    {
+     "id": "B",
+     "text": "Ekmeğin dokusu kontrol edilir."
+    },
+    {
+     "id": "C",
+     "text": "Ekmeğin iç rengine bakılır."
+    },
+    {
+     "id": "D",
+     "text": "Üstündeki tahıl tanelerine bakılır."
+    }
+   ],
+   "correct": "A",
+   "group": "Genel tekrar · Set 2",
+   "chapter": 7,
+   "explanation": "Un türü içindekiler listesinden anlaşılır.",
+   "source": {
+    "file": "Yeterli ve Dengeli Beslenme (Tasarımlı).docx",
+    "section": "Genel tekrar",
+    "question": "11"
+   },
+   "hint": "Un türü içindekiler listesinden anlaşılır.",
+   "reviewNumber": 219
+  },
+  {
+   "id": "bs-g2-2",
+   "prompt": "Gıdaya sonradan konan şeker hangi şeker olarak adlandırılır?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Doğal şeker"
+    },
+    {
+     "id": "B",
+     "text": "Laktoz"
+    },
+    {
+     "id": "C",
+     "text": "Posa"
+    },
+    {
+     "id": "D",
+     "text": "Eklenen şeker"
+    }
+   ],
+   "correct": "D",
+   "group": "Genel tekrar · Set 2",
+   "chapter": 7,
+   "explanation": "Sonradan eklenen şekere eklenen şeker denir.",
+   "source": {
+    "file": "Yeterli ve Dengeli Beslenme (Tasarımlı).docx",
+    "section": "Genel tekrar",
+    "question": "12"
+   },
+   "hint": "Sonradan eklenen şekere eklenen şeker denir.",
+   "reviewNumber": 220
+  },
+  {
+   "id": "bs-g2-3",
+   "prompt": "Çiğ tavukta kullanılan maşa yıkanmadı. Salata servis edilirken hangi maşa kullanılır?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Çiğ tavukta kullanılan maşa"
+    },
+    {
+     "id": "B",
+     "text": "Yalnız suyla çalkalanmış maşa"
+    },
+    {
+     "id": "C",
+     "text": "Peçeteyle silinmiş maşa"
+    },
+    {
+     "id": "D",
+     "text": "Temiz bir servis maşası"
+    }
+   ],
+   "correct": "D",
+   "group": "Genel tekrar · Set 2",
+   "chapter": 7,
+   "explanation": "Çiğ tavuğa değen araç salataya mikrop bulaştırır. Salata temiz maşayla servis edilir.",
+   "source": {
+    "file": "Yeterli ve Dengeli Beslenme (Tasarımlı).docx",
+    "section": "Genel tekrar",
+    "question": "13"
+   },
+   "hint": "Çiğ tavuğa değen araç salataya mikrop bulaştırır. Salata temiz maşayla servis edilir.",
+   "reviewNumber": 221
+  },
+  {
+   "id": "bs-g2-4",
+   "prompt": "Hangi yemek, Akdeniz tipi beslenmede sebze ve zeytinyağına yer vermeye örnektir?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Kremalı tavuk"
+    },
+    {
+     "id": "B",
+     "text": "Sade pirinç pilavı"
+    },
+    {
+     "id": "C",
+     "text": "Zeytinyağlı taze fasulye"
+    },
+    {
+     "id": "D",
+     "text": "Tereyağlı patates püresi"
+    }
+   ],
+   "correct": "C",
+   "group": "Genel tekrar · Set 2",
+   "chapter": 7,
+   "explanation": "Zeytinyağlı taze fasulye sebze ve zeytinyağı içerir.",
+   "source": {
+    "file": "Yeterli ve Dengeli Beslenme (Tasarımlı).docx",
+    "section": "Genel tekrar",
+    "question": "14"
+   },
+   "hint": "Zeytinyağlı taze fasulye sebze ve zeytinyağı içerir.",
+   "reviewNumber": 222
+  },
+  {
+   "id": "bs-g2-5",
+   "prompt": "Meyve suyuna şeker eklenmemiş olsa bile hangi bilgi doğrudur?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Toplam şeker her zaman sıfırdır."
+    },
+    {
+     "id": "B",
+     "text": "Meyvenin doğal şekerleri bulunabilir."
+    },
+    {
+     "id": "C",
+     "text": "Şeker miktarı her üründe aynıdır."
+    },
+    {
+     "id": "D",
+     "text": "Meyvenin bütün posası aynı miktarda kalır."
+    }
+   ],
+   "correct": "B",
+   "group": "Genel tekrar · Set 2",
+   "chapter": 7,
+   "explanation": "Meyve suyunda meyvenin doğal şekerleri bulunabilir.",
+   "source": {
+    "file": "Yeterli ve Dengeli Beslenme (Tasarımlı).docx",
+    "section": "Genel tekrar",
+    "question": "15"
+   },
+   "hint": "Meyve suyunda meyvenin doğal şekerleri bulunabilir.",
+   "reviewNumber": 223
+  },
+  {
+   "id": "bs-g2-6",
+   "prompt": "Bir tarif için soğan ve havuç gerekiyor. Evde yalnız soğan var. Listeye hangisi yazılır?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Havuç"
+    },
+    {
+     "id": "B",
+     "text": "Soğan ve havuç"
+    },
+    {
+     "id": "C",
+     "text": "Soğan"
+    },
+    {
+     "id": "D",
+     "text": "Soğan ve patates"
+    }
+   ],
+   "correct": "A",
+   "group": "Genel tekrar · Set 2",
+   "chapter": 7,
+   "explanation": "Evde olan malzeme listeye yazılmaz. Yalnız eksik olan yazılır.",
+   "source": {
+    "file": "Yeterli ve Dengeli Beslenme (Tasarımlı).docx",
+    "section": "Genel tekrar",
+    "question": "16"
+   },
+   "hint": "Evde olan malzeme listeye yazılmaz. Yalnız eksik olan yazılır.",
+   "reviewNumber": 224
+  },
+  {
+   "id": "bs-g2-7",
+   "prompt": "Sebze ve meyve seçimi için hangi bilgi doğrudur?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Günlere göre değiştirilebilir."
+    },
+    {
+     "id": "B",
+     "text": "Her gün aynı tür seçilir."
+    },
+    {
+     "id": "C",
+     "text": "Yalnız tek tür seçilir."
+    },
+    {
+     "id": "D",
+     "text": "Yalnız meyve suyu seçilir."
+    }
+   ],
+   "correct": "A",
+   "group": "Genel tekrar · Set 2",
+   "chapter": 7,
+   "explanation": "Farklı sebze ve meyveler çeşitlilik sağlar.",
+   "source": {
+    "file": "Yeterli ve Dengeli Beslenme (Tasarımlı).docx",
+    "section": "Genel tekrar",
+    "question": "17"
+   },
+   "hint": "Farklı sebze ve meyveler çeşitlilik sağlar.",
+   "reviewNumber": 225
+  },
+  {
+   "id": "bs-g2-8",
+   "prompt": "Süt, yoğurt ve peynir hangi mineralin kaynaklarındandır?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Sodyum"
+    },
+    {
+     "id": "B",
+     "text": "Demir"
+    },
+    {
+     "id": "C",
+     "text": "İyot"
+    },
+    {
+     "id": "D",
+     "text": "Kalsiyum"
+    }
+   ],
+   "correct": "D",
+   "group": "Genel tekrar · Set 2",
+   "chapter": 7,
+   "explanation": "Süt ve ürünleri kalsiyum kaynağıdır.",
+   "source": {
+    "file": "Yeterli ve Dengeli Beslenme (Tasarımlı).docx",
+    "section": "Genel tekrar",
+    "question": "18"
+   },
+   "hint": "Süt ve ürünleri kalsiyum kaynağıdır.",
+   "reviewNumber": 226
+  },
+  {
+   "id": "bs-g2-9",
+   "prompt": "İki ekmek dilimi aynı kalınlıkta görünüyor. Ağırlıkları nasıl karşılaştırılır?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Daha geniş dilim daha ağır sayılır."
+    },
+    {
+     "id": "B",
+     "text": "Eşit kalınlıkta oldukları için eşit sayılır."
+    },
+    {
+     "id": "C",
+     "text": "Dilimler ayrı ayrı tartılır."
+    },
+    {
+     "id": "D",
+     "text": "Dilimler üst üste konup birlikte tartılır."
+    }
+   ],
+   "correct": "C",
+   "group": "Genel tekrar · Set 2",
+   "chapter": 7,
+   "explanation": "Ağırlığı görünüşten anlamak yerine ayrı ayrı tartılır.",
+   "source": {
+    "file": "Yeterli ve Dengeli Beslenme (Tasarımlı).docx",
+    "section": "Genel tekrar",
+    "question": "19"
+   },
+   "hint": "Ağırlığı görünüşten anlamak yerine ayrı ayrı tartılır.",
+   "reviewNumber": 227
+  },
+  {
+   "id": "bs-g2-10",
+   "prompt": "Bir ürünü almadan önce ambalajın sağlamlığı ve hangi bilgi kontrol edilir?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Yazı rengi"
+    },
+    {
+     "id": "B",
+     "text": "Tarih bilgisi"
+    },
+    {
+     "id": "C",
+     "text": "Paket deseni"
+    },
+    {
+     "id": "D",
+     "text": "Ürün resmi"
+    }
+   ],
+   "correct": "B",
+   "group": "Genel tekrar · Set 2",
+   "chapter": 7,
+   "explanation": "Ambalaj sağlamlığı ve tarih bilgisi kontrol edilir.",
+   "source": {
+    "file": "Yeterli ve Dengeli Beslenme (Tasarımlı).docx",
+    "section": "Genel tekrar",
+    "question": "20"
+   },
+   "hint": "Ambalaj sağlamlığı ve tarih bilgisi kontrol edilir.",
+   "reviewNumber": 228
+  },
+  {
+   "id": "bs-g3-1",
+   "prompt": "Şekerli kola ile elma suyu etiketleri karşılaştırılıyor. Aynı hacimdeki toplam şeker için hangi satır okunur?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Tuz"
+    },
+    {
+     "id": "B",
+     "text": "Şekerler"
+    },
+    {
+     "id": "C",
+     "text": "Yağ"
+    },
+    {
+     "id": "D",
+     "text": "Protein"
+    }
+   ],
+   "correct": "B",
+   "group": "Genel tekrar · Set 3",
+   "chapter": 7,
+   "explanation": "Toplam şeker etiketteki şekerler satırından okunur.",
+   "source": {
+    "file": "Yeterli ve Dengeli Beslenme (Tasarımlı).docx",
+    "section": "Genel tekrar",
+    "question": "21"
+   },
+   "hint": "Toplam şeker etiketteki şekerler satırından okunur.",
+   "reviewNumber": 229
+  },
+  {
+   "id": "bs-g3-2",
+   "prompt": "Yeterli beslenme neyi amaçlar?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Vücudun gereksinimlerini karşılamayı"
+    },
+    {
+     "id": "B",
+     "text": "Her öğünde aynı yemeği yemeyi"
+    },
+    {
+     "id": "C",
+     "text": "Herkese eşit miktarda yemek vermeyi"
+    },
+    {
+     "id": "D",
+     "text": "En büyük porsiyonu tüketmeyi"
+    }
+   ],
+   "correct": "A",
+   "group": "Genel tekrar · Set 3",
+   "chapter": 7,
+   "explanation": "Yeterli beslenme gereksinimleri karşılamayı amaçlar.",
+   "source": {
+    "file": "Yeterli ve Dengeli Beslenme (Tasarımlı).docx",
+    "section": "Genel tekrar",
+    "question": "22"
+   },
+   "hint": "Yeterli beslenme gereksinimleri karşılamayı amaçlar.",
+   "reviewNumber": 230
+  },
+  {
+   "id": "bs-g3-3",
+   "prompt": "Ambalajı açılan bir üründe hangi bilgi kontrol edilir?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Marka"
+    },
+    {
+     "id": "B",
+     "text": "Fiyat"
+    },
+    {
+     "id": "C",
+     "text": "Paket deseni"
+    },
+    {
+     "id": "D",
+     "text": "Açıldıktan sonraki saklama bilgisi"
+    }
+   ],
+   "correct": "D",
+   "group": "Genel tekrar · Set 3",
+   "chapter": 7,
+   "explanation": "Açılan ürünün saklama bilgisi ayrıca okunur.",
+   "source": {
+    "file": "Yeterli ve Dengeli Beslenme (Tasarımlı).docx",
+    "section": "Genel tekrar",
+    "question": "23"
+   },
+   "hint": "Açılan ürünün saklama bilgisi ayrıca okunur.",
+   "reviewNumber": 231
+  },
+  {
+   "id": "bs-g3-4",
+   "prompt": "Ayranın etiketinde 100 mL’de 0,6 g tuz yazıyor. 200 mL’de kaç gram tuz vardır?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "0,3 g"
+    },
+    {
+     "id": "B",
+     "text": "0,6 g"
+    },
+    {
+     "id": "C",
+     "text": "1,2 g"
+    },
+    {
+     "id": "D",
+     "text": "2,0 g"
+    }
+   ],
+   "correct": "C",
+   "group": "Genel tekrar · Set 3",
+   "chapter": 7,
+   "explanation": "200 mL, 100 mL’nin iki katıdır. 0,6 g × 2 = 1,2 g.",
+   "source": {
+    "file": "Yeterli ve Dengeli Beslenme (Tasarımlı).docx",
+    "section": "Genel tekrar",
+    "question": "24"
+   },
+   "hint": "200 mL, 100 mL’nin iki katıdır. 0,6 g × 2 = 1,2 g.",
+   "reviewNumber": 232
+  },
+  {
+   "id": "bs-g3-5",
+   "prompt": "Çalışma sırasında vücudun hareket etmesine hangi besin ögesi enerji sağlayabilir?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Kalsiyum"
+    },
+    {
+     "id": "B",
+     "text": "Su"
+    },
+    {
+     "id": "C",
+     "text": "Karbonhidrat"
+    },
+    {
+     "id": "D",
+     "text": "C vitamini"
+    }
+   ],
+   "correct": "C",
+   "group": "Genel tekrar · Set 3",
+   "chapter": 7,
+   "explanation": "Karbonhidrat enerji sağlar. Su ve mineraller enerji vermez.",
+   "source": {
+    "file": "Yeterli ve Dengeli Beslenme (Tasarımlı).docx",
+    "section": "Genel tekrar",
+    "question": "25"
+   },
+   "hint": "Karbonhidrat enerji sağlar. Su ve mineraller enerji vermez.",
+   "reviewNumber": 233
+  },
+  {
+   "id": "bs-g3-6",
+   "prompt": "Bir ürünü tam tahıllı olarak seçerken ne yapılır?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Yalnız ambalajdaki resme bakılır."
+    },
+    {
+     "id": "B",
+     "text": "İçindekiler listesi okunur."
+    },
+    {
+     "id": "C",
+     "text": "Yalnız renge bakılır."
+    },
+    {
+     "id": "D",
+     "text": "Paketin büyüklüğüne bakılır."
+    }
+   ],
+   "correct": "B",
+   "group": "Genel tekrar · Set 3",
+   "chapter": 7,
+   "explanation": "Ambalajdaki resim tam tahıllı olduğunu göstermez.",
+   "source": {
+    "file": "Yeterli ve Dengeli Beslenme (Tasarımlı).docx",
+    "section": "Genel tekrar",
+    "question": "26"
+   },
+   "hint": "Ambalajdaki resim tam tahıllı olduğunu göstermez.",
+   "reviewNumber": 234
+  },
+  {
+   "id": "bs-g3-7",
+   "prompt": "Evde bulunan yiyecekler önce kontrol edilirse gereksiz alışveriş ve neyi azaltmak mümkün olur?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Gıda israfını"
+    },
+    {
+     "id": "B",
+     "text": "Gıda etiketini"
+    },
+    {
+     "id": "C",
+     "text": "Gıda ambalajını"
+    },
+    {
+     "id": "D",
+     "text": "Gıda renklerini"
+    }
+   ],
+   "correct": "A",
+   "group": "Genel tekrar · Set 3",
+   "chapter": 7,
+   "explanation": "Evdekini bilmek gereksiz alışverişi ve israfı azaltır.",
+   "source": {
+    "file": "Yeterli ve Dengeli Beslenme (Tasarımlı).docx",
+    "section": "Genel tekrar",
+    "question": "27"
+   },
+   "hint": "Evdekini bilmek gereksiz alışverişi ve israfı azaltır.",
+   "reviewNumber": 235
+  },
+  {
+   "id": "bs-g3-8",
+   "prompt": "Hangi yiyecek hem bitkisel protein hem posa sağlar?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Balık"
+    },
+    {
+     "id": "B",
+     "text": "Yumurta"
+    },
+    {
+     "id": "C",
+     "text": "Peynir"
+    },
+    {
+     "id": "D",
+     "text": "Nohut"
+    }
+   ],
+   "correct": "D",
+   "group": "Genel tekrar · Set 3",
+   "chapter": 7,
+   "explanation": "Nohut kuru baklagildir. Hem protein hem posa içerir.",
+   "source": {
+    "file": "Yeterli ve Dengeli Beslenme (Tasarımlı).docx",
+    "section": "Genel tekrar",
+    "question": "28"
+   },
+   "hint": "Nohut kuru baklagildir. Hem protein hem posa içerir.",
+   "reviewNumber": 236
+  },
+  {
+   "id": "bs-g3-9",
+   "prompt": "Bir öğrencinin alerjisi varsa ürünün hangi bilgisi öğretmenle kontrol edilir?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Paket rengi"
+    },
+    {
+     "id": "B",
+     "text": "Satış fiyatı"
+    },
+    {
+     "id": "C",
+     "text": "Paket deseni"
+    },
+    {
+     "id": "D",
+     "text": "Alerjen bilgisi"
+    }
+   ],
+   "correct": "D",
+   "group": "Genel tekrar · Set 3",
+   "chapter": 7,
+   "explanation": "Alerjisi olan öğrenci için alerjen bilgisi okunur.",
+   "source": {
+    "file": "Yeterli ve Dengeli Beslenme (Tasarımlı).docx",
+    "section": "Genel tekrar",
+    "question": "29"
+   },
+   "hint": "Alerjisi olan öğrenci için alerjen bilgisi okunur.",
+   "reviewNumber": 237
+  },
+  {
+   "id": "bs-g3-10",
+   "prompt": "Mutfakta gıda israfını azaltmak için yemek hazırlanırken ne yapılır?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Paketlerin tamamı açılır."
+    },
+    {
+     "id": "B",
+     "text": "Gereğinden fazla yemek hazırlanır."
+    },
+    {
+     "id": "C",
+     "text": "Tarifte gereken miktar hazırlanır."
+    },
+    {
+     "id": "D",
+     "text": "Her malzemeden eşit miktar konur."
+    }
+   ],
+   "correct": "C",
+   "group": "Genel tekrar · Set 3",
+   "chapter": 7,
+   "explanation": "Tarifteki miktar israfı azaltır.",
+   "source": {
+    "file": "Yeterli ve Dengeli Beslenme (Tasarımlı).docx",
+    "section": "Genel tekrar",
+    "question": "30"
+   },
+   "hint": "Tarifteki miktar israfı azaltır.",
+   "reviewNumber": 238
+  },
+  {
+   "id": "bs-g4-1",
+   "prompt": "Hangi seçenekte eklenen şeker örneği vardır?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Bütün elmanın içindeki şeker"
+    },
+    {
+     "id": "B",
+     "text": "Kolaya üretim sırasında şeker konması"
+    },
+    {
+     "id": "C",
+     "text": "Sade sütün içindeki laktoz"
+    },
+    {
+     "id": "D",
+     "text": "Bütün armudun içindeki şeker"
+    }
+   ],
+   "correct": "B",
+   "group": "Genel tekrar · Set 4",
+   "chapter": 7,
+   "explanation": "Üretim sırasında konan şeker eklenen şekerdir.",
+   "source": {
+    "file": "Yeterli ve Dengeli Beslenme (Tasarımlı).docx",
+    "section": "Genel tekrar",
+    "question": "31"
+   },
+   "hint": "Üretim sırasında konan şeker eklenen şekerdir.",
+   "reviewNumber": 239
+  },
+  {
+   "id": "bs-g4-2",
+   "prompt": "Daha sonra kullanılacak pişmiş yemek nasıl soğutulur?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Öğretmen gözetiminde sığ kaplara ayrılıp gecikmeden soğutulur."
+    },
+    {
+     "id": "B",
+     "text": "Gece boyunca oda sıcaklığında bırakılır."
+    },
+    {
+     "id": "C",
+     "text": "Büyük bir tencerede kapalı şekilde bekletilir."
+    },
+    {
+     "id": "D",
+     "text": "Sıcak tezgâhta soğuması beklenir."
+    }
+   ],
+   "correct": "A",
+   "group": "Genel tekrar · Set 4",
+   "chapter": 7,
+   "explanation": "Pişmiş yemek güvenli biçimde, gecikmeden soğutulur.",
+   "source": {
+    "file": "Yeterli ve Dengeli Beslenme (Tasarımlı).docx",
+    "section": "Genel tekrar",
+    "question": "32"
+   },
+   "hint": "Pişmiş yemek güvenli biçimde, gecikmeden soğutulur.",
+   "reviewNumber": 240
+  },
+  {
+   "id": "bs-g4-3",
+   "prompt": "Gıda alışverişinden önce yapılan hangi iş eldeki malzemelerin kullanılmasını kolaylaştırır?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Evdeki besinlere ve tarihlerine bakmak"
+    },
+    {
+     "id": "B",
+     "text": "Paket boylarına göre liste yazmak"
+    },
+    {
+     "id": "C",
+     "text": "Raf dizilimine göre liste yazmak"
+    },
+    {
+     "id": "D",
+     "text": "Yalnız fiyatları karşılaştırmak"
+    }
+   ],
+   "correct": "A",
+   "group": "Genel tekrar · Set 4",
+   "chapter": 7,
+   "explanation": "Evdekiler kontrol edilirse eldeki besinler kullanılır.",
+   "source": {
+    "file": "Yeterli ve Dengeli Beslenme (Tasarımlı).docx",
+    "section": "Genel tekrar",
+    "question": "33"
+   },
+   "hint": "Evdekiler kontrol edilirse eldeki besinler kullanılır.",
+   "reviewNumber": 241
+  },
+  {
+   "id": "bs-g4-4",
+   "prompt": "Öğle yemeğinde sadece pilav var. Hangi ikili öğüne iki farklı besin grubu ekler?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Pirinç ve yulaf"
+    },
+    {
+     "id": "B",
+     "text": "Ekmek ve bulgur"
+    },
+    {
+     "id": "C",
+     "text": "Makarna ve ekmek"
+    },
+    {
+     "id": "D",
+     "text": "Salata ve yoğurt"
+    }
+   ],
+   "correct": "D",
+   "group": "Genel tekrar · Set 4",
+   "chapter": 7,
+   "explanation": "Salata sebze, yoğurt süt ürünüdür. Diğerleri tahıldır.",
+   "source": {
+    "file": "Yeterli ve Dengeli Beslenme (Tasarımlı).docx",
+    "section": "Genel tekrar",
+    "question": "34"
+   },
+   "hint": "Salata sebze, yoğurt süt ürünüdür. Diğerleri tahıldır.",
+   "reviewNumber": 242
+  },
+  {
+   "id": "bs-g4-5",
+   "prompt": "Porsiyon örneğindeki 200 mL ile ilgili hangi bilgi doğrudur?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Her besinde 200 g’a karşılık gelir."
+    },
+    {
+     "id": "B",
+     "text": "mL ve g her zaman aynı sayıyı verir."
+    },
+    {
+     "id": "C",
+     "text": "mL hacmi, g ağırlığı gösterir."
+    },
+    {
+     "id": "D",
+     "text": "Sıvı ile katı ölçüsü aynıdır."
+    }
+   ],
+   "correct": "C",
+   "group": "Genel tekrar · Set 4",
+   "chapter": 7,
+   "explanation": "Aynı hacimdeki besinlerin ağırlığı farklı olabilir.",
+   "source": {
+    "file": "Yeterli ve Dengeli Beslenme (Tasarımlı).docx",
+    "section": "Genel tekrar",
+    "question": "35"
+   },
+   "hint": "Aynı hacimdeki besinlerin ağırlığı farklı olabilir.",
+   "reviewNumber": 243
+  },
+  {
+   "id": "bs-g4-6",
+   "prompt": "Yoğurdun STT’si, makarnanın TETT’si dün geçti. Ne yapılır?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Makarna ayrılır. Yoğurt bugün kullanılır."
+    },
+    {
+     "id": "B",
+     "text": "Yoğurt kullanılmaz. Makarna öğretmenle değerlendirilir."
+    },
+    {
+     "id": "C",
+     "text": "Paketleri sağlamsa iki ürün de kullanılır."
+    },
+    {
+     "id": "D",
+     "text": "Kokuları normalse iki ürün de kullanılır."
+    }
+   ],
+   "correct": "B",
+   "group": "Genel tekrar · Set 4",
+   "chapter": 7,
+   "explanation": "STT geçen ürün tüketilmez. TETT geçen ürün öğretmenle değerlendirilir.",
+   "source": {
+    "file": "Yeterli ve Dengeli Beslenme (Tasarımlı).docx",
+    "section": "Genel tekrar",
+    "question": "36"
+   },
+   "hint": "STT geçen ürün tüketilmez. TETT geçen ürün öğretmenle değerlendirilir.",
+   "reviewNumber": 244
+  },
+  {
+   "id": "bs-g4-7",
+   "prompt": "Süt alerjisi olan öğrenci için yemek hazırlanacak. Ambalajda hangi liste öğretmenle kontrol edilir?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Alışveriş listesi"
+    },
+    {
+     "id": "B",
+     "text": "İçindekiler listesi"
+    },
+    {
+     "id": "C",
+     "text": "Fiyat listesi"
+    },
+    {
+     "id": "D",
+     "text": "Tarih listesi"
+    }
+   ],
+   "correct": "B",
+   "group": "Genel tekrar · Set 4",
+   "chapter": 7,
+   "explanation": "Süt içerip içermediği içindekiler listesinden anlaşılır.",
+   "source": {
+    "file": "Yeterli ve Dengeli Beslenme (Tasarımlı).docx",
+    "section": "Genel tekrar",
+    "question": "37"
+   },
+   "hint": "Süt içerip içermediği içindekiler listesinden anlaşılır.",
+   "reviewNumber": 245
+  },
+  {
+   "id": "bs-g4-8",
+   "prompt": "Öğrenci tuzu daha az olan ayranı seçmek istiyor. Hangi etiket çifti karşılaştırmaya uygundur?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "İki ürünün de 100 mL’deki tuzu"
+    },
+    {
+     "id": "B",
+     "text": "Birinin tuzu ve diğerinin şekeri"
+    },
+    {
+     "id": "C",
+     "text": "İki ürünün net paket miktarı"
+    },
+    {
+     "id": "D",
+     "text": "Birinin 100 mL’deki tuzu ve diğerinin paket tuzu"
+    }
+   ],
+   "correct": "A",
+   "group": "Genel tekrar · Set 4",
+   "chapter": 7,
+   "explanation": "Aynı miktar ve aynı satır karşılaştırılır.",
+   "source": {
+    "file": "Yeterli ve Dengeli Beslenme (Tasarımlı).docx",
+    "section": "Genel tekrar",
+    "question": "38"
+   },
+   "hint": "Aynı miktar ve aynı satır karşılaştırılır.",
+   "reviewNumber": 246
+  },
+  {
+   "id": "bs-g4-9",
+   "prompt": "Çeşitlilik sağlamak için sebzeler nasıl seçilir?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Her öğünde aynı sebze seçilir."
+    },
+    {
+     "id": "B",
+     "text": "Yalnız tek sebze seçilir."
+    },
+    {
+     "id": "C",
+     "text": "Sebze yerine meyve suyu içilir."
+    },
+    {
+     "id": "D",
+     "text": "Farklı sebzeler öğünlere dağıtılır."
+    }
+   ],
+   "correct": "D",
+   "group": "Genel tekrar · Set 4",
+   "chapter": 7,
+   "explanation": "Farklı sebzeler çeşitlilik sağlar.",
+   "source": {
+    "file": "Yeterli ve Dengeli Beslenme (Tasarımlı).docx",
+    "section": "Genel tekrar",
+    "question": "39"
+   },
+   "hint": "Farklı sebzeler çeşitlilik sağlar.",
+   "reviewNumber": 247
+  },
+  {
+   "id": "bs-g4-10",
+   "prompt": "Sebze ve meyveler vitamin ve minerallerin yanı sıra ne sağlar?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Laktoz"
+    },
+    {
+     "id": "B",
+     "text": "Kafein"
+    },
+    {
+     "id": "C",
+     "text": "Posa"
+    },
+    {
+     "id": "D",
+     "text": "Tuz"
+    }
+   ],
+   "correct": "C",
+   "group": "Genel tekrar · Set 4",
+   "chapter": 7,
+   "explanation": "Sebze ve meyveler posa, yani besin lifi sağlar.",
+   "source": {
+    "file": "Yeterli ve Dengeli Beslenme (Tasarımlı).docx",
+    "section": "Genel tekrar",
+    "question": "40"
+   },
+   "hint": "Sebze ve meyveler posa, yani besin lifi sağlar.",
+   "reviewNumber": 248
+  },
+  {
+   "id": "bs-g5-1",
+   "prompt": "Yulafın ait olduğu besin grubu hangisidir?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Meyveler"
+    },
+    {
+     "id": "B",
+     "text": "Sebzeler"
+    },
+    {
+     "id": "C",
+     "text": "Ekmek ve tahıllar"
+    },
+    {
+     "id": "D",
+     "text": "Süt ürünleri"
+    }
+   ],
+   "correct": "C",
+   "group": "Genel tekrar · Set 5",
+   "chapter": 7,
+   "explanation": "Yulaf tahıldır.",
+   "source": {
+    "file": "Yeterli ve Dengeli Beslenme (Tasarımlı).docx",
+    "section": "Genel tekrar",
+    "question": "41"
+   },
+   "hint": "Yulaf tahıldır.",
+   "reviewNumber": 249
+  },
+  {
+   "id": "bs-g5-2",
+   "prompt": "Temizlik maddesi kalmış bezle temiz tabak silinirse ne olabilir?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Tabak daha temiz olur."
+    },
+    {
+     "id": "B",
+     "text": "Kalıntı tabağa geçebilir."
+    },
+    {
+     "id": "C",
+     "text": "Tabak daha çabuk kurur."
+    },
+    {
+     "id": "D",
+     "text": "Hiçbir şey olmaz."
+    }
+   ],
+   "correct": "B",
+   "group": "Genel tekrar · Set 5",
+   "chapter": 7,
+   "explanation": "Temizlik maddesi kalıntısı tabağa geçebilir.",
+   "source": {
+    "file": "Yeterli ve Dengeli Beslenme (Tasarımlı).docx",
+    "section": "Genel tekrar",
+    "question": "42"
+   },
+   "hint": "Temizlik maddesi kalıntısı tabağa geçebilir.",
+   "reviewNumber": 250
+  },
+  {
+   "id": "bs-g5-3",
+   "prompt": "Porsiyon sayısı 2 olan bir paketin tamamı yenirse kaç porsiyon tüketilmiş olur?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "İki"
+    },
+    {
+     "id": "B",
+     "text": "Yarım"
+    },
+    {
+     "id": "C",
+     "text": "Bir"
+    },
+    {
+     "id": "D",
+     "text": "Dört"
+    }
+   ],
+   "correct": "A",
+   "group": "Genel tekrar · Set 5",
+   "chapter": 7,
+   "explanation": "Paket iki porsiyonluksa tamamı iki porsiyondur.",
+   "source": {
+    "file": "Yeterli ve Dengeli Beslenme (Tasarımlı).docx",
+    "section": "Genel tekrar",
+    "question": "43"
+   },
+   "hint": "Paket iki porsiyonluksa tamamı iki porsiyondur.",
+   "reviewNumber": 251
+  },
+  {
+   "id": "bs-g5-4",
+   "prompt": "Öğle yemeği hangi öğün türüne örnektir?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Ara öğün"
+    },
+    {
+     "id": "B",
+     "text": "İçecek"
+    },
+    {
+     "id": "C",
+     "text": "Porsiyon"
+    },
+    {
+     "id": "D",
+     "text": "Ana öğün"
+    }
+   ],
+   "correct": "D",
+   "group": "Genel tekrar · Set 5",
+   "chapter": 7,
+   "explanation": "Öğle yemeği ana öğündür.",
+   "source": {
+    "file": "Yeterli ve Dengeli Beslenme (Tasarımlı).docx",
+    "section": "Genel tekrar",
+    "question": "44"
+   },
+   "hint": "Öğle yemeği ana öğündür.",
+   "reviewNumber": 252
+  },
+  {
+   "id": "bs-g5-5",
+   "prompt": "Pazarda mevsim sebzesi var. Evde aynı sebzeden yemek için yeterince bulunuyor. Ne yapılır?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Evdeki miktar kadar yeniden alınır."
+    },
+    {
+     "id": "B",
+     "text": "Büyük pakette daha ucuzsa büyük paket alınır."
+    },
+    {
+     "id": "C",
+     "text": "İndirim varsa bir paket daha alınır."
+    },
+    {
+     "id": "D",
+     "text": "Evdeki sebze kullanılır."
+    }
+   ],
+   "correct": "D",
+   "group": "Genel tekrar · Set 5",
+   "chapter": 7,
+   "explanation": "Evde yeterince varsa yeniden alınmaz. Böylece israf azalır.",
+   "source": {
+    "file": "Yeterli ve Dengeli Beslenme (Tasarımlı).docx",
+    "section": "Genel tekrar",
+    "question": "45"
+   },
+   "hint": "Evde yeterince varsa yeniden alınmaz. Böylece israf azalır.",
+   "reviewNumber": 253
+  },
+  {
+   "id": "bs-g5-6",
+   "prompt": "Farklı besin gruplarından seçim yapmak neyi sağlar?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Aynı öğünü"
+    },
+    {
+     "id": "B",
+     "text": "Eşit ağırlığı"
+    },
+    {
+     "id": "C",
+     "text": "Çeşitliliği"
+    },
+    {
+     "id": "D",
+     "text": "Tek besini"
+    }
+   ],
+   "correct": "C",
+   "group": "Genel tekrar · Set 5",
+   "chapter": 7,
+   "explanation": "Farklı gruplardan seçim çeşitlilik sağlar.",
+   "source": {
+    "file": "Yeterli ve Dengeli Beslenme (Tasarımlı).docx",
+    "section": "Genel tekrar",
+    "question": "46"
+   },
+   "hint": "Farklı gruplardan seçim çeşitlilik sağlar.",
+   "reviewNumber": 254
+  },
+  {
+   "id": "bs-g5-7",
+   "prompt": "İki bardakta da 100 mL içecek var. Birinde 5 g, diğerinde 10,6 g şeker var. Aradaki fark kaç gramdır?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "5 g"
+    },
+    {
+     "id": "B",
+     "text": "5,6 g"
+    },
+    {
+     "id": "C",
+     "text": "10,6 g"
+    },
+    {
+     "id": "D",
+     "text": "15,6 g"
+    }
+   ],
+   "correct": "B",
+   "group": "Genel tekrar · Set 5",
+   "chapter": 7,
+   "explanation": "10,6 − 5 = 5,6 g.",
+   "source": {
+    "file": "Yeterli ve Dengeli Beslenme (Tasarımlı).docx",
+    "section": "Genel tekrar",
+    "question": "47"
+   },
+   "hint": "10,6 − 5 = 5,6 g.",
+   "reviewNumber": 255
+  },
+  {
+   "id": "bs-g5-8",
+   "prompt": "Servisten artan pişmiş yemekle ne yapılır?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Güvenli biçimde soğutulur ve uygun koşullarda saklanır."
+    },
+    {
+     "id": "B",
+     "text": "Ertesi güne kadar servis tezgâhında bekletilir."
+    },
+    {
+     "id": "C",
+     "text": "Açık kapta oda sıcaklığında bırakılır."
+    },
+    {
+     "id": "D",
+     "text": "Sıcak tezgâhta bir gün bekletilir."
+    }
+   ],
+   "correct": "A",
+   "group": "Genel tekrar · Set 5",
+   "chapter": 7,
+   "explanation": "Pişmiş yemek tezgâhta bekletilmez.",
+   "source": {
+    "file": "Yeterli ve Dengeli Beslenme (Tasarımlı).docx",
+    "section": "Genel tekrar",
+    "question": "48"
+   },
+   "hint": "Pişmiş yemek tezgâhta bekletilmez.",
+   "reviewNumber": 256
+  },
+  {
+   "id": "bs-g5-9",
+   "prompt": "Süt ürünleri grubuna örnek bir besin hangisidir?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Kefir"
+    },
+    {
+     "id": "B",
+     "text": "Mercimek"
+    },
+    {
+     "id": "C",
+     "text": "Makarna"
+    },
+    {
+     "id": "D",
+     "text": "Portakal"
+    }
+   ],
+   "correct": "A",
+   "group": "Genel tekrar · Set 5",
+   "chapter": 7,
+   "explanation": "Kefir süt ürünüdür.",
+   "source": {
+    "file": "Yeterli ve Dengeli Beslenme (Tasarımlı).docx",
+    "section": "Genel tekrar",
+    "question": "49"
+   },
+   "hint": "Kefir süt ürünüdür.",
+   "reviewNumber": 257
+  },
+  {
+   "id": "bs-g5-10",
+   "prompt": "Çiğ tavuk buzdolabına yerleştirilirken hangi yol izlenir?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Kapalı kapta salatanın üst rafına konur."
+    },
+    {
+     "id": "B",
+     "text": "Açık kapta pişmiş yemeklerin yanına konur."
+    },
+    {
+     "id": "C",
+     "text": "Açık kapta salatayla aynı rafa konur."
+    },
+    {
+     "id": "D",
+     "text": "Kapalı kapta alt rafa konur."
+    }
+   ],
+   "correct": "D",
+   "group": "Genel tekrar · Set 5",
+   "chapter": 7,
+   "explanation": "Çiğ et suyu damlayıp başka gıdalara bulaşabilir. Kapalı kapta alt rafa konur.",
+   "source": {
+    "file": "Yeterli ve Dengeli Beslenme (Tasarımlı).docx",
+    "section": "Genel tekrar",
+    "question": "50"
+   },
+   "hint": "Çiğ et suyu damlayıp başka gıdalara bulaşabilir. Kapalı kapta alt rafa konur.",
+   "reviewNumber": 258
+  },
+  {
+   "id": "bs-g6-1",
+   "prompt": "Kesme tahtasında çiğ et kesildi. Salatalık nerede doğranır?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Etin değmediği köşede"
+    },
+    {
+     "id": "B",
+     "text": "Aynı tahtanın öbür yüzünde"
+    },
+    {
+     "id": "C",
+     "text": "Ayrı, temiz bir kesme tahtasında"
+    },
+    {
+     "id": "D",
+     "text": "Tahtanın kâğıtla silinen yüzünde"
+    }
+   ],
+   "correct": "C",
+   "group": "Genel tekrar · Set 6",
+   "chapter": 7,
+   "explanation": "Çiğ ete değen tahtada salatalık doğranmaz.",
+   "source": {
+    "file": "Yeterli ve Dengeli Beslenme (Tasarımlı).docx",
+    "section": "Genel tekrar",
+    "question": "51"
+   },
+   "hint": "Çiğ ete değen tahtada salatalık doğranmaz.",
+   "reviewNumber": 259
+  },
+  {
+   "id": "bs-g6-2",
+   "prompt": "Sabunla yıkanmamış ellerle sandviçe dokunulursa hangileri sandviçe geçebilir?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Aroma maddeleri"
+    },
+    {
+     "id": "B",
+     "text": "Mikroorganizmalar"
+    },
+    {
+     "id": "C",
+     "text": "Besin ögeleri"
+    },
+    {
+     "id": "D",
+     "text": "Vitaminler"
+    }
+   ],
+   "correct": "B",
+   "group": "Genel tekrar · Set 6",
+   "chapter": 7,
+   "explanation": "Elde bulunan mikroorganizmalar gıdaya geçebilir.",
+   "source": {
+    "file": "Yeterli ve Dengeli Beslenme (Tasarımlı).docx",
+    "section": "Genel tekrar",
+    "question": "52"
+   },
+   "hint": "Elde bulunan mikroorganizmalar gıdaya geçebilir.",
+   "reviewNumber": 260
+  },
+  {
+   "id": "bs-g6-3",
+   "prompt": "Bulaşık deterjanı nerede saklanır?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Kapalı içeceklerin üst rafında"
+    },
+    {
+     "id": "B",
+     "text": "Gıdadan ayrı temizlik dolabında"
+    },
+    {
+     "id": "C",
+     "text": "Un paketlerinin yanındaki rafta"
+    },
+    {
+     "id": "D",
+     "text": "Baharatların arkasındaki rafta"
+    }
+   ],
+   "correct": "B",
+   "group": "Genel tekrar · Set 6",
+   "chapter": 7,
+   "explanation": "Temizlik ürünleri gıdadan ayrı saklanır.",
+   "source": {
+    "file": "Yeterli ve Dengeli Beslenme (Tasarımlı).docx",
+    "section": "Genel tekrar",
+    "question": "53"
+   },
+   "hint": "Temizlik ürünleri gıdadan ayrı saklanır.",
+   "reviewNumber": 261
+  },
+  {
+   "id": "bs-g6-4",
+   "prompt": "Çiğ tavuğun suyu açık salataya damladı. Ne yapılır?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Salata servis edilmeden öğretmene haber verilir."
+    },
+    {
+     "id": "B",
+     "text": "Damlayan kısım alınıp kalanı servis edilir."
+    },
+    {
+     "id": "C",
+     "text": "Salata çalkalanıp servis edilir."
+    },
+    {
+     "id": "D",
+     "text": "Salata yeni kaba aktarılıp servis edilir."
+    }
+   ],
+   "correct": "A",
+   "group": "Genel tekrar · Set 6",
+   "chapter": 7,
+   "explanation": "Çiğ tavuk suyu bulaşan salata servis edilmez.",
+   "source": {
+    "file": "Yeterli ve Dengeli Beslenme (Tasarımlı).docx",
+    "section": "Genel tekrar",
+    "question": "54"
+   },
+   "hint": "Çiğ tavuk suyu bulaşan salata servis edilmez.",
+   "reviewNumber": 262
+  },
+  {
+   "id": "bs-g6-5",
+   "prompt": "Tabakta deterjan köpüğü görülüyor. Servisten önce ne yapılır?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Tabak kuruyunca kullanılır."
+    },
+    {
+     "id": "B",
+     "text": "Köpük peçeteyle silinir."
+    },
+    {
+     "id": "C",
+     "text": "Yemek tabağın boş kenarına konur."
+    },
+    {
+     "id": "D",
+     "text": "Köpüklü tabak ayrılır, temiz tabak alınır."
+    }
+   ],
+   "correct": "D",
+   "group": "Genel tekrar · Set 6",
+   "chapter": 7,
+   "explanation": "Deterjan kalıntısı olan tabak kullanılmaz.",
+   "source": {
+    "file": "Yeterli ve Dengeli Beslenme (Tasarımlı).docx",
+    "section": "Genel tekrar",
+    "question": "55"
+   },
+   "hint": "Deterjan kalıntısı olan tabak kullanılmaz.",
+   "reviewNumber": 263
+  },
+  {
+   "id": "bs-g6-6",
+   "prompt": "Açık yemeğe yüzey temizleyici sıçradı. Yemek servis edilmez. Kime haber verilir?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Müşteriye"
+    },
+    {
+     "id": "B",
+     "text": "Sıradaki müşteriye"
+    },
+    {
+     "id": "C",
+     "text": "Öğretmene"
+    },
+    {
+     "id": "D",
+     "text": "Alışveriş görevlisine"
+    }
+   ],
+   "correct": "C",
+   "group": "Genel tekrar · Set 6",
+   "chapter": 7,
+   "explanation": "Kimyasal bulaşan yemek servis edilmez. Öğretmene haber verilir.",
+   "source": {
+    "file": "Yeterli ve Dengeli Beslenme (Tasarımlı).docx",
+    "section": "Genel tekrar",
+    "question": "56"
+   },
+   "hint": "Kimyasal bulaşan yemek servis edilmez. Öğretmene haber verilir.",
+   "reviewNumber": 264
+  },
+  {
+   "id": "bs-g6-7",
+   "prompt": "Peynir kesilen bıçakla süt içermeyen sandviç hazırlanacak. Hangi bıçak seçilir?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Yalnız suyla çalkalanmış peynir bıçağı"
+    },
+    {
+     "id": "B",
+     "text": "Peçeteyle silinmiş peynir bıçağı"
+    },
+    {
+     "id": "C",
+     "text": "Ayrı ve temiz bir bıçak"
+    },
+    {
+     "id": "D",
+     "text": "Peynir izi kalmış bıçak"
+    }
+   ],
+   "correct": "C",
+   "group": "Genel tekrar · Set 6",
+   "chapter": 7,
+   "explanation": "Peynir kalıntısı alerjene dönüşebilir. Ayrı ve temiz bıçak kullanılır.",
+   "source": {
+    "file": "Yeterli ve Dengeli Beslenme (Tasarımlı).docx",
+    "section": "Genel tekrar",
+    "question": "57"
+   },
+   "hint": "Peynir kalıntısı alerjene dönüşebilir. Ayrı ve temiz bıçak kullanılır.",
+   "reviewNumber": 265
+  },
+  {
+   "id": "bs-g6-8",
+   "prompt": "Çiğ et suyunu silen bezle servis tezgâhı silinmiş. Ne yapılır?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Bez durulanıp aynı yer tekrar silinir."
+    },
+    {
+     "id": "B",
+     "text": "Tezgâh kullanılmadan öğretmene haber verilir."
+    },
+    {
+     "id": "C",
+     "text": "Tezgâh kuruyunca servise başlanır."
+    },
+    {
+     "id": "D",
+     "text": "Yemekler tezgâhın kuru kısmına konur."
+    }
+   ],
+   "correct": "B",
+   "group": "Genel tekrar · Set 6",
+   "chapter": 7,
+   "explanation": "Mikrop bulaşan yüzey güvenli temizlik tamamlanana kadar kullanılmaz.",
+   "source": {
+    "file": "Yeterli ve Dengeli Beslenme (Tasarımlı).docx",
+    "section": "Genel tekrar",
+    "question": "58"
+   },
+   "hint": "Mikrop bulaşan yüzey güvenli temizlik tamamlanana kadar kullanılmaz.",
+   "reviewNumber": 266
+  }
+ ],
  "matches": [],
- "words": []
+ "words": [],
+ "groups": [
+  {
+   "label": "1. Bölüm · Yeterli ve dengeli beslenme",
+   "chapter": 1
+  },
+  {
+   "label": "2. Bölüm · Besin ögeleri ve besin grupları",
+   "chapter": 2
+  },
+  {
+   "label": "3. Bölüm · Besin seçimi ve porsiyonlar",
+   "chapter": 3
+  },
+  {
+   "label": "4. Bölüm · Şekerler, su ve içecekler",
+   "chapter": 4
+  },
+  {
+   "label": "5. Bölüm · Alışveriş, etiket ve gıda güvenliği",
+   "chapter": 5
+  },
+  {
+   "label": "6. Bölüm · Sürdürülebilir beslenme ve Türk mutfağı",
+   "chapter": 6
+  },
+  {
+   "label": "Genel tekrar · Set 1",
+   "chapter": 7,
+   "chapterLabel": "Genel tekrar"
+  },
+  {
+   "label": "Genel tekrar · Set 2",
+   "chapter": 7,
+   "chapterLabel": "Genel tekrar"
+  },
+  {
+   "label": "Genel tekrar · Set 3",
+   "chapter": 7,
+   "chapterLabel": "Genel tekrar"
+  },
+  {
+   "label": "Genel tekrar · Set 4",
+   "chapter": 7,
+   "chapterLabel": "Genel tekrar"
+  },
+  {
+   "label": "Genel tekrar · Set 5",
+   "chapter": 7,
+   "chapterLabel": "Genel tekrar"
+  },
+  {
+   "label": "Genel tekrar · Set 6",
+   "chapter": 7,
+   "chapterLabel": "Genel tekrar"
+  }
+ ],
+ "revision": "soru-denetimi-20261110-beslenme-v1"
 }

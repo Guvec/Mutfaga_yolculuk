@@ -21,7 +21,7 @@ const RK_BOARDS=(()=>{const a=[];
  a.push({id:'oy-kapisma',subject:'oyun',kind:'win',total:999,label:'1’e 1 Kapışma · kazanılan maç'});
  a.push({id:'oy-arena',subject:'oyun',kind:'win',total:999,label:'Er Meydanı (önceki sürüm) · kazanılan tur'});
  a.push({id:'oy-arena2',subject:'oyun',kind:'win',total:999,label:'Er Meydanı · kazanılan oyun'});
- a.push({id:'bl-s1',subject:'bulasik-makinesi-temizligi',kind:'mcq',group:RK_MCQ['bulasik-makinesi-temizligi'][0],total:13,label:'Bütün bölümler · Sorular'});
+ a.push({id:'bl-s1',subject:'bulasik-makinesi-temizligi',kind:'mcq',group:RK_MCQ['bulasik-makinesi-temizligi'][0],total:65,label:'Bütün bölümler · Sorular'});
  a.forEach(b=>{if(/^(ma|bh)-e\d+$/.test(b.id))b.gizli=true;}); /* 12'li eşleştirme tabloları: bu iki konuda 12'li eşleştirme kalktı, tablolar sıralamada gösterilmez */
  return a;})();
 const RK_SUBJECT_NAMES={baharat:'Baharatlar','mutfak-araclari':'Mutfak Araçları',kuver:'Kuver','bulasik-makinesi-temizligi':'Bulaşık Yıkama ve Atık Yönetimi',oyun:'Kapışma ve Er Meydanı'};
