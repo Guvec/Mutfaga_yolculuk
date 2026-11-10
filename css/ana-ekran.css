@@ -124,3 +124,16 @@ html[data-theme=yuksek] .ae-home{--ae-w1:#fff;--ae-w2:#f2f2f2}
 /* Yeni sürüm bildirimi */
 .yeni-surum{position:fixed;left:50%;bottom:16px;transform:translateX(-50%);z-index:9999;display:flex;align-items:center;gap:12px;padding:10px 12px 10px 16px;border-radius:14px;background:var(--ae-ink,#16373b);color:#fff;font:700 14px Arial,sans-serif;box-shadow:0 6px 18px rgba(0,0,0,.28)}
 .yeni-surum button{min-height:44px;padding:0 16px;border:0;border-radius:10px;background:#fff;color:var(--ae-ink,#16373b);font:700 14px Arial,sans-serif;cursor:pointer}
+
+/* Haftanın Kaptanı */
+.ae-rank-slot{position:relative;grid-column:1;min-height:0;display:grid}
+.ae-rank-slot>.ae-rank{grid-column:auto;height:100%;width:100%}
+.ae-home .ae-rank-slot .ae-kaptan{position:absolute;top:-14px;right:12px;z-index:3;display:flex;align-items:center;gap:4px;width:auto;max-width:56%;min-height:0!important;height:24px;padding:0 9px 0 6px!important;border:1.5px solid var(--ae-line,#d5dfdf);border-radius:999px;background:var(--ae-paper,#fcfdfd);color:var(--ae-ink,#10212d);font:700 11px/1 Arial,sans-serif!important;cursor:pointer;box-shadow:0 2px 5px rgba(0,0,0,.14)}
+.ae-home .ae-kaptan b{font:inherit;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ae-home .ae-kaptan span{font-size:12px;line-height:1}
+@media(min-width:800px){.ae-rank-slot{grid-column:1/-1}}
+.kaptan-kart{display:flex;align-items:center;gap:12px;margin:8px 0}
+.kaptan-kart .kaptan-tac{font-size:30px;line-height:1}
+.kaptan-kart small{display:block;font-size:12px;font-weight:700;opacity:.8}
+.kaptan-kart strong{display:block;font-size:18px}
+.kaptan-kart div>span{font-size:14px}

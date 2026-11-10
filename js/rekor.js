@@ -358,12 +358,12 @@ async function rkLoadRows(){
 }
 function rkBoardHTML(){
  const v=RK.view,b=rkBoard(v.board)||RK_BOARDS[0],pid=st.prof&&!st.guest?rkPid(st.prof):null;
- let h=topBar('Sıralama')+'<div class="wrap">'+rkTabs('siralama');
+ let h=topBar('Sıralama')+'<div class="wrap">'+rkTabs('siralama');if(typeof kaptanKartHTML==='function')h+=kaptanKartHTML();
  h+='<div class="card rk-pick"><label>Konu <select onchange="rkPickSubject(this.value)">'+Object.keys(RK_SUBJECT_NAMES).map(s=>'<option value="'+s+'"'+(s===b.subject?' selected':'')+'>'+esc(RK_SUBJECT_NAMES[s])+'</option>').join('')+'</select></label>';
  h+='<label>Çalışma <select onchange="rkOpenBoard(this.value)">'+RK_BOARDS.filter(x=>x.subject===b.subject).map(x=>'<option value="'+x.id+'"'+(x.id===b.id?' selected':'')+'>'+esc(x.label)+'</option>').join('')+'</select></label>';
  h+='<div class="rk-period" role="group" aria-label="Dönem"><button class="btn sm'+(v.period==='hafta'?' pri':'')+'" aria-pressed="'+(v.period==='hafta')+'" onclick="rkPickPeriod(\'hafta\')">Bu hafta</button><button class="btn sm'+(v.period==='genel'?' pri':'')+'" aria-pressed="'+(v.period==='genel')+'" onclick="rkPickPeriod(\'genel\')">Genel</button></div></div>';
  h+='<h2 class="rk-title">'+esc(RK_SUBJECT_NAMES[b.subject]+' · '+b.label)+'</h2><p class="note">'+(v.period==='hafta'?'Hafta: '+rkWeekLabel(v.week||rkWeekNo())+'. Liste her pazartesi yeniden başlar.<br>İnternetsiz tamamladığın sonuç, gönderildiği haftaya yazılır.':'Bu eğitim yılının en iyi sonuçları.')+'<br>'+(b.kind==='win'?'Kazanılan sayı gösterilir.':'Her öğrencinin en iyi doğru sayısı gösterilir.')+'</p>';
- if(b.kind==='weekly')h+='<p class="card">'+(v.week&&v.week<rkWeekNo()?'Geçen haftanın birincisi':'Bu haftanın lideri')+' · Dört konu · 25 soru. Sınıf içi oyun sonuçlarıdır.</p>';
+ if(b.kind==='weekly')h+='<p class="card">'+(v.week&&v.week<rkWeekNo()?'Geçen haftanın birincisi':'Bu haftanın lideri')+' · Dört konu · 75 soru · 7. yanlışta biter. Sınıf içi oyun sonuçlarıdır.</p>';
  if(v.state==='offline')return h+'<p class="card" role="status">Sıralamayı görmek için internete bağlan.</p></div>';
  if(v.state==='loading'||v.state==='idle')return h+'<p class="card" role="status">Sıralama yükleniyor…</p></div>';
  if(v.state==='error')return h+'<p class="card" role="alert">'+esc(v.err)+'</p><button class="btn" onclick="rkLoadRows()">Yeniden dene</button></div>';

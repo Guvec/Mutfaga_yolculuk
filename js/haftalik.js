@@ -1,7 +1,7 @@
 /* © 2026 Ali Arıkoğlu. Tüm hakları saklıdır. */
 /* Haftalık yarışma: sabit haftalık set, yerel deneme ve devam kaydı. Sunucu doğrulaması yoktur. */
 'use strict';
-const HAFTA_AYAR={attempts:3,distribution:[{subject:'mutfak-araclari',n:9},{subject:'baharat',n:8},{subject:'bulasik-makinesi-temizligi',n:3},{subject:'kuver',n:5}],contentVersion:'hafta-2'};
+const HAFTA_AYAR={attempts:3,n:75,errorLimit:7,distribution:[{subject:'mutfak-araclari',n:27},{subject:'baharat',n:24},{subject:'bulasik-makinesi-temizligi',n:9},{subject:'kuver',n:15}],contentVersion:'hafta-3'};
 let HAFTA=null,HAFTA_ERROR='';
 /* Çalışma süresi: yukarı sayar. Mola, gizli sekme, açık pencere (ses seçimi vb.) ve ekran dışı bekleme sayılmaz.
    Süre yalnız eşit doğru sayısında sıralamayı belirler; cihazda ölçülür, sunucuda doğrulanmaz. */
@@ -13,7 +13,7 @@ function haftaTick(){const now=performance.now(),d=now-HAFTA_T;HAFTA_T=now;if(!H
 function haftaTimerOn(){HAFTA_T=performance.now();if(!HAFTA_TIMER)HAFTA_TIMER=setInterval(haftaTick,250);}
 document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='hidden'){haftaTick();if(HAFTA&&!HAFTA.done)haftaSave();}else HAFTA_T=performance.now();});
 addEventListener('pagehide',()=>{haftaTick();if(HAFTA&&!HAFTA.done)haftaSave();});
-RK_BOARDS.push({id:'haftalik',subject:'haftalik',kind:'weekly',total:25,label:'Haftalık Mutfak Yarışması'});
+RK_BOARDS.push({id:'haftalik',subject:'haftalik',kind:'weekly',total:75,label:'Haftalık Mutfak Yarışması'});
 RK_SUBJECT_NAMES.haftalik='Haftalık Mutfak Yarışması';
 function haftaPid(){return !st.guest&&st.prof?rkPid(st.prof,true):null;}
 function haftaKey(){return haftaPid()||'misafir';}
@@ -26,32 +26,37 @@ function haftaSafe(q){
 }
 function haftaData(){const all=yrAllData();return Object.fromEntries(Object.entries(all).filter(([k,v])=>v).map(([k,v])=>[k,k==='kuver'?v:{...v,matches:(v.matches||[]).filter(haftaSafe),questions:(v.questions||[]).filter(haftaSafe)}]));}
 function haftaOpen(){HAFTA_ERROR='';go('haftamenu');}
+/* Aynı konudan üst üste en çok iki soru gelir; sıra haftaya göre sabittir (herkeste aynı). */
+function haftaKaristir(qs){const left=qs.slice(),out=[];while(left.length){const a=out.length>1&&out[out.length-1].subject===out[out.length-2].subject?out[out.length-1].subject:null;let i=a?left.findIndex(q=>q.subject!==a):0;if(i<0)i=0;out.push(left.splice(i,1)[0]);}return out;}
 async function haftaStart(){
  HAFTA_ERROR='';try{
  await yrReady('butun');const week=rkWeekNo(),pid=haftaPid(),store=haftaState()[pid]||{},saved=store.resume;
  if(saved&&saved.week===week&&saved.version===HAFTA_AYAR.contentVersion+'-'+yrRev('butun')&&!saved.done){HAFTA=saved;HAFTA.ms=HAFTA.ms||0;haftaTimerOn();go('haftaplay');return;}
  const count=(store.attempts||{})[week]||0,ranked=!!pid&&count<HAFTA_AYAR.attempts;
- const qs=YarisModel.buildScoped(haftaData(),{scope:'butun',n:25,distribution:HAFTA_AYAR.distribution},(week*2654435761)>>>0,[]);
+ const qs=haftaKaristir(YarisModel.buildScoped(haftaData(),{scope:'butun',n:HAFTA_AYAR.n,distribution:HAFTA_AYAR.distribution},(week*2654435761)>>>0,[]));
  await yrPreload(qs);HAFTA={id:rkRandomId(),pid,week,version:HAFTA_AYAR.contentVersion+'-'+yrRev('butun'),ranked,qs,k:0,answers:[],paused:false,breakUsed:false,done:false,ms:0};haftaTimerOn();haftaSave();go('haftaplay');
  }catch(e){HAFTA_ERROR=e.message;render();}
 }
+function haftaWrong(h){return h.answers.filter(a=>!a.ok).length;}
+function haftaEnded(h){return haftaWrong(h)>=HAFTA_AYAR.errorLimit||h.answers.length===h.qs.length;}
 function haftaAnswer(i){if(!HAFTA||HAFTA.done||HAFTA.paused||HAFTA.answers.length!==HAFTA.k)return;const q=HAFTA.qs[HAFTA.k];if(!q.choices[i])return;HAFTA.answers.push({ok:q.choices[i].id===q.correct,pick:i});haftaSave();render();}
-function haftaNext(){if(!HAFTA||HAFTA.paused||HAFTA.answers.length!==HAFTA.k+1)return;if(HAFTA.answers.length===HAFTA.qs.length){haftaFinish();return;}HAFTA.k++;haftaSave();render();}
-function haftaBreak(){if(!HAFTA||HAFTA.breakUsed||HAFTA.done||!HAFTA.answers.length||HAFTA.answers.length%5)return;HAFTA.breakUsed=true;HAFTA.paused=true;haftaSave();render();}
+function haftaNext(){if(!HAFTA||HAFTA.paused||HAFTA.answers.length!==HAFTA.k+1)return;if(haftaEnded(HAFTA)){haftaFinish();return;}HAFTA.k++;haftaSave();render();}
+function haftaBreakOk(h){const n=h.answers.length;return !h.done&&n>0&&n%25===0&&n<h.qs.length&&!(h.breaksAt||[]).includes(n)&&!haftaEnded(h);}
+function haftaBreak(){if(!HAFTA||!haftaBreakOk(HAFTA))return;HAFTA.breaksAt=(HAFTA.breaksAt||[]).concat(HAFTA.answers.length);HAFTA.breakUsed=true;HAFTA.paused=true;haftaSave();render();}
 function haftaResume(){if(!HAFTA)return;HAFTA.paused=false;HAFTA_T=performance.now();haftaSave();render();}
 function haftaFinish(){
- if(!HAFTA||HAFTA.done||HAFTA.answers.length!==HAFTA.qs.length)return;
+ if(!HAFTA||HAFTA.done||!haftaEnded(HAFTA))return;
  haftaTick();const h=HAFTA,score=h.answers.filter(a=>a.ok).length;h.score=score;h.dur=Math.max(1,Math.round((h.ms||0)/1000));h.durOk=h.dur<=HAFTA_DUR_MAX;h.done=true;const all=haftaState(),mine=all[h.pid]||{attempts:{},best:{}};mine.attempts=mine.attempts||{};mine.best=mine.best||{};
  const freshWeek=h.week===rkWeekNo();h.ranked=h.ranked&&freshWeek&&h.pid===haftaPid()&&(mine.attempts[h.week]||0)<HAFTA_AYAR.attempts;
  if(h.ranked){mine.attempts[h.week]=(mine.attempts[h.week]||0)+1;mine.bestDur=mine.bestDur||{};const ob=mine.best[h.week]||0,od=mine.bestDur[h.week];
   if(score>ob||(score===ob&&h.durOk&&(!od||h.dur<od))){mine.best[h.week]=score;if(h.durOk)mine.bestDur[h.week]=h.dur;else delete mine.bestDur[h.week];}
   all[h.pid]=mine;lsSet('haftalik',all);
-  if(typeof rutbeComplete==='function')rutbeComplete({id:h.id,table:'haftalik',correct:score,total:25,weekly:true,week:h.week});
-  const p=rkProf(h.pid);if(p.status==='in'){const q=rkQueue();q.push({qid:rkRandomId(),pid:h.pid,board:'haftalik',period:'hafta',name:rkName(st.prof),correct:score,gen:p.gen,at:Date.now(),sess:h.id,week:h.week,meta:{game:'haftalik',scope:'butun',total:25,contentVersion:h.version,week:h.week,...(h.durOk?{dur:h.dur}:{})}});lsSet('rk_queue',q);rkFlush(h.id);}
+  if(typeof rutbeComplete==='function')rutbeComplete({id:h.id,table:'haftalik',correct:score,total:75,weekly:true,week:h.week});
+  const p=rkProf(h.pid);if(p.status==='in'){const q=rkQueue();q.push({qid:rkRandomId(),pid:h.pid,board:'haftalik',period:'hafta',name:rkName(st.prof),correct:score,gen:p.gen,at:Date.now(),sess:h.id,week:h.week,meta:{game:'haftalik',scope:'butun',total:75,contentVersion:h.version,week:h.week,...(h.durOk?{dur:h.dur}:{})}});lsSet('rk_queue',q);rkFlush(h.id);}
  }
  haftaSave();go('haftaover');
 }
-function haftaMenuHTML(){const pid=haftaPid(),mine=haftaState()[pid]||{},count=(mine.attempts||{})[rkWeekNo()]||0,saved=mine.resume;return topBar('Haftalık Mutfak Yarışması')+'<div class="wrap"><h1>Haftalık Mutfak Yarışması</h1><p class="card">Dört konu · 25 soru<br>Her soruya bir yanıt verilir. Süre sınırı yoktur. Doğru sayısı eşitse daha kısa sürede bitiren üstte sayılır.</p><p>'+(!pid?'Misafir olarak antrenman oynarsın. Sonucun sıralamaya yazılmaz.':count+' / '+HAFTA_AYAR.attempts+' sıralamalı deneme tamamlandı. En iyi sonucun tutulur.')+'</p><button class="btn pri" onclick="haftaStart()">'+(saved&&!saved.done&&saved.week===rkWeekNo()?'Kaldığın yerden devam et':!pid||count>=HAFTA_AYAR.attempts?'Antrenmana başla':'Başla')+'</button><button class="btn" onclick="rkOpenBoard(\'haftalik\')">Bu haftanın lideri</button><button class="btn" onclick="haftaPrevious()">Geçen haftanın birincisi</button>'+(HAFTA_ERROR?'<p role="alert">'+esc(HAFTA_ERROR)+'</p>':'')+'</div>';}
+function haftaMenuHTML(){const pid=haftaPid(),mine=haftaState()[pid]||{},count=(mine.attempts||{})[rkWeekNo()]||0,saved=mine.resume;return topBar('Haftalık Mutfak Yarışması')+'<div class="wrap"><h1>Haftalık Mutfak Yarışması</h1><p class="card">Dört konu · 75 soru · her hafta yeni karışık set<br>7. yanlışta yarışma biter. Süre ileri akar, sınır yoktur. En çok doğru yapan kazanır; doğru sayısı eşitse daha kısa sürede bitiren üstte sayılır.</p><p>'+(!pid?'Misafir olarak antrenman oynarsın. Sonucun sıralamaya yazılmaz.':count+' / '+HAFTA_AYAR.attempts+' sıralamalı deneme tamamlandı. En iyi sonucun tutulur.')+'</p><button class="btn pri" onclick="haftaStart()">'+(saved&&!saved.done&&saved.week===rkWeekNo()?'Kaldığın yerden devam et':!pid||count>=HAFTA_AYAR.attempts?'Antrenmana başla':'Başla')+'</button><button class="btn" onclick="rkOpenBoard(\'haftalik\')">Bu haftanın lideri</button><button class="btn" onclick="haftaPrevious()">Geçen haftanın birincisi</button>'+(HAFTA_ERROR?'<p role="alert">'+esc(HAFTA_ERROR)+'</p>':'')+'</div>';}
 function haftaPrevious(){RK.view.period='hafta';rkOpenBoard('haftalik');RK.view.week=rkWeekNo()-1;rkLoadRows();}
-function haftaPlayHTML(){const h=HAFTA;if(!h)return haftaMenuHTML();if(h.paused)return topBar('Mola')+'<div class="wrap"><h1>Mola</h1><p>Mola süresi sonucunu etkilemez.</p><button class="btn pri" onclick="haftaResume()">Devam et</button></div>';const q=h.qs[h.k],a=h.answers[h.k];return topBar('Haftalık Mutfak Yarışması')+'<div class="wrap"><p class="hafta-ust"><span>Soru '+(h.k+1)+' / '+h.qs.length+' · '+(h.ranked?'Sıralamalı deneme':'Antrenman')+'</span><span role="timer" aria-live="off">Çalışma süresi: <b id="haftaSure">'+haftaFmt(h.ms)+'</b></span></p>'+yrQuestionHTML(q)+yrChoicesHTML(q,'haftaAnswer',a?{pick:a.pick}:null)+(a?'<p role="status">'+(a.ok?'Doğru.':'Doğru yanıt: '+esc(q.choices.find(c=>c.id===q.correct).text||q.correct))+'</p><button class="btn pri" onclick="haftaNext()">'+(h.k===h.qs.length-1?'Bitir':'Sonraki soru')+'</button>':'')+'<div class="hafta-alt">'+(!h.breakUsed&&h.answers.length>0&&h.answers.length%5===0&&h.answers.length<25?'<button class="btn" onclick="haftaBreak()">Mola ver</button>':'')+'<button class="btn ghost" onclick="haftaSave();haftaOpen()">Kaydet ve çık</button></div></div>';}
-function haftaOverHTML(){return topBar('Yarışma sonucu')+'<div class="wrap"><h1>'+HAFTA.score+' / '+HAFTA.qs.length+' doğru</h1><p>Çalışma süresi: <b>'+haftaFmt(HAFTA.ms)+'</b>'+(HAFTA.durOk?'':' · Süre kaydedilemedi.')+'<br>Süre yalnız eşit doğru sayılarında sıralamayı belirler.</p><p>'+(HAFTA.ranked?(rkQueue().some(q=>q.sess===HAFTA.id)?'Sonucun kaydediliyor.':'Sonucun kaydedildi.'):'Antrenman tamamlandı. Bu sonuç sıralamaya yazılmaz.')+'</p>'+rkInlineHTML('haftalik','hafta',HAFTA.week)+'<button class="btn" onclick="haftaOpen()">Yarışmaya dön</button></div>';}
+function haftaPlayHTML(){const h=HAFTA;if(!h)return haftaMenuHTML();if(h.paused)return topBar('Mola')+'<div class="wrap"><h1>Mola</h1><p>Mola süresi sonucunu etkilemez.</p><button class="btn pri" onclick="haftaResume()">Devam et</button></div>';const q=h.qs[h.k],a=h.answers[h.k];return topBar('Haftalık Mutfak Yarışması')+'<div class="wrap"><p class="hafta-ust"><span>Soru '+(h.k+1)+' / '+h.qs.length+' · '+(h.ranked?'Sıralamalı deneme':'Antrenman')+'</span><span role="timer" aria-live="off"><span aria-hidden="true">⏳</span> <b id="haftaSure">'+haftaFmt(h.ms)+'</b> · Yanlış: <b>'+haftaWrong(h)+' / '+HAFTA_AYAR.errorLimit+'</b></span></p>'+yrQuestionHTML(q)+yrChoicesHTML(q,'haftaAnswer',a?{pick:a.pick}:null)+(a?'<p role="status">'+(a.ok?'Doğru.':'Doğru yanıt: '+esc(q.choices.find(c=>c.id===q.correct).text||q.correct))+'</p><button class="btn pri" onclick="haftaNext()">'+(haftaEnded({answers:h.answers,qs:h.qs})?'Bitir':'Sonraki soru')+'</button>':'')+'<div class="hafta-alt">'+(haftaBreakOk(h)?'<button class="btn" onclick="haftaBreak()">Mola ver</button>':'')+'<button class="btn ghost" onclick="haftaSave();haftaOpen()">Kaydet ve çık</button></div></div>';}
+function haftaOverHTML(){return topBar('Yarışma sonucu')+'<div class="wrap"><h1>'+HAFTA.score+' doğru</h1><p>'+(haftaWrong(HAFTA)>=HAFTA_AYAR.errorLimit?HAFTA_AYAR.errorLimit+'. yanlışta yarışma bitti.':'75 sorunun hepsini bitirdin.')+' ('+HAFTA.answers.length+' soru yanıtlandı)</p><p>Çalışma süresi: <b>'+haftaFmt(HAFTA.ms)+'</b>'+(HAFTA.durOk?'':' · Süre kaydedilemedi.')+'<br>Süre yalnız eşit doğru sayılarında sıralamayı belirler.</p><p>'+(HAFTA.ranked?(rkQueue().some(q=>q.sess===HAFTA.id)?'Sonucun kaydediliyor.':'Sonucun kaydedildi.'):'Antrenman tamamlandı. Bu sonuç sıralamaya yazılmaz.')+'</p>'+rkInlineHTML('haftalik','hafta',HAFTA.week)+'<button class="btn" onclick="haftaOpen()">Yarışmaya dön</button></div>';}
