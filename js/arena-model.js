@@ -1,10 +1,10 @@
 /* © 2026 Ali Arıkoğlu. Tüm hakları saklıdır. */
 /* Er Meydanı 2: aynı havuz, bağımsız ilerleme ve ortak kayıtlardan sıralama. */
 (function(root){'use strict';
- const MAX=75,ERRORS=4;
- function limit(ok,room){const modern=/^arena4-/.test(room&&room.rev||'');return Math.max(7000,(modern?20000:15000)-Math.floor(Math.max(0,ok)/(modern?6:5))*1000);}
- function maxPlayers(room){return /^arena4-/.test(room&&room.rev||'')?10:4;}
- function errorLimit(room){return /^arena[34]-/.test(room&&room.rev||'')?7:ERRORS;}
+ const MAX=100,ERRORS=4;
+ function limit(ok,room){const modern=/^arena[45]-/.test(room&&room.rev||'');return Math.max(7000,(modern?20000:15000)-Math.floor(Math.max(0,ok)/(modern?6:5))*1000);}
+ function maxPlayers(room){return /^arena[45]-/.test(room&&room.rev||'')?10:4;}
+ function errorLimit(room){const r=room&&room.rev||'';return /^arena5-/.test(r)?12:/^arena[34]-/.test(r)?7:ERRORS;}
  function stats(r,errors=ERRORS,room){const a=Array.isArray(r)?r:[],out={ok:0,bad:0,n:0,tt:0};for(const v of a){if(!Number.isInteger(v)||v===0||Math.abs(v)>limit(out.ok,room)||out.bad>=errors||out.n>=MAX)break;out.n++;out.tt+=Math.abs(v);if(v>0)out.ok++;else out.bad++;}return out;}
  function ranks(players,errors=ERRORS,room){const a=players.map(p=>({...p,...stats(p.r,errors,room)})).sort((a,b)=>Number(!!a.left)-Number(!!b.left)||b.ok-a.ok||a.tt-b.tt||String(a.nick).localeCompare(String(b.nick),'tr')||String(a.uid).localeCompare(String(b.uid)));return a.map((p,i)=>({...p,rank:p.left?null:(i&&a[i-1].ok===p.ok&&a[i-1].tt===p.tt?a.findIndex(x=>!x.left&&x.ok===p.ok&&x.tt===p.tt)+1:i+1)}));}
  function complete(roster,players){return roster.length>=3&&roster.every(uid=>players.some(p=>p.uid===uid&&p.done&&p.pending===false&&p.fromCache===false));}

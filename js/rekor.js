@@ -16,7 +16,7 @@ const RK_BOARDS=(()=>{const a=[];
  a.push({id:'bl-e1',subject:'bulasik-makinesi-temizligi',kind:'match',set:1,total:12,label:'1. takım · Eşleştirme'});
  a.push({id:'kv-basit',subject:'kuver',kind:'kur',lvl:1,total:4,label:'Basit Kuver · Kuveri Kur',gizli:true});
  a.push({id:'kv-tabldot',subject:'kuver',kind:'kur',lvl:3,total:6,label:'Tabldot Kuver · Kuveri Kur',gizli:true});
- const mt=[10,5,6,6,7,6,5,5,5,7,8,4,7,7,7];
+ const mt=[10,5,6,6,7,9,5,5,5,10,8,4,10,10,9];
  RK_MCQ['mutfak-araclari'].forEach((g,i)=>a.push({id:'ma-s'+String(i+1).padStart(2,'0'),subject:'mutfak-araclari',kind:'mcq',group:g,total:mt[i],label:g+' · Sorular'}));
  a.push({id:'oy-kapisma',subject:'oyun',kind:'win',total:999,label:'1’e 1 Kapışma · kazanılan maç'});
  a.push({id:'oy-arena',subject:'oyun',kind:'win',total:999,label:'Er Meydanı (önceki sürüm) · kazanılan tur'});
@@ -364,7 +364,7 @@ function rkBoardHTML(){
  h+='<label>Çalışma <select onchange="rkOpenBoard(this.value)">'+RK_BOARDS.filter(x=>x.subject===b.subject&&!x.gizli).map(x=>'<option value="'+x.id+'"'+(x.id===b.id?' selected':'')+'>'+esc(x.label)+'</option>').join('')+'</select></label>';
  h+='<div class="rk-period" role="group" aria-label="Dönem"><button class="btn sm'+(v.period==='hafta'?' pri':'')+'" aria-pressed="'+(v.period==='hafta')+'" onclick="rkPickPeriod(\'hafta\')">Bu hafta</button><button class="btn sm'+(v.period==='genel'?' pri':'')+'" aria-pressed="'+(v.period==='genel')+'" onclick="rkPickPeriod(\'genel\')">Genel</button></div></div>';
  h+='<h2 class="rk-title">'+esc(RK_SUBJECT_NAMES[b.subject]+' · '+b.label)+'</h2><p class="note">'+(v.period==='hafta'?'Hafta: '+rkWeekLabel(v.week||rkWeekNo())+'. Liste her pazartesi yeniden başlar.<br>İnternetsiz tamamladığın sonuç, gönderildiği haftaya yazılır.':'Bu eğitim yılının en iyi sonuçları.')+'<br>'+(b.kind==='win'?'Kazanılan sayı gösterilir.':'Her öğrencinin en iyi doğru sayısı gösterilir.')+'</p>';
- if(b.kind==='weekly')h+='<p class="card">'+(v.week&&v.week<rkWeekNo()?'Geçen haftanın birincisi':'Bu haftanın lideri')+' · Dört konu · 75 soru · 7. yanlışta biter. Sınıf içi oyun sonuçlarıdır.</p>';
+ if(b.kind==='weekly')h+='<p class="card">'+(v.week&&v.week<rkWeekNo()?'Geçen haftanın birincisi':'Bu haftanın lideri')+' · Dört konu · 100 soru · 12. yanlışta biter. Sınıf içi oyun sonuçlarıdır.</p>';
  if(v.state==='offline')return h+'<p class="card" role="status">Sıralamayı görmek için internete bağlan.</p></div>';
  if(v.state==='loading'||v.state==='idle')return h+'<p class="card" role="status">Sıralama yükleniyor…</p></div>';
  if(v.state==='error')return h+'<p class="card" role="alert">'+esc(v.err)+'</p><button class="btn" onclick="rkLoadRows()">Yeniden dene</button></div>';

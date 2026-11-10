@@ -31,7 +31,7 @@
     "question": "1"
    },
    "hint": "Kirli ve temiz bulaşıklar ayrı yerde tutulur. Kirli tabaklar kirli bulaşık alanına alınır.",
-   "reviewNumber": 96
+   "reviewNumber": 110
   },
   {
    "id": "bg-1-2",
@@ -64,7 +64,7 @@
     "question": "2"
    },
    "hint": "Bulaşıkları elde yıkamak için elde bulaşık deterjanı kullanılır.",
-   "reviewNumber": 97
+   "reviewNumber": 111
   },
   {
    "id": "bg-1-3",
@@ -97,7 +97,7 @@
     "question": "3"
    },
    "hint": "Tabak ve kâseler dengeli, alçak gruplar hâlinde tutulur. Yüksek ve sıkışık istif devrilebilir.",
-   "reviewNumber": 98
+   "reviewNumber": 112
   },
   {
    "id": "bg-1-4",
@@ -130,7 +130,7 @@
     "question": "4"
    },
    "hint": "Kılları bozulmuş fırça yenisiyle değiştirilir.",
-   "reviewNumber": 99
+   "reviewNumber": 113
   },
   {
    "id": "bg-2-1",
@@ -163,7 +163,7 @@
     "question": "1"
    },
    "hint": "Yemek artığı kalan bulaşık yeniden yıkanır ve durulanır. Sanitasyon bundan sonra yapılır.",
-   "reviewNumber": 100
+   "reviewNumber": 114
   },
   {
    "id": "bg-2-2",
@@ -196,7 +196,7 @@
     "question": "2"
    },
    "hint": "Sıra yıkama, durulama ve sanitasyondur. Sanitasyon durulamadan sonra yapılır.",
-   "reviewNumber": 101
+   "reviewNumber": 115
   },
   {
    "id": "bg-2-3",
@@ -229,7 +229,7 @@
     "question": "3"
    },
    "hint": "Ağzı aşağıya bakan fincanda su birikmez ve süzülür.",
-   "reviewNumber": 102
+   "reviewNumber": 116
   },
   {
    "id": "bg-2-4",
@@ -262,7 +262,7 @@
     "question": "4"
    },
    "hint": "Durulama, deterjanı ve gevşeyen kirleri temiz suyla uzaklaştırır.",
-   "reviewNumber": 103
+   "reviewNumber": 117
   },
   {
    "id": "bg-2-5",
@@ -295,7 +295,7 @@
     "question": "5"
    },
    "hint": "Ovalama sırasında musluk kapatılır. Böylece su boşa akmaz.",
-   "reviewNumber": 104
+   "reviewNumber": 118
   },
   {
    "id": "bg-3-1",
@@ -328,7 +328,7 @@
     "question": "1"
    },
    "hint": "Büyük kap, deterjan haznesinin açılmasını engellememelidir. Kap yeniden yerleştirilir.",
-   "reviewNumber": 105
+   "reviewNumber": 119
   },
   {
    "id": "bg-3-2",
@@ -361,7 +361,7 @@
     "question": "2"
    },
    "hint": "Uzun araç püskürtme kolunun dönmesini engellerse yıkama aksar.",
-   "reviewNumber": 106
+   "reviewNumber": 120
   },
   {
    "id": "bg-3-3",
@@ -394,7 +394,7 @@
     "question": "3"
    },
    "hint": "Bulaşıklar kuruyunca dolaba kaldırılır. Islak bulaşık dolaba konmaz.",
-   "reviewNumber": 107
+   "reviewNumber": 121
   },
   {
    "id": "bg-3-4",
@@ -427,7 +427,7 @@
     "question": "4"
    },
    "hint": "Sepet düzeni modele göre değişir. Kullanılan makinenin kılavuzuna bakılır.",
-   "reviewNumber": 108
+   "reviewNumber": 122
   },
   {
    "id": "bg-3-5",
@@ -460,7 +460,7 @@
     "question": "5"
    },
    "hint": "Program bitince makinenin soğuması beklenir. Sonra kapak açılır ve bulaşıklar alınır.",
-   "reviewNumber": 109
+   "reviewNumber": 123
   },
   {
    "id": "bg-4-1",
@@ -493,7 +493,7 @@
     "question": "1"
    },
    "hint": "Çiğ tavuk suyu bulaşan sünger mikrop taşıyabilir. Sünger ayrı tutulur ve öğretmene haber verilir.",
-   "reviewNumber": 110
+   "reviewNumber": 124
   },
   {
    "id": "bg-4-2",
@@ -526,7 +526,7 @@
     "question": "2"
    },
    "hint": "Süt kalıntısı yiyeceğe geçmiştir. Alerjisi olan müşteriye bu yiyecek servis edilmez.",
-   "reviewNumber": 111
+   "reviewNumber": 125
   },
   {
    "id": "bg-4-3",
@@ -559,7 +559,7 @@
     "question": "3"
    },
    "hint": "Temizlik ürünü açık gıdaya sıçrayabilir. Gıda temizlik alanından uzaklaştırılır.",
-   "reviewNumber": 112
+   "reviewNumber": 126
   },
   {
    "id": "bg-4-4",
@@ -592,7 +592,7 @@
     "question": "4"
    },
    "hint": "Öğrenci müdahale etmez. Güvenli biçimde uzaklaşır ve öğretmene haber verir.",
-   "reviewNumber": 113
+   "reviewNumber": 127
   },
   {
    "id": "bg-4-5",
@@ -625,7 +625,7 @@
     "question": "5"
    },
    "hint": "Temiz çatal ve kaşık sapından tutulur. Yiyeceğe veya ağza değen uca dokunulmaz.",
-   "reviewNumber": 114
+   "reviewNumber": 128
   },
   {
    "id": "bg-4-6",
@@ -658,7 +658,7 @@
     "question": "6"
    },
    "hint": "Temizlik ürünü kendi etiketli ambalajında saklanır. İçecek şişesine veya yemek kabına aktarılmaz.",
-   "reviewNumber": 115
+   "reviewNumber": 129
   },
   {
    "id": "bg-5-1",
@@ -691,7 +691,7 @@
     "question": "1"
    },
    "hint": "Boş konserve kutusu metal atıktır. Etiketi okunan metal ambalaj kabına bırakılır.",
-   "reviewNumber": 116
+   "reviewNumber": 130
   },
   {
    "id": "bg-5-2",
@@ -724,7 +724,7 @@
     "question": "2"
    },
    "hint": "Sıcak yağ yanığa yol açar. Öğrenci yağa ve kaba dokunmaz, öğretmene haber verir.",
-   "reviewNumber": 117
+   "reviewNumber": 131
   },
   {
    "id": "bg-5-3",
@@ -757,7 +757,7 @@
     "question": "3"
    },
    "hint": "Kesici atık içeren torbayı öğrenci taşımaz. Torba yerinde kalır, öğretmene haber verilir.",
-   "reviewNumber": 118
+   "reviewNumber": 132
   },
   {
    "id": "bg-5-4",
@@ -790,7 +790,7 @@
     "question": "4"
    },
    "hint": "Bir kişiye verilen yemek miktarına porsiyon denir. Porsiyon ihtiyaca uygun hazırlanır.",
-   "reviewNumber": 119
+   "reviewNumber": 133
   },
   {
    "id": "bg-5-5",
@@ -823,7 +823,7 @@
     "question": "5"
    },
    "hint": "Kova taşarsa kapak kapanmaz, koku oluşur ve haşere gelir. Kapak kapalı kalmalıdır.",
-   "reviewNumber": 120
+   "reviewNumber": 134
   },
   {
    "id": "bg-6-1",
@@ -856,7 +856,7 @@
     "question": "1"
    },
    "hint": "Yıkanan araç temiz yüzeye ve temiz rafa konur.",
-   "reviewNumber": 121
+   "reviewNumber": 135
   },
   {
    "id": "bg-6-2",
@@ -889,7 +889,7 @@
     "question": "2"
    },
    "hint": "Üç gözlü evyede sıra yıkama, durulama ve sanitasyondur. İkinci göz temiz suyla durulama içindir.",
-   "reviewNumber": 122
+   "reviewNumber": 136
   },
   {
    "id": "bg-6-3",
@@ -922,7 +922,7 @@
     "question": "3"
    },
    "hint": "Tabaklar arasında suyun ulaşabileceği aralık bırakılır.",
-   "reviewNumber": 123
+   "reviewNumber": 137
   },
   {
    "id": "bg-6-4",
@@ -955,7 +955,7 @@
     "question": "4"
    },
    "hint": "Mikrop bulaşan yüzey güvenli temizlik tamamlanana kadar kullanılmaz.",
-   "reviewNumber": 124
+   "reviewNumber": 138
   },
   {
    "id": "bg-6-5",
@@ -988,7 +988,7 @@
     "question": "5"
    },
    "hint": "Sıcak yağ yanığa yol açar. Öğrenci dokunmaz. Soğuyan yağı öğretmen biriktirme kabına aktarır.",
-   "reviewNumber": 125
+   "reviewNumber": 139
   },
   {
    "id": "bg-6-6",
@@ -1021,7 +1021,7 @@
     "question": "6"
    },
    "hint": "İçi kuru ve yırtıksız eldiven giyilir. Yırtılan eldiven kullanılmaz.",
-   "reviewNumber": 126
+   "reviewNumber": 140
   },
   {
    "id": "bg-6-7",
@@ -1054,7 +1054,7 @@
     "question": "7"
    },
    "hint": "Yapışan yemek artığı ıslatılarak yumuşatılır, sonra yüzeye uygun sünger veya fırçayla temizlenir.",
-   "reviewNumber": 127
+   "reviewNumber": 141
   },
   {
    "id": "bg-6-8",
@@ -1087,7 +1087,7 @@
     "question": "8"
    },
    "hint": "Filtre tabanda bulunur ve yemek artıklarını tutar.",
-   "reviewNumber": 128
+   "reviewNumber": 142
   },
   {
    "id": "bg-6-9",
@@ -1120,7 +1120,7 @@
     "question": "9"
    },
    "hint": "Her ürün için ayrı ve temiz araç kullanılır. Böylece süt kalıntısı çorbaya geçmez.",
-   "reviewNumber": 129
+   "reviewNumber": 143
   },
   {
    "id": "bg-6-10",
@@ -1153,7 +1153,7 @@
     "question": "10"
    },
    "hint": "Boş ve sağlam cam kavanoz, kutu etiketi izin veriyorsa cam ambalaj olarak ayrılır.",
-   "reviewNumber": 130
+   "reviewNumber": 144
   },
   {
    "id": "bg-7-1",
@@ -1186,7 +1186,7 @@
     "question": "1"
    },
    "hint": "Ambalajın rengi veya biçimi ürünün ne olduğunu göstermez. Adı ve kullanım yeri etiketten okunur.",
-   "reviewNumber": 131
+   "reviewNumber": 145
   },
   {
    "id": "bg-7-2",
@@ -1219,7 +1219,7 @@
     "question": "2"
    },
    "hint": "Önce yıkanır, sonra durulanır. Sanitasyon durulamadan sonra yapılır.",
-   "reviewNumber": 132
+   "reviewNumber": 146
   },
   {
    "id": "bg-7-3",
@@ -1252,7 +1252,7 @@
     "question": "3"
    },
    "hint": "Büyük kap deterjan haznesinin açılmasını engelleyebilir. Kap yeniden yerleştirilir.",
-   "reviewNumber": 133
+   "reviewNumber": 147
   },
   {
    "id": "bg-7-4",
@@ -1285,7 +1285,7 @@
     "question": "4"
    },
    "hint": "Kimyasalla bulaşan gıda servis edilmez.",
-   "reviewNumber": 134
+   "reviewNumber": 148
   },
   {
    "id": "bg-7-5",
@@ -1318,7 +1318,7 @@
     "question": "5"
    },
    "hint": "Sebze kabuğu ve yemek artığı organik atıktır.",
-   "reviewNumber": 135
+   "reviewNumber": 149
   },
   {
    "id": "bg-7-6",
@@ -1351,7 +1351,7 @@
     "question": "6"
    },
    "hint": "İşletmede kap temiz rafta süzülerek havayla kurur. Bezle kurulama yapılmaz.",
-   "reviewNumber": 136
+   "reviewNumber": 150
   },
   {
    "id": "bg-7-7",
@@ -1384,7 +1384,7 @@
     "question": "7"
    },
    "hint": "Yıkama yarıda kalırsa bulaşık servise verilmez. Sorun giderilince yeniden işleme alınır.",
-   "reviewNumber": 137
+   "reviewNumber": 151
   },
   {
    "id": "bg-7-8",
@@ -1417,7 +1417,7 @@
     "question": "8"
    },
    "hint": "Kirli bulaşıkla yapılan işten sonra eldiven çıkarılır, eller yıkanır ve kurulanır.",
-   "reviewNumber": 138
+   "reviewNumber": 152
   },
   {
    "id": "bg-7-9",
@@ -1450,7 +1450,7 @@
     "question": "9"
    },
    "hint": "Kutunun yalnız rengine bakılmaz. Üzerindeki etiket veya simge kontrol edilir.",
-   "reviewNumber": 139
+   "reviewNumber": 153
   },
   {
    "id": "bg-7-10",
@@ -1483,7 +1483,7 @@
     "question": "10"
    },
    "hint": "Hasarlı kablo veya arızalı cihaza dokunulmaz, onarım denenmez. Öğretmene haber verilir.",
-   "reviewNumber": 140
+   "reviewNumber": 154
   },
   {
    "id": "bg-8-1",
@@ -1516,7 +1516,7 @@
     "question": "1"
    },
    "hint": "Tanımadığı ürün kullanılmaz, öğretmene gösterilir.",
-   "reviewNumber": 141
+   "reviewNumber": 155
   },
   {
    "id": "bg-8-2",
@@ -1549,7 +1549,7 @@
     "question": "2"
    },
    "hint": "Çok sıcak su yanığa yol açabileceği için su elle kontrol edilmez. Termometre kullanılır.",
-   "reviewNumber": 142
+   "reviewNumber": 156
   },
   {
    "id": "bg-8-3",
@@ -1582,7 +1582,7 @@
     "question": "3"
    },
    "hint": "Bardak ve fincanlar aralıklı ve dengeli yerleştirilir. Birbirine çarparsa kırılabilir.",
-   "reviewNumber": 143
+   "reviewNumber": 157
   },
   {
    "id": "bg-8-4",
@@ -1615,7 +1615,7 @@
     "question": "4"
    },
    "hint": "Kırık parçalara dokunulmaz. Öğretmene haber verilir.",
-   "reviewNumber": 144
+   "reviewNumber": 158
   },
   {
    "id": "bg-8-5",
@@ -1648,7 +1648,7 @@
     "question": "5"
    },
    "hint": "Patates ve havuç kabuğu organik atıktır.",
-   "reviewNumber": 145
+   "reviewNumber": 159
   },
   {
    "id": "bg-8-6",
@@ -1681,7 +1681,7 @@
     "question": "6"
    },
    "hint": "Yemek artıkları yıkamadan önce uygun atık kabına sıyrılır.",
-   "reviewNumber": 146
+   "reviewNumber": 160
   },
   {
    "id": "bg-8-7",
@@ -1714,7 +1714,7 @@
     "question": "7"
    },
    "hint": "Tabaklar temiz rafta dik ve aralıklı durur. Böylece hava dolaşır ve kurur.",
-   "reviewNumber": 147
+   "reviewNumber": 161
   },
   {
    "id": "bg-8-8",
@@ -1747,7 +1747,7 @@
     "question": "8"
    },
    "hint": "Bardak ve fincanların içinde su birikmemesi için ağızları aşağıya bakar.",
-   "reviewNumber": 148
+   "reviewNumber": 162
   },
   {
    "id": "bg-8-9",
@@ -1780,7 +1780,7 @@
     "question": "9"
    },
    "hint": "Temizlik ürünleri gıdadan ayrı tutulur.",
-   "reviewNumber": 149
+   "reviewNumber": 163
   },
   {
    "id": "bg-8-10",
@@ -1813,7 +1813,7 @@
     "question": "10"
    },
    "hint": "Kova temizliğinde kullanılan fırça veya bez bulaşık yıkamada kullanılmaz.",
-   "reviewNumber": 150
+   "reviewNumber": 164
   },
   {
    "id": "bg-9-1",
@@ -1846,7 +1846,7 @@
     "question": "1"
    },
    "hint": "Elde bulaşık deterjanı makineye konmaz. Fazla köpük taşar, zemin ıslanıp kayganlaşır.",
-   "reviewNumber": 151
+   "reviewNumber": 165
   },
   {
    "id": "bg-9-2",
@@ -1879,7 +1879,7 @@
     "question": "2"
    },
    "hint": "Daha az kirli bulaşıklardan başlanır. Çok yağlı kaplar sonraya bırakılır.",
-   "reviewNumber": 152
+   "reviewNumber": 166
   },
   {
    "id": "bg-9-3",
@@ -1912,7 +1912,7 @@
     "question": "3"
    },
    "hint": "Kirli çıkan bulaşık yeniden yıkama için ayrı bir yere konur.",
-   "reviewNumber": 153
+   "reviewNumber": 167
   },
   {
    "id": "bg-9-4",
@@ -1945,7 +1945,7 @@
     "question": "4"
    },
    "hint": "Bardak alt bölümünden tutulur. Ağız kenarına ve iç yüzeye dokunulmaz.",
-   "reviewNumber": 154
+   "reviewNumber": 168
   },
   {
    "id": "bg-9-5",
@@ -1978,7 +1978,7 @@
     "question": "5"
    },
    "hint": "Kullanılmış pil ayrı pil kutusuna bırakılır.",
-   "reviewNumber": 155
+   "reviewNumber": 169
   },
   {
    "id": "bg-9-6",
@@ -2011,7 +2011,7 @@
     "question": "6"
    },
    "hint": "Öğretmen işlemin tamamlandığını bildirince bulaşık temiz rafa alınır.",
-   "reviewNumber": 156
+   "reviewNumber": 170
   },
   {
    "id": "bg-9-7",
@@ -2044,7 +2044,7 @@
     "question": "7"
    },
    "hint": "Vardiya sonunda cihaz güvenli duruma alındıktan sonra yetkili çalışan filtreyi kılavuza göre temizler.",
-   "reviewNumber": 157
+   "reviewNumber": 171
   },
   {
    "id": "bg-9-8",
@@ -2077,7 +2077,7 @@
     "question": "8"
    },
    "hint": "Atıkla temastan sonra eldiven çıkarılır, eller yıkanır ve kurulanır. Temiz bulaşığa bundan sonra geçilir.",
-   "reviewNumber": 158
+   "reviewNumber": 172
   },
   {
    "id": "bg-9-9",
@@ -2110,7 +2110,7 @@
     "question": "9"
    },
    "hint": "Sızdıran torbayı öğrenci taşımaz. Öğretmene haber verir.",
-   "reviewNumber": 159
+   "reviewNumber": 173
   },
   {
    "id": "bg-9-10",
@@ -2143,7 +2143,7 @@
     "question": "10"
    },
    "hint": "Sanitasyon uygun ürünle yapılır. Uygun ürün takılana kadar makine çalıştırılmaz.",
-   "reviewNumber": 160
+   "reviewNumber": 174
   }
  ],
  "matches": [

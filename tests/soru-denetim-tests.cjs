@@ -40,11 +40,11 @@ for(const subject of subjects){
 }
 const mut=require('../content/mutfak-araclari/icerik.json');
 const expected={
- 'm-kd-43-6':['B','Reçetede belirtilen miktara göre','Reçetede belirtilen miktar'],
+ 'm-kd-43-6':['B','40 g','her göze 40 g'],
  'm-kd-69-5':['A','200 ml çizgisi bulunan ölçü kabı','200 ml çizgisi'],
- 'm-kd-90-5':['A','Yiyecek ve cihaz talimatına göre','yiyecek ve cihaz için verilen talimatlara'],
+ 'm-kd-90-5':['A','Yiyecek ve cihaz talimatında yazan süre kadar','talimatında yazan süreye'],
  'm-bd-1-5':['D','Konuğun sağına','kulpu konuğun sağına'],
- 'm-kd-95-3':['B','Haznenin en fazla doldurulacağı düzeyi','en yüksek dolum çizgisini aşmayacak']
+ 'm-kd-95-3':['D','Sıcak sıvı','sıcak sıvı konmaz']
 };
 for(const [id,[letter,text,evidence]] of Object.entries(expected)){
  const q=mut.questions.find(q=>q.id===id);
