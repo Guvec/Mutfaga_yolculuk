@@ -2261,7 +2261,7 @@
    "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
    "currentBoardCard": 6,
    "ust": "kuru",
-   "aile": "tatli-baharat"
+   "aile": "tatli-yardimci"
   },
   {
    "id": "bh-02-08",
@@ -2393,7 +2393,7 @@
    "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
    "currentBoardCard": 11,
    "ust": "taze-bitki",
-   "aile": "yesil-ot",
+   "aile": "yumusak-ot",
    "disla": [
     "YEŞİL FESLEĞEN (TAZE VE KURU)"
    ]
@@ -2418,7 +2418,7 @@
    "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
    "currentBoardCard": 1,
    "ust": "taze-bitki",
-   "aile": "yesil-ot",
+   "aile": "odunsu-ot",
    "disla": [
     "BİBERİYE (TAZE VE KURU)"
    ]
@@ -2443,7 +2443,7 @@
    "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
    "currentBoardCard": 2,
    "ust": "taze-bitki",
-   "aile": "yesil-ot",
+   "aile": "odunsu-ot",
    "disla": [
     "KEKİK (TAZE VE KURU)"
    ]
@@ -2468,7 +2468,7 @@
    "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
    "currentBoardCard": 3,
    "ust": "taze-bitki",
-   "aile": "yesil-ot"
+   "aile": "yumusak-ot"
   },
   {
    "id": "bh-03-05",
@@ -2490,7 +2490,7 @@
    "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
    "currentBoardCard": 4,
    "ust": "taze-bitki",
-   "aile": "yesil-ot"
+   "aile": "yesillik"
   },
   {
    "id": "bh-03-06",
@@ -2512,7 +2512,7 @@
    "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
    "currentBoardCard": 5,
    "ust": "taze-bitki",
-   "aile": "yesil-ot"
+   "aile": "odunsu-ot"
   },
   {
    "id": "bh-03-07",
@@ -2534,7 +2534,7 @@
    "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
    "currentBoardCard": 6,
    "ust": "taze-bitki",
-   "aile": "yesil-ot"
+   "aile": "odunsu-ot"
   },
   {
    "id": "bh-03-08",
@@ -2556,7 +2556,7 @@
    "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
    "currentBoardCard": 7,
    "ust": "taze-bitki",
-   "aile": "yesil-ot"
+   "aile": "yumusak-ot"
   },
   {
    "id": "bh-03-09",
@@ -2578,7 +2578,7 @@
    "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
    "currentBoardCard": 8,
    "ust": "taze-bitki",
-   "aile": "yesil-ot",
+   "aile": "yumusak-ot",
    "disla": [
     "NANE (TAZE VE KURU)"
    ]
@@ -2603,7 +2603,7 @@
    "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
    "currentBoardCard": 9,
    "ust": "taze-bitki",
-   "aile": "yesil-ot"
+   "aile": "yesillik"
   },
   {
    "id": "bh-03-11",
@@ -2625,7 +2625,7 @@
    "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
    "currentBoardCard": 1,
    "ust": "taze-bitki",
-   "aile": "yesil-ot"
+   "aile": "yumusak-ot"
   },
   {
    "id": "bh-03-12",
@@ -2647,7 +2647,7 @@
    "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
    "currentBoardCard": 10,
    "ust": "taze-bitki",
-   "aile": "yesil-ot",
+   "aile": "yumusak-ot",
    "disla": [
     "DEREOTU (TAZE VE KURU)"
    ]
@@ -2672,7 +2672,7 @@
    "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
    "currentBoardCard": 11,
    "ust": "taze-bitki",
-   "aile": "yesil-ot",
+   "aile": "yumusak-ot",
    "disla": [
     "MOR REYHAN (TAZE VE KURU)"
    ]
@@ -2698,7 +2698,7 @@
    "task": "Fotoğrafta sunulan biçimleri birlikte değerlendir.",
    "currentBoardCard": 1,
    "ust": "taze-bitki",
-   "aile": "yesil-ot",
+   "aile": "odunsu-ot",
    "disla": [
     "TAZE KEKİK"
    ]
@@ -2724,7 +2724,7 @@
    "task": "Fotoğrafta sunulan biçimleri birlikte değerlendir.",
    "currentBoardCard": 2,
    "ust": "taze-bitki",
-   "aile": "yesil-ot",
+   "aile": "yumusak-ot",
    "disla": [
     "TAZE DEREOTU"
    ]
@@ -2750,7 +2750,7 @@
    "task": "Fotoğrafta sunulan biçimleri birlikte değerlendir.",
    "currentBoardCard": 3,
    "ust": "taze-bitki",
-   "aile": "yesil-ot",
+   "aile": "yumusak-ot",
    "disla": [
     "TAZE NANE"
    ]
@@ -2776,7 +2776,7 @@
    "task": "Fotoğrafta sunulan biçimleri birlikte değerlendir.",
    "currentBoardCard": 4,
    "ust": "taze-bitki",
-   "aile": "yesil-ot",
+   "aile": "yumusak-ot",
    "disla": [
     "TAZE MOR REYHAN"
    ]
@@ -2802,7 +2802,7 @@
    "task": "Fotoğrafta sunulan biçimleri birlikte değerlendir.",
    "currentBoardCard": 5,
    "ust": "taze-bitki",
-   "aile": "yesil-ot",
+   "aile": "yumusak-ot",
    "disla": [
     "TAZE YEŞİL FESLEĞEN"
    ]
@@ -2828,7 +2828,7 @@
    "task": "Fotoğrafta sunulan biçimleri birlikte değerlendir.",
    "currentBoardCard": 6,
    "ust": "taze-bitki",
-   "aile": "yesil-ot",
+   "aile": "odunsu-ot",
    "disla": [
     "TAZE BİBERİYE"
    ]
@@ -2852,8 +2852,8 @@
    "originalSet": 4,
    "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
    "currentBoardCard": 7,
-   "ust": "diger",
-   "aile": "diger"
+   "ust": "taze-bitki",
+   "aile": "yesillik"
   },
   {
    "id": "bh-05-01",
@@ -2942,7 +2942,7 @@
    "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
    "currentBoardCard": 11,
    "ust": "kuru",
-   "aile": "tatli-baharat"
+   "aile": "tatli-yardimci"
   },
   {
    "id": "bh-05-05",
@@ -3096,7 +3096,7 @@
    "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
    "currentBoardCard": 7,
    "ust": "taze-bitki",
-   "aile": "yesil-ot"
+   "aile": "odunsu-ot"
   },
   {
    "id": "bh-05-12",
@@ -3118,7 +3118,7 @@
    "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
    "currentBoardCard": 12,
    "ust": "taze-bitki",
-   "aile": "yesil-ot"
+   "aile": "odunsu-ot"
   },
   {
    "id": "bh-06-01",
@@ -3184,8 +3184,8 @@
    "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
    "currentBoardCard": 10,
    "kok": "Görseldeki besinin adı nedir?",
-   "ust": "diger",
-   "aile": "diger"
+   "ust": "kuru",
+   "aile": "tatli-yardimci"
   },
   {
    "id": "bh-07-03",
@@ -3762,7 +3762,7 @@
    "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
    "currentBoardCard": 11,
    "ust": "taze-bitki",
-   "aile": "yesil-ot"
+   "aile": "odunsu-ot"
   },
   {
    "id": "bh-10-03",
@@ -3952,7 +3952,7 @@
    "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
    "currentBoardCard": 7,
    "ust": "taze-bitki",
-   "aile": "yesil-ot"
+   "aile": "yumusak-ot"
   },
   {
    "id": "bh-10-11",
@@ -3974,7 +3974,7 @@
    "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
    "currentBoardCard": 8,
    "ust": "taze-bitki",
-   "aile": "yesil-ot"
+   "aile": "yesillik"
   },
   {
    "id": "bh-10-12",
@@ -4019,8 +4019,8 @@
    "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
    "currentBoardCard": 10,
    "kok": "Görseldeki besinin adı nedir?",
-   "ust": "diger",
-   "aile": "diger"
+   "ust": "kuru",
+   "aile": "tatli-yardimci"
   },
   {
    "id": "bh-11-11",
@@ -4043,7 +4043,7 @@
    "currentBoardCard": 11,
    "kok": "Görseldeki besinin adı nedir?",
    "ust": "kuru",
-   "aile": "tatli-baharat"
+   "aile": "tatli-yardimci"
   },
   {
    "id": "bh-11-12",
@@ -4065,8 +4065,8 @@
    "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
    "currentBoardCard": 12,
    "kok": "Görseldeki besinin adı nedir?",
-   "ust": "diger",
-   "aile": "diger"
+   "ust": "kuru",
+   "aile": "tatli-yardimci"
   }
  ],
  "words": [],
