@@ -2,12 +2,14 @@
 /* Mutfak Araçları görsel soruları: çeldiriciler aynı aileden (yoksa aynı üst aileden) gelir.
    Hata: "kaşık" sorusunda bıçak ya da kâse görünmesi. 10 farklı tohumla kabul testi. */
 const assert=require('assert'),fs=require('fs'),path=require('path'),m=require('../js/yaris-model.js');
-const d=JSON.parse(fs.readFileSync(path.join(__dirname,'..','content','mutfak-araclari','icerik.json'),'utf8'));
-const byAnswer=new Map(d.matches.map(x=>[x.answer,x]));
 let ok=0;const bad=[];
-for(const set of [0,1,2,3,4,5,6,7,8,9,10,11,12]){
+const KONULAR=[['mutfak-araclari',13],['baharat',8],['bulasik-makinesi-temizligi',1]];
+for(const [konu,setSayisi] of KONULAR){
+const d=JSON.parse(fs.readFileSync(path.join(__dirname,'..','content',konu,'icerik.json'),'utf8'));
+const byAnswer=new Map(d.matches.map(x=>[x.answer,x]));
+for(let set=0;set<=setSayisi;set++){
  for(let seed=1;seed<=10;seed++){
-  const qs=m.buildQuestions(d,{subject:'mutfak-araclari',kind:'gorsel',set,n:500,pool:true},seed*7919+set);
+  const qs=m.buildQuestions(d,{subject:konu,kind:'gorsel',set,n:500,pool:true},seed*7919+set);
   for(const q of qs){
    const card=d.matches.find(x=>x.id===q.id),texts=q.choices.map(c=>c.text);
    const disla=new Set(card.disla||[]),ayniAile=d.matches.filter(x=>x.aile===card.aile&&x.id!==card.id&&!disla.has(x.answer)).length;
@@ -22,6 +24,7 @@ for(const set of [0,1,2,3,4,5,6,7,8,9,10,11,12]){
   }
  }
 }
+}
 if(bad.length){console.log('İlk 12 hata:\n'+bad.slice(0,12).join('\n'));}
 assert.strictEqual(bad.length,0,bad.length+' çeldirici aynı türden değil ('+ok+' soru tarandı)');
-console.log('PASS Mutfak Araçları çeldiricileri aynı türden ('+ok+' soru, 13 set × 10 tohum)');
+console.log('PASS Mutfak Araçları, Baharat ve Bulaşık çeldiricileri aynı türden ('+ok+' soru, 3 konu × 10 tohum)');

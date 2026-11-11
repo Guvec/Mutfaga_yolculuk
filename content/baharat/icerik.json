@@ -1880,7 +1880,9 @@
    "detail": "Kırmızı biberin kurutulup parçalanmasıyla hazırlanır. Yemeklere ve çorbalara eklenir; acılığı ürüne göre değişir. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir.",
    "originalSet": 1,
    "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
-   "currentBoardCard": 1
+   "currentBoardCard": 1,
+   "ust": "kuru",
+   "aile": "biber"
   },
   {
    "id": "bh-01-02",
@@ -1900,7 +1902,9 @@
    "detail": "Kırmızımsı, ekşi tat veren bir baharattır. Soğan salatasında ve salatalarda kullanılır. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir.",
    "originalSet": 1,
    "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
-   "currentBoardCard": 2
+   "currentBoardCard": 2,
+   "ust": "kuru",
+   "aile": "kok-toz"
   },
   {
    "id": "bh-01-03",
@@ -1921,7 +1925,9 @@
    "originalSet": 1,
    "assessmentConstruct": "Görsel ve kullanım bilgisiyle ürün adını ilişkilendirme; yalnız fotoğraftan isot üretim yöntemini doğrulama değildir.",
    "task": "Şanlıurfa mutfağında çiğ köftede kullanılan koyu renkli biber ürünü.",
-   "currentBoardCard": 3
+   "currentBoardCard": 3,
+   "ust": "kuru",
+   "aile": "biber"
   },
   {
    "id": "bh-01-04",
@@ -1941,7 +1947,9 @@
    "detail": "Tane veya öğütülmüş olarak kullanılır. Yemeklere belirgin bir aroma ve yakıcılık verir. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir.",
    "originalSet": 1,
    "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
-   "currentBoardCard": 4
+   "currentBoardCard": 4,
+   "ust": "kuru",
+   "aile": "biber"
   },
   {
    "id": "bh-01-05",
@@ -1962,7 +1970,12 @@
    "originalSet": 1,
    "assessmentConstruct": "Aynı ürünün bütün ve öğütülmüş biçimleriyle tanınması; yalnız tozu bağımsız tanıma değildir.",
    "task": "Fotoğraftaki bütün biberi ve ince toz biçimini birlikte tanı.",
-   "currentBoardCard": 5
+   "currentBoardCard": 5,
+   "ust": "kuru",
+   "aile": "biber",
+   "disla": [
+    "KIRMIZI BİBER (TAZE VE KURU)"
+   ]
   },
   {
    "id": "bh-01-06",
@@ -1982,7 +1995,9 @@
    "detail": "Tane veya öğütülmüş olarak kullanılır. Dolma içi ve köfte gibi yemeklere aroma verir. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir.",
    "originalSet": 1,
    "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
-   "currentBoardCard": 6
+   "currentBoardCard": 6,
+   "ust": "kuru",
+   "aile": "tatli-baharat"
   },
   {
    "id": "bh-01-07",
@@ -2002,7 +2017,9 @@
    "detail": "Tane veya öğütülmüş olarak kullanılır. Açık renkli soslarda ve çorbalarda tercih edilebilir. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir.",
    "originalSet": 1,
    "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
-   "currentBoardCard": 7
+   "currentBoardCard": 7,
+   "ust": "kuru",
+   "aile": "biber"
   },
   {
    "id": "bh-01-08",
@@ -2022,7 +2039,9 @@
    "detail": "Pembe renkli taneler hâlindedir. Soslarda ve yemeklerin lezzetlendirilmesinde kullanılır; karabiberle aynı bitki değildir. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir.",
    "originalSet": 1,
    "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
-   "currentBoardCard": 8
+   "currentBoardCard": 8,
+   "ust": "kuru",
+   "aile": "biber"
   },
   {
    "id": "bh-01-09",
@@ -2042,7 +2061,9 @@
    "detail": "Yemeklere kendine özgü aroma veren bir baharattır. Karabiberle aynı bitki değildir. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir.",
    "originalSet": 1,
    "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
-   "currentBoardCard": 9
+   "currentBoardCard": 9,
+   "ust": "kuru",
+   "aile": "biber"
   },
   {
    "id": "bh-01-10",
@@ -2062,7 +2083,9 @@
    "detail": "Tane veya öğütülmüş olarak kullanılır. Köfte ve bakliyat yemeklerine aroma verir. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir.",
    "originalSet": 1,
    "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
-   "currentBoardCard": 10
+   "currentBoardCard": 10,
+   "ust": "kuru",
+   "aile": "tohum"
   },
   {
    "id": "bh-01-12",
@@ -2082,7 +2105,9 @@
    "detail": "Çubuk veya toz biçiminde kullanılır. Sütlü tatlılarda, içeceklerde ve bazı yemeklerde aroma verir. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir.",
    "originalSet": 1,
    "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
-   "currentBoardCard": 11
+   "currentBoardCard": 11,
+   "ust": "kuru",
+   "aile": "tatli-baharat"
   },
   {
    "id": "bh-02-01",
@@ -2102,7 +2127,9 @@
    "detail": "Yuvarlak taneli bir baharattır. Tane veya öğütülmüş hâlde yemeklerde kullanılır; kişniş yaprağından farklıdır. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir.",
    "originalSet": 2,
    "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
-   "currentBoardCard": 12
+   "currentBoardCard": 12,
+   "ust": "kuru",
+   "aile": "tohum"
   },
   {
    "id": "bh-02-02",
@@ -2122,7 +2149,9 @@
    "detail": "Küçük, yuvarlak tanelerdir. Hardal ürünleri ve bazı tariflerde kullanılır; hazır hardal sosuyla aynı biçimde değildir. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir.",
    "originalSet": 2,
    "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
-   "currentBoardCard": 1
+   "currentBoardCard": 1,
+   "ust": "kuru",
+   "aile": "tohum"
   },
   {
    "id": "bh-02-03",
@@ -2142,7 +2171,9 @@
    "detail": "Küçük yağlı tohumlardır. Simit, ekmek ve tatlılarda kullanılır. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir.",
    "originalSet": 2,
    "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
-   "currentBoardCard": 2
+   "currentBoardCard": 2,
+   "ust": "kuru",
+   "aile": "tohum"
   },
   {
    "id": "bh-02-04",
@@ -2162,7 +2193,9 @@
    "detail": "Uzunca ve çizgili tanelerdir. Hamur işleri ve bazı yemeklerde aroma vermek için kullanılır. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir.",
    "originalSet": 2,
    "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
-   "currentBoardCard": 3
+   "currentBoardCard": 3,
+   "ust": "kuru",
+   "aile": "tohum"
   },
   {
    "id": "bh-02-05",
@@ -2182,7 +2215,9 @@
    "detail": "Küçük siyah tanelerdir. Ekmek ve tuzlu hamur işlerinde kullanılır; siyah susamla karıştırılabilir. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir.",
    "originalSet": 2,
    "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
-   "currentBoardCard": 4
+   "currentBoardCard": 4,
+   "ust": "kuru",
+   "aile": "tohum"
   },
   {
    "id": "bh-02-06",
@@ -2202,7 +2237,9 @@
    "detail": "Tohum, toz veya karışım biçiminde satılabilir. Görseldeki ürünün biçimi ve içeriği etiketten doğrulanır. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir.",
    "originalSet": 2,
    "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
-   "currentBoardCard": 5
+   "currentBoardCard": 5,
+   "ust": "kuru",
+   "aile": "tohum"
   },
   {
    "id": "bh-02-07",
@@ -2222,7 +2259,9 @@
    "detail": "Öğütülmüş biçimi hamur işlerinde kullanılır. Özellikle çörek ve tuzlu kurabiyelere aroma verir. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir.",
    "originalSet": 2,
    "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
-   "currentBoardCard": 6
+   "currentBoardCard": 6,
+   "ust": "kuru",
+   "aile": "tatli-baharat"
   },
   {
    "id": "bh-02-08",
@@ -2242,7 +2281,9 @@
    "detail": "Kabuklu kapsülünün içinde aromalı tohumları bulunur. Kahve ve tatlılarda kullanılır. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir.",
    "originalSet": 2,
    "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
-   "currentBoardCard": 7
+   "currentBoardCard": 7,
+   "ust": "kuru",
+   "aile": "tatli-baharat"
   },
   {
    "id": "bh-02-09",
@@ -2262,7 +2303,9 @@
    "detail": "Çok küçük taneli bir üründür. Hamur işlerinde ve süslemede kullanılır; ezme biçiminden farklıdır. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir.",
    "originalSet": 2,
    "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
-   "currentBoardCard": 8
+   "currentBoardCard": 8,
+   "ust": "kuru",
+   "aile": "tohum"
   },
   {
    "id": "bh-02-10",
@@ -2282,7 +2325,9 @@
    "detail": "Küçük tohumlu bir aromatik bitkidir. Hamur işlerinde ve içeceklerde aroma vermek için kullanılır. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir.",
    "originalSet": 2,
    "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
-   "currentBoardCard": 1
+   "currentBoardCard": 1,
+   "ust": "kuru",
+   "aile": "tohum"
   },
   {
    "id": "bh-02-11",
@@ -2302,7 +2347,9 @@
    "detail": "Yıldız biçimli bir baharattır. Tatlı ve içeceklerde aroma vermek için kullanılır; anason tohumuyla aynı bitki değildir. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir.",
    "originalSet": 2,
    "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
-   "currentBoardCard": 9
+   "currentBoardCard": 9,
+   "ust": "kuru",
+   "aile": "tatli-baharat"
   },
   {
    "id": "bh-02-12",
@@ -2322,7 +2369,9 @@
    "detail": "Kurutulmuş çiçek tomurcuğudur. Komposto ve tatlılara yoğun aroma verir. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir.",
    "originalSet": 2,
    "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
-   "currentBoardCard": 10
+   "currentBoardCard": 10,
+   "ust": "kuru",
+   "aile": "tatli-baharat"
   },
   {
    "id": "bh-03-01",
@@ -2342,7 +2391,12 @@
    "detail": "Yeşil yapraklı aromatik bir bitkidir. Salata ve soslarda kullanılır. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir.",
    "originalSet": 3,
    "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
-   "currentBoardCard": 11
+   "currentBoardCard": 11,
+   "ust": "taze-bitki",
+   "aile": "yesil-ot",
+   "disla": [
+    "YEŞİL FESLEĞEN (TAZE VE KURU)"
+   ]
   },
   {
    "id": "bh-03-02",
@@ -2362,7 +2416,12 @@
    "detail": "İnce, iğneye benzeyen yaprakları vardır. Patates ve et yemeklerinde aroma vermek için kullanılır. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir.",
    "originalSet": 3,
    "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
-   "currentBoardCard": 1
+   "currentBoardCard": 1,
+   "ust": "taze-bitki",
+   "aile": "yesil-ot",
+   "disla": [
+    "BİBERİYE (TAZE VE KURU)"
+   ]
   },
   {
    "id": "bh-03-03",
@@ -2382,7 +2441,12 @@
    "detail": "Küçük yapraklı aromatik bir bitkidir. Yemeklere ve soslara aroma vermek için kullanılır. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir.",
    "originalSet": 3,
    "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
-   "currentBoardCard": 2
+   "currentBoardCard": 2,
+   "ust": "taze-bitki",
+   "aile": "yesil-ot",
+   "disla": [
+    "KEKİK (TAZE VE KURU)"
+   ]
   },
   {
    "id": "bh-03-04",
@@ -2402,7 +2466,9 @@
    "detail": "Uzun ve dar yapraklı aromatik bir bitkidir. Sos ve yemeklerde aroma vermek için kullanılır. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir.",
    "originalSet": 3,
    "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
-   "currentBoardCard": 3
+   "currentBoardCard": 3,
+   "ust": "taze-bitki",
+   "aile": "yesil-ot"
   },
   {
    "id": "bh-03-05",
@@ -2422,7 +2488,9 @@
    "detail": "Yeşil yapraklı bir salata bitkisidir. Yaprakları kendine özgü keskin tat verir. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir.",
    "originalSet": 3,
    "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
-   "currentBoardCard": 4
+   "currentBoardCard": 4,
+   "ust": "taze-bitki",
+   "aile": "yesil-ot"
   },
   {
    "id": "bh-03-06",
@@ -2442,7 +2510,9 @@
    "detail": "Yaprakları aroma vermek için kullanılır. Kekikle benzer görünebilir; etiketli örnekle karşılaştırılır. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir.",
    "originalSet": 3,
    "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
-   "currentBoardCard": 5
+   "currentBoardCard": 5,
+   "ust": "taze-bitki",
+   "aile": "yesil-ot"
   },
   {
    "id": "bh-03-07",
@@ -2462,7 +2532,9 @@
    "detail": "Adaçayının yaprakları belirgin bir kokuya sahiptir. Gıda kullanımına uygun yaprakları yemek ve içeceklere aroma vermek için kullanılır. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir.",
    "originalSet": 3,
    "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
-   "currentBoardCard": 6
+   "currentBoardCard": 6,
+   "ust": "taze-bitki",
+   "aile": "yesil-ot"
   },
   {
    "id": "bh-03-08",
@@ -2482,7 +2554,9 @@
    "detail": "Yeşil yapraklı bir bitkidir. Salata, köfte ve yemeklerde kullanılır. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir.",
    "originalSet": 3,
    "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
-   "currentBoardCard": 7
+   "currentBoardCard": 7,
+   "ust": "taze-bitki",
+   "aile": "yesil-ot"
   },
   {
    "id": "bh-03-09",
@@ -2502,7 +2576,12 @@
    "detail": "Yapraklı aromatik bir bitkidir. Salata, içecek ve yemeklerde kullanılır; kuru naneden farklı bir görünümü vardır. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir.",
    "originalSet": 3,
    "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
-   "currentBoardCard": 8
+   "currentBoardCard": 8,
+   "ust": "taze-bitki",
+   "aile": "yesil-ot",
+   "disla": [
+    "NANE (TAZE VE KURU)"
+   ]
   },
   {
    "id": "bh-03-10",
@@ -2522,7 +2601,9 @@
    "detail": "Ekşi tat veren yeşil yaprakları salatalarda kullanılabilir. Bilinmeyen yabani yapraklar toplanıp yenmez.",
    "originalSet": 3,
    "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
-   "currentBoardCard": 9
+   "currentBoardCard": 9,
+   "ust": "taze-bitki",
+   "aile": "yesil-ot"
   },
   {
    "id": "bh-03-11",
@@ -2542,7 +2623,9 @@
    "detail": "Yapraklı aromatik bir bitkidir. İçeceklere aroma vermek için kullanılır. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir.",
    "originalSet": 3,
    "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
-   "currentBoardCard": 1
+   "currentBoardCard": 1,
+   "ust": "taze-bitki",
+   "aile": "yesil-ot"
   },
   {
    "id": "bh-03-12",
@@ -2562,7 +2645,12 @@
    "detail": "İnce, dallanmış yaprakları vardır. Salata, yoğurtlu yemek ve hamur işlerinde kullanılır. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir.",
    "originalSet": 3,
    "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
-   "currentBoardCard": 10
+   "currentBoardCard": 10,
+   "ust": "taze-bitki",
+   "aile": "yesil-ot",
+   "disla": [
+    "DEREOTU (TAZE VE KURU)"
+   ]
   },
   {
    "id": "bh-04-07",
@@ -2582,7 +2670,12 @@
    "detail": "Mor yapraklı aromatik bir bitkidir. Salata ve içeceklerde kullanılır; farklı çeşitlerde renk değişebilir. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir.",
    "originalSet": 4,
    "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
-   "currentBoardCard": 11
+   "currentBoardCard": 11,
+   "ust": "taze-bitki",
+   "aile": "yesil-ot",
+   "disla": [
+    "MOR REYHAN (TAZE VE KURU)"
+   ]
   },
   {
    "id": "bh-04-03",
@@ -2603,7 +2696,12 @@
    "originalSet": 4,
    "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
    "task": "Fotoğrafta sunulan biçimleri birlikte değerlendir.",
-   "currentBoardCard": 1
+   "currentBoardCard": 1,
+   "ust": "taze-bitki",
+   "aile": "yesil-ot",
+   "disla": [
+    "TAZE KEKİK"
+   ]
   },
   {
    "id": "bh-04-05",
@@ -2624,7 +2722,12 @@
    "originalSet": 4,
    "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
    "task": "Fotoğrafta sunulan biçimleri birlikte değerlendir.",
-   "currentBoardCard": 2
+   "currentBoardCard": 2,
+   "ust": "taze-bitki",
+   "aile": "yesil-ot",
+   "disla": [
+    "TAZE DEREOTU"
+   ]
   },
   {
    "id": "bh-04-01",
@@ -2645,7 +2748,12 @@
    "originalSet": 4,
    "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
    "task": "Fotoğrafta sunulan biçimleri birlikte değerlendir.",
-   "currentBoardCard": 3
+   "currentBoardCard": 3,
+   "ust": "taze-bitki",
+   "aile": "yesil-ot",
+   "disla": [
+    "TAZE NANE"
+   ]
   },
   {
    "id": "bh-04-08",
@@ -2666,7 +2774,12 @@
    "originalSet": 4,
    "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
    "task": "Fotoğrafta sunulan biçimleri birlikte değerlendir.",
-   "currentBoardCard": 4
+   "currentBoardCard": 4,
+   "ust": "taze-bitki",
+   "aile": "yesil-ot",
+   "disla": [
+    "TAZE MOR REYHAN"
+   ]
   },
   {
    "id": "bh-04-09",
@@ -2687,7 +2800,12 @@
    "originalSet": 4,
    "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
    "task": "Fotoğrafta sunulan biçimleri birlikte değerlendir.",
-   "currentBoardCard": 5
+   "currentBoardCard": 5,
+   "ust": "taze-bitki",
+   "aile": "yesil-ot",
+   "disla": [
+    "TAZE YEŞİL FESLEĞEN"
+   ]
   },
   {
    "id": "bh-04-11",
@@ -2708,7 +2826,12 @@
    "originalSet": 4,
    "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
    "task": "Fotoğrafta sunulan biçimleri birlikte değerlendir.",
-   "currentBoardCard": 6
+   "currentBoardCard": 6,
+   "ust": "taze-bitki",
+   "aile": "yesil-ot",
+   "disla": [
+    "TAZE BİBERİYE"
+   ]
   },
   {
    "id": "bh-04-12",
@@ -2728,7 +2851,9 @@
    "detail": "Yenilebilir deniz yosununun yaprak biçimli ürünüdür. Sarma ve süsleme işlerinde kullanılır; paket etiketi kontrol edilir. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir.",
    "originalSet": 4,
    "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
-   "currentBoardCard": 7
+   "currentBoardCard": 7,
+   "ust": "diger",
+   "aile": "diger"
   },
   {
    "id": "bh-05-01",
@@ -2749,7 +2874,9 @@
    "originalSet": 5,
    "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
    "task": "Fotoğrafta sunulan biçimleri birlikte değerlendir.",
-   "currentBoardCard": 8
+   "currentBoardCard": 8,
+   "ust": "taze-bitki",
+   "aile": "cay-cicek"
   },
   {
    "id": "bh-05-02",
@@ -2769,7 +2896,9 @@
    "detail": "Meyveleri kurutulmuş veya işlenmiş olarak kullanılır. İçecek ve marmelat hazırlanabilir. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir.",
    "originalSet": 5,
    "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
-   "currentBoardCard": 9
+   "currentBoardCard": 9,
+   "ust": "taze-bitki",
+   "aile": "cay-cicek"
   },
   {
    "id": "bh-05-03",
@@ -2789,7 +2918,9 @@
    "detail": "Ihlamurun çiçekleri, yanlarındaki açık renkli ince yapraklarla birlikte kurutulur. Sıcak içecek hazırlamak için kullanılır. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir.",
    "originalSet": 5,
    "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
-   "currentBoardCard": 10
+   "currentBoardCard": 10,
+   "ust": "taze-bitki",
+   "aile": "cay-cicek"
   },
   {
    "id": "bh-05-04",
@@ -2809,7 +2940,9 @@
    "detail": "Tatlılara aroma vermek için kullanılır. Vanilya ve vanilin ürünleri aynı ürün değildir; reçete ve etiket kontrol edilir. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir.",
    "originalSet": 5,
    "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
-   "currentBoardCard": 11
+   "currentBoardCard": 11,
+   "ust": "kuru",
+   "aile": "tatli-baharat"
   },
   {
    "id": "bh-05-05",
@@ -2829,7 +2962,9 @@
    "detail": "İnce iplik biçimli bir baharattır. Pilav ve tatlılara renk ve aroma verir; zerdeçalla aynı ürün değildir. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir.",
    "originalSet": 5,
    "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
-   "currentBoardCard": 12
+   "currentBoardCard": 12,
+   "ust": "kuru",
+   "aile": "tatli-baharat"
   },
   {
    "id": "bh-05-06",
@@ -2849,7 +2984,9 @@
    "detail": "Çiçekleri yoğun aromalıdır. Yalnız gıda kullanımına uygun ürün reçeteye göre kullanılır. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir.",
    "originalSet": 5,
    "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
-   "currentBoardCard": 2
+   "currentBoardCard": 2,
+   "ust": "taze-bitki",
+   "aile": "cay-cicek"
   },
   {
    "id": "bh-05-07",
@@ -2869,7 +3006,9 @@
    "detail": "Kurutulmuş çanak yaprakları içeceklere kırmızı renk ve ekşi tat verir. Gıda kullanımına uygun ürün seçilir. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir.",
    "originalSet": 5,
    "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
-   "currentBoardCard": 3
+   "currentBoardCard": 3,
+   "ust": "taze-bitki",
+   "aile": "cay-cicek"
   },
   {
    "id": "bh-05-08",
@@ -2889,7 +3028,9 @@
    "detail": "Gıda kullanımına uygun çiçekleri içeceklere mavi renk vermek için kullanılır. Her mavi çiçek bu ürün değildir. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir.",
    "originalSet": 5,
    "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
-   "currentBoardCard": 4
+   "currentBoardCard": 4,
+   "ust": "taze-bitki",
+   "aile": "cay-cicek"
   },
   {
    "id": "bh-05-09",
@@ -2909,7 +3050,9 @@
    "detail": "Kurutulmuş çiçekleri kullanılır. İçecek hazırlanabilir; yalnız gıda amacıyla satılan ürünler seçilir. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir.",
    "originalSet": 5,
    "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
-   "currentBoardCard": 5
+   "currentBoardCard": 5,
+   "ust": "taze-bitki",
+   "aile": "cay-cicek"
   },
   {
    "id": "bh-05-10",
@@ -2929,7 +3072,9 @@
    "detail": "Meyan bitkisinin kök parçaları, içeceklere tat ve aroma vermek için kullanılır. Reçetedeki miktara uyulur. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir.",
    "originalSet": 5,
    "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
-   "currentBoardCard": 6
+   "currentBoardCard": 6,
+   "ust": "kuru",
+   "aile": "kok-toz"
   },
   {
    "id": "bh-05-11",
@@ -2949,7 +3094,9 @@
    "detail": "Uzun yapraklı aromatik bir bitkidir. Yemek ve içeceklere limonu andıran aroma vermek için kullanılır. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir.",
    "originalSet": 5,
    "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
-   "currentBoardCard": 7
+   "currentBoardCard": 7,
+   "ust": "taze-bitki",
+   "aile": "yesil-ot"
   },
   {
    "id": "bh-05-12",
@@ -2969,7 +3116,9 @@
    "detail": "Uzun yaprakları aroma vermek için kullanılır. Özellikle tatlı ve pirinçli tariflerde yer alabilir. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir.",
    "originalSet": 5,
    "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
-   "currentBoardCard": 12
+   "currentBoardCard": 12,
+   "ust": "taze-bitki",
+   "aile": "yesil-ot"
   },
   {
    "id": "bh-06-01",
@@ -2989,7 +3138,9 @@
    "detail": "Zerdeçal, bitkinin toprak altı gövdesinden elde edilen bir baharattır. Yemeklere sarı renk ve aroma verir. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir.",
    "originalSet": 6,
    "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
-   "currentBoardCard": 8
+   "currentBoardCard": 8,
+   "ust": "kuru",
+   "aile": "kok-toz"
   },
   {
    "id": "bh-06-02",
@@ -3009,7 +3160,9 @@
    "detail": "Taze veya toz biçiminde kullanılır. Kurabiye, içecek ve çeşitli yemeklere aroma verir. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir.",
    "originalSet": 6,
    "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
-   "currentBoardCard": 9
+   "currentBoardCard": 9,
+   "ust": "kuru",
+   "aile": "kok-toz"
   },
   {
    "id": "bh-06-05",
@@ -3030,7 +3183,9 @@
    "originalSet": 6,
    "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
    "currentBoardCard": 10,
-   "kok": "Görseldeki besinin adı nedir?"
+   "kok": "Görseldeki besinin adı nedir?",
+   "ust": "diger",
+   "aile": "diger"
   },
   {
    "id": "bh-07-03",
@@ -3052,7 +3207,9 @@
    "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
    "task": "Fotoğrafta sunulan biçimleri birlikte değerlendir.",
    "currentBoardCard": 11,
-   "kok": "Görseldeki besinin adı nedir?"
+   "kok": "Görseldeki besinin adı nedir?",
+   "ust": "sebze",
+   "aile": "sebze-sogan"
   },
   {
    "id": "bh-07-04",
@@ -3072,7 +3229,9 @@
    "detail": "Kabuklu meyvesi ve işlenmiş ürünleri tariflerde kullanılır. İçecek ve soslara ekşi tat verebilir. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir.",
    "originalSet": 7,
    "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
-   "currentBoardCard": 12
+   "currentBoardCard": 12,
+   "ust": "kuru",
+   "aile": "kok-toz"
   },
   {
    "id": "bh-08-01",
@@ -3094,7 +3253,9 @@
    "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
    "task": "Fotoğrafta sunulan biçimleri birlikte değerlendir.",
    "currentBoardCard": 2,
-   "kok": "Görseldeki besinin adı nedir?"
+   "kok": "Görseldeki besinin adı nedir?",
+   "ust": "meyve-kuruyemis",
+   "aile": "meyve"
   },
   {
    "id": "bh-08-02",
@@ -3116,7 +3277,9 @@
    "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
    "task": "Fotoğrafta sunulan biçimleri birlikte değerlendir.",
    "currentBoardCard": 3,
-   "kok": "Görseldeki besinin adı nedir?"
+   "kok": "Görseldeki besinin adı nedir?",
+   "ust": "meyve-kuruyemis",
+   "aile": "meyve"
   },
   {
    "id": "bh-08-03",
@@ -3137,7 +3300,9 @@
    "originalSet": 8,
    "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
    "currentBoardCard": 4,
-   "kok": "Görseldeki besinin adı nedir?"
+   "kok": "Görseldeki besinin adı nedir?",
+   "ust": "meyve-kuruyemis",
+   "aile": "meyve"
   },
   {
    "id": "bh-08-04",
@@ -3159,7 +3324,9 @@
    "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
    "task": "Fotoğrafta sunulan biçimleri birlikte değerlendir.",
    "currentBoardCard": 5,
-   "kok": "Görseldeki besinin adı nedir?"
+   "kok": "Görseldeki besinin adı nedir?",
+   "ust": "meyve-kuruyemis",
+   "aile": "meyve"
   },
   {
    "id": "bh-08-05",
@@ -3180,7 +3347,9 @@
    "originalSet": 8,
    "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
    "currentBoardCard": 6,
-   "kok": "Görseldeki besinin adı nedir?"
+   "kok": "Görseldeki besinin adı nedir?",
+   "ust": "meyve-kuruyemis",
+   "aile": "meyve"
   },
   {
    "id": "bh-08-06",
@@ -3200,7 +3369,9 @@
    "detail": "Sert yapılı bir baharattır; rendelenerek kullanılır. Yoğun aroması nedeniyle reçetedeki az miktara uyulur. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir.",
    "originalSet": 8,
    "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
-   "currentBoardCard": 12
+   "currentBoardCard": 12,
+   "ust": "kuru",
+   "aile": "tatli-baharat"
   },
   {
    "id": "bh-08-07",
@@ -3221,7 +3392,9 @@
    "originalSet": 8,
    "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
    "currentBoardCard": 7,
-   "kok": "Görseldeki besinin adı nedir?"
+   "kok": "Görseldeki besinin adı nedir?",
+   "ust": "meyve-kuruyemis",
+   "aile": "meyve"
   },
   {
    "id": "bh-08-08",
@@ -3242,7 +3415,9 @@
    "originalSet": 8,
    "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
    "currentBoardCard": 8,
-   "kok": "Görseldeki besinin adı nedir?"
+   "kok": "Görseldeki besinin adı nedir?",
+   "ust": "meyve-kuruyemis",
+   "aile": "meyve"
   },
   {
    "id": "bh-08-09",
@@ -3263,7 +3438,9 @@
    "originalSet": 8,
    "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
    "currentBoardCard": 9,
-   "kok": "Görseldeki besinin adı nedir?"
+   "kok": "Görseldeki besinin adı nedir?",
+   "ust": "meyve-kuruyemis",
+   "aile": "meyve"
   },
   {
    "id": "bh-08-10",
@@ -3284,7 +3461,9 @@
    "originalSet": 8,
    "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
    "currentBoardCard": 10,
-   "kok": "Görseldeki besinin adı nedir?"
+   "kok": "Görseldeki besinin adı nedir?",
+   "ust": "meyve-kuruyemis",
+   "aile": "meyve"
   },
   {
    "id": "bh-08-11",
@@ -3305,7 +3484,9 @@
    "originalSet": 8,
    "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
    "currentBoardCard": 11,
-   "kok": "Görseldeki besinin adı nedir?"
+   "kok": "Görseldeki besinin adı nedir?",
+   "ust": "meyve-kuruyemis",
+   "aile": "meyve"
   },
   {
    "id": "bh-08-12",
@@ -3326,7 +3507,9 @@
    "originalSet": 8,
    "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
    "currentBoardCard": 12,
-   "kok": "Görseldeki besinin adı nedir?"
+   "kok": "Görseldeki besinin adı nedir?",
+   "ust": "meyve-kuruyemis",
+   "aile": "meyve"
   },
   {
    "id": "bh-09-01",
@@ -3347,7 +3530,9 @@
    "originalSet": 9,
    "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
    "currentBoardCard": 1,
-   "kok": "Görseldeki besinin adı nedir?"
+   "kok": "Görseldeki besinin adı nedir?",
+   "ust": "meyve-kuruyemis",
+   "aile": "kuruyemis"
   },
   {
    "id": "bh-09-02",
@@ -3369,7 +3554,9 @@
    "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
    "task": "Fotoğrafta sunulan biçimleri birlikte değerlendir.",
    "currentBoardCard": 2,
-   "kok": "Görseldeki besinin adı nedir?"
+   "kok": "Görseldeki besinin adı nedir?",
+   "ust": "meyve-kuruyemis",
+   "aile": "kuruyemis"
   },
   {
    "id": "bh-09-03",
@@ -3390,7 +3577,9 @@
    "originalSet": 9,
    "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
    "currentBoardCard": 3,
-   "kok": "Görseldeki besinin adı nedir?"
+   "kok": "Görseldeki besinin adı nedir?",
+   "ust": "meyve-kuruyemis",
+   "aile": "kuruyemis"
   },
   {
    "id": "bh-09-04",
@@ -3411,7 +3600,9 @@
    "originalSet": 9,
    "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
    "currentBoardCard": 4,
-   "kok": "Görseldeki besinin adı nedir?"
+   "kok": "Görseldeki besinin adı nedir?",
+   "ust": "meyve-kuruyemis",
+   "aile": "kuruyemis"
   },
   {
    "id": "bh-09-05",
@@ -3432,7 +3623,9 @@
    "originalSet": 9,
    "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
    "currentBoardCard": 5,
-   "kok": "Görseldeki besinin adı nedir?"
+   "kok": "Görseldeki besinin adı nedir?",
+   "ust": "meyve-kuruyemis",
+   "aile": "kuruyemis"
   },
   {
    "id": "bh-09-06",
@@ -3453,7 +3646,9 @@
    "originalSet": 9,
    "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
    "currentBoardCard": 6,
-   "kok": "Görseldeki besinin adı nedir?"
+   "kok": "Görseldeki besinin adı nedir?",
+   "ust": "meyve-kuruyemis",
+   "aile": "kuruyemis"
   },
   {
    "id": "bh-09-07",
@@ -3474,7 +3669,9 @@
    "originalSet": 9,
    "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
    "currentBoardCard": 7,
-   "kok": "Görseldeki besinin adı nedir?"
+   "kok": "Görseldeki besinin adı nedir?",
+   "ust": "meyve-kuruyemis",
+   "aile": "kuruyemis"
   },
   {
    "id": "bh-09-08",
@@ -3495,7 +3692,9 @@
    "originalSet": 9,
    "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
    "currentBoardCard": 8,
-   "kok": "Görseldeki besinin adı nedir?"
+   "kok": "Görseldeki besinin adı nedir?",
+   "ust": "meyve-kuruyemis",
+   "aile": "kuruyemis"
   },
   {
    "id": "bh-09-09",
@@ -3516,7 +3715,9 @@
    "originalSet": 9,
    "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
    "currentBoardCard": 9,
-   "kok": "Görseldeki besinin adı nedir?"
+   "kok": "Görseldeki besinin adı nedir?",
+   "ust": "meyve-kuruyemis",
+   "aile": "kuruyemis"
   },
   {
    "id": "bh-09-10",
@@ -3537,7 +3738,9 @@
    "originalSet": 9,
    "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
    "currentBoardCard": 10,
-   "kok": "Görseldeki besinin adı nedir?"
+   "kok": "Görseldeki besinin adı nedir?",
+   "ust": "kuru",
+   "aile": "tohum"
   },
   {
    "id": "bh-10-01",
@@ -3557,7 +3760,9 @@
    "detail": "Bütün yaprakları yemeğe aroma verir. Servisten önce yaprak çıkarılır. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir.",
    "originalSet": 10,
    "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
-   "currentBoardCard": 11
+   "currentBoardCard": 11,
+   "ust": "taze-bitki",
+   "aile": "yesil-ot"
   },
   {
    "id": "bh-10-03",
@@ -3578,7 +3783,9 @@
    "originalSet": 10,
    "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
    "currentBoardCard": 12,
-   "kok": "Görseldeki besinin adı nedir?"
+   "kok": "Görseldeki besinin adı nedir?",
+   "ust": "sebze",
+   "aile": "sebze-sogan"
   },
   {
    "id": "bh-10-04",
@@ -3600,7 +3807,12 @@
    "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
    "task": "Fotoğrafta sunulan biçimleri birlikte değerlendir.",
    "currentBoardCard": 1,
-   "kok": "Görseldeki besinin adı nedir?"
+   "kok": "Görseldeki besinin adı nedir?",
+   "ust": "sebze",
+   "aile": "sebze-sogan",
+   "disla": [
+    "KIRMIZI BİBER (TAZE VE KURU)"
+   ]
   },
   {
    "id": "bh-10-05",
@@ -3621,7 +3833,13 @@
    "originalSet": 10,
    "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
    "task": "Fotoğrafta sunulan biçimleri birlikte değerlendir.",
-   "currentBoardCard": 2
+   "currentBoardCard": 2,
+   "ust": "sebze",
+   "aile": "sebze-sogan",
+   "disla": [
+    "KIRMIZI BİBER (BÜTÜN VE İNCE TOZ)",
+    "TAZE YEŞİL BİBER"
+   ]
   },
   {
    "id": "bh-10-06",
@@ -3641,7 +3859,9 @@
    "detail": "Genellikle salamura biçiminde satılan çiçek tomurcuklarıdır. Sos ve yemeklerde kullanılır. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir.",
    "originalSet": 10,
    "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
-   "currentBoardCard": 3
+   "currentBoardCard": 3,
+   "ust": "sebze",
+   "aile": "sebze-sogan"
   },
   {
    "id": "bh-10-07",
@@ -3662,7 +3882,9 @@
    "originalSet": 10,
    "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
    "currentBoardCard": 4,
-   "kok": "Görseldeki besinin adı nedir?"
+   "kok": "Görseldeki besinin adı nedir?",
+   "ust": "sebze",
+   "aile": "sebze-sogan"
   },
   {
    "id": "bh-10-08",
@@ -3683,7 +3905,9 @@
    "detail": "Toprak altı gövdesi (köksapı) taze veya kurutulmuş olarak baharat amacıyla kullanılır. Fotoğrafta bütün ve kesilmiş biçimi gösterilir.",
    "originalSet": 10,
    "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
-   "currentBoardCard": 5
+   "currentBoardCard": 5,
+   "ust": "sebze",
+   "aile": "sebze-sogan"
   },
   {
    "id": "bh-10-09",
@@ -3704,7 +3928,9 @@
    "originalSet": 10,
    "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
    "currentBoardCard": 6,
-   "kok": "Görseldeki besinin adı nedir?"
+   "kok": "Görseldeki besinin adı nedir?",
+   "ust": "sebze",
+   "aile": "sebze-sogan"
   },
   {
    "id": "bh-10-10",
@@ -3724,7 +3950,9 @@
    "detail": "Taze yeşil yaprakları yemeklerde kullanılır. Maydanozla benzer görünebilir; adı öğretmenin sağladığı etiketli örnekle karşılaştırılır. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir.",
    "originalSet": 10,
    "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
-   "currentBoardCard": 7
+   "currentBoardCard": 7,
+   "ust": "taze-bitki",
+   "aile": "yesil-ot"
   },
   {
    "id": "bh-10-11",
@@ -3744,7 +3972,9 @@
    "detail": "Küçük yapraklı bir salata bitkisidir. Salata ve kahvaltılarda kullanılır. Bu çalışma adı tanıma içindir. Gerçek üründe etiket, öğretmenin gösterdiği örnek ve reçete birlikte kontrol edilir.",
    "originalSet": 10,
    "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
-   "currentBoardCard": 8
+   "currentBoardCard": 8,
+   "ust": "taze-bitki",
+   "aile": "yesil-ot"
   },
   {
    "id": "bh-10-12",
@@ -3765,7 +3995,9 @@
    "originalSet": 10,
    "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
    "currentBoardCard": 9,
-   "kok": "Görseldeki besinin adı nedir?"
+   "kok": "Görseldeki besinin adı nedir?",
+   "ust": "sebze",
+   "aile": "sebze-sogan"
   },
   {
    "id": "bh-11-07",
@@ -3786,7 +4018,9 @@
    "originalSet": 11,
    "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
    "currentBoardCard": 10,
-   "kok": "Görseldeki besinin adı nedir?"
+   "kok": "Görseldeki besinin adı nedir?",
+   "ust": "diger",
+   "aile": "diger"
   },
   {
    "id": "bh-11-11",
@@ -3807,7 +4041,9 @@
    "originalSet": 11,
    "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
    "currentBoardCard": 11,
-   "kok": "Görseldeki besinin adı nedir?"
+   "kok": "Görseldeki besinin adı nedir?",
+   "ust": "kuru",
+   "aile": "tatli-baharat"
   },
   {
    "id": "bh-11-12",
@@ -3828,7 +4064,9 @@
    "originalSet": 11,
    "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
    "currentBoardCard": 12,
-   "kok": "Görseldeki besinin adı nedir?"
+   "kok": "Görseldeki besinin adı nedir?",
+   "ust": "diger",
+   "aile": "diger"
   }
  ],
  "words": [],
