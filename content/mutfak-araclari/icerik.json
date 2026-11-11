@@ -4270,9 +4270,7 @@
         "revision": "MEB sınıflandırmasıyla eklenen örnek"
       },
       "set": 2,
-      "disla": [
-        "Şekerlik"
-      ]
+      "disla": []
     },
     {
       "id": "meb-020",
@@ -4984,9 +4982,7 @@
       "detail": "Menajlar arasında yer alır. Şekerlik kapağıyla birlikte kullanılır. Sunumdan önce temizliği ve kapağının yerine oturması kontrol edilir.",
       "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak.",
       "classificationGroup": "Menajlar",
-      "disla": [
-        "Çorba servis potu"
-      ],
+      "disla": [],
       "kok": "Görseldeki şeker sunma kabının adı nedir?"
     },
     {

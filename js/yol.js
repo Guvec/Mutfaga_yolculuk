@@ -137,10 +137,19 @@ function yolTkDogru(item){
 }
 
 /* ---------- Sorular ---------- */
+/* Çeldiriciler sorulan öğeyle aynı aileden seçilir: takımlar konu içinde anlam taşır
+   (ör. 3. takım çatal-bıçak-kaşık, 1. takım tabaklar). Tatlı kaşığı sorulduğunda seçenekler
+   çorba kâsesi değil, aynı takımın araçları olur. Takım yetmezse bölümün öğelerine düşülür. */
+function yolAile(item,disi,gorselIcin){
+ const d=yolVeri();if(!d)return [];
+ return d.matches.filter(x=>x.set===item.set&&x.id!==item.id&&yolKok(x.answer)!==yolKok(item.answer)&&!(disi||[]).includes(x.answer)&&!(gorselIcin&&x.comparison));
+}
 function yolSoru(item,tip,node,tohum,destek){
  const ad=item.answer;
  if(tip==='s1'&&!item.comparison){
-  const havuz=node.items.filter(x=>!x.comparison&&x.id!==item.id&&!(item.disla||[]).includes(x.answer)&&!(x.disla||[]).includes(item.answer));
+  /* Görsel seçenekleri yalnız aynı takımdan gelir. Takımda yeterli görsel yoksa bu öğe için
+     görsel sorusu kurulmaz, ad sorusuna düşülür; karışık aileden görsel gösterilmez. */
+  const havuz=yolAile(item,[],true).filter(x=>!(item.disla||[]).includes(x.answer)&&!(x.disla||[]).includes(ad));
   if(havuz.length>=3){
    const celis=(x,y)=>(x.disla||[]).includes(y.answer)||(y.disla||[]).includes(x.answer),dig=[];for(const x of yolKar(havuz,tohum+item.id+'g')){if(dig.length>=3)break;if(!dig.some(y=>celis(x,y)))dig.push(x);}if(dig.length<3)dig.splice(0,dig.length,...yolKar(havuz,tohum+item.id+'g').slice(0,3));
    const sec=yolKar([item,...dig],tohum+item.id+'G').map(x=>({id:x.id,image:x.image,alt:x.imageAlt||x.answer}));
@@ -150,6 +159,7 @@ function yolSoru(item,tip,node,tohum,destek){
  const n=(tip==='s3'&&!destek)?5:4;
  let dis=[...new Set((item.disla||[]).filter(x=>x&&x!==ad))];
  dis=yolKar(dis,tohum+item.id+'d').slice(0,n-1);
+ if(dis.length<n-1){const aile=[...new Set(yolAile(item,dis).map(x=>x.answer))];dis.push(...yolKar(aile,tohum+item.id+'t').slice(0,n-1-dis.length));}
  if(dis.length<n-1){const diger=[...new Set(node.items.map(x=>x.answer).filter(x=>x&&x!==ad&&!dis.includes(x)&&yolKok(x)!==yolKok(ad)))];dis.push(...yolKar(diger,tohum+item.id+'f').slice(0,n-1-dis.length));}
  const sec=yolKar([ad,...dis],tohum+item.id+'D').map(t=>({id:t,text:t}));
  return {tip:'ad',item,ad,sec,dogru:ad};

@@ -10,7 +10,7 @@ var KONU_GORSEL={
  'bulasik-makinesi-temizligi':{ad:'Bulaşık ve Atık Yönetimi',foto:'assets/tasarim/konu-bulasik.jpg'},
  'beslenme-ilkeleri':{ad:'Beslenme İlkeleri',foto:'assets/tasarim/konu-beslenme.jpg'}
 };
-var ONE_CIKAN=['baharat','mutfak-araclari','kuver','bulasik-makinesi-temizligi'];
+var ONE_CIKAN=['baharat','mutfak-araclari','kuver','bulasik-makinesi-temizligi','beslenme-ilkeleri'];
 var HAZIRLANIYOR=[];
 (function(){
  const root=document.documentElement;

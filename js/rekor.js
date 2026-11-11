@@ -7,7 +7,9 @@ const RK_TERM='2026-2027', RK_VERSION=1;
 const RK_SUBJ={baharat:'bh','mutfak-araclari':'ma','bulasik-makinesi-temizligi':'bl'};
 const RK_MCQ={
  'mutfak-araclari':['Tabaklar, kâseler, bardaklar ve fincanlar','Çatal, bıçak ve kaşıklar','Servis araçları','Pişirme kapları ve tavalar','Hazırlık ve doğrama araçları','Ölçme, süzme, aktarma ve kontrol araçları','Hamur ve tatlı araçları','Pişirme ve ısıtma cihazları','Hazırlık cihazları','Saklama araçları ve artan yemek','Temizlik araçları','Koruyucular','1. Bölüm · Bölüm sonu','2. Bölüm · Bölüm sonu','3. Bölüm · Bölüm sonu'],
- 'bulasik-makinesi-temizligi':['Bulaşık Yıkama ve Atık Yönetimi · Bütün bölümler']
+ 'bulasik-makinesi-temizligi':['Bulaşık Yıkama ve Atık Yönetimi · Bütün bölümler'],
+ 'beslenme-ilkeleri':['Beslenme İlkeleri · Bütün bölümler'],
+ 'baharat':['Baharatlar · Bütün bölümler']
 };
 /* Kurallardaki tablo listesiyle aynı olmalı. İçerikteki soru/kart sayısı tutmazsa o tablo sıralamaya yazmaz. */
 const RK_BOARDS=(()=>{const a=[];
@@ -22,9 +24,11 @@ const RK_BOARDS=(()=>{const a=[];
  a.push({id:'oy-arena',subject:'oyun',kind:'win',total:999,label:'Er Meydanı (önceki sürüm) · kazanılan tur'});
  a.push({id:'oy-arena2',subject:'oyun',kind:'win',total:999,label:'Er Meydanı · kazanılan oyun'});
  a.push({id:'bl-s1',subject:'bulasik-makinesi-temizligi',kind:'mcq',group:RK_MCQ['bulasik-makinesi-temizligi'][0],total:65,label:'Bütün bölümler · Sorular'});
+ a.push({id:'bs-s1',subject:'beslenme-ilkeleri',kind:'mcq',group:RK_MCQ['beslenme-ilkeleri'][0],total:106,label:'Bütün bölümler · Sorular'});
+ a.push({id:'bh-s1',subject:'baharat',kind:'mcq',group:RK_MCQ['baharat'][0],total:60,label:'Bütün bölümler · Sorular'});
  a.forEach(b=>{if(/^(ma|bh|bl)-e\d+$/.test(b.id))b.gizli=true;}); /* 12'li eşleştirme tabloları: bu üç konuda 12'li eşleştirme kalktı, tablolar sıralamada gösterilmez */
  return a;})();
-const RK_SUBJECT_NAMES={baharat:'Baharatlar','mutfak-araclari':'Mutfak Araçları',kuver:'Kuver','bulasik-makinesi-temizligi':'Bulaşık Yıkama ve Atık Yönetimi',oyun:'Kapışma ve Er Meydanı'};
+const RK_SUBJECT_NAMES={baharat:'Baharatlar','mutfak-araclari':'Mutfak Araçları',kuver:'Kuver','bulasik-makinesi-temizligi':'Bulaşık Yıkama ve Atık Yönetimi','beslenme-ilkeleri':'Beslenme İlkeleri',oyun:'Kapışma ve Er Meydanı'};
 const RK={cal:null,backend:null,busy:false,view:{board:null,period:'hafta',rows:null,state:'idle',err:''},msg:null};
 
 /* ---------- Yardımcılar ---------- */

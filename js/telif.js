@@ -17,7 +17,7 @@ if(typeof EFEKT!=='undefined'&&EFEKT.cal){const ESKI=EFEKT.cal;EFEKT.cal=functio
 sakinUygula();
 
 /* Uygulama sürümü: her yayında elle artırılır (sw.js önbellek adıyla birlikte). Güncelle düğmesinde ve Hakkında'da görünür. */
-const APP_SURUM='3.6.0';
+const APP_SURUM='3.7.0';
 function hakkindaAc(){
  modalFocus=document.activeElement;sesSus();st.modalOpen=true;pauseT();const ov=document.getElementById('ov');ov.className='on';
  ov.innerHTML='<div class="modal" role="dialog" aria-modal="true" aria-label="Hakkında"><h2>Hakkında</h2><p><b>'+esc(TELIF.ad)+'</b></p><p><b>Uygulama sürümü: v'+APP_SURUM+'</b></p><p class="sub">'+esc(VERSION)+'</p>'+telifHTML()+'<div class="row"><button class="btn pri" onclick="closeModal()">Kapat</button></div></div>';

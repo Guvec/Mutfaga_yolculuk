@@ -11,7 +11,7 @@ const SUBJECTS = [
 const CONTENT = Object.create(null);
 const OLD_RENDER = render, OLD_NEWQ = newQ, OLD_START = startSession, OLD_RESOLVE = resolve;
 const OLD_QUIZ = quizHtml, OLD_ITEM = itemImg;
-VERSION='Sürüm · 11.11.2026 · Eşleştirme düzeni ve bilgi kutuları'; // Her yüklemede tarih güncellenir.
+VERSION='Sürüm · 11.11.2026 · Baharat soruları, beslenme sıralaması'; // Her yüklemede tarih güncellenir.
 st.subject='kuver'; st.practice='learn';
 LEVELS={
   1:{name:'Basit Kuver', items:['yemek_catali','yemek_bicagi','pecete','su_bardagi']},
@@ -190,7 +190,7 @@ render=function(){
     if(st.subject==='baharat')h+=menuButton('Ürünleri açıklamalarıyla tanı','Sıvılar, tozlar ve diğer ürünler. Bu bölüm puanlanmaz.',"go('spicelearn')");
     if(st.subject==='mutfak-araclari')h+=menuButton('Servis takımlarını tanı','Tabakları, metal takımları ve servis kaplarını gruplarıyla öğren.',"go('classification')");
     // 12'li Eşleştirme menüden kaldırıldı: görselli konular 6'lı Yolculuğum akışıyla çalışılır (yol.js). Yeni bir görselli konu eklenirse YOL_KONU'ya eklenir.
-    if(st.subject!=='baharat'&&st.subject!=='kuver')h+=menuButton('Çoktan Seçmeli Sorular','Bu konuya ait sorular.',"pickContent('mcq')");h+='</div></div>';
+    if(st.subject!=='kuver')h+=menuButton('Çoktan Seçmeli Sorular','Bu konuya ait sorular.',"pickContent('mcq')");h+='</div></div>';
   }else if(st.screen==='level')h=topBar('Kuveri Kur')+'<div class="wrap"><h1>Kuver seç</h1><div class="list">'+menuButton('Basit Kuver','4 parça · Çatal, bıçak, peçete ve su bardağı. Kuver tabağı hazır.',"pickLevel(1)")+menuButton('Tabldot Kuver','6 parça · Çorba ve tatlı kaşığı da var. Kuver tabağı hazır.',"pickLevel(3)")+'</div></div>';
   else if(st.screen==='mode')h=topBar('Çalışma biçimi')+'<div class="wrap"><h1>Nasıl çalışalım?</h1><div class="list">'+menuButton('Öğreniyorum','İpucu ve ikinci deneme ile çalış.',"choosePractice('learn')")+menuButton('Uyguluyorum','Her soruyu bir kez yanıtla. Sonra açıklamayı incele.',"choosePractice('check')")+'</div><p class="note">Her oturumda 1 mola hakkın var.</p></div>';
   else if(st.screen==='content'){

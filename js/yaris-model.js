@@ -4,7 +4,7 @@
    Hiçbir şey ağa ya da ekrana dokunmaz; Node'da da çalışır (tests/yaris-model-tests.cjs). */
 (function(root){
  'use strict';
- const labels={baharat:'Baharatlar','mutfak-araclari':'Mutfak Araçları','bulasik-makinesi-temizligi':'Bulaşık Yıkama ve Atık Yönetimi',kuver:'Kuver'};
+ const labels={baharat:'Baharatlar','mutfak-araclari':'Mutfak Araçları','bulasik-makinesi-temizligi':'Bulaşık Yıkama ve Atık Yönetimi',kuver:'Kuver','beslenme-ilkeleri':'Beslenme İlkeleri'};
  const LIMITS={race:{min:2,max:8},duel:{min:2,max:2},arena:{min:3,max:4}};
  const SEC_CHOICES=[15,20,30],N_DEFAULT=10,MATCH_CHOICES=[{n:10,name:'Kısa maç',note:'10 soru'},{n:15,name:'Orta maç',note:'15 soru'},{n:20,name:'Uzun maç',note:'20 soru'}];
  function seeded(seed){let a=seed>>>0;return ()=>{a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return ((t^t>>>14)>>>0)/4294967296;};}
