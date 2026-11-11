@@ -8,10 +8,10 @@ const r=await p.evaluate(()=>{
  const prev=[{pid:'a',correct:19},{pid:'b',correct:10},{pid:'d',correct:5}];
  const g=haftaMostImproved(now,prev),top=haftaSorted(now)[0].name,none=haftaMostImproved(now,[]);
  return {sum,bl,ver:HAFTA_AYAR.contentVersion,gain:g&&g.row.name,gv:g&&g.gain,top,none,sync:typeof rutbeSyncRows};});
-ok('toplam 25',r.sum===25);ok('Bulaşık 3',r.bl===3);ok('sürüm hafta-2',r.ver==='hafta-2');
+ok('toplam 100',r.sum===100);ok('Bulaşık 14',r.bl===14);ok('sürüm hafta-5',r.ver==='hafta-5');
 ok('en çok gelişen Ece +8',r.gain==='Ece'&&r.gv===8);ok('şampiyon Ali',r.top==='Ali');ok('önceki hafta yoksa gelişen yok',r.none===null);ok('rütbe senkron fonksiyonu',r.sync==='function');
 await p.evaluate(()=>{go('home')});await p.waitForTimeout(800);
-ok('ana sayfa kartı',await p.evaluate(()=>!!document.querySelector('.hafta-kart')));
+ok('hafta kartı üretici',await p.evaluate(()=>haftaHomeHTML().includes('hafta-kart')));
 await p.evaluate(()=>{st.screen='giris';render();});
 ok('giriş ekranında paylaş/güncelle',await p.evaluate(()=>document.querySelectorAll('.ad-giris button').length===2||!!document.querySelector('.ad-paylas')));
 await b.close();global.__f=fail;})();

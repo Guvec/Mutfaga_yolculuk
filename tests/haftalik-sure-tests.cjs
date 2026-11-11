@@ -1,7 +1,7 @@
 /* Haftalık yarışma: ileri akan çalışma süresi, eşit doğruda kısa süre sıralaması, kural öncesi geri dönüş. Sahte rekor arka ucu kullanır. */
 const {chromium}=require('playwright'),http=require('http'),fs=require('fs'),path=require('path'),assert=require('assert');
 (async()=>{
- const root=path.resolve(__dirname,'..'),types={'.html':'text/html','.js':'text/javascript','.css':'text/css','.json':'application/json','.png':'image/png','.jpg':'image/jpeg','.mp3':'audio/mpeg'};
+ const root=path.resolve(__dirname,'..'),types={'.svg':'image/svg+xml','.webp':'image/webp','.html':'text/html','.js':'text/javascript','.css':'text/css','.json':'application/json','.png':'image/png','.jpg':'image/jpeg','.mp3':'audio/mpeg'};
  const srv=http.createServer((q,r)=>{let u=decodeURIComponent(new URL(q.url,'http://x').pathname);if(u==='/')u='/index.html';const f=path.join(root,u);fs.readFile(f,(e,b)=>{if(e){r.statusCode=404;return r.end();}r.setHeader('Content-Type',types[path.extname(f)]||'application/octet-stream');r.end(b);});});
  await new Promise(r=>srv.listen(0,'127.0.0.1',r));
  const br=await chromium.launch({args:['--no-sandbox']}),ctx=await br.newContext({viewport:{width:390,height:800},serviceWorkers:'block'}),p=await ctx.newPage();
@@ -24,7 +24,7 @@ const {chromium}=require('playwright'),http=require('http'),fs=require('fs'),pat
  await p.evaluate(()=>haftaStart());await p.waitForFunction(()=>st.screen==='haftaplay');
  const ms=()=>p.evaluate(()=>HAFTA.ms);
  await p.waitForTimeout(1300);const t1=await ms();assert(t1>=900&&t1<=1700,'t1='+t1);ok('Süre ileri akar ('+t1+' ms)');
- assert.match(await p.textContent('#haftaSure'),/^\d\d:\d\d$/);assert.ok(/Çalışma süresi/.test(await p.textContent('#app')));ok('Ekranda "Çalışma süresi" mm:ss görünür');
+ assert.match(await p.textContent('#haftaSure'),/^\d\d:\d\d$/);assert.ok(/⏳/.test(await p.textContent('#app')));ok('Ekranda ⏳ ve mm:ss süre görünür');
  await p.evaluate(()=>{HAFTA.paused=true;});await p.waitForTimeout(1200);const t2=await ms();assert(t2-t1<400,'mola '+(t2-t1));await p.evaluate(()=>{HAFTA.paused=false;HAFTA_T=performance.now();});ok('Mola sayılmaz');
  await p.evaluate(()=>{Object.defineProperty(document,'visibilityState',{configurable:true,get:()=>'hidden'});document.dispatchEvent(new Event('visibilitychange'));});const t3=await ms();await p.waitForTimeout(1200);const t4=await ms();assert(t4-t3<400,'gizli '+(t4-t3));
  await p.evaluate(()=>{Object.defineProperty(document,'visibilityState',{configurable:true,get:()=>'visible'});document.dispatchEvent(new Event('visibilitychange'));});ok('Gizli sekme sayılmaz');
@@ -38,14 +38,14 @@ const {chromium}=require('playwright'),http=require('http'),fs=require('fs'),pat
  await p.evaluate(async()=>{const idx=q=>q.choices.findIndex(c=>c.id===q.correct);HAFTA.ms=65000;while(!HAFTA.done){haftaAnswer(idx(HAFTA.qs[HAFTA.k]));haftaNext();}});
  await p.waitForFunction(()=>rkQueue().length===0,null,{timeout:5000});
  let sent=await p.evaluate(()=>REKOR_FAKE.sent);const row=sent[sent.length-1].row;
- assert.strictEqual(row.correct,25);assert.ok(Number.isInteger(row.dur)&&row.dur>=65&&row.dur<=70,'dur='+row.dur);assert.strictEqual(row.game,'haftalik');ok('Sıralamalı denemede satıra tamsayı süre (dur='+row.dur+' sn) yazılır');
- const over=await p.evaluate(()=>document.getElementById('app').innerText);assert.ok(/25 \/ 25 doğru/.test(over)&&/Çalışma süresi: 01:0\d/.test(over)&&/eşit doğru sayılarında/.test(over));ok('Sonuç ekranı doğru + çalışma süresi');
- const best=await p.evaluate(()=>{const m=ls('haftalik',{})[haftaPid()];return {b:m.best[rkWeekNo()],d:m.bestDur[rkWeekNo()]};});assert.strictEqual(best.b,25);assert.ok(best.d>=65);ok('Yerel en iyi: doğru ve süre birlikte tutulur');
+ assert.strictEqual(row.correct,100);assert.ok(Number.isInteger(row.dur)&&row.dur>=65&&row.dur<=70,'dur='+row.dur);assert.strictEqual(row.game,'haftalik');ok('Sıralamalı denemede satıra tamsayı süre (dur='+row.dur+' sn) yazılır');
+ const over=await p.evaluate(()=>document.getElementById('app').innerText);assert.ok(/100 doğru/.test(over)&&/Çalışma süresi: 01:0\d/.test(over)&&/eşit doğru sayılarında/.test(over));ok('Sonuç ekranı doğru + çalışma süresi');
+ const best=await p.evaluate(()=>{const m=ls('haftalik',{})[haftaPid()];return {b:m.best[rkWeekNo()],d:m.bestDur[rkWeekNo()]};});assert.strictEqual(best.b,100);assert.ok(best.d>=65);ok('Yerel en iyi: doğru ve süre birlikte tutulur');
 
  // 4) Kural henüz yayınlanmamışsa (dur reddedilir) süresiz eski biçime inilir, sonuç kaybolmaz
  await p.evaluate(async()=>{REKOR_FAKE.sent.length=0;REKOR_FAKE.mode='old';await haftaStart();const idx=q=>q.choices.findIndex(c=>c.id===q.correct);HAFTA.ms=70000;while(!HAFTA.done){haftaAnswer(idx(HAFTA.qs[HAFTA.k]));haftaNext();}});
  await p.waitForFunction(()=>rkQueue().length===0,null,{timeout:5000});
- sent=await p.evaluate(()=>REKOR_FAKE.sent);const last=sent[sent.length-1].row;assert.ok(!('dur' in last)&&last.correct===25);assert.ok(sent.some(x=>'dur' in x.row));ok('Eski kuralda dur reddedilince süresiz yazılır ('+sent.length+' deneme)');
+ sent=await p.evaluate(()=>REKOR_FAKE.sent);const last=sent[sent.length-1].row;assert.ok(!('dur' in last)&&last.correct===100);assert.ok(sent.some(x=>'dur' in x.row));ok('Eski kuralda dur reddedilince süresiz yazılır ('+sent.length+' deneme)');
 
  // 5) 86400 sn üstü süre kırpılmaz, kaydedilmez ve açıkça söylenir
  await p.evaluate(async()=>{REKOR_FAKE.sent.length=0;REKOR_FAKE.mode='ok';await haftaStart();const idx=q=>q.choices.findIndex(c=>c.id===q.correct);HAFTA.ms=90000*1000;while(!HAFTA.done){haftaAnswer(idx(HAFTA.qs[HAFTA.k]));haftaNext();}});
@@ -53,7 +53,7 @@ const {chromium}=require('playwright'),http=require('http'),fs=require('fs'),pat
  sent=await p.evaluate(()=>REKOR_FAKE.sent);assert.ok(sent.length&&!('dur' in sent[sent.length-1].row));assert.ok(/Süre kaydedilemedi/.test(await p.evaluate(()=>document.getElementById('app').innerText)));ok('86400 sn üstü süre kırpılmaz; kaydedilmez ve ekranda söylenir');
 
  // 6) Menü metni
- await p.evaluate(()=>{haftaOpen();});const menu=await p.evaluate(()=>document.getElementById('app').innerText);assert.ok(/Süre sınırı yoktur\. Doğru sayısı eşitse daha kısa sürede bitiren üstte sayılır\./.test(menu)&&!/hız bonusu/.test(menu));ok('Menü metni güncel');
+ await p.evaluate(()=>{haftaOpen();});const menu=await p.evaluate(()=>document.getElementById('app').innerText);assert.ok(/sınır yoktur\..*doğru sayısı eşitse daha kısa sürede bitiren üstte sayılır\./.test(menu)&&!/hız bonusu/.test(menu));ok('Menü metni güncel');
  assert.deepStrictEqual(errs,[]);ok('Sayfa hatası yok');
  console.log('Toplam '+n+' kontrol geçti.');await br.close();srv.close();
 })().catch(e=>{console.error('FAIL',e&&e.stack||e);process.exit(1);});

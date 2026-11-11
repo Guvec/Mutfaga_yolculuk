@@ -15,7 +15,7 @@ const {chromium}=require('playwright'),http=require('http'),fs=require('fs'),pat
   await setup('check');const nCheck=await page.locator('.card-task').count();const desc=await page.locator('[aria-describedby^="task-"]').count();
   assert(withTask>0&&nLearn===withTask,'Öğreniyorum: kullanım bilgisi görünmeli');assert.equal(nCheck,0);assert.equal(desc,0);ok('Kullanım bilgisi yalnız Öğreniyorum\'da ('+nLearn+' kart); Uyguluyorum\'da yok');
   // Geri düğmesi görünür
-  assert(await page.locator('.top .back').first().isVisible());ok('Oyun ekranında görünür "← Geri" var');
+  await page.locator('.top .back').first().waitFor({state:'visible',timeout:5000});assert(await page.locator('.top .back').first().isVisible());ok('Oyun ekranında görünür "← Geri" var');
   // Yanıt yok → doğrudan geri
   await page.locator('.top .back').first().click();await page.waitForFunction(()=>st.screen==='boardmode');assert.equal(await page.locator('#ov.on').count(),0);ok('Yanıt yokken Geri doğrudan çalışma biçimi ekranına döner');
   await page.locator('.top .back').first().click();await page.waitForFunction(()=>st.screen==='content');ok('Çalışma biçimi → takım listesi');
