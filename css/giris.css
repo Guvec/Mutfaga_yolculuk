@@ -89,6 +89,9 @@ html[data-theme=yuksek] .dost-studio { --ds-bg:var(--bg); --ds-paper:var(--surfa
   .dost-tabs { grid-template-columns:repeat(4,minmax(0,1fr)); }
   .dost-foods { grid-template-columns:repeat(6,minmax(0,1fr)); }
   .dost-stage > img,.dost-preview > img { object-position:50% 16%; }
+  /* Geniş ekranda kare dost görseli kırpılmaz: kutu kareye yakın, görsel tam görünür */
+  .dost-stage,.dost-preview { width:min(100%,clamp(158px,40svh,420px)); margin-inline:auto; aspect-ratio:1; height:auto; }
+  .dost-stage > img,.dost-preview > img { object-fit:contain; object-position:center; }
 }
 .gs-strip { text-align:right; padding:2px 14px; font-size:12px; font-weight:bold; color:#087f79; }
 html[data-theme=dark] .gs-strip { color:#9fd8d2; }
