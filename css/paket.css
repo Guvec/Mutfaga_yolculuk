@@ -28,4 +28,3 @@ html[data-sakin="1"] *,html[data-sakin="1"] *::before,html[data-sakin="1"] *::af
 
 /* Paylaş / Güncelle: üst ayar satırında diğer düğmelerle aynı görünüm. */
 .design-tools .ad-paylas,.corner-controls .ad-paylas{font:inherit;font-weight:700;font-size:.9rem;min-height:44px;padding:.4rem .9rem;border:2px solid var(--brand,#0b6b5e);border-radius:14px;background:var(--surface,#fff);color:var(--brand,#0b6b5e);cursor:pointer}
-@media (min-width:900px){.hafta-kart{max-width:440px}}

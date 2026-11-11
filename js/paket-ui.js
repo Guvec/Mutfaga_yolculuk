@@ -9,17 +9,6 @@ function rkHomeHTML(){const pid=!st.guest&&st.prof?rkPid(st.prof,true):null,mine
 function haftaRowsOf(week){const key=rkInlineKey('haftalik','hafta',week),e=RK_INLINE.get(key);if(!e){RK_INLINE.set(key,{state:'loading'});rkInlineLoad('haftalik','hafta',week);return null;}return e.state==='ready'?e.rows:null;}
 function haftaSorted(rows){return rows.slice().sort((a,b)=>rkBetter(a,b)?-1:rkBetter(b,a)?1:String(a.name).localeCompare(String(b.name),'tr'));}
 function haftaMostImproved(now,prev){if(!now||!prev||!prev.length)return null;const old=Object.fromEntries(prev.map(r=>[r.pid,r.correct]));let best=null;haftaSorted(now).forEach(r=>{if(!(r.pid in old))return;const g=r.correct-old[r.pid];if(g>0&&(!best||g>best.gain))best={row:r,gain:g};});return best;}
-function haftaHomeHTML(){
- const pid=!st.guest&&st.prof?rkPid(st.prof,true):null,week=rkWeekNo(),mine=pid?(haftaState()[pid]||{}):{},used=(mine.attempts||{})[week]||0,left=Math.max(0,HAFTA_AYAR.attempts-used);
- const now=haftaRowsOf(week),prev=haftaRowsOf(week-1);
- let h='<section class="card hafta-kart" aria-labelledby="haftaKartBaslik"><h2 id="haftaKartBaslik">Bu haftanın yarışması</h2><p>Herkes aynı 25 soruyu çözer. Haftada '+HAFTA_AYAR.attempts+' sıralamalı deneme hakkın var.</p>';
- if(pid){const rank=now?rkRank(now,pid):null,ri=rutbeState(pid),nx=RUTBE_AYAR.ranks[(ri.rank||1)];
-  h+='<p><b>Kalan hakkın: '+left+' / '+HAFTA_AYAR.attempts+'</b>'+(rank?' · Sıran: '+rank.rank+'.':now?' · Bu hafta henüz sonucun yok.':'')+'</p>'+'<p>'+rutbeLabel(ri.rank||1)+(nx?' · Sonraki rütbe için '+Math.max(0,nx.mp-(ri.mp||0))+' puan':'')+'</p>';
- }else h+='<p>Karakterini seçersen sonucun sıralamaya yazılır. Misafir olarak antrenman yapabilirsin.</p>';
- if(now&&now.length){const top=haftaSorted(now)[0];h+='<p>Haftanın şampiyonu: <b>'+esc(top.name)+'</b> '+rutbeLabel(top.rank)+' · '+top.correct+' / 25</p>';}
- const gi=haftaMostImproved(now,prev);if(gi)h+='<p>En çok gelişen: <b>'+esc(gi.row.name)+'</b> · geçen haftaya göre +'+gi.gain+' doğru</p>';
- return h+'<button class="btn pri" onclick="haftaOpen()">'+(left>0&&pid?'Yarışmaya başla':'Yarışmayı aç')+'</button></section>';
-}
 const PAKET_RENDER=render,PAKET_BACK=back;
 render=function(){
  const app=document.getElementById('app');if(!app)return;
