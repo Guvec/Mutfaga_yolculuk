@@ -12,7 +12,12 @@ var EFEKT=(function(){
   win:[[523.25,0,.15],[659.25,.15,.15],[783.99,.3,.15],[1046.5,.45,.5]],
   kayip:[[392,0,.2],[329.63,.2,.35]],
   bera:[[523.25,0,.2],[523.25,.28,.3]],
-  dogru:[[1760,0,.55],[2637,0,.4],[3520,0,.22]],
+  dogru:[[1568,0,.9,'sine',1],[3146,0,.6,'sine',.5],[4328,0,.35,'sine',.3],[8467,0,.15,'sine',.12]],
+  kuverTamam:[[1568,0,.7,'sine',1],[3146,0,.45,'sine',.4],[1760,.5,.22,'sine',.7],[1760,.72,.22,'sine',.7],[1760,.94,.5,'sine',.7]],
+  tirr:[[2200,0,.03],[1800,.05,.03],[2200,.1,.03],[1800,.15,.03],[2200,.2,.03],[1800,.25,.03],[2200,.3,.03],[1800,.35,.03],[2200,.4,.03],[1800,.45,.03]],
+  bilen:[[4200,0,.05,'sawtooth',.5],[3000,.05,.06,'sawtooth',.5],[4400,.2,.05,'sawtooth',.5],[3100,.25,.08,'sawtooth',.5],[1800,.34,.3,'sine',.5]],
+  can:[[1046.5,0,.9,'sine',1],[1568,0,.6,'sine',.5],[2093,0,.4,'sine',.3]],
+  tok:[[185,0,.14,'sine',1]],
   tak:[[2600,0,.025],[1300,.005,.05],[650,.03,.08]],
   rutbe:[[392,0,.12],[523.25,.12,.12],[659.25,.24,.12],[783.99,.36,.14],[1046.5,.5,.3],[1760,.68,.6],[2637,.68,.4]],
   yanlis:[[311.13,0,.16],[261.63,.16,.3]],
@@ -21,7 +26,8 @@ var EFEKT=(function(){
   seri:[[659.25,0,.09],[783.99,.09,.09],[987.77,.18,.09],[1318.5,.27,.35]],
   tik:[[1320,0,.03]],
   rekor:[[523.25,0,.12],[659.25,.12,.12],[783.99,.24,.12],[1046.5,.36,.14],[783.99,.5,.1],[1046.5,.6,.1],[1318.5,.7,.6]]
- },DUZEY={kilic:0.16,win:0.3,tur:0.26,kayip:0.2,bera:0.2,dogru:0.2,tak:0.24,rutbe:0.28,yanlis:0.18,vurus:0.28,can:0.2,seri:0.27,tik:0.12,rekor:0.3},ANAHTAR='mesleki-efekt';
+ },DUZEY={kilic:0.16,win:0.3,tur:0.26,kayip:0.2,bera:0.2,dogru:0.2,kuverTamam:0.2,tirr:0.16,bilen:0.12,can:0.18,tok:0.22,tak:0.24,rutbe:0.28,yanlis:0.18,vurus:0.28,can:0.2,seri:0.27,tik:0.12,rekor:0.3},ANAHTAR='mesleki-efekt';
+ var seri=0,sonDogru=0;
  var tercih='acik',AC=null;try{tercih=localStorage.getItem(ANAHTAR)==='kapali'?'kapali':'acik';}catch(e){}
  function acikMi(){return tercih==='acik';}
  function ayarla(v){tercih=v?'acik':'kapali';try{localStorage.setItem(ANAHTAR,tercih);}catch(e){}}
@@ -53,15 +59,17 @@ var EFEKT=(function(){
   if(ad==='alkis')return acikMi()?alkis():false;
   if(!acikMi()||!NOTA[ad])return false;
   var c=baglam();if(!c)return false;
-  var sessiz=ad==='tik',bitti=false,son=function(){if(bitti)return;bitti=true;if(!sessiz)muzik('efektBitti');};
+  var sessiz=ad==='tik'||ad==='tok'||ad==='tak',bitti=false,son=function(){if(bitti)return;bitti=true;if(!sessiz)muzik('efektBitti');};
   try{
    if(c.state==='suspended'&&c.resume)c.resume();
    if(!sessiz)muzik('efektIcinDuraklat');
-   var t0=c.currentTime+0.03,en=0;
+   var t0=c.currentTime+0.03,en=0,m=1;
+   if(ad==='dogru'){var simdi=Date.now();if(simdi-sonDogru>45000)seri=0;seri=Math.min(seri+1,5);sonDogru=simdi;m=Math.pow(2,(seri-1)*2/12);}
+   else if(ad==='yanlis'||ad==='tirr'||ad==='tok')seri=0;
    NOTA[ad].forEach(function(n){
     var o=c.createOscillator(),g=c.createGain(),b=t0+n[1],e=b+n[2];
-    o.type='triangle';o.frequency.value=n[0];
-    g.gain.setValueAtTime(0.0001,b);g.gain.exponentialRampToValueAtTime(DUZEY[ad],b+0.02);g.gain.exponentialRampToValueAtTime(0.0001,e);
+    o.type=n[3]||'triangle';o.frequency.value=n[0]*m;
+    g.gain.setValueAtTime(0.0001,b);g.gain.exponentialRampToValueAtTime(DUZEY[ad]*(n[4]||1),b+0.02);g.gain.exponentialRampToValueAtTime(0.0001,e);
     o.connect(g);g.connect(c.destination);o.start(b);o.stop(e+0.05);
     if(n[1]+n[2]>en)en=n[1]+n[2];
    });
@@ -75,6 +83,8 @@ var EFEKT=(function(){
 /* Süre sayacı: son 5 saniyede her saniye hafif tik (müziği durdurmaz). */
 var EFEKT_SN=-1;
 function efektSaniye(left){try{var sn=Math.ceil(left/1000);if(sn!==EFEKT_SN){EFEKT_SN=sn;if(sn>=1&&sn<=5&&!(typeof SES!=='undefined'&&SES.acik)&&typeof EFEKT!=='undefined')EFEKT.cal('tik');}}catch(e){}}
+/* Soru serisi bitince: doğru oranı en az %80 ise servis zili ve üç ting. */
+function efektSeriBitti(){try{var s=st.sess;if(!s||s.efektSeri)return;s.efektSeri=true;var n=(s.ok||0)+(s.fix||0)+(s.bad||0);if(n>=5&&(s.ok||0)/n>=0.8&&!(typeof SES!=='undefined'&&SES.acik))EFEKT.cal('kuverTamam');}catch(e){}}
 function efektAcKapa(){EFEKT.ayarla(!EFEKT.acikMi());document.querySelectorAll('.efekt-ac').forEach(function(b){b.textContent='Efekt sesleri: '+(EFEKT.acikMi()?'Açık':'Kapalı');b.setAttribute('aria-pressed',String(EFEKT.acikMi()));});}
 function efektDugme(){if(!EFEKT.var())return '';return '<button type="button" class="btn sm efekt-ac" aria-pressed="'+EFEKT.acikMi()+'" onclick="efektAcKapa()">Efekt sesleri: '+(EFEKT.acikMi()?'Açık':'Kapalı')+'</button>';}
 

@@ -19,7 +19,7 @@ function arStart(){
  for(let n=remote.length+1;n<=r.length;n++){const part=r.slice(0,n),ps=arStats(part);yrSend(arRow(part,ps.bad>=arErrors()||n>=AR.total,false));}
  if(AR.over){AR.ph='over';st.screen='aover';render();arSync();return;}
  if(arStats(r).bad>=arErrors()||r.length>=AR.total){arEnd();return;}
- if(typeof EFEKT!=='undefined')EFEKT.cal('kilic');
+ if(typeof EFEKT!=='undefined')EFEKT.cal('bilen');
  rkCountLeaders(YR.room);st.screen='aintro';YR.count=3;render();
  if(YR.cd)clearInterval(YR.cd);
  YR.cd=setInterval(()=>{YR.count--;if(YR.count<=0){clearInterval(YR.cd);YR.cd=null;if(st.screen==='aintro'&&AR)arRound(AR.myR.length,cache);return;}if(st.screen==='aintro')render();},1000);
@@ -52,7 +52,7 @@ function arAns(i){
 function arMine(v,why){
  if(!AR||AR.over||AR.ph!=='q')return;
  if(YR.tm){clearInterval(YR.tm);YR.tm=null;}AR.ph='fb';AR.why=why;AR.hizli=hizliTebrik(AR,v>0,Math.abs(v));AR.myR.push(v);arCache();
- if(typeof EFEKT!=='undefined')EFEKT.cal(v>0?'dogru':'yanlis');
+ if(typeof EFEKT!=='undefined')EFEKT.cal(why==='time'?'tirr':v>0?'dogru':'yanlis');
  const s=arStats(AR.myR);if(s.bad>=arErrors()||s.n>=AR.total){arEnd();return;}
  arWrite();render();const a=AR;a.to=setTimeout(()=>{if(AR===a&&a.ph==='fb'&&!a.over)arNext();},v>0?(a.hizli?2200:350):1400);
 }

@@ -217,7 +217,7 @@ function yrRaceAnswer(i){
  if(raw>YR.room.lim*1000)i=-1;/* süre dolduktan sonra gelen tıklama sayılmaz */
  g.ph='fb';g.pick=i;g.ms=ms;g.right=i>=0&&q.choices[i].id===q.correct;g.hizli=hizliTebrik(g,g.right,ms);
  (g.log=g.log||[]).push({ok:g.right,ms});
- if(typeof EFEKT!=='undefined')EFEKT.cal(g.right?'dogru':'yanlis');
+ if(typeof EFEKT!=='undefined')EFEKT.cal(g.right?'dogru':i<0?'tirr':'yanlis');
  if(g.right)g.ok++;else g.bad++;g.tt+=ms;
  if(YR.tm){clearInterval(YR.tm);YR.tm=null;}
  yrRaceWrite(false);render();
@@ -318,6 +318,7 @@ function duAns(i){
 function duTheirs(){return (duOppR()||[]).slice();}
 function duMine(v,why){
  if(!DU||DU.ph!=='q')return;
+ if(why==='time'&&typeof EFEKT!=='undefined')EFEKT.cal('tirr');
  DU.ph='wait';DU.why=why;DU.hizli=hizliTebrik(DU,v>0,Math.abs(v));if(YR.tm){clearInterval(YR.tm);YR.tm=null;}
  DU.myR[DU.k]=Math.round(v);duWrite();render();duSync();
 }

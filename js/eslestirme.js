@@ -42,8 +42,8 @@ function tryPair(id,name){
  if(st.practice==='check'&&b.pair[id]===name){b.sel=null;b.selName=null;st.lastRes=null;render();return;}
  b.sel=null;b.selName=null;const at=Math.round(elapsed()*10)/10;(b.attempts[id]||(b.attempts[id]=[])).push({answer:name,correct:name===it.answer,at});b.responseTime[id]=at;
  if(st.practice==='check'){b.pair[id]=name;st.lastRes=null;render();return;}
- if(name===it.answer){const r=(b.tries[id]||0)?2:1;b.pair[id]=name;boardRow(it,r);st.lastRes={cls:'ok',head:'Doğru eşleştirdin: '+it.answer,text:it.explanation||'',detail:it.detail||''};}
- else{b.tries[id]=(b.tries[id]||0)+1;if(b.tries[id]>=2){b.pair[id]=it.answer;boardRow(it,0);st.lastRes={cls:'fix',head:'Doğru ad: '+it.answer,text:it.explanation||'',detail:it.detail||''};}else{b.sel=id;st.lastRes={cls:'fix',head:'Henüz eşleşmedi.',text:it.hint||'Biçimini ve kullanım yerini düşün.'};}}
+ if(name===it.answer){const r=(b.tries[id]||0)?2:1;b.pair[id]=name;boardRow(it,r);if(!(typeof SES!=='undefined'&&SES.acik)&&typeof EFEKT!=='undefined')EFEKT.cal('tak');st.lastRes={cls:'ok',head:'Doğru eşleştirdin: '+it.answer,text:it.explanation||'',detail:it.detail||''};}
+ else{if(!(typeof SES!=='undefined'&&SES.acik)&&typeof EFEKT!=='undefined')EFEKT.cal('tok');b.tries[id]=(b.tries[id]||0)+1;if(b.tries[id]>=2){b.pair[id]=it.answer;boardRow(it,0);st.lastRes={cls:'fix',head:'Doğru ad: '+it.answer,text:it.explanation||'',detail:it.detail||''};}else{b.sel=id;st.lastRes={cls:'fix',head:'Henüz eşleşmedi.',text:it.hint||'Biçimini ve kullanım yerini düşün.'};}}
  if(Object.keys(b.res).length===b.items.length){boardFinished();st.lastRes.text+=' Çalışma tamamlandı. Açıklamayı okuduktan sonra raporu açabilirsin.';}render();
 }
 function checkBoard(){const b=st.board;if(b.checked||Object.keys(b.pair).length<b.items.length)return;b.checked=true;b.items.forEach(it=>boardRow(it,b.pair[it.id]===it.answer?1:0));boardFinished();st.lastRes={cls:st.sess.bad?'fix':'ok',head:st.sess.ok+' / '+b.items.length+' doğru.',text:'Yanıtların kaydedildi. Yanlış eşleşmelerin altında doğru adları inceleyebilirsin.'};render();}

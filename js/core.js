@@ -139,7 +139,7 @@ function newQ(keepMsg){
   if(st.op==="kur"){
     var key=null;
     for(var i=0;i<st.order.length;i++){ if(!st.placed[st.order[i]]){ key=st.order[i]; break; } }
-    if(!key){ st.q=null; st.kDone=true; st.sess.k++; saveProgress(); return; }
+    if(!key){ st.q=null; st.kDone=true; st.sess.k++; saveProgress(); if(st.op==="kur"&&!(typeof SES!=='undefined'&&SES.acik)&&typeof EFEKT!=='undefined') EFEKT.cal('kuverTamam'); return; }
     st.q={key:key};
   } else {
     if(!st.bag.length){ st.bag=shuffle(Object.keys(ITEMS)); if(st.bag[0]===st.last && st.bag.length>1) st.bag.push(st.bag.shift()); }

@@ -62,7 +62,7 @@ startSession=function(){
   if(st.op==='kur')st.sess.variant=st.lvl===3?'tabldot':'basit';
 };
 newQ=function(keepMsg){
-  if(st.op==='ad' && st.sess && st.sess.qs.length>=10){st.q=null;st.kDone=true;st.run=false;st.t0=0;return;}
+  if(st.op==='ad' && st.sess && st.sess.qs.length>=10){st.q=null;st.kDone=true;st.run=false;st.t0=0;efektSeriBitti();return;}
   OLD_NEWQ(keepMsg);
 };
 newKuverBtn=function(){startSession();};
@@ -159,7 +159,7 @@ function cardChoices(q){
 }
 function contentNext(){
   st.tries=0;st.done=false;st.wrong=[];st.lastRes=null;
-  const q=st.contentItems[st.contentIndex++];if(!q){st.kDone=true;st.q=null;return;}
+  const q=st.contentItems[st.contentIndex++];if(!q){st.kDone=true;st.q=null;efektSeriBitti();return;}
   let choices,correct,correctText;
   if(st.op==='mcq'){choices=q.choices.map(c=>({...c}));correct=q.correct;const cc=choices.find(c=>c.id===correct);correctText=q.group?(cc.image?cc.id+' seçeneği':cc.id+') '+cc.text):cc.text;}
   else{choices=cardChoices(q);correct=q.id;correctText=q.answer;}
