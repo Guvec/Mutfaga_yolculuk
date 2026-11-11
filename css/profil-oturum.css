@@ -15,3 +15,14 @@ body.yr-oyun .top .who{display:block;margin-left:auto}
 .ak-metin{width:100%;box-sizing:border-box;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13px;line-height:1.4;border:2px solid var(--line,#cbd5d5);border-radius:12px;padding:8px;background:var(--surface,#fff);color:var(--navy,#163f31);resize:vertical;word-break:break-all}
 .ak-modal .ak-dosya{display:inline-flex;align-items:center;justify-content:center;cursor:pointer;margin:0}
 .ak-modal .ak-dosya input[type=file]{position:absolute;width:1px;height:1px;opacity:0;overflow:hidden}
+/* Hesabım sayfası */
+.hesabim .card{margin:10px 0}
+.hesabim .card h2{margin:0 0 6px;font-size:1.05em}
+.hesabim .card p{margin:4px 0 8px}
+.hesabim .btn{display:block;width:100%;margin-top:8px}
+.hesabim .yr-chips{margin:6px 0}
+.hs-kart h2{font-size:1.3em}
+.hs-sil{margin-top:28px}
+.hesabim .yr-chips{display:flex;gap:8px}
+.hesabim .yr-chip{flex:1 1 0;min-width:0;padding-inline:6px;text-align:center}
+.hesabim .btn.danger{color:#b3261e;border-color:#b3261e;background:transparent}
