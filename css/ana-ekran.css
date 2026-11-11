@@ -320,3 +320,6 @@ html[data-theme=yuksek] .ae-interior { --ae-paper:var(--surface); --ae-ink:var(-
   .ae-home .ae-work img{height:clamp(50px,11svh,110px);flex:0 1 auto}
   .ae-home .ae-paths .ae-art{height:clamp(38px,8svh,80px)}
 }
+
+/* Uzun telefon ekranlarında artan boşluğu Aşçı Dostum şeridi alsın; kartlar arasında boş boşluk kalmasın */
+.ae-home > .ae-dost{align-self:stretch;height:auto}
