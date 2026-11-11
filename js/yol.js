@@ -1,5 +1,5 @@
 /* © 2026 Ali Arıkoğlu. Tüm hakları saklıdır. */
-/* Mutfak Araçları ve Baharat · Öğrenme yolu (Parça 2a): etap > bölüm, kilit, bölüm içi akış, açıklama, 6'lı eşleştirme, Yolculuğum.
+/* Mutfak Araçları, Baharat ve Bulaşık · Öğrenme yolu (Parça 2a): etap > bölüm, kilit, bölüm içi akış, açıklama, 6'lı eşleştirme, Yolculuğum.
    Bölüm = 6 öğe. Etap = 4 bölüm + etap sonu eşleştirmesi. Bütün sayılar YOL_AYAR içinde tek yerden ayarlanır.
    Akış: Öğren -> addan görsele (4 seçenek) -> görselden ada (4 seçenek) -> görselden ada (5 seçenek) -> 6'lı eşleştirme.
    Geçme ölçütü son aşamadadır (görselden ada, 5 seçenek). İlk iki aşama öğretir, geçmeyi belirlemez. */
@@ -15,10 +15,12 @@ const YOL_AYAR={
 };
 /* Konuya özel ayarlar. Mutfak Araçları: iki takım grubu sırayla kullanılır (benzer takımlar aynı bölümde karşılaşmasın).
    Baharat: her etapta her takımdan 3 öğe; her takım bir bölümde yer almaz (bir bölümde aynı takımdan en çok 1 öğe),
-   zor sayılan öğeler (taze yapraklar: takım 3 ve zorAd listesindeki taze fesleğen) bölümlere dağıtılır (bir bölümde en çok 1), aynı ürünün farklı biçimleri ayrı bölümlere konur. */
+   zor sayılan öğeler (taze yapraklar: takım 3 ve zorAd listesindeki taze fesleğen) bölümlere dağıtılır (bir bölümde en çok 1), aynı ürünün farklı biçimleri ayrı bölümlere konur.
+   Bulaşık: kart sırası anlam taşıdığı için öğeler sırayla bölünür (tur:'sira'); Bölüm 1 bulaşık araçları, Bölüm 2 çöp kovası ve atık türleridir. */
 const YOL_KONU={
  'mutfak-araclari':{kisa:'ma',nesne:'araç',nesneBelirtme:'aracı',nesneler:'araçlara',cogul:'araçlar',cogulBelirtme:'araçları',yonelme:'araca',aynilar:'aynı araçları',giris:'Araçları sırayla öğren. Bölüm bölüm ilerle, kaldığın yerden devam et.',tur:'gruplu',gruplar:[[1,4,7,10,5,12],[2,6,8,11,3,9]]},
- 'baharat':{kisa:'bh',nesne:'ürün',nesneBelirtme:'ürünü',nesneler:'ürünlere',cogul:'ürünler',cogulBelirtme:'ürünleri',yonelme:'ürüne',aynilar:'aynı ürünleri',giris:'Baharat ve aromatik ürünleri sırayla öğren. Bölüm bölüm ilerle, kaldığın yerden devam et.',tur:'dagit',zorTakim:3,zorAd:['TAZE YEŞİL FESLEĞEN']}
+ 'baharat':{kisa:'bh',nesne:'ürün',nesneBelirtme:'ürünü',nesneler:'ürünlere',cogul:'ürünler',cogulBelirtme:'ürünleri',yonelme:'ürüne',aynilar:'aynı ürünleri',giris:'Baharat ve aromatik ürünleri sırayla öğren. Bölüm bölüm ilerle, kaldığın yerden devam et.',tur:'dagit',zorTakim:3,zorAd:['TAZE YEŞİL FESLEĞEN']},
+ 'bulasik-makinesi-temizligi':{kisa:'bl',nesne:'bilgi',nesneBelirtme:'bilgiyi',nesneler:'bilgilere',cogul:'bilgiler',cogulBelirtme:'bilgileri',yonelme:'bilgiye',aynilar:'aynı bilgileri',giris:'Bulaşık araçlarını ve atık türlerini sırayla öğren. Bölüm bölüm ilerle, kaldığın yerden devam et.',tur:'sira'}
 };
 function yolKonuVar(id){return !!YOL_KONU[id];}
 function yolK(){return YOL_KONU[YOL_AYAR.subject]||YOL_KONU['mutfak-araclari'];}
@@ -56,7 +58,18 @@ function yolPlan(){
  const bySet={};d.matches.forEach(m=>{(bySet[m.set]=bySet[m.set]||[]).push(m);});
  const takimlar=Object.keys(bySet).map(Number).sort((a,b)=>a-b);
  const nodes=[];
- if(K.tur==='gruplu'){
+ if(K.tur==='sira'){
+  /* Kart sırası korunur: ilk 6 öğe Bölüm 1, sonraki 6 öğe Bölüm 2 olur. Son bölüm eksik kalırsa (6'dan az) o öğeler önceki bölüme eklenir. */
+  const sirali=d.matches.filter(m=>!m.comparison),N=YOL_AYAR.bolumOgesi,bolumler=[];
+  for(let i=0;i<sirali.length;i+=N)bolumler.push(sirali.slice(i,i+N));
+  if(bolumler.length>1&&bolumler.at(-1).length<N){const kalan=bolumler.pop();bolumler[bolumler.length-1]=bolumler.at(-1).concat(kalan);}
+  bolumler.forEach((items,i)=>{
+   const e=Math.floor(i/YOL_AYAR.etapBolum)+1,no=i%YOL_AYAR.etapBolum+1;
+   nodes.push({id:'e'+e+'b'+no,etap:e,tur:'bolum',no,items});
+   const sonBolum=no===YOL_AYAR.etapBolum||i===bolumler.length-1;
+   if(sonBolum)nodes.push({id:'e'+e+'s',etap:e,tur:'son',no:0,items:nodes.filter(n=>n.etap===e&&n.tur==='bolum').reduce((a,n)=>a.concat(n.items),[])});
+  });
+ }else if(K.tur==='gruplu'){
   const per=YOL_AYAR.bolumOgesi*YOL_AYAR.etapBolum/K.gruplar.length/K.gruplar[0].length; /* her takımdan etap başına öğe */
   const etapSayisi=Math.floor(Math.min(...Object.values(bySet).map(a=>a.length))/per);
   for(let e=0;e<etapSayisi;e++){
@@ -302,7 +315,9 @@ function yolAyak(oyun){
  return '<footer class="yol-ayak"><p>'+(oyun?'İstediğin zaman çıkabilirsin. Geri geldiğinde kaldığın yerden devam edersin.':'İstediğin zaman çıkabilirsin.')+'</p><div class="yol-ayar"><button type="button" onclick="sesAcKapa()">Sesli okuma: '+(SES.acik?'Açık':'Kapalı')+'</button><button type="button" onclick="sakinDegistir();render()">Hareket: '+(sakinAcik()?'Kapalı':'Açık')+'</button></div></footer>';
 }
 function yolSeg(k,n,dolu){let h='<span class="yol-seg" role="img" aria-label="'+k+' / '+n+'">';for(let i=0;i<n;i++)h+='<i class="'+(i<k||(dolu&&i===k)?'dolu':i===k?'simdi':'')+'"></i>';return h+'</span>';}
-function yolEtiket(n){return n.tur==='son'?'Etap '+n.etap+' · Etap sonu':'Etap '+n.etap+' · Bölüm '+n.no+' / '+YOL_AYAR.etapBolum;}
+/* Etaptaki bölüm sayısı plandan okunur: son etap eksik bölümle bitebilir (ör. Bulaşık'ta 2 bölüm). */
+function yolEtapBolum(n){const plan=YOL_PLANLAR[YOL_AYAR.subject]&&YOL_PLANLAR[YOL_AYAR.subject].nodes;const k=plan?plan.filter(x=>x.etap===n.etap&&x.tur==='bolum').length:0;return k||YOL_AYAR.etapBolum;}
+function yolEtiket(n){return n.tur==='son'?'Etap '+n.etap+' · Etap sonu':'Etap '+n.etap+' · Bölüm '+n.no+' / '+yolEtapBolum(n);}
 const YOL_ASAMA_AD=['Öğren','Görsel seç','4 seçenek','5 seçenek','Eşleştir'];
 function yolAsamaSeridi(){
  const sira=['ogren','s1','s2','s3','esles'],i=sira.indexOf(Y.phase);

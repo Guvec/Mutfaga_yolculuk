@@ -27,7 +27,12 @@ const FAKE=`window.REKOR_FAKE=(()=>{const prof={},rows={};let uid='u-cihaz';cons
   const rulesBoards=fs.readFileSync(path.resolve(root,'ci/firebase/firestore.rules'),'utf8').match(/rkBoards\(\) \{ return \{([^}]*)\}/)[1];
   // Harita anahtarlarının yazılış sırası sıralama kuralı değildir; kimlik ve sınırları karşılaştır.
   const rulesEntries=Array.from(rulesBoards.matchAll(/'([^']+)':\s*(\d+)/g),m=>[m[1],Number(m[2])]).sort();
-  const jsEntries=await page.evaluate(()=>RK_BOARDS.map(b=>[b.id,b.total]).sort());assert.deepEqual(rulesEntries,jsEntries);ok('Kurallardaki tablo kimlikleri ve puan sınırları uygulamayla birebir aynı');
+  const jsEntries=await page.evaluate(()=>RK_BOARDS.map(b=>[b.id,b.total]).sort());
+  const rulesMap=new Map(rulesEntries);
+  // Uygulamadaki her tablo kurallarda aynı sınırla bulunmalı. Kurallarda fazladan yalnız hazırlanmış (henüz yayımlanmamış) tablolar olabilir.
+  jsEntries.forEach(([id,total])=>assert.equal(rulesMap.get(id),total,'Kurallarda eksik veya farklı sınır: '+id));
+  const hazir=rulesEntries.map(([id])=>id).filter(id=>!jsEntries.some(([j])=>j===id));
+  assert.deepEqual(hazir,['bh-tur','bl-tur','kv-tur','ma-tur']);ok('Kurallardaki tablo sınırları uygulamayla aynı; yalnız Büyük Tur tabloları hazır bekliyor');
 
   await page.evaluate(()=>{rkBefore=async function(board,fn){return fn();};adMigrate=()=>{};});
   const play=async(name,wrong)=>page.evaluate(([name,wrong])=>{
@@ -47,8 +52,9 @@ const FAKE=`window.REKOR_FAKE=(()=>{const prof={},rows={};let uid='u-cihaz';cons
   // Pekiştiriyorum: 3 yanlış listede; tur 2–4 hedef ve gerçek karışıklıklardan oluşan ad havuzuyla açılır.
   // Aynı günkü eski doğrular maddeyi listeden çıkarmaz; bu testte yalnız son oyunun 3 yanlışı bırakılır.
   await page.evaluate(()=>{const pid=rkPid('Ali'),m=rkPek(pid);Object.keys(m).forEach(k=>{const id=k.split('|')[3],it=st.board.items.find(x=>x.id===id);if(!it||st.board.pair[id]===it.answer)delete m[k];});rkPekSave(pid,m);});
-  await page.evaluate(()=>{st.subject='baharat';go('subject');});assert(await page.getByRole('button',{name:/Pekiştiriyorum \(3\)/}).isVisible());
-  await page.getByRole('button',{name:/Pekiştiriyorum \(3\)/}).click();await page.getByRole('button',{name:/1\. takım · Eşleştirme/}).click();
+  // Öğrenme yolu olan konularda eşleştirme pekiştirmesi menüde çıkmaz; eşleştirme 6'lı yolun ve Tekrar Çalışması'nın içindedir.
+  await page.evaluate(()=>{st.subject='baharat';go('subject');});assert.equal(await page.getByRole('button',{name:/Pekiştiriyorum/}).count(),0);
+  await page.evaluate(()=>{st.subject='baharat';rkPekStart('m',1);});
   const pb=await page.evaluate(()=>({n:st.board.items.length,names:st.board.names.length,all:st.board.items.every(it=>st.board.names.includes(it.answer)),variant:st.board.variant}));assert.equal(pb.n,3);assert(pb.names>=3&&pb.names<=5,JSON.stringify(pb));assert(pb.all&&pb.variant);
   if(shots)await page.screenshot({path:shots+'/2-pekistiriyorum-390.png'});
   await page.evaluate(()=>{st.board.items.forEach(it=>tryPair(it.id,it.answer));render();});t=await banner();assert(t.includes('Bu turu tamamladın.'),t);
@@ -60,7 +66,7 @@ const FAKE=`window.REKOR_FAKE=(()=>{const prof={},rows={};let uid='u-cihaz';cons
   await shiftDay('2000-01-01');await roundM();assert.equal(await page.evaluate(()=>rkPekItems('baharat').length),3);
   await roundM();assert.equal(await page.evaluate(()=>rkPekItems('baharat').length),3);ok('Aynı gün ikinci tur maddeyi listeden çıkarmıyor');
   await shiftDay('2000-01-02');await roundM();assert.equal(await page.evaluate(()=>rkPekItems('baharat').length),0);ok('İki ayrı günde bağımsız doğru yapılınca madde listeden çıkıyor');
-  const before=await page.evaluate(a=>JSON.stringify(REKOR_FAKE.rows[a]),T+'bh-e1~genel');await page.evaluate(()=>rkPekFullCheck());assert.equal(await page.evaluate(()=>st.sess.unranked),true);await page.evaluate(()=>{const b=st.board;b.items.forEach(it=>tryPair(it.id,it.answer));checkBoard();});await settle();assert.equal(await page.evaluate(a=>JSON.stringify(REKOR_FAKE.rows[a]),T+'bh-e1~genel'),before);ok('Puansız 12/18 yoklaması sıralamaya yazmıyor');
+  assert.equal(await page.evaluate(()=>typeof rkPekFullCheck),'undefined');ok('12 görsel / 18 adlık yoklama kaldırıldı');
 
   // İkinci profil aynı cihazda: eşit puan ortak sıra, alfabetik.
   await play('Ayşe',0);await settle();await page.evaluate(()=>rkOpenBoard('bh-e1'));await page.waitForSelector('.rk-row');
@@ -86,11 +92,12 @@ const FAKE=`window.REKOR_FAKE=(()=>{const prof={},rows={};let uid='u-cihaz';cons
   const mc=await page.evaluate(()=>{st.subject='mutfak-araclari';st.op='mcq';st.mcqGroup='Tabaklar, kâseler, bardaklar ve fincanlar';st.practice='check';startContent();const n=st.contentItems.length,ids=st.contentItems.map(q=>q.choices.map(c=>c.id).join(''));let guard=0;while(!st.kDone&&guard++<30){answer(st.q.correct);nextQ();}return {n,ids:[...new Set(ids)],ok:st.sess.ok};});
   assert.equal(mc.n,10);assert.deepEqual(mc.ids,['ABCD']);assert.equal(mc.ok,10);await settle();assert.equal(await page.evaluate(a=>Object.values(REKOR_FAKE.rows[a]||{})[0].correct,T+'ma-s01~genel'),10);ok('Birleşik soru denemesi (10 soru) sonlu, karışık ve ma-s01 tablosuna yazıldı');
   const learnOrder=await page.evaluate(()=>{st.practice='learn';startContent();return st.contentItems.map(q=>q.id).join(',');});const src=await page.evaluate(()=>getData().questions.filter(q=>['Tabaklar ve kâseler','Bardaklar ve fincanlar'].includes(q.group)).map(q=>q.id).join(','));assert.equal(learnOrder,src);ok('Öğreniyorum: kaynak sırası korunuyor');
-  const bl=await page.evaluate(()=>{st.subject='bulasik-makinesi-temizligi';st.op='mcq';return mcqGroups().map(g=>g.label+':'+g.count);});assert.deepEqual(bl,['1. Bölüm:2','2. Bölüm:3','3. Bölüm:2','4. Bölüm:2','5. Bölüm · Atık yönetimi:4','Bulaşık Yıkama ve Atık Yönetimi · Bütün bölümler:13']);
-  const blOne=await page.evaluate(()=>{st.mcqGroup='2. Bölüm';st.practice='check';startContent();let g=0;while(!st.kDone&&g++<10){answer(st.q.correct);nextQ();}return st.sess.ok;});assert.equal(blOne,3);await settle();assert.equal(await page.evaluate(a=>!!REKOR_FAKE.rows[a],T+'bl-s1~genel'),false);
-  await page.evaluate(()=>{go('content');});assert(await page.getByRole('button',{name:/Bütün bölümler/}).isVisible());
-  const blAll=await page.evaluate(()=>{st.mcqGroup='Bulaşık Yıkama ve Atık Yönetimi · Bütün bölümler';st.practice='check';startContent();const n=st.contentItems.length;let g=0;while(!st.kDone&&g++<20){answer(st.q.correct);nextQ();}return n;});assert.equal(blAll,13);await settle();assert.equal(await page.evaluate(a=>Object.values(REKOR_FAKE.rows[a]||{})[0].correct,T+'bl-s1~genel'),13);
-  ok('Bulaşık: 5 bölüm yerinde, bölüm denemesi sıralamaya yazmıyor, Bütün bölümler (13) yazıyor');
+  const bl=await page.evaluate(()=>{st.subject='bulasik-makinesi-temizligi';st.op='mcq';return mcqGroups().map(g=>g.label+':'+g.count);});assert.deepEqual(bl,['1. Bölüm:4','2. Bölüm:5','3. Bölüm:5','4. Bölüm:6','5. Bölüm · Atık yönetimi:5','Genel tekrar · Set 1:10','Genel tekrar · Set 2:10','Genel tekrar · Set 3:10','Genel tekrar · Set 4:10','Bulaşık Yıkama ve Atık Yönetimi · Bütün bölümler:65']);
+  const blOne=await page.evaluate(()=>{st.mcqGroup='2. Bölüm';st.practice='check';startContent();let g=0;while(!st.kDone&&g++<10){answer(st.q.correct);nextQ();}return st.sess.ok;});assert.equal(blOne,5);await settle();assert.equal(await page.evaluate(a=>!!REKOR_FAKE.rows[a],T+'bl-s1~genel'),false);
+  // Bütün bölümler, diğer bölümler bitmeden kilitlidir (kayıtlı profilde).
+  await page.evaluate(()=>{go('content');});assert.equal(await page.locator('.menu-btn.preparing').count(),1);assert.equal(await page.getByRole('button',{name:/Bütün bölümler/}).count(),0);
+  const blAll=await page.evaluate(()=>{st.mcqGroup='Bulaşık Yıkama ve Atık Yönetimi · Bütün bölümler';st.practice='check';startContent();const n=st.contentItems.length;let g=0;while(!st.kDone&&g++<80){answer(st.q.correct);nextQ();}return n;});assert.equal(blAll,65);await settle();assert.equal(await page.evaluate(a=>Object.values(REKOR_FAKE.rows[a]||{})[0].correct,T+'bl-s1~genel'),65);
+  ok('Bulaşık: 9 bölüm yerinde, bölüm denemesi sıralamaya yazmıyor, Bütün bölümler (65) kilitli ve tabloya yazıyor');
 
   // Kuver: Basit ve Tabldot ayrı tablolar.
   const kv=await page.evaluate(()=>{st.subject='kuver';st.op='kur';st.lvl=1;st.practice='check';startSession();let g=0;while(!st.kDone&&g++<20){answer(st.q.key);nextQ();}return st.sess.ok;});assert.equal(kv,4);await settle();assert.equal(await page.evaluate(a=>Object.values(REKOR_FAKE.rows[a]||{})[0].correct,T+'kv-basit~genel'),4);assert.equal(await page.evaluate(a=>!!REKOR_FAKE.rows[a],T+'kv-tabldot~genel'),false);ok('Basit Kuver kendi tablosuna yazıldı, Tabldot ayrı');
@@ -112,10 +119,10 @@ const FAKE=`window.REKOR_FAKE=(()=>{const prof={},rows={};let uid='u-cihaz';cons
   // Gönderim sürerken profil silinirse bulut silmesi gönderim bitince yapılır.
   await page.evaluate(([c])=>{lsSet('rk_queue',[{qid:'q3',pid:c,board:'bh-e4',period:'genel',name:'Can',correct:5,gen:0,at:Date.now(),sess:1}]);rkFlush(null);setTimeout(()=>rkForgetProfile('Can'),30);},ids);
   await page.waitForFunction(c=>!rkProfAll()[c],ids[0],{timeout:5000});assert.equal(await page.evaluate(c=>REKOR_FAKE.prof[c].status,ids[0]),'deleted');assert.equal(await page.evaluate(c=>Object.values(REKOR_FAKE.rows).some(t=>t[c]),ids[0]),false);ok('Gönderim sürerken silinen profilin bulut kaydı gönderim bitince temizleniyor');
-  // Puansız yoklama: puan üretmez, puan göstermez, rekor ve bulut yazmaz.
-  await page.evaluate(()=>{pickProfile('Ali');const best=JSON.stringify(rkBestAll()[rkPid('Ali')]);st.subject='baharat';st.op='match';st.contentSet=1;st.pekRound={kind:'m',set:1};rkPekFullCheck();st.board.items.forEach(it=>tryPair(it.id,it.answer));checkBoard();window.__best=best;});
+  // Puansız oturum düzeneği (st.sess.unranked): puan üretmez, puan göstermez, rekor ve bulut yazmaz.
+  await page.evaluate(()=>{pickProfile('Ali');const best=JSON.stringify(rkBestAll()[rkPid('Ali')]);st.subject='baharat';st.op='match';st.contentSet=1;startBoard('check',12);st.sess.unranked=true;st.board.items.forEach(it=>tryPair(it.id,it.answer));checkBoard();window.__best=best;});
   const yk=await page.evaluate(()=>({s:st.sess.s,chip:[...document.querySelectorAll('.stats .chip')].some(c=>/Puan/.test(c.textContent)),best:JSON.stringify(rkBestAll()[rkPid('Ali')])===window.__best,cat:catName(st.sess)}));
-  assert.equal(yk.s,0);assert.equal(yk.chip,false);assert.equal(yk.best,true);assert(yk.cat.includes('Puansız deneme'),yk.cat);ok('Puansız yoklama: puan 0, puan gösterilmiyor, kişisel rekor değişmiyor');
+  assert.equal(yk.s,0);assert.equal(yk.chip,false);assert.equal(yk.best,true);assert(yk.cat.includes('Puansız deneme'),yk.cat);ok('Puansız oturum: puan 0, puan gösterilmiyor, kişisel rekor değişmiyor');
   // Oda yarışı oturumu, yarış kapandıktan sonra ekran yeniden çizilse de rekor/pekiştirme yazmaz.
   const race=await page.evaluate(()=>{pickProfile('Ali');const before=JSON.stringify([rkBestAll(),rkPekAll(),rkQueue()]);st.subject='mutfak-araclari';st.op='match';st.contentSet=7;startBoard('check',12);st.sess.race={room:'TEST'};st.board.items.forEach((it,i)=>tryPair(it.id,st.board.items[(i+1)%12].answer));checkBoard();YR.active=false;render();return before===JSON.stringify([rkBestAll(),rkPekAll(),rkQueue()]);});
   assert.equal(race,true);ok('Oda yarışı oturumu rekor, kuyruk ve Pekiştiriyorum yazmıyor');
@@ -151,7 +158,7 @@ const FAKE=`window.REKOR_FAKE=(()=>{const prof={},rows={};let uid='u-cihaz';cons
   assert.deepEqual(fn,['🐼 Cesur Panda','🦁 Kral Aslan','','A'.repeat(40)]);ok('Sıralamaya oyun adı gider, 40 karakterle sınırlı');
   const first=await page.evaluate(()=>{lsSet('rk_prof',{});lsSet('profiles',['Yeni Kişi']);pickProfile('Yeni Kişi');st.subject='baharat';st.op='match';st.contentSet=1;go('boardmode');return document.getElementById('app').textContent;});
   assert(first.includes('Sıralamada yalnız adın görünür'));ok('İlk sonuçtan önce sıralama açıklaması görünüyor');
-  await page.evaluate(()=>{go('home');});assert(await page.getByRole('button',{name:'Rekorlarım ve Sıralama'}).isVisible());await page.getByRole('button',{name:'Rekorlarım ve Sıralama'}).click();assert((await page.textContent('#app')).includes('Sıralamada görünme'));ok('Ana sayfadaki düğme Rekorlarım ekranını açıyor');
+  await page.evaluate(()=>{go('home');});assert(await page.getByRole('button',{name:'Sıralama'}).isVisible());await page.getByRole('button',{name:'Sıralama'}).click();await page.waitForFunction(()=>['siralama','rekor'].includes(st.screen));assert((await page.textContent('#app')).includes('Sıralama'));ok('Ana sayfadaki Sıralama düğmesi sıralama ekranını açıyor');
   if(shots){await page.setViewportSize({width:1200,height:844});await page.evaluate(()=>rkOpenBoard('bh-e1'));await page.waitForSelector('.rk-row');await page.screenshot({path:shots+'/5-siralama-1200.png'});}
   assert.deepEqual(errors,[]);ok('Tarayıcıda yakalanmamış JavaScript hatası yok');
  }finally{await browser.close();await new Promise(r=>server.close(r));}

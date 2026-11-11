@@ -22,7 +22,7 @@ const RK_BOARDS=(()=>{const a=[];
  a.push({id:'oy-arena',subject:'oyun',kind:'win',total:999,label:'Er Meydanı (önceki sürüm) · kazanılan tur'});
  a.push({id:'oy-arena2',subject:'oyun',kind:'win',total:999,label:'Er Meydanı · kazanılan oyun'});
  a.push({id:'bl-s1',subject:'bulasik-makinesi-temizligi',kind:'mcq',group:RK_MCQ['bulasik-makinesi-temizligi'][0],total:65,label:'Bütün bölümler · Sorular'});
- a.forEach(b=>{if(/^(ma|bh)-e\d+$/.test(b.id))b.gizli=true;}); /* 12'li eşleştirme tabloları: bu iki konuda 12'li eşleştirme kalktı, tablolar sıralamada gösterilmez */
+ a.forEach(b=>{if(/^(ma|bh|bl)-e\d+$/.test(b.id))b.gizli=true;}); /* 12'li eşleştirme tabloları: bu üç konuda 12'li eşleştirme kalktı, tablolar sıralamada gösterilmez */
  return a;})();
 const RK_SUBJECT_NAMES={baharat:'Baharatlar','mutfak-araclari':'Mutfak Araçları',kuver:'Kuver','bulasik-makinesi-temizligi':'Bulaşık Yıkama ve Atık Yönetimi',oyun:'Kapışma ve Er Meydanı'};
 const RK={cal:null,backend:null,busy:false,view:{board:null,period:'hafta',rows:null,state:'idle',err:''},msg:null};
@@ -258,7 +258,9 @@ function rkPekItems(subject){if(st.guest||!st.prof)return [];const pid=rkPid(st.
 function rkPekGroups(subject){
  const items=rkPekItems(subject),out=[];
  const q=items.filter(x=>x.kind==='q');if(q.length)out.push({kind:'q',label:'Çoktan seçmeli sorular',n:q.length,arg:0});
- [...new Set(items.filter(x=>x.kind==='m').map(x=>x.set))].sort((a,b)=>a-b).forEach(n=>out.push({kind:'m',label:n+'. takım · Eşleştirme',n:items.filter(x=>x.kind==='m'&&x.set===n).length,arg:n}));
+ /* Öğrenme yolu olan konularda eşleştirme pekiştirmesi yoktur: eşleştirme 6'lı yolun içinde ve Tekrar Çalışması'nda yapılır. */
+ const yolda=typeof yolKonuVar==='function'&&yolKonuVar(subject);
+ if(!yolda)[...new Set(items.filter(x=>x.kind==='m').map(x=>x.set))].sort((a,b)=>a-b).forEach(n=>out.push({kind:'m',label:n+'. takım · Eşleştirme',n:items.filter(x=>x.kind==='m'&&x.set===n).length,arg:n}));
  [1,3].forEach(l=>{const c=items.filter(x=>x.kind==='k'&&x.lvl===l).length;if(c)out.push({kind:'k',label:(l===3?'Tabldot':'Basit')+' Kuver',n:c,arg:l});});
  return out;
 }
@@ -387,10 +389,9 @@ function rkCrownShow(rows){
 }
 function rkBannerHTML(){
  const m=RK.msg;if(!m||!st.sess||m.sess!==st.sess.id)return '';
- return '<section class="card rk-banner'+(m.head==='Yeni rekor!'?' rk-new':'')+'" role="status"><strong>'+esc(m.head)+'</strong><p>'+esc(m.text)+'</p>'+(m.cloud?'<p class="note">'+esc(m.cloud)+'</p>':'')+(m.note?'<p class="note">'+esc(m.note)+'</p>':'')+(m.board?'<button class="btn sm" onclick="rkOpenBoard(\''+m.board+'\')">Sıralamayı gör</button>':'')+(m.pek&&rkPekItems(st.subject).length?'<button class="btn sm" onclick="go(\'pekmenu\')">Pekiştiriyorum listesine dön</button>':'')+(m.pek&&st.pekRound&&st.pekRound.kind==='m'?'<button class="btn sm" onclick="rkPekFullCheck()">Bütün takımla dene (puansız)</button>':'')+'</section>';
+ return '<section class="card rk-banner'+(m.head==='Yeni rekor!'?' rk-new':'')+'" role="status"><strong>'+esc(m.head)+'</strong><p>'+esc(m.text)+'</p>'+(m.cloud?'<p class="note">'+esc(m.cloud)+'</p>':'')+(m.note?'<p class="note">'+esc(m.note)+'</p>':'')+(m.board?'<button class="btn sm" onclick="rkOpenBoard(\''+m.board+'\')">Sıralamayı gör</button>':'')+(m.pek&&rkPekItems(st.subject).length?'<button class="btn sm" onclick="go(\'pekmenu\')">Pekiştiriyorum listesine dön</button>':'')+'</section>';
 }
-/* Pekiştirme sonrası 12 görsel / 18 adlık puansız deneme (yoklama). Sıralamaya ve rekora yazılmaz. */
-function rkPekFullCheck(){const n=st.pekRound&&st.pekRound.set;if(!n)return;st.pekRound=null;st.op='match';st.contentSet=n;startBoard('check',12);st.sess.unranked=true;st.lastRes={...st.lastRes,head:'Puansız deneme. '+st.lastRes.head};render();}
+/* 12 görsel / 18 adlık puansız deneme (yoklama) kaldırıldı: öğrenci hiçbir ekranda 12'li eşleştirme ile çalışmaz. */
 
 /* ---------- Ekran ve akış bağlantıları ---------- */
 const RK_SAVE=saveProgress;
@@ -435,7 +436,8 @@ render=function(){
  if(st.screen==='pekcalis'){app.innerHTML=rkCalisHTML();const hb=document.getElementById('rkCalBaslik');if(hb)hb.focus();return;}
  RK_RENDER();
  if(st.screen==='home'){const list=app.querySelector('.wrap .list');if(list)list.insertAdjacentHTML('beforeend',menuButton(st.guest?'Sıralama':'Rekorlarım ve Sıralama',st.guest?'Uyguluyorum sonuçlarının haftalık ve genel listesi.':'Kendi en iyi sonuçların, haftalık ve genel liste.',st.guest?"rkOpenBoard()":"go('rekor')"));}
- if(st.screen==='subject'&&!st.guest&&!rkRaceActive()&&!(typeof yolKonuVar==='function'&&yolKonuVar(st.subject))){const list=app.querySelector('.wrap .list'),n=rkPekItems(st.subject).length;if(list){list.insertAdjacentHTML('beforeend',menuButton('Pekiştiriyorum'+(n?' ('+n+')':''),n?'Uyguluyorum\'da yanlış yaptıklarını tekrar et.':'Uyguluyorum\'da yanlış yaptığın maddeler burada toplanır.',"go('pekmenu')"));const nb=list.lastElementChild;if(nb)nb.classList.add('activity-card');}}
+ /* Öğrenme yolu olan konularda Pekiştiriyorum yalnız çoktan seçmeli sorular için açılır (eşleştirme pekiştirmesi yolun içindedir). */
+ if(st.screen==='subject'&&!st.guest&&!rkRaceActive()&&(!(typeof yolKonuVar==='function'&&yolKonuVar(st.subject))||rkPekGroups(st.subject).length)){const list=app.querySelector('.wrap .list'),n=rkPekGroups(st.subject).reduce((t,g)=>t+g.n,0);if(list){list.insertAdjacentHTML('beforeend',menuButton('Pekiştiriyorum'+(n?' ('+n+')':''),n?'Uyguluyorum\'da yanlış yaptıklarını tekrar et.':'Uyguluyorum\'da yanlış yaptığın maddeler burada toplanır.',"go('pekmenu')"));const nb=list.lastElementChild;if(nb)nb.classList.add('activity-card');}}
  if(['mode','boardmode','mcqmode'].includes(st.screen)){const list=app.querySelector('.wrap .list'),ranked=st.screen==='boardmode'?!!RK_SUBJ[st.subject]:st.screen==='mode'?st.op==='kur':RK_BOARDS.some(x=>x.kind==='mcq'&&x.subject===st.subject&&x.group===st.mcqGroup);
   const _pid=!st.guest&&st.prof?rkPid(st.prof):null,_first=ranked&&!st.guest&&!!st.prof&&(!_pid||(!rkProf(_pid).synced&&rkProf(_pid).status==='in'));const note=ranked?'Uyguluyorum sonucun Rekorlarım\'a ve sıralamaya yazılır. Öğreniyorum yazılmaz.'+(_first?' Sıralamada yalnız adın görünür. İstemezsen Rekorlarım ekranından listeden çıkabilirsin.':''):st.screen==='mcqmode'?'Bu bölümün sonucu sıralamaya yazılmaz. Sıralama için “Bütün bölümler” denemesini çöz.':'Bu çalışmanın sonucu sıralamaya yazılmaz.';
   if(list)list.insertAdjacentHTML('afterend','<p class="note">'+note+'</p>');}
