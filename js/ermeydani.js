@@ -83,6 +83,7 @@ function arSync(){
      if(top&&me.ok>0&&typeof rkWinAdd==='function')rkWinAdd('oy-arena2',1);
     }
     if(typeof EFEKT!=='undefined')EFEKT.cal(top?'win':'tur');
+    if(typeof sesSoyle==='function')sesSoyle(top?'Er Meydanı’nda birinci oldun! Tebrikler.':AR.final?'Oyun bitti. Sıralamada '+AR.final+'. oldun. İyi mücadele!':'Oyun bitti. İyi mücadele!');
    }
   }
  }
