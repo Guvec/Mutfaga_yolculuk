@@ -427,8 +427,8 @@ function yolEslesHTML(){
  const m=Y.m,eslesti=id=>m.eslesen.includes(id);
  let h=yolBar(yolKonuAdi(),'','yolKapat()',true)+'<div class="yol-sayfa">'+yolUst()+
   '<h2 class="yol-soru">Her görseli adıyla eşleştir</h2><p class="yol-yon">Önce bir görsele, sonra adına dokun. '+m.eslesen.length+' / '+m.ogeler.length+' eşleşti.</p><div class="yol-es">';
- h+='<div class="yol-es-sut" aria-label="Görseller">'+m.gorseller.map(it=>'<button type="button" class="yol-es-g'+(eslesti(it.id)?' ok':'')+(m.sel===it.id?' sec':'')+'" onclick="yolEsGorsel(\''+it.id+'\')"'+(eslesti(it.id)?' disabled':'')+' aria-pressed="'+(m.sel===it.id)+'" aria-label="Görsel: '+esc(it.imageAlt||yolK().nesne)+(eslesti(it.id)?', eşleşti':'')+'"><img src="'+esc(it.image)+'" alt="">'+(eslesti(it.id)?'<em>✓</em>':'')+'</button>').join('')+'</div>';
- h+='<div class="yol-es-sut" aria-label="Adlar">'+m.adlar.map(it=>'<button type="button" class="yol-es-a'+(eslesti(it.id)?' ok':'')+'" onclick="yolEsAd(\''+it.id+'\')"'+(eslesti(it.id)?' disabled':'')+'>'+(eslesti(it.id)?'✓ ':'')+esc(it.answer)+'</button>').join('')+'</div></div>';
+ h+='<div class="yol-es-sut yol-es-gorseller" aria-label="Görseller">'+m.gorseller.map(it=>'<button type="button" class="yol-es-g'+(eslesti(it.id)?' ok':'')+(m.sel===it.id?' sec':'')+'" onclick="yolEsGorsel(\''+it.id+'\')"'+(eslesti(it.id)?' disabled':'')+' aria-pressed="'+(m.sel===it.id)+'" aria-label="Görsel: '+esc(it.imageAlt||yolK().nesne)+(eslesti(it.id)?', eşleşti':'')+'"><img src="'+esc(it.image)+'" alt="">'+(eslesti(it.id)?'<em>✓</em>':'')+'</button>').join('')+'</div>';
+ h+='<div class="yol-es-sut yol-es-adlar" aria-label="Adlar">'+m.adlar.map(it=>'<button type="button" class="yol-es-a'+(eslesti(it.id)?' ok':'')+'" onclick="yolEsAd(\''+it.id+'\')"'+(eslesti(it.id)?' disabled':'')+'>'+(eslesti(it.id)?'✓ ':'')+esc(it.answer)+'</button>').join('')+'</div></div>';
  h+='<p class="yol-mesaj '+m.mesajTur+'" role="status">'+(m.mesaj?(m.mesajTur==='ok'?'✓ ':m.mesajTur==='bad'?'✕ ':'')+esc(m.mesaj):'')+'</p>'+yolAyak(Y.mode==='oyun')+'</div>';
  return h;
 }

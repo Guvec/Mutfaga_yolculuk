@@ -163,9 +163,10 @@ const AK_PROFIL=profilAyrintiAc;
 profilAyrintiAc=function(){
  const r=AK_PROFIL.apply(this,arguments);
  if(st.guest)return r;
- const kapat=document.getElementById('profileClose');
- if(!kapat||document.getElementById('akTasi'))return r;
- kapat.insertAdjacentHTML('beforebegin','<button type="button" class="btn" id="akTasi">Başka cihaza taşı</button>');
+ /* Taşıma düğmesi silme düğmesinden önce durur: yıkıcı işlem en sonda kalsın. */
+ const hedef=document.getElementById('profileWipe')||document.getElementById('profileClose');
+ if(!hedef||document.getElementById('akTasi'))return r;
+ hedef.insertAdjacentHTML('beforebegin','<button type="button" class="btn" id="akTasi">Başka cihaza taşı</button>');
  const b=document.getElementById('akTasi');
  if(b)b.onclick=function(){closeModal();window.akAc();};
  return r;

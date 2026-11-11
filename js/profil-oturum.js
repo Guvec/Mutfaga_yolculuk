@@ -20,7 +20,7 @@ function profilAyrintiAc(){
  (!can?'<p>Profilini değiştirmek için önce çalışmayı veya odayı bitir.</p>':
  (!st.guest&&index>=0&&!adSabit(st.prof)?'<button type="button" class="btn" id="profileRename">Karakterini değiştir (1 kez)</button>':'')+
  '<button type="button" class="btn" id="profileSwitch">Bu cihazdaki profiller</button>')+
- (st.guest?'':'<details class="gizlilik"><summary>Gizlilik</summary><p>Bu cihazda profil adın, puanların, rütben ve çalışma geçmişin saklanır.</p><p>İnternet varsa sıralama ve arkadaşlar için oyun adın, puanların ve arkadaş kayıtların sunucuda da tutulur.</p><p>Gerçek adın, telefon numaran veya fotoğrafın istenmez.</p><p>Aşağıdaki düğme bu profili ve bütün kayıtlarını siler.</p></details>'+(can?'<button type="button" class="btn danger" id="profileWipe">Verilerimi sil</button>':''))+
+ (st.guest?'':'<details class="gizlilik"><summary>Gizlilik</summary><p>Bu cihazda profil adın, puanların, rütben ve çalışma geçmişin saklanır.</p><p>İnternet varsa sıralama ve arkadaşlar için oyun adın, puanların ve arkadaş kayıtların sunucuda da tutulur.</p><p>Gerçek adın, telefon numaran veya fotoğrafın istenmez.</p><p>Hesabını silersen bu kayıtların hepsi gider.</p></details>'+(can?'<button type="button" class="btn danger" id="profileWipe">Hesabımı sil</button>':'<p>Hesabını silmek için önce çalışmayı veya odayı bitir.</p>'))+
  '<button type="button" class="btn pri" id="profileClose">Kapat</button></div>';
  const wipe=document.getElementById('profileWipe');
  if(wipe)wipe.onclick=function(){if(!profilDegistirilebilir())return;const n=st.prof;closeModal();askDelProfile(n);};

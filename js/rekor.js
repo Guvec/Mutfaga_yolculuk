@@ -419,7 +419,7 @@ const RK_DELPROF=askDelProfile;
 askDelProfile=function(n){
  const pid=rkPid(n),cloud=pid&&(rkProf(pid).synced||(rkClean()[pid]||[]).length||rkQueue().some(x=>x.pid===pid));
  if(cloud&&!rkOnline()){modal('Bu profilin sıralamada kayıtları var. Profili silmek için internete bağlan.',closeModal);const no=document.getElementById('mNo'),yes=document.getElementById('mYes');if(no)no.remove();if(yes){yes.textContent='Tamam';yes.focus();}return;}
- modal('“'+esc(n)+'” profili ve bütün kayıtları silinsin mi? Sıralamadaki satırları da kaldırılır.',function(){
+ modal('“'+esc(n)+'” hesabı silinsin mi? Puanların, rütben, çalışma geçmişin ve sıralamadaki satırların kaldırılır. Bu işlem geri alınamaz.',function(){
   lsSet('profiles',profiles().filter(x=>x!==n));lsSet('records',records().filter(r=>r.p!==n));rkForgetProfile(n);profilSilindi(n);closeModal();render();
  });
 };

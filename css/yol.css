@@ -92,10 +92,14 @@ div.yol-dugum.bitti{display:flex}
 .yol-alt{display:flex;justify-content:space-between;gap:10px}
 .yol-alt .yol-btn{flex:1}
 .yol-yon{margin:0;color:var(--muted,#566)}
-.yol-es{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.yol-es{display:block}
 .yol-es-sut{display:grid;gap:8px;align-content:start}
+/* Görseller üstte ızgara, adlar altta iki sütun: altı öğe kaydırmadan tek ekrana sığar. */
+.yol-es-gorseller{grid-template-columns:repeat(3,1fr);margin-bottom:12px}
+.yol-es-adlar{grid-template-columns:repeat(2,1fr)}
+@media(max-width:340px){.yol-es-gorseller{grid-template-columns:repeat(2,1fr)}.yol-es-adlar{grid-template-columns:1fr}}
 .yol-es-g{position:relative;padding:4px;border:2px solid var(--line,#b9c6c6);border-radius:12px;background:#fff;cursor:pointer}
-.yol-es-g img{width:100%;aspect-ratio:4/3;object-fit:contain;display:block}
+.yol-es-g img{width:100%;aspect-ratio:4/3;max-height:124px;object-fit:contain;display:block}
 .yol-es-g.sec{border-color:var(--teal,#0b5c5f);box-shadow:0 0 0 3px var(--teal2,#cfe6e3)}
 .yol-es-g.ok{border-color:var(--ok,#2b7a45);background:var(--okbg,#e3f1e6)}
 .yol-es-g em{position:absolute;right:6px;top:4px;font-style:normal;font-weight:700;color:var(--ok,#2b7a45)}
@@ -156,3 +160,8 @@ html[data-sakin="1"] .yol-bar *,html[data-sakin="1"] .yol-sayfa *{transition:non
 .yol-inc-k.bad{border-color:var(--bad,#a3281d);background:var(--badbg,#f7e3de)}
 .yol-inc .yol-acik-kart{display:grid;gap:8px}
 .yol-inc .yol-acik-kart p{margin:0}
+/* Biliyor muydun? bilgi kutusu */
+.bilgi-kutu{text-align:left;border-left:6px solid var(--teal,#0b5c5f)}
+.bilgi-kutu h2{margin:0 0 4px;font-size:16px;color:var(--teal,#0b5c5f);display:flex;align-items:center;gap:8px}
+.bilgi-kutu h3{margin:0 0 6px;font-size:18px;color:var(--navy,#123)}
+.bilgi-kutu p{margin:0;line-height:1.5}
