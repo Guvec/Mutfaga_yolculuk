@@ -3640,7 +3640,9 @@
       ],
       "comparison": true,
       "comparisonPosition": 1,
-      "kok": "Üçgenin gösterdiği aracın adı nedir?"
+      "kok": "Üçgenin gösterdiği aracın adı nedir?",
+      "ust": "tabak",
+      "aile": "tabak"
     },
     {
       "id": "guncel-001",
@@ -3675,7 +3677,9 @@
       ],
       "comparison": true,
       "comparisonPosition": 1,
-      "kok": "Üçgenin gösterdiği aracın adı nedir?"
+      "kok": "Üçgenin gösterdiği aracın adı nedir?",
+      "ust": "tabak",
+      "aile": "tabak"
     },
     {
       "id": "meb-002",
@@ -3705,7 +3709,9 @@
       ],
       "comparison": true,
       "comparisonPosition": 2,
-      "kok": "Üçgenin gösterdiği aracın adı nedir?"
+      "kok": "Üçgenin gösterdiği aracın adı nedir?",
+      "ust": "tabak",
+      "aile": "tabak"
     },
     {
       "id": "guncel-004",
@@ -3740,7 +3746,9 @@
       ],
       "comparison": true,
       "comparisonPosition": 2,
-      "kok": "Üçgenin gösterdiği aracın adı nedir?"
+      "kok": "Üçgenin gösterdiği aracın adı nedir?",
+      "ust": "tabak",
+      "aile": "tabak"
     },
     {
       "id": "guncel-005",
@@ -3775,7 +3783,9 @@
       ],
       "comparison": true,
       "comparisonPosition": 2,
-      "kok": "Üçgenin gösterdiği aracın adı nedir?"
+      "kok": "Üçgenin gösterdiği aracın adı nedir?",
+      "ust": "tabak",
+      "aile": "tabak"
     },
     {
       "id": "guncel-002",
@@ -3808,7 +3818,9 @@
       ],
       "comparison": true,
       "comparisonPosition": 1,
-      "kok": "Üçgenin gösterdiği aracın adı nedir?"
+      "kok": "Üçgenin gösterdiği aracın adı nedir?",
+      "ust": "tabak",
+      "aile": "tabak"
     },
     {
       "id": "meb-003",
@@ -3836,7 +3848,9 @@
       ],
       "comparison": true,
       "comparisonPosition": 1,
-      "kok": "Üçgenin gösterdiği aracın adı nedir?"
+      "kok": "Üçgenin gösterdiği aracın adı nedir?",
+      "ust": "tabak",
+      "aile": "tabak"
     },
     {
       "id": "guncel-003",
@@ -3870,7 +3884,9 @@
       "comparison": true,
       "comparisonPosition": 2,
       "kok": "Üçgenin gösterdiği aracın adı nedir?",
-      "equivalenceKey": "makarna-tabagi"
+      "equivalenceKey": "makarna-tabagi",
+      "ust": "tabak",
+      "aile": "tabak"
     },
     {
       "id": "meb-004",
@@ -3894,7 +3910,9 @@
       "assessmentConstruct": "Görsel ve verilen kullanım bilgisini adla ilişkilendirme. Kullanım amacı yalnız fotoğrafın biçiminden çıkarılmaz.",
       "disla": [
         "Oval balık servis tabağı"
-      ]
+      ],
+      "ust": "tabak",
+      "aile": "tabak"
     },
     {
       "id": "meb-005",
@@ -3918,7 +3936,9 @@
       "assessmentConstruct": "Görsel ve verilen kullanım bilgisini adla ilişkilendirme. Kullanım amacı yalnız fotoğrafın biçiminden çıkarılmaz.",
       "disla": [
         "Salata tabağı"
-      ]
+      ],
+      "ust": "tabak",
+      "aile": "tabak"
     },
     {
       "id": "guncel-006",
@@ -3949,7 +3969,9 @@
           5,
           6
         ]
-      }
+      },
+      "ust": "tabak",
+      "aile": "tabak"
     },
     {
       "id": "guncel-007",
@@ -3980,7 +4002,9 @@
           5,
           6
         ]
-      }
+      },
+      "ust": "tabak",
+      "aile": "tabak"
     },
     {
       "id": "guncel-008",
@@ -4019,7 +4043,9 @@
           5,
           6
         ]
-      }
+      },
+      "ust": "icme-kap",
+      "aile": "kase-fincan"
     },
     {
       "id": "meb-006",
@@ -4041,7 +4067,9 @@
       "set": 2,
       "disla": [
         "Çorba kâsesi"
-      ]
+      ],
+      "ust": "icme-kap",
+      "aile": "kase-fincan"
     },
     {
       "id": "guncel-014",
@@ -4073,7 +4101,9 @@
         "Espresso fincanı",
         "Türk kahvesi fincanı",
         "Kupa"
-      ]
+      ],
+      "ust": "icme-kap",
+      "aile": "kase-fincan"
     },
     {
       "id": "meb-007",
@@ -4097,7 +4127,9 @@
       "assessmentConstruct": "Görsel ve verilen kullanım bilgisini adla ilişkilendirme. Kullanım amacı yalnız fotoğrafın biçiminden çıkarılmaz.",
       "disla": [
         "Çay ve kahve fincanı"
-      ]
+      ],
+      "ust": "icme-kap",
+      "aile": "kase-fincan"
     },
     {
       "id": "meb-008",
@@ -4122,7 +4154,9 @@
       "disla": [
         "Türk kahvesi fincanı",
         "Çay ve kahve fincanı"
-      ]
+      ],
+      "ust": "icme-kap",
+      "aile": "kase-fincan"
     },
     {
       "id": "guncel-015",
@@ -4152,7 +4186,9 @@
       "disla": [
         "Espresso fincanı",
         "Çay ve kahve fincanı"
-      ]
+      ],
+      "ust": "icme-kap",
+      "aile": "kase-fincan"
     },
     {
       "id": "guncel-016",
@@ -4171,7 +4207,9 @@
       "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak.",
       "disla": [
         "Çay ve kahve fincanı"
-      ]
+      ],
+      "ust": "icme-kap",
+      "aile": "kase-fincan"
     },
     {
       "id": "guncel-009",
@@ -4202,7 +4240,9 @@
           5,
           6
         ]
-      }
+      },
+      "ust": "icme-kap",
+      "aile": "kase-fincan"
     },
     {
       "id": "guncel-010",
@@ -4231,7 +4271,9 @@
           6
         ]
       },
-      "equivalenceKey": "kahvalti-kasesi"
+      "equivalenceKey": "kahvalti-kasesi",
+      "ust": "icme-kap",
+      "aile": "kase-fincan"
     },
     {
       "id": "meb-018",
@@ -4250,7 +4292,9 @@
         "card": 10,
         "revision": "MEB sınıflandırmasıyla eklenen örnek"
       },
-      "set": 2
+      "set": 2,
+      "ust": "servis",
+      "aile": "servis-kabi"
     },
     {
       "id": "meb-019",
@@ -4270,7 +4314,9 @@
         "revision": "MEB sınıflandırmasıyla eklenen örnek"
       },
       "set": 2,
-      "disla": []
+      "disla": [],
+      "ust": "servis",
+      "aile": "servis-kabi"
     },
     {
       "id": "meb-020",
@@ -4295,7 +4341,9 @@
         "Çaydanlık",
         "Şekerlik",
         "Sütlük"
-      ]
+      ],
+      "ust": "servis",
+      "aile": "servis-kabi"
     },
     {
       "id": "guncel-018",
@@ -4327,7 +4375,9 @@
       ],
       "comparison": true,
       "comparisonPosition": 2,
-      "kok": "Üçgenin gösterdiği aracın adı nedir?"
+      "kok": "Üçgenin gösterdiği aracın adı nedir?",
+      "ust": "sofra-takimi",
+      "aile": "catal"
     },
     {
       "id": "guncel-019",
@@ -4359,7 +4409,9 @@
       ],
       "comparison": true,
       "comparisonPosition": 1,
-      "kok": "Üçgenin gösterdiği aracın adı nedir?"
+      "kok": "Üçgenin gösterdiği aracın adı nedir?",
+      "ust": "sofra-takimi",
+      "aile": "bicak"
     },
     {
       "id": "guncel-023",
@@ -4392,7 +4444,9 @@
       ],
       "comparison": true,
       "comparisonPosition": 3,
-      "kok": "Üçgenin gösterdiği aracın adı nedir?"
+      "kok": "Üçgenin gösterdiği aracın adı nedir?",
+      "ust": "sofra-takimi",
+      "aile": "kasik"
     },
     {
       "id": "guncel-020",
@@ -4424,7 +4478,9 @@
       ],
       "comparison": true,
       "comparisonPosition": 1,
-      "kok": "Üçgenin gösterdiği aracın adı nedir?"
+      "kok": "Üçgenin gösterdiği aracın adı nedir?",
+      "ust": "sofra-takimi",
+      "aile": "catal"
     },
     {
       "id": "meb-009",
@@ -4452,7 +4508,9 @@
       ],
       "comparison": true,
       "comparisonPosition": 3,
-      "kok": "Üçgenin gösterdiği aracın adı nedir?"
+      "kok": "Üçgenin gösterdiği aracın adı nedir?",
+      "ust": "sofra-takimi",
+      "aile": "bicak"
     },
     {
       "id": "meb-010",
@@ -4480,7 +4538,9 @@
       ],
       "comparison": true,
       "comparisonPosition": 2,
-      "kok": "Üçgenin gösterdiği aracın adı nedir?"
+      "kok": "Üçgenin gösterdiği aracın adı nedir?",
+      "ust": "sofra-takimi",
+      "aile": "kasik"
     },
     {
       "id": "guncel-021",
@@ -4512,7 +4572,9 @@
       ],
       "comparison": true,
       "comparisonPosition": 1,
-      "kok": "Üçgenin gösterdiği aracın adı nedir?"
+      "kok": "Üçgenin gösterdiği aracın adı nedir?",
+      "ust": "sofra-takimi",
+      "aile": "catal"
     },
     {
       "id": "meb-011",
@@ -4540,7 +4602,9 @@
       ],
       "comparison": true,
       "comparisonPosition": 2,
-      "kok": "Üçgenin gösterdiği aracın adı nedir?"
+      "kok": "Üçgenin gösterdiği aracın adı nedir?",
+      "ust": "sofra-takimi",
+      "aile": "bicak"
     },
     {
       "id": "guncel-024",
@@ -4572,7 +4636,9 @@
       ],
       "comparison": true,
       "comparisonPosition": 1,
-      "kok": "Üçgenin gösterdiği aracın adı nedir?"
+      "kok": "Üçgenin gösterdiği aracın adı nedir?",
+      "ust": "sofra-takimi",
+      "aile": "kasik"
     },
     {
       "id": "guncel-025",
@@ -4598,7 +4664,9 @@
       ],
       "comparison": true,
       "comparisonPosition": 2,
-      "kok": "Üçgenin gösterdiği aracın adı nedir?"
+      "kok": "Üçgenin gösterdiği aracın adı nedir?",
+      "ust": "sofra-takimi",
+      "aile": "kasik"
     },
     {
       "id": "meb-017",
@@ -4626,7 +4694,9 @@
       ],
       "comparison": true,
       "comparisonPosition": 2,
-      "kok": "Üçgenin gösterdiği aracın adı nedir?"
+      "kok": "Üçgenin gösterdiği aracın adı nedir?",
+      "ust": "sofra-takimi",
+      "aile": "kasik"
     },
     {
       "id": "meb-024",
@@ -4648,7 +4718,9 @@
       "set": 3,
       "disla": [
         "Balık çatalı"
-      ]
+      ],
+      "ust": "sofra-takimi",
+      "aile": "catal"
     },
     {
       "id": "meb-012",
@@ -4670,7 +4742,9 @@
       "set": 4,
       "disla": [
         "Pasta çatalı"
-      ]
+      ],
+      "ust": "sofra-takimi",
+      "aile": "catal"
     },
     {
       "id": "meb-013",
@@ -4689,7 +4763,9 @@
         "card": 2,
         "revision": "MEB sınıflandırmasıyla eklenen örnek"
       },
-      "set": 4
+      "set": 4,
+      "ust": "sofra-takimi",
+      "aile": "bicak"
     },
     {
       "id": "meb-014",
@@ -4714,7 +4790,9 @@
       "disla": [
         "Çorba kaşığı",
         "Tatlı kaşığı"
-      ]
+      ],
+      "ust": "sofra-takimi",
+      "aile": "kasik"
     },
     {
       "id": "guncel-022",
@@ -4731,7 +4809,9 @@
       },
       "detail": "Ne için kullanılır? Tereyağı ve reçel sürmek için kullanılan kısa bıçaktır; genellikle keskin değildir.\nNasıl kullanılır? Ekmek tabağının üstüne konur. Az miktarda tereyağı ya da reçel alınır ve ekmeğe ince bir tabaka sürülür. Ekmek kesmek için kullanılmaz; yalnız sürmek için kullanılır.\nFarkı nedir? Ana yemek bıçağına göre kısadır ve keskin değildir.",
       "hint": "Çatal, bıçak ve kaşığı ayır. Aynı takımdaki boylarını karşılaştır.",
-      "classificationGroup": "Özel amaçlı takımlar"
+      "classificationGroup": "Özel amaçlı takımlar",
+      "ust": "sofra-takimi",
+      "aile": "bicak"
     },
     {
       "id": "meb-016",
@@ -4750,7 +4830,9 @@
         "card": 5,
         "revision": "MEB sınıflandırmasıyla eklenen örnek"
       },
-      "set": 4
+      "set": 4,
+      "ust": "sofra-takimi",
+      "aile": "bicak"
     },
     {
       "id": "meb-015",
@@ -4769,7 +4851,9 @@
         "card": 6,
         "revision": "MEB sınıflandırmasıyla eklenen örnek"
       },
-      "set": 4
+      "set": 4,
+      "ust": "sofra-takimi",
+      "aile": "servis-araci"
     },
     {
       "id": "guncel-026",
@@ -4786,7 +4870,9 @@
       },
       "detail": "Ne için kullanılır? Yiyeceği ortak kaptan konuğun tabağına almak için kullanılır.\nNasıl kullanılır? Kaşık yiyeceğin altına sokulur; yiyecek çatalla üstten tutulur ve konuğun tabağına aktarılır. Her yiyecek için ayrı servis kaşığı ve çatalı kullanılır; bir yiyeceğin servis kaşığı başka yiyecekte kullanılmaz.",
       "hint": "Çatal, bıçak ve kaşığı ayır. Aynı takımdaki boylarını karşılaştır.",
-      "classificationGroup": "Özel amaçlı takımlar"
+      "classificationGroup": "Özel amaçlı takımlar",
+      "ust": "sofra-takimi",
+      "aile": "servis-araci"
     },
     {
       "id": "meb-021",
@@ -4805,7 +4891,9 @@
         "card": 8,
         "revision": "MEB sınıflandırmasıyla eklenen örnek"
       },
-      "set": 4
+      "set": 4,
+      "ust": "sofra-takimi",
+      "aile": "servis-araci"
     },
     {
       "id": "guncel-011",
@@ -4833,7 +4921,9 @@
       "assessmentConstruct": "Görsel ve verilen kullanım bilgisini adla ilişkilendirme. Kullanım amacı yalnız fotoğrafın biçiminden çıkarılmaz.",
       "disla": [
         "Meyve suyu bardağı"
-      ]
+      ],
+      "ust": "icme-kap",
+      "aile": "bardak"
     },
     {
       "id": "guncel-012",
@@ -4861,7 +4951,9 @@
       "assessmentConstruct": "Görsel ve verilen kullanım bilgisini adla ilişkilendirme. Kullanım amacı yalnız fotoğrafın biçiminden çıkarılmaz.",
       "disla": [
         "Su bardağı"
-      ]
+      ],
+      "ust": "icme-kap",
+      "aile": "bardak"
     },
     {
       "id": "guncel-013",
@@ -4878,7 +4970,9 @@
       },
       "detail": "Ne için kullanılır? Çay içmek için kullanılan ince belli, küçük bardaktır. Çay tabağıyla sunulur.\nNasıl kullanılır? Çay bardağı tabağına yerleştirilir. Doldururken üstte yaklaşık 1 cm boşluk bırakılır. Konuk dudağını bardağın ağzına değdireceği için ağzına dokunulmaz.\nDikkat: Sıcak çay bardağı tabağıyla taşınır; böylece el sıcak cama değmez.",
       "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak.",
-      "classificationGroup": "Bardaklar"
+      "classificationGroup": "Bardaklar",
+      "ust": "icme-kap",
+      "aile": "bardak"
     },
     {
       "id": "guncel-017",
@@ -4895,7 +4989,9 @@
       },
       "detail": "Ne için kullanılır? Su, ayran ve limonata gibi içecekleri masada sunmak için kullanılan kulplu kaptır.\nNasıl kullanılır? Sürahi kulpundan tutulur. İçecek bardağa yavaşça dökülür; sürahinin ağzı bardağa değdirilmez.\nDikkat: Dışı ıslak sürahi elden kayar; sürahi önce kurulanır, sonra taşınır.",
       "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak.",
-      "classificationGroup": "Servis kapları"
+      "classificationGroup": "Servis kapları",
+      "ust": "servis",
+      "aile": "servis-kabi"
     },
     {
       "id": "meb-022",
@@ -4919,7 +5015,9 @@
       "assessmentConstruct": "Görsel ve verilen kullanım bilgisini adla ilişkilendirme. Kullanım amacı yalnız fotoğrafın biçiminden çıkarılmaz.",
       "disla": [
         "Karabiberlik"
-      ]
+      ],
+      "ust": "servis",
+      "aile": "menaj"
     },
     {
       "id": "meb-023",
@@ -4943,7 +5041,9 @@
       "assessmentConstruct": "Görsel ve verilen kullanım bilgisini adla ilişkilendirme. Kullanım amacı yalnız fotoğrafın biçiminden çıkarılmaz.",
       "disla": [
         "Tuzluk"
-      ]
+      ],
+      "ust": "servis",
+      "aile": "menaj"
     },
     {
       "id": "guncel-029",
@@ -4964,7 +5064,9 @@
       "disla": [
         "Tuzluk",
         "Karabiberlik"
-      ]
+      ],
+      "ust": "servis",
+      "aile": "menaj"
     },
     {
       "id": "guncel-030",
@@ -4983,7 +5085,9 @@
       "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak.",
       "classificationGroup": "Menajlar",
       "disla": [],
-      "kok": "Görseldeki şeker sunma kabının adı nedir?"
+      "kok": "Görseldeki şeker sunma kabının adı nedir?",
+      "ust": "servis",
+      "aile": "menaj"
     },
     {
       "id": "guncel-027",
@@ -5000,7 +5104,9 @@
       },
       "detail": "Ne için kullanılır? Tabak, bardak, çatal, bıçak ve kaşıkları taşımak için kullanılır.\nNasıl kullanılır? Ağır tabak ve kaplar, tepsi dengede kalsın diye tepsinin ortasına konur. Bardaklar kenara konmaz; ortaya yakın yerleştirilir. Kulplu tepsi iki elle, kulplarından tutularak taşınır.\nDikkat: Tepsi aşırı doldurulmaz; ağır gelirse öğretmenden yardım istenir.",
       "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak.",
-      "classificationGroup": "Servis kapları"
+      "classificationGroup": "Servis kapları",
+      "ust": "servis",
+      "aile": "servis-yardimci"
     },
     {
       "id": "guncel-028",
@@ -5016,7 +5122,9 @@
         "card": 6
       },
       "detail": "Ne için kullanılır? Serviste kullanılan temiz bezdir. Sıcak ana yemek tabağını tutmak ve çatal, bıçak, kaşıkları parlatmak için kullanılır; bu iki iş için ayrı bezler kullanılır.\nNasıl kullanılır? Kuru lito katlanır ve el ile tabak arasına konur; ana yemek tabağı kenarından tutulur. Lito ile masa silinmez; masa temizlik beziyle silinir. Kirlenen lito değiştirilir.\nDikkat: Fırından çıkan tepsi ve tencere litoyla tutulmaz; kuru fırın eldiveni kullanılır.\nFarkı nedir? Temizlik bezinden farklı olarak yalnız serviste kullanılır.",
-      "hint": "Katlanmış servis bezinin kumaşına ve biçimine bak. Temizlik bezinden farkını düşün."
+      "hint": "Katlanmış servis bezinin kumaşına ve biçimine bak. Temizlik bezinden farkını düşün.",
+      "ust": "servis",
+      "aile": "servis-yardimci"
     },
     {
       "id": "guncel-031",
@@ -5032,7 +5140,9 @@
         "card": 7
       },
       "detail": "Ne için kullanılır? Çok sayıda tabak ve yiyeceği taşımak için kullanılan tekerlekli arabadır.\nNasıl kullanılır? Araba itilerek sürülür. Ağır kaplar alt rafa konur, üst raf fazla doldurulmaz; böylece arabanın devrilme riski azalır. Kapı eşiğinde ve dönüşlerde araba yavaş sürülür; hızlı sürülürse kaplar sarsılıp düşer.",
-      "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak."
+      "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak.",
+      "ust": "servis",
+      "aile": "servis-yardimci"
     },
     {
       "id": "guncel-032",
@@ -5050,7 +5160,9 @@
       "detail": "Ne için kullanılır? Çorba, sebze, bakliyat ve sulu yemekleri pişirmek için kullanılan derin ve yüksek tenceredir.\nNasıl kullanılır? Malzeme ve su tarifteki miktarda konur. Yemek taşmasın diye tencerenin üst kenarında boşluk bırakılır.\nDikkat: Kapağın kişiden uzak kenarı önce kaldırılır; böylece buhar karşı tarafa çıkar ve yüze gelmez. İçinde sıcak yemek olan ağır tencere tek başına taşınmaz; öğretmenden yardım istenir.\nFarkı nedir? Pilav tenceresine göre derin ve yüksektir.",
       "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak.",
       "task": "Çorba pişirmek için seçilen derin tencere.",
-      "assessmentConstruct": "Görsel ve verilen kullanım bilgisini adla ilişkilendirme. Kullanım amacı yalnız fotoğrafın biçiminden çıkarılmaz."
+      "assessmentConstruct": "Görsel ve verilen kullanım bilgisini adla ilişkilendirme. Kullanım amacı yalnız fotoğrafın biçiminden çıkarılmaz.",
+      "ust": "pisirme-kabi",
+      "aile": "tencere-tava"
     },
     {
       "id": "guncel-033",
@@ -5068,7 +5180,9 @@
       "detail": "Ne için kullanılır? Pirinç ve bulgur pilavı gibi yemekleri pişirmek için kullanılan basık, geniş ve tabanı kalın tenceredir.\nNasıl kullanılır? Pilav, kapağı kapalı olarak pişirilir ve demlendirilir. Kalın taban ısıyı yayar; yemeğin dibinin yanmasını azaltır.\nDikkat: Kalın taban sıcağı uzun süre tutar; tencere ocaktan alındıktan sonra da fırın eldiveniyle tutulur.\nFarkı nedir? Çorba tenceresine göre basık ve geniştir.",
       "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak.",
       "task": "Pilav pişirmek için seçilen yayvan tencere.",
-      "assessmentConstruct": "Görsel ve verilen kullanım bilgisini adla ilişkilendirme. Kullanım amacı yalnız fotoğrafın biçiminden çıkarılmaz."
+      "assessmentConstruct": "Görsel ve verilen kullanım bilgisini adla ilişkilendirme. Kullanım amacı yalnız fotoğrafın biçiminden çıkarılmaz.",
+      "ust": "pisirme-kabi",
+      "aile": "tencere-tava"
     },
     {
       "id": "guncel-034",
@@ -5084,7 +5198,9 @@
         "card": 10
       },
       "detail": "Ne için kullanılır? Yemeği buhar basıncıyla kısa sürede pişiren, kapağı kilitlenen tenceredir.\nNasıl kullanılır? Düdüklü tencereyi öğretmen kullanır. Öğrenci malzemeyi hazırlar ve izler.\nDikkat: Basınç tamamen düşmeden kapak açılmaz ve zorlanmaz; zorlanırsa kapak fırlayabilir, kaynar yemek ve buhar sıçrar. Buhar çıkışına yaklaşılmaz.\nFarkı nedir? Çorba tenceresinden farklı olarak kapağı kilitlenir ve içinde basınç oluşur.",
-      "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak."
+      "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak.",
+      "ust": "pisirme-kabi",
+      "aile": "tencere-tava"
     },
     {
       "id": "guncel-035",
@@ -5102,7 +5218,9 @@
       "detail": "Ne için kullanılır? Sütü ısıtmak ve kaynatmak için kullanılan küçük, tek saplı tenceredir.\nNasıl kullanılır? Süt sütlüğe konur ve dibi tutmasın diye kısık ateşte ısıtılır. Varsa dökme ağzından bardağa aktarılır.\nDikkat: Süt kaynamaya başlayınca kabarıp taşabilir. Süt ısınırken izlenir; ocaktan uzaklaşılmaz. Süt kabarmaya başlarsa ateş hemen kısılır.\nFarkı nedir? Cezveye göre geniş ağızlıdır.",
       "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak.",
       "task": "Süt ısıtmak için seçilen küçük saplı kap.",
-      "assessmentConstruct": "Görsel ve verilen kullanım bilgisini adla ilişkilendirme. Kullanım amacı yalnız fotoğrafın biçiminden çıkarılmaz."
+      "assessmentConstruct": "Görsel ve verilen kullanım bilgisini adla ilişkilendirme. Kullanım amacı yalnız fotoğrafın biçiminden çıkarılmaz.",
+      "ust": "servis",
+      "aile": "servis-kabi"
     },
     {
       "id": "guncel-036",
@@ -5118,7 +5236,9 @@
         "card": 12
       },
       "detail": "Ne için kullanılır? Türk kahvesini ocakta pişirmek için kullanılan küçük, uzun saplı kaptır.\nNasıl kullanılır? Cezveye soğuk su ve Türk kahvesi konur; kahve köpüğü oluşsun ve taşmasın diye kısık ateşte pişirilir.\nDikkat: Kahve köpürünce çabuk taşar; cezvenin başından ayrılınmaz. Köpük kabarmaya başlarsa cezve ateşten alınır. Cezve sapından tutulur.\nFarkı nedir? Sütlüğe göre dar ağızlıdır; Türk kahvesi pişirmek için kullanılır.",
-      "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak."
+      "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak.",
+      "ust": "pisirme-kabi",
+      "aile": "isitma-kabi"
     },
     {
       "id": "guncel-037",
@@ -5137,7 +5257,9 @@
       "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak.",
       "disla": [
         "Çay ve kahve servis potu"
-      ]
+      ],
+      "ust": "pisirme-kabi",
+      "aile": "isitma-kabi"
     },
     {
       "id": "guncel-038",
@@ -5153,7 +5275,9 @@
         "card": 2
       },
       "detail": "Ne için kullanılır? Çayı ocakta demlemek için kullanılan, alt kısmında su kaynayan, üst kısmı demlik olan iki katlı kaptır.\nNasıl kullanılır? Alt kısma su konur ve ocakta kaynatılır. Çay üstteki demliğe konur; kaynayan su demliğe eklenir ve çay kısık ateşte demlenir.\nDikkat: Buhar yakar; çaydanlık kuru fırın eldiveniyle sapından tutulur, su yavaşça dökülür. Yüz uzak tutulur.\nFarkı nedir? Çay makinesinden farklı olarak ocakta kullanılır.",
-      "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak."
+      "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak.",
+      "ust": "pisirme-kabi",
+      "aile": "isitma-kabi"
     },
     {
       "id": "guncel-039",
@@ -5169,7 +5293,9 @@
         "card": 3
       },
       "detail": "Ne için kullanılır? Yumurta, patates ve köfteyi az yağda pişirmek için kullanılan tavadır.\nNasıl kullanılır? Tavaya az yağ konur, sonra tava ısıtılır; kaplamalı tava boşken ısıtılmaz, aşırı ısınır ve kaplaması bozulur. Yiyecek çevirme spatulası ya da maşayla çevrilir. Kaplamalı tavada metal çatal ve bıçak kullanılmaz; yüzeyi çizer. Silikon çevirme spatulası ya da silikon uçlu maşa kullanılır.\nDikkat: Islak yiyecek kızgın yağa atılmaz; yağ sıçrar. Yağ alev alırsa hemen uzaklaşılır ve öğretmene haber verilir. Yanan yağa su dökülmez; su yağı sıçratır ve alev büyür.\nFarkı nedir? Sahana göre büyüktür ve uzun bir sapı vardır.",
-      "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak."
+      "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak.",
+      "ust": "pisirme-kabi",
+      "aile": "tencere-tava"
     },
     {
       "id": "guncel-040",
@@ -5185,7 +5311,9 @@
         "card": 4
       },
       "detail": "Ne için kullanılır? Yumurta ve menemen pişirmek ve yemeği sahanıyla sıcak sunmak için kullanılır.\nNasıl kullanılır? Pişen yemek sahanıyla birlikte, ısıya dayanıklı bir altlığın üstünde sunulur.\nDikkat: Sahanın metal kulpları çok ısınır; kulplar kuru fırın eldiveniyle tutulur.\nFarkı nedir? Kızartma tavasına göre küçüktür; iki kısa kulpu vardır.",
-      "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak."
+      "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak.",
+      "ust": "pisirme-kabi",
+      "aile": "tencere-tava"
     },
     {
       "id": "guncel-041",
@@ -5201,7 +5329,9 @@
         "card": 5
       },
       "detail": "Ne için kullanılır? Krep pişirmek için kullanılan, kenarı çok alçak, düz tavadır.\nNasıl kullanılır? Tava hafifçe yağlanır. Hamur dökülünce tava çevrilerek hamur yayılır. Krep, silikon çevirme spatulasıyla çevrilir. Kaplamalı yüzeyde metal çatal ve bıçak kullanılmaz; kaplamayı çizer.\nFarkı nedir? Kızartma tavasına göre kenarı çok alçaktır.",
-      "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak."
+      "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak.",
+      "ust": "pisirme-kabi",
+      "aile": "tencere-tava"
     },
     {
       "id": "guncel-042",
@@ -5217,7 +5347,9 @@
         "card": 6
       },
       "detail": "Ne için kullanılır? Kurabiye, börek ve sebzeyi fırında pişirmek için kullanılır.\nNasıl kullanılır? Tepsi yağlanır ya da üstüne pişirme kâğıdı veya silikon mat serilir. Kurabiyeler kabaracağı için aralıklı dizilir.\nDikkat: Fırından çıkan tepsi çok sıcaktır; kuru fırın eldiveniyle tutulur.\nFarkı nedir? Cam fırın kabına göre basıktır.",
-      "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak."
+      "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak.",
+      "ust": "pisirme-kabi",
+      "aile": "firin-kabi"
     },
     {
       "id": "guncel-043",
@@ -5233,7 +5365,9 @@
         "card": 7
       },
       "detail": "Ne için kullanılır? Fırında makarna, sebze yemeği ve sütlü tatlı pişirmek için kullanılan, ısıya dayanıklı cam kaptır.\nNasıl kullanılır? Kabın fırına uygunluğu üzerindeki işaretten kontrol edilir. Yiyecek kaba konur ve kap fırına yerleştirilir.\nDikkat: Sıcak cam kap soğuk ya da ıslak yüzeye konmaz, içine soğuk su eklenmez; ani sıcaklık değişimi camı kırar. Sıcak kap kuru, ısıya dayanıklı bir altlığa konur. Cam fırın kabı ocağın üstüne konmaz; doğrudan ateş camı kırar.\nFarkı nedir? Fırın tepsisine göre derindir; içindeki yemek görünür.",
-      "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak."
+      "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak.",
+      "ust": "pisirme-kabi",
+      "aile": "firin-kabi"
     },
     {
       "id": "guncel-044",
@@ -5249,7 +5383,9 @@
         "card": 8
       },
       "detail": "Ne için kullanılır? Kek pişirmek için kullanılır. Yan çemberi açıldığı için kek kalıptan kolayca çıkarılır.\nNasıl kullanılır? Taban yerine oturtulur ve kelepçe kapatılır. Kek soğuyunca kelepçe açılır ve yan çember kaldırılır; kek tabanın üstünde kalır.\nDikkat: Kelepçe kapanırken parmaklar kelepçeden uzak tutulur; parmak sıkışabilir. Sıcak kalıp kuru fırın eldiveniyle tutulur.",
-      "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak."
+      "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak.",
+      "ust": "pisirme-kabi",
+      "aile": "firin-kabi"
     },
     {
       "id": "guncel-045",
@@ -5265,7 +5401,9 @@
         "card": 9
       },
       "detail": "Ne için kullanılır? Küçük kekleri (muffin) pişirmek için kullanılan gözlü kalıptır.\nNasıl kullanılır? Gözlere kâğıt kapsül yerleştirilir. Hamur kabaracağı için gözler ağzına kadar doldurulmaz; yaklaşık üçte ikisine kadar doldurulur.\nFarkı nedir? Kelepçeli kalıptan farklı olarak her gözde ayrı bir küçük kek pişer.",
-      "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak."
+      "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak.",
+      "ust": "pisirme-kabi",
+      "aile": "firin-kabi"
     },
     {
       "id": "guncel-046",
@@ -5281,7 +5419,9 @@
         "card": 10
       },
       "detail": "Ne için kullanılır? Sıcak tencere, tava ve tepsiyi masaya ya da tezgâha koymak için kullanılan çelik altlıktır.\nNasıl kullanılır? Nihale önce düz bir yüzeye konur; sıcak kap nihalenin ortasına yerleştirilir. Böylece masa ve tezgâh yanmaz.\nDikkat: Çelik nihale de ısınır; sıcak kap kaldırıldıktan sonra nihaleye hemen dokunulmaz.",
-      "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak."
+      "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak.",
+      "ust": "servis",
+      "aile": "servis-yardimci"
     },
     {
       "id": "guncel-047",
@@ -5297,7 +5437,9 @@
         "card": 11
       },
       "detail": "Ne için kullanılır? Ekmeği ezmeden dilimlemek için kullanılan, ağzı tırtıklı bıçaktır.\nNasıl kullanılır? Ekmek, altında kaydırmaz mat olan kesme tahtasına konur. Bıçak fazla bastırılmadan ileri geri hareket ettirilir.\nDikkat: Ekmeği tutan el, keskin ağızdan uzak tutulur. Bıçak taşınırken ucu yere doğru tutulur, keskin ağzı vücuttan uzağa bakar.\nFarkı nedir? Sofra bıçağına göre uzundur ve ağzı tırtıklıdır.",
-      "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak."
+      "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak.",
+      "ust": "kesme-hazirlik",
+      "aile": "mutfak-bicagi"
     },
     {
       "id": "guncel-048",
@@ -5313,7 +5455,9 @@
         "card": 12
       },
       "detail": "Ne için kullanılır? Sebze, meyve ve eti doğramak ve dilimlemek için kullanılan geniş ağızlı, büyük bıçaktır.\nNasıl kullanılır? Yiyecek, altında kaydırmaz mat olan kesme tahtasına konur. Bıçak sapından sıkıca tutulur. Yiyeceği tutan elin parmak uçları içe doğru bükülür; buna pençe tutuşu denir. Bıçak, bükülmüş parmakların önünde ilerler.\nDikkat: Düşen bıçak tutulmaya çalışılmaz; geri çekilinir.\nFarkı nedir? Ekmek bıçağına göre ağzı düz ve geniştir.",
-      "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak."
+      "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak.",
+      "ust": "kesme-hazirlik",
+      "aile": "mutfak-bicagi"
     },
     {
       "id": "guncel-049",
@@ -5329,7 +5473,9 @@
         "card": 1
       },
       "detail": "Ne için kullanılır? Küçük sebze ve meyveleri kesmek ve ayıklamak için kullanılan kısa bıçaktır. Soymak için sebze soyacağı kullanılır.\nNasıl kullanılır? Yiyecek kesme tahtasının üstünde kesilir; havada kesilmez. Bıçak sapından tutulur.\nDikkat: Kısa bıçak da keser; keskin ağız, yiyeceği tutan elden uzağa doğru hareket ettirilir. Bıçak taşınırken ucu yere doğru tutulur, keskin ağzı vücuttan uzağa bakar.\nFarkı nedir? Şef bıçağına göre küçük ve kısadır.",
-      "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak."
+      "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak.",
+      "ust": "kesme-hazirlik",
+      "aile": "mutfak-bicagi"
     },
     {
       "id": "guncel-050",
@@ -5348,7 +5494,9 @@
       "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak.",
       "disla": [
         "Kaydırmaz mat"
-      ]
+      ],
+      "ust": "kesme-hazirlik",
+      "aile": "kesme-yardimci"
     },
     {
       "id": "guncel-051",
@@ -5364,7 +5512,9 @@
         "card": 3
       },
       "detail": "Ne için kullanılır? Kesme tahtası, karıştırma kabı ve havan gibi araçların tezgâhta kaymasını önleyen ince mattır.\nNasıl kullanılır? Tezgâh silinip kurulanır. Mat tezgâha düz serilir; tahta ya da kap matın ortasına konur. İş bitince mat yıkanır ve kurumaya bırakılır.\nFarkı nedir? Silikon pişirme matından farklı olarak fırına konmaz; yalnız tezgâhta kaymayı önler.",
-      "hint": "Düz ve esnek zemine, yüzeyindeki desene bak."
+      "hint": "Düz ve esnek zemine, yüzeyindeki desene bak.",
+      "ust": "kesme-hazirlik",
+      "aile": "kesme-yardimci"
     },
     {
       "id": "guncel-052",
@@ -5380,7 +5530,9 @@
         "card": 4
       },
       "detail": "Ne için kullanılır? Patates, havuç ve salatalık gibi sebzelerin ince kabuğunu soymak için kullanılır.\nNasıl kullanılır? Sebze bir elle sıkıca tutulur. Soyacak, kabuğun üstünde parmaklardan uzağa doğru hareket ettirilir.\nDikkat: Soyacağın ağzı keser; kesici ağza dokunulmaz. Çok küçük sebze parçaları elde soyulmaz; soyacak kayar ve parmağı keser.",
-      "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak."
+      "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak.",
+      "ust": "kesme-hazirlik",
+      "aile": "rende-soyma"
     },
     {
       "id": "guncel-053",
@@ -5396,7 +5548,9 @@
         "card": 5
       },
       "detail": "Ne için kullanılır? Peynir, havuç ve salatalık gibi yiyecekleri rendelemek için kullanılır. Yüzlerinde farklı büyüklükte delikler vardır: büyük delikler kalın, küçük delikler ince parçalar çıkarır.\nNasıl kullanılır? Rende kaymayan bir zemine dik konur ve sapından tutulur. Yiyecek, seçilen yüzeyde yukarıdan aşağıya sürtülür.\nDikkat: Parmaklar rende yüzeyine değdirilmez. Yiyeceğin son küçük parçası rendelenmez, ayrılır; parça küçülünce parmaklar rendeye değer ve kesilir.\nFarkı nedir? Düz el rendesine göre dört rendeleme yüzeyi vardır ve kendi başına dik durur.",
-      "hint": "Dişlerinin büyüklüğüne ve rende yüzeyinin biçimine bak."
+      "hint": "Dişlerinin büyüklüğüne ve rende yüzeyinin biçimine bak.",
+      "ust": "kesme-hazirlik",
+      "aile": "rende-soyma"
     },
     {
       "id": "guncel-054",
@@ -5412,7 +5566,9 @@
         "card": 6
       },
       "detail": "Ne için kullanılır? Peynir ve sebzeleri rendelemek için kullanılan tek yüzlü, saplı rendedir.\nNasıl kullanılır? Rende sapından tutulur; alt ucu kaymayan bir yüzeye dayanır. Yiyecek, rende yüzeyinde aşağıya doğru sürtülür.\nDikkat: Parmaklar kesici deliklerden uzak tutulur. Yiyeceğin son küçük parçası rendelenmez; parça küçülünce parmaklar rendeye değer ve kesilir.\nFarkı nedir? Dört yüzlü rendeye göre tek rendeleme yüzeyi vardır.",
-      "hint": "Dişlerinin büyüklüğüne ve rende yüzeyinin biçimine bak."
+      "hint": "Dişlerinin büyüklüğüne ve rende yüzeyinin biçimine bak.",
+      "ust": "kesme-hazirlik",
+      "aile": "rende-soyma"
     },
     {
       "id": "guncel-055",
@@ -5433,7 +5589,9 @@
         "Düz el rendesi",
         "Şerit çıkaran limon rendesi"
       ],
-      "equivalenceKey": "ince-rende"
+      "equivalenceKey": "ince-rende",
+      "ust": "kesme-hazirlik",
+      "aile": "rende-soyma"
     },
     {
       "id": "guncel-056",
@@ -5449,7 +5607,9 @@
         "card": 8
       },
       "detail": "Limon ve portakal kabuğundan ince, uzun şeritler çıkarır.",
-      "hint": "Dişlerinin büyüklüğüne ve rende yüzeyinin biçimine bak."
+      "hint": "Dişlerinin büyüklüğüne ve rende yüzeyinin biçimine bak.",
+      "ust": "kesme-hazirlik",
+      "aile": "rende-soyma"
     },
     {
       "id": "guncel-057",
@@ -5465,7 +5625,9 @@
         "card": 9
       },
       "detail": "Ne için kullanılır? Sarımsağı ezmek için kullanılır.\nNasıl kullanılır? Soyulmuş sarımsak hazneye konur; saplar birbirine bastırılır. Ezici hemen yıkanır; kuruyan sarımsak zor temizlenir.\nDikkat: Parmaklar sapların arasına sokulmaz; sıkışabilir.",
-      "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak."
+      "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak.",
+      "ust": "kesme-hazirlik",
+      "aile": "ezme"
     },
     {
       "id": "guncel-058",
@@ -5481,7 +5643,9 @@
         "card": 10
       },
       "detail": "Ne için kullanılır? Baharatı ve sarımsağı dövmek için kullanılan tokmaklı kaptır.\nNasıl kullanılır? Havan kaymayan, düz bir yüzeye konur. Az miktarda baharat ya da sarımsak havana konur; tokmakla bastırılır ya da hafifçe vurulur. Tokmak elden kaymasın diye sıkıca tutulur.",
-      "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak."
+      "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak.",
+      "ust": "kesme-hazirlik",
+      "aile": "ezme"
     },
     {
       "id": "guncel-059",
@@ -5497,7 +5661,9 @@
         "card": 11
       },
       "detail": "Ne için kullanılır? Haşlanmış patatesi püre yapmak için kullanılır.\nNasıl kullanılır? Haşlanmış patates kaba konur; kap kaydırmaz bir altlığın üstüne yerleştirilir. Ezici sapından tutulur ve yukarıdan aşağıya bastırılır.\nDikkat: Sıcak patates ve kap eli yakar; sıcak kap kuru fırın eldiveniyle tutulur.",
-      "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak."
+      "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak.",
+      "ust": "kesme-hazirlik",
+      "aile": "ezme"
     },
     {
       "id": "guncel-060",
@@ -5513,7 +5679,9 @@
         "card": 12
       },
       "detail": "Ne için kullanılır? Yeşillik ve ip kesmek için kullanılan makastır.\nNasıl kullanılır? Makas sapından tutulur. Yeşillik kabın üstünde kesilir. Paket açmak için ayrı makas kullanılır.\nDikkat: Makas kapalı olarak, ucu aşağı bakacak biçimde taşınır.",
-      "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak."
+      "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak.",
+      "ust": "kesme-hazirlik",
+      "aile": "kesme-yardimci"
     },
     {
       "id": "guncel-061",
@@ -5529,7 +5697,9 @@
         "card": 1
       },
       "detail": "Ne için kullanılır? Konserve kutularının kapağını açmak için kullanılır.\nNasıl kullanılır? Açacağın tekerleği kutunun kenarına oturtulur ve saplar sıkılır. Kol çevrildikçe kapak kenardan kesilir.\nDikkat: Kesilen kapağın ve kutunun kenarı çok keskindir; kenarlara parmakla dokunulmaz. Kapak elle değil, maşayla kaldırılır.",
-      "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak."
+      "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak.",
+      "ust": "hazirlik",
+      "aile": "el-aleti"
     },
     {
       "id": "guncel-062",
@@ -5545,7 +5715,9 @@
         "card": 2
       },
       "detail": "Ne için kullanılır? Malzemeleri karıştırmak ve çırpmak için kullanılan derin, çelik ya da cam kaptır.\nNasıl kullanılır? Kap düz bir tezgâha konur. Kaymaması için altına kaydırmaz mat yerleştirilir. Malzeme kabın üst kenarına ulaşmayacak kadar konur. Karıştırırken taşma oluyorsa daha büyük kap seçilir.",
-      "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak."
+      "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak.",
+      "ust": "hazirlik",
+      "aile": "karistirma"
     },
     {
       "id": "guncel-063",
@@ -5561,7 +5733,9 @@
         "card": 3
       },
       "detail": "Ne için kullanılır? Yumurta, krema ve kek hamurunu çırpmak için kullanılır.\nNasıl kullanılır? Çırpma teli, malzemenin içinde dairesel hareketlerle çevrilir. Kap tezgâhta sabit tutulur. Karışım sıçramasın diye derin kap kullanılır.\nFarkı nedir? Elle çalışır; el mikseri aynı işi elektrikle yapar.",
-      "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak."
+      "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak.",
+      "ust": "hazirlik",
+      "aile": "karistirma"
     },
     {
       "id": "guncel-064",
@@ -5577,7 +5751,9 @@
         "card": 4
       },
       "detail": "Ne için kullanılır? Tencerede pişen yemeği karıştırmak için kullanılan uzun saplı, büyük kaşıktır. Çelik ya da silikon olur.\nNasıl kullanılır? Kaşık sapının ucundan tutulur; yemek tencerenin dibinden yukarıya doğru karıştırılır. İş bitince kaşık temiz bir tabağa konur.\nDikkat: Çelik kaşık sıcak tencerenin içinde bırakılmaz; ısınır ve eli yakar.\nFarkı nedir? Kepçeden farklı olarak yemeği karıştırmak içindir; kepçe yemeği kâseye almak içindir.",
-      "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak."
+      "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak.",
+      "ust": "hazirlik",
+      "aile": "karistirma"
     },
     {
       "id": "guncel-065",
@@ -5597,7 +5773,9 @@
       "disla": [
         "Omlet spatulası",
         "Krep spatulası"
-      ]
+      ],
+      "ust": "hazirlik",
+      "aile": "karistirma"
     },
     {
       "id": "guncel-066",
@@ -5615,7 +5793,9 @@
       "detail": "Ne için kullanılır? Kapta kalan hamuru ve kremayı sıyırmak, karışımı yavaşça karıştırmak için kullanılır. Tavada kullanım için üreticinin belirttiği sıcaklık sınırı ve kullanım uygunluğu kontrol edilir.\nNasıl kullanılır? Esnek uç kabın iç kenarına bastırılır; hamur kabın ortasına doğru sıyrılır. Spatula doğrudan ateşe değdirilmez ve kızgın tavanın içinde bırakılmaz; silikon aşırı sıcakta bozulur.\nFarkı nedir? Pasta spatulasına göre esnektir; kabı sıyırmaya uygundur.",
       "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak.",
       "task": "Kabın içindeki karışımı sıyırmak için seçilen esnek başlıklı örnek.",
-      "assessmentConstruct": "Görsel ve verilen kullanım bilgisini adla ilişkilendirme. Kullanım amacı yalnız fotoğrafın biçiminden çıkarılmaz."
+      "assessmentConstruct": "Görsel ve verilen kullanım bilgisini adla ilişkilendirme. Kullanım amacı yalnız fotoğrafın biçiminden çıkarılmaz.",
+      "ust": "hazirlik",
+      "aile": "karistirma"
     },
     {
       "id": "guncel-067",
@@ -5633,7 +5813,9 @@
       "detail": "Ne için kullanılır? Sos ve hamur gibi karışımları karıştırmak, kaptan almak ve kabın kenarını sıyırmak için kullanılır.\nNasıl kullanılır? Kaşık spatula sapından tutulur. Esnek kenarı kabın iç yüzeyinde gezdirilerek karışım toplanır.\nFarkı nedir? Silikon sıyırma spatulasından farklı olarak başlığı kaşık gibi çukurdur.",
       "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak.",
       "task": "Karıştırma ve sıyırma için seçilen kaşık biçimli esnek örnek.",
-      "assessmentConstruct": "Görsel ve verilen kullanım bilgisini adla ilişkilendirme. Kullanım amacı yalnız fotoğrafın biçiminden çıkarılmaz."
+      "assessmentConstruct": "Görsel ve verilen kullanım bilgisini adla ilişkilendirme. Kullanım amacı yalnız fotoğrafın biçiminden çıkarılmaz.",
+      "ust": "hazirlik",
+      "aile": "karistirma"
     },
     {
       "id": "guncel-068",
@@ -5654,7 +5836,9 @@
       "assessmentConstruct": "Görsel ve verilen kullanım bilgisini adla ilişkilendirme. Kullanım amacı yalnız fotoğrafın biçiminden çıkarılmaz.",
       "disla": [
         "Çevirme spatulası"
-      ]
+      ],
+      "ust": "hazirlik",
+      "aile": "karistirma"
     },
     {
       "id": "guncel-069",
@@ -5676,7 +5860,9 @@
       "disla": [
         "Pasta spatulası",
         "Çevirme spatulası"
-      ]
+      ],
+      "ust": "hazirlik",
+      "aile": "karistirma"
     },
     {
       "id": "guncel-070",
@@ -5692,7 +5878,9 @@
         "card": 10
       },
       "detail": "Ne için kullanılır? Malzemeleri gram olarak tartmak için kullanılır.\nNasıl kullanılır?\n1.\tTerazi düz ve kuru bir zemine konur ve açılır; eğik zeminde yanlış tartar; ıslak zemin cihazı bozabilir.\n2.\tBoş kap teraziye konur.\n3.\tDara düğmesine basılır; ekranda 0 g görülür.\n4.\tMalzeme kaba azar azar eklenir.\n5.\tEkranda tarifteki miktar görülünce ekleme bırakılır.\n6.\tKap kaldırılır ve terazi kapatılır. Terazinin üstüne sert vurulmaz; hassas parçaları bozulur.\nFarkı nedir? Malzemenin miktarını gram cinsinden gösterir. Ölçü kabı ise sıvılar için kullanılır.",
-      "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak."
+      "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak.",
+      "ust": "hazirlik",
+      "aile": "olcme"
     },
     {
       "id": "guncel-071",
@@ -5708,7 +5896,9 @@
         "card": 11
       },
       "detail": "Ne için kullanılır? Su ve süt gibi sıvıları mililitre olarak ölçmek için kullanılır.\nNasıl kullanılır? Kap düz zemine konur. Sıvı, tarifteki miktarın çizgisine kadar doldurulur. Okurken kap düz zeminde kalır; eğilinir ve göz, çizgiyle aynı yüksekliğe getirilir. Kap elde havada tutulursa ya da çizgiye yukarıdan bakılırsa ölçü yanlış okunur.\nFarkı nedir? Sıvının miktarını mililitre cinsinden gösterir. Terazi ise gram cinsinden tartar.",
-      "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak."
+      "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak.",
+      "ust": "hazirlik",
+      "aile": "olcme"
     },
     {
       "id": "guncel-072",
@@ -5724,7 +5914,9 @@
         "card": 12
       },
       "detail": "Ne için kullanılır? Baharat, tuz ve kabartma tozu gibi küçük miktarları ölçmek için kullanılan, farklı boylardaki kaşıklardır.\nNasıl kullanılır? Tarifteki ölçüye uygun kaşık seçilir. Kuru malzeme kuru kaşığa doldurulur ve üstü düzlenir. Sıvı malzeme kaşığın ağzına kadar doldurulur.\nFarkı nedir? Teraziden farklı olarak hacim ölçer. Tarifte gram yazıyorsa terazi kullanılır.",
-      "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak."
+      "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak.",
+      "ust": "hazirlik",
+      "aile": "olcme"
     },
     {
       "id": "guncel-073",
@@ -5740,7 +5932,9 @@
         "card": 1
       },
       "detail": "Ne için kullanılır? Unu havalandırmak ve topaklarını ayırmak için kullanılır.\nNasıl kullanılır? Elek kuru bir kabın üstünde tutulur ve içine un konur. Elek hafifçe sağa sola sallanır. Elek kuru olmalıdır; ıslak elekte un hamurlaşır ve gözleri tıkar.\nFarkı nedir? Süzgece göre gözleri çok incedir; un gibi kuru malzeme içindir.",
-      "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak."
+      "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak.",
+      "ust": "hazirlik",
+      "aile": "suzme"
     },
     {
       "id": "guncel-074",
@@ -5756,7 +5950,9 @@
         "card": 2
       },
       "detail": "Ayaklı süzgeç, yiyeceklerin suyunu süzmek için kullanılır. Sıcak suyu süzme işlemini öğretmen yapar.",
-      "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak."
+      "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak.",
+      "ust": "hazirlik",
+      "aile": "suzme"
     },
     {
       "id": "guncel-075",
@@ -5772,7 +5968,9 @@
         "card": 3
       },
       "detail": "Ne için kullanılır? Çayı bardağa dökerken çay yapraklarını tutmak için kullanılan ince gözlü küçük süzgeçtir.\nNasıl kullanılır? Süzgeç sapından, bardağın üstünde tutulur; çay süzgecin içinden bardağa dökülür. Süzgeç her kullanımdan sonra yıkanır; böylece gözleri tıkanmaz.\nFarkı nedir? Süzgece göre küçüktür ve gözleri incedir.",
-      "hint": "Ağız bölümüne ve sıvının geçtiği yere bak."
+      "hint": "Ağız bölümüne ve sıvının geçtiği yere bak.",
+      "ust": "hazirlik",
+      "aile": "suzme"
     },
     {
       "id": "guncel-076",
@@ -5788,7 +5986,9 @@
         "card": 4
       },
       "detail": "Ne için kullanılır? Su ve yağ gibi sıvıları dar ağızlı şişelere doldurmak için kullanılır.\nNasıl kullanılır? Huni şişenin ağzına yerleştirilir; şişe düz zeminde tutulur. Sıvı huniye yavaşça dökülür; şişe ağzına kadar doldurulmaz.\nDikkat: Yanık oluşmaması için sıcak sıvı ve kızgın yağ önce soğutulur; sonra ısıya uygun kap ve huniyle yavaşça aktarılır.",
-      "hint": "Ağız bölümüne ve sıvının geçtiği yere bak."
+      "hint": "Ağız bölümüne ve sıvının geçtiği yere bak.",
+      "ust": "hazirlik",
+      "aile": "suzme"
     },
     {
       "id": "guncel-077",
@@ -5804,7 +6004,9 @@
         "card": 5
       },
       "detail": "Kevgir, uzun saplı ve delikli başı olan araçtır. Yiyeceği sıvısından ayırarak almak için kullanılır. Kepçenin başı deliksizdir. Ayaklı süzgeç ve tel süzgeç ayrı araçlardır. Sıcak suyla ilgili işlemi öğretmen yapar; öğrenci sıcak su ve buhardan uzakta durur.",
-      "hint": "Başının delikli mi, deliksiz mi olduğuna bak."
+      "hint": "Başının delikli mi, deliksiz mi olduğuna bak.",
+      "ust": "hazirlik",
+      "aile": "suzme"
     },
     {
       "id": "guncel-078",
@@ -5820,7 +6022,9 @@
         "card": 6
       },
       "detail": "Ne için kullanılır? Çorbayı ve sulu yemeği tencereden kâseye almak için kullanılır.\nNasıl kullanılır? Kepçe sapından tutulur ve tencereye daldırılır. Dolu kepçe kâsenin üstüne getirilir ve yavaşça boşaltılır; kâsenin kenarına çorba damlatılmaz.\nFarkı nedir? Kevgirden farklı olarak deliksizdir; çorbayı suyuyla birlikte alır.",
-      "hint": "Başının delikli mi, deliksiz mi olduğuna bak."
+      "hint": "Başının delikli mi, deliksiz mi olduğuna bak.",
+      "ust": "hazirlik",
+      "aile": "el-aleti"
     },
     {
       "id": "guncel-079",
@@ -5836,7 +6040,9 @@
         "card": 7
       },
       "detail": "Ne için kullanılır? Yiyecekleri tutmak, çevirmek ve tabağa almak için kullanılır. Metal uçlu ve silikon uçlu modelleri vardır.\nNasıl kullanılır? Maşa açılır; yiyecek maşanın uçları arasına alınır ve saplar hafifçe sıkılır. Kaplamalı tavada, tost ve waffle makinesinde silikon uçlu maşa kullanılır.\nDikkat: Çiğ et ve pişmiş yiyecek için ayrı maşa kullanılır.\nFarkı nedir? Metal uçlu maşa kaplamalı yüzeyi çizer; silikon uçlu maşa çizmez.",
-      "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak."
+      "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak.",
+      "ust": "hazirlik",
+      "aile": "el-aleti"
     },
     {
       "id": "guncel-080",
@@ -5852,7 +6058,9 @@
         "card": 8
       },
       "detail": "Ne için kullanılır? Dondurmayı top biçiminde almak için kullanılan kaşıktır.\nNasıl kullanılır? Kaşık dondurmanın üstünde çekilerek top alınır. Mandallı modelde top, mandal sıkılarak kâseye bırakılır. Kaşık kirli ya da beklemiş suyun içinde bırakılmaz; iş bitince yıkanıp kurulanır.",
-      "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak."
+      "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak.",
+      "ust": "hazirlik",
+      "aile": "el-aleti"
     },
     {
       "id": "guncel-081",
@@ -5868,7 +6076,9 @@
         "card": 9
       },
       "detail": "Ne için kullanılır? Limon ve portakalın suyunu çıkarmak için kullanılır.\nNasıl kullanılır? Limonun kesik yüzü sıkacağın tepesine bastırılır ve çevrilir. Çıkan limon suyundaki çekirdekler kaşıkla alınır.\nDikkat: Limon, kaydırmaz mat üzerindeki kesme tahtasında bıçakla ikiye kesilir; tutan el keskin ağızdan uzak tutulur.",
-      "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak."
+      "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak.",
+      "ust": "hazirlik",
+      "aile": "el-aleti"
     },
     {
       "id": "guncel-082",
@@ -5884,7 +6094,9 @@
         "card": 10
       },
       "detail": "Ne için kullanılır? Ayarlanan süre dolunca ses çıkararak haber verir. Yemek pişerken süreyi izlemek için kullanılır.\nNasıl kullanılır? Süre ayarlanır ve zamanlayıcı başlatılır. Ses gelince yemeğin pişmesi tarife göre kontrol edilir.",
-      "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak."
+      "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak.",
+      "ust": "hazirlik",
+      "aile": "zaman-isi"
     },
     {
       "id": "guncel-083",
@@ -5900,7 +6112,9 @@
         "card": 11
       },
       "detail": "Ne için kullanılır? Fırının içindeki sıcaklığı ölçmek için kullanılır.\nNasıl kullanılır? Termometre fırın soğukken yerleştirilir. Fırın çalışırken gösterge kapak camından okunur.\nDikkat: Çıplak el sıcak fırına uzatılmaz. Termometre gerekirse kuru fırın eldiveniyle çıkarılır.\nFarkı nedir? Yemek termometresinden farklı olarak fırının sıcaklığını ölçer.",
-      "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak."
+      "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak.",
+      "ust": "hazirlik",
+      "aile": "zaman-isi"
     },
     {
       "id": "guncel-084",
@@ -5916,7 +6130,9 @@
         "card": 12
       },
       "detail": "Ne için kullanılır? Yiyeceğin iç sıcaklığını ölçer. Ekrandaki 65 °C bir ölçüm örneğidir.\nNasıl kullanılır? Temiz ölçüm ucu yiyeceğin en kalın yerine batırılır; uç kemiğe, yağlı bölüme ve kaba değdirilmez. Ekrandaki sayı değişmeyi bırakınca okunur ve tarifteki iç sıcaklıkla karşılaştırılır. Ölçüm ucu her kullanımdan önce ve sonra temizlenir.\nDikkat: 65 °C bütün yiyecekler için güvenli pişirme sıcaklığı değildir; yiyeceğin güvenli iç sıcaklığına uygun tarif izlenir ve termometreyle kontrol edilir.\nFarkı nedir? Fırın termometresinden farklı olarak yemeğin içini ölçer.",
-      "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak."
+      "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak.",
+      "ust": "hazirlik",
+      "aile": "zaman-isi"
     },
     {
       "id": "guncel-085",
@@ -5932,7 +6148,9 @@
         "card": 1
       },
       "detail": "Ne için kullanılır? Hamuru açmak ve inceltmek için kullanılır.\nNasıl kullanılır? Hamur yapışmasın diye tezgâha ince bir tabaka un serpilir. Merdane hamurun ortasından kenarlara doğru yuvarlanır. Yere dökülen un hemen temizlenir; unlu zeminde ayak kayabilir.",
-      "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak."
+      "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak.",
+      "ust": "hazirlik",
+      "aile": "hamur-pasta"
     },
     {
       "id": "guncel-086",
@@ -5948,7 +6166,9 @@
         "card": 2
       },
       "detail": "Ne için kullanılır? Tezgâha yapışan hamuru sıyırıp toplamak için kullanılır. Hamuru parçalara ayırmak için de kullanılabilir.\nNasıl kullanılır? Kazıyıcı üstteki sapından tutulur; düz metal kenarı tezgâha dayanır. Kenar hamurun altına doğru itilerek hamur toplanır.\nDikkat: Metal kenar keskin olabilir; parmaklar kenardan uzak tutulur.",
-      "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak."
+      "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak.",
+      "ust": "hazirlik",
+      "aile": "hamur-pasta"
     },
     {
       "id": "guncel-087",
@@ -5964,7 +6184,9 @@
         "card": 3
       },
       "detail": "Hamurun üzerine yumurta sarısı, süt veya yağ sürmek için kullanılır. Çiğ yumurtaya değen fırça yıkanıp durulanır. Başka yiyecekte kullanılmadan önce öğretmenin belirlediği hijyen işlemi tamamlanır.",
-      "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak."
+      "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak.",
+      "ust": "hazirlik",
+      "aile": "hamur-pasta"
     },
     {
       "id": "guncel-088",
@@ -5980,7 +6202,9 @@
         "card": 4
       },
       "detail": "Ne için kullanılır? Açılmış hamura şekil vermek için kullanılır.\nNasıl kullanılır? Kalıp hamura bastırılır ve kaldırılır. Arada az hamur kalması için kalıp, önceki şeklin yakınına bastırılır.\nDikkat: Metal kalıbın kenarı keskin olabilir; kalıp üstünden bastırılır.",
-      "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak."
+      "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak.",
+      "ust": "pisirme-kabi",
+      "aile": "firin-kabi"
     },
     {
       "id": "guncel-089",
@@ -5996,7 +6220,9 @@
         "card": 5
       },
       "detail": "Ne için kullanılır? Kremayı ve yumuşak hamuru şekil vererek sıkmak için kullanılır. Yıkanabilir sıkma torbası temizlenerek yeniden kullanılır.\nNasıl kullanılır?\n1. Duy torbanın ucuna takılır.\n2. Torba bir bardağa yerleştirilir. Torbanın yarısına kadar krema konur. Fazla dolan torbadan krema üstten taşar.\n3. Torbanın üstü bükülür.\n4. Bir el torbanın üstünü sıkar, öbür el duya yakın yerden yön verir.\n5. Yıkanabilir torba ve duylar kullanımdan sonra yıkanır, durulanır ve kurutulur.",
-      "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak."
+      "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak.",
+      "ust": "hazirlik",
+      "aile": "hamur-pasta"
     },
     {
       "id": "guncel-090",
@@ -6014,7 +6240,9 @@
       "detail": "Ne için kullanılır? Kremayı pastaya sürmek ve yüzeyi düzeltmek için kullanılan metal spatuladır.\nNasıl kullanılır? Krema pastanın üstüne konur ve spatulayla ortadan kenarlara doğru yayılır. Spatula her kullanımdan sonra yıkanıp kurulanır; üstünde kuruyan krema zor temizlenir.\nFarkı nedir? Silikon sıyırma spatulasına göre sert ve düzdür; krema yaymak içindir.",
       "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak.",
       "task": "Pastanın üzerine kremayı yaymak için seçilen uzun düz örnek.",
-      "assessmentConstruct": "Görsel ve verilen kullanım bilgisini adla ilişkilendirme. Kullanım amacı yalnız fotoğrafın biçiminden çıkarılmaz."
+      "assessmentConstruct": "Görsel ve verilen kullanım bilgisini adla ilişkilendirme. Kullanım amacı yalnız fotoğrafın biçiminden çıkarılmaz.",
+      "ust": "hazirlik",
+      "aile": "hamur-pasta"
     },
     {
       "id": "guncel-091",
@@ -6031,7 +6259,9 @@
       },
       "detail": "Ne için kullanılır? Fırın tepsisine serilen, hamurun tepsiye yapışmasını önleyen kâğıttır.\nNasıl kullanılır? Kâğıt tepsinin boyuna göre kesilir ve tepsiye düz serilir; hamur üstüne dizilir. Kâğıt bir kez kullanılır ve atılır.\nDikkat: Kâğıt, fırının ısıtıcısına değdirilmez; sıcak ısıtıcıya değen kâğıt yanabilir.\nFarkı nedir? Dayanabileceği en yüksek sıcaklık paketinde yazar. Bir kez kullanılıp atıldığı için gereçtir.",
       "hint": "Düz, ince ve rulo ya da tabaka hâlindeki kâğıt görünümüne bak.",
-      "kok": "Görseldeki malzemenin adı nedir?"
+      "kok": "Görseldeki malzemenin adı nedir?",
+      "ust": "hazirlik",
+      "aile": "hamur-pasta"
     },
     {
       "id": "guncel-092",
@@ -6047,7 +6277,9 @@
         "card": 8
       },
       "detail": "Ne için kullanılır? Tepsiye serilen ve hamurun yapışmasını önleyen silikon mattır.\nNasıl kullanılır? Mat tepsiye düz serilir ve hamur üstüne dizilir. Matın üstünde bıçakla kesilmez; mat kesilir ve bozulur. Fırın sıcaklığı, matın dayanabileceği sıcaklığı aşmayacak biçimde ayarlanır. Kullanımdan sonra mat yıkanır ve yeniden kullanılır.\nFarkı nedir? Pişirme kâğıdından farklı olarak yıkanıp yeniden kullanılır.",
-      "hint": "Düz, esnek ve silikon görünümlü yüzeye bak. Kâğıttan farkını düşün."
+      "hint": "Düz, esnek ve silikon görünümlü yüzeye bak. Kâğıttan farkını düşün.",
+      "ust": "hazirlik",
+      "aile": "hamur-pasta"
     },
     {
       "id": "guncel-093",
@@ -6063,7 +6295,9 @@
         "card": 9
       },
       "detail": "Ne için kullanılır? Fırından çıkan kek ve kurabiyeyi soğutmak için kullanılır. Telin boşluklarından hava geçtiği için alt kısımları da soğur.\nNasıl kullanılır? Kek, tarifteki süre kadar bekledikten sonra kalıptan çıkarılıp tele konur. Kurabiyeler dağılmadan alınabilecek kadar soğuyunca tele dizilir; üst üste yığılmaz.\nDikkat: Sıcak kalıp ve tepsi kuru fırın eldiveniyle tutulur.",
-      "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak."
+      "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak.",
+      "ust": "hazirlik",
+      "aile": "hamur-pasta"
     },
     {
       "id": "guncel-094",
@@ -6079,7 +6313,9 @@
         "card": 10
       },
       "detail": "Ne için kullanılır? Tencere ve tavadaki yemekleri pişirmek için kullanılır. Fotoğrafta gazla çalışan bir ocak görülür. Bazı mutfaklarda elektrikli ocak kullanılır.\nNasıl kullanılır? Tencere, ocak kapalıyken gözün ortasına oturtulur. Ocak açılır, ateş tarife göre ayarlanır ve iş bitince kapatılır. Tencere ve tava sapları ocağın kenarından taşmayacak biçimde içe çevrilir; sapa çarpılırsa tencere devrilebilir. Ocağın yanında bez, kâğıt ve peçete bulundurulmaz; bunlar alev alır.\nDikkat: Gaz kokusu alınırsa düğmelere dokunulmaz; hemen uzaklaşılır ve öğretmene haber verilir. Ocak yanmazsa ya da alev sönerse de öğretmene haber verilir.",
-      "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak."
+      "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak.",
+      "ust": "cihaz",
+      "aile": "cihaz-isitma"
     },
     {
       "id": "guncel-095",
@@ -6095,7 +6331,9 @@
         "card": 11
       },
       "detail": "Ne için kullanılır? Kek, börek, kurabiye ve fırın yemeklerini pişirmek için kullanılır.\nNasıl kullanılır? Fırın tarife göre ayarlanır; tarif gerektiriyorsa önceden ısıtılır. Tepsi, kuru fırın eldiveni giyilerek tarifte yazan rafa yerleştirilir ve kapak kapatılır. Pişme süresi zamanlayıcıyla izlenir.\nDikkat: Kapak açılırken yüz fırından uzak tutulur; çıkan sıcak hava ve buhar yakar. Sıcak tepsi kuru fırın eldiveniyle tutulur.\nFarkı nedir? Mikrodalga ile ısıtmadan farklı olarak yiyeceğin üstünü kızartabilir; kek ve börek gibi hamur işlerini pişirir.",
-      "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak."
+      "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak.",
+      "ust": "cihaz",
+      "aile": "cihaz-isitma"
     },
     {
       "id": "guncel-096",
@@ -6111,7 +6349,9 @@
         "card": 12
       },
       "detail": "Ne için kullanılır? Tost ve sandviçleri ısıtıp kızartmak için kullanılır.\nNasıl kullanılır? Makine ısınınca tost alt plakaya konur. Üst kapak sapından tutularak yavaşça kapatılır. Pişen tost silikon uçlu maşayla alınır.\nDikkat: Plakalar çok sıcaktır; plakalara elle dokunulmaz. Makine, fişi çekilip soğuduktan sonra temizlenir.\nFarkı nedir? Waffle makinesinden farklı olarak tost ve sandviç pişirmek için kullanılır.",
-      "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak."
+      "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak.",
+      "ust": "cihaz",
+      "aile": "cihaz-isitma"
     },
     {
       "id": "guncel-097",
@@ -6127,7 +6367,9 @@
         "card": 1
       },
       "detail": "Ne için kullanılır? Waffle hamurunu pişirmek için kullanılır.\nNasıl kullanılır? Makine ısıtılır; gerekirse plakalar mutfak fırçasıyla hafifçe yağlanır. Plakaya tarifteki miktarda hamur dökülür ve kapak kapatılır. Pişen waffle silikon uçlu maşayla alınır.\nDikkat: Kapak açılırken çıkan buhar yakar; yüz makineden uzak tutulur. Makine, fişi çekilip soğuduktan sonra temizlenir.\nFarkı nedir? Tost makinesinden farklı olarak waffle hamuruna şekil veren gözlü plakaları vardır.",
-      "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak."
+      "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak.",
+      "ust": "cihaz",
+      "aile": "cihaz-isitma"
     },
     {
       "id": "guncel-098",
@@ -6143,7 +6385,9 @@
         "card": 2
       },
       "detail": "Ne için kullanılır? Yemeği ısıtmak ve uygun programda çözdürmek için kullanılır. Mikrodalgaya uygun kap seçilir. Süre ve kullanım için cihazın talimatına uyulur.\nPişmiş yemek nasıl ısıtılır?\n1.\tYemek, mikrodalgaya uygun cam ya da porselen kaba konur.\n2.\tKap, mikrodalgaya uygun kapakla gevşekçe kapatılır; buhar çıksın diye kapağın bir ucu aralık bırakılır.\n3.\tSüre ayarlanır, fırının kapağı kapatılır ve cihaz çalıştırılır.\n4.\tMikrodalga yemeği her yerinden eşit ısıtmaz; bu yüzden ısıtma yarıya gelince yemek karıştırılır.\n5.\tIsıtma bitince yemek gevşekçe örtülü olarak ürün ve cihaz talimatında belirtilen süre kadar bekletilir; böylece ısı yemeğin içinde dağılır.\n6.\tYemeğin sıcaklığı, yemek termometresiyle birkaç yerden ölçülür. Her ölçüm en az 75 °C olmalıdır; düşükse yemek yeniden ısıtılır.\nDikkat: Mikrodalgaya çelik kap, metal kaşık ve alüminyum folyo konmaz; kıvılcım çıkarır. Kap tamamen kapatılırsa içinde buhar birikir ve kapak fırlayabilir. Kabuklu yumurta mikrodalgada ısıtılmaz; patlar. Sıcak kap kuru fırın eldiveniyle çıkarılır.\nFarkı nedir? Yemeği kısa sürede ısıtır. Yalnız mikrodalga ile ısıtmada yiyeceğin üstü kızarmaz. Bu sıcaklık, güvenli saklanmış artan yemeği yeniden ısıtmak içindir; bütün yiyeceklerin ilk pişirme sıcaklığı değildir.",
-      "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak."
+      "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak.",
+      "ust": "cihaz",
+      "aile": "cihaz-isitma"
     },
     {
       "id": "guncel-099",
@@ -6159,7 +6403,9 @@
         "card": 3
       },
       "detail": "Ne için kullanılır? Suyu elektrikle kaynatmak için kullanılır.\nNasıl kullanılır? Isıtıcı tabanından kaldırılarak doldurulur. Su, gövdedeki en az (MIN) ve en çok (MAX) çizgileri arasında kalır; fazla su kaynayınca taşabilir. Az suyla çalıştırmak aşırı ısınmaya yol açabilir. Isıtıcı tabanına oturtulur ve düğmesine basılır. Çoğu modelde su kaynayınca ısıtıcı kendiliğinden kapanır.\nDikkat: Taban ve kablo ıslatılmaz; ıslak taban ve kablo elektrik çarpmasına yol açabilir. Kaynar su yavaşça dökülür; ısıtıcı sapından tutulur, yüz buhardan uzak tutulur.\nFarkı nedir? Çay makinesinden farklı olarak yalnız su kaynatır.",
-      "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak."
+      "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak.",
+      "ust": "cihaz",
+      "aile": "cihaz-isitma"
     },
     {
       "id": "guncel-100",
@@ -6175,7 +6421,9 @@
         "card": 4
       },
       "detail": "Ne için kullanılır? Suyu ısıtmak ve çayı demlemek için kullanılan elektrikli cihazdır. Altta su haznesi, üstte demlik vardır. Çay ve su, cihaz kılavuzundaki hazırlama sırasına göre yerleştirilir.\nNasıl kullanılır?\n1.\tAlt hazneye MIN ve MAX çizgileri arasında kalacak kadar soğuk su konur.\n2.\tDemlik alt haznenin üstüne yerleştirilir ve içine soğuk su konur.\n3.\tÇay, demlikteki suyun üstüne eklenir ve dibe çökmesi beklenir.\n4.\tMakine çalıştırılır; su ve çay birlikte ısınır.\nDikkat: Makine çalışırken gövde ve demlik ısınır; demlik sapından tutulur. Alt hazne boşken makine çalıştırılmaz; susuz çalıştırmak aşırı ısınmaya yol açabilir.\nFarkı nedir? Su ısıtıcısından farklı olarak çayı da demler.",
-      "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak."
+      "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak.",
+      "ust": "cihaz",
+      "aile": "cihaz-isitma"
     },
     {
       "id": "guncel-101",
@@ -6191,7 +6439,9 @@
         "card": 5
       },
       "detail": "Ne için kullanılır? Türk kahvesini elektrikle pişirmek için kullanılır.\nNasıl kullanılır? Soğuk su fincanla, kahve cihazın kendi ölçeğiyle ölçülüp hazneye konur. En çok dolum çizgisi aşılmaz. Cihaz çalıştırılır. Çoğu modelde kahve pişince cihaz kendiliğinden durur.\nDikkat: Pişen kahve çok sıcaktır; hazne sapından tutulur ve kahve fincana yavaşça dökülür.\nFarkı nedir? Cezveden farklı olarak elektrikle çalışır; ocak gerekmez.",
-      "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak."
+      "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak.",
+      "ust": "cihaz",
+      "aile": "cihaz-isitma"
     },
     {
       "id": "guncel-102",
@@ -6207,7 +6457,9 @@
         "card": 6
       },
       "detail": "Ne için kullanılır? Yumurta, krema ve kek hamurunu elektrikle çırpmak için kullanılır.\nNasıl kullanılır?\n1. Çırpıcılar, mikser kapalı ve fişi prizden çekiliyken takılır. Böylece düğmeye yanlışlıkla basılsa da mikser çalışmaz.\n2.\tFiş takılır; çırpıcılar karışıma indirilir ve düşük hızda başlanır.\n3.\tİş bitince mikser kapatılır; çırpıcılar durunca kaptan çıkarılır.\n4.\tFiş prizden çekilir, sonra çırpıcılar mikserden çıkarılır.\nDikkat: Çalışan çırpıcılara el, kaşık ya da spatula yaklaştırılmaz; dönen çırpıcılar eli yaralayabilir, kaşığı ya da spatulayı sıkıştırabilir.\nFarkı nedir? Çırpma telinden farklı olarak elektrikle çalışır. El blenderinden farklı olarak çırpar; yiyeceği parçalamaz.",
-      "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak."
+      "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak.",
+      "ust": "cihaz",
+      "aile": "cihaz-karistirma"
     },
     {
       "id": "guncel-103",
@@ -6223,7 +6475,9 @@
         "card": 7
       },
       "detail": "Ne için kullanılır? Çorbayı püre yapmak ve sosu pürüzsüz hâle getirmek için kullanılır. Ucunda bıçak vardır.\nNasıl kullanılır? Tencere, kuru fırın eldivenleriyle iki elle tutulup nihaleye alınır. Kaynamanın durması beklenir. Öğretmen, yemeğin sıcaklığını cihazın kılavuzuna göre kontrol eder. Bıçaklı uç karışıma batırılır. Uç karışımın içindeyken cihaz çalıştırılır. İş bitince cihaz durdurulur; bıçak tamamen durunca uç karışımdan çıkarılır.\nDikkat: Çalışan blender karışımdan çıkarılırsa sıcak karışım sıçrar ve yakar. Bıçaklı uç fiş çekildikten sonra sökülür; bıçağa parmakla dokunulmaz.\nFarkı nedir? El mikserinden farklı olarak yiyeceği bıçağıyla parçalar. Sıvının sıcaklığı ve miktarı cihaz kılavuzuna uygun olmalıdır. İşlem öğretmen gözetiminde yapılır.",
-      "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak."
+      "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak.",
+      "ust": "cihaz",
+      "aile": "cihaz-karistirma"
     },
     {
       "id": "guncel-104",
@@ -6239,7 +6493,9 @@
         "card": 8
       },
       "detail": "Meyve, yoğurt ve sütle soğuk içecek hazırlamak için kullanılır. Bu kapalı kişisel blenderde sıcak malzeme kullanılmaz. Dolum çizgisi aşılmaz. Bıçaklı bölüm kılavuza göre kapatılır. Hazne açılmadan önce cihaz durdurulur ve fişi çekilir.",
-      "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak."
+      "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak.",
+      "ust": "cihaz",
+      "aile": "cihaz-karistirma"
     },
     {
       "id": "guncel-105",
@@ -6257,7 +6513,9 @@
       "detail": "Ne için kullanılır? Ekmek ve börek hamurunu yoğurmak için kullanılır.\nNasıl kullanılır? Malzemeler tartılıp hazırlanır ve hazneye konur. Makine, öğretmenin gösterdiği hız ayarında çalıştırılır. Makine çalışırken yanından ayrılınmaz.\nDikkat: Makine çalışırken hazneye el ya da spatula sokulmaz; dönen kanca eli çeker ve ezer. Yoğurucu kanca, makine durdurulup fişi çekildikten sonra takılır ve çıkarılır.\nFarkı nedir? El mikseri elde tutulur. Hamur yoğurma makinesi tezgâhta durur; kancası hamuru yoğurur.",
       "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak.",
       "task": "Hamur yoğurmak için uygun aparatı takılarak kullanılan tezgâh makinesi.",
-      "assessmentConstruct": "Görsel ve verilen kullanım bilgisini adla ilişkilendirme. Kullanım amacı yalnız fotoğrafın biçiminden çıkarılmaz."
+      "assessmentConstruct": "Görsel ve verilen kullanım bilgisini adla ilişkilendirme. Kullanım amacı yalnız fotoğrafın biçiminden çıkarılmaz.",
+      "ust": "cihaz",
+      "aile": "cihaz-karistirma"
     },
     {
       "id": "guncel-106",
@@ -6273,7 +6531,9 @@
         "card": 10
       },
       "detail": "Ne için kullanılır? Çabuk bozulan yiyecekleri soğukta saklamak için kullanılır. Soğutucu bölümü +4 °C ya da daha soğuk, dondurucu bölümü −18 °C ya da daha soğuk olur.\nNasıl kullanılır? Yiyecekler kapalı ve etiketli kaplarda saklanır. Çiğ et, tavuk ve balık sızdırmaz kapta en alt rafa konur; sızdırmaz kap, et suyunun diğer yiyeceklere damlamasını önler. Pişmiş ve hazır yiyecekler üst raflara yerleştirilir. Soğuk hava dolaşsın diye kapların arasında boşluk bırakılır.\nDikkat: Kapak açık bırakılmaz; içerisi ısınır ve yiyeceğin bozulma riski artar. Sıcaklık kılavuza göre ayarlanır. Artan pişmiş yemeğin saklama süresi, yiyeceğe ve güvenli soğutma koşullarına göre öğretmen tarafından kontrol edilir.",
-      "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak."
+      "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak.",
+      "ust": "cihaz",
+      "aile": "saklama"
     },
     {
       "id": "guncel-107",
@@ -6289,7 +6549,9 @@
         "card": 11
       },
       "detail": "Ne için kullanılır? Yiyecekleri buzdolabında ya da dolapta saklamak için kullanılan kapaklı kaptır. Atölyemizde gıdaya uygun cam ve çelik kaplar kullanılır.\nNasıl kullanılır? Yiyecek temiz kaba konur ve kapak kapatılır. Etikete yiyeceğin adı ve hazırlanma tarihi yazılır. Artan yemek başka kaba aktarılırsa ilk hazırlanma tarihi korunur.\nDikkat: Çiğ et ile hazır yiyecek aynı kaba konmaz; hazır yiyecek pişirilmeden yenir ve çiğ etten geçen mikrop ölmez. Her cam kap fırına uygun değildir; uygunluğu üzerindeki işaretten kontrol edilir.",
-      "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak."
+      "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak.",
+      "ust": "cihaz",
+      "aile": "saklama"
     },
     {
       "id": "guncel-108",
@@ -6305,7 +6567,9 @@
         "card": 12
       },
       "detail": "Ne için kullanılır? Yiyecek hazırlamak, saklamak ve sunmak için kullanılan çelik kaptır. GN kaplara uygun fırın, raf ve servis tezgâhı yuvalarına yerleşir.\nNasıl kullanılır? Yiyecek küvete konur; saklanacaksa kapak kapatılır. Saklanan pişmiş yemeğin adı ve hazırlanma tarihi etikete yazılır.\nDikkat: Sıcak küvet kuru fırın eldiveniyle tutulur.\nFarkı nedir? Ölçüleri GN sistemine uygundur; aynı ölçülerdeki raf ve servis tezgâhı yuvalarına yerleşir.",
-      "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak."
+      "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak.",
+      "ust": "cihaz",
+      "aile": "saklama"
     },
     {
       "id": "guncel-109",
@@ -6321,7 +6585,9 @@
         "card": 1
       },
       "detail": "Ne için kullanılır? Un, şeker, pirinç ve makarna gibi kuru yiyecekleri saklamak için kullanılan kapaklı cam kavanozdur.\nNasıl kullanılır? Kuru yiyecek temiz ve kuru kaba konur; kavanozun kapağı çevrilerek sıkıca kapatılır. Kabın üstüne yiyeceğin adı ya da resmi konur; kaba konduğu tarih yazılır. Paketteki tarih, “son tüketim tarihi” ya da “tavsiye edilen tüketim tarihi” ifadesi değiştirilmeden etikete aktarılır. Kaba yalnız temiz ve kuru kaşık sokulur; ıslak kaşık yiyeceği nemlendirir ve bozulma riskini artırır.",
-      "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak."
+      "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak.",
+      "ust": "cihaz",
+      "aile": "saklama"
     },
     {
       "id": "guncel-110",
@@ -6337,7 +6603,9 @@
         "card": 2
       },
       "detail": "Ne için kullanılır? Bulaşıkları yıkamak ve durulamak için kullanılır.\nNasıl kullanılır?\n1.\tTabaktaki yemek artıkları, makinenin süzgeci tıkanmasın diye çöpe sıyrılır.\n2.\tTabaklar dik, bardak ve kâseler ağzı aşağı bakacak biçimde yerleştirilir; böylece su her yere ulaşır ve bardakların içinde kirli su birikmez. Çatal ve kaşıklar, makinenin kılavuzunda gösterilen bölmelere yerleştirilir. Temiz çatal ve kaşıklar saplarından tutulur.\n3.\tDeterjan tableti kuru elle deterjan haznesine konur. Öğretmen, parlatıcı kullanımı için makinenin kılavuzunu kontrol eder. Kılavuzda uygun görülen ürün kullanılır. Program bulaşığın türüne göre seçilir; kapak kapatılır ve program başlatılır.\n4.\tProgram bitince bulaşıkların soğuması beklenir. Temiz bulaşığa dokunmadan önce eller yıkanıp kurulanır; sonra bulaşıklar makineden çıkarılır.\nDikkat: Makine çalışırken kapak açılmaz. Kapak açılırken sıcak buhardan uzak durulur. Keskin bıçakların temizliğini öğretmen yapar. Öğrenci bıçağı suya veya evyeye bırakmaz; öğretmene haber verir.",
-      "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak."
+      "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak.",
+      "ust": "temizlik-koruma",
+      "aile": "temizlik"
     },
     {
       "id": "guncel-111",
@@ -6353,7 +6621,9 @@
         "card": 3
       },
       "detail": "Ne için kullanılır? Bulaşıkları elde yıkamak için kullanılır. Yumuşak bir yüzü, bir de sert (çizici) yüzü vardır.\nNasıl kullanılır? Sünger deterjanlı suyla ıslatılır; bulaşık ovulur ve temiz suyla durulanır. Kaplamalı tava ve cam kaplar süngerin yumuşak yüzüyle yıkanır. İş bitince sünger yıkanır, sıkılır ve kurumaya bırakılır; ıslak kalan süngerde mikrop çoğalır. Yıpranmış, kötü kokan ya da çiğ et artığı bulaşan sünger değiştirilir; temiz görünen sünger de mikrop taşıyabilir.\nFarkı nedir? Temizlik bezinden farklı olarak bulaşık yıkamak için kullanılır.",
-      "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak."
+      "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak.",
+      "ust": "temizlik-koruma",
+      "aile": "temizlik"
     },
     {
       "id": "guncel-112",
@@ -6369,7 +6639,9 @@
         "card": 4
       },
       "detail": "Ne için kullanılır? Tencere, tabak ve kapların içini fırçalayarak temizlemek için kullanılır.\nNasıl kullanılır? Yiyecek kalıntıları deterjanlı suda fırçalanır; kap temiz suyla durulanır. Dar bardak ve şişeler için uzun ve ince fırça seçilir. İş bitince fırça durulanır ve kurumaya bırakılır.\nFarkı nedir? Bulaşık süngerinden farklı olarak kabın köşelerine ve dibine kolayca ulaşır.",
-      "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak."
+      "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak.",
+      "ust": "temizlik-koruma",
+      "aile": "temizlik"
     },
     {
       "id": "guncel-113",
@@ -6385,7 +6657,9 @@
         "card": 5
       },
       "detail": "Ne için kullanılır? Masa ve tezgâhı silmek için kullanılır.\nNasıl kullanılır? Tezgâh, gıdayla temas eden yüzeye uygun ürünle, ürünün etiketine ve atölyenin hijyen planına göre temizlenir. Durulama ve gerekiyorsa dezenfeksiyon basamakları uygulanır. Sirke, onaylı dezenfektan yerine kullanılmaz. Bu bez yalnız masa ve tezgâh için kullanılır. Bu bezle el ya da bulaşık kurulanmaz; eller kâğıt havluyla kurulanır. Kirlenen bez değiştirilir; kirli bez temiz bezlerin yanına konmaz.\nFarkı nedir? Lito bezinden farklı olarak serviste kullanılmaz; masa ve tezgâh silmek içindir.",
-      "hint": "Bezin renk ve kumaş yapısına bak. Servis bezinden farkını düşün."
+      "hint": "Bezin renk ve kumaş yapısına bak. Servis bezinden farkını düşün.",
+      "ust": "temizlik-koruma",
+      "aile": "temizlik"
     },
     {
       "id": "guncel-114",
@@ -6401,7 +6675,9 @@
         "card": 6
       },
       "detail": "Ne için kullanılır? Elde yıkanan bulaşıkların suyunu süzmek ve kurutmak için kullanılır.\nNasıl kullanılır? Tabaklar dik, bardak ve kâseler ağzı aşağı bakacak biçimde yerleştirilir. Aralarında boşluk bırakılır; su aşağı akar ve bulaşıklar havayla kurur.\nDikkat: Raf fazla doldurulmaz; üst üste konan tabaklar kayar ve kırılır.",
-      "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak."
+      "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak.",
+      "ust": "temizlik-koruma",
+      "aile": "temizlik"
     },
     {
       "id": "guncel-115",
@@ -6417,7 +6693,9 @@
         "card": 7
       },
       "detail": "Ne için kullanılır? Çöpü, kapağa elle dokunmadan atmak için kullanılır.\nNasıl kullanılır? Kovanın alt önündeki pedala ayakla basılır ve kapak açılır. Çöp atılır, ayak çekilir ve kapak kapanır. Torba dolunca ağzı bağlanır ve torba değiştirilir. Çöp atıldıktan sonra eller yıkanır.",
-      "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak."
+      "hint": "Biçimini, sapını ve varsa deliklerini incele. Benzer araçların farklarına bak.",
+      "ust": "temizlik-koruma",
+      "aile": "temizlik"
     },
     {
       "id": "guncel-116",
@@ -6433,7 +6711,9 @@
         "card": 8
       },
       "detail": "Ne için kullanılır? Sıcak tepsi, tencere ve kapları tutmak için kullanılır. Tutma bölümü silikon kaplıdır. Uzun konçu bileği ve kolu korur.\nNasıl kullanılır? İçi ve konçu kuru olan eldivenler iki ele giyilir. Tepsi iki kenarından, tencere iki kulpundan tutulur. Kullanımdan sonra eldiven yıkanır ve kurutulur.\nDikkat: İçi ıslak ya da yırtık eldiven kullanılmaz; ısı ve buhar geçer, el yanar. Böyle bir eldiven öğretmene gösterilir.\nFarkı nedir? Tek kullanımlık eldivenden farklı olarak eli sıcaktan korur.",
-      "hint": "Kalın, yastıklı ve elin girdiği yapıya bak."
+      "hint": "Kalın, yastıklı ve elin girdiği yapıya bak.",
+      "ust": "temizlik-koruma",
+      "aile": "koruyucu"
     },
     {
       "id": "guncel-117",
@@ -6450,7 +6730,9 @@
       },
       "detail": "Ne için kullanılır? Temiz eldiven, elden yiyeceğe mikrop geçmesini azaltır.\nNasıl kullanılır? Eller yıkanıp kurulandıktan sonra temiz eldiven takılır. Eldiven kirlenince ya da yırtılınca çıkarılıp atılır. Çiğ etten hazır yiyeceğe geçerken kullanılan eldiven çıkarılıp atılır. Eller yıkanır ve kurulanır. Temiz eldiven takılır.\nDikkat: Eldiven el yıkamanın yerine geçmez; kirli elle takılan eldivenin dışına elin mikrobu geçer. Tek kullanımlık eldiven eli sıcaktan korumaz; sıcak kap kuru fırın eldiveniyle tutulur.\nFarkı nedir? Bulaşık eldiveninden farklı olarak incedir ve bir kez kullanılır.",
       "hint": "İnce, esnek ve parmaklı yapıya bak. Bulaşık eldiveninden farkını düşün.",
-      "kok": "Görseldeki malzemenin adı nedir?"
+      "kok": "Görseldeki malzemenin adı nedir?",
+      "ust": "temizlik-koruma",
+      "aile": "koruyucu"
     },
     {
       "id": "guncel-118",
@@ -6466,7 +6748,9 @@
         "card": 10
       },
       "detail": "Ne için kullanılır? Bulaşık yıkarken uygun eldiven, ellerin deterjanla temasını azaltır. Eldivenin ürüne uygunluğu etiketinden kontrol edilir; kaynar su ve buhardan korumaz.\nNasıl kullanılır? Eldiven, içi kuru olarak giyilir. Kullanımdan sonra eldivenin dışı yıkanır; sonra eldiven çıkarılıp kurumaya asılır. Yırtılan eldiven değiştirilir. Bulaşık eldiveni yalnız temizlikte kullanılır; yiyecek hazırlarken takılmaz.\nFarkı nedir? Tek kullanımlık eldivenden farklı olarak kalındır ve yeniden kullanılır.",
-      "hint": "Kalın, uzun bilekli ve parmaklı yapıya bak."
+      "hint": "Kalın, uzun bilekli ve parmaklı yapıya bak.",
+      "ust": "temizlik-koruma",
+      "aile": "koruyucu"
     },
     {
       "id": "guncel-119",
@@ -6482,7 +6766,9 @@
         "card": 11
       },
       "detail": "Ne için kullanılır? Giysiyi lekeden korur; giysideki toz ve kirin yiyeceğe geçmesini önler.\nNasıl kullanılır? Önce bone takılır. Önlük giyilir ve bağcıkları arkadan bağlanır. Sonra eller yıkanır ve kurulanır. Kirlenen önlük değiştirilir; önlük her kullanımdan sonra yıkanır.\nDikkat: Sıcak kap önlükle tutulmaz; kuru fırın eldiveni kullanılır.",
-      "hint": "Boyna ve belde bağlanan, gövdeyi örten kumaş yapıya bak."
+      "hint": "Boyna ve belde bağlanan, gövdeyi örten kumaş yapıya bak.",
+      "ust": "temizlik-koruma",
+      "aile": "koruyucu"
     },
     {
       "id": "guncel-120",
@@ -6499,7 +6785,9 @@
       },
       "detail": "Ne için kullanılır? Saçı örter; yiyeceğe saç düşmesini önler.\nNasıl kullanılır? Bone, eller yıkanmadan önce takılır; böylece saça dokunan el sonradan yıkanıp temizlenir. Saçın tamamı bonenin içine toplanır. İş bitince bone çıkarılır ve çöpe atılır.",
       "hint": "Saçı örten, ince ve lastikli yuvarlak yapıya bak.",
-      "kok": "Görseldeki malzemenin adı nedir?"
+      "kok": "Görseldeki malzemenin adı nedir?",
+      "ust": "temizlik-koruma",
+      "aile": "koruyucu"
     }
   ],
   "words": [],

@@ -31,8 +31,15 @@
    const same=d.matches.filter(x=>x.set===it.set&&(!it.grup||x.grup===it.grup)).map(x=>x.answer);
    // Gruplu maddelerde yalnız aynı grubun adları kullanılır; ortak havuz iki grubu karıştırabilir.
    const extra=it.grup?[]:((d.distractors&&d.distractors[String(it.set)])||[]);
-   let pool=uniq(same.concat(extra)).filter(x=>x!==it.answer);
-   pool=pool.filter(x=>!(it.disla||[]).includes(x));
+   const okName=x=>x!==it.answer&&!(it.disla||[]).includes(x);
+   let pool;
+   if(it.aile){
+    // Aile bilgisi olan kartta çeldirici aynı türden gelir: önce aynı aile, yetmezse aynı üst aile.
+    const fam=d.matches.filter(x=>x.aile===it.aile).map(x=>x.answer).filter(okName);
+    pool=uniq(fam);
+    if(pool.length<3)pool=uniq(pool.concat(d.matches.filter(x=>x.ust&&x.ust===it.ust).map(x=>x.answer).filter(okName)));
+   }
+   if(!pool||pool.length<3)pool=uniq(same.concat(extra)).filter(okName);
    if(pool.length<3)throw new Error(it.id+': en az üç farklı çeldirici gerekir.');
    pool=shuffle(pool,rng).slice(0,3);
    return finalize({id:it.id,prompt:it.comparison?'Üçgenin gösterdiği aracın adı nedir?':it.kok||IMG_PROMPT[subject]||'Bu görselde ne var?',image:it.image,imageAlt:it.imageAlt||'Adı sorulan nesnenin fotoğrafı.',equivalenceKey:it.equivalenceKey,comparisonPosition:it.comparisonPosition},[it.answer].concat(pool),it.answer,rng,{explanation:it.explanation||'',hint:it.hint||''});
