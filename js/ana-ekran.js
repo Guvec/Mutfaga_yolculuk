@@ -39,13 +39,19 @@
    <span class="ae-points"><span aria-hidden="true">★</span> ${points}</span>
   </button>`;
  }
+ const YOLLAR={
+  sicak:{ad:'Sıcak Mutfak',konular:['mutfak-araclari','baharat','beslenme-ilkeleri'],tarif:'sicak'},
+  pasta:{ad:'Pastacılık',konular:['mutfak-araclari','baharat','beslenme-ilkeleri'],tarif:'pasta'},
+  servis:{ad:'Servis',konular:['kuver','bulasik-makinesi-temizligi'],tarif:null}
+ };
  function home(){
   GIRIS.character=dostSecili();
   const name=st.guest?'Misafir':st.prof?adRest(st.prof):'Profil seç';
   const action=devamBilgi();
   const avatar=profileArt(st.prof);
   const crown=typeof kaptanTacHTML==='function'?kaptanTacHTML():'';
-  return `<div class="ae-home">
+  const yol=YOLLAR[path()];
+  return `<div class="ae-home" data-yol="${path()}">
    <header class="ae-header ae-paper">
     <button type="button" class="ae-profile" onclick="anaProfil()" aria-label="${esc(name+(crown?'. Haftanın kaptanı':'')+'. Profil ayrıntıları')}">
      <span class="ae-avatar">${avatar}</span>${crown}
@@ -53,41 +59,38 @@
     <strong class="ae-profile-name">${esc(name)}</strong>
     <button type="button" class="ae-settings" onclick="anaAyarlar()" aria-label="Ayarlar"><span aria-hidden="true">⚙</span></button>
     ${rankHTML()}
+    <nav class="ae-profile-links" aria-label="Profil">
+     <button type="button" class="ae-friends-open" data-ark="1" onclick="anaArkadas()">Arkadaşlarım</button>
+     <button type="button" class="ae-kitap-open" onclick="anaKitap()">Mutfak Kitabım</button>
+     <button type="button" class="ae-gorunum-open" onclick="anaDost()">Görünüm ve Hareketler</button>
+    </nav>
+    <span class="ae-friends-portraits" id="aeArkadasPortreleri" aria-hidden="true">${arkadasPortreleri()}</span>
    </header>
+   <div class="ae-paper ae-dost" role="img" aria-label="Aşçı Dostum">
+    <strong>Aşçı Dostum</strong>
+    <picture class="ae-dost-artwork" data-dost="${GIRIS.character}">${foto(GIRIS.homeArt())}</picture>
+   </div>
    <nav class="ae-paths" aria-label="Mutfak dalları">
     <button type="button" class="ae-paper" onclick="anaYol('sicak')" aria-pressed="${path()==='sicak'}">${dalArt('sicak')}<span>Sıcak Mutfak</span></button>
     <button type="button" class="ae-paper" onclick="anaYol('pasta')" aria-pressed="${path()==='pasta'}">${dalArt('pasta')}<span>Pastacılık</span></button>
     <button type="button" class="ae-paper" onclick="anaYol('servis')" aria-pressed="${path()==='servis'}">${dalArt('servis')}<span>Servis</span></button>
    </nav>
-   <button type="button" class="ae-paper ae-dost" onclick="anaDost()">
-    <strong>Aşçı Dostum</strong>
-    <picture class="ae-dost-artwork" data-dost="${GIRIS.character}">${foto(GIRIS.homeArt())}</picture>
-   </button>
-   <div class="ae-card-grid">
-    <section class="ae-paper ae-study" aria-label="Mutfak Kitabım">
-     <button type="button" class="ae-card-link" onclick="anaKitap()">${foto('ana-kitap')}<strong>Mutfak Kitabım</strong></button>
-     <div class="ae-home-resume">
-      <small>${action.started?'Kaldığın yer':'Önerilen çalışma'}</small>
-      <div class="ae-home-topic">${foto(topicArt(action.id))}<span><strong>${esc(action.name)}</strong>${action.detail?'<small>'+esc(action.detail)+'</small>':''}</span></div>
-     </div>
-     ${devamHTML(action)}
-    </section>
-    <button type="button" class="ae-paper ae-work" onclick="anaAtolye()">
-     <strong>Aşçılık Atölyesi</strong>${foto('ana-atolye')}
-    </button>
-   </div>
-   <div class="ae-friends ae-paper">
-    <button type="button" class="ae-friends-open" data-ark="1" onclick="anaArkadas()">${foto('ana-arkadas')}<strong>Arkadaşlarım</strong></button>
-    <span class="ae-friends-portraits" id="aeArkadasPortreleri" aria-hidden="true">${arkadasPortreleri()}</span>
-    <button type="button" class="ae-friends-add" onclick="anaArkadas(true)" aria-label="Arkadaş ekle">+</button>
-   </div>
+   ${resumeHTML(action)}
+   <button type="button" class="ae-paper ae-yolgir" onclick="anaYolPencere()"><span>${esc(yol.ad)}: Konular ve Uygulama</span><b aria-hidden="true">›</b></button>
    <nav class="ae-bottom" aria-label="Oyun ve başarılar">
-    <button type="button" class="ae-paper" onclick="go('market')">${foto('ana-market')}<span>Market</span></button>
+    <button type="button" class="ae-paper" onclick="go('market')">${foto('ana-market')}<span>Vitrinim</span></button>
     <button type="button" class="ae-paper" onclick="tasarimOda('create')">${foto('ana-birlikte')}<span>Birlikte Oyna</span></button>
     <button type="button" class="ae-paper" onclick="rkOpenBoard()">${foto('ana-siralama')}<span>Sıralama</span></button>
     <button type="button" class="ae-paper" onclick="go('rutbe')">${foto('ana-rozet')}<span>Rozetlerim</span></button>
    </nav>
   </div>`;
+ }
+ function resumeHTML(a){
+  if(!a.started)return `<section class="ae-paper ae-kald ae-kald-bos" aria-label="Çalışma">${devamHTML(a)}</section>`;
+  return `<section class="ae-paper ae-kald" aria-label="Kaldığın yer">
+   <div class="ae-home-resume"><small>Kaldığın yer</small>
+    <div class="ae-home-topic"><span><strong>${esc(a.name)}</strong>${a.detail?'<small>'+esc(a.detail)+'</small>':''}</span></div></div>
+   ${devamHTML(a)}</section>`;
  }
  function sonKonuAnahtar(){return 'ana_son_konu_'+(st.guest?'misafir':st.prof||'');}
  const TOPICS={
@@ -200,9 +203,11 @@
  };
  function devamBilgi(){
   const saved=ls(sonKonuAnahtar(),null);
-  const id=Object.hasOwn(TOPICS,saved)?saved:'mutfak-araclari';
+  const konular=YOLLAR[path()].konular;
+  const id=konular.includes(saved)?saved:konular[0];
   const progress=typeof yolDevamBilgi==='function'?yolDevamBilgi(id):null;
-  const started=!!(saved||progress?.basladi);
+  /* "Kaldığın yer" yalnız gerçek ilerleme varsa çıkar; konuyu açmak (saved) ilerleme sayılmaz. */
+  const started=!!progress?.basladi;
   const title=progress?.bitti?'Tekrar çalış':started?'Devam et':'Çalışmaya başla';
   const detail=progress?.bitti?'Çalışma tamamlandı':
    progress?.node&&st.prof&&!st.guest?'0 / 1 · +'+progress.points+' puan':progress?.basladi?'Çalışma sürüyor':'';
@@ -212,7 +217,7 @@
   return `<button type="button" class="ae-devam" onclick="anaDevam()" aria-label="${esc(title+'. '+name)}">
    <b>${esc(title)}</b><span aria-hidden="true">›</span></button>`;
  }
- let subjectReturn='home';
+ let subjectReturn='home',kitapGeri='mutfakkitabi',recipeFrom='';
  function openFrom(id,from){
   subjectReturn=from;
   lsSet(sonKonuAnahtar(),id);
@@ -222,12 +227,24 @@
   if(st.prof||st.guest){openFrom(id,from);return;}
   pendingSubject={id,from};go('profiles');
  };
- window.anaKitapKonu=function(id){
+ window.anaKitapKonu=function(id,from='mutfakkitabi'){
   if(!Object.hasOwn(TOPICS,id))return;
+  kitapGeri=from;
   if(id==='kuver'){go('servantkuver');return;}
   if(id==='beslenme-ilkeleri'){if(st.prof||st.guest)lsSet(sonKonuAnahtar(),id);go('beslenmeokuma');return;}
-  anaKonu(id);
+  anaKonu(id,from);
  };
+ window.anaYolPencere=function(){go('yolpenceresi');};
+ window.anaYolKonu=function(id){anaKitapKonu(id,'yolpenceresi');};
+ window.anaYolTarif=function(id){if(Object.hasOwn(RECIPES,id)){recipe=id;recipeFrom='yol';go('tarifkart');}};
+ function yolPenceresi(){
+  const y=YOLLAR[path()];
+  const konular=y.konular.map(id=>topicRow(TOPICS[id][0],TOPICS[id][1],"anaYolKonu('"+id+"')")).join('');
+  const tarifler=y.tarif?Object.entries(RECIPES).filter(([,r])=>r.group===y.tarif)
+   .map(([id,r])=>topicRow(r.name,r.image,"anaYolTarif('"+id+"')")).join(''):'';
+  return interior(y.ad+': Konular ve Uygulama','<h2>Konular</h2><div class="ae-list">'+konular+'</div>'+
+   (tarifler?'<h2>Uygulama</h2><div class="ae-list">'+tarifler+'</div>':''));
+ }
  function resume(id){
   if(id==='beslenme-ilkeleri'||id==='kuver'){anaKitapKonu(id);return;}
   lsSet(sonKonuAnahtar(),id);
@@ -246,16 +263,16 @@
   if(st.prof||st.guest||id==='beslenme-ilkeleri'||id==='kuver'){resume(id);return;}
   pendingYol=id;go('profiles');
  };
- window.anaKitap=function(){if(typeof EFEKT!=='undefined')EFEKT.cal('click');go('mutfakkitabi');};
+ window.anaKitap=function(){if(typeof EFEKT!=='undefined')EFEKT.cal('click');kitapGeri='mutfakkitabi';go('mutfakkitabi');};
  window.anaAtolye=function(){go('ascilikatolyesi');};
  window.anaDost=function(){GIRIS.ac('home');};
  window.anaTarif=function(y){
   if(y==='servis'){go('servantkuver');return;}
   if(y==='sicak'||y==='pasta')go(y==='sicak'?'sicakmutfak':'pastacilik');
  };
- window.anaTarifKart=function(id){if(Object.hasOwn(RECIPES,id)){recipe=id;go('tarifkart');}};
+ window.anaTarifKart=function(id){if(Object.hasOwn(RECIPES,id)){recipe=id;recipeFrom='';go('tarifkart');}};
  const screens={
-  home,welcome:home,mutfakkitabi:book,ascilikatolyesi:atelier,
+  home,welcome:home,yolpenceresi:yolPenceresi,mutfakkitabi:book,ascilikatolyesi:atelier,
   sicakmutfak:()=>recipeList('sicak'),pastacilik:()=>recipeList('pasta'),
   tarifkart:recipePage,servantkuver:serving,servant,beslenmeokuma:nutrition,market,
   gunlukgorevler:()=>interior('Günlük Görevler',gunlukListeHTML())
@@ -268,7 +285,7 @@
   }
   const screen=st.screen;
   const isHome=screen==='home'||screen==='welcome';
-  if(isHome)subjectReturn='home';
+  if(isHome){subjectReturn='home';kitapGeri='mutfakkitabi';}
   document.body.classList.toggle('ae-is-home',isHome);
   if(!Object.hasOwn(screens,screen)){prevRender();return;}
   if(typeof GIRIS.dur==='function'&&document.getElementById('actor'))GIRIS.dur();
@@ -281,8 +298,9 @@
  back=function(){
   const destinations={mutfakkitabi:'home',ascilikatolyesi:'home',market:'home',
    sicakmutfak:'ascilikatolyesi',pastacilik:'ascilikatolyesi',
-   tarifkart:RECIPES[recipe]?.group==='pasta'?'pastacilik':'sicakmutfak',
-   servantkuver:'mutfakkitabi',servant:'servantkuver',beslenmeokuma:'mutfakkitabi',
+   yolpenceresi:'home',
+   tarifkart:recipeFrom==='yol'?'yolpenceresi':RECIPES[recipe]?.group==='pasta'?'pastacilik':'sicakmutfak',
+   servantkuver:kitapGeri,servant:'servantkuver',beslenmeokuma:kitapGeri,
    gunlukgorevler:'mutfakkitabi',subject:subjectReturn};
   if(Object.hasOwn(destinations,st.screen)){go(destinations[st.screen]);return;}
   if(st.screen==='profiles'){pendingSubject=null;pendingYol=null;}

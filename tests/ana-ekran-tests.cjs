@@ -18,7 +18,7 @@ const assert=require('node:assert/strict'),open=require('./helpers/dom-app.cjs')
   assert(w.document.querySelector('.ae-devam'));assert.match(w.document.querySelector('.ae-rank-note').textContent,/100 puan kaldı/);
   assert.equal(w.document.querySelectorAll('.ae-bottom button').length,4);
   assert(w.document.querySelector('.ae-friends-open'));ok('Arkadaşlarım şeridi ve dört alt kısayol görünür');
-  assert.match(w.document.querySelector('.ae-home-topic').textContent,/Mutfak Araçları/);
+  assert.match(w.document.querySelector('.ae-devam').getAttribute('aria-label'),/Çalışmaya başla.*Mutfak Araçları/);assert(!w.document.querySelector('.ae-home-topic'),'İlerleme yokken Kaldığın yer çıkmaz');
   for(const id of ['panda','rabbit','koala']){
    w.anaDost();assert.equal(w.document.querySelectorAll('[data-dost-item]:not(.dost-locked)').length,3);
    w.document.querySelector('[data-dost-item='+id+']').click();w.document.getElementById('gUse').click();w.document.getElementById('gStart').click();
