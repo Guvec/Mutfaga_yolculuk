@@ -1,0 +1,25 @@
+/* © 2026 Ali Arıkoğlu. Tüm hakları saklıdır. */
+/* Yazı boyutu ayarı: Normal / Büyük / Çok büyük (html[data-yz]). Soru kökü ve seçenekler her yerde aynı ölçüde büyür.
+   Yatay taşma olmaz: uzun sözcükler kırılır, seçenekler alt satıra iner. */
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+html[data-yz] .yr-q,html[data-yz] body.yr-oyun .yr-q,html[data-yz] .ar-play .yr-q{font-size:16px;line-height:1.3;overflow-wrap:anywhere;hyphens:auto}
+html[data-yz] .yr-opt,html[data-yz] body.yr-oyun .yr-opt,html[data-yz] .ar-play .yr-opt{font-size:15px;line-height:1.3;white-space:normal;overflow-wrap:anywhere;min-width:0;height:auto}
+html[data-yz] .yr-opt .yr-let{flex:none}
+html[data-yz] .yr-fb,html[data-yz] body.yr-oyun .yr-fb{font-size:15px;line-height:1.3;overflow-wrap:anywhere}
+html[data-yz="buyuk"] .yr-q,html[data-yz="buyuk"] body.yr-oyun .yr-q,html[data-yz="buyuk"] .ar-play .yr-q{font-size:18px}
+html[data-yz="buyuk"] .yr-opt,html[data-yz="buyuk"] body.yr-oyun .yr-opt,html[data-yz="buyuk"] .ar-play .yr-opt{font-size:17px}
+html[data-yz="buyuk"] .yr-fb,html[data-yz="buyuk"] body.yr-oyun .yr-fb{font-size:17px}
+html[data-yz="buyuk"] .yr-sm,html[data-yz="buyuk"] .yr-sec,html[data-yz="buyuk"] .yr-sc{font-size:15px}
+html[data-yz="cok"] .yr-q,html[data-yz="cok"] body.yr-oyun .yr-q,html[data-yz="cok"] .ar-play .yr-q{font-size:21px}
+html[data-yz="cok"] .yr-opt,html[data-yz="cok"] body.yr-oyun .yr-opt,html[data-yz="cok"] .ar-play .yr-opt{font-size:19px}
+html[data-yz="cok"] .yr-fb,html[data-yz="cok"] body.yr-oyun .yr-fb{font-size:19px}
+html[data-yz="cok"] .yr-sm,html[data-yz="cok"] .yr-sec,html[data-yz="cok"] .yr-sc{font-size:16px}
+/* Büyük yazıda soru görseli biraz küçülür ki 360×640 telefonda soru ve seçenekler birlikte görünsün. */
+html[data-yz="buyuk"] body.yr-oyun .yr-img,html[data-yz="buyuk"] .ar-play .yr-img{height:auto;max-height:min(17dvh,128px)}
+html[data-yz="cok"] body.yr-oyun .yr-img,html[data-yz="cok"] .ar-play .yr-img{height:auto;max-height:min(12dvh,96px)}
+/* Küçük telefonda büyük yazıda üst ve alt şeritler sıkılaşır (dokunma alanı en az 44 px kalır). */
+html[data-yz="buyuk"] .hafta-ust,html[data-yz="cok"] .hafta-ust{margin:2px 0;gap:0 12px}
+html[data-yz="buyuk"] .hafta-alt .btn,html[data-yz="cok"] .hafta-alt .btn{min-height:44px;margin-top:4px;padding-block:6px}
+html[data-yz="buyuk"] .yr-opts,html[data-yz="cok"] .yr-opts{gap:6px}
+html[data-yz="cok"] .yr-q{line-height:1.3}
+html[data-yz="cok"] .yr-opt{line-height:1.25}
