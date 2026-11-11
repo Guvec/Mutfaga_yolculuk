@@ -312,3 +312,10 @@ html[data-theme=yuksek] .ae-interior { --ae-paper:var(--surface); --ae-ink:var(-
   .ae-home .ae-dost { height:clamp(88px,17svh,115px); }
   .ae-home .ae-bottom .ae-art { height:29px; }
 }
+
+/* Akıllı tahta ve geniş-kısa ekranlar (ör. 1366×768): kartlar yan yana, sayfa kaymaz */
+@media(min-width:800px) and (max-height:820px){
+  .ae-card-grid{grid-template-columns:repeat(2,minmax(0,1fr));grid-template-areas:"kitap atolye";grid-template-rows:auto}
+  .ae-home .ae-dost{max-height:clamp(120px,22svh,180px)}
+  .ae-home .ae-work img{height:clamp(54px,12svh,100px);flex:0 1 auto}
+}
