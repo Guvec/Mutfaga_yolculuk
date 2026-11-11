@@ -357,6 +357,17 @@ function duOverSync(){
 /* ====================== EKRANLAR ====================== */
 function yrTop(title){return topBar(title);}
 function yrWarnHTML(){return YR.warn?'<p class="yr-err" role="status">'+esc(YR.warn)+'</p>':'';}
+/* Yanlış cevapta: doğru kart ile seçilen kart yan yana (görsel, ad, kartın kendi açıklaması). */
+function yrCompareHTML(q,pick){
+ if(!(pick>=0)||!q||!q.subject)return '';
+ const pc=q.choices[pick],cc=q.choices.find(c=>c.id===q.correct),d=yrAllData()[q.subject];
+ if(!pc||!cc||pc.id===cc.id||!d||!d.matches)return '';
+ const card=t=>d.matches.find(x=>x.answer===t&&x.image);
+ const a=card(cc.text),b=card(pc.text);
+ if(!a||!b)return '';
+ const fig=(c,label)=>'<figure><img src="'+esc(c.image)+'" alt="'+esc(c.imageAlt||c.answer)+'"><figcaption><small>'+label+'</small><b>'+esc(c.answer)+'</b>'+(c.explanation?'<span>'+esc(c.explanation)+'</span>':'')+'</figcaption></figure>';
+ return '<div class="yr-vs" aria-label="Karşılaştırma">'+fig(a,'Doğru cevap')+fig(b,'Seçtiğin')+'</div>';
+}
 function yrExplanationHTML(q){return q.explanation?'<details class="yr-explain"><summary>Neden?</summary><p>'+esc(q.explanation)+'</p></details>':'';}
 function yrErr(){return (YR.error?'<p class="yr-err" role="alert">'+esc(YR.error)+'</p>':'')+(!navigator.onLine?'<p class="sub" role="status">İnternet bağlantısı yok.</p>':'');}
 function yrChoicesHTML(q,onclick,state){
@@ -417,7 +428,7 @@ function yrRaceHTML(){
  h+=yrQuestionHTML(q)+yrChoicesHTML(q,'yrRaceAnswer',g.ph==='fb'?{pick:g.pick}:null);
  if(g.ph==='fb'){
   const last=g.k+1>=YR.qs.length;
-  h+='<div class="yr-fb '+(g.right?'ok':'bad')+'" role="status"><b>'+(g.right?(g.hizli?'Çok hızlısın, minik şef! ⚡':'✓ Doğru!'):(g.pick<0?'Süre doldu.':'Yanlış.'))+'</b>'+(g.right?'':'<br>Doğru cevap: <b>'+esc(q.choices.find(c=>c.id===q.correct).text)+'</b>')+yrExplanationHTML(q)+'</div><button class="btn pri" onclick="yrRaceNext()" id="yrNext">'+(last?'Bitir':'Sonraki soru')+'</button>';
+  h+='<div class="yr-fb '+(g.right?'ok':'bad')+'" role="status"><b>'+(g.right?(g.hizli?'Çok hızlısın, minik şef! ⚡':'✓ Doğru!'):(g.pick<0?'Süre doldu.':'Yanlış.'))+'</b>'+(g.right?'':'<br>Doğru cevap: <b>'+esc(q.choices.find(c=>c.id===q.correct).text)+'</b>')+yrCompareHTML(q,g.pick)+yrExplanationHTML(q)+'</div><button class="btn pri" onclick="yrRaceNext()" id="yrNext">'+(last?'Bitir':'Sonraki soru')+'</button>';
  }
  return h+'<button class="btn ghost" onclick="yrLeave()">Oyundan çık</button></div>';
 }

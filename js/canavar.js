@@ -48,7 +48,7 @@ function cvStatusHTML(){
 function cvPlayHTML(){
  const q=CV.qs[CV.k],fb=CV.ph==='fb',last=CV.hp<=0||CV.lives<=0||CV.k+1>=CV.qs.length;
  let h=yrTop('Meydan Okuma')+'<div class="wrap'+(fb?' yr-feedback':'')+'">'+cvStatusHTML()+'<p class="yr-prog" id="yrHeading" tabindex="-1">Soru '+(CV.k+1)+' / '+CV.qs.length+'</p>'+yrQuestionHTML(q)+yrChoicesHTML(q,'cvAns',fb?{pick:CV.pick}:null);
- if(fb)h+='<div class="yr-fb '+(CV.right?'ok':'bad')+'" role="status"><b>'+(CV.right?'✓ Doğru! Böyle devam.':'Yanlış. Bir hakkın azaldı.')+'</b>'+(CV.right?'':'<br>Doğru cevap: <b>'+esc(q.choices.find(c=>c.id===q.correct).text||q.correct)+'</b>')+yrExplanationHTML(q)+'</div><button class="btn pri" onclick="cvNext()" id="cvNext">'+(last?'Sonucu gör':'Sonraki soru')+'</button>';
+ if(fb)h+='<div class="yr-fb '+(CV.right?'ok':'bad')+'" role="status"><b>'+(CV.right?'✓ Doğru! Böyle devam.':'Yanlış. Bir hakkın azaldı.')+'</b>'+(CV.right?'':'<br>Doğru cevap: <b>'+esc(q.choices.find(c=>c.id===q.correct).text||q.correct)+'</b>')+(CV.right?'':yrCompareHTML(q,CV.pick))+yrExplanationHTML(q)+'</div><button class="btn pri" onclick="cvNext()" id="cvNext">'+(last?'Sonucu gör':'Sonraki soru')+'</button>';
  return h+'<button class="btn ghost" onclick="cvLeave()">Oyundan çık</button></div>';
 }
 function cvOverHTML(){
