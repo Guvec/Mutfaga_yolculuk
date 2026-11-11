@@ -208,7 +208,7 @@ function yrTick(){
  const g=YR.g;if(!g||g.ph!=='q'||st.screen!=='raceplay'){return;}
  const lim=YR.room.lim*1000,el=performance.now()-g.t0,left=Math.max(0,lim-el),f=document.getElementById('yrFill'),t=document.getElementById('yrSec');
  if(f){f.style.width=(left/lim*100)+'%';f.className='yr-fill'+(left<lim*.25?' low':'');}
- if(t)t.textContent=Math.ceil(left/1000)+' sn';
+ if(t)t.textContent=Math.ceil(left/1000)+' sn';efektSaniye(left);
  if(el>=lim)yrRaceAnswer(-1);
 }
 function yrRaceAnswer(i){
@@ -302,7 +302,7 @@ function duTick(){
  if(!DU||DU.ph!=='q'||st.screen!=='dplay')return;
  const el=performance.now()-DU.t0,left=Math.max(0,DU.lim-el),f=document.getElementById('yrFill'),t=document.getElementById('yrSec'),ob=duOppR(),ot=ob?ob[DU.k]:undefined;
  if(f){f.style.width=(left/DU.lim*100)+'%';f.className='yr-fill'+(left<DU.lim*.25?' low':'');}
- if(t)t.textContent=Math.ceil(left/1000)+' sn';
+ if(t)t.textContent=Math.ceil(left/1000)+' sn';efektSaniye(left);
  if(ot>0&&el>=ot){duMine(-Math.max(1,Math.round(el)),'late');return;}
  if(el>=DU.lim)duMine(-DU.lim,'time');
 }

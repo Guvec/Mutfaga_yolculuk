@@ -182,6 +182,7 @@ function resolve(r){
   else { S.bad++; st.streak=0; }
   S.qs.push({q:it.ad, a: st.op==="kur"?it.yer:it.ad, r:r, s:s});
   if(st.op==="kur") st.placed[st.q.key]=true;
+  if(st.op==="kur"&&r>0&&!(typeof SES!=='undefined'&&SES.acik)&&typeof EFEKT!=='undefined') EFEKT.cal('tak');
   var info = st.op==="kur" ? it.kural : it.ayirt;
   if(r===1) st.lastRes={cls:"ok", head:"Doğru! +"+PTS+" puan", text:info};
   else if(r===2) st.lastRes={cls:"fix", head:"Düzelttin! +5 puan. İkinci denemede buldun.", text:info};

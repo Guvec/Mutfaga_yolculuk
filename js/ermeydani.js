@@ -41,7 +41,7 @@ function arRound(k,resume){
 function arTick(){
  if(!AR||AR.ph!=='q'||st.screen!=='aplay')return;
  const elapsed=performance.now()-AR.t0,left=Math.max(0,AR.lim-elapsed),f=document.getElementById('yrFill'),t=document.getElementById('yrSec');
- if(f){f.style.width=(left/AR.lim*100)+'%';f.className='yr-fill'+(left<AR.lim*.25?' low':'');}if(t)t.textContent=Math.ceil(left/1000)+' sn';
+ if(f){f.style.width=(left/AR.lim*100)+'%';f.className='yr-fill'+(left<AR.lim*.25?' low':'');}if(t)t.textContent=Math.ceil(left/1000)+' sn';efektSaniye(left);
  if(elapsed>=AR.lim)arMine(-AR.lim,'time');
 }
 function arAns(i){
