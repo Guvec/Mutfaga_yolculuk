@@ -176,6 +176,8 @@ async function rkJoin(){
 function rkForgetProfile(name){
  const ids=rkIds(),pid=ids[name];if(!pid)return;delete ids[name];lsSet('rk_ids',ids);
  const b=rkBestAll();delete b[pid];lsSet('rk_best',b);const pk=rkPekAll();delete pk[pid];lsSet('rk_pek',pk);
+ for(const key of ['yanlislarim','dost_secim','dost_gorev']){const all=ls(key,{});if(Object.hasOwn(all,pid)){delete all[pid];lsSet(key,all);}}
+ if(typeof DOST_CHARACTERS!=='undefined')Object.keys(DOST_CHARACTERS).forEach(id=>localStorage.removeItem(PRE+'dost_gorunum_'+id+'_'+pid));
  lsSet('rk_queue',rkQueue().filter(x=>x.pid!==pid));rkProfSet(pid,{pendingDelete:true});rkMaintenance();
 }
 /* Açılışta ve bağlantı gelince: yarım kalan silme/temizlik işlerini bitirir, bekleyen sonuçları gönderir. */
@@ -375,7 +377,7 @@ function rkBoardHTML(){
  if(v.state==='loading'||v.state==='idle')return h+'<p class="card" role="status">Sıralama yükleniyor…</p></div>';
  if(v.state==='error')return h+'<p class="card" role="alert">'+esc(v.err)+'</p><button class="btn" onclick="rkLoadRows()">Yeniden dene</button></div>';
  const rows=rkSorted(v.rows||[]);if(!rows.length)return h+'<p class="card">Bu listede henüz sonuç yok. '+(b.kind==='win'?'İlk kazanan sen olabilirsin.':'Uyguluyorum bölümünü bitiren ilk kişi sen olabilirsin.')+'</p></div>';
- h+=rkRowsHTML(rows,b.id,v.period,10)+'</div>';
+ h+='<h3>İlk 10</h3>'+rkRowsHTML(rows,b.id,v.period,10)+'</div>';
  return h;
 }
 /* Sıralamaya her girişte haftanın birincisinin adı ortada taç animasyonuyla gösterilir. */

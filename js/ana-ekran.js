@@ -4,45 +4,290 @@
  const ART='assets/ana-ekran/onayli-seffaf.png';
  const crops={book:[523,430,329,191],workshop:[387,666,585,210],panda:[590,901,313,217],chick:[526,20,136,135],rabbit:[495,1139,114,114],fox:[650,1139,114,114],turtle:[805,1139,114,114],rank:[82,196,100,124],hat:[97,23,88,70],cake:[315,24,81,73],trophy:[438,1301,97,121],badge:[772,1301,93,123],pair:[36,1310,138,110]};
  let pendingSubject=null,pendingYol=null;
- const pastry=['Çırak','Pastacı Yardımcısı','Pastacı','Kıdemli Pastacı','Pasta Şefi Yardımcısı'];
- const servisAd=['Stajyer','Servis Eleman Yardımcısı','Servis Elemanı','Kaptan','Servis Şefi (Şef Garson)'];
  function art(k,cls){const c=crops[k];return '<svg class="ae-art '+(cls||'')+'" viewBox="0 0 '+c[2]+' '+c[3]+'" aria-hidden="true" focusable="false"><svg width="'+c[2]+'" height="'+c[3]+'" viewBox="'+c.join(' ')+'" overflow="hidden"><image href="'+ART+'" width="1094" height="1438"/></svg></svg>';}
  function path(){const y=ls('ana_yol','sicak');return y==='pasta'?'pasta':y==='servis'?'servis':'sicak';}
+ const pastry=['Çırak','Pastacı Yardımcısı','Pastacı','Kıdemli Pastacı','Pasta Şefi Yardımcısı'];
+ const servisAd=['Stajyer','Servis Eleman Yardımcısı','Servis Elemanı','Kaptan','Servis Şefi (Şef Garson)'];
  function rutbeAdlari(){return path()==='pasta'?pastry:path()==='servis'?servisAd:RUTBE_AYAR.ranks.map(r=>r.name);}
  window.anaRutbeAdlari=rutbeAdlari;
- function pathName(){return path()==='pasta'?'Pastacılık':path()==='servis'?'Servis':'Sıcak Mutfak';}
- function servisArt(){return '<svg class="ae-art ae-servis-art" viewBox="0 0 64 56" aria-hidden="true" focusable="false"><defs><linearGradient id="aeSvT" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f7fafb"/><stop offset="1" stop-color="#a9b6bb"/></linearGradient><linearGradient id="aeSvB" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1bb3aa"/><stop offset="1" stop-color="#0b6a6c"/></linearGradient></defs><ellipse cx="32" cy="43" rx="30" ry="11" fill="#6f7f86"/><ellipse cx="32" cy="40" rx="30" ry="11" fill="url(#aeSvT)"/><ellipse cx="32" cy="40" rx="23" ry="7.5" fill="#e3eaec" stroke="#bfcbce" stroke-width="1"/><ellipse cx="32" cy="38.5" rx="13" ry="3" fill="#00000018"/><path d="M32 33C26 26 16 25 15 31c-1 6 10 8 17 2z" fill="url(#aeSvB)"/><path d="M32 33c6-7 16-8 17-2 1 6-10 8-17 2z" fill="url(#aeSvB)"/><rect x="28" y="28.5" width="8" height="9" rx="3" fill="#0b5c5f"/><path d="M19 30c3-2 7-1 9 1" fill="none" stroke="#ffffff77" stroke-width="1.5" stroke-linecap="round"/></svg>';}
- function profileArt(name){name=String(name||'');const key=/civciv/i.test(name)?'chick':/panda/i.test(name)?'panda':/tavşan/i.test(name)?'rabbit':/tilki/i.test(name)?'fox':/kaplumbağa/i.test(name)?'turtle':null;return key?art(key,'ae-avatar-art'):'<span class="ae-avatar-emoji" aria-hidden="true">'+esc(typeof adEmo==='function'&&name?adEmo(name):'👨‍🍳')+'</span>';}
- function rankHTML(){const pid=st.prof&&!st.guest?rkPid(st.prof,false):null,s=pid?rutbeState(pid):{mp:0,rank:1},i=Math.max(0,Math.min(RUTBE_AYAR.ranks.length-1,(s.rank||1)-1)),names=rutbeAdlari(),next=RUTBE_AYAR.ranks[i+1],base=RUTBE_AYAR.ranks[i].mp,mp=s.mp||0,ratio=next?Math.max(0,Math.min(100,(mp-base)/(next.mp-base)*100)):100;return '<button class="ae-rank ae-paper" onclick="go(\'rutbe\')" aria-label="Rütbe ayrıntıları: '+esc(pathName()+' '+names[i])+'">'+art('rank')+'<span class="ae-rank-copy"><strong>'+pathName()+' · '+names[i]+'</strong><span class="ae-progress" role="progressbar" aria-label="Sonraki rütbeye ilerleme" aria-valuemin="0" aria-valuemax="100" aria-valuenow="'+Math.round(ratio)+'"><span style="width:'+ratio+'%"></span></span><span class="ae-rank-note">'+(next?esc(names[i+1])+' olmak için <b>'+Math.max(0,next.mp-mp)+' puan</b> kaldı.':'En yüksek öğrenci rütbesindesin.')+'</span></span></button>';}
- function friendsHTML(){const list=typeof FR!=='undefined'?FR.list.slice(0,3):[];return '<section class="ae-friends ae-paper" aria-label="Arkadaşlarım"><svg class="ae-people" viewBox="0 0 48 32" aria-hidden="true"><circle cx="24" cy="9" r="6" fill="#0fa89c"/><path d="M12 28c0-7 5-11 12-11s12 4 12 11z" fill="#0fa89c"/><circle cx="9" cy="12" r="4.5" fill="#6fd0c6"/><path d="M0 27c0-5 3-8 9-8 2 0 3.500.3 5 1-3 2-4.500 4.500-4.500 7z" fill="#6fd0c6"/><circle cx="39" cy="12" r="4.5" fill="#6fd0c6"/><path d="M48 27c0-5-3-8-9-8-2 0-3.500.3-5 1 3 2 4.500 4.500 4.500 7z" fill="#6fd0c6"/></svg><button class="ae-friends-label" onclick="anaArkadas()">Arkadaşlarım</button><span class="ae-friend-list">'+list.map(id=>'<button onclick="anaArkadas()" class="ae-friend" aria-label="'+esc(FR.nick[id]||'Arkadaş')+'">'+profileArt(FR.nick[id])+'</button>').join('')+'</span><button class="ae-add" onclick="anaArkadas()" aria-label="Arkadaş ekle">+</button></section>';}
- function home(){const name=st.guest?'Misafir':st.prof?adRest(st.prof):'Profil seç';return '<div class="ae-home"><header class="ae-header"><nav class="ae-paths ae-paper" aria-label="Rütbe yolu"><button onclick="anaYol(\'sicak\')" aria-pressed="'+(path()==='sicak')+'">'+art('hat')+'<span>Sıcak <br>Mutfak</span></button><button onclick="anaYol(\'pasta\')" aria-pressed="'+(path()==='pasta')+'">'+art('cake')+'<span>Pastacılık</span></button><button onclick="anaYol(\'servis\')" aria-pressed="'+(path()==='servis')+'">'+servisArt()+'<span>Servis</span></button></nav><button class="ae-profile" onclick="anaProfil()" aria-label="'+esc(name)+'. Profil ayrıntıları"><span class="ae-avatar">'+profileArt(st.prof)+'</span><strong>'+esc(name)+'</strong></button><button class="ae-settings ae-paper" onclick="anaAyarlar()" aria-label="Ayarlar">⚙</button></header><div class="ae-rank-slot">'+rankHTML()+(typeof kaptanRozetHTML==='function'?kaptanRozetHTML():'')+'</div><div class="ae-main ae-book"><span class="ae-book-txt"><strong>Mutfak<br>Kitabım</strong>'+devamHTML()+'</span><img class="ae-art ae-book-img" src="assets/ana-ekran/kitap-seffaf.png" alt="" width="335" height="200"><button type="button" class="ae-book-hit" onclick="anaKitap()" aria-label="Mutfak Kitabım"></button></div><button class="ae-main ae-workshop" onclick="anaAtolye()"><strong>Aşçılık<br>Atölyesi</strong>'+art('workshop','ae-work-art').replace('<svg class','<svg preserveAspectRatio="xMidYMid slice" class')+'<span class="ae-arrow" aria-hidden="true">›</span></button><button class="ae-main ae-companion" onclick="anaDost()"><strong>Aşçı Dostum</strong>'+(GIRIS.character==='rabbit'?art('rabbit','ae-dost-art'):'<img class="ae-dost-art ae-dost-img" src="assets/ana-ekran/panda-seffaf.png" alt="" width="313" height="238">')+'<span class="ae-arrow" aria-hidden="true">›</span></button>'+friendsHTML()+'<nav class="ae-bottom" aria-label="Oyun ve başarılar"><button class="ae-paper" onclick="tasarimOda(\'create\')">'+art('pair')+'<span>Birlikte Oyna</span></button><button class="ae-paper" onclick="rkOpenBoard()">'+art('trophy')+'<span>Sıralama</span></button><button class="ae-paper" onclick="go(\'rutbe\')">'+art('badge')+'<span>Rozetlerim</span></button></nav></div>';}
+ function foto(id,cls='ae-art'){return '<img class="'+cls+'" src="assets/ascidostum/'+id+'.webp" alt="">';}
+ function dalArt(id){return foto('dal-'+GIRIS.character+'-'+id);}
+ function arkadasPortreleri(){
+  if(!st.prof||st.guest||!FR.ready||FR.prof!==st.prof)return '';
+  return FR.list.filter(id=>FR.nick[id]&&FR.nick[id]!=='(silinmiş profil)').slice(0,3)
+   .map(id=>'<span class="ae-avatar" title="'+esc(adRest(FR.nick[id]))+'">'+profileArt(FR.nick[id])+'</span>').join('');
+ }
+ window.anaArkadasPortreleri=function(){
+  const box=document.getElementById('aeArkadasPortreleri');
+  if(box)box.innerHTML=arkadasPortreleri();
+ };
+ function profileArt(name){name=String(name||'');const key=/civciv/i.test(name)?'chick':/panda/i.test(name)?'panda':/tavşan/i.test(name)?'rabbit':/tilki/i.test(name)?'fox':/kaplumbağa/i.test(name)?'turtle':null;return key==='chick'?'<img class="ae-avatar-art" src="assets/ascidostum/civciv.webp" alt="" width="96" height="96">':key?art(key,'ae-avatar-art'):'<span class="ae-avatar-emoji" aria-hidden="true">'+esc(typeof adEmo==='function'&&name?adEmo(name):'👨‍🍳')+'</span>';}
+ window.anaProfilGorsel=function(){return profileArt(st.prof);};
+ function rankHTML(){
+  const pid=st.prof&&!st.guest?rkPid(st.prof,false):null;
+  const state=pid?rutbeState(pid):{mp:0,rank:1};
+  const ranks=RUTBE_AYAR.ranks;
+  const index=Math.max(0,Math.min(ranks.length-1,(state.rank||1)-1));
+  const current=ranks[index],next=ranks[index+1],points=state.mp||0;
+  const remaining=next?Math.max(0,next.mp-points):0;
+  const percent=next?Math.max(0,Math.min(100,100*(points-current.mp)/(next.mp-current.mp))):100;
+  const names=rutbeAdlari(),title=(names[index]||current.name)+(next?' → '+(names[index+1]||next.name):'');
+  return `<button type="button" class="ae-rank" onclick="go('rutbe')" aria-label="${esc(title+'. '+points+' Mutfak Puanı')}">
+   <span class="ae-rank-copy"><strong>${esc(title)}</strong><span class="ae-progress" role="progressbar"
+    aria-label="Sonraki rütbeye ilerleme" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${Math.round(percent)}"><span style="width:${percent}%"></span></span>
+    <small class="ae-rank-note">${next?remaining+' puan kaldı':'En yüksek öğrenci rütbesi'}</small></span>
+   <span class="ae-points"><span aria-hidden="true">★</span> ${points}</span>
+  </button>`;
+ }
+ function home(){
+  GIRIS.character=dostSecili();
+  const name=st.guest?'Misafir':st.prof?adRest(st.prof):'Profil seç';
+  const action=devamBilgi();
+  const avatar=profileArt(st.prof);
+  const crown=typeof kaptanTacHTML==='function'?kaptanTacHTML():'';
+  return `<div class="ae-home">
+   <header class="ae-header ae-paper">
+    <button type="button" class="ae-profile" onclick="anaProfil()" aria-label="${esc(name+(crown?'. Haftanın kaptanı':'')+'. Profil ayrıntıları')}">
+     <span class="ae-avatar">${avatar}</span>${crown}
+    </button>
+    <strong class="ae-profile-name">${esc(name)}</strong>
+    <button type="button" class="ae-settings" onclick="anaAyarlar()" aria-label="Ayarlar"><span aria-hidden="true">⚙</span></button>
+    ${rankHTML()}
+   </header>
+   <nav class="ae-paths" aria-label="Mutfak dalları">
+    <button type="button" class="ae-paper" onclick="anaYol('sicak')" aria-pressed="${path()==='sicak'}">${dalArt('sicak')}<span>Sıcak Mutfak</span></button>
+    <button type="button" class="ae-paper" onclick="anaYol('pasta')" aria-pressed="${path()==='pasta'}">${dalArt('pasta')}<span>Pastacılık</span></button>
+    <button type="button" class="ae-paper" onclick="anaYol('servis')" aria-pressed="${path()==='servis'}">${dalArt('servis')}<span>Servis</span></button>
+   </nav>
+   <button type="button" class="ae-paper ae-dost" onclick="anaDost()">
+    <strong>Aşçı Dostum</strong>
+    <picture class="ae-dost-artwork" data-dost="${GIRIS.character}">${foto(GIRIS.homeArt())}</picture>
+   </button>
+   <div class="ae-card-grid">
+    <section class="ae-paper ae-study" aria-label="Mutfak Kitabım">
+     <button type="button" class="ae-card-link" onclick="anaKitap()">${foto('ana-kitap')}<strong>Mutfak Kitabım</strong></button>
+     <div class="ae-home-resume">
+      <small>${action.started?'Kaldığın yer':'Önerilen çalışma'}</small>
+      <div class="ae-home-topic">${foto(topicArt(action.id))}<span><strong>${esc(action.name)}</strong>${action.detail?'<small>'+esc(action.detail)+'</small>':''}</span></div>
+     </div>
+     ${devamHTML(action)}
+    </section>
+    <button type="button" class="ae-paper ae-work" onclick="anaAtolye()">
+     <strong>Aşçılık Atölyesi</strong>${foto('ana-atolye')}
+    </button>
+   </div>
+   <div class="ae-friends ae-paper">
+    <button type="button" class="ae-friends-open" data-ark="1" onclick="anaArkadas()">${foto('ana-arkadas')}<strong>Arkadaşlarım</strong></button>
+    <span class="ae-friends-portraits" id="aeArkadasPortreleri" aria-hidden="true">${arkadasPortreleri()}</span>
+    <button type="button" class="ae-friends-add" onclick="anaArkadas(true)" aria-label="Arkadaş ekle">+</button>
+   </div>
+   <nav class="ae-bottom" aria-label="Oyun ve başarılar">
+    <button type="button" class="ae-paper" onclick="go('market')">${foto('ana-market')}<span>Market</span></button>
+    <button type="button" class="ae-paper" onclick="tasarimOda('create')">${foto('ana-birlikte')}<span>Birlikte Oyna</span></button>
+    <button type="button" class="ae-paper" onclick="rkOpenBoard()">${foto('ana-siralama')}<span>Sıralama</span></button>
+    <button type="button" class="ae-paper" onclick="go('rutbe')">${foto('ana-rozet')}<span>Rozetlerim</span></button>
+   </nav>
+  </div>`;
+ }
  function sonKonuAnahtar(){return 'ana_son_konu_'+(st.guest?'misafir':st.prof||'');}
- function sonKonuHTML(){const id=ls(sonKonuAnahtar(),null),g=id&&KONU_GORSEL[id];if(!g||!ONE_CIKAN.includes(id))return '';return '<button class="ae-resume" onclick="anaKonu(\''+id+'\')"><span><small>Kaldığın yer</small><strong>'+g.ad+'</strong></span><span class="ae-resume-go" aria-hidden="true">▶</span></button>';}
- function book(){return topBar('Mutfak Kitabım')+'<div class="wrap ae-book-page"><h1>Mutfak Kitabım</h1>'+sonKonuHTML()+'<div class="ae-book-top"><button class="btn" onclick="anaGorevler()">Bu haftanın görevleri</button></div><div class="ae-topics">'+ONE_CIKAN.map(id=>{const g=KONU_GORSEL[id];return '<button class="ae-topic" onclick="anaKonu(\''+id+'\')"><img src="'+g.foto+'" alt=""><strong>'+g.ad+'</strong><span aria-hidden="true">›</span></button>';}).join('')+'</div></div>';}
- function atelier(){return topBar('Aşçılık Atölyesi')+'<div class="wrap ae-book-page"><h1>Aşçılık Atölyesi</h1><div class="ae-recipe-paths"><button class="ae-topic" onclick="anaTarif(\'sicak\')">'+art('workshop')+'<strong>Sıcak Mutfak</strong></button><button class="ae-topic" onclick="anaTarif(\'pasta\')">'+art('cake')+'<strong>Pastacılık</strong></button></div></div>';}
+ const TOPICS={
+  'beslenme-ilkeleri':['Yeterli ve Dengeli Beslenme','kitap-beslenme-tabak'],
+  'mutfak-araclari':['Mutfak Araçları','konu-araclar'],
+  baharat:['Baharatlar','konu-baharat'],
+  'bulasik-makinesi-temizligi':['Bulaşık Yıkama ve Atık Yönetimi','konu-bulasik'],
+  kuver:['Servant ve Kuver','konu-kuver']
+ };
+ function topicArt(id){return TOPICS[id][1];}
+ function topicRow(title,image,onclick,detail=''){
+  return `<button type="button" class="ae-list-item ae-paper" onclick="${onclick}">
+   ${foto(image)}<span><strong>${esc(title)}</strong>${detail?'<small>'+esc(detail)+'</small>':''}</span><b aria-hidden="true">›</b>
+  </button>`;
+ }
+ function interior(title,content){
+  return `<div class="ae-interior"><header class="ae-interior-head ae-paper">
+   <button type="button" onclick="back()" aria-label="Geri">‹</button><h1>${esc(title)}</h1>
+   </header>${content}</div>`;
+ }
+ const DAILY_TASKS=[
+  {key:'kuver',title:'Kuver çalışması',image:'konu-kuver',action:"anaKonu('kuver','gunlukgorevler')"},
+  {key:'arac',title:'Mutfak araçları çalışması',image:'konu-araclar',action:"anaKonu('mutfak-araclari','gunlukgorevler')"},
+  {key:'baharat',title:'Baharat çalışması',image:'konu-baharat',action:"anaKonu('baharat','gunlukgorevler')"}
+ ];
+ function gunlukDurum(){
+  const pid=st.prof&&!st.guest?rkPid(st.prof,false):null;
+  const day=pid?rutbeState(pid).gorev:null;
+  return day?.date===Rutbe.day()?day.done||{}:{};
+ }
+ function gunlukKartHTML(){
+  const done=gunlukDurum(),total=DAILY_TASKS.length;
+  const count=DAILY_TASKS.filter(task=>done[task.key]).length;
+  const next=DAILY_TASKS.find(task=>!done[task.key]);
+  return `<section class="ae-paper ae-daily">
+   <h2><span aria-hidden="true">▦</span> Günlük Görevler</h2>
+   <p>${count} / ${total} görev tamamlandı</p>
+   <progress value="${count}" max="${total}" aria-label="Tamamlanan günlük görev sayısı"></progress>
+   ${next?topicRow(next.title,next.image,next.action,'0 / 1'):'<p>Bugünkü görevler tamamlandı.</p>'}
+   <button type="button" class="ae-primary" onclick="go('gunlukgorevler')">Görevleri gör <span aria-hidden="true">›</span></button>
+  </section>`;
+ }
+ function gunlukListeHTML(){
+  const done=gunlukDurum();
+  return (st.prof&&!st.guest?'':'<p>Görevlerin kaydedilmesi için bir profil seçilir.</p>')+
+   '<div class="ae-list">'+DAILY_TASKS.map(task=>topicRow(task.title,task.image,task.action,
+    done[task.key]?'1 / 1 · Tamamlandı':'0 / 1')).join('')+'</div>';
+ }
+ function book(){
+  const task=gunlukKartHTML();
+  const topics=Object.entries(TOPICS).map(([id,[name,art]])=>topicRow(name,art,"anaKitapKonu('"+id+"')")).join('');
+  const review=typeof yanlisSonrakiDers==='function'?yanlisSonrakiDers().length:0;
+  return interior('Mutfak Kitabım',task+(review?'<button class="ae-primary" type="button" onclick="yanlisAc(true)">Pekiştiriyorum ('+review+')</button>':'')+'<h2>Konular</h2><div class="ae-list">'+topics+'</div>');
+ }
+ function atelier(){
+  return interior('Aşçılık Atölyesi','<div class="ae-list">'+
+   topicRow('Sıcak Mutfak','sicak-mutfak',"anaTarif('sicak')")+
+   topicRow('Pastacılık','cake',"anaTarif('pasta')")+'</div>');
+ }
+ const RECIPES={
+  mercimek:{name:'Mercimek Çorbası',image:'tarif-mercimek',group:'sicak',items:['Kırmızı mercimek','Soğan','Su','Limon']},
+  sebze:{name:'Sebze Çorbası',image:'tarif-sebze',group:'sicak',items:['Havuç','Patates','Kabak','Su']},
+  omlet:{name:'Sebzeli Omlet',image:'tarif-omlet',group:'sicak',items:['Yumurta','Biber','Mantar']},
+  kek:{name:'Kek',image:'cake',group:'pasta',items:['Un','Yumurta','Şeker','Kabartma tozu']}
+ };
+ let recipe=null;
+ function recipeList(group){
+  const rows=Object.entries(RECIPES).filter(([,r])=>r.group===group)
+   .map(([id,r])=>topicRow(r.name,r.image,"anaTarifKart('"+id+"')")).join('');
+  return interior(group==='sicak'?'Sıcak Mutfak':'Pastacılık',
+   (group==='sicak'?foto('sicak-mutfak','ae-interior-banner'):'')+'<h2>Tarifler</h2><div class="ae-list">'+rows+'</div>');
+ }
+ function recipePage(){
+  const r=RECIPES[recipe];
+  return interior(r.name,foto(r.image,'ae-interior-banner')+'<section class="ae-paper ae-reading"><h2>Örnek malzemeler</h2><ul>'+
+   r.items.map(x=>'<li>'+esc(x)+'</li>').join('')+'</ul><p>Uygulama için öğretmenin verdiği reçete kullanılır.</p></section>');
+ }
+ function serving(){
+  return interior('Servant ve Kuver','<h2>Konuyu seç</h2><div class="ae-list ae-serving">'+
+   topicRow('Servant','servant',"go('servant')")+topicRow('Kuver','kuver',"anaKonu('kuver','servantkuver')")+'</div>');
+ }
+ function servant(){
+  return interior('Servant',foto('servant','ae-interior-banner')+
+   '<section class="ae-paper ae-reading"><h2>Servantı tanı</h2><p>Servant, servis sırasında kullanılan temiz tabak ve takımların düzenli tutulduğu servis dolabıdır.</p><p>Tabaklar boylarına göre ayrılır. Çatal, kaşık ve bıçaklar ayrı bölmelere yerleştirilir.</p></section>');
+ }
+ function nutrition(){
+  return interior('Yeterli ve Dengeli Beslenme',foto('kitap-beslenme-tabak','ae-interior-banner')+
+   '<section class="ae-paper ae-reading"><h2>Sağlıklı yemek tabağı</h2><p>Sağlıklı yemek tabağı, bir öğündeki besin gruplarını görmeye yardım eder.</p><p>Dilimler grupları gösterir. Her dilim için aynı miktarda besin alınması gerekmez. Öğünün yanında su içilebilir.</p></section>');
+ }
+ function market(){
+  const rows=['apple','lemon','yogurt','milk','ayran','cake'].map(id=>{
+   const food=GIRIS.foods.find(f=>f.id===id);
+   return `<button type="button" class="ae-paper ae-market-food" onclick="GIRIS.ac('market','${id}')">${foto(id)}<strong>${esc(food.name)}</strong></button>`;
+  }).join('');
+  return interior('Market','<h2>Besinler</h2><div class="ae-market-grid">'+rows+'</div>');
+ }
  window.anaYol=function(y){lsSet('ana_yol',y==='pasta'?'pasta':y==='servis'?'servis':'sicak');render();};
  window.anaTema=function(){temaDegistir();render();};
  window.anaSes=function(){SES.acik=!SES.acik;lsSet('ses',SES.acik);sesSus();render();};
  window.anaAyarlar=function(){voiceSettings();const box=document.querySelector('#ov .modal');if(!box)return;const nav=document.createElement('div');nav.className='row';const tm=()=>'Tema: '+({light:'Aydınlık',sepia:'Sepya',okyanus:'Okyanus',orman:'Orman',lavanta:'Lavanta',seftali:'Şeftali',yuksek:'Yüksek kontrast',dark:'Gece'}[document.documentElement.dataset.theme]||'Aydınlık');const sm=()=>'Sesli okuma: '+(SES.acik?'Açık':'Kapalı');const tema=document.createElement('div');tema.className='row';tema.innerHTML='<button class="btn" id="aeTemaBtn">'+tm()+'</button><button class="btn" id="aeSesBtn">'+sm()+'</button>';box.insertBefore(tema,box.querySelector('.row'));tema.querySelector('#aeTemaBtn').onclick=function(){temaDegistir();this.textContent=tm();};tema.querySelector('#aeSesBtn').onclick=function(){SES.acik=!SES.acik;lsSet('ses',SES.acik);if(!SES.acik)sesSus();this.textContent=sm();};nav.innerHTML='<button class="btn" onclick="closeModal();go(\'history\')">Çalışma geçmişim</button><button class="btn" onclick="closeModal();kilavuzAc()">📖 Kılavuz</button>';box.appendChild(nav);};
  const aeSpeak=sesSoyle;sesSoyle=function(t){const r=aeSpeak.apply(this,arguments);if(SES.acik&&t&&MUZIK.acikMi())MUZIK.okumaIcinDuraklat();return r;};
  window.anaProfil=function(){if(st.prof||st.guest)profilAyrintiAc();else go('profiles');};
- window.anaArkadas=function(){if(st.prof&&!st.guest)frOpen();else{adToast('Arkadaş eklemek için kayıtlı profilini seç.');go('profiles');}};
- function devamId(){const id=ls(sonKonuAnahtar(),null);return typeof YOL_KONU!=='undefined'&&id&&YOL_KONU[id]?id:'mutfak-araclari';}
- function devamHTML(){if(typeof yolDevamBilgi!=='function')return '';const id=devamId(),b=yolDevamBilgi(id);if(!b)return '';const ad=KONU_GORSEL[id]?KONU_GORSEL[id].ad:id;const ust=b.bitti?'Tekrar çalış':b.basladi?'Devam et':'Çalışmaya başla';const alt=b.basladi||b.bitti?b.alt:ad;return '<button type="button" class="ae-devam" onclick="anaDevam()" aria-label="'+esc(ust+'. '+ad+', '+alt)+'"><span class="ae-devam-play" aria-hidden="true">▶</span><span class="ae-devam-txt"><b>'+esc(ust)+'</b><small>'+esc(alt)+'</small></span></button>';}
- window.anaDevam=function(){const id=devamId();lsSet(sonKonuAnahtar(),id);if(st.prof||st.guest){yolAc(id);return;}pendingYol=id;go('profiles');};
- window.anaKonu=function(id){if(st.prof||st.guest){lsSet(sonKonuAnahtar(),id);openSubject(id);return;}pendingSubject=id;go('profiles');};
+ window.anaArkadas=function(ekle=false){
+  if(!st.prof||st.guest){adToast('Arkadaş eklemek için kayıtlı profilini seç.');go('profiles');return;}
+  frOpen();
+  if(ekle){
+   const prof=st.prof;
+   frEnsure().then(()=>{if(st.screen==='friends'&&st.prof===prof)document.getElementById('fr-code')?.focus();});
+  }
+ };
+ function devamBilgi(){
+  const saved=ls(sonKonuAnahtar(),null);
+  const id=Object.hasOwn(TOPICS,saved)?saved:'mutfak-araclari';
+  const progress=typeof yolDevamBilgi==='function'?yolDevamBilgi(id):null;
+  const started=!!(saved||progress?.basladi);
+  const title=progress?.bitti?'Tekrar çalış':started?'Devam et':'Çalışmaya başla';
+  const detail=progress?.bitti?'Çalışma tamamlandı':
+   progress?.node&&st.prof&&!st.guest?'0 / 1 · +'+progress.points+' puan':progress?.basladi?'Çalışma sürüyor':'';
+  return {id,name:TOPICS[id][0],started,title,detail};
+ }
+ function devamHTML({title,name}){
+  return `<button type="button" class="ae-devam" onclick="anaDevam()" aria-label="${esc(title+'. '+name)}">
+   <b>${esc(title)}</b><span aria-hidden="true">›</span></button>`;
+ }
+ let subjectReturn='home';
+ function openFrom(id,from){
+  subjectReturn=from;
+  lsSet(sonKonuAnahtar(),id);
+  openSubject(id);
+ }
+ window.anaKonu=function(id,from='mutfakkitabi'){
+  if(st.prof||st.guest){openFrom(id,from);return;}
+  pendingSubject={id,from};go('profiles');
+ };
+ window.anaKitapKonu=function(id){
+  if(!Object.hasOwn(TOPICS,id))return;
+  if(id==='kuver'){go('servantkuver');return;}
+  if(id==='beslenme-ilkeleri'){if(st.prof||st.guest)lsSet(sonKonuAnahtar(),id);go('beslenmeokuma');return;}
+  anaKonu(id);
+ };
+ function resume(id){
+  if(id==='beslenme-ilkeleri'||id==='kuver'){anaKitapKonu(id);return;}
+  lsSet(sonKonuAnahtar(),id);
+  if(typeof yolKonuVar==='function'&&yolKonuVar(id)){
+   subjectReturn='home';
+   st.subject=id;
+   const progress=yolDevamBilgi(id);
+   if(progress?.node){YOL_AYAR.subject=id;yolBaslat(progress.node);}
+   else yolAc(id);
+   return;
+  }
+  openFrom(id,'home');
+ }
+ window.anaDevam=function(){
+  const {id}=devamBilgi();
+  if(st.prof||st.guest||id==='beslenme-ilkeleri'||id==='kuver'){resume(id);return;}
+  pendingYol=id;go('profiles');
+ };
  window.anaKitap=function(){if(typeof EFEKT!=='undefined')EFEKT.cal('click');go('mutfakkitabi');};
  window.anaAtolye=function(){go('ascilikatolyesi');};
- window.anaDost=function(){lsSet('ana_dost',GIRIS.character);go('giris');};
- function info(title,text){modalFocus=document.activeElement;st.modalOpen=true;pauseT();const ov=document.getElementById('ov');ov.className='on';ov.innerHTML='<section class="modal" role="dialog" aria-modal="true" aria-labelledby="aeInfoTitle"><h2 id="aeInfoTitle">'+title+'</h2><p>'+text+'</p><button class="btn pri" onclick="closeModal()">Kapat</button></section>';ov.querySelector('button').focus();}
- window.anaTarif=function(y){anaYol(y);y==='servis'?info('Servis','Servis çalışmaları henüz hazır değil. Hazır olan konu çalışmalarına Mutfak Kitabım’dan ulaşabilirsin.'):info(y==='pasta'?'Pastacılık':'Sıcak Mutfak','Tarif çalışmaları henüz hazır değil. Hazır olan konu çalışmalarına Mutfak Kitabım’dan ulaşabilirsin.');};
- window.anaGorevler=function(){info('Bu haftanın görevleri','Haftalık görevler hazırlanıyor. Şu anda görev puanı verilmez; mevcut çalışma puanların korunur.');};
- const prevRender=render;render=function(){if(st.screen==='home'&&pendingYol&&(st.prof||st.guest)){const yid=pendingYol;pendingYol=null;lsSet(sonKonuAnahtar(),yid);yolAc(yid);return;}if(st.screen==='home'&&pendingSubject&&(st.prof||st.guest)){const id=pendingSubject;pendingSubject=null;openSubject(id);return;}const custom=['home','welcome','mutfakkitabi','ascilikatolyesi'].includes(st.screen);if(custom){const s=st.screen;/* Ana sayfanın eski eklentileri ikinci kart eklemesin. */if(s==='home'||s==='welcome'){document.getElementById('app').innerHTML=home();document.body.dataset.screen='home';if(st.prof&&!st.guest){frEnsure().then(anaArkadasYenile);setTimeout(frInvCheck,300);}}else{document.getElementById('app').innerHTML=s==='mutfakkitabi'?book():atelier();document.body.dataset.screen=s;}document.body.classList.toggle('ae-is-home',s==='home'||s==='welcome');document.body.classList.remove('oyun-ekrani');}else{document.body.classList.remove('ae-is-home');prevRender();if(st.screen==='giris'){const h=document.getElementById('gHelp');if(h)h.remove();const start=document.getElementById('gStart');if(start){start.textContent='Ana sayfa';start.onclick=function(){GIRIS.dur();lsSet('ana_dost',GIRIS.character);go('home');};}const slogan=document.querySelector('.gs-slogan');if(slogan)slogan.textContent='Aşçı Dostum';}}};
- function anaArkadasYenile(){if(st.screen!=='home')return;const f=document.querySelector('.ae-friends');if(f)f.outerHTML=friendsHTML();}
- const prevFrUi=frUi;frUi=function(){prevFrUi();anaArkadasYenile();};
- const prevBack=back;back=function(){if(['mutfakkitabi','ascilikatolyesi'].includes(st.screen)){go('home');return;}prevBack();};
- document.addEventListener('click',e=>{const b=e.target.closest('.ae-profile,.ae-companion');if(!b||sakinAcik()||matchMedia('(prefers-reduced-motion: reduce)').matches)return;b.classList.remove('ae-hello');void b.offsetWidth;b.classList.add('ae-hello');});
- GIRIS.character=ls('ana_dost','panda')==='rabbit'?'rabbit':'panda';
+ window.anaDost=function(){GIRIS.ac('home');};
+ window.anaTarif=function(y){
+  if(y==='servis'){go('servantkuver');return;}
+  if(y==='sicak'||y==='pasta')go(y==='sicak'?'sicakmutfak':'pastacilik');
+ };
+ window.anaTarifKart=function(id){if(Object.hasOwn(RECIPES,id)){recipe=id;go('tarifkart');}};
+ const screens={
+  home,welcome:home,mutfakkitabi:book,ascilikatolyesi:atelier,
+  sicakmutfak:()=>recipeList('sicak'),pastacilik:()=>recipeList('pasta'),
+  tarifkart:recipePage,servantkuver:serving,servant,beslenmeokuma:nutrition,market,
+  gunlukgorevler:()=>interior('Günlük Görevler',gunlukListeHTML())
+ };
+ const prevRender=render;
+ render=function(){
+  if(st.screen==='home'&&(st.prof||st.guest)){
+   if(pendingYol){const id=pendingYol;pendingYol=null;resume(id);return;}
+   if(pendingSubject){const {id,from}=pendingSubject;pendingSubject=null;openFrom(id,from);return;}
+  }
+  const screen=st.screen;
+  const isHome=screen==='home'||screen==='welcome';
+  if(isHome)subjectReturn='home';
+  document.body.classList.toggle('ae-is-home',isHome);
+  if(!Object.hasOwn(screens,screen)){prevRender();return;}
+  if(typeof GIRIS.dur==='function'&&document.getElementById('actor'))GIRIS.dur();
+  document.getElementById('app').innerHTML=screens[screen]();
+  document.body.dataset.screen=isHome?'home':screen;
+  document.body.classList.remove('oyun-ekrani');
+  if(isHome&&st.prof&&!st.guest){frEnsure();setTimeout(frInvCheck,300);}
+ };
+ const prevBack=back;
+ back=function(){
+  const destinations={mutfakkitabi:'home',ascilikatolyesi:'home',market:'home',
+   sicakmutfak:'ascilikatolyesi',pastacilik:'ascilikatolyesi',
+   tarifkart:RECIPES[recipe]?.group==='pasta'?'pastacilik':'sicakmutfak',
+   servantkuver:'mutfakkitabi',servant:'servantkuver',beslenmeokuma:'mutfakkitabi',
+   gunlukgorevler:'mutfakkitabi',subject:subjectReturn};
+  if(Object.hasOwn(destinations,st.screen)){go(destinations[st.screen]);return;}
+  if(st.screen==='profiles'){pendingSubject=null;pendingYol=null;}
+  prevBack();
+ };
  if(st.screen==='giris'&&!new URLSearchParams(location.search).has('oda'))st.screen='home';
  render();
 })();

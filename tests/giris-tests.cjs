@@ -1,64 +1,88 @@
-/* Açılış ekranı (Aşçı Dostlar) testi. */
-const {chromium}=require('playwright'),http=require('http'),fs=require('fs'),path=require('path'),assert=require('assert');
+const assert=require('node:assert/strict'),http=require('node:http'),fs=require('node:fs'),path=require('node:path');
+const {chromium}=require('playwright');
+const root=path.resolve(__dirname,'..');
+const types={'.js':'text/javascript','.css':'text/css','.html':'text/html','.json':'application/json','.webp':'image/webp','.svg':'image/svg+xml','.png':'image/png','.jpg':'image/jpeg','.mp3':'audio/mpeg'};
 (async()=>{
- const root=path.resolve(__dirname,'..');const types={'.html':'text/html','.js':'text/javascript','.css':'text/css','.json':'application/json','.png':'image/png','.jpg':'image/jpeg','.mp3':'audio/mpeg'};
- const server=http.createServer((req,res)=>{let rel=decodeURIComponent(new URL(req.url,'http://localhost').pathname);if(rel==='/')rel='/index.html';const file=path.resolve(root,'.'+rel);if(!file.startsWith(root+path.sep)||!fs.existsSync(file)){res.writeHead(404);res.end();return;}res.writeHead(200,{'content-type':types[path.extname(file)]||'application/octet-stream'});res.end(fs.readFileSync(file));});
- await new Promise(r=>server.listen(0,'127.0.0.1',r));
- const browser=await chromium.launch({headless:true,args:['--no-sandbox','--disable-gpu']});const ok=m=>console.log('PASS '+m);
- const open=async(w,h)=>{const ctx=await browser.newContext({viewport:{width:w,height:h},serviceWorkers:'block'});await ctx.addInitScript(()=>{try{sessionStorage.setItem('mesleki-ses-secim','1');localStorage.setItem('ses','false');}catch(e){}});const p=await ctx.newPage();p.errs=[];p.on('pageerror',e=>p.errs.push(e.message));p.on('response',r=>{if(r.status()>=400)p.errs.push(r.status()+' '+r.url());});await p.goto('http://127.0.0.1:'+server.address().port);await p.waitForFunction(()=>st.screen==='giris'&&document.querySelector('#actor'));return p;};
+ const server=http.createServer((req,res)=>{
+  const rel=new URL(req.url,'http://localhost').pathname.replace(/^\/Mutfaga_yolculuk\//,'/');
+  const f=path.resolve(root,'.'+decodeURIComponent(rel==='/'?'/index.html':rel));
+  if(!f.startsWith(root+path.sep)||!fs.existsSync(f)){res.writeHead(404).end();return;}
+  res.writeHead(200,{'Content-Type':types[path.extname(f)]||'application/octet-stream'});
+  fs.createReadStream(f).pipe(res);
+ });
+ await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));
+ const url='http://localhost:'+server.address().port+'/Mutfaga_yolculuk/';
+ let browser;
  try{
-  const d=await open(1100,800);
-  assert.equal(await d.locator('h1').count(),1);assert.equal(await d.textContent('h1'),'İşin Mutfağına Yolculuk');assert.equal(await d.textContent('.tagline'),'Öğren, uygula, keşfet.');assert.equal(await d.locator('h1 img').count(),0);ok('Açılış ekranında onaylı başlık ve alt metin okunabilir metindir');
-  assert.equal(await d.locator('.food').count(),6);assert.equal(await d.textContent('#pageLabel'),'1 / 3');ok('Masaüstünde 6 besin, 3 sayfa');
-  const seen=new Set();for(let i=0;i<3;i++){(await d.locator('.food .name').allTextContents()).forEach(n=>seen.add(n));await d.click('#otherFoods');}
-  assert.equal(seen.size,14);ok('14 besinin hepsine sayfalarla ulaşılır');
-  // hareket kapalı: her besin
-  await d.click('#gMotion');assert.equal(await d.evaluate(()=>GIRIS.motion),false);
-  const effects={cake:'happy',lemon:'sour',pepper:'spicy',honey:'happy',egg:'happy',yogurt:'happy',cheese:'happy',apple:'happy',carrot:'happy',milk:'milky',ayran:'milky',water:'relaxed',tea:'relaxed',cola:'relaxed'};
-  for(const [id,ef] of Object.entries(effects)){
-   await d.evaluate(i=>{const f=GIRIS.foods.find(x=>x.id===i);const pg=Math.floor(GIRIS.foods.indexOf(f)/6);while(GIRIS.page!==pg)document.querySelector('#otherFoods').click();},id);
-   await d.locator('[data-food="'+id+'"]').click();
-   if(id==='cola'){await d.waitForFunction(()=>actor.className.includes('refuse')||document.querySelector('#actor').className.includes('refuse'));const held=await d.innerHTML('#held');assert(!held.includes('🥤'));}
-   await d.waitForFunction(e=>document.querySelector('#actor').classList.contains(e),ef,{timeout:8000});
-   if(id==='cola'){const held=await d.innerHTML('#held');assert(held.includes('<svg'),'kola yerine su');assert.equal(await d.evaluate(()=>GIRIS.last.id),'cola');}
-   await d.waitForFunction(()=>document.querySelector('#actor').className.trim()==='actor',null,{timeout:8000});
+  const executablePath=process.env.MUTFAK_CHROMIUM_PATH;
+  browser=await chromium.launch({executablePath,headless:true,args:['--no-sandbox','--disable-gpu',...(executablePath?['--single-process']:[])]});
+  const errors=[];
+  const context=await browser.newContext({viewport:{width:360,height:640},isMobile:true,hasTouch:true,serviceWorkers:'allow'});
+  await context.addInitScript(()=>localStorage.setItem('mesleki-ses-soru','1'));
+  await context.route('https://**/*',route=>route.abort());
+  const p=await context.newPage();
+  p.on('pageerror',error=>errors.push(error.message));
+  p.on('response',r=>{if(r.url().startsWith(url)&&r.status()>=400)errors.push(r.status()+' '+r.url());});
+  await p.goto(url);await p.locator('.ae-home').waitFor();
+  assert.equal(await p.locator('.ae-rank-note').innerText(),'100 puan kaldı');
+  assert.equal(await p.locator('.ae-progress').getAttribute('aria-valuenow'),'0');
+  for(const [width,height] of [[360,640],[390,760],[1366,768],[1920,1080]]){
+   await p.setViewportSize({width,height});
+   const dim=await p.evaluate(()=>{
+    const rect=s=>{const r=document.querySelector(s).getBoundingClientRect();return {left:r.left,top:r.top,right:r.right,bottom:r.bottom,height:r.height}};
+    return {width:innerWidth,height:innerHeight,page:document.documentElement.scrollHeight,wide:document.documentElement.scrollWidth,dost:rect('.ae-dost'),study:rect('.ae-study'),work:rect('.ae-work'),nav:rect('.ae-bottom')};
+   });
+   assert(dim.page<=height&&dim.wide<=width);
+   assert(dim.nav.bottom<=height&&dim.dost.bottom<=dim.study.top&&dim.study.left<dim.work.left);
+   console.log('PASS Ana ekran kaydırmasız: '+width+' × '+height);
   }
-  ok('14 besinin tepkisi doğru; kola içilmez, su seçilir; tepkiden sonra merkeze dönülür');
-  // hızlı art arda dokunma
-  await d.click('#gMotion');await d.evaluate(()=>{while(GIRIS.page!==0)document.querySelector('#otherFoods').click();});
-  await d.locator('[data-food="cake"]').click();await d.waitForTimeout(150);await d.locator('[data-food="pepper"]').click();
-  assert.equal(await d.evaluate(()=>GIRIS.last.id),'pepper');await d.waitForFunction(()=>document.querySelector('#actor').classList.contains('spicy'),null,{timeout:9000});
-  assert.equal(await d.evaluate(()=>document.querySelector('#speech').textContent),'Biber acı.');ok('Hızlı seçimde eski hareket iptal olur, son seçim görülür');
-  // karakter değişimi yürüyüşü durdurur
-  await d.waitForFunction(()=>document.querySelector('#actor').className.trim()==='actor',null,{timeout:9000});
-  await d.locator('[data-food="honey"]').click();await d.waitForFunction(()=>document.querySelector('#actor').classList.contains('walking'));await d.click('#rabbit');
-  const af=await d.evaluate(()=>({c:document.querySelector('#actor').className.trim(),t:document.querySelector('#actor').style.transform}));assert.equal(af.c,'actor rabbit');assert.equal(af.t,'translate(0px, 0px)');ok('Karakter değişince yürüyüş durur, karakter merkeze döner');
-  await d.waitForTimeout(1500);assert.equal(await d.evaluate(()=>document.querySelector('#actor').className.trim()),'actor rabbit');ok('Eski hareket sonradan karışmaz');
-  // ayrılırken yürüyüş
-  await d.locator('[data-food="honey"]').click();await d.waitForFunction(()=>document.querySelector('#actor').classList.contains('walking'));await d.evaluate(()=>{window.adClaim=async(e)=>({e,n:0,c:true});});await d.click('#gStart');await d.waitForFunction(()=>st.screen==='home'&&!!st.prof);
-  assert.equal(await d.locator('#adAskY').count(),0);await d.locator('.design-tools .profile-self').click();
-  assert.ok((await d.textContent('.profile-detail')).includes('Karakterini değiştir (1 kez)'));
-  await d.click('#profileClose');
-  ok('Yeni profil üstte görünür; değiştirme hakkı yalnız profil ayrıntısında');
-  const p0=await d.evaluate(()=>st.prof);
-  await d.evaluate(()=>{const e=AD_KAR.findIndex((x,k)=>x[2]===10&&k!==adInfo(st.prof).e);window.__e2=e;adOpen(profiles().indexOf(st.prof),'profiles');});
-  await d.waitForFunction(()=>st.screen==='pedit');
-  await d.evaluate(()=>{st.pe.e=window.__e2;adSave();});
-  await d.waitForFunction(()=>profiles().length===1&&profiles()[0]!==undefined&&adSabit(profiles()[0]),null,{timeout:5000});
-  assert.notEqual(await d.evaluate(()=>profiles()[0]),p0);
-  await d.evaluate(()=>{adOpen(0,'profiles');});assert.notEqual(await d.evaluate(()=>st.screen),'pedit');
-  ok('Ad bir kez değiştirilir; sonra ad sabit kalır ve düzenleme açılmaz');
-  await d.evaluate(()=>{guest();});await d.waitForFunction(()=>st.screen==='home');await d.waitForTimeout(1200);ok('Misafir olarak devam edince ana sayfa açılır');
-  assert.equal(await d.evaluate(()=>!!document.querySelector('.gs')),false);
-  // kılavuz
-  await d.evaluate(()=>{go('giris');});await d.waitForTimeout(300);await d.evaluate(()=>{const s=document.getElementById('sesDurum');if(s)s.remove();});await d.evaluate(()=>document.getElementById('gHelp').click());await d.waitForFunction(()=>st.screen==='guide');await d.evaluate(()=>back());await d.waitForFunction(()=>st.screen==='giris');ok('Kılavuz açılır, Geri açılış ekranına döner');
-  // oyun ekranında slogan şeridi
-  await d.evaluate(()=>{lsSet('profiles',['Deneme']);pickProfile('Deneme');st.subject='baharat';st.op='match';st.contentSet=1;startBoard('learn',12);});assert.equal(await d.locator('.gs-strip').count(),1);ok('Oyun ekranında sağ üstte "Herkes yemek yapabilir" şeridi');
-  await d.evaluate(()=>go('home'));assert.equal(await d.locator('.gs-strip').count(),0);
-  assert.deepEqual(d.errs,[]);ok('Hata ve 404 yok (masaüstü)');
-  // 360 px
-  const m=await open(360,740);assert.equal(await m.locator('.food').count(),4);assert.equal(await m.textContent('#pageLabel'),'1 / 4');
-  assert.equal(await m.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);ok('360 px: 4 besin, yatay taşma yok');
-  await m.locator('.food').first().click();await m.waitForTimeout(400);assert.equal(await m.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);assert.deepEqual(m.errs,[]);ok('360 px: yürüyüş sırasında taşma ve hata yok');
- }catch(e){console.error('FAIL',e);process.exitCode=1;}finally{await browser.close();server.close();}
-})();
+  await p.setViewportSize({width:390,height:760});
+  await p.getByRole('button',{name:/Çalışmaya başla/}).click();await p.waitForFunction(()=>st.screen==='profiles');
+  await p.evaluate(()=>guest());await p.waitForFunction(()=>st.screen==='yolum'||st.screen==='yolplay');
+  await p.evaluate(()=>go('home'));
+  await p.getByRole('button',{name:'Aşçı Dostum'}).click();
+  assert.deepEqual(await p.locator('#gOptions button span').allTextContents(),['Panda','Tavşan','Koala']);
+  await p.locator('[data-dost-item=koala]').click();await p.locator('#gUse').click();
+  await p.locator('#gStart').click();
+  assert.equal(await p.locator('.ae-dost-artwork').getAttribute('data-dost'),'koala');
+  await p.getByRole('button',{name:'Market',exact:true}).click();
+  await p.getByRole('button',{name:'Kek',exact:true}).click();
+  await p.locator('#panda').click();
+  assert.deepEqual(await p.locator('.food strong').allTextContents(),['Kek','Limon','Yoğurt','Süt','Ayran','Elma']);
+  await p.getByRole('button',{name:'Limon',exact:true}).click();
+  assert.equal(await p.locator('#speech').textContent(),'Limon ekşi.');
+  assert.match(await p.locator('.dost-portrait').getAttribute('src'),/panda-limon/);
+  assert.equal(await p.locator('#replay').isEnabled(),true);
+  await p.locator('#replay').click();
+  assert.match(await p.locator('.dost-portrait').getAttribute('src'),/panda-limon/);
+  await p.waitForFunction(()=>Array.from(document.querySelectorAll('.food img')).every(img=>img.naturalWidth>0));
+  const foodNames=new Set();
+  for(let i=0;i<3;i++){
+   (await p.locator('.food strong').allTextContents()).forEach(name=>foodNames.add(name));
+   await p.locator('#otherFoods').click();
+  }
+  assert.equal(foodNames.size,14);
+  await p.locator('#rabbit').click();await p.locator('[data-food=lemon]').click();
+  assert.match(await p.locator('.dost-portrait').getAttribute('src'),/tavsan-limon/);
+  await p.locator('#panda').click();await p.locator('#gMotion').click();await p.locator('[data-food=lemon]').click();
+  assert.equal(await p.locator('#actor').getAttribute('data-effect'),'');
+  assert.match(await p.locator('.dost-portrait').getAttribute('src'),/panda-limon/);
+  await p.locator('#gEditor').click();await p.locator('[data-dost-item=krema]').click();
+  await p.locator('#gWatch').click();assert.equal(await p.locator('#gApplied').textContent(),'Sabit hareket görünümü.');
+  await p.locator('#gUse').click();assert.match(await p.locator('#gPreview img').getAttribute('src'),/panda-krema/);
+  assert.equal(await p.locator('[data-dost-item=krema]').getAttribute('aria-pressed'),'true');
+  await p.locator('[data-dost-tab=kiyafet]').click();await p.locator('[data-dost-item=krem]').click();await p.locator('#gUse').click();
+  await p.locator('#gStart').click();assert.match(await p.locator('.dost-portrait').getAttribute('src'),/panda-krem/);
+  await p.locator('#gLezzet').click();await p.waitForFunction(()=>st.screen==='lezzet');
+  await p.evaluate(()=>back());await p.waitForFunction(()=>st.screen==='giris');
+  await p.locator('#gStart').click();await p.waitForFunction(()=>st.screen==='market');
+  await p.evaluate(()=>back());await p.waitForFunction(()=>st.screen==='home');
+  await p.waitForFunction(()=>!!navigator.serviceWorker.controller, null, {timeout:10000});
+  assert(await p.evaluate(async()=>!!(await caches.match('assets/ascidostum/panda-limon.webp'))));
+  await context.setOffline(true);await p.reload();await p.getByRole('button',{name:'Market',exact:true}).click();
+  await p.getByRole('button',{name:'Limon',exact:true}).click();await p.waitForFunction(()=>document.querySelector('.dost-portrait').naturalWidth>0);
+  assert.equal(await p.locator('#speech').textContent(),'Limon ekşi.');
+  assert.deepEqual(errors,[]);
+  console.log('PASS İlk çalışma, 14 besin, panda ve tavşan, tekrar, sabit poz, görünüm, lezzetler ve çevrimdışı açılış');
+ }finally{if(browser)await browser.close();server.close();}
+})().catch(e=>{console.error(e);process.exitCode=1;});

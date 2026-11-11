@@ -10,12 +10,13 @@ function arSorted(){return YR.players.filter(p=>AR&&AR.roster.includes(p.uid)).s
 function arGone(p){return !!p.left;}
 function arPts(uid){const p=arRanks().find(p=>p.uid===uid);return p?p.ok:0;}
 function arCacheKey(){return YR.code+'|'+YR.room.created+'|'+yrMe();}
-function arCache(){const all=ls('arena_devam',{});all[arCacheKey()]={r:AR.myR.slice(),deadline:AR.deadline||0,k:AR.k};const keys=Object.keys(all);while(keys.length>20)delete all[keys.shift()];lsSet('arena_devam',all);}
+function arCache(){const all=ls('arena_devam',{});all[arCacheKey()]={r:AR.myR.slice(),deadline:AR.deadline||0,k:AR.k,reviewResponses:AR.reviewResponses};const keys=Object.keys(all);while(keys.length>20)delete all[keys.shift()];lsSet('arena_devam',all);}
 function arStart(){
  if(YR.tm){clearInterval(YR.tm);YR.tm=null;}
  const p=YR.resumePlayer,cache=ls('arena_devam',{})[arCacheKey()],remote=p&&Array.isArray(p.r)?p.r:[];
  let r=remote.slice();if(cache&&!p?.done&&Array.isArray(cache.r)&&remote.every((v,i)=>cache.r[i]===v)&&arStats(cache.r).n===cache.r.length)r=cache.r.slice();
  AR={k:r.length,total:YR.qs.length,myR:r,roster:YR.room.roster.slice(),ph:'intro',over:!!p?.done,quit:!!p?.left,finalized:false,awarded:false,final:null,pick:null,t0:0,lim:ArenaModel.limit(0,YR.room),to:null,expiring:new Set()};
+ if(cache?.reviewResponses)AR.reviewResponses=cache.reviewResponses.slice(0,r.length);
  for(let n=remote.length+1;n<=r.length;n++){const part=r.slice(0,n),ps=arStats(part);yrSend(arRow(part,ps.bad>=arErrors()||n>=AR.total,false));}
  if(AR.over){AR.ph='over';st.screen='aover';render();arSync();return;}
  if(arStats(r).bad>=arErrors()||r.length>=AR.total){arEnd();return;}
@@ -51,6 +52,7 @@ function arAns(i){
 }
 function arMine(v,why){
  if(!AR||AR.over||AR.ph!=='q')return;
+ (AR.reviewResponses=AR.reviewResponses||[])[AR.k]={ok:v>0,pick:why==='bad'?AR.pick:null,reason:why==='time'?'Süre doldu':''};
  if(YR.tm){clearInterval(YR.tm);YR.tm=null;}AR.ph='fb';AR.why=why;AR.hizli=hizliTebrik(AR,v>0,Math.abs(v));AR.myR.push(v);arCache();
  if(typeof EFEKT!=='undefined')EFEKT.cal(why==='time'?'tirr':v>0?'dogru':'yanlis');
  const s=arStats(AR.myR);if(s.bad>=arErrors()||s.n>=AR.total){arEnd();return;}
@@ -69,10 +71,10 @@ function arSync(){
   AR.myR=own.r.slice();AR.over=true;AR.quit=!!own.left;AR.ph='over';
   if(YR.tm){clearInterval(YR.tm);YR.tm=null;}if(AR.to){clearTimeout(AR.to);AR.to=null;}
   if(YR.writer&&YR.writer.code===YR.code&&YR.writer.rid===YR.room.created){YR.writer.retired=true;YR.writer.items=[];YR.pend=null;YR.warn='';}
-  arCache();st.screen='aover';
+  arCache();if(st.screen!=='yanlislarim')st.screen='aover';
  }
  if(ArenaModel.complete(AR.roster,arSorted())&&AR.over){
-  AR.finalized=true;arReviewSave();const rows=arRanks(),me=rows.find(p=>p.uid===yrMe());AR.final=me?.rank||null;
+  AR.finalized=true;if(typeof yanlisKaydet!=='function')arReviewSave();const rows=arRanks(),me=rows.find(p=>p.uid===yrMe());AR.final=me?.rank||null;
   if(!AR.awarded&&me&&!me.left){AR.awarded=true;const top=AR.final===1,key=arCacheKey(),awards=ls('arena_odul',{});
    if(awards[key])AR.rapor={...awards[key].rapor,zaman:new Date(awards[key].rapor.zaman)};
    else{
@@ -111,7 +113,7 @@ function arOverHTML(){
  return yrTop('Er Meydanı sonucu')+'<div class="wrap ar-over"><h1 id="yrHeading" tabindex="-1">'+(pending?'Denemen bitti':AR.final===1?'Birinci sensin!':'Oyun tamamlandı')+'</h1>'+yrWarnHTML()+
  (!pending&&first.length?'<section class="ar-winner" role="status"><span class="ar-winner-crown" role="img" aria-label="Kral tacı">👑</span><strong>'+esc(winners)+'</strong><span>'+(first.length>1?'Bu oyunun ortak birincileri':'Bu oyunun birincisi')+'</span></section>':'')+
  '<section class="card ar-final-ranks"><h2>'+(pending?'Geçici maç sıralaması':'Bu oyunun kesin sıralaması')+'</h2>'+(pending?'<p role="status">Diğer katılımcıların sunucu onaylı sonuçları bekleniyor.</p>':'<p>Eşit doğruda toplam yanıt süresi kullanılır.</p>')+arScoreHTML()+'</section>'+
- (!pending&&typeof rkInlineHTML==='function'?rkInlineHTML('oy-arena2','genel',undefined,3).replace('İlgili sıralama','Genel Er Meydanı sıralaması · kazanılan oyun'):'')+
+ (!pending&&typeof rkInlineHTML==='function'?rkInlineHTML('oy-arena2','genel',undefined,10).replace('İlgili sıralama','Genel Er Meydanı sıralaması'):'')+
  '<p>'+s.ok+' doğru · '+s.bad+' yanlış · '+s.n+' soru</p>'+(!pending&&AR.reviewCount?'<button type="button" class="btn pri" onclick="arReviewOpen()">Pekiştiriyorum ('+AR.reviewCount+' soru)</button>':'')+(AR.rapor?sonucGoster(AR.rapor):'')+
  (!pending?'<button type="button" class="btn" onclick="rkOpenBoard(\'oy-arena2\')">Er Meydanı listesinin tamamı</button>':'')+
  (!pending&&typeof frBtn==='function'?arRanks().filter(p=>p.uid!==yrMe()).map(p=>frBtn(p,true)).join(''):'')+'<button type="button" class="btn" onclick="yrLeave()">Çık</button></div>';

@@ -1,7 +1,7 @@
 /* © 2026 Ali Arıkoğlu. Tüm hakları saklıdır. */
 /* Lezzetleri Keşfet (Aşçı Dostum). Ürünler, tamamlanan bölüm sayısıyla açılır (Mutfak Araçları + Baharat toplamı).
    Puan toplamaya bağlı değildir; bitirilen bölüm geri alınmaz, açılan lezzet sende kalır.
-   Fotoğraflar assets/lezzet/<id>.webp dosyasından gelir; dosya yoksa emoji gösterilir. */
+   Hazır ürün fotoğrafları mutfak sahnesiyle ortak kullanılır. */
 'use strict';
 const LEZZET_AYAR={baslangic:4,tezgah:3};
 const LEZZET=[
@@ -25,7 +25,12 @@ function lzAcikSayi(n){return Math.min(LEZZET.length,LEZZET_AYAR.baslangic+(n===
 function lezzetYeni(){const n=lzBolumSayisi(),i=LEZZET_AYAR.baslangic+n-1;return i>=LEZZET_AYAR.baslangic&&i<LEZZET.length?LEZZET[i]:null;}
 function lzTezgah(){const a=ls('lezzet_tezgah',{})||{};return (a[lzKey()]||[]).filter(id=>LEZZET.some(x=>x.id===id));}
 function lzTezgahYaz(l){const a=ls('lezzet_tezgah',{})||{};a[lzKey()]=l;lsSet('lezzet_tezgah',a);}
-function lzFoto(x,cls){return '<span class="'+(cls||'lz-foto')+'" aria-hidden="true"><img src="assets/lezzet/'+x.id+'.webp" alt="" loading="lazy" onerror="this.parentNode.classList.add(\'yok\');this.remove()"><span class="lz-emoji">'+x.e+'</span></span>';}
+const LZ_FOTOS={elma:'apple',sut:'milk',yogurt:'yogurt',limon:'lemon'};
+function lzFoto(x,cls){
+ const file=LZ_FOTOS[x.id];
+ const content=file?dostFoto(file):'<span class="lz-emoji">'+x.e+'</span>';
+ return '<span class="'+(cls||'lz-foto')+(file?'':' yok')+'" aria-hidden="true">'+content+'</span>';
+}
 window.lezzetSoyle=function(id){const x=LEZZET.find(y=>y.id===id);if(x&&typeof yolSoyle==='function')yolSoyle(x.ad+'. '+x.tur+'.');};
 window.lezzetSekme=function(s){LZ.sekme=s;render();};
 window.lezzetKoy=function(id){
@@ -37,8 +42,10 @@ window.lezzetKoy=function(id){
  render();
 };
 function lzDost(){
- const r=ls('ana_dost','panda')==='rabbit';
- return r?'<span class="lz-dost lz-dost-e" aria-hidden="true">🐰</span>':'<img class="lz-dost" src="assets/ana-ekran/panda-seffaf.png" alt="" width="313" height="238">';
+ const id=dostSecili();
+ if(DOST_CHARACTERS[id].quest)return dostFoto(DOST_CHARACTERS[id].art,'lz-dost');
+ if(id==='koala')return '<img class="lz-dost" src="assets/ascidostum/koala.webp" alt="" width="600" height="600">';
+ return id==='rabbit'?'<span class="lz-dost lz-dost-e" aria-hidden="true">🐰</span>':'<img class="lz-dost" src="assets/ana-ekran/panda-seffaf.png" alt="" width="313" height="238">';
 }
 function lezzetHTML(){
  const n=lzBolumSayisi(),acik=lzAcikSayi(n),tez=lzTezgah(),sek=LZ.sekme;

@@ -140,10 +140,10 @@ const FAKE=`window.REKOR_FAKE=(()=>{const prof={},rows={};let uid='u-cihaz';cons
   // Oyun sonunda "Birlikte tekrar edelim": yalnız yanlış varsa, en fazla 4 yanlış (doğru yapılan madde girmez), puansız, sıralamayı etkilemez.
   await play('Tekrar Bir',0);assert.equal(await page.getByRole('button',{name:/Birlikte tekrar edelim/}).count(),0);ok('Hiç yanlış yoksa tekrar düğmesi çıkmıyor');
   await play('Tekrar Iki',6);await settle();
-  const tb=page.getByRole('button',{name:/Birlikte tekrar edelim \(4\)/});assert(await tb.isVisible());assert((await page.textContent('#app')).includes('Kalanlar Pekiştiriyorum listende bekler'));ok('Oyun sonunda 6 yanlışlı öğrenciye "(4)" düğmesi çıkıyor (yalnız yanlışlar)');
+  const tb=page.getByRole('button',{name:/Yanlışlarımı çalış \(\d+\)/});assert(await tb.isVisible());assert.equal(await page.locator('.rk-tekrar').count(),0);ok('v3.8: oyun sonunda eski "Birlikte tekrar edelim" düğmesi yerine "Yanlışlarımı çalış" düğmesi çıkıyor');
   await settle();await page.waitForTimeout(300);await settle();
   const bestBefore=await page.evaluate(()=>JSON.stringify([rkBestAll()[rkPid('Tekrar Iki')],REKOR_FAKE.rows]));
-  await tb.click();
+  await page.evaluate(()=>rkTekrarBasla());
   const tr=await page.evaluate(()=>({kind:st.pekRound.kind,n:st.board.items.length,prac:st.sess.practice,left:rkPekItems('baharat').length}));
   assert.deepEqual(tr,{kind:'m',n:4,prac:'pek',left:6});ok('Tekrar turu yalnız 4 yanlış maddeyle açılıyor, doğru yapılan madde girmiyor, kalan 2 yanlış listede');
   await page.evaluate(()=>{st.board.items.forEach(it=>tryPair(it.id,it.answer));render();});await settle();

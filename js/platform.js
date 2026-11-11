@@ -11,7 +11,7 @@ const SUBJECTS = [
 const CONTENT = Object.create(null);
 const OLD_RENDER = render, OLD_NEWQ = newQ, OLD_START = startSession, OLD_RESOLVE = resolve;
 const OLD_QUIZ = quizHtml, OLD_ITEM = itemImg;
-VERSION='Sürüm · 11.11.2026 · Baharat soruları, beslenme sıralaması'; // Her yüklemede tarih güncellenir.
+VERSION='Sürüm · 11.11.2026 · v3.8 birleşik: yeni ana sayfa, Aşçı Dostum, Yanlışlarım'; // Her yüklemede tarih güncellenir.
 st.subject='kuver'; st.practice='learn';
 LEVELS={
   1:{name:'Basit Kuver', items:['yemek_catali','yemek_bicagi','pecete','su_bardagi']},

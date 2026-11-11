@@ -112,7 +112,7 @@ function yolDevamBilgi(id){
  try{
   const plan=yolPlan();if(!plan)return null;
   const s=yolS(),n=yolSiradaki(plan,s),basladi=Object.keys(s.done).length>0||!!s.cur;
-  return {id,basladi,bitti:!n,alt:n?yolAd(n):'Tüm bölümler bitti'};
+  return {id,basladi,bitti:!n,node:n?.id,points:n?(n.tur==='son'?RUTBE_AYAR.yolEtap:RUTBE_AYAR.yolBolum):0,alt:n?yolAd(n):'Tüm bölümler bitti'};
  }finally{YOL_AYAR.subject=onceki;}
 }
 
@@ -260,7 +260,7 @@ window.yolOnayla=function(){
  if(!Y.yanlis.length){yolFazBitir();return;}
  Y.sub='inceleme';Y.ik=0;render();
 };
-window.yolIncSonraki=function(){if(!Y||Y.sub!=='inceleme')return;if(Y.ik<Y.yanlis.length-1){Y.ik++;render();return;}yolFazBitir();};
+window.yolIncSonraki=function(){if(!Y||Y.sub!=='inceleme')return;if(Y.ik<Y.yanlis.length-1){Y.ik++;render();return;}if(Y.mode!=='tekrar'&&typeof yanlisYolAc==='function'&&yanlisYolAc())return;yolFazBitir();};
 function yolFazBitir(){
  const dogru=Y.fark;Y.sub='soru';Y.donOnay=false;
  if(Y.mode==='tekrar'){Y.phase='tbitti';render();return;}
@@ -430,7 +430,7 @@ function yolIncelemeHTML(){
  }
  h+='<section class="yol-kart yol-acik-kart" role="status"><p>'+esc(q.item.explanation||'')+'</p>'+yolSesIk('Doğru cevap: '+q.ad+'. '+(q.item.explanation||''),'Açıklamayı dinle')+'</section>';
  if(q.tkEklendi)h+='<p class="yol-not">Bu '+nes+' Tekrar Çalışması’na kendiliğinden eklendi. Puan kaybı olmaz.</p>';
- h+='<div class="yol-nav"><span></span><button type="button" class="yol-btn" onclick="yolIncSonraki()">'+(son?(Y.mode==='oyun'&&Y.phase==='s3'?'Devam':'Devam'):'Sonraki yanlış')+' ›</button></div></div>';
+ h+='<div class="yol-nav"><span></span><button type="button" class="yol-btn" onclick="yolIncSonraki()">'+(son?(Y.mode==='tekrar'?'Devam':'Yeniden dene'):'Sonraki yanlış')+' ›</button></div></div>';
  return h;
 }
 function yolEslesHTML(){

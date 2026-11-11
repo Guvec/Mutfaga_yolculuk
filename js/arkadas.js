@@ -94,7 +94,7 @@ function frBtn(p,big){
 function frUi(){
  if(st.screen==='dover'||st.screen==='raceover'){render();return;}
  if(st.screen==='friends'){const e=document.getElementById('fr-body');if(e)e.innerHTML=frBody();}
- if(st.screen==='home'){const b=document.getElementById('fr-badge');if(b)b.textContent=FR.inc.length?' · '+FR.inc.length+' yeni istek':'';const lv=document.getElementById('fr-live');if(lv){const h=frLive();lv.innerHTML=h;lv.style.display=h?'':'none';}}
+ if(st.screen==='home'){if(typeof anaArkadasPortreleri==='function')anaArkadasPortreleri();const b=document.getElementById('fr-badge');if(b)b.textContent=FR.inc.length?' · '+FR.inc.length+' yeni istek':'';const lv=document.getElementById('fr-live');if(lv){const h=frLive();lv.innerHTML=h;lv.style.display=h?'':'none';}}
 }
 function frOpen(){FR.call=null;go('friends');if(st.prof)frEnsure().then(frUi);}
 function frBody(){

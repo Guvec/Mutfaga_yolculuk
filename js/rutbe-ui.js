@@ -7,7 +7,27 @@ function rutbeState(pid){return rutbeAll()[pid]||{mp:0,rank:1,best:{},badges:{}}
 function rutbeNumber(pid){return rutbeState(pid).rank||1;}
 function rutbeIcon(rank){if(!Number.isInteger(rank)||rank<1||rank>5)return '';return '<svg class="rutbe-icon" viewBox="0 0 36 32" aria-hidden="true"><rect x="1" y="1" width="34" height="30" rx="5" fill="var(--rutbe-bg,#e6f4ef)" stroke="currentColor" stroke-width="2"/>'+Array.from({length:rank},(_,i)=>'<path d="M'+(7+i*5.5)+' 8v16" stroke="currentColor" stroke-width="3"/>').join('')+'</svg>';}
 function rutbeLabel(rank){return Number.isInteger(rank)&&rank>=1&&rank<=5?'<span class="rutbe-small">'+rutbeIcon(rank)+'<span>'+esc(RUTBE_AYAR.ranks[rank-1].name)+'</span></span>':'';}
-function rutbeComplete(e){if(st.guest||!st.prof)return;const pid=rkPid(st.prof,true),all=rutbeAll(),r=Rutbe.complete(all[pid],{...e,pid});all[pid]=r.state;lsSet('rutbe',all);if(r.rankUp)setTimeout(()=>rutbeSyncRows(pid),0);if(r.gain||r.newBadges.length||r.rankUp)rutbeCelebrate(r);return r;}
+function rutbeComplete(e){
+ if(st.guest||!st.prof)return;
+ const pid=rkPid(st.prof,true),all=rutbeAll();
+ const r=Rutbe.complete(all[pid],{...e,pid});
+ const table=String(e.table||'');
+ const task=/^kv-(basit|tabldot)(?:\||$)/.test(table)?'kuver':
+  /^(ma-|yol-ma-e\d+b\d+$)/.test(table)?'arac':
+  /^(bh-|yol-bh-e\d+b\d+$)/.test(table)?'baharat':null;
+ if(task&&e.total>0&&e.correct>=0&&e.correct<=e.total&&!e.abandoned){
+  const date=Rutbe.day(e.at),previous=r.state.gorev;
+  if(!previous||previous.date<=date){
+   const done=previous?.date===date?previous.done:{};
+   r.state.gorev={date,done:{...done,[task]:true}};
+  }
+ }
+ all[pid]=r.state;
+ lsSet('rutbe',all);
+ if(r.rankUp)setTimeout(()=>rutbeSyncRows(pid),0);
+ if(r.gain||r.newBadges.length||r.rankUp)rutbeCelebrate(r);
+ return r;
+}
 
 /* Rütbe atlayınca buluttaki satırlardaki rütbe de güncellenir (aynı sonuç, yalnız rank alanı). */
 function rutbeSyncRows(pid){try{const p=rkProf(pid);if(p.status!=='in')return;const q=rkQueue(),name=rkName(st.prof),best=rkBestAll()[pid]||{};

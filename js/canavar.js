@@ -25,7 +25,7 @@ function cvNew(first){
 function cvAns(i){
  if(!CV||CV.ph!=='q')return;
  const q=CV.qs[CV.k],ok=q.choices[i].id===q.correct;
- CV.ph='fb';CV.pick=i;CV.right=ok;CV.log.push({ok,ms:performance.now()-CV.t0});
+ CV.ph='fb';CV.pick=i;CV.right=ok;CV.log.push({ok,pick:i,ms:performance.now()-CV.t0});
  if(ok){CV.hp--;CV.str++;if(typeof EFEKT!=='undefined')EFEKT.cal([3,5,10].includes(CV.str)?'seri':'vurus');}else{CV.lives--;CV.str=0;if(typeof EFEKT!=='undefined')EFEKT.cal('can');}
  render();
 }
