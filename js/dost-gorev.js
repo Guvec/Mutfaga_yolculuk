@@ -2,7 +2,7 @@
 'use strict';
 
 const DOST_ACMA_PUANI=50;
-const DOST_KILITLI=['civciv','penguen','papagan','kedi','keci','geyik'];
+const DOST_KILITLI=['rabbit','koala','civciv','penguen','papagan','kedi','keci','geyik'];
 
 function dostGorevDepo(){return ls('dost_gorev',{});}
 function dostGorevProfil(pid=dostPid()){
