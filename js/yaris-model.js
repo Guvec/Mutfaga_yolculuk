@@ -86,7 +86,7 @@
  function subjectPool(data,subject,spec,seed){
   const d=data[subject],rng=seeded(seed),sp={subject,kind:subject==='kuver'?'kuver':'gorsel',set:subject==='kuver'?3:0,n:500,pool:true};
   let qs=buildQuestions(d,sp,seed);
-  if(subject!=='kuver'&&(d.questions||[]).length)qs=qs.concat(textQuestions(d,500,rng));
+  if((d.questions||[]).length)qs=qs.concat(textQuestions(d,500,rng));
   return uniqueQuestions(qs).map(q=>({...q,subject,id:subject+'|'+q.id}));
  }
  function buildScoped(data,spec,seed,exclude){

@@ -1,5 +1,564 @@
 {
- "questions": [],
+ "questions": [
+  {
+   "id": "kv-1",
+   "prompt": "Atölyedeki temiz servant ne işe yarar?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Temiz servis malzemelerini hazır tutmak"
+    },
+    {
+     "id": "B",
+     "text": "Kirli servis takımlarını toplamak"
+    },
+    {
+     "id": "C",
+     "text": "Sıcak tabakları salona taşımak"
+    },
+    {
+     "id": "D",
+     "text": "Pişen yemekleri sıcak tutmak"
+    }
+   ],
+   "correct": "A",
+   "group": "Servant ve Kuver Açma",
+   "explanation": "Servant, servis sırasında gereken temiz malzemelerin hazır tutulduğu yardımcı dolap veya sehpadır. Taşıma işini servis arabası yapar.",
+   "hint": "Servant, servis sırasında gereken temiz malzemelerin hazır tutulduğu yardımcı dolap veya sehpadır. Taşıma işini servis arabası yapar.",
+   "source": {
+    "file": "Servant_ve_Kuver_Aciklamali.docx",
+    "section": "Kendini dene 1",
+    "question": "1"
+   }
+  },
+  {
+   "id": "kv-2",
+   "prompt": "Temiz çatal ve kaşıklar servanta nasıl yerleştirilir?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Aynı bölmeye karışık olarak"
+    },
+    {
+     "id": "B",
+     "text": "Sap uzunluğuna göre"
+    },
+    {
+     "id": "C",
+     "text": "Türlerine göre ayrı bölmelere"
+    },
+    {
+     "id": "D",
+     "text": "Boş kalan bölmelere"
+    }
+   ],
+   "correct": "C",
+   "group": "Servant ve Kuver Açma",
+   "explanation": "Çatal, bıçak ve kaşıklar türlerine göre ayrı bölmelere konur. Böylece gereken takım kolay bulunur.",
+   "hint": "Çatal, bıçak ve kaşıklar türlerine göre ayrı bölmelere konur. Böylece gereken takım kolay bulunur.",
+   "source": {
+    "file": "Servant_ve_Kuver_Aciklamali.docx",
+    "section": "Kendini dene 1",
+    "question": "2"
+   }
+  },
+  {
+   "id": "kv-3",
+   "prompt": "Kuver ne demektir?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Bir konuk için hazırlanan masa düzeni"
+    },
+    {
+     "id": "B",
+     "text": "Temiz malzemelerin durduğu yardımcı dolap"
+    },
+    {
+     "id": "C",
+     "text": "Masada ortak kullanılan tuzluk ve biberlik"
+    },
+    {
+     "id": "D",
+     "text": "Sunulacak yemeklerin yazılı listesi"
+    }
+   ],
+   "correct": "A",
+   "group": "Servant ve Kuver Açma",
+   "explanation": "Kuver, bir konuk için hazırlanan masa düzenidir. Yardımcı dolap servanttır. Tuzluk ve biberlik menajdır. Yemek listesi menüdür.",
+   "hint": "Kuver, bir konuk için hazırlanan masa düzenidir. Yardımcı dolap servanttır. Tuzluk ve biberlik menajdır. Yemek listesi menüdür.",
+   "source": {
+    "file": "Servant_ve_Kuver_Aciklamali.docx",
+    "section": "Kendini dene 1",
+    "question": "3"
+   }
+  },
+  {
+   "id": "kv-4",
+   "prompt": "Basit kuverde yemek bıçağı nereye konur?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Tabağın üst tarafına yatay"
+    },
+    {
+     "id": "B",
+     "text": "Tabağın soluna"
+    },
+    {
+     "id": "C",
+     "text": "Ekmek tabağının üzerine"
+    },
+    {
+     "id": "D",
+     "text": "Tabağın sağına"
+    }
+   ],
+   "correct": "D",
+   "group": "Servant ve Kuver Açma",
+   "explanation": "Yemek bıçağı tabağın sağına, yemek çatalı soluna konur.",
+   "hint": "Yemek bıçağı tabağın sağına, yemek çatalı soluna konur.",
+   "source": {
+    "file": "Servant_ve_Kuver_Aciklamali.docx",
+    "section": "Kendini dene 1",
+    "question": "4"
+   }
+  },
+  {
+   "id": "kv-5",
+   "prompt": "Kuverde yemek bıçağının keskin kenarı nereye bakar?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Tabağın dışına"
+    },
+    {
+     "id": "B",
+     "text": "Tabağa"
+    },
+    {
+     "id": "C",
+     "text": "Masanın karşı tarafına"
+    },
+    {
+     "id": "D",
+     "text": "Konuğun oturduğu tarafa"
+    }
+   ],
+   "correct": "B",
+   "group": "Servant ve Kuver Açma",
+   "explanation": "Keskin kenar tabağa bakar.",
+   "hint": "Keskin kenar tabağa bakar.",
+   "source": {
+    "file": "Servant_ve_Kuver_Aciklamali.docx",
+    "section": "Kendini dene 1",
+    "question": "5"
+   }
+  },
+  {
+   "id": "kv-6",
+   "prompt": "Basit kuverde su bardağı nereye konur?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Çatalın üst ucuna"
+    },
+    {
+     "id": "B",
+     "text": "Tabağın üst tarafına"
+    },
+    {
+     "id": "C",
+     "text": "Bıçağın üst ucuna"
+    },
+    {
+     "id": "D",
+     "text": "Bıçağın sapının yanına"
+    }
+   ],
+   "correct": "C",
+   "group": "Servant ve Kuver Açma",
+   "explanation": "Su bardağı tabağın sağ üstüne, yemek bıçağının üst ucu hizasına konur.",
+   "hint": "Su bardağı tabağın sağ üstüne, yemek bıçağının üst ucu hizasına konur.",
+   "source": {
+    "file": "Servant_ve_Kuver_Aciklamali.docx",
+    "section": "Kendini dene 1",
+    "question": "6"
+   }
+  },
+  {
+   "id": "kv-7",
+   "prompt": "Tabldot kuverde takımlar neye göre seçilir?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Önceden belirlenen menüye"
+    },
+    {
+     "id": "B",
+     "text": "Servantta en çok bulunan takıma"
+    },
+    {
+     "id": "C",
+     "text": "Masada boş kalan yere"
+    },
+    {
+     "id": "D",
+     "text": "Önceki öğünde kullanılan takımlara"
+    }
+   ],
+   "correct": "A",
+   "group": "Servant ve Kuver Açma",
+   "explanation": "Tabldot serviste yemekler önceden bellidir. Takımlar bu menüye göre hazırlanır.",
+   "hint": "Tabldot serviste yemekler önceden bellidir. Takımlar bu menüye göre hazırlanır.",
+   "source": {
+    "file": "Servant_ve_Kuver_Aciklamali.docx",
+    "section": "Kendini dene 2",
+    "question": "7"
+   }
+  },
+  {
+   "id": "kv-8",
+   "prompt": "Alakart serviste eklenecek takımlar neye göre seçilir?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Her gün kullanılan sabit takım listesine"
+    },
+    {
+     "id": "B",
+     "text": "Servanttaki bütün takımlara"
+    },
+    {
+     "id": "C",
+     "text": "Yan masadaki kuver düzenine"
+    },
+    {
+     "id": "D",
+     "text": "Konuğun siparişine"
+    }
+   ],
+   "correct": "D",
+   "group": "Servant ve Kuver Açma",
+   "explanation": "Konuk yemeğini menüden seçer. Konuk çorba isterse çorba kaşığı eklenir.",
+   "hint": "Konuk yemeğini menüden seçer. Konuk çorba isterse çorba kaşığı eklenir.",
+   "source": {
+    "file": "Servant_ve_Kuver_Aciklamali.docx",
+    "section": "Kendini dene 2",
+    "question": "8"
+   }
+  },
+  {
+   "id": "kv-9",
+   "prompt": "Sütlaç için hangi araç hazırlanır?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Çay kaşığı"
+    },
+    {
+     "id": "B",
+     "text": "Tatlı kaşığı"
+    },
+    {
+     "id": "C",
+     "text": "Tatlı çatalı"
+    },
+    {
+     "id": "D",
+     "text": "Tereyağı bıçağı"
+    }
+   ],
+   "correct": "B",
+   "group": "Servant ve Kuver Açma",
+   "explanation": "Sütlaç gibi kaşıkla yenilen tatlılar için tatlı kaşığı hazırlanır. Kekte tatlı çatalı kullanılır.",
+   "hint": "Sütlaç gibi kaşıkla yenilen tatlılar için tatlı kaşığı hazırlanır. Kekte tatlı çatalı kullanılır.",
+   "source": {
+    "file": "Servant_ve_Kuver_Aciklamali.docx",
+    "section": "Kendini dene 2",
+    "question": "9"
+   }
+  },
+  {
+   "id": "kv-10",
+   "prompt": "Açık büfe kuverinde konuk tabağını nereden alır?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Servanttaki raftan"
+    },
+    {
+     "id": "B",
+     "text": "Konuk masasından"
+    },
+    {
+     "id": "C",
+     "text": "Büfeden"
+    },
+    {
+     "id": "D",
+     "text": "Servis arabasından"
+    }
+   ],
+   "correct": "C",
+   "group": "Servant ve Kuver Açma",
+   "explanation": "Konuk tabağını büfeden alır. Bu yüzden kuverde tabağın konacağı yer boştur.",
+   "hint": "Konuk tabağını büfeden alır. Bu yüzden kuverde tabağın konacağı yer boştur.",
+   "source": {
+    "file": "Servant_ve_Kuver_Aciklamali.docx",
+    "section": "Kendini dene 2",
+    "question": "10"
+   }
+  },
+  {
+   "id": "kv-11",
+   "prompt": "Çatal yere düştü. Ne yapılır?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Peçeteyle silinir."
+    },
+    {
+     "id": "B",
+     "text": "Servanta geri konur."
+    },
+    {
+     "id": "C",
+     "text": "Kuvere konur."
+    },
+    {
+     "id": "D",
+     "text": "Yıkanmak üzere ayrılır."
+    }
+   ],
+   "correct": "D",
+   "group": "Servant ve Kuver Açma",
+   "explanation": "Yere düşen takım kullanılmış takım alanına konur ve yıkanmak üzere ayrılır. Temiz bir takım seçilir.",
+   "hint": "Yere düşen takım kullanılmış takım alanına konur ve yıkanmak üzere ayrılır. Temiz bir takım seçilir.",
+   "source": {
+    "file": "Servant_ve_Kuver_Aciklamali.docx",
+    "section": "Kendini dene 2",
+    "question": "11"
+   }
+  },
+  {
+   "id": "kv-12",
+   "prompt": "Çatlak bardak görülürse ne yapılır?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Kullanılmaz. Öğretmene haber verilir."
+    },
+    {
+     "id": "B",
+     "text": "Peçeteyle sarılıp kullanılır."
+    },
+    {
+     "id": "C",
+     "text": "Yalnız yarısına kadar doldurulur."
+    },
+    {
+     "id": "D",
+     "text": "Servanta geri konur."
+    }
+   ],
+   "correct": "A",
+   "group": "Servant ve Kuver Açma",
+   "explanation": "Çatlak bardak kullanılmaz. Öğretmene haber verilir.",
+   "hint": "Çatlak bardak kullanılmaz. Öğretmene haber verilir.",
+   "source": {
+    "file": "Servant_ve_Kuver_Aciklamali.docx",
+    "section": "Kendini dene 2",
+    "question": "12"
+   }
+  },
+  {
+   "id": "kv-13",
+   "prompt": "Menüye çorba eklenmiştir. Hangi araç gerekir?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Tatlı kaşığı"
+    },
+    {
+     "id": "B",
+     "text": "Çay kaşığı"
+    },
+    {
+     "id": "C",
+     "text": "Çorba kaşığı"
+    },
+    {
+     "id": "D",
+     "text": "Servis kaşığı"
+    }
+   ],
+   "correct": "C",
+   "group": "Servant ve Kuver Açma",
+   "explanation": "Takım, sunulacak yemeğe göre seçilir. Çorba için çorba kaşığı hazırlanır.",
+   "hint": "Takım, sunulacak yemeğe göre seçilir. Çorba için çorba kaşığı hazırlanır.",
+   "source": {
+    "file": "Servant_ve_Kuver_Aciklamali.docx",
+    "section": "Etkinlik 2",
+    "question": "E2"
+   }
+  },
+  {
+   "id": "kv-14",
+   "prompt": "Çay servisi için hangi kaşık hazırlanır?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Çay kaşığı"
+    },
+    {
+     "id": "B",
+     "text": "Çorba kaşığı"
+    },
+    {
+     "id": "C",
+     "text": "Tatlı kaşığı"
+    },
+    {
+     "id": "D",
+     "text": "Servis kaşığı"
+    }
+   ],
+   "correct": "A",
+   "group": "Servant ve Kuver Açma",
+   "explanation": "Çay kaşığı çayı karıştırmak için kullanılır. Çay tabağında durur.",
+   "hint": "Çay kaşığı çayı karıştırmak için kullanılır. Çay tabağında durur.",
+   "source": {
+    "file": "Servant_ve_Kuver_Aciklamali.docx",
+    "section": "Etkinlik 2",
+    "question": "E3"
+   }
+  },
+  {
+   "id": "kv-15",
+   "prompt": "Menü: çorba, köfte ve pilav, sütlaç. Kuverde yemek çatalı, yemek bıçağı ve tatlı kaşığı var. Hangi araç eksiktir?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Çay kaşığı"
+    },
+    {
+     "id": "B",
+     "text": "Çorba kaşığı"
+    },
+    {
+     "id": "C",
+     "text": "Balık bıçağı"
+    },
+    {
+     "id": "D",
+     "text": "Tereyağı bıçağı"
+    }
+   ],
+   "correct": "B",
+   "group": "Servant ve Kuver Açma",
+   "explanation": "Menüde çorba olduğu için çorba kaşığı gerekir. Çorba kaşığı yemek bıçağının sağına konur.",
+   "hint": "Menüde çorba olduğu için çorba kaşığı gerekir. Çorba kaşığı yemek bıçağının sağına konur.",
+   "source": {
+    "file": "Servant_ve_Kuver_Aciklamali.docx",
+    "section": "Etkinlik 3",
+    "question": "E5"
+   }
+  },
+  {
+   "id": "kv-16",
+   "prompt": "Kahvaltı kuverinde fincan, tabağıyla birlikte nereye konur?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Kahvaltı çatalının üst ucuna"
+    },
+    {
+     "id": "B",
+     "text": "Kahvaltı bıçağının üst ucuna"
+    },
+    {
+     "id": "C",
+     "text": "Kahvaltı tabağının ortasına"
+    },
+    {
+     "id": "D",
+     "text": "Peçetenin üzerine"
+    }
+   ],
+   "correct": "B",
+   "group": "Servant ve Kuver Açma",
+   "explanation": "Fincan, kendi tabağıyla kahvaltı bıçağının üst ucuna konur.",
+   "hint": "Fincan, kendi tabağıyla kahvaltı bıçağının üst ucuna konur.",
+   "source": {
+    "file": "Servant_ve_Kuver_Aciklamali.docx",
+    "section": "Etkinlik 4",
+    "question": "E6"
+   }
+  },
+  {
+   "id": "kv-17",
+   "prompt": "Menü: mercimek çorbası, tavuk ve pilav, muhallebi, ekmek ve tereyağı. Kuverde çorba kaşığı, yemek çatalı, yemek bıçağı, ekmek tabağı ve tereyağı bıçağı var. Hangi araç eksiktir?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Tatlı kaşığı"
+    },
+    {
+     "id": "B",
+     "text": "Çay kaşığı"
+    },
+    {
+     "id": "C",
+     "text": "Balık çatalı"
+    },
+    {
+     "id": "D",
+     "text": "Servis kaşığı"
+    }
+   ],
+   "correct": "A",
+   "group": "Servant ve Kuver Açma",
+   "explanation": "Muhallebi kaşıkla yenir. Bu yüzden tatlı kaşığı gerekir.",
+   "hint": "Muhallebi kaşıkla yenir. Bu yüzden tatlı kaşığı gerekir.",
+   "source": {
+    "file": "Servant_ve_Kuver_Aciklamali.docx",
+    "section": "Etkinlik 5",
+    "question": "E8"
+   }
+  },
+  {
+   "id": "kv-18",
+   "prompt": "Tuzluk ve biberlik nereye konur?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Masanın ortak kullanım alanına"
+    },
+    {
+     "id": "B",
+     "text": "Ekmek tabağının üzerine"
+    },
+    {
+     "id": "C",
+     "text": "Bıçakla su bardağının arasına"
+    },
+    {
+     "id": "D",
+     "text": "Kuver tabağına"
+    }
+   ],
+   "correct": "A",
+   "group": "Servant ve Kuver Açma",
+   "explanation": "Tuzluk ve biberlik masanın ortak kullanım alanına konur. Menaj kuver tabağına konmaz.",
+   "hint": "Tuzluk ve biberlik masanın ortak kullanım alanına konur. Menaj kuver tabağına konmaz.",
+   "source": {
+    "file": "Servant_ve_Kuver_Aciklamali.docx",
+    "section": "Etkinlik 5",
+    "question": "E9"
+   }
+  }
+ ],
  "matches": [],
  "words": []
 }
