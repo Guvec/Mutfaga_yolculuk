@@ -16,9 +16,12 @@ const assert=require('node:assert/strict'),open=require('./helpers/dom-app.cjs')
   w.sesSoruSec('okuma');
   assert.equal(w.SES.acik,true);assert.equal(w.MUZIK.acikMi(),false);
   assert(w.document.querySelector('.ae-devam'));assert.match(w.document.querySelector('.ae-rank-note').textContent,/100 puan kaldı/);
-  assert.equal(w.document.querySelectorAll('.ae-bottom button').length,4);
-  assert(w.document.querySelector('.ae-friends-open'));ok('Arkadaşlarım şeridi ve dört alt kısayol görünür');
+  assert.deepEqual([...w.document.querySelectorAll('.ae-bottom button span')].map(el=>el.textContent),['Birlikte Oyna','Sıralama','Rozetlerim']);
+  assert(w.document.querySelector('.ae-rank-hat'));assert(!w.document.querySelector('.ae-points'));
+  assert(w.document.querySelector('.ae-friends-open'));ok('Arkadaşlarım şeridi ve üç alt kısayol görünür');
   assert.match(w.document.querySelector('.ae-devam').getAttribute('aria-label'),/Çalışmaya başla.*Mutfak Araçları/);assert(!w.document.querySelector('.ae-home-topic'),'İlerleme yokken Kaldığın yer çıkmaz');
+  w.st.prof='Huzurlu Civciv';w.lsSet('rk_ids',{'Huzurlu Civciv':'test-profil'});
+  w.dostGorevYaz(w.dostPid(),{unlocked:{rabbit:true,koala:true},total:100,spent:100,seen:{}});
   for(const id of ['panda','rabbit','koala']){
    w.anaDost();assert.equal(w.document.querySelectorAll('[data-dost-item]:not(.dost-locked)').length,3);
    w.document.querySelector('[data-dost-item='+id+']').click();w.document.getElementById('gUse').click();w.document.getElementById('gStart').click();
@@ -34,6 +37,11 @@ const assert=require('node:assert/strict'),open=require('./helpers/dom-app.cjs')
   assert.equal(w.document.querySelectorAll('.ae-header .ae-avatar').length,1);
   w.st.prof='Neşeli Tavşan';w.render();
   assert(!w.document.querySelector('.ae-kaptan-tac'));ok('Tek profil portresi ve kaptan tacı');
+  w.st.prof='Huzurlu Civciv';w.st.guest=false;w.lsSet('ana_son_konu_Huzurlu Civciv','mutfak-araclari');
+  w.lsSet('yol_ma',{'Huzurlu Civciv':{done:{e1b1:true}}});w.render();
+  const progress=w.document.querySelector('.ae-kald progress');
+  assert.equal(progress.value,1);assert(progress.max>1);assert.equal(w.document.querySelector('.ae-devam b').textContent,'Devam et');
+  assert.match(w.document.querySelector('.ae-home-topic').textContent,/Mutfak Araçları/);ok('Kayıtlı ilerleme ve doğru ders');
   w.anaKitap();w.go('gunlukgorevler');assert.match(w.document.body.textContent,/Kuver çalışması/);
   w.rutbeComplete({id:'test-kuver',table:'kv-basit',total:5,correct:5});w.render();
   assert.match(w.document.querySelector('.ae-list-item').textContent,/Tamamlandı/);

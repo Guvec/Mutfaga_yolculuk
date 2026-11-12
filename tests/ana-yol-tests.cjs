@@ -25,9 +25,9 @@ const types={'.js':'text/javascript','.css':'text/css','.html':'text/html','.jso
   assert.equal(await p.locator('.ae-kald .ae-devam b').innerText(),'Çalışmaya başla');
   assert.equal(await p.locator('.ae-home-topic').count(),0);
   console.log('PASS İlerleme yokken "Kaldığın yer" çıkmaz, "Çalışmaya başla" görünür');
-  assert.equal(await p.locator('.ae-yolgir').innerText().then(t=>t.includes('Sıcak Mutfak: Konular ve Uygulama')),true);
+  assert.equal(await p.locator('.ae-yolgir').getAttribute('aria-label').then(t=>t.includes('Sıcak Mutfak: Konular ve Uygulama')),true);
   await p.getByRole('button',{name:/^Servis$/}).click();
-  assert.match(await p.locator('.ae-yolgir').innerText(),/Servis: Konular ve Uygulama/);
+  assert.match(await p.locator('.ae-yolgir').getAttribute('aria-label'),/Servis: Konular ve Uygulama/);
   await p.locator('.ae-yolgir').click();assert.equal(await screen(),'yolpenceresi');
   const rows=await p.locator('.ae-list-item strong').allTextContents();
   assert.deepEqual(rows,['Servant ve Kuver','Bulaşık Yıkama ve Atık Yönetimi']);
@@ -48,7 +48,7 @@ const types={'.js':'text/javascript','.css':'text/css','.html':'text/html','.jso
   await p.evaluate(()=>back());assert.equal(await screen(),'yolpenceresi');
   console.log('PASS Pastacılık yol penceresi: konular, uygulama ve geri dönüş');
   await p.evaluate(()=>go('home'));
-  for(const name of ['Arkadaşlarım','Mutfak Kitabım','Görünüm ve Hareketler','Lezzetleri Keşfet','Birlikte Oyna','Sıralama','Rozetlerim'])
+  for(const name of ['Arkadaşlarım','Birlikte Oyna','Sıralama','Rozetlerim'])
    assert.equal(await p.getByRole('button',{name,exact:true}).count(),1,name);
   console.log('PASS Profil düğmeleri ve alt menü görünür');
   await p.locator('.ae-dost').click();await p.waitForFunction(()=>st.screen==='giris',null,{timeout:3000});

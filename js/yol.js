@@ -112,7 +112,7 @@ function yolDevamBilgi(id){
  try{
   const plan=yolPlan();if(!plan)return null;
   const s=yolS(),n=yolSiradaki(plan,s),basladi=Object.keys(s.done).length>0||!!s.cur;
-  return {id,basladi,bitti:!n,node:n?.id,points:n?(n.tur==='son'?RUTBE_AYAR.yolEtap:RUTBE_AYAR.yolBolum):0,alt:n?yolAd(n):'Tüm bölümler bitti'};
+  return {id,basladi,bitti:!n,node:n?.id,total:plan.length,completed:plan.filter(node=>s.done[node.id]).length,points:n?(n.tur==='son'?RUTBE_AYAR.yolEtap:RUTBE_AYAR.yolBolum):0,alt:n?yolAd(n):'Tüm bölümler bitti'};
  }finally{YOL_AYAR.subject=onceki;}
 }
 

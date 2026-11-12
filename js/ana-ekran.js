@@ -32,11 +32,12 @@
   const remaining=next?Math.max(0,next.mp-points):0;
   const percent=next?Math.max(0,Math.min(100,100*(points-current.mp)/(next.mp-current.mp))):100;
   const names=rutbeAdlari(),title=(names[index]||current.name)+(next?' → '+(names[index+1]||next.name):'');
-  return `<button type="button" class="ae-rank" onclick="go('rutbe')" aria-label="${esc(title+'. '+points+' Mutfak Puanı')}">
+  const note=next?remaining+' puan kaldı':'En yüksek öğrenci rütbesi';
+  return `<button type="button" class="ae-rank" onclick="go('rutbe')" aria-label="${esc(title+'. '+note)}">
    <span class="ae-rank-copy"><strong>${esc(title)}</strong><span class="ae-progress" role="progressbar"
-    aria-label="Sonraki rütbeye ilerleme" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${Math.round(percent)}"><span style="width:${percent}%"></span></span>
-    <small class="ae-rank-note">${next?remaining+' puan kaldı':'En yüksek öğrenci rütbesi'}</small></span>
-   <span class="ae-points"><span aria-hidden="true">★</span> ${points}</span>
+    aria-label="Sonraki rütbeye ilerleme" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${Math.round(percent)}" aria-valuetext="${esc(note)}"><span style="width:${percent}%"></span></span>
+    <small class="ae-rank-note">${esc(note)}</small></span>
+   <img class="ae-rank-hat" src="assets/tasarim/sef-kepi-128.png" alt="" width="64" height="64">
   </button>`;
  }
  const YOLLAR={
@@ -48,38 +49,36 @@
   GIRIS.character=dostSecili();
   const name=st.guest?'Misafir':st.prof?adRest(st.prof):'Profil seç';
   const action=devamBilgi();
+  const homeArt=GIRIS.homeArt();
+  const scene=homeArt==='ana-panda'&&path()==='pasta'?'ana-panda-pastacilik':homeArt;
   const avatar=profileArt(st.prof);
   const crown=typeof kaptanTacHTML==='function'?kaptanTacHTML():'';
-  const yol=YOLLAR[path()];
   return `<div class="ae-home" data-yol="${path()}">
    <header class="ae-header ae-paper">
     <button type="button" class="ae-profile" onclick="anaProfil()" aria-label="${esc(name+(crown?'. Haftanın kaptanı':'')+'. Profil ayrıntıları')}">
      <span class="ae-avatar">${avatar}</span>${crown}
     </button>
     <strong class="ae-profile-name">${esc(name)}</strong>
-    <button type="button" class="ae-settings" onclick="anaAyarlar()" aria-label="Ayarlar"><span aria-hidden="true">⚙</span></button>
+    <button type="button" class="ae-settings" onclick="anaAyarlar()" aria-label="Ayarlar"><span aria-hidden="true">⚙︎</span></button>
     ${rankHTML()}
-    <nav class="ae-profile-links" aria-label="Profil">
-     <button type="button" class="ae-friends-open" data-ark="1" onclick="anaArkadas()">Arkadaşlarım</button>
-     <button type="button" class="ae-kitap-open" onclick="anaKitap()">Mutfak Kitabım</button>
-     <button type="button" class="ae-gorunum-open" onclick="anaDost()">Görünüm ve Hareketler</button>
-    </nav>
-    <span class="ae-friends-portraits" id="aeArkadasPortreleri" aria-hidden="true">${arkadasPortreleri()}</span>
    </header>
-   <button type="button" class="ae-paper ae-dost" onclick="anaDostMutfak()" aria-label="Aşçı Dostum. Besle ve tepkisini izle">
-    <strong>Aşçı Dostum</strong>
-    <picture class="ae-dost-artwork" data-dost="${GIRIS.character}">${foto(GIRIS.homeArt())}</picture>
-    <span class="ae-dost-poz" aria-hidden="true"><img alt=""></span>
-   </button>
    <nav class="ae-paths" aria-label="Mutfak dalları">
     <button type="button" class="ae-paper" onclick="anaYol('sicak')" aria-pressed="${path()==='sicak'}">${dalArt('sicak')}<span>Sıcak Mutfak</span></button>
     <button type="button" class="ae-paper" onclick="anaYol('pasta')" aria-pressed="${path()==='pasta'}">${dalArt('pasta')}<span>Pastacılık</span></button>
     <button type="button" class="ae-paper" onclick="anaYol('servis')" aria-pressed="${path()==='servis'}">${dalArt('servis')}<span>Servis</span></button>
    </nav>
+   <button type="button" class="ae-paper ae-dost" onclick="anaDostMutfak()" aria-label="Aşçı Dostum. Besle ve tepkisini izle">
+    <strong>Aşçı Dostum</strong>
+    <picture class="ae-dost-artwork" data-dost="${GIRIS.character}">${foto(scene)}</picture>
+    <span class="ae-dost-poz" aria-hidden="true"><img alt=""></span>
+   </button>
    ${resumeHTML(action)}
-   <button type="button" class="ae-paper ae-yolgir" onclick="anaYolPencere()"><span>${esc(yol.ad)}: Konular ve Uygulama</span><b aria-hidden="true">›</b></button>
-   <nav class="ae-bottom" aria-label="Oyun ve başarılar">
-    <button type="button" class="ae-paper" onclick="go('market')">${foto('ana-market')}<span>Lezzetleri Keşfet</span></button>
+   <section class="ae-paper ae-friends" aria-label="Arkadaşlarım">
+    <button type="button" class="ae-friends-open" data-ark="1" onclick="anaArkadas()">${foto('ana-arkadas')}<strong>Arkadaşlarım</strong></button>
+    <span class="ae-friends-portraits" id="aeArkadasPortreleri" aria-hidden="true">${arkadasPortreleri()}</span>
+    <button type="button" class="ae-friends-add" onclick="anaArkadas(true)" aria-label="Arkadaş ekle"><span aria-hidden="true">+</span></button>
+   </section>
+   <nav class="ae-paper ae-bottom" aria-label="Oyun ve başarılar">
     <button type="button" class="ae-paper" onclick="tasarimOda('create')">${foto('ana-birlikte')}<span>Birlikte Oyna</span></button>
     <button type="button" class="ae-paper" onclick="rkOpenBoard()">${foto('ana-siralama')}<span>Sıralama</span></button>
     <button type="button" class="ae-paper" onclick="go('rutbe')">${foto('ana-rozet')}<span>Rozetlerim</span></button>
@@ -87,11 +86,18 @@
   </div>`;
  }
  function resumeHTML(a){
-  if(!a.started)return `<section class="ae-paper ae-kald ae-kald-bos" aria-label="Çalışma">${devamHTML(a)}</section>`;
-  return `<section class="ae-paper ae-kald" aria-label="Kaldığın yer">
-   <div class="ae-home-resume"><small>Kaldığın yer</small>
-    <div class="ae-home-topic"><span><strong>${esc(a.name)}</strong>${a.detail?'<small>'+esc(a.detail)+'</small>':''}</span></div></div>
-   ${devamHTML(a)}</section>`;
+  const title=a.started?'Yolculuğuna devam et':'Çalışmaya başla';
+  const progress=a.total
+   ?`<p>${a.completed} / ${a.total} çalışma tamamlandı</p><progress value="${a.completed}" max="${a.total}" aria-label="Tamamlanan çalışma sayısı"></progress>`
+   :'';
+  const topic=a.started
+   ?`<div class="ae-home-topic">${foto(topicArt(a.id))}<span><strong>${esc(a.name)}</strong>${a.detail?'<small>'+esc(a.detail)+'</small>':''}</span></div>`
+   :'';
+  return `<section class="ae-paper ae-kald" aria-labelledby="ae-resume-title">
+   <div class="ae-resume-head"><h2 id="ae-resume-title"><span aria-hidden="true">▦</span>${esc(title)}</h2>
+    <button type="button" class="ae-yolgir" onclick="anaYolPencere()" aria-label="${esc(YOLLAR[path()].ad+': Konular ve Uygulama')}">Konular</button>
+   </div>
+   ${progress}${topic}${devamHTML(a)}</section>`;
  }
  function sonKonuAnahtar(){return 'ana_son_konu_'+(st.guest?'misafir':st.prof||'');}
  const TOPICS={
@@ -190,10 +196,21 @@
   }).join('');
   return interior('Lezzetleri Keşfet','<h2>Besinler</h2><div class="ae-market-grid">'+rows+'</div>');
  }
- window.anaYol=function(y){lsSet('ana_yol',y==='pasta'?'pasta':y==='servis'?'servis':'sicak');render();};
+ window.anaYol=function(y){
+  const keepFocus=document.activeElement?.matches('.ae-paths button');
+  lsSet('ana_yol',y==='pasta'?'pasta':y==='servis'?'servis':'sicak');
+  render();
+  if(keepFocus)document.querySelector('.ae-paths [aria-pressed="true"]')?.focus({preventScroll:true});
+ };
  window.anaTema=function(){temaDegistir();render();};
  window.anaSes=function(){SES.acik=!SES.acik;lsSet('ses',SES.acik);sesSus();render();};
- window.anaAyarlar=function(){voiceSettings();const box=document.querySelector('#ov .modal');if(!box)return;const nav=document.createElement('div');nav.className='row';const tm=()=>'Tema: '+({light:'Aydınlık',sepia:'Sepya',okyanus:'Okyanus',orman:'Orman',lavanta:'Lavanta',seftali:'Şeftali',yuksek:'Yüksek kontrast',dark:'Gece'}[document.documentElement.dataset.theme]||'Aydınlık');const sm=()=>'Sesli okuma: '+(SES.acik?'Açık':'Kapalı');const tema=document.createElement('div');tema.className='row';const YZ=['normal','buyuk','cok'],YZN={normal:'Normal',buyuk:'Büyük',cok:'Çok büyük'},yzm=()=>'Yazı boyutu: '+YZN[document.documentElement.getAttribute('data-yz')||'normal'];tema.innerHTML='<button class="btn" id="aeTemaBtn">'+tm()+'</button><button class="btn" id="aeSesBtn">'+sm()+'</button><button class="btn" id="aeYzBtn">'+yzm()+'</button>';tema.querySelector('#aeYzBtn').onclick=function(){const now=document.documentElement.getAttribute('data-yz')||'normal',nx=YZ[(YZ.indexOf(now)+1)%YZ.length];document.documentElement.setAttribute('data-yz',nx);try{localStorage.setItem('mesleki-yazi',nx);}catch(e){}this.textContent=yzm();};box.insertBefore(tema,box.querySelector('.row'));tema.querySelector('#aeTemaBtn').onclick=function(){temaDegistir();this.textContent=tm();};tema.querySelector('#aeSesBtn').onclick=function(){SES.acik=!SES.acik;lsSet('ses',SES.acik);if(!SES.acik)sesSus();this.textContent=sm();};nav.innerHTML='<button class="btn" onclick="closeModal();go(\'history\')">Çalışma geçmişim</button><button class="btn" onclick="closeModal();kilavuzAc()">📖 Kılavuz</button>';box.appendChild(nav);};
+ window.anaAyarlar=function(){voiceSettings();const box=document.querySelector('#ov .modal');if(!box)return;const nav=document.createElement('div');nav.className='row';const tm=()=>'Tema: '+({light:'Aydınlık',sepia:'Sepya',okyanus:'Okyanus',orman:'Orman',lavanta:'Lavanta',seftali:'Şeftali',yuksek:'Yüksek kontrast',dark:'Gece'}[document.documentElement.dataset.theme]||'Aydınlık');const sm=()=>'Sesli okuma: '+(SES.acik?'Açık':'Kapalı');const tema=document.createElement('div');tema.className='row';const YZ=['normal','buyuk','cok'],YZN={normal:'Normal',buyuk:'Büyük',cok:'Çok büyük'},yzm=()=>'Yazı boyutu: '+YZN[document.documentElement.getAttribute('data-yz')||'normal'];tema.innerHTML='<button class="btn" id="aeTemaBtn">'+tm()+'</button><button class="btn" id="aeSesBtn">'+sm()+'</button><button class="btn" id="aeYzBtn">'+yzm()+'</button>';tema.querySelector('#aeYzBtn').onclick=function(){const now=document.documentElement.getAttribute('data-yz')||'normal',nx=YZ[(YZ.indexOf(now)+1)%YZ.length];document.documentElement.setAttribute('data-yz',nx);try{localStorage.setItem('mesleki-yazi',nx);}catch(e){}this.textContent=yzm();};box.insertBefore(tema,box.querySelector('.row'));tema.querySelector('#aeTemaBtn').onclick=function(){temaDegistir();this.textContent=tm();};tema.querySelector('#aeSesBtn').onclick=function(){SES.acik=!SES.acik;lsSet('ses',SES.acik);if(!SES.acik)sesSus();this.textContent=sm();};
+  nav.innerHTML=`<button class="btn" onclick="closeModal();anaKitap()">Mutfak Kitabım</button>
+   <button class="btn" onclick="closeModal();anaDost()">Görünüm ve Hareketler</button>
+   <button class="btn" onclick="closeModal();go('market')">Lezzetleri Keşfet</button>
+   <button class="btn" onclick="closeModal();go('history')">Çalışma geçmişim</button>
+   <button class="btn" onclick="closeModal();kilavuzAc()">📖 Kılavuz</button>`;
+  box.appendChild(nav);};
  const aeSpeak=sesSoyle;sesSoyle=function(t){const r=aeSpeak.apply(this,arguments);if(SES.acik&&t&&MUZIK.acikMi())MUZIK.okumaIcinDuraklat();return r;};
  window.anaProfil=function(){if(st.prof||st.guest)profilAyrintiAc();else go('profiles');};
  window.anaArkadas=function(ekle=false){
@@ -214,7 +231,7 @@
   const title=progress?.bitti?'Tekrar çalış':started?'Devam et':'Çalışmaya başla';
   const detail=progress?.bitti?'Çalışma tamamlandı':
    progress?.node&&st.prof&&!st.guest?'0 / 1 · +'+progress.points+' puan':progress?.basladi?'Çalışma sürüyor':'';
-  return {id,name:TOPICS[id][0],started,title,detail};
+  return {id,name:TOPICS[id][0],started,title,detail,total:progress?.total,completed:progress?.completed};
  }
  function devamHTML({title,name}){
   return `<button type="button" class="ae-devam" onclick="anaDevam()" aria-label="${esc(title+'. '+name)}">

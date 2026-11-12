@@ -219,7 +219,7 @@ function validateContent(d){
   for(const f of ['matches','words']){const s=new Set();for(const q of d[f]){if(!q.id||!q.answer||!q.prompt||s.has(q.id))throw new Error('Geçersiz kart');s.add(q.id);}if(d[f].length===1)throw new Error('Eşleştirme için en az 2 kart gerekir');}
   return {...d,questions:d.questions.filter(q=>!q.disabled)};
 }
-async function loadContent(){await Promise.all(SUBJECTS.map(async s=>{try{const r=await fetch('content/'+s.id+'/icerik.json');if(!r.ok)throw Error(r.status);CONTENT[s.id]=validateContent(await r.json());}catch(e){CONTENT[s.id]=null;}}));if(st.screen==='content'||st.screen==='spicelearn')render();}
+async function loadContent(){await Promise.all(SUBJECTS.map(async s=>{try{const r=await fetch('content/'+s.id+'/icerik.json');if(!r.ok)throw Error(r.status);CONTENT[s.id]=validateContent(await r.json());}catch(e){CONTENT[s.id]=null;}}));if(['content','spicelearn','home','welcome'].includes(st.screen))render();}
 render();loadContent();
 // Aynı kapsamda bulunan eski kuver service worker'ının eski index.html sunmasını önler.
 if('serviceWorker' in navigator&&(location.protocol==='https:'||location.hostname==='localhost')){
