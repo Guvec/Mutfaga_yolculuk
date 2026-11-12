@@ -66,7 +66,7 @@
     </nav>
     <span class="ae-friends-portraits" id="aeArkadasPortreleri" aria-hidden="true">${arkadasPortreleri()}</span>
    </header>
-   <button type="button" class="ae-paper ae-dost" onclick="anaDost()" aria-label="Aşçı Dostum. Görünüm ve Hareketler">
+   <button type="button" class="ae-paper ae-dost" onclick="anaDostMutfak()" aria-label="Aşçı Dostum. Besle ve tepkisini izle">
     <strong>Aşçı Dostum</strong>
     <picture class="ae-dost-artwork" data-dost="${GIRIS.character}">${foto(GIRIS.homeArt())}</picture>
    </button>
@@ -268,6 +268,7 @@
  window.anaKitap=function(){if(typeof EFEKT!=='undefined')EFEKT.cal('click');kitapGeri='mutfakkitabi';go('mutfakkitabi');};
  window.anaAtolye=function(){go('ascilikatolyesi');};
  window.anaDost=function(){GIRIS.ac('home');};
+ window.anaDostMutfak=function(){GIRIS.mutfak();};
  window.anaTarif=function(y){
   if(y==='servis'){go('servantkuver');return;}
   if(y==='sicak'||y==='pasta')go(y==='sicak'?'sicakmutfak':'pastacilik');

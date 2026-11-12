@@ -51,6 +51,11 @@ const types={'.js':'text/javascript','.css':'text/css','.html':'text/html','.jso
   for(const name of ['Arkadaşlarım','Mutfak Kitabım','Görünüm ve Hareketler','Lezzetleri Keşfet','Birlikte Oyna','Sıralama','Rozetlerim'])
    assert.equal(await p.getByRole('button',{name,exact:true}).count(),1,name);
   console.log('PASS Profil düğmeleri ve alt menü görünür');
+  await p.locator('.ae-dost').click();assert.equal(await screen(),'giris');
+  assert.equal(await p.locator('#gKitchen').isVisible(),true);assert.equal(await p.locator('#gWardrobe').isVisible(),false);
+  await p.locator('[data-food=lemon]').first().click().catch(()=>{});
+  await p.locator('#gStart').click();assert.equal(await screen(),'home');
+  console.log('PASS Aşçı Dostum kartı besleme ekranını açar, geri ana sayfaya döner');
   assert.deepEqual(errors,[]);
  }finally{if(browser)await browser.close();server.close();}
 })().catch(e=>{console.error(e);process.exitCode=1;});

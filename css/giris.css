@@ -108,7 +108,7 @@ html[data-theme=dark] .gs-strip { color:#9fd8d2; }
 .dost-stage[data-character]:not([data-character=panda],[data-character=rabbit]) > img,
 .dost-preview[data-character]:not([data-character=panda],[data-character=rabbit]) > img { object-fit:contain; object-position:center; }
 .yanlis-ekran { max-width:720px; margin-inline:auto; }
-.yanlis-ekran > img,.yanlis-karsilastir img,.yanlis-secenekler img { display:block; max-width:100%; max-height:180px; object-fit:contain; margin:0 auto .65rem; }
+.yanlis-ekran > img,.yanlis-karsilastir img,.yanlis-secenekler img { display:block; max-width:100%; max-height:min(180px,17svh); object-fit:contain; margin:0 auto .65rem; }
 .yanlis-karsilastir,.yanlis-secenekler { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px; }
 .yanlis-karsilastir h2 { font-size:1rem; }
 .yanlis-secenekler button { min-height:44px; overflow-wrap:anywhere; }
@@ -119,3 +119,14 @@ html[data-theme=dark] .gs-strip { color:#9fd8d2; }
 .yanlis-giris { margin-bottom:12px; }
 .dost-options[data-tab=hareket] { grid-template-columns:repeat(2,minmax(0,1fr)); }
 .dost-tabs button[aria-pressed=true] { background:#075d56; color:#fff; }
+
+/* Yanlışlarımı çalış: seçim sonucu renkle görünür; açıklama ve Devam düğmesi ekranın altında sabit, sayfa kaydırılmaz */
+.yanlis-secenekler .btn:disabled{opacity:1}
+.yanlis-secenekler .btn.yanlis-dogru{border:3px solid #09635c;background:#e3f3ee;color:#0b3d38}
+.yanlis-secenekler .btn.yanlis-hata{border:3px solid #b3261e;background:#fbe9e7;color:#5c1410}
+.yanlis-secenekler .btn.yanlis-dogru::before{content:"✓ Doğru";display:block;font-weight:800;color:#09635c}
+.yanlis-secenekler .btn.yanlis-hata::before{content:"✗ Seçilen cevap";display:block;font-weight:800;color:#b3261e}
+.yanlis-ekran h1{font-size:clamp(1.15rem,4.6vw,1.9rem);margin:.2rem 0 .5rem}
+.yanlis-alt{position:sticky;bottom:0;z-index:2;display:grid;grid-template-columns:auto 1fr;gap:8px;align-items:center;margin-top:10px;padding:10px 0 max(10px,env(safe-area-inset-bottom));background:var(--bg,#faf3e8);box-shadow:0 -6px 10px -6px #47301c33}
+.yanlis-alt p{grid-column:1 / -1;margin:0}
+.yanlis-alt .btn.pri{margin:0}

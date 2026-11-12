@@ -120,6 +120,8 @@ function girisHTML(){
  const G=GIRIS;
  let origin='home',entry=null;
  const $=id=>document.getElementById(id);
+ /* Ana sayfadaki Aşçı Dostum kartı: doğrudan besleme ekranı (tepkiler) açılır. */
+ G.mutfak=function(){origin='home';entry={food:null,editor:false,profileChoice:false};go('giris');};
  G.ac=function(from,food=null,profileChoice=false){
   origin=from;
   entry={food,editor:profileChoice||from==='home'&&!food,profileChoice};

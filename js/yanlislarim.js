@@ -164,15 +164,15 @@ function yanlisHTML(){
  const q=t.items[t.index],show=t.phase==='show',feedback=t.phase==='feedback',correct=q.choices.find(c=>c.id===q.correct);
  const right=feedback&&q.choices[t.pick].id===correct.id;
  const info='Doğru cevap: '+correct.text+'. '+q.explanation;
- const options=show?'':q.place?'':q.choices.map((c,i)=>'<button class="btn" type="button" '+(feedback?'disabled':'onclick="yanlisYanit('+i+')"')+'>'+yanlisGorsel(c)+esc(c.text)+'</button>').join('');
+ const options=show?'':q.place?'':q.choices.map((c,i)=>'<button class="btn'+(feedback&&c.id===correct.id?' yanlis-dogru':feedback&&i===t.pick?' yanlis-hata':'')+'" type="button" '+(feedback?'disabled':'onclick="yanlisYanit('+i+')"')+'>'+yanlisGorsel(c)+esc(c.text)+'</button>').join('');
  return top+'<p class="note">'+(show?'Doğru cevabı öğren':'Yeniden dene')+' · '+(t.index+1)+' / '+t.items.length+'</p>'+
   '<h1 id="yanlisBaslik" tabindex="-1">'+esc(q.prompt)+'</h1>'+yanlisGorsel({image:q.image,alt:q.imageAlt})+
   (q.place?yanlisMasa(q,correct,show,feedback):'')+
   (show?'<div class="yanlis-karsilastir"><section class="card"><h2>Verilen cevap</h2>'+yanlisGorsel(q.given)+'<p>'+esc(q.given?.text||q.reason||'Cevap kaydı yok')+'</p></section>'+
    '<section class="card"><h2>Doğru cevap</h2>'+yanlisGorsel(correct)+'<p>'+esc(correct.text)+'</p></section></div>':
    '<div class="yanlis-secenekler">'+options+'</div>')+
-  (show||feedback?'<p id="yanlisGeriBildirim" tabindex="-1" role="status">'+(feedback?'<strong>'+(right?'Doğru.':esc(info))+'</strong>':'')+(show?esc(q.explanation):'')+'</p>'+
-   sesDugme(info,'Açıklamayı dinle')+'<button class="btn pri" onclick="yanlisDevam()">'+(show?(t.later||t.index+1===t.items.length?'Yeniden dene':'Sonraki kart'):'Devam et')+'</button>':'')+'</div>';
+  (show||feedback?'<div class="yanlis-alt"><p id="yanlisGeriBildirim" tabindex="-1" role="status">'+(feedback?'<strong>'+(right?'Doğru.':esc(info))+'</strong>':'')+(show?esc(q.explanation):'')+'</p>'+
+   sesDugme(info,'Açıklamayı dinle')+'<button class="btn pri" onclick="yanlisDevam()">'+(show?(t.later||t.index+1===t.items.length?'Yeniden dene':'Sonraki kart'):'Devam et')+'</button></div>':'')+'</div>';
 }
 const YANLIS_RENDER=render,YANLIS_BACK=back;
 render=function(){
