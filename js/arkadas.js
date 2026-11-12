@@ -4,7 +4,7 @@
    yrFr/{a_b} (istek ve arkadaşlık), yrDav/{gönderen_alıcı_oda} (davet), yrEngel (engel; arayüzü sonra). Kurallar: ci/firebase/firestore.rules.
    Ad gerçek ad değildir (hazır karakter), bu yüzden kart ve çevrim içi bilgisi giriş yapanlara açıktır; liste yoktur. */
 'use strict';
-const FR={ready:false,busy:null,pid:null,prof:null,list:[],inc:[],out:[],nick:{},seen:{},unsub:[],beat:null,invs:[],invSeen:{},call:null,bn:0};
+const FR={ayar:{ri:false,di:false,gz:false},engel:[],ready:false,busy:null,pid:null,prof:null,list:[],inc:[],out:[],nick:{},seen:{},unsub:[],beat:null,invs:[],invSeen:{},call:null,bn:0};
 const FR_CH='ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
 function frIds(){return ls('ark_id',{});}
 function frRand(n){const b=crypto.getRandomValues(new Uint8Array(n));return Array.from(b,x=>FR_CH[x%FR_CH.length]).join('');}
@@ -28,11 +28,13 @@ function frEnsure(){
    const id=me||frRand(7);
    try{
     const b=fb.writeBatch(t.db);
-    b.set(fb.doc(t.db,'yrKart',id),{owner:t.uid,nick:p});
+    b.set(fb.doc(t.db,'yrKart',id),{owner:t.uid,nick:p},{merge:true});
     b.set(fb.doc(t.db,'yrKim',t.uid),{pid:id});
     await b.commit();
     all[p]={id};lsSet('ark_id',all);
-    await fb.setDoc(fb.doc(t.db,'yrDurum',id),{seen:fb.serverTimestamp()}).catch(()=>{});
+    /* Kendi kartındaki gizlilik ayarları (istek, davet, çevrim içi durumu). */
+    try{const k=await fb.getDoc(fb.doc(t.db,'yrKart',id));const d=k.exists()?k.data():{};FR.ayar={ri:d.ri===true,di:d.di===true,gz:d.gz===true};}catch(x){}
+    if(!FR.ayar.gz)await fb.setDoc(fb.doc(t.db,'yrDurum',id),{seen:fb.serverTimestamp()}).catch(()=>{});
     if(st.prof!==p)return null;
     frStart(p,id);return id;
    }catch(e){
@@ -47,7 +49,7 @@ function frEnsure(){
 function frStop(){
  FR.unsub.forEach(u=>{try{u();}catch(e){}});FR.unsub=[];
  if(FR.beat){clearInterval(FR.beat);FR.beat=null;}
- FR.pid=null;FR.prof=null;FR.list=[];FR.inc=[];FR.out=[];FR.ready=false;FR.invs=[];
+ FR.pid=null;FR.prof=null;FR.list=[];FR.inc=[];FR.out=[];FR.ready=false;FR.invs=[];FR.engel=[];FR.ayar={ri:false,di:false,gz:false};
 }
 async function frStart(p,id){
  frStop();FR.pid=id;FR.prof=p;FR.ready=true;
@@ -61,13 +63,14 @@ async function frStart(p,id){
   };
   FR.unsub.push(fb.onSnapshot(fb.query(fb.collection(t.db,'yrFr'),fb.where('a','==',id)),qs=>{A={};qs.forEach(d=>{A[d.id]=d.data();});merge();},()=>{}));
   FR.unsub.push(fb.onSnapshot(fb.query(fb.collection(t.db,'yrFr'),fb.where('b','==',id)),qs=>{B={};qs.forEach(d=>{B[d.id]=d.data();});merge();},()=>{}));
+  FR.unsub.push(fb.onSnapshot(fb.query(fb.collection(t.db,'yrEngel'),fb.where('by','==',id)),qs=>{FR.engel=qs.docs.map(d=>d.data().to);frNicks(FR.engel);frUi();if(st.screen==='hesabim'&&typeof render==='function')render();},()=>{}));
   FR.unsub.push(fb.onSnapshot(fb.query(fb.collection(t.db,'yrDav'),fb.where('to','==',id)),qs=>{FR.invs=qs.docs.map(d=>({id:d.id,...d.data()}));frInvCheck();},()=>{}));
   FR.beat=setInterval(frBeat,60000);
  }catch(e){}
  frUi();
 }
 function frBeat(){
- if(!FR.pid||document.hidden||!frOn())return;
+ if(!FR.pid||document.hidden||!frOn()||FR.ayar.gz)return;
  adFb().then(t=>t.sdk.setDoc(t.sdk.doc(t.db,'yrDurum',FR.pid),{seen:t.sdk.serverTimestamp()})).catch(()=>{});
  FR.bn++;
  if(st.screen==='friends'||(st.screen==='home'&&FR.bn%2===0))frNicks(FR.list.concat(FR.inc,FR.out));
@@ -104,12 +107,12 @@ function frBody(){
  if(!FR.ready)return '<p class="sub center">⏳ Hazırlanıyor…</p>';
  let h='<div class="card ark-box"><small>Senin oyuncu kodun</small><div class="ark-code">'+esc(FR.pid)+'</div><small>Bu kodu arkadaşına ver. O seni eklesin, sen kabul et.</small><div class="ark-btns"><button class="btn" onclick="frCopy()">📋 Kopyala</button><button class="btn ghost" onclick="frShare()">📤 Paylaş</button></div></div>';
  h+='<label for="fr-code">Arkadaşının kodu</label><input id="fr-code" class="inp" maxlength="9" autocapitalize="characters" autocomplete="off" placeholder="Arkadaşının kodu (ör. ABCDEFG)"><button class="btn pri" onclick="frAdd()">➕ Arkadaş Ekle</button>';
- if(FR.inc.length){h+='<h2>📩 Gelen istekler</h2>';FR.inc.forEach(o=>{h+='<div class="ark-row"><span>'+esc(FR.nick[o]||'…')+'</span><span><button class="mini" onclick="frAccept(\''+o+'\')">✓ Kabul</button> <button class="mini" aria-label="İsteği reddet" onclick="frDel(\''+o+'\',0)">✕</button></span></div>';});}
+ if(FR.inc.length){h+='<h2>📩 Gelen istekler</h2>';FR.inc.forEach(o=>{h+='<div class="ark-row"><span>'+esc(FR.nick[o]||'…')+'</span><span><button class="mini" onclick="frAccept(\''+o+'\')">✓ Kabul</button> <button class="mini" aria-label="İsteği reddet" onclick="frDel(\''+o+'\',0)">✕</button> <button class="mini" aria-label="Engelle" onclick="frEngelle(\''+o+'\')">🚫</button></span></div>';});}
  h+='<h2>👫 Arkadaşların ('+FR.list.length+')</h2>';
  if(!FR.list.length)h+='<p class="sub center">Henüz arkadaşın yok. Arkadaşının kodunu yazıp ekle.</p>';
  FR.list.slice().sort((a,b)=>(frOnline(b)?1:0)-(frOnline(a)?1:0)||String(FR.nick[a]).localeCompare(String(FR.nick[b]),'tr')).forEach(o=>{
   const on=frOnline(o);
-  h+='<div class="ark-row"><span>'+(on?'🟢':'⚪')+' <b>'+esc(FR.nick[o]||'…')+'</b><br><small>'+(on?'çevrim içi':'en son '+frAgo(o))+'</small></span><span><button class="mini" onclick="frCall(\''+o+'\')">⚔️ Çağır</button> <button class="mini" aria-label="Arkadaşlıktan çıkar" onclick="frDel(\''+o+'\',1)">🗑</button></span></div>';
+  h+='<div class="ark-row"><span>'+(on?'🟢':'⚪')+' <b>'+esc(FR.nick[o]||'…')+'</b><br><small>'+(on?'çevrim içi':'en son '+frAgo(o))+'</small></span><span><button class="mini" onclick="frCall(\''+o+'\')">⚔️ Çağır</button> <button class="mini" aria-label="Engelle" onclick="frEngelle(\''+o+'\')">🚫</button> <button class="mini" aria-label="Arkadaşlıktan çıkar" onclick="frDel(\''+o+'\',1)">🗑</button></span></div>';
  });
  if(FR.out.length){h+='<h2>⏳ Gönderdiğin istekler</h2>';FR.out.forEach(o=>{h+='<div class="ark-row"><span>'+esc(FR.nick[o]||'…')+'<br><small>kabul bekleniyor</small></span><span><button class="mini" onclick="frDel(\''+o+'\',0)">İptal</button></span></div>';});}
  return h;
@@ -154,6 +157,40 @@ async function frAccept(o){
 function frDel(o,ask){
  const go2=async()=>{try{const t=await adFb();await t.sdk.deleteDoc(t.sdk.doc(t.db,'yrFr',frKey(FR.pid,o)));}catch(e){adToast('Silinemedi, tekrar dene');}};
  if(ask)modal('<b>'+esc(FR.nick[o]||'')+'</b> arkadaş listenden çıkarılsın mı?',()=>{closeModal();go2();});else go2();
+}
+/* Engelleme: engellenen kişi istek ve davet gönderemez (kural); arkadaşlık ve bekleyen istek silinir. */
+function frEngelle(o){
+ modal('<b>'+esc(FR.nick[o]||'Bu oyuncu')+'</b> engellensin mi?<br><small>Sana arkadaşlık isteği ve oyun daveti gönderemez. Arkadaş listenden de çıkar. Engeli Hesabım sayfasından kaldırabilirsin.</small>',async()=>{
+  closeModal();
+  try{const t=await adFb(),fb=t.sdk,b=fb.writeBatch(t.db);
+   b.set(fb.doc(t.db,'yrEngel',FR.pid+'_'+o),{by:FR.pid,to:o});
+   b.delete(fb.doc(t.db,'yrFr',frKey(FR.pid,o)));
+   await b.commit();adToast('Engellendi');
+  }catch(e){adToast('Engellenemedi, tekrar dene');}
+ });
+}
+async function frEngelKaldir(o){
+ try{const t=await adFb();await t.sdk.deleteDoc(t.sdk.doc(t.db,'yrEngel',FR.pid+'_'+o));adToast('Engel kaldırıldı');}
+ catch(e){adToast('Kaldırılamadı, tekrar dene');}
+}
+/* Gizlilik ayarları kartta tutulur; kurallar da bunlara uyar. gz açılınca son görülme bilgisi silinir. */
+async function frAyar(k,v){
+ if(!FR.ready||!FR.pid){adToast('Bu ayar için profil ve internet gerekir');return;}
+ const eski=FR.ayar[k];FR.ayar[k]=!!v;if(typeof render==='function')render();
+ try{const t=await adFb(),fb=t.sdk;
+  await fb.setDoc(fb.doc(t.db,'yrKart',FR.pid),{[k]:!!v},{merge:true});
+  if(k==='gz'){if(v)await fb.deleteDoc(fb.doc(t.db,'yrDurum',FR.pid)).catch(()=>{});else await fb.setDoc(fb.doc(t.db,'yrDurum',FR.pid),{seen:fb.serverTimestamp()}).catch(()=>{});}
+ }catch(e){FR.ayar[k]=eski;if(typeof render==='function')render();adToast('Ayar kaydedilemedi, tekrar dene');}
+}
+function frGizlilikHTML(){
+ if(!st.prof||st.guest)return '';
+ const sat=(k,t)=>'<label class="hs-sec"><input type="checkbox"'+(FR.ayar[k]?' checked':'')+(FR.ready?'':' disabled')+' onchange="frAyar(\''+k+'\',this.checked)"><span>'+t+'</span></label>';
+ let h='<section class="card hs-gizlilik"><h2>Arkadaşlar ve gizlilik</h2>'+(FR.ready?'':'<p class="sub">Bu ayarlar için internet gerekir.</p>')+
+  sat('ri','Arkadaşlık isteği almak istemiyorum')+sat('di','Oyun daveti almak istemiyorum')+sat('gz','Çevrim içi durumumu gizle');
+ h+='<h3>Engellediklerim'+(FR.engel.length?' ('+FR.engel.length+')':'')+'</h3>';
+ if(!FR.engel.length)h+='<p class="sub">Engellediğin kimse yok.</p>';
+ else h+=FR.engel.map(o=>'<div class="ark-row"><span>'+esc(FR.nick[o]||o)+'</span><span><button class="mini" onclick="frEngelKaldir(\''+o+'\')">Engeli kaldır</button></span></div>').join('');
+ return h+'</section>';
 }
 /* Davet gönder: kapışma odası kur, sonra arkadaşa davet yaz. */
 function frCall(o){FR.call={to:o,nick:FR.nick[o]||''};if(typeof yrCreateOpen==='function')yrCreateOpen('duel');}
@@ -215,7 +252,7 @@ function frLive(){
 /* Profil silinince ya da yeniden adlandırılınca */
 function arkRenamed(o,nw){
  const all=frIds();if(all[o]){all[nw]=all[o];delete all[o];lsSet('ark_id',all);}
- if(FR.prof===o){FR.prof=nw;if(FR.pid&&frOn())adFb().then(t=>t.sdk.setDoc(t.sdk.doc(t.db,'yrKart',FR.pid),{owner:t.uid,nick:nw})).catch(()=>{});}
+ if(FR.prof===o){FR.prof=nw;if(FR.pid&&frOn())adFb().then(t=>t.sdk.setDoc(t.sdk.doc(t.db,'yrKart',FR.pid),{owner:t.uid,nick:nw},{merge:true})).catch(()=>{});}
 }
 async function arkWipe(p){
  const all=frIds(),me=all[p];if(!me)return;
@@ -234,6 +271,7 @@ async function arkWipeRun(){
     await fb.setDoc(fb.doc(t.db,'yrKim',t.uid),{pid:id});
     for(const f of ['a','b']){const qs=await fb.getDocs(fb.query(fb.collection(t.db,'yrFr'),fb.where(f,'==',id)));for(const d of qs.docs)await fb.deleteDoc(d.ref);}
     const dv=await fb.getDocs(fb.query(fb.collection(t.db,'yrDav'),fb.where('from','==',id)));for(const d of dv.docs)await fb.deleteDoc(d.ref);
+    try{const en=await fb.getDocs(fb.query(fb.collection(t.db,'yrEngel'),fb.where('by','==',id)));for(const d of en.docs)await fb.deleteDoc(d.ref);}catch(x){}
     await fb.deleteDoc(fb.doc(t.db,'yrDurum',id));await fb.deleteDoc(fb.doc(t.db,'yrKart',id));
     lsSet('ark_wipe',ls('ark_wipe',[]).filter(x=>x!==id));
    }catch(e){}

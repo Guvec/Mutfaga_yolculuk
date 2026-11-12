@@ -26,3 +26,8 @@ body.yr-oyun .top .who{display:block;margin-left:auto}
 .hesabim .yr-chips{display:flex;gap:8px}
 .hesabim .yr-chip{flex:1 1 0;min-width:0;padding-inline:6px;text-align:center}
 .hesabim .btn.danger{color:#b3261e;border-color:#b3261e;background:transparent}
+/* Hesabım · Arkadaşlar ve gizlilik */
+.hs-gizlilik h3{margin:.6em 0 .3em;font-size:1rem}
+.hs-sec{display:flex;gap:10px;align-items:center;min-height:44px;padding:4px 2px;cursor:pointer;font-size:.95rem}
+.hs-sec input{flex:none;width:24px;height:24px;accent-color:#0b7a70}
+.hs-gizlilik .ark-row{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:4px 0}

@@ -23,7 +23,13 @@ async function adClaim(e,want,self){
  if(!navigator.onLine)return {e,n:w,c:false};
  try{
   const t=await adFb(),fb=t.sdk;
-  try{await fb.setDoc(fb.doc(t.db,'nm',adKey(e,w)),{u:t.uid,t:Date.now()});return {e,n:w,c:true};}
+  try{
+   /* Cihaz başına ayrılan adlar nmSahip/{uid} listesinde (en çok 10). Ad ile liste aynı işlemde yazılır. */
+   const k=adKey(e,w),sr=fb.doc(t.db,'nmSahip',t.uid);
+   let ks=[];try{const d=await fb.getDoc(sr);if(d.exists()&&Array.isArray(d.data().ks))ks=d.data().ks;}catch(x){}
+   const b=fb.writeBatch(t.db);
+   if(!ks.includes(k)){if(ks.length>=10)return null;b.set(sr,{ks:ks.concat([k])});}
+   b.set(fb.doc(t.db,'nm',k),{u:t.uid,t:Date.now()});await b.commit();return {e,n:w,c:true};}
   catch(er){if(er&&er.code==='permission-denied')return null;throw er;}
  }catch(x){return {e,n:w,c:false};}
 }
@@ -36,7 +42,9 @@ async function adClaimAny(self){
 }
 async function adRelease(m){
  if(!m||!m.c||!navigator.onLine)return;
- try{const t=await adFb();await t.sdk.deleteDoc(t.sdk.doc(t.db,'nm',adKey(m.e,m.n)));}catch(e){}
+ try{const t=await adFb(),fb=t.sdk,k=adKey(m.e,m.n);await fb.deleteDoc(fb.doc(t.db,'nm',k));
+  try{const sr=fb.doc(t.db,'nmSahip',t.uid),d=await fb.getDoc(sr);const ks=d.exists()&&Array.isArray(d.data().ks)?d.data().ks:[];if(ks.includes(k))await fb.setDoc(sr,{ks:ks.filter(x=>x!==k),c:k});}catch(x){}
+ }catch(e){}
 }
 /* Profili yeniden adlandır: telefondaki kayıtlar yeni ada taşınır. Gerçek adlı eski profilde bulut rekor satırları silinir (gerçek ad bulutta kalmasın). */
 function adRename(o,nw,info){
