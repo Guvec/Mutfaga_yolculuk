@@ -5,7 +5,6 @@
    Metinler değişip YS_SURUM artarsa onay yeniden istenir. Metin satır biçimi:
    "# başlık", "- madde", "|sütun|sütun|sütun" (tablo satırı), "~ küçük not", başka her satır paragraf. */
 'use strict';
-const YS_SURUM=2;
 const YS_TARIH='12.11.2026';
 const YS_EPOSTA='';
 function ysEposta(){return YS_EPOSTA||'İletişim adresi Uygulamada yayımlanacaktır.';}
@@ -75,13 +74,16 @@ const YS_METIN=[
   '- Google Firebase (kimlik doğrulama ve veritabanı): sunucular Avrupa\'dadır.',
   '- GitHub Pages: Uygulama dosyalarının yayımlanması.',
   'Bilgiler satılmaz ve reklam amacıyla kullanılmaz. Yasal bir zorunluluk olursa yetkili kurumlarla paylaşılabilir.',
-  '# 4. Ne kadar süre saklanır?',
+  '# 4. Güvenlik',
+  'Uygulama ile sunucular arasındaki bağlantılar şifrelidir (HTTPS). Veritabanına erişim güvenlik kurallarıyla sınırlandırılmıştır. Bilgilerin korunması için makul teknik önlemler alınır; ancak internet üzerinden yapılan hiçbir iletimin ve saklamanın tamamen güvenli olduğu garanti edilemez.',
+  'Uygulama reklam, analiz veya izleme aracı kullanmaz. Cihazda yalnız Uygulamanın çalışması için gerekli bilgiler yerel olarak saklanır.',
+  '# 5. Ne kadar süre saklanır?',
   'Bilgiler profil silinene kadar saklanır. Oyun odası ve davet kayıtları kısa süre sonra geçersiz olur.',
-  '# 5. Silme',
+  '# 6. Silme',
   'Ayrıntılar "Veri Silme" bölümündedir.',
-  '# 6. Değişiklikler',
+  '# 7. Değişiklikler',
   'Bu metin güncellenebilir. Önemli bir değişiklik Uygulamada duyurulur.',
-  '# 7. İletişim',
+  '# 8. İletişim',
   ysEposta()]},
  {id:'kvkk',ad:'KVKK Aydınlatma Metni',satir:()=>[
   '~ Son güncelleme: '+YS_TARIH+' · Sürüm '+YS_SURUM,
@@ -139,7 +141,6 @@ const YS_BEYAN={
 const YS={acik:false,kapi:false,sayfalar:[],i:0,enCok:0,yas:'',kosul:false,aydin:false,mesgul:false};
 
 function ysEsc(s){return String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
-function ysKabul(){try{const v=JSON.parse(localStorage.getItem(PRE+'yasal_kabul')||'null');return v&&v.s>=YS_SURUM?v:null;}catch(e){return null;}}
 function ysSatirHTML(x){
  if(x.startsWith('# '))return '<h3>'+ysEsc(x.slice(2))+'</h3>';
  if(x.startsWith('- '))return '<p class="ys-madde">'+ysEsc(x.slice(2))+'</p>';
@@ -248,11 +249,12 @@ function ysBasla(){
  if(!(YS.yas&&YS.kosul&&YS.aydin)||YS.i<YS.sayfalar.length-1)return;
  const kayit={s:YS_SURUM,t:new Date().toISOString(),y:YS.yas};
  try{localStorage.setItem(PRE+'yasal_kabul',JSON.stringify(kayit));localStorage.setItem(PRE+'yasal_sunucu','0');}catch(e){}
- ysKapat();ysSunucuYaz();
+ ysKapat();if(typeof render==='function')render();ysSunucuYaz();
 }
 function ysKapat(){
  try{speechSynthesis.cancel();}catch(e){}
  const k=document.getElementById('ysKapi');if(k)k.remove();
+ document.querySelectorAll('[data-ys-inert]').forEach(e=>{e.inert=false;delete e.dataset.ysInert;});
  YS.acik=false;document.documentElement.classList.remove('ys-kilit');
  window.removeEventListener('resize',ysBoyut);
 }
@@ -270,6 +272,7 @@ function yasalAc(kapi,doc){
   (kapi?'':'<button type="button" class="ys-kapat" onclick="ysKapat()" aria-label="Kapat">✕</button>')+
   '</header><div class="ys-sahne"><article class="ys-sayfa" tabindex="0"></article></div>'+
   '<footer class="ys-alt"><button type="button" id="ysGeri" onclick="ysGit(YS.i-1)">‹ Önceki</button><span id="ysNo" aria-live="polite"></span><button type="button" id="ysIleri" onclick="ysGit(YS.i+1)">Sonraki sayfa ›</button></footer></div>';
+ [...document.body.children].forEach(e=>{if(!e.inert){e.inert=true;e.dataset.ysInert='1';}});
  document.body.appendChild(k);document.documentElement.classList.add('ys-kilit');
  /* Kaydırarak sayfa çevirme */
  let x0=null;const sahne=k.querySelector('.ys-sahne');
@@ -299,12 +302,6 @@ async function ysSunucuSil(){
  try{localStorage.setItem(PRE+'yasal_sunucu','0');}catch(e){}
 }
 
-/* Otomatik testlerde (navigator.webdriver) onay ekranı kendiliğinden açılmaz; ?yasaltest ile açılır. */
-function ysKapiGerekli(){
- if(ysKabul())return false;
- try{if(navigator.webdriver&&!/[?&]yasaltest/.test(location.search))return false;}catch(e){}
- return true;
-}
 (function(){
  const basla=()=>{if(ysKapiGerekli())yasalAc(true);};
  if(document.body)basla();else document.addEventListener('DOMContentLoaded',basla);
