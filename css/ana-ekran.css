@@ -350,3 +350,9 @@ html[data-theme=yuksek] .ae-home .ae-yolgir { background:var(--surface); }
   .ae-home .ae-yolgir { align-self:stretch; }
 }
 .ae-home > .ae-dost { max-height:none; }
+
+/* Telefon: Aşçı Dostum kartı görselin oranını izler; panda kesilmez */
+@media(max-width:799px){
+  .ae-home > .ae-dost,.ae-home .ae-dost{height:auto;max-height:none;aspect-ratio:610/363;width:100%;min-width:0;align-self:start;justify-self:stretch}
+  .ae-home .ae-dost-artwork img{object-fit:contain;object-position:center}
+}
