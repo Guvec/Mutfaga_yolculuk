@@ -311,7 +311,7 @@ html[data-theme=yuksek] .ae-home .ae-paths button[aria-pressed=true] {
   border:1px solid #f2ebe0;
 }
 .ae-home .ae-dost-artwork img { object-fit:cover; object-position:center 42%; }
-.ae-home .ae-dost-artwork img[src$="ana-panda-pastacilik.webp"] { object-position:25% 12%; }
+.ae-home .ae-dost-artwork img[src*="ana-panda-"] { object-position:25% 12%; }
 .ae-home .ae-kald { display:grid; align-content:center; gap:4px; padding:5px 8px 7px; }
 .ae-resume-head { display:flex; justify-content:space-between; align-items:center; gap:5px; }
 .ae-resume-head h2 { display:flex; align-items:center; gap:5px; margin:0; font-size:clamp(.9rem,3.8vw,1.4rem); line-height:1.15; }

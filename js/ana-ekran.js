@@ -51,7 +51,7 @@
   const name=st.guest?'Misafir':st.prof?adRest(st.prof):'Profil seç';
   const action=devamBilgi();
   const homeArt=GIRIS.homeArt();
-  const scene=homeArt==='ana-panda'&&path()==='pasta'?'ana-panda-pastacilik':homeArt;
+  const scene=homeArt==='ana-panda'?{sicak:'ana-panda-sicak',pasta:'ana-panda-pastacilik',servis:'ana-panda-servis'}[path()]:homeArt;
   const avatar=profileArt(st.prof);
   const crown=typeof kaptanTacHTML==='function'?kaptanTacHTML():'';
   return `<div class="ae-home" data-yol="${path()}">
