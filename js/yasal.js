@@ -5,36 +5,49 @@
    Metinler değişip YS_SURUM artarsa onay yeniden istenir. Metin satır biçimi:
    "# başlık", "- madde", "|sütun|sütun|sütun" (tablo satırı), "~ küçük not", başka her satır paragraf. */
 'use strict';
-const YS_SURUM=1;
+const YS_SURUM=2;
 const YS_TARIH='12.11.2026';
 const YS_EPOSTA='';
 function ysEposta(){return YS_EPOSTA||'İletişim adresi Uygulamada yayımlanacaktır.';}
 const YS_METIN=[
  {id:'kosul',ad:'Kullanım Koşulları',satir:()=>[
   '~ Son güncelleme: '+YS_TARIH+' · Sürüm '+YS_SURUM,
-  '# 1. Taraflar ve konu',
-  'İşin Mutfağına Yolculuk ("Uygulama"), Ali Arıkoğlu tarafından kişisel olarak geliştirilen, ücretsiz bir eğitim oyunudur. Bu koşullar, Uygulamayı kullanan kişi ile geliştirici arasındaki kullanım kurallarını belirler.',
-  '# 2. Kimler kullanabilir?',
-  'Uygulamayı herkes kullanabilir. 18 yaşından küçük kullanıcılar, bu koşulları kanuni temsilcileriyle (anne, baba veya vasi) birlikte okumalı ve Uygulamayı onların izniyle kullanmalıdır.',
-  '# 3. Uygulamanın amacı',
-  'Uygulama, mutfak ve servis konularında bilgi pekiştirmek için hazırlanmış bir oyundur. Uygulamadaki bilgiler genel eğitim amaçlıdır. Mutfakta ve atölyede yapılacak işlerde yetişkin ya da eğitici gözetimi ve yerinde verilen talimatlar esastır. Uygulama bu gözetimin yerine geçmez.',
-  '# 4. Uygulama olduğu gibi sunulur',
-  'Uygulama ücretsizdir ve "olduğu gibi" sunulur. Kesintisiz, hatasız çalışacağı, her cihazda açılacağı ya da içeriğin her zaman eksiksiz olacağı garanti edilmez. Geliştirici, Uygulamayı önceden haber vermeden değiştirebilir, bir bölümünü ya da tamamını kapatabilir. Kayıtlı ilerlemenin, puanların ve sıralamaların kaybolmayacağı garanti edilmez.',
-  '# 5. Sorumluluğun sınırı',
-  'Kanunun izin verdiği ölçüde geliştirici; Uygulamanın kullanılmasından ya da kullanılamamasından doğabilecek dolaylı zararlardan, veri ve ilerleme kayıplarından, internet bağlantısından ve cihazdan kaynaklanan sorunlardan sorumlu tutulamaz. Bu madde, kanunen sınırlanamayan sorumlulukları kapsamaz.',
-  '# 6. Kullanım kuralları',
+  '# 1. Tanımlar',
+  '- Uygulama: İşin Mutfağına Yolculuk adlı eğitim oyunu ve onun internet sürümü.',
+  '- Geliştirici: Uygulamayı geliştiren Ali Arıkoğlu.',
+  '- Kullanıcı: Uygulamayı kullanan kişi.',
+  '- Yasal temsilci: 18 yaşından küçük kullanıcının annesi, babası veya vasisi.',
+  '# 2. Konu ve kapsam',
+  'Bu Kullanım Koşulları, Uygulamanın kullanım kurallarını ve Kullanıcı ile Geliştirici arasındaki ilişkiyi düzenler. Gizlilik Politikası, KVKK Aydınlatma Metni ve Veri Silme bilgileri bu koşulların ayrılmaz parçasıdır.',
+  '# 3. Kimler kullanabilir?',
+  'Uygulamayı 18 yaşını doldurmuş kişiler ile yasal temsilcisinin izni bulunan, 14 yaşını doldurmuş ve 18 yaşından küçük kişiler kullanabilir.',
+  'Uygulama 14 yaşından küçükler için tasarlanmamıştır ve onlar tarafından kullanılmamalıdır.',
+  '18 yaşından küçük Kullanıcının verdiği onay, yasal temsilcisinin izniyle verilmiş sayılır. Yasal temsilci bu iznini her zaman geri alabilir; bu durumda profil, Veri Silme bölümünde açıklanan yollarla silinir.',
+  'Yaş ve izin beyanının doğru olmasından beyanda bulunan sorumludur.',
+  '# 4. Uygulamanın amacı',
+  'Uygulama, mutfak ve servis konularında bilgi pekiştirmek için hazırlanmış ücretsiz bir eğitim oyunudur. Uygulamadaki bilgiler genel eğitim amaçlıdır; mesleki eğitimin, uzman görüşünün ve yerinde verilen talimatların yerine geçmez.',
+  'Mutfakta ve atölyede yapılacak her uygulama yetişkin ya da eğitici gözetiminde ve yerindeki güvenlik kurallarına uygun yapılmalıdır. Uygulamadaki bilgilere dayanılarak gözetimsiz yapılan uygulamalardan doğan sonuçlardan, kanunun izin verdiği ölçüde Geliştirici sorumlu değildir.',
+  '# 5. Uygulama olduğu gibi sunulur',
+  'Uygulama "olduğu gibi" ve "kullanılabildiği ölçüde" sunulur. Kesintisiz ya da hatasız çalışacağı, her cihazda açılacağı ve içeriğin her zaman eksiksiz olacağı garanti edilmez.',
+  'Geliştirici, Uygulamayı ve içeriğini önceden bildirimde bulunmaksızın değiştirebilir, bir bölümünü ya da tamamını geçici veya kalıcı olarak kapatabilir. Kayıtlı ilerlemenin, puanların ve sıralamaların korunacağı garanti edilmez.',
+  '# 6. Sorumluluğun sınırı',
+  'Kanunun izin verdiği ölçüde Geliştirici; Uygulamanın kullanılmasından ya da kullanılamamasından doğabilecek dolaylı zararlardan, veri ve ilerleme kayıplarından, internet bağlantısından, cihazdan ve üçüncü kişilerin hizmetlerinden kaynaklanan sorunlardan sorumlu tutulamaz.',
+  'Bu madde, kanunen sınırlanması mümkün olmayan sorumlulukları kapsamaz.',
+  '# 7. Kullanım kuralları',
   'Kullanıcı:',
-  '- Uygulamayı yalnız kendi kişisel ve eğitsel amacıyla kullanır.',
-  '- Başkasının profilini kullanmaz, başkalarını rahatsız etmez.',
-  '- Uygulamanın çalışmasını bozmaya, sıralamayı hileyle değiştirmeye ya da sunuculara izinsiz erişmeye çalışmaz.',
-  'Bu kurallara aykırı kullanımda ilgili profil ve kayıtları silinebilir.',
-  '# 7. Telif hakkı',
-  '© 2026 Ali Arıkoğlu. Tüm hakları saklıdır. Uygulamanın yazılımı, düzeni ve özgün içeriği izinsiz kopyalanamaz, çoğaltılamaz, dağıtılamaz ve yeniden yayımlanamaz.',
-  '# 8. Değişiklikler',
-  'Bu koşullar güncellenebilir. Önemli bir değişiklik olursa yeni metin Uygulamada gösterilir ve yeniden onay istenir.',
-  '# 9. Uygulanacak hukuk',
+  '- Uygulamayı yalnız kişisel ve eğitsel amaçla kullanır.',
+  '- Başkasının profilini kullanmaz, diğer kullanıcıları rahatsız etmez.',
+  '- Uygulamanın çalışmasını bozmaya, sıralamayı hileyle değiştirmeye, sunuculara veya başkasının verilerine izinsiz erişmeye çalışmaz.',
+  'Bu kurallara aykırı kullanımda Geliştirici, ilgili profili ve kayıtları önceden bildirimde bulunmaksızın silebilir.',
+  '# 8. Fikrî mülkiyet',
+  '© 2026 Ali Arıkoğlu. Tüm hakları saklıdır. Uygulamanın yazılımı, düzeni ve özgün içeriği Geliştiriciye aittir; izinsiz kopyalanamaz, çoğaltılamaz, dağıtılamaz, değiştirilemez ve yeniden yayımlanamaz. Bu koşullar, Kullanıcıya yalnız Uygulamayı kişisel ve eğitsel amaçla kullanma izni verir.',
+  '# 9. Değişiklikler',
+  'Bu koşullar güncellenebilir. Önemli bir değişiklik olduğunda yeni metin Uygulamada gösterilir ve Uygulamayı kullanmaya devam etmek için yeniden onay istenir.',
+  '# 10. Bölünebilirlik',
+  'Bu koşulların herhangi bir maddesinin geçersiz sayılması, diğer maddelerin geçerliliğini etkilemez.',
+  '# 11. Uygulanacak hukuk',
   'Bu koşullara Türkiye Cumhuriyeti hukuku uygulanır.',
-  '# 10. İletişim',
+  '# 12. İletişim',
   ysEposta()]},
  {id:'gizlilik',ad:'Gizlilik Politikası',satir:()=>[
   '~ Son güncelleme: '+YS_TARIH+' · Sürüm '+YS_SURUM,
@@ -42,6 +55,7 @@ const YS_METIN=[
   '- Gerçek ad, e-posta, telefon numarası, konum ve fotoğraf istenmez. Profil adı hazır listeden seçilen bir karakter adıdır.',
   '- Uygulamada reklam ve satın alma yoktur.',
   '- Profil, Hesabım sayfasından silinebilir.',
+  '- Uygulama 14 yaşından küçükler için tasarlanmamıştır.',
   '# 1. Hangi bilgiler kullanılır?',
   '|Karakter adı (ör. "Huzurlu Civciv")|Profilin oyunda, sıralamada ve arkadaş listesinde görünmesi|Cihaz ve sunucu',
   '|Oyun ve çalışma sonuçları, rütbe, rozetler, dost puanı|İlerlemenin saklanması ve sıralama|Cihaz; sıralamaya giren sonuçlar sunucuda',
@@ -72,19 +86,19 @@ const YS_METIN=[
  {id:'kvkk',ad:'KVKK Aydınlatma Metni',satir:()=>[
   '~ Son güncelleme: '+YS_TARIH+' · Sürüm '+YS_SURUM,
   '6698 sayılı Kişisel Verilerin Korunması Kanunu kapsamında hazırlanmıştır.',
-  '# 1. Verileri işleyen',
+  '# 1. Veri sorumlusu',
   'Ali Arıkoğlu · İletişim: '+ysEposta(),
   '# 2. İşlenen veriler',
   '- Kullanıcı bilgileri: karakter adı, oyuncu kodu, cihaz kimliği',
   '- Kullanım bilgileri: oyun ve çalışma sonuçları, rütbe, rozetler, dost puanı',
   '- Etkileşim bilgileri: arkadaşlık kayıtları, davetler, oyun odası kayıtları, çevrim içi durumu',
-  '- Kabul kaydı: koşul sürümü, tarih, yaş beyanı türü (18 yaşını doldurmuş / kanuni temsilci izinli)',
+  '- Kabul kaydı: koşul sürümü, tarih, yaş beyanı türü (18 yaşını doldurmuş / yasal temsilci izinli)',
   '- Teknik bilgi: bağlantı sırasında hizmet sağlayıcıların işlediği IP adresi',
   'Gerçek ad, iletişim bilgisi, konum, görüntü ve ses kaydı işlenmez. Özel nitelikli kişisel veri işlenmez.',
   '# 3. Amaçlar',
   'Oyunun sunulması ve ilerlemenin saklanması; sıralama, arkadaşlarla oynama ve davet özelliklerinin çalışması; hesabın güvenliği ve kötüye kullanımın önlenmesi; koşulların kabul edildiğinin gösterilebilmesi.',
   '# 4. Hukuki sebepler',
-  '- KVKK m. 5/2-c: Uygulamanın sunduğu hizmetin verilebilmesi',
+  '- KVKK m. 5/2-c: Kullanım Koşulları ile kurulan sözleşmenin kurulması ve ifasıyla doğrudan ilgili olması',
   '- KVKK m. 5/2-e: Bir hakkın kurulması, kullanılması veya korunması (kabul kaydı)',
   '- KVKK m. 5/2-f: Temel hak ve özgürlüklere zarar vermemek kaydıyla meşru menfaat (hesap güvenliği, kötüye kullanımın önlenmesi)',
   '# 5. Toplama yöntemi',
@@ -93,10 +107,10 @@ const YS_METIN=[
   'Veriler yurt içinde üçüncü kişilere aktarılmaz. Uygulamanın altyapısı yurt dışında yerleşik hizmet sağlayıcılar tarafından sunulduğu için veriler bu sağlayıcıların sunucularında saklanır: Google (Firebase; sunucular Avrupa\'da) ve GitHub (Uygulama dosyaları).',
   '# 7. Haklar (KVKK m. 11)',
   'Kişisel verisi işlenen kişi; verisinin işlenip işlenmediğini öğrenme, işlenmişse bilgi isteme, işlenme amacını ve amaca uygun kullanılıp kullanılmadığını öğrenme, aktarıldığı kişileri bilme, eksik ya da yanlışsa düzeltilmesini, KVKK m. 7 çerçevesinde silinmesini isteme, bu işlemlerin aktarılan kişilere bildirilmesini isteme, otomatik analiz sonucu aleyhine çıkan bir sonuca itiraz etme ve kanuna aykırı işleme nedeniyle zarara uğrarsa zararın giderilmesini isteme haklarına sahiptir.',
-  '18 yaşından küçükler bu hakları kanuni temsilcileri aracılığıyla kullanabilir.',
+  '18 yaşından küçükler bu hakları yasal temsilcileri aracılığıyla kullanabilir.',
   '# 8. Başvuru',
-  'Başvurular şu adrese yapılabilir: '+ysEposta(),
-  'Uygulamada e-posta kayıtlı olmadığı için başvuruya karakter adı ve oyuncu kodu eklenmelidir. Başvurular en geç 30 gün içinde ücretsiz yanıtlanır.']},
+  'Başvurular, Veri Sorumlusuna Başvuru Usul ve Esasları Hakkında Tebliğ\'de belirtilen yöntemlerle ya da şu adrese yapılabilir: '+ysEposta(),
+  'Uygulamada e-posta kayıtlı olmadığı için başvuruya karakter adı ve oyuncu kodu eklenmelidir. Başvurular en geç 30 gün içinde ücretsiz yanıtlanır. Başvurunun reddedilmesi, yanıtın yetersiz bulunması veya süresinde yanıt verilmemesi hâlinde Kişisel Verileri Koruma Kurulu\'na şikâyette bulunulabilir.']},
  {id:'silme',ad:'Veri Silme',satir:()=>[
   '~ Son güncelleme: '+YS_TARIH+' · Sürüm '+YS_SURUM,
   '# Uygulamadan silme',
@@ -118,7 +132,7 @@ const YS_METIN=[
 ];
 const YS_BEYAN={
  b:'18 yaşını doldurduğumu beyan ederim.',
- k:'18 yaşından küçük olduğumu; Kullanım Koşulları, Gizlilik Politikası ve KVKK Aydınlatma Metni\'nin kanuni temsilcim (anne, baba veya vasim) tarafından okunduğunu ve Uygulamayı kullanmama kanuni temsilcimin izin verdiğini beyan ederim.',
+ k:'14 yaşını doldurduğumu ve 18 yaşından küçük olduğumu; Kullanım Koşulları, Gizlilik Politikası ve KVKK Aydınlatma Metni\'nin yasal temsilcim (anne, baba veya vasim) tarafından okunduğunu ve Uygulamayı kullanmama yasal temsilcimin izin verdiğini beyan ederim.',
  kosul:'Kullanım Koşulları\'nı okuduğumu, anladığımı ve kabul ettiğimi beyan ederim.',
  aydin:'Gizlilik Politikası ve KVKK Aydınlatma Metni ile kişisel verilerimin işlenmesi hakkında aydınlatıldığımı kabul ederim.'
 };
@@ -183,7 +197,7 @@ function ysOnayHTML(){
   '<button type="button" class="ys-basla" id="ysBasla" onclick="ysBasla()"'+(hazir?'':' disabled')+'>Başla</button>';
 }
 function ysSayfaHTML(s){
- if(s.tur==='giris')return '<h2>Başlamadan önce</h2><p>İşin Mutfağına Yolculuk\'u kullanmadan önce Kullanım Koşulları\'nı, Gizlilik Politikası\'nı, KVKK Aydınlatma Metni\'ni ve Veri Silme bilgilerini okuman gerekir.</p><p>Metinler kitap gibi sayfa sayfa ilerler. Son sayfada yaş beyanını ve onaylarını verirsin.</p><p>Her sayfadaki 🔊 düğmesiyle metni dinleyebilirsin.</p><p>18 yaşından küçüksen metinleri anne, baba veya vasinle birlikte oku.</p>';
+ if(s.tur==='giris')return '<h2>Başlamadan önce</h2><p>İşin Mutfağına Yolculuk\'u kullanmadan önce Kullanım Koşulları\'nı, Gizlilik Politikası\'nı, KVKK Aydınlatma Metni\'ni ve Veri Silme bilgilerini okuman gerekir.</p><p>Metinler kitap gibi sayfa sayfa ilerler. Son sayfada yaş beyanını ve onaylarını verirsin.</p><p>Her sayfadaki 🔊 düğmesiyle metni dinleyebilirsin.</p><p>18 yaşını doldurmamış kullanıcılar Uygulamayı yalnız yasal temsilcilerinin (anne, baba veya vasi) izniyle kullanabilir; bu durumda onay, yasal temsilcinin izniyle verilir. Uygulama 14 yaşından küçükler için tasarlanmamıştır.</p>';
  if(s.tur==='yas')return ysYasHTML();
  if(s.tur==='onay')return ysOnayHTML();
  return s.html;
