@@ -1,0 +1,46 @@
+/* © 2026 Ali Arıkoğlu. Tüm hakları saklıdır. */
+/* Yasal metinler: kitap görünümü, sayfa çevirme, onay sayfası. Ekran kaymaz; metin sayfalara bölünür. */
+html.ys-kilit,html.ys-kilit body{overflow:hidden}
+.ys-kapi{position:fixed;inset:0;z-index:10000;display:grid;place-items:center;padding:max(8px,env(safe-area-inset-top)) 8px max(8px,env(safe-area-inset-bottom));
+ background:#2b3a36e6;font-family:Lexend,Tahoma,Arial,sans-serif;color:#2e2119}
+.ys-kitap{display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:auto minmax(0,1fr) auto;width:min(100%,760px);height:min(100%,900px);
+ background:#fbf6ec;border-radius:16px;box-shadow:0 10px 32px #0006;overflow:hidden}
+.ys-ust{display:flex;align-items:center;gap:6px;padding:6px 8px;background:#123f3a;color:#fff}
+.ys-sekmeler{display:flex;gap:4px;flex:1;min-width:0;overflow-x:auto;scrollbar-width:none}
+.ys-sekmeler::-webkit-scrollbar{display:none}
+.ys-sekme{flex:none;min-height:44px;padding:0 10px;border:1px solid #ffffff40;border-radius:10px;background:transparent;color:#fff;font:inherit;font-size:.8125rem;font-weight:700;cursor:pointer}
+.ys-sekme[aria-current=true]{background:#fbf6ec;color:#123f3a}
+.ys-sekme:disabled{opacity:.45;cursor:default}
+.ys-dinle,.ys-kapat{flex:none;width:44px;height:44px;border:0;border-radius:10px;background:#d9f1ea;color:#123f3a;font-size:1.25rem;cursor:pointer}
+.ys-kapat{background:transparent;color:#fff;font-size:1.4rem}
+.ys-sahne{position:relative;min-height:0;padding:10px;perspective:1600px;background:linear-gradient(90deg,#e9dfcc,#fbf6ec 4%,#fbf6ec 96%,#e9dfcc)}
+.ys-sayfa{box-sizing:border-box;height:100%;overflow:hidden;padding:clamp(12px,3vw,26px) clamp(14px,4vw,34px);
+ background:#fffdf8;border:1px solid #e3d6bf;border-radius:6px 12px 12px 6px;box-shadow:inset 10px 0 14px -12px #8a6d4366,0 2px 6px #0000001a;
+ font-size:clamp(.875rem,3.6vw,1.05rem);line-height:1.5;backface-visibility:hidden;outline:none}
+.ys-sayfa h2{margin:0 0 .5em;font-size:1.35em;color:#123f3a}
+.ys-sayfa h3{margin:.8em 0 .3em;font-size:1.05em;color:#123f3a}
+.ys-sayfa p{margin:0 0 .55em}
+.ys-sayfa .ys-madde{position:relative;padding-left:1.1em}
+.ys-sayfa .ys-madde::before{content:"•";position:absolute;left:.2em;color:#0b7a70;font-weight:700}
+.ys-sayfa .ys-kucuk{font-size:.8125rem;color:#6a5544;font-weight:700}
+.ys-sayfa .ys-satir{display:grid;gap:2px;margin:0 0 .5em;padding:.45em .6em;border-left:3px solid #0b7a70;background:#f3ede1;border-radius:6px}
+.ys-sayfa .ys-satir span{font-size:.92em}
+.ys-sayfa .ys-satir i{font-style:normal;font-weight:700;color:#6a5544}
+.ys-sec{display:flex;gap:10px;align-items:flex-start;margin:0 0 .6em;padding:.55em .6em;border:1px solid #e3d6bf;border-radius:10px;background:#fff;cursor:pointer;font-size:.95em;line-height:1.4}
+.ys-sec input{flex:none;width:24px;height:24px;margin:2px 0 0;accent-color:#0b7a70}
+.ys-basla{display:block;width:100%;min-height:52px;margin-top:.4em;border:0;border-radius:12px;background:linear-gradient(180deg,#0b8a80,#075d56);color:#fff;font:inherit;font-weight:800;font-size:1.1em;cursor:pointer}
+.ys-basla:disabled{background:#b9c7c3;color:#f4f4f4;cursor:not-allowed}
+.ys-alt{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 10px;border-top:1px solid #e3d6bf;background:#f5eee0}
+.ys-alt button{min-height:48px;min-width:44px;padding:0 14px;border:1px solid #c9b994;border-radius:12px;background:#fff;color:#123f3a;font:inherit;font-weight:800;font-size:.95rem;cursor:pointer}
+.ys-alt #ysIleri{background:#075d56;border-color:#075d56;color:#fff}
+.ys-alt button:disabled{opacity:.4;cursor:default}
+.ys-alt span{font-size:.8125rem;font-weight:700;color:#6a5544;text-align:center}
+.ys-kapi button:focus-visible,.ys-sec:focus-within{outline:3px solid #f0b43c;outline-offset:2px}
+html[data-yz=buyuk] .ys-sayfa{font-size:clamp(.95rem,4vw,1.15rem)}
+html[data-yz=cok] .ys-sayfa{font-size:clamp(1rem,4.3vw,1.25rem)}
+html[data-theme=dark] .ys-kitap,html[data-theme=dark] .ys-sayfa{background:#fbf6ec}
+.ys-sayfa.ys-form{overflow-y:auto}
+.ys-sayfa .ys-uyari{color:#a33a1c}
+.ys-alt span{flex:1;min-width:0}
+.ys-alt button{flex:none}
+@media(max-width:380px){.ys-alt button{padding:0 10px;font-size:.875rem}}

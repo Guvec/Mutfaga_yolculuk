@@ -239,6 +239,7 @@ async function arkWipeRun(){
    }catch(e){}
   }
   await fb.deleteDoc(fb.doc(t.db,'yrKim',t.uid)).catch(()=>{});
+  if(typeof ysSunucuSil==='function')await ysSunucuSil();
  }catch(e){}
  ARK_WIPING=false;FR.ready=false;if(st.prof&&!st.guest)frEnsure();
 }

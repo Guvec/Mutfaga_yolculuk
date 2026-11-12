@@ -359,5 +359,15 @@ service cloud.firestore {
    allow delete: if yrHasKim() && (resource.data.to == yrMe() || resource.data.from == yrMe());
   }
 
+  /* Koşulların kabul kaydı: cihaz kimliği başına tek belge. Yalnız sahibi yazar, okur, siler. */
+  match /kabul/{uid} {
+   allow get, delete: if signed() && request.auth.uid == uid;
+   allow list: if false;
+   allow create, update: if signed() && request.auth.uid == uid
+    && request.resource.data.keys().hasOnly(['s','y','t']) && request.resource.data.keys().hasAll(['s','y','t'])
+    && request.resource.data.s is int && request.resource.data.s >= 1 && request.resource.data.s <= 100
+    && request.resource.data.y in ['b','k']
+    && request.resource.data.t == request.time;
+  }
  }
 }
