@@ -79,9 +79,13 @@ service cloud.firestore {
      && (d.roster.size() <= 9 || get(/databases/$(database)/documents/oyunOdalari/$(code)/players/$(d.roster[9])).data.loaded == true);
    }
    allow get: if signed();
-   allow list: if false;
+   /* Lobi (12.11): yalnız listede görünmesi istenen ve henüz başlamamış odalar listelenir. */
+   allow list: if signed() && resource.data.pub == true && resource.data.status == 'lobby';
    allow create: if signed() && code.matches('^[A-Z0-9]{3,10}$')
-    && request.resource.data.keys().hasOnly(['host','hostNick','mode','subject','kind','set','n','lim','seed','rev','created','status','guest','qv','cnt','scope','av','roster'])
+    && request.resource.data.keys().hasOnly(['host','hostNick','mode','subject','kind','set','n','lim','seed','rev','created','status','guest','qv','cnt','scope','av','roster','pub','ad','kilit'])
+    && (!('pub' in request.resource.data) || request.resource.data.pub is bool)
+    && (!('kilit' in request.resource.data) || request.resource.data.kilit is bool)
+    && (!('ad' in request.resource.data) || (request.resource.data.ad is string && request.resource.data.ad.size() >= 1 && request.resource.data.ad.size() <= 40))
     && request.resource.data.keys().hasAll(['host','hostNick','mode','subject','kind','set','n','lim','seed','rev','created','status','guest','qv'])
     && request.resource.data.host == request.auth.uid && request.resource.data.status == 'lobby' && request.resource.data.guest == null
     && request.resource.data.mode in ['race','duel','arena']
@@ -121,7 +125,8 @@ service cloud.firestore {
 
    match /players/{uid} {
     function shape(d) {
-     return d.keys().hasOnly(['nick','score','ok','bad','n','tt','done','ts','rid','m','r','pr','pid','ready','loaded','left'])
+     return d.keys().hasOnly(['nick','score','ok','bad','n','tt','done','ts','rid','m','r','pr','pid','ready','loaded','left','sf'])
+      && (!('sf' in d) || (d.sf is string && d.sf.size() <= 4))
       && d.keys().hasAll(['nick','score','ok','bad','n','tt','done','ts','rid'])
       && d.nick is string && d.nick.size() >= 1 && d.nick.size() <= 40
       && d.score is int && d.score >= 0 && d.score <= (arena2()?100:60)
@@ -155,6 +160,9 @@ service cloud.firestore {
     allow list: if signed() && member();
     allow create: if signed() && request.auth.uid == uid && room().status == 'lobby'
      && (room().mode in ['race','arena'] || room().host == uid || room().guest == uid || getAfter(/databases/$(database)/documents/oyunOdalari/$(code)).data.guest == uid)
+     /* Şifreli oda: kurucu dışında giren, şifreyi oyuncu kaydında getirir; şifre okunamayan gizli/sifre belgesiyle karşılaştırılır. */
+     && (!('kilit' in room()) || room().kilit != true || room().host == uid
+         || request.resource.data.sf == get(/databases/$(database)/documents/oyunOdalari/$(code)/gizli/sifre).data.s)
      && shape(request.resource.data) && (!arena2() || (request.resource.data.n == 0 && request.resource.data.tt == 0 && !request.resource.data.done && !request.resource.data.left));
     allow update: if signed() && request.auth.uid == uid && room().status in ['lobby','playing'] && shape(request.resource.data)
      && (!arena2() || arenaProgress(request.resource.data));
@@ -163,6 +171,13 @@ service cloud.firestore {
      && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['done','left'])
      && request.resource.data.done == true && request.resource.data.left == true;
     allow delete: if signed() && (request.auth.uid == uid || room().host == request.auth.uid) && (!arena2() || room().status == 'lobby');
+   }
+   /* Oda şifresi: yalnız kurucu yazar ve siler. Öğrenciler okuyamaz; odaya girmiş oyuncular arkadaşına söyleyebilsin diye görebilir. */
+   match /gizli/{k} {
+    allow get: if signed() && k == 'sifre' && member();
+    allow create: if signed() && k == 'sifre' && room().host == request.auth.uid && room().status == 'lobby'
+     && request.resource.data.keys().hasOnly(['s']) && request.resource.data.s is string && request.resource.data.s.matches('^[0-9]{4}$');
+    allow delete: if signed() && (room().host == request.auth.uid || !recent(room().created));
    }
   }
 
@@ -320,10 +335,11 @@ service cloud.firestore {
    allow delete: if yrHasKim() && resource.data.by == yrMe();
   }
 
-  /* Davet: gönderen kendi kurduğu, henüz başlamamış odaya ve kabul edilmiş arkadaşına davet yazar. Kimlik: gönderen_alıcı_oda. */
+  /* Davet: gönderen kurduğu ya da içinde bulunduğu (12.11), henüz başlamamış odaya ve kabul edilmiş arkadaşına davet yazar. Kimlik: gönderen_alıcı_oda. */
   match /yrDav/{id} {
    function ok(d) {
-    return d.keys().hasOnly(['from','to','nick','code','rid','subject','mode','ts']) && d.keys().hasAll(['from','to','nick','code','rid','subject','mode','ts'])
+    return d.keys().hasOnly(['from','to','nick','code','rid','subject','mode','ts','sf']) && d.keys().hasAll(['from','to','nick','code','rid','subject','mode','ts'])
+     && (!('sf' in d) || (d.sf is string && d.sf.matches('^[0-9]{4}$')))
      && yrPidOk(d.from) && yrPidOk(d.to) && d.from != d.to && d.code is string && d.code.matches('^[A-Z0-9]{3,10}$')
      && id == d.from + '_' + d.to + '_' + d.code
      && d.nick is string && d.nick.size() >= 1 && d.nick.size() <= 40
@@ -333,7 +349,9 @@ service cloud.firestore {
    allow create: if yrHasKim() && ok(request.resource.data) && request.resource.data.from == yrMe()
     && yrFriend(request.resource.data.to) && !yrBlocked(request.resource.data.from, request.resource.data.to)
     && exists(/databases/$(database)/documents/oyunOdalari/$(request.resource.data.code))
-    && get(/databases/$(database)/documents/oyunOdalari/$(request.resource.data.code)).data.host == request.auth.uid
+    && (get(/databases/$(database)/documents/oyunOdalari/$(request.resource.data.code)).data.host == request.auth.uid
+        || exists(/databases/$(database)/documents/oyunOdalari/$(request.resource.data.code)/players/$(request.auth.uid)))
+    && (!('sf' in request.resource.data) || request.resource.data.sf == get(/databases/$(database)/documents/oyunOdalari/$(request.resource.data.code)/gizli/sifre).data.s)
     && get(/databases/$(database)/documents/oyunOdalari/$(request.resource.data.code)).data.created == request.resource.data.rid
     && get(/databases/$(database)/documents/oyunOdalari/$(request.resource.data.code)).data.status == 'lobby'
     && get(/databases/$(database)/documents/oyunOdalari/$(request.resource.data.code)).data.mode == request.resource.data.mode;

@@ -21,10 +21,14 @@
    })();try{return await this.loading;}catch(e){this.loading=null;throw e;}
   }
   room(code){return this.sdk.doc(this.db,COLL,code);}
+  secret(code){return this.sdk.doc(this.db,COLL,code,'gizli','sifre');}
+  /* Lobi: listede görünmesi istenen ve henüz başlamamış odalar. Kurallar yalnız bu sorguya izin verir. */
+  async watchList(onRooms,onError){await this.connect();const fb=this.sdk;return fb.onSnapshot(fb.query(fb.collection(this.db,COLL),fb.where('pub','==',true),fb.where('status','==','lobby'),fb.limit(40)),s=>onRooms(s.docs.map(d=>({code:d.id,...d.data()}))),onError);}
+  async secretGet(code){try{const r=await this.sdk.getDoc(this.secret(code));return r.exists()?r.data().s:'';}catch(e){return '';}}
   player(code,uid=this.uid){return this.sdk.doc(this.db,COLL,code,'players',uid);}
   randomCode(){const bytes=crypto.getRandomValues(new Uint8Array(5));return Array.from(bytes,x=>CODE_CHARS[x%CODE_CHARS.length]).join('');}
   /* Oda kurar. Kod istenen kod ya da rastgele 5 karakter. Doküman bir kez oluşturulur; 24 saatten eski aynı kod silinip yeniden kullanılır. */
-  async create(spec,wanted){
+  async create(spec,wanted,sifre){
    await this.connect();const fb=this.sdk;
    for(let attempt=0;attempt<6;attempt++){
     const code=wanted||this.randomCode(),ref=this.room(code),snap=await fb.getDoc(ref);
@@ -36,20 +40,20 @@
     }
     const data={...spec,host:this.uid,status:'lobby',guest:null,created:Date.now(),qv:1};
     if(spec.mode==='race'||spec.mode==='arena')data.cnt=1;
-    try{await fb.setDoc(ref,data);return {code,room:data};}catch(e){if(wanted)throw e;}
+    try{await fb.setDoc(ref,data);if(data.kilit&&sifre)await fb.setDoc(this.secret(code),{s:String(sifre)});return {code,room:data};}catch(e){if(wanted)throw e;}
    }
    throw Error('Oda kurulamadı. Yeniden dene.');
   }
   async peek(code){await this.connect();const r=await this.sdk.getDoc(this.room(code));return r.exists()?r.data():null;}
   /* Odaya girer. Kapışmada ikinci kişi "guest" yerini tek işlemde alır; üçüncü kişi giremez. */
-  async join(code,nick,pdata,expectCreated){
+  async join(code,nick,pdata,expectCreated,sifre){
    await this.connect();const fb=this.sdk,uid=this.uid;let room;
    /* Kapasite sayacı ile oyuncu kaydı TEK işlemde yazılır: biri başarısız olursa ikisi de yazılmaz. */
    await fb.runTransaction(this.db,async tx=>{
     const r=await tx.get(this.room(code));if(!r.exists())throw Error('Oda bulunamadı. Kodu kontrol et.');room=r.data();
     if(room.created&&Date.now()-room.created>DAY)throw Error('Bu odanın süresi dolmuş.');
     if(expectCreated&&room.created!==expectCreated)throw Error('Bu oda yeniden kurulmuş. Kodu yeniden gir.');
-    const mine={...pdata,rid:room.created};
+    const mine={...pdata,rid:room.created};if(room.kilit&&room.host!==uid)mine.sf=String(sifre||'');
     const existing=await tx.get(this.player(code));
     if(room.status==='playing'&&room.mode==='arena'&&room.av===2&&room.roster.includes(uid)&&existing.exists())return;
     if(room.status!=='lobby')throw Error('Oyun başlamış. Yeni katılımcı alınmıyor.');
@@ -88,7 +92,7 @@
   async leave(code,lobby,host){
    const fb=this.sdk;
    if(!lobby)return;
-   if(host){await fb.deleteDoc(this.player(code)).catch(()=>{});await fb.deleteDoc(this.room(code)).catch(()=>{});return;}
+   if(host){await fb.deleteDoc(this.player(code)).catch(()=>{});await fb.deleteDoc(this.secret(code)).catch(()=>{});await fb.deleteDoc(this.room(code)).catch(()=>{});return;}
    /* Salondan çıkan, kapasitede yer açar. */
    try{await fb.runTransaction(this.db,async tx=>{
     const r=await tx.get(this.room(code)),p=await tx.get(this.player(code));

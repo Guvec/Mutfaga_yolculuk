@@ -177,7 +177,7 @@ async function frInvSend(){
  const c=FR.call;if(!c||!FR.pid||!YR.room||!YR.code)return;FR.call=null;
  try{
   const t=await adFb(),fb=t.sdk,r=YR.room,sub=(typeof YR_SUBJECTS!=='undefined'&&(YR_SUBJECTS.find(x=>x.id===r.subject)||{}).name)||r.subject;
-  await fb.setDoc(fb.doc(t.db,'yrDav',FR.pid+'_'+c.to+'_'+YR.code),{from:FR.pid,to:c.to,nick:YR.nick,code:YR.code,rid:r.created,subject:String(sub).slice(0,30),mode:r.mode,ts:fb.serverTimestamp()});
+  await fb.setDoc(fb.doc(t.db,'yrDav',FR.pid+'_'+c.to+'_'+YR.code),{from:FR.pid,to:c.to,nick:YR.nick,code:YR.code,rid:r.created,subject:String(sub).slice(0,30),mode:r.mode,ts:fb.serverTimestamp(),...(YR.sifre?{sf:YR.sifre}:{})});
   adToast((c.nick||'Arkadaşın')+' davet edildi');return true;
  }catch(e){adToast('Davet gönderilemedi');return false;}
 }
@@ -192,11 +192,11 @@ function frInvCheck(){
  st.modalOpen=true;pauseT();const ov=document.getElementById('ov');ov.className='on';
  ov.innerHTML='<div class="modal" role="dialog" aria-modal="true" aria-labelledby="frInvT"><p id="frInvT">⚔️ <b>'+esc(v.nick)+'</b> seni '+(v.mode==='duel'?'kapışmaya':v.mode==='arena'?'Er Meydanı’na':'oyun odasına')+' çağırıyor!<br><small>'+esc(v.subject)+'</small></p><div class="row"><button class="btn ghost" id="frInvN">Şimdi değil</button><button class="btn pri" id="frInvY">Kabul et</button></div></div>';
  const del=()=>adFb().then(t=>t.sdk.deleteDoc(t.sdk.doc(t.db,'yrDav',v.id))).catch(()=>{});
- document.getElementById('frInvY').onclick=()=>{closeModal();del();frJoinCode(v.code);};
+ document.getElementById('frInvY').onclick=()=>{closeModal();del();frJoinCode(v.code,v.sf);};
  document.getElementById('frInvN').onclick=()=>{closeModal();del();};
  document.getElementById('frInvY').focus();
 }
-function frJoinCode(code){YR.codeDraft=code;st.screen='racemenu';render();yrJoin(code);}
+function frJoinCode(code,sf){YR.codeDraft=code;st.screen='racemenu';render();yrJoin(code,undefined,sf);}
 /* Ev ekranı: çevrim içi arkadaşlar */
 function frLive(){
  if(!st.prof||st.guest||!navigator.onLine||!frOn())return '';

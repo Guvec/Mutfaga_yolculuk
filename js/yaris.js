@@ -74,15 +74,17 @@ async function yrCreate(){
   if(typeof frEnsure==='function')await Promise.race([frEnsure(),new Promise(r=>setTimeout(r,4000))]);
   await yrWithTimeout(yrReadyRoom(c),9000);
   const base={mode:c.mode,subject:c.subject,scope:c.scope||'tek',kind:c.kind,set:c.set,n:c.n||YarisModel.N_DEFAULT,lim:c.lim,seed:crypto.getRandomValues(new Uint32Array(1))[0],rev:yrRoomRev(c),hostNick:nick};
+  const kilit=!!c.kilit;if(kilit&&!/^[0-9]{4}$/.test(String(c.sifre||'')))throw Error('Şifre 4 rakam olmalı.');
+  Object.assign(base,{pub:c.pub!==false,ad:String(c.ad||(nick+' ile oyna')).slice(0,40),kilit});
   if(c.mode==='arena')Object.assign(base,{av:2,roster:[],n:100,lim:20,kind:'gorsel',set:0});
   const qs=c.mode==='arena'?yrBuild(base,0):YarisModel.buildScoped(yrAllData(),{...base,n:base.n},base.seed);
   if(c.mode!=='arena'&&qs.length!==base.n)throw Error('Bu seçimde '+base.n+' soru yok ('+qs.length+' soru var). Başka kapsam veya maç uzunluğu seç.');
   base.n=qs.length;if(c.mode==='arena')base.rev=yrRoomRev(base);
-  const made=await yrWithTimeout(yrService().create(base,wanted||''));
+  const made=await yrWithTimeout(yrService().create(base,wanted||'',kilit?String(c.sifre):''));YR.sifre=kilit?String(c.sifre):'';
   await yrEnter(made.code,made.room);
  }catch(e){YR.error=yrErrText(e);}finally{YR.busy=false;render();}
 }
-async function yrJoin(code,invite){
+async function yrJoin(code,invite,sifre){
  if(YR.busy)return false;
  const input=document.getElementById('yrCode'),requested=YarisModel.slug(code!==undefined?code:(input?input.value:YR.codeDraft));
  YR.codeDraft=requested;
@@ -91,27 +93,28 @@ async function yrJoin(code,invite){
  const c=requested;
  YR.codeDraft=c;
  if(!YarisModel.validCode(c)){YR.error='Oda kodunu yaz.';render();return;}
- YR.busy=true;YR.error='';render();
+ YR.busy=true;YR.error='';render();let seen=null;
  try{
   if(typeof frEnsure==='function')await Promise.race([frEnsure(),new Promise(r=>setTimeout(r,4000))]);
   YR.ready=false;const pd={...yrPlayerBase(nick,0),loaded:false};
   /* Önce odayı oku ve sürümü denetle: uyumsuz telefon kapışmada yer almaz, listeye girmez. */
-  const seen=await yrWithTimeout(yrService().peek(c));
+  seen=await yrWithTimeout(yrService().peek(c));
   if(!seen)throw Error('Oda bulunamadı. Kodu kontrol et.');
+  if(seen.kilit&&seen.host!==yrMe()&&!/^[0-9]{4}$/.test(String(sifre||''))){if(typeof lbSifreSor==='function')lbSifreSor(c,invite);return false;}
   await yrReadyRoom(seen);
   if(seen.mode==='arena'&&seen.av===2)pd.left=false;else delete pd.left;
   if(seen.rev!==yrRoomRev(seen))throw Error('Oda sürümü farklı. Tüm telefonları güncelleyin ve yeni bir oda kurun.');
   if(!yrInviteLive(invite))return false;
-  const svc=yrService(),room=await yrWithTimeout(svc.join(c,nick,pd,seen.created));
+  const svc=yrService(),room=await yrWithTimeout(svc.join(c,nick,pd,seen.created,sifre));YR.sifre=seen.kilit?String(sifre||''):'';
   const entered=yrInviteLive(invite)&&await yrEnter(c,room,invite);
   if(!entered){if(room.status==='lobby')await svc.leave(c,true,false).catch(()=>{});return false;}
   if(invite)invite.entered=true;return true;
- }catch(e){if(yrInviteLive(invite))YR.error=yrErrText(e);return false;}finally{YR.busy=false;if(yrInviteLive(invite))render();}
+ }catch(e){if(yrInviteLive(invite))YR.error=seen&&seen.kilit&&/permission|insufficient/i.test(String(e&&e.message))?'Şifre yanlış. Yeniden dene.':yrErrText(e);if(seen&&seen.kilit&&typeof lbSifreSor==='function'&&/Şifre/.test(YR.error))lbSifreSor(c,invite);return false;}finally{YR.busy=false;if(yrInviteLive(invite))render();}
 }
 function yrWithPid(pd){if(typeof FR!=='undefined'&&FR.ready&&FR.pid&&st.prof&&!st.guest)pd.pid=FR.pid;return pd;}
 function yrPlayerBase(nick,rid){return yrWithPid({...(YR.room&&YR.room.av===2?{left:false}:{}),ready:!!YR.ready,loaded:true,nick,score:0,ok:0,bad:0,n:0,tt:0,done:false,ts:Date.now(),rid,m:0,r:[],pr:[]});}
 async function yrEnter(code,room,invite){
- await yrPreload(yrBuild(room,0));if(!yrInviteLive(invite))return false;yrReset();YR.active=true;YR.code=code;YR.room=room;YR.nick=yrNickGet();YR.host=room.host===yrMe();YR.started=false;
+ await yrPreload(yrBuild(room,0));if(!yrInviteLive(invite))return false;{const sf=YR.sifre;yrReset();YR.sifre=sf;}YR.active=true;YR.code=code;YR.room=room;YR.nick=yrNickGet();YR.host=room.host===yrMe();YR.started=false;
  YR.resumePlayer=null;
  if(room.status==='playing'&&room.mode==='arena'&&room.av===2){YR.resumePlayer=await yrService().getPlayer(code);if(!YR.resumePlayer)throw Error('Bu oyunda kayıtlı katılımcı değilsin.');}
  else await yrService().setPlayer(code,yrPlayerBase(YR.nick,room.created));
@@ -121,7 +124,7 @@ async function yrEnter(code,room,invite){
  if(typeof frInvSend==='function')frInvSend();if(typeof sesSecimiSor==='function')sesSecimiSor();return true;
 }
 function duelOr(a,b){return yrDuel()?a:b;}
-function yrReset(){
+function yrReset(){YR.sifre='';
  YR.unsubs.forEach(f=>{try{f();}catch(e){}});YR.unsubs=[];if(YR.hb)clearInterval(YR.hb);if(YR.cd)clearInterval(YR.cd);if(YR.tm)clearInterval(YR.tm);
  if(DU&&DU.to){clearTimeout(DU.to);}if(DU&&DU.fto)clearTimeout(DU.fto);YR.hb=YR.cd=YR.tm=null;YR.warn='';YR.pend=null;YR.writer=null;YR.resumePlayer=null;YR.active=false;YR.code=null;YR.room=null;YR.players=[];YR.qs=[];YR.seen={};YR.sig={};YR.started=false;YR.ast=false;YR.ready=false;YR.g=null;DU=null;if(typeof AR!=='undefined'&&AR&&AR.to)clearTimeout(AR.to);if(typeof AR!=='undefined'&&AR&&AR.fto)clearTimeout(AR.fto);if(typeof AR!=='undefined')AR=null;YR.error='';
 }
