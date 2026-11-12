@@ -45,7 +45,7 @@ const types={'.js':'text/javascript','.css':'text/css','.html':'text/html','.jso
   assert.equal(await p.locator('[data-dost-item=koala]').getAttribute('class').then(c=>/dost-locked/.test(c)),true);
   await p.locator('#gStart').click();
   assert.equal(await p.locator('.ae-dost-artwork').getAttribute('data-dost'),'panda');
-  await p.getByRole('button',{name:'Vitrinim',exact:true}).click();
+  await p.getByRole('button',{name:'Lezzetleri Keşfet',exact:true}).click();
   await p.getByRole('button',{name:'Kek',exact:true}).click();
   await p.locator('#panda').click();
   assert.deepEqual(await p.locator('.food strong').allTextContents(),['Kek','Limon','Yoğurt','Süt','Ayran','Elma']);
@@ -77,7 +77,7 @@ const types={'.js':'text/javascript','.css':'text/css','.html':'text/html','.jso
   await p.evaluate(()=>back());await p.waitForFunction(()=>st.screen==='home');
   await p.waitForFunction(()=>!!navigator.serviceWorker.controller, null, {timeout:10000});
   assert(await p.evaluate(async()=>!!(await caches.match('assets/ascidostum/panda-limon.webp'))));
-  await context.setOffline(true);await p.reload();await p.getByRole('button',{name:'Vitrinim',exact:true}).click();
+  await context.setOffline(true);await p.reload();await p.getByRole('button',{name:'Lezzetleri Keşfet',exact:true}).click();
   await p.getByRole('button',{name:'Limon',exact:true}).click();await p.waitForFunction(()=>document.querySelector('.dost-portrait').naturalWidth>0);
   assert.equal(await p.locator('#speech').textContent(),'Limon ekşi.');
   assert.deepEqual(errors,[]);

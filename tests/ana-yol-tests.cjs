@@ -36,12 +36,19 @@ const types={'.js':'text/javascript','.css':'text/css','.html':'text/html','.jso
   await p.evaluate(()=>back());assert.equal(await screen(),'home');
   console.log('PASS Servis yol penceresi: konular ve geri dönüş');
   await p.getByRole('button',{name:/^Pastacılık$/}).click();await p.locator('.ae-yolgir').click();
-  assert.deepEqual(await p.locator('.ae-list-item strong').allTextContents(),['Mutfak Araçları','Baharatlar','Yeterli ve Dengeli Beslenme','Kek']);
+  assert.deepEqual(await p.locator('.ae-list-item strong').allTextContents(),['Mutfak Araçları','Baharatlar','Yeterli ve Dengeli Beslenme','Bulaşık Yıkama ve Atık Yönetimi','Kek']);
+  await p.getByText('Yeterli ve Dengeli Beslenme').click();assert.equal(await screen(),'beslenmeokuma');
+  await p.getByRole('button',{name:'Sorulara geç'}).click();assert.equal(await screen(),'subject');
+  await p.getByText('Çoktan Seçmeli Sorular').click();await p.waitForFunction(()=>st.screen==='content');
+  assert.equal(await p.locator('.menu-btn').count()>=7,true);
+  await p.evaluate(()=>back());assert.equal(await screen(),'subject');
+  await p.evaluate(()=>back());assert.equal(await screen(),'beslenmeokuma');
+  await p.evaluate(()=>go('yolpenceresi'));
   await p.getByText('Kek',{exact:true}).click();assert.equal(await screen(),'tarifkart');
   await p.evaluate(()=>back());assert.equal(await screen(),'yolpenceresi');
   console.log('PASS Pastacılık yol penceresi: konular, uygulama ve geri dönüş');
   await p.evaluate(()=>go('home'));
-  for(const name of ['Arkadaşlarım','Mutfak Kitabım','Görünüm ve Hareketler','Vitrinim','Birlikte Oyna','Sıralama','Rozetlerim'])
+  for(const name of ['Arkadaşlarım','Mutfak Kitabım','Görünüm ve Hareketler','Lezzetleri Keşfet','Birlikte Oyna','Sıralama','Rozetlerim'])
    assert.equal(await p.getByRole('button',{name,exact:true}).count(),1,name);
   console.log('PASS Profil düğmeleri ve alt menü görünür');
   assert.deepEqual(errors,[]);

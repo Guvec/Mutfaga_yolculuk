@@ -40,8 +40,8 @@
   </button>`;
  }
  const YOLLAR={
-  sicak:{ad:'Sıcak Mutfak',konular:['mutfak-araclari','baharat','beslenme-ilkeleri'],tarif:'sicak'},
-  pasta:{ad:'Pastacılık',konular:['mutfak-araclari','baharat','beslenme-ilkeleri'],tarif:'pasta'},
+  sicak:{ad:'Sıcak Mutfak',konular:['mutfak-araclari','baharat','beslenme-ilkeleri','bulasik-makinesi-temizligi'],tarif:'sicak'},
+  pasta:{ad:'Pastacılık',konular:['mutfak-araclari','baharat','beslenme-ilkeleri','bulasik-makinesi-temizligi'],tarif:'pasta'},
   servis:{ad:'Servis',konular:['kuver','bulasik-makinesi-temizligi'],tarif:null}
  };
  function home(){
@@ -66,10 +66,10 @@
     </nav>
     <span class="ae-friends-portraits" id="aeArkadasPortreleri" aria-hidden="true">${arkadasPortreleri()}</span>
    </header>
-   <div class="ae-paper ae-dost" role="img" aria-label="Aşçı Dostum">
+   <button type="button" class="ae-paper ae-dost" onclick="anaDost()" aria-label="Aşçı Dostum. Görünüm ve Hareketler">
     <strong>Aşçı Dostum</strong>
     <picture class="ae-dost-artwork" data-dost="${GIRIS.character}">${foto(GIRIS.homeArt())}</picture>
-   </div>
+   </button>
    <nav class="ae-paths" aria-label="Mutfak dalları">
     <button type="button" class="ae-paper" onclick="anaYol('sicak')" aria-pressed="${path()==='sicak'}">${dalArt('sicak')}<span>Sıcak Mutfak</span></button>
     <button type="button" class="ae-paper" onclick="anaYol('pasta')" aria-pressed="${path()==='pasta'}">${dalArt('pasta')}<span>Pastacılık</span></button>
@@ -78,7 +78,7 @@
    ${resumeHTML(action)}
    <button type="button" class="ae-paper ae-yolgir" onclick="anaYolPencere()"><span>${esc(yol.ad)}: Konular ve Uygulama</span><b aria-hidden="true">›</b></button>
    <nav class="ae-bottom" aria-label="Oyun ve başarılar">
-    <button type="button" class="ae-paper" onclick="go('market')">${foto('ana-market')}<span>Vitrinim</span></button>
+    <button type="button" class="ae-paper" onclick="go('market')">${foto('ana-market')}<span>Lezzetleri Keşfet</span></button>
     <button type="button" class="ae-paper" onclick="tasarimOda('create')">${foto('ana-birlikte')}<span>Birlikte Oyna</span></button>
     <button type="button" class="ae-paper" onclick="rkOpenBoard()">${foto('ana-siralama')}<span>Sıralama</span></button>
     <button type="button" class="ae-paper" onclick="go('rutbe')">${foto('ana-rozet')}<span>Rozetlerim</span></button>
@@ -178,14 +178,16 @@
  }
  function nutrition(){
   return interior('Yeterli ve Dengeli Beslenme',foto('kitap-beslenme-tabak','ae-interior-banner')+
-   '<section class="ae-paper ae-reading"><h2>Sağlıklı yemek tabağı</h2><p>Sağlıklı yemek tabağı, bir öğündeki besin gruplarını görmeye yardım eder.</p><p>Dilimler grupları gösterir. Her dilim için aynı miktarda besin alınması gerekmez. Öğünün yanında su içilebilir.</p></section>');
+   '<section class="ae-paper ae-reading"><h2>Sağlıklı yemek tabağı</h2><p>Sağlıklı yemek tabağı, bir öğündeki besin gruplarını görmeye yardım eder.</p><p>Dilimler grupları gösterir. Her dilim için aynı miktarda besin alınması gerekmez. Öğünün yanında su içilebilir.</p></section>'+
+   '<button type="button" class="ae-paper ae-soru-git" onclick="anaBeslenmeSoru()"><span>Sorulara geç</span><b aria-hidden="true">›</b></button>');
  }
+ window.anaBeslenmeSoru=function(){anaKonu('beslenme-ilkeleri','beslenmeokuma');};
  function market(){
   const rows=['apple','lemon','yogurt','milk','ayran','cake'].map(id=>{
    const food=GIRIS.foods.find(f=>f.id===id);
    return `<button type="button" class="ae-paper ae-market-food" onclick="GIRIS.ac('market','${id}')">${foto(id)}<strong>${esc(food.name)}</strong></button>`;
   }).join('');
-  return interior('Market','<h2>Besinler</h2><div class="ae-market-grid">'+rows+'</div>');
+  return interior('Lezzetleri Keşfet','<h2>Besinler</h2><div class="ae-market-grid">'+rows+'</div>');
  }
  window.anaYol=function(y){lsSet('ana_yol',y==='pasta'?'pasta':y==='servis'?'servis':'sicak');render();};
  window.anaTema=function(){temaDegistir();render();};
