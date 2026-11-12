@@ -149,6 +149,8 @@ function girisHTML(){
   if(DOST_CHARACTERS[G.character].quest)return move==='krema'?portrait(G.character,'pastacilik'):m?portrait(G.character):null;
   return G.character==='panda'?m?.art:m?.[G.character];
  }
+ /* Ana sayfa: seçili dala göre dost görseli (panda dışındaki dostlar için kıyafet dala uyar). */
+ G.dalArt=function(dal){const look={pasta:'pastacilik',servis:'servis'}[dal];const p=preference();if(p.look&&p.look!=='normal')return portrait(G.character,p.look);return portrait(G.character,look);};
  G.homeArt=function(){
   const look=preference();
   if(look.look&&look.look!=='normal')return portrait(G.character,look.look);
