@@ -27,3 +27,26 @@
 
 .lz-yeni-s{display:flex;align-items:center;gap:12px}.lz-yeni-s b{font-size:20px}
 .lz-dost-e{display:grid;place-items:center;font-size:64px;line-height:1}
+/* Lezzetleri Keşfet tek ekran: sayfalı ızgara (12.11) */
+.lz-sayfala{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:8px;margin:6px 0}
+.lz-sayfala button{min-height:44px;border:2px solid var(--line,#c9d4d4);border-radius:12px;background:var(--surface,#fff);color:var(--teal,#0b5c5f);font:inherit;font-weight:800;cursor:pointer}
+.lz-sayfala button:disabled{opacity:.35;cursor:default}
+.lz-sayfala span{font-weight:700;min-width:48px;text-align:center}
+@media(max-height:820px){.lz-not{display:none}}
+/* Kart ve tezgâh ekrana göre küçülür; kaydırma yok */
+body[data-screen=lezzet] #app:has(.lz-sayfa){display:flex;flex-direction:column;height:100vh;height:100svh;height:100dvh;box-sizing:border-box}
+.lz-sayfa{flex:1 1 auto;min-height:0;display:flex;flex-direction:column;gap:6px;padding-block:6px!important;box-sizing:border-box}
+.lz-sayfa > *{flex:none;margin-block:0!important}
+.lz-tezgah{padding:6px 10px!important}
+.lz-tezgah h2{font-size:1.05rem;margin:0}
+.lz-dost{flex-basis:clamp(48px,9svh,92px);width:clamp(48px,9svh,92px);max-height:clamp(48px,9svh,92px)}
+.lz-tez-raf{min-height:clamp(48px,9svh,84px);padding:4px 8px}
+.lz-sayfa .lz-izgara{flex:1 1 auto;min-height:0;grid-auto-rows:minmax(0,1fr);gap:6px}
+.lz-kart{gap:2px;padding:6px;min-height:0;align-content:center;grid-template-rows:minmax(0,1fr) auto auto auto}
+.lz-kart .lz-dinle{display:grid;justify-items:center;gap:1px;min-height:0}
+.lz-foto{max-width:none;width:auto;height:100%;max-height:clamp(44px,13svh,140px);margin-inline:auto}
+.lz-kart .lz-koy{min-height:44px;padding:4px 6px;font-size:15px;line-height:1.1}
+.lz-kart b{font-size:1rem}
+.lz-kart small{font-size:13px}
+.lz-sekme button{min-height:44px}
+@media(min-width:700px){.lz-sayfa .lz-izgara{grid-template-columns:repeat(4,1fr)}}

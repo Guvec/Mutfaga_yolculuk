@@ -32,7 +32,9 @@ function lzFoto(x,cls){
  return '<span class="'+(cls||'lz-foto')+(file?'':' yok')+'" aria-hidden="true">'+content+'</span>';
 }
 window.lezzetSoyle=function(id){const x=LEZZET.find(y=>y.id===id);if(x&&typeof yolSoyle==='function')yolSoyle(x.ad+'. '+x.tur+'.');};
-window.lezzetSekme=function(s){LZ.sekme=s;render();};
+window.lezzetSekme=function(s){LZ.sekme=s;LZ.sayfa=0;render();};
+window.lezzetSayfa=function(d){LZ.sayfa=(LZ.sayfa||0)+d;render();};
+function lzSayfaBoy(){return innerWidth>=700?(innerHeight>=760?8:6):(innerHeight>=800?6:4);}
 window.lezzetKoy=function(id){
  const l=lzTezgah();
  if(l.includes(id)){lzTezgahYaz(l.filter(x=>x!==id));render();return;}
@@ -53,12 +55,14 @@ function lezzetHTML(){
  let h=yolBar('Lezzetleri Keşfet','Bir lezzet seç, tezgâha koy.','back()',false)+'<div class="yol-sayfa lz-sayfa"><div class="lz-sekme" role="tablist"><button type="button" role="tab" aria-selected="'+(sek==='acik')+'" class="'+(sek==='acik'?'on':'')+'" onclick="lezzetSekme(\'acik\')">Açılanlar ('+acik+')</button><button type="button" role="tab" aria-selected="'+(sek!=='acik')+'" class="'+(sek!=='acik'?'on':'')+'" onclick="lezzetSekme(\'yeni\')">Yeni lezzetler ('+(LEZZET.length-acik)+')</button></div>';
  h+='<section class="yol-kart lz-tezgah" aria-label="Tezgâhım"><h2>Tezgâhım</h2><div class="lz-tez-satir">'+lzDost()+'<div class="lz-tez-raf">'+(tez.length?tez.map(id=>{const x=LEZZET.find(y=>y.id===id);return '<button type="button" class="lz-tez-oge" onclick="lezzetKoy(\''+id+'\')" aria-label="'+esc(x.ad)+', tezgâhtan al">'+lzFoto(x,'lz-foto kucuk')+'<b>'+esc(x.ad)+'</b><small>Tezgâhtan al</small></button>';}).join(''):'<p class="lz-bos">Henüz bir şey yok. Bir lezzeti tezgâha koy.</p>')+'</div></div><p class="lz-konus" role="status">'+esc(LZ.mesaj||(tez.length?'Tezgâhta: '+tez.map(id=>LEZZET.find(y=>y.id===id).ad).join(', ')+'.':'Bir lezzet seç, tezgâha koy.'))+'</p></section>';
  if(!liste.length)h+='<p class="yol-kart">'+(sek==='acik'?'Henüz açılan lezzet yok.':'Bütün lezzetleri açtın. Tebrikler!')+'</p>';
- h+='<div class="lz-izgara">'+liste.map((x,i)=>{
+ const boy=lzSayfaBoy(),sayfaSay=Math.max(1,Math.ceil(liste.length/boy));LZ.sayfa=Math.max(0,Math.min(sayfaSay-1,LZ.sayfa||0));
+ const sayfaListe=liste.slice(LZ.sayfa*boy,LZ.sayfa*boy+boy);
+ h+='<div class="lz-izgara">'+sayfaListe.map((x,i)=>{
   const idx=LEZZET.indexOf(x);
   if(idx>=acik){const kalan=idx-acik+1;return '<div class="lz-kart kilit" aria-label="'+esc(x.ad)+', kilitli">'+lzFoto(x)+'<b>'+esc(x.ad)+'</b><span class="lz-kilit">🔒 '+kalan+' bölüm daha bitirince açılır</span></div>';}
   const var_=tez.includes(x.id);
   return '<div class="lz-kart"><button type="button" class="lz-dinle" onclick="lezzetSoyle(\''+x.id+'\')" aria-label="'+esc(x.ad)+', '+esc(x.tur)+'. Dinle">'+lzFoto(x)+'<b>'+esc(x.ad)+'</b><small>'+esc(x.tur)+'</small></button><button type="button" class="yol-btn'+(var_?' ikinci':'')+' lz-koy" onclick="lezzetKoy(\''+x.id+'\')">'+(var_?'✓ Tezgâhta':'Tezgâha koy')+'</button></div>';
- }).join('')+'</div><p class="yol-not lz-not">Açtığın lezzetler sende kalır. Mutfak Araçları ve Baharat bölümlerini bitirdikçe yeni lezzetler açılır.</p></div>';
+ }).join('')+'</div>'+(sayfaSay>1?'<nav class="lz-sayfala" aria-label="Sayfalar"><button type="button" onclick="lezzetSayfa(-1)"'+(LZ.sayfa?'':' disabled')+'>‹ Önceki</button><span>'+(LZ.sayfa+1)+' / '+sayfaSay+'</span><button type="button" onclick="lezzetSayfa(1)"'+(LZ.sayfa<sayfaSay-1?'':' disabled')+'>Sonraki ›</button></nav>':'')+'<p class="yol-not lz-not">Açtığın lezzetler sende kalır. Mutfak Araçları ve Baharat bölümlerini bitirdikçe yeni lezzetler açılır.</p></div>';
  return h;
 }
 (function(){

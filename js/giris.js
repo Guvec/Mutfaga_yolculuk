@@ -264,7 +264,8 @@ function girisHTML(){
   $('gQuest').innerHTML=tab==='dost'&&!profileChoice?dostPuanHTML(item.id):'';
   $('gWardrobe').querySelectorAll('[data-dost-tab]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.dostTab===tab)));
   $('gOptions').dataset.tab=tab;
-  $('gOptions').innerHTML=list.map(x=>'<button type="button" data-dost-item="'+x.id+'" aria-pressed="'+(x.id===item.id)+'" class="'+(x.locked?'dost-locked':'')+'">'+dostFoto(x.art)+'<span>'+x.ad+'</span>'+(x.locked?'<small>🔒 '+(x.active?'Seçili hedef':'Kilitli')+'</small>':'')+'</button>').join('');
+  const per=innerWidth>=700?6:(innerHeight>=800?6:3),ss=Math.max(1,Math.ceil(list.length/per));if(G.sayfaTab!==tab){G.sayfaTab=tab;G.sayfa=Math.floor(Math.max(0,list.indexOf(item))/per);}G.sayfa=Math.max(0,Math.min(ss-1,G.sayfa|0));
+  $('gOptions').innerHTML=list.slice(G.sayfa*per,G.sayfa*per+per).map(x=>'<button type="button" data-dost-item="'+x.id+'" aria-pressed="'+(x.id===item.id)+'" class="'+(x.locked?'dost-locked':'')+'">'+dostFoto(x.art)+'<span>'+x.ad+'</span>'+(x.locked?'<small>🔒 '+(x.active?'Seçili hedef':'Kilitli')+'</small>':'')+'</button>').join('')+(ss>1?'<nav class="dost-sayfala" aria-label="Sayfalar"><button type="button" data-dost-sayfa="-1"'+(G.sayfa?'':' disabled')+'>‹ Önceki</button><span>'+(G.sayfa+1)+' / '+ss+'</span><button type="button" data-dost-sayfa="1"'+(G.sayfa<ss-1?'':' disabled')+'>Sonraki ›</button></nav>':'');
  }
  function showEditor(show,initialTab='hareket'){
   stop();
@@ -303,6 +304,7 @@ function girisHTML(){
   $('gStart').onclick=G.geri;
   $('gEditor').onclick=()=>showEditor(true);
   $('gWardrobe').onclick=e=>{
+   const sy=e.target.closest('[data-dost-sayfa]');if(sy){G.sayfa=(G.sayfa|0)+Number(sy.dataset.dostSayfa);preview();return;}
    const t=e.target.closest('[data-dost-tab]'),i=e.target.closest('[data-dost-item]');
    if(t){tab=t.dataset.dostTab;option=applied();$('gApplied').textContent='';preview();}
    if(i){option=i.dataset.dostItem;$('gApplied').textContent='';preview();$('gOptions').querySelector('[aria-pressed=true]').focus();}

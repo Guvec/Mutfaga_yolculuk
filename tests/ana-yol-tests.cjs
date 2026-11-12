@@ -40,7 +40,7 @@ const types={'.js':'text/javascript','.css':'text/css','.html':'text/html','.jso
   await p.getByText('Yeterli ve Dengeli Beslenme').click();assert.equal(await screen(),'beslenmeokuma');
   await p.getByRole('button',{name:'Sorulara geç'}).click();assert.equal(await screen(),'subject');
   await p.getByText('Çoktan Seçmeli Sorular').click();await p.waitForFunction(()=>st.screen==='content');
-  assert.equal(await p.locator('.menu-btn').count()>=7,true);
+  assert.equal(await p.locator('.mq-kutu').count()>=7,true);
   await p.evaluate(()=>back());assert.equal(await screen(),'subject');
   await p.evaluate(()=>back());assert.equal(await screen(),'beslenmeokuma');
   await p.evaluate(()=>go('yolpenceresi'));

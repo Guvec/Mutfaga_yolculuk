@@ -74,3 +74,69 @@ render=function(){
   if(st.screen==='content'&&st.op==='mcq'&&CONTENT[st.subject]&&mcqGroups().length){document.getElementById('app').innerHTML=mcqListHTML();return;}
   MCQ_PREV_RENDER();
 };
+
+/* ---- Bölüm listesi tek ekranda (12.11): kaydırma yok, iç içe açılır ----
+   1. katman: bölüm kutuları + "Genel tekrar" + "Bütün bölümler". Birden çok konusu olan bölüm ve Genel tekrar dokununca
+   kendi kutularını açar (2. katman). Sıra kilidi: bir bölüm, önceki bölümün bütün konuları bitince açılır; bölüm içindeki
+   konular ve tekrar setleri de sırayla açılır. Genel tekrar, bütün bölümler bitince açılır. Misafirde kayıt olmadığı için kilit yok. */
+st.mcqKat=null;
+function mcqBitenler(){
+  if(st.guest||!st.prof)return null;
+  return new Set(records().filter(r=>r.p===st.prof&&r.op==='mcq'&&r.subject===st.subject&&r.total>0&&(r.qs||[]).length>=r.total).map(r=>r.group));
+}
+function mcqKatlar(){
+  const gs=mcqGroups().map((g,i)=>({...g,i})),katlar=[],bul=k=>katlar.find(x=>x.key===k);
+  gs.forEach(g=>{
+    if(g.whole)return;
+    const m=/^(\d+)\. Bölüm/.exec(g.label),key=/^Genel tekrar/.test(g.label)?'tekrar':g.chapter?'b'+g.chapter:m?'b'+m[1]:'k'+g.i;
+    let k=bul(key);
+    if(!k){k={key,gruplar:[],tekrar:key==='tekrar',ad:key==='tekrar'?'Genel tekrar':key[0]==='b'?key.slice(1)+'. Bölüm':g.label};katlar.push(k);}
+    k.gruplar.push(g);
+  });
+  const tekrar=katlar.filter(k=>k.tekrar),bolum=katlar.filter(k=>!k.tekrar);
+  return {liste:bolum.concat(tekrar),butun:gs.find(g=>g.whole)||null};
+}
+function mcqAltAd(g){return g.label.replace(/^\d+\. Bölüm · /,'').replace(/^Genel tekrar · /,'');}
+function mcqKatDurum(){
+  const {liste,butun}=mcqKatlar(),bit=mcqBitenler(),ok=g=>!bit||bit.has(g.label);
+  let onceki=true;
+  liste.forEach(k=>{
+    k.bitti=k.gruplar.every(ok);
+    k.acik=!bit||(k.tekrar?liste.filter(x=>!x.tekrar).every(x=>x.bitti):onceki);
+    if(!k.tekrar)onceki=k.acik&&k.bitti;
+    let og=k.acik;k.gruplar.forEach(g=>{g.bitti=ok(g)&&!!bit;g.acik=og;og=og&&ok(g);});
+  });
+  const butunAcik=!bit||liste.every(k=>k.gruplar.every(ok));
+  return {liste,butun,butunAcik};
+}
+function mcqKutu(baslik,alt,durum,onclick){
+  const ik={bitti:'✓',kilit:'🔒',sirada:'▶',acik:''}[durum]||'';
+  const etk={bitti:'Tamamlandı',kilit:'Kilitli',sirada:'Sıradaki',acik:''}[durum]||'';
+  return '<button type="button" class="mq-kutu mq-'+durum+'"'+(durum==='kilit'?' disabled aria-disabled="true"':' onclick="'+onclick+'"')+
+    ' aria-label="'+esc(baslik+(alt?'. '+alt:'')+(etk?'. '+etk:''))+'"><b>'+esc(baslik)+'</b>'+(alt?'<span>'+esc(alt)+'</span>':'')+
+    (ik?'<i aria-hidden="true">'+ik+'</i>':'')+'</button>';
+}
+window.mcqKatAc=function(key){st.mcqKat=key;render();};
+mcqListHTML=function(){
+  const {liste,butun,butunAcik}=mcqKatDurum(),kat=st.mcqKat&&liste.find(k=>k.key===st.mcqKat);
+  let siradaVar=false;const durum=(acik,bitti)=>!acik?'kilit':bitti?'bitti':(!siradaVar&&(siradaVar=true))?'sirada':'acik';
+  let kutular,baslik,alt;
+  if(kat){
+    baslik=kat.ad;alt=kat.tekrar?'Setler sırayla açılır.':'Konular sırayla açılır.';
+    kutular=kat.gruplar.map(g=>mcqKutu(mcqAltAd(g),g.count+' soru',durum(g.acik,g.bitti),'pickGroup('+g.i+')'));
+  }else{
+    baslik='Çoktan Seçmeli Sorular';alt='Bölümler sırayla açılır.';
+    kutular=liste.map(k=>{
+      const tek=k.gruplar.length===1&&!k.tekrar,g=k.gruplar[0];
+      const ad=k.tekrar?'Genel tekrar':k.key[0]==='b'?k.ad:mcqAltAd(g);
+      const altYazi=tek?(k.key[0]==='b'?mcqAltAd(g)+' · ':'')+g.count+' soru':k.gruplar.length+(k.tekrar?' set':' konu');
+      return mcqKutu(ad,altYazi,durum(k.acik,k.bitti&&!!mcqBitenler()),tek?'pickGroup('+g.i+')':"mcqKatAc('"+k.key+"')");
+    });
+    if(butun)kutular.push(mcqKutu('Bütün bölümler',butun.count+' soru',butunAcik?'acik':'kilit','pickGroup('+butun.i+')'));
+  }
+  const n=kutular.length,sut=n<=4?1:n<=10?2:3;
+  return topBar(subjectName())+'<div class="wrap mq-ekran"><h1>'+esc(baslik)+'</h1><p class="sub">'+esc(alt)+'</p>'+
+    '<div class="mq-izgara" style="--sut:'+sut+';--sat:'+Math.ceil(n/sut)+'">'+kutular.join('')+'</div></div>';
+};
+{const MQ_BACK=back;back=function(){if(st.screen==='content'&&st.op==='mcq'&&st.mcqKat){st.mcqKat=null;render();return;}MQ_BACK();};}
+{const MQ_PICK=pickContent;pickContent=function(op){st.mcqKat=null;MQ_PICK(op);};}
