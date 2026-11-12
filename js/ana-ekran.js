@@ -87,11 +87,11 @@
   </div>`;
  }
  function resumeHTML(a){
-  const title=a.started?'Yolculuğuna devam et':'Çalışmaya başla';
+  const title='Yolculuğuna devam et';
   const progress=a.total
    ?`<p>${a.completed} / ${a.total} çalışma tamamlandı</p><progress value="${a.completed}" max="${a.total}" aria-label="Tamamlanan çalışma sayısı"></progress>`
    :'';
-  const topic=a.started
+  const topic=a.name
    ?`<div class="ae-home-topic">${foto(topicArt(a.id))}<span><strong>${esc(a.name)}</strong>${a.detail?'<small>'+esc(a.detail)+'</small>':''}</span></div>`
    :'';
   return `<section class="ae-paper ae-kald" aria-labelledby="ae-resume-title">
@@ -226,9 +226,9 @@
   const progress=typeof yolDevamBilgi==='function'?yolDevamBilgi(id):null;
   /* "Kaldığın yer" yalnız gerçek ilerleme varsa çıkar; konuyu açmak (saved) ilerleme sayılmaz. */
   const started=!!progress?.basladi;
-  const title=progress?.bitti?'Tekrar çalış':started?'Devam et':'Çalışmaya başla';
+  const title=progress?.bitti?'Tekrar çalış':'Devam et';
   const detail=progress?.bitti?'Çalışma tamamlandı':
-   progress?.node&&st.prof&&!st.guest?'0 / 1 · +'+progress.points+' puan':progress?.basladi?'Çalışma sürüyor':'';
+   progress?.node?(st.prof&&!st.guest?'0 / 1 · +'+progress.points+' puan':'0 / 1'):progress?.basladi?'Çalışma sürüyor':'';
   return {id,name:TOPICS[id][0],started,title,detail,total:progress?.total,completed:progress?.completed};
  }
  function devamHTML({title,name}){

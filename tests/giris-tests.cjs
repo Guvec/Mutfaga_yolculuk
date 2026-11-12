@@ -57,7 +57,7 @@ const types={'.js':'text/javascript','.css':'text/css','.html':'text/html','.jso
    st.prof=null;localStorage.removeItem('yol_ma');lsSet('ana_yol','sicak');render();
   });
   await p.setViewportSize({width:390,height:760});
-  await p.getByRole('button',{name:/Çalışmaya başla/}).click();await p.waitForFunction(()=>st.screen==='profiles');
+  await p.locator('.ae-devam').click();await p.waitForFunction(()=>st.screen==='profiles');
   await p.evaluate(()=>guest());await p.waitForFunction(()=>st.screen==='yolum'||st.screen==='yolplay');
   await p.evaluate(()=>go('home'));
   await p.getByRole('button',{name:'Ayarlar',exact:true}).click();

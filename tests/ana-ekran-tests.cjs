@@ -19,7 +19,7 @@ const assert=require('node:assert/strict'),open=require('./helpers/dom-app.cjs')
   assert.deepEqual([...w.document.querySelectorAll('.ae-bottom button span')].map(el=>el.textContent),['Birlikte Oyna','Sıralama','Rozetlerim']);
   assert(w.document.querySelector('.ae-rank-hat'));assert(!w.document.querySelector('.ae-points'));
   assert(w.document.querySelector('.ae-friends-open'));ok('Arkadaşlarım şeridi ve üç alt kısayol görünür');
-  assert.match(w.document.querySelector('.ae-devam').getAttribute('aria-label'),/Çalışmaya başla.*Mutfak Araçları/);assert(!w.document.querySelector('.ae-home-topic'),'İlerleme yokken Kaldığın yer çıkmaz');
+  assert.match(w.document.querySelector('.ae-devam').getAttribute('aria-label'),/Devam et.*Mutfak Araçları/);assert(w.document.querySelector('.ae-home-topic'),'Tasarımdaki gibi ilk konu kartı görünür');
   w.st.prof='Huzurlu Civciv';w.lsSet('rk_ids',{'Huzurlu Civciv':'test-profil'});
   w.dostGorevYaz(w.dostPid(),{unlocked:{rabbit:true,koala:true},total:100,spent:100,seen:{}});
   for(const id of ['panda','rabbit','koala']){

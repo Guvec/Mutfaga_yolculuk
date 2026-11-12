@@ -22,9 +22,9 @@ const types={'.js':'text/javascript','.css':'text/css','.html':'text/html','.jso
   await p.goto(url);await p.locator('.ae-home').waitFor();
   await p.evaluate(()=>guest());await p.evaluate(()=>go('home'));
   const screen=()=>p.evaluate(()=>st.screen);
-  assert.equal(await p.locator('.ae-kald .ae-devam b').innerText(),'Çalışmaya başla');
-  assert.equal(await p.locator('.ae-home-topic').count(),0);
-  console.log('PASS İlerleme yokken "Kaldığın yer" çıkmaz, "Çalışmaya başla" görünür');
+  assert.equal(await p.locator('.ae-kald .ae-devam b').innerText(),'Devam et');
+  assert.match(await p.locator('.ae-home-topic').innerText(),/Mutfak Araçları/);
+  console.log('PASS İlerleme yokken de tasarımdaki gibi ilk konu ve "Devam et" görünür');
   assert.equal(await p.locator('.ae-yolgir').count(),0);
   await p.getByRole('button',{name:/^Servis$/}).click();assert.equal(await screen(),'yolpenceresi');
   const rows=await p.locator('.ae-list-item strong').allTextContents();
