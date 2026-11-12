@@ -31,7 +31,7 @@ const types={'.js':'text/javascript','.css':'text/css','.html':'text/html','.jso
    await p.setViewportSize({width,height});
    const dim=await p.evaluate(()=>{
     const rect=s=>{const r=document.querySelector(s).getBoundingClientRect();return {left:r.left,top:r.top,right:r.right,bottom:r.bottom,height:r.height}};
-    return {width:innerWidth,height:innerHeight,page:document.documentElement.scrollHeight,wide:document.documentElement.scrollWidth,dost:rect('.ae-dost'),paths:rect('.ae-paths'),yolgir:rect('.ae-yolgir'),nav:rect('.ae-bottom'),add:rect('.ae-friends-add'),next:rect('.ae-devam')};
+    return {width:innerWidth,height:innerHeight,page:document.documentElement.scrollHeight,wide:document.documentElement.scrollWidth,dost:rect('.ae-dost'),paths:rect('.ae-paths'),yolgir:rect('.ae-kald'),nav:rect('.ae-bottom'),add:rect('.ae-friends-add'),next:rect('.ae-devam')};
    });
    assert(dim.page<=height&&dim.wide<=width);
    assert(dim.nav.bottom<=height&&dim.paths.bottom<=dim.nav.top&&dim.yolgir.bottom<=dim.nav.top);

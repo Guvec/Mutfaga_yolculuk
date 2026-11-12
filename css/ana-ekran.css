@@ -394,3 +394,113 @@ html[data-theme=yuksek] .ae-home .ae-paths button[aria-pressed=true] {
 @keyframes ae-dost-nefes{50%{transform:scale(1.025)}}
 @keyframes ae-dost-zipla{30%{transform:translateY(-4%) scale(1.04) rotate(-1.5deg)}60%{transform:translateY(0) scale(1.02) rotate(1.5deg)}}
 @media(prefers-reduced-motion:reduce){.ae-home .ae-dost-canli .ae-dost-artwork img,.ae-home .ae-dost-zipla img{animation:none}}
+
+/* Onaylı tasarıma uyum (12.11): büyük profil portresi, dolu dal kartları, takvimli devam kartı.
+   Telefon: ana_sayfa_mobil · Masaüstü: ana_sayfa_pc */
+.ae-home .ae-rank-baslik { display:none; }
+.ae-home .ae-header { grid-template-columns:clamp(64px,24vw,112px) minmax(0,1fr) 48px; padding:8px 8px 8px 10px; gap:0 10px; }
+.ae-home .ae-header .ae-avatar { border:3px solid #fff; box-shadow:0 0 0 1px var(--ae-line),0 2px 6px #48331f22; }
+.ae-home .ae-header .ae-profile-name { font-size:clamp(1.05rem,5.6vw,1.75rem); font-weight:800; padding-bottom:4px; border-bottom:1px solid var(--ae-line); }
+.ae-home .ae-header .ae-settings { font-size:clamp(1.6rem,7vw,2.1rem); width:48px; color:var(--ae-ink); }
+.ae-home .ae-header .ae-rank { border-top:0; padding-top:5px; }
+.ae-home .ae-header .ae-rank-copy { border-right:1px solid var(--ae-line); padding-right:10px; gap:5px; }
+.ae-home .ae-header .ae-rank-copy > strong { font-size:clamp(.875rem,4vw,1.15rem); }
+.ae-home .ae-header .ae-rank-note { font-size:clamp(.8125rem,3.6vw,1.05rem); font-weight:700; }
+.ae-home .ae-progress { height:clamp(8px,1.4svh,12px); }
+.ae-home .ae-progress > span { min-width:12px; background:linear-gradient(180deg,#14a0a0,#087c79); }
+.ae-home .ae-rank-hat { width:clamp(38px,11vw,54px); height:clamp(38px,11vw,54px); filter:none; }
+.ae-home .ae-paths { gap:clamp(5px,1.8vw,10px); }
+.ae-home .ae-paths button {
+  justify-content:flex-end; overflow:hidden; padding:0 2px clamp(4px,1svh,9px);
+  min-height:clamp(84px,15svh,170px); border-radius:16px;
+  font-size:clamp(.8125rem,3.9vw,1.15rem); text-shadow:0 1px 3px #000a;
+}
+.ae-home .ae-paths button .ae-art {
+  position:absolute; inset:4px 0 clamp(20px,3.6svh,34px); width:100%; height:auto;
+  object-fit:contain; object-position:center bottom;
+}
+.ae-home .ae-paths button > span { position:relative; z-index:1; }
+.ae-home .ae-kald { gap:clamp(4px,.8svh,8px); padding:clamp(6px,1svh,12px) clamp(8px,2.5vw,16px); }
+.ae-home .ae-resume-head { border-bottom:1px solid var(--ae-line); padding-bottom:4px; }
+.ae-home .ae-resume-head h2 { gap:clamp(6px,2vw,12px); font-size:clamp(1rem,5vw,1.55rem); font-weight:800; }
+.ae-home .ae-takvim { width:clamp(24px,7vw,36px); height:clamp(24px,7vw,36px); flex:none; fill:currentColor; }
+.ae-home .ae-takvim rect,.ae-home .ae-takvim path { fill:none; }
+.ae-home .ae-kald p { font-size:clamp(.8125rem,3.8vw,1.1rem); }
+.ae-home .ae-kald progress { height:clamp(8px,1.4svh,14px); }
+.ae-home .ae-home-topic { grid-template-columns:clamp(70px,28%,150px) minmax(0,1fr); padding:clamp(4px,.8svh,8px) 10px; border-radius:14px; }
+.ae-home .ae-home-topic img { max-height:clamp(36px,7svh,64px); border-right:1px solid var(--ae-line); padding-right:8px; border-radius:0; }
+.ae-home .ae-home-topic strong { font-size:clamp(.9rem,4.4vw,1.3rem); }
+.ae-home .ae-home-topic small { font-size:clamp(.8125rem,3.6vw,1.05rem); font-weight:700; }
+.ae-home .ae-devam { min-height:clamp(44px,6.5svh,62px); font-size:clamp(1rem,5vw,1.5rem); border-radius:16px; }
+.ae-home .ae-friends-open { font-size:clamp(.9rem,4.4vw,1.25rem); }
+.ae-home .ae-friends-open .ae-art { width:clamp(30px,10vw,52px); height:clamp(26px,8vw,44px); }
+.ae-home .ae-bottom span { font-size:clamp(.8125rem,4vw,1.2rem); }
+@media(max-width:799px) and (max-height:700px) {
+  .ae-home .ae-paths button { min-height:78px; }
+  .ae-home .ae-home-topic img { max-height:32px; }
+}
+@media(min-width:900px) and (orientation:landscape) {
+  .ae-home .ae-header {
+    grid-template-columns:clamp(64px,12svh,118px) minmax(0,.62fr) minmax(0,1fr) 64px;
+    grid-template-rows:auto auto; gap:2px 14px; padding:8px 18px 8px 12px;
+  }
+  .ae-home .ae-header .ae-profile { grid-area:1 / 1 / 3 / 2; }
+  .ae-home .ae-header .ae-profile-name { grid-area:1 / 2; align-self:end; font-size:clamp(1.2rem,2.4vw,2.1rem); }
+  .ae-home .ae-rank-baslik { display:block; grid-area:2 / 2; align-self:start; font-weight:700; font-size:clamp(.95rem,1.6vw,1.45rem); }
+  .ae-home .ae-header .ae-rank { grid-area:1 / 3 / 3 / 4; padding:0 0 0 18px; border:0; border-left:1px solid var(--ae-line); }
+  .ae-home .ae-header .ae-rank-copy > strong { display:none; }
+  .ae-home .ae-header .ae-rank-copy { gap:10px; padding-right:18px; }
+  .ae-home .ae-header .ae-rank-note { font-size:clamp(.95rem,1.6vw,1.45rem); }
+  .ae-home .ae-header .ae-settings { grid-area:1 / 4 / 3 / 5; align-self:center; font-size:clamp(2rem,3.4vw,3rem); width:60px; min-height:60px; border-left:1px solid var(--ae-line); border-radius:0; padding-left:10px; }
+  .ae-home .ae-rank-hat { width:clamp(48px,9svh,80px); height:clamp(48px,9svh,80px); }
+  .ae-home { grid-template-rows:auto minmax(120px,.8fr) auto auto; }
+  .ae-home .ae-paths button { min-height:0; font-size:clamp(.95rem,1.7vw,1.6rem); }
+  .ae-home .ae-paths button .ae-art { inset:6px 0 clamp(28px,5svh,48px); }
+  .ae-home .ae-resume-head h2 { font-size:clamp(1.1rem,1.9vw,1.75rem); }
+  .ae-home .ae-kald p,.ae-home .ae-home-topic strong { font-size:clamp(.95rem,1.6vw,1.4rem); }
+  .ae-home .ae-home-topic small { font-size:clamp(.85rem,1.3vw,1.15rem); }
+  .ae-home .ae-home-topic img { max-height:clamp(44px,8svh,80px); }
+  .ae-home .ae-devam { min-height:clamp(48px,7svh,70px); font-size:clamp(1.05rem,1.9vw,1.7rem); }
+  .ae-home .ae-friends-open,.ae-home .ae-bottom span { font-size:clamp(.95rem,1.7vw,1.55rem); }
+  .ae-home .ae-friends-open .ae-art { width:clamp(44px,6vw,80px); height:clamp(40px,7svh,64px); }
+}
+.ae-home .ae-rank-hat { filter:sepia(1) saturate(2.5); }
+@media not all and (min-width:900px) and (orientation:landscape) {
+  .ae-home .ae-header { grid-template-rows:auto auto auto; }
+  .ae-home .ae-header .ae-profile { grid-area:1 / 1 / 4 / 2; }
+  .ae-home .ae-rank-baslik { display:block; grid-area:2 / 2 / 3 / 4; padding-top:5px; font-weight:700; font-size:clamp(.875rem,4.2vw,1.2rem); }
+  .ae-home .ae-header .ae-rank { grid-area:3 / 2 / 4 / 4; padding-top:3px; }
+  .ae-home .ae-header .ae-rank-copy > strong { display:none; }
+}
+@media(min-width:900px) and (orientation:landscape) {
+  .ae-home .ae-paths button .ae-art { inset:6px 0 clamp(34px,6.5svh,58px); }
+}
+@media(max-width:799px) and (max-height:700px) {
+  .ae-home .ae-header { padding-block:5px; }
+  .ae-home .ae-header .ae-profile { width:clamp(60px,18vw,78px); }
+  .ae-home .ae-paths button { min-height:72px; }
+  .ae-home .ae-kald { gap:3px; padding-block:5px; }
+  .ae-home .ae-devam { min-height:44px; }
+  .ae-home .ae-bottom .ae-art { height:28px; }
+}
+/* Görsel, etiketin üstündeki alanı doldurur (yer değiştirmeli öğede top+bottom yüksekliği belirlemez). */
+.ae-home .ae-paths button { --ae-etiket:clamp(22px,3.6svh,34px); }
+.ae-home .ae-paths button .ae-art { inset:4px 0 auto; height:calc(100% - 4px - var(--ae-etiket)); }
+@media(min-width:900px) and (orientation:landscape) {
+  .ae-home .ae-paths button { --ae-etiket:clamp(36px,6.5svh,58px); }
+  .ae-home .ae-paths button .ae-art { inset:6px 0 auto; height:calc(100% - 6px - var(--ae-etiket)); }
+}
+@media(max-width:799px) and (max-height:700px) {
+  .ae-home { grid-template-rows:auto auto minmax(84px,1fr) auto auto auto; gap:6px; }
+  .ae-home .ae-paths button { min-height:70px; }
+}
+/* Çok büyük yazıda kısa telefon: kartlar sıkışır, sayfa yine kaymaz. */
+@media(max-width:799px) and (max-height:800px) {
+  html[data-yz=cok] .ae-home { gap:5px; grid-template-rows:auto auto minmax(60px,1fr) auto auto auto; }
+  html[data-yz=cok] .ae-home .ae-header { padding-block:3px; }
+  html[data-yz=cok] .ae-home .ae-rank-baslik { padding-top:2px; }
+  html[data-yz=cok] .ae-home .ae-paths button { min-height:62px; }
+  html[data-yz=cok] .ae-home .ae-kald { gap:2px; padding-block:4px; }
+  html[data-yz=cok] .ae-home .ae-home-topic { padding-block:2px; }
+  html[data-yz=cok] .ae-home .ae-home-topic img { max-height:28px; }
+}

@@ -33,6 +33,7 @@
   const percent=next?Math.max(0,Math.min(100,100*(points-current.mp)/(next.mp-current.mp))):100;
   const names=rutbeAdlari(),title=(names[index]||current.name)+(next?' → '+(names[index+1]||next.name):'');
   const note=next?remaining+' puan kaldı':'En yüksek öğrenci rütbesi';
+  rankHTML.title=title;
   return `<button type="button" class="ae-rank" onclick="go('rutbe')" aria-label="${esc(title+'. '+note)}">
    <span class="ae-rank-copy"><strong>${esc(title)}</strong><span class="ae-progress" role="progressbar"
     aria-label="Sonraki rütbeye ilerleme" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${Math.round(percent)}" aria-valuetext="${esc(note)}"><span style="width:${percent}%"></span></span>
@@ -60,7 +61,7 @@
     </button>
     <strong class="ae-profile-name">${esc(name)}</strong>
     <button type="button" class="ae-settings" onclick="anaAyarlar()" aria-label="Ayarlar"><span aria-hidden="true">⚙︎</span></button>
-    ${rankHTML()}
+    ${rankHTML()}<span class="ae-rank-baslik" aria-hidden="true">${esc(rankHTML.title||'')}</span>
    </header>
    <nav class="ae-paths" aria-label="Mutfak dalları">
     <button type="button" class="ae-paper" onclick="anaYol('sicak')" aria-pressed="${path()==='sicak'}">${dalArt('sicak')}<span>Sıcak Mutfak</span></button>
@@ -94,9 +95,7 @@
    ?`<div class="ae-home-topic">${foto(topicArt(a.id))}<span><strong>${esc(a.name)}</strong>${a.detail?'<small>'+esc(a.detail)+'</small>':''}</span></div>`
    :'';
   return `<section class="ae-paper ae-kald" aria-labelledby="ae-resume-title">
-   <div class="ae-resume-head"><h2 id="ae-resume-title"><span aria-hidden="true">▦</span>${esc(title)}</h2>
-    <button type="button" class="ae-yolgir" onclick="anaYolPencere()" aria-label="${esc(YOLLAR[path()].ad+': Konular ve Uygulama')}">Konular</button>
-   </div>
+   <div class="ae-resume-head"><h2 id="ae-resume-title"><svg class="ae-takvim" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="3" fill="none" stroke="currentColor" stroke-width="2"/><path d="M3 10h18M8 3v4M16 3v4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="8" cy="14" r="1.2"/><circle cx="12" cy="14" r="1.2"/><circle cx="16" cy="14" r="1.2"/><circle cx="8" cy="17.5" r="1.2"/><circle cx="12" cy="17.5" r="1.2"/></svg>${esc(title)}</h2></div>
    ${progress}${topic}${devamHTML(a)}</section>`;
  }
  function sonKonuAnahtar(){return 'ana_son_konu_'+(st.guest?'misafir':st.prof||'');}
@@ -197,10 +196,9 @@
   return interior('Lezzetleri Keşfet','<h2>Besinler</h2><div class="ae-market-grid">'+rows+'</div>');
  }
  window.anaYol=function(y){
-  const keepFocus=document.activeElement?.matches('.ae-paths button');
   lsSet('ana_yol',y==='pasta'?'pasta':y==='servis'?'servis':'sicak');
-  render();
-  if(keepFocus)document.querySelector('.ae-paths [aria-pressed="true"]')?.focus({preventScroll:true});
+  /* Dal kartına dokunan öğrenci o dalın Teori ve Uygulama penceresine geçer. */
+  go('yolpenceresi');
  };
  window.anaTema=function(){temaDegistir();render();};
  window.anaSes=function(){SES.acik=!SES.acik;lsSet('ses',SES.acik);sesSus();render();};
