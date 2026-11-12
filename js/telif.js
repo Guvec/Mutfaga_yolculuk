@@ -35,16 +35,17 @@ const TELIF_RENDER=render;
 render=function(){
  TELIF_RENDER();const app=document.getElementById('app');if(!app)return;
  if(st.screen==='welcome'&&!app.querySelector('.telif'))app.insertAdjacentHTML('beforeend',telifHTML());
- if(['giris','home','profiles'].includes(st.screen))telifPaylasEkle(app);
+ /* 12.11: Paylaş Ayarlar penceresine taşındı; Aşçı Dostum ve ana sayfada düğme yok (dikkat dağıtıyordu). */
+ if(st.screen==='profiles')telifPaylasEkle(app);
  /* Ana sayfa ve profil ekranı: paylaş ve güncelle (render zincirinin en sonunda eklenir, başka ekran kodu silmesin). */
 };
 /* Giriş ekranı bu dosyadan önce çizildiği için paylaş ve güncelle düğmeleri bir kez burada eklenir. */
 /* Giriş ekranı bu dosyadan önce çizildiği için düğmeler bir kez burada eklenir. */
-if(st.screen==='giris')telifPaylasEkle(document.getElementById('app'));
+
 /* Ses ayarları penceresine Sakin mod anahtarı ve Hakkında düğmesi. */
 const TELIF_AYAR=voiceSettings;
 voiceSettings=function(){
  TELIF_AYAR();const rows=document.querySelectorAll('#ov .modal > .row'),satir=rows[rows.length-1];if(!satir)return;
- satir.insertAdjacentHTML('beforebegin','<div class="row"><button type="button" class="btn sm" id="sakinAc" onclick="sakinDegistir()"></button><button type="button" class="btn sm" onclick="hakkindaAc()">Hakkında</button></div><p class="sub">Sakin mod: Hareketleri ve efekt seslerini azaltır. Müzik ve sesli okuma ayrı çalışır.</p>');
+ satir.insertAdjacentHTML('beforebegin','<div class="row"><button type="button" class="btn sm" id="sakinAc" onclick="sakinDegistir()"></button><button type="button" class="btn sm" onclick="hakkindaAc()">Hakkında</button><button type="button" class="btn sm" onclick="uygulamaPaylas()">📤 Uygulamayı paylaş</button></div><p class="sub">Sakin mod: Hareketleri ve efekt seslerini azaltır. Müzik ve sesli okuma ayrı çalışır.</p>');
  sakinDugmeYaz(document.getElementById('sakinAc'));
 };

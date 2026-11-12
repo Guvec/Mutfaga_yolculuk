@@ -158,3 +158,10 @@ body[data-screen=giris] #gWardrobe .dost-options img{height:clamp(44px,9svh,120p
 .dost-sayfala button{min-height:44px;display:grid!important;place-items:center;align-content:center}
 .dost-sayfala span{font-weight:700;text-align:center;min-width:48px}
 @media(max-height:820px){body[data-screen=giris] .dost-preview-title,body[data-screen=giris] .dost-applied{margin:2px 0}}
+/* 12.11: Aşçı Dostum ekranında Hareket / Sesli okuma düğmeleri yok (sesli okuma girişte sorulur, hareket Ayarlar > Sakin mod) */
+body[data-screen=giris] .dost-controls{display:none!important}
+/* Sağ üstteki ad taşmasın */
+body[data-screen=giris] .dost-head{min-width:0}
+body[data-screen=giris] .dost-head{grid-template-columns:44px auto minmax(0,1fr)}
+body[data-screen=giris] .dost-profil{justify-self:end;max-width:100%;min-width:0;overflow:hidden}
+body[data-screen=giris] .dost-profil span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}

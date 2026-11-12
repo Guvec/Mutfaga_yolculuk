@@ -41,7 +41,7 @@ var GIRIS={foods:[
 {id:'egg',name:'Yumurta',icon:'🥚',type:'food',effect:'happy',text:'Yumurta yedim. Yumurta protein içerir.'},
 {id:'yogurt',name:'Yoğurt',icon:'🥣',type:'food',effect:'happy',text:'Yoğurdu kaşıkla yedim.'},
 {id:'cheese',name:'Peynir',icon:'🧀',type:'food',effect:'happy',text:'Peynirden bir lokma aldım.'},
-{id:'apple',name:'Elma',icon:'🍎',type:'food',effect:'happy',text:'Elmayı ısırdım. Çıtır çıtır!'},
+{id:'apple',name:'Elma',icon:'🍎',type:'food',effect:'happy',text:'Elmayı ısırdım, sulu ve çıtır bir elma.'},
 {id:'carrot',name:'Havuç',icon:'🥕',type:'food',effect:'happy',text:'Havuçtan bir lokma aldım.'},
 {id:'milk',name:'Süt',icon:'🥛',type:'drink',effect:'milky',text:'Süt içtim.'},
 {id:'ayran',name:'Ayran',icon:'🥛',type:'drink',effect:'milky',text:'Ayran içtim.'},

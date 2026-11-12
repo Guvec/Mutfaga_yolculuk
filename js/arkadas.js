@@ -161,12 +161,16 @@ function frCall(o){FR.call={to:o,nick:FR.nick[o]||''};if(typeof yrCreateOpen==='
 const FR_SENT={};
 function frLobbyHTML(){
  if(!st.prof||st.guest||!frOn()||!YR.room||YR.room.status!=='lobby')return '';
- const cap=YarisModel.LIMITS[YR.room.mode].max;if(YR.players.length>=cap)return '';
+ const cap=YR.room.mode==='arena'&&typeof ArenaModel!=='undefined'?ArenaModel.maxPlayers(YR.room):YarisModel.LIMITS[YR.room.mode].max;if(YR.players.length>=cap)return '';
  let h='<div class="card ark-live"><div class="ark-lvh">👫 Arkadaşını çağır</div>';
  if(!FR.ready)return h+'<small>⏳ Arkadaşların yükleniyor…</small></div>';
- const l=FR.list.slice().sort((a,b)=>(frOnline(b)?1:0)-(frOnline(a)?1:0)).slice(0,6);
+ /* Bütün arkadaşlar listelenir (12.11: önceden ilk 6 gösteriliyordu, yedinci ve sonrası çağrılamıyordu). Çevrim içi olanlar üstte, sayfa sayfa. */
+ const tum=FR.list.filter(o=>FR.nick[o]!=='(silinmiş profil)').sort((a,b)=>((frOnline(b)?1:0)-(frOnline(a)?1:0))||String(FR.nick[a]||'').localeCompare(String(FR.nick[b]||''),'tr'));
+ const BOY=6,ss=Math.max(1,Math.ceil(tum.length/BOY));FR.arkSayfa=Math.max(0,Math.min(ss-1,FR.arkSayfa|0));
+ const l=tum.slice(FR.arkSayfa*BOY,FR.arkSayfa*BOY+BOY);
  if(!l.length)return h+'<div class="ark-row"><small>Henüz arkadaşın yok.</small><button class="mini" onclick="frOpen()">👫 Arkadaş ekle</button></div></div>';
  l.forEach(o=>{const k=YR.code+'_'+o;h+='<div class="ark-row"><span>'+(frOnline(o)?'🟢':'⚪')+' <b>'+esc(FR.nick[o]||'…')+'</b></span>'+(YR.players.some(p=>p.pid===o)?'<small>✓ Katıldı</small>':FR_SENT[k]?'<small>✓ Çağrıldı</small>':'<button class="mini" onclick="frInviteTo(\''+o+'\')">⚔️ Çağır</button>')+'</div>';});
+ if(ss>1)h+='<div class="ark-row ark-sayfa"><button class="mini" onclick="FR.arkSayfa--;render()"'+(FR.arkSayfa?'':' disabled')+'>‹ Önceki</button><small>'+(FR.arkSayfa+1)+' / '+ss+' · '+tum.length+' arkadaş</small><button class="mini" onclick="FR.arkSayfa++;render()"'+(FR.arkSayfa<ss-1?'':' disabled')+'>Sonraki ›</button></div>';
  return h+'</div>';
 }
 async function frInviteTo(o){

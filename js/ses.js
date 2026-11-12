@@ -14,6 +14,8 @@ function sesDurum(metin){
  SES.status=metin;var p=document.getElementById('sesDurum');
  if(!p&&document.body){p=document.createElement('p');p.id='sesDurum';p.className='ses-uyari';p.setAttribute('role','status');p.setAttribute('aria-live','polite');document.body.appendChild(p);}
  if(p){p.textContent=metin;p.hidden=!metin;}
+ /* Uyarı alttaki düğmeleri örtmesin: metnin uzunluğuna göre 5–12 saniye sonra kendiliğinden kapanır. */
+ clearTimeout(SES.durumTimer);if(metin)SES.durumTimer=setTimeout(function(){if(SES.status===metin)sesDurum('');},Math.min(12000,Math.max(5000,metin.length*70)));
 }
 function sesSus(){
  SES.token++;SES.pending=null;SES.utterance=null;clearTimeout(SES.timer);SES.timer=null;
