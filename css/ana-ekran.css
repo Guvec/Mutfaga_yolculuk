@@ -504,3 +504,7 @@ html[data-theme=yuksek] .ae-home .ae-paths button[aria-pressed=true] {
   html[data-yz=cok] .ae-home .ae-home-topic { padding-block:2px; }
   html[data-yz=cok] .ae-home .ae-home-topic img { max-height:28px; }
 }
+/* Arkadaş portreleri tasarımdaki gibi büyük */
+.ae-home .ae-friends-portraits { gap:clamp(4px,1.5vw,10px); }
+.ae-home .ae-friends-portraits .ae-avatar { width:clamp(34px,11vw,52px); height:clamp(34px,11vw,52px); border:2px solid #fff; box-shadow:0 0 0 1px var(--ae-line); }
+@media(min-width:900px) and (orientation:landscape) { .ae-home .ae-friends-portraits .ae-avatar { width:clamp(44px,8svh,72px); height:clamp(44px,8svh,72px); } }
