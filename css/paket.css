@@ -17,12 +17,12 @@
  body.oyun-ekrani .top .ttl{order:-1;flex:1 1 100%;font-size:14px;line-height:1.2}
  body.oyun-ekrani .top .who{display:none}
  body.oyun-ekrani .top .back{flex:0 0 auto;min-height:44px}
- body.oyun-ekrani .top .ses-ac{min-height:44px;padding:4px 6px;font-size:12px;flex:1 1 0}
+ body.oyun-ekrani .top .ses-ac{min-height:44px;padding:4px 6px;font-size:13px;flex:1 1 0}
  .yr-img{max-height:22vh;max-height:22dvh}
 }
 /* Telif satırı ve Sakin mod */
 .telif{margin:18px auto 8px;max-width:520px;text-align:center;font-size:14px;line-height:1.45;color:var(--muted,#4b5d63)}
-.telif span{display:block;font-weight:700}.telif small{display:block;font-size:12.5px;margin-top:2px}
+.telif span{display:block;font-weight:700}.telif small{display:block;font-size:13px;margin-top:2px}
 html[data-sakin="1"] *,html[data-sakin="1"] *::before,html[data-sakin="1"] *::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
 #sakinAc{min-height:48px}
 

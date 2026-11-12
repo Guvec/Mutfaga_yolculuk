@@ -42,7 +42,7 @@
  .arac-session .top .ttl{font-size:14px;flex:1}
  .arac-session .top .who{display:none}
  .arac-session .top .back,.arac-session .top .ses-ac{flex:0 0 48px;width:48px;min-width:48px;min-height:48px;padding:4px;font-size:13px;line-height:1.2}
- .arac-session .top .muzik-ac,.arac-session .top .theme-toggle{flex:1 1 48px;min-width:48px;min-height:48px;padding:4px;font-size:12px;line-height:1.2}
+ .arac-session .top .muzik-ac,.arac-session .top .theme-toggle{flex:1 1 48px;min-width:48px;min-height:48px;padding:4px;font-size:13px;line-height:1.2}
  .arac-session .top .ttl{order:-1;flex:1 0 100%;width:100%}
  .arac-board{padding:8px 10px 10px}
  .arac-board .stats{margin:0 0 4px;font-size:14px;gap:5px}

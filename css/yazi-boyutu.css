@@ -23,3 +23,113 @@ html[data-yz="buyuk"] .hafta-alt .btn,html[data-yz="cok"] .hafta-alt .btn{min-he
 html[data-yz="buyuk"] .yr-opts,html[data-yz="cok"] .yr-opts{gap:6px}
 html[data-yz="cok"] .yr-q{line-height:1.3}
 html[data-yz="cok"] .yr-opt{line-height:1.25}
+
+/* rem ile yazılmış bütün ekranlar (ana sayfa, kitap, atölye, dost) yazı boyutuyla birlikte büyür */
+html[data-yz="buyuk"]{font-size:112.5%}
+html[data-yz="cok"]{font-size:125%}
+/* Dar telefonda büyük yazı: düğme etiketleri sözcük ortasından bölünmez; en az 13 px kalır, ekrana göre sığar */
+html .ae-home :is(.ae-profile-links button,.ae-bottom span,.ae-paths span){overflow-wrap:normal;word-break:normal;hyphens:none}
+html[data-yz="buyuk"] .ae-home :is(.ae-profile-links button,.ae-bottom span,.ae-paths span),
+html[data-yz="cok"] .ae-home :is(.ae-profile-links button,.ae-bottom span,.ae-paths span){font-size:max(13px,min(1em,3.9vw))}
+@media(max-height:730px){
+ html[data-yz="buyuk"] .ae-home .ae-paths .ae-art,html[data-yz="cok"] .ae-home .ae-paths .ae-art{height:34px}
+ html[data-yz="buyuk"] .ae-home .ae-bottom .ae-art,html[data-yz="cok"] .ae-home .ae-bottom .ae-art{height:26px}
+}
+
+/* ---- Kaydırmasız ekran (12.11): kısa telefonlarda soru ve yol ekranları sıkılaşır ---- */
+@media(max-height:820px){
+ body[data-screen=quiz] .gs-strip{display:none}
+ body[data-screen=quiz] .top{display:grid;grid-template-columns:auto auto 1fr auto;align-items:center;gap:0 4px;padding:2px 6px}
+ body[data-screen=quiz] .top .ttl{grid-column:1 / -1;font-size:13px;line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+ body[data-screen=quiz] .wrap{padding-top:6px}
+ body[data-screen=quiz] .stats{margin:0 0 6px;gap:6px}
+ body[data-screen=quiz] .stats .chip{padding:3px 10px}
+ body[data-screen=quiz] .card{padding:10px 12px;margin-bottom:8px}
+ body[data-screen=quiz] .card h2{font-size:1.125rem;line-height:1.25;margin:0 0 8px}
+ body[data-screen=quiz] .card h2 .spk{width:40px;height:40px;min-height:40px}
+ body[data-screen=quiz] .opts{gap:6px}
+ body[data-screen=quiz] .opt{padding:8px 12px;min-height:46px;font-size:1rem;line-height:1.25}
+ body[data-screen=quiz] .content-image{max-height:18svh}
+ body[data-screen=quiz] .foot{margin-top:4px;gap:6px}
+ body[data-screen=quiz] .foot .btn{min-height:44px;padding:6px 10px}
+ body[data-screen=quiz] p.saved{margin:2px 0;font-size:13px}
+ .yol-ayak p{display:none}
+ .yol-ayak{margin-top:4px}
+ .yol-bar{padding-block:4px}
+ .yol-sayfa .yol-etiket{margin:4px 0}
+ .yol-ogren .yol-img{max-height:22svh}
+ .yol-ogren .yol-ad{font-size:1.375rem;margin:4px 0}
+}
+@media(max-height:730px){
+ .yol-asama span{min-height:36px;padding-block:2px}
+ .yol-kart{padding:8px 10px}
+ .yol-ogren .yol-img{max-height:16svh}
+ .yol-ogren .yol-acik{margin:2px 0}
+ .yol-ses{min-height:44px;padding-block:4px}
+ .yol-ayak .yol-ayar button{min-height:40px;padding-block:4px}
+ .yol-alt .yol-btn{min-height:48px}
+}
+@media(max-height:820px){
+ /* Aşçı Dostum besleme ekranı: sahne kalan yere göre küçülür */
+ .dost-stage{height:clamp(130px,calc(100svh - 470px),365px)}
+ .dost-choice{margin-bottom:4px}
+ .dost-controls{margin-top:4px}
+ .dost-controls button{min-height:40px;padding-block:2px}
+ /* Mutfak Kitabım ve konu ekranı: satırlar sıkılaşır, kapak görseli küçülür */
+ .ae-list-item{padding-block:2px}
+ .ae-list-item .ae-art{height:40px}
+ .ae-daily{padding:6px 10px;gap:4px}
+ body[data-screen=subject] .design-subject-cover{max-height:12svh;overflow:hidden;margin-bottom:4px}
+ body[data-screen=subject] .design-subject-cover img{max-height:12svh;object-fit:cover;width:100%}
+ body[data-screen=subject] .wrap .menu-btn{padding:8px 14px;margin-bottom:6px}
+ body[data-screen=subject] .wrap h1{margin:4px 0 6px}
+}
+/* Aşçı Dostum ekranı tek ekrana sığar: sahne kalan yüksekliği alır */
+body[data-screen=giris] .dost-wrap{height:100vh;height:100svh;height:100dvh;display:flex;flex-direction:column;box-sizing:border-box}
+body[data-screen=giris] #gKitchen:not([hidden]){flex:1 1 auto;min-height:0;display:flex;flex-direction:column}
+body[data-screen=giris] #gKitchen .dost-stage{flex:1 1 auto;min-height:90px;height:auto;max-height:420px}
+body[data-screen=giris] #gKitchen > :not(.dost-stage){flex:none}
+body[data-screen=giris] .dost-profil span{overflow-wrap:normal;word-break:normal;white-space:nowrap}
+@media(max-height:820px){
+ body[data-screen=giris] .dost-foods button{padding-block:2px}
+ body[data-screen=giris] .dost-foods img{max-height:34px;width:auto;margin-inline:auto}
+ body[data-screen=giris] .dost-speech{margin:4px 0}
+}
+@media(max-height:700px){html[data-yz=cok] body[data-screen=giris] .dost-controls button,html[data-yz=cok] body[data-screen=giris] .dost-links button{font-size:14px;min-height:40px;padding-block:2px}}
+/* Yol soruları ve eşleştirme: kısa ekranda sıkılaşır */
+@media(max-height:820px){
+ .yol-bar{padding-block:4px}
+ .yol-soru-sayfa .yol-sec{min-height:44px;padding-block:3px}
+ .yol-secler,.yol-soru-sayfa .yol-secenekler{gap:5px}
+ .yol-es-gorseller{margin-bottom:6px}
+ .yol-es-sut{gap:5px}
+ .yol-es-a{min-height:46px;padding:4px 6px}
+ .yol-es-g img{max-height:9svh;width:100%;object-fit:contain}
+ .yol-mesaj:empty{display:none}
+}
+@media(max-height:730px){
+ .yol-bar .yol-geri-btn,.yol-bar .yol-sure{min-height:44px;height:44px}
+ .yol-soru-sayfa .yol-img{max-height:13svh}
+ .yol-es h2,.yol-es .yol-baslik{font-size:1.125rem;margin:2px 0}
+}
+@media(max-height:730px){
+ .yol-soru-sayfa .yol-etiket,.yol-es .yol-etiket{display:none}
+ .yol-asama{gap:4px;margin-block:2px}
+ .yol-asama span{min-height:34px;line-height:1.1;font-size:13px}
+ .yol-soru-sayfa .yol-kart,.yol-soru-sayfa .yol-soru-kart{padding:6px 10px;gap:4px}
+ .yol-soru-sayfa .yol-alt .yol-btn,.yol-es .yol-alt .yol-btn{min-height:46px}
+ .yol-sayfa{padding-top:6px;gap:6px}
+}
+@media(max-height:900px){
+ .yol-soru-sayfa .yol-img{max-height:15svh}
+ .yol-es-g img{max-height:8svh}
+ .yol-soru-sayfa .yol-sec{min-height:44px}
+}
+@media(max-height:730px){
+ .yol-soru-sayfa .yol-img{max-height:11svh}
+ .yol-soru-sayfa .yol-secler{gap:4px}
+}
+@media(max-height:730px){.yol-soru-sayfa .yol-img{max-height:10svh}.yol-sayfa{gap:4px}}
+@media(max-height:900px){.yol-es-g img{max-height:7svh}.yol-es-gorseller{margin-bottom:4px}}
+@media(max-height:730px){.yol-es-g img{max-height:10svh}}
+@media(max-height:730px){.yol-es-g img{max-height:9svh}}

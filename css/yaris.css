@@ -122,6 +122,6 @@ body.yr-oyun .yr-err{padding:5px 8px;margin:3px 0;font-size:14px}
 .yr-vs figure{margin:0;min-width:0}
 .yr-vs img{display:block;width:100%;height:auto;max-height:110px;object-fit:contain;border-radius:8px}
 .yr-vs figcaption{display:flex;flex-direction:column;gap:2px;margin-top:4px;font-size:14px;line-height:1.3;overflow-wrap:anywhere}
-.yr-vs small{font-size:12px;opacity:.8}
+.yr-vs small{font-size:13px;opacity:.8}
 html[data-yz="buyuk"] .yr-vs figcaption{font-size:16px}
 html[data-yz="cok"] .yr-vs figcaption{font-size:18px}

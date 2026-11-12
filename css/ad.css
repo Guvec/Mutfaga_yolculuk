@@ -5,7 +5,7 @@
 .ad-pn{display:flex;flex-direction:column;font-size:22px;font-weight:800}
 .ad-pn small{font-size:15px;font-weight:500;color:var(--muted);margin-top:3px}
 .ad-tab{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin:6px 0 12px}
-.ad-tab button{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;min-height:60px;padding:4px 2px;border:2px solid var(--line);background:var(--surface,#fff);color:var(--navy);border-radius:12px;font-size:12px;font-weight:600;line-height:1.15}
+.ad-tab button{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;min-height:60px;padding:4px 2px;border:2px solid var(--line);background:var(--surface,#fff);color:var(--navy);border-radius:12px;font-size:13px;font-weight:600;line-height:1.15}
 .ad-tab button span{font-size:24px;line-height:1}
 .ad-lock{display:inline-flex;align-items:center;padding:0 10px;font-size:20px}
 .ad-tab button:first-child{grid-column:1/-1;flex-direction:row;gap:8px;min-height:52px;font-size:16px;font-weight:800}
@@ -30,4 +30,4 @@
 .ad-adlar{grid-template-columns:repeat(2,1fr)}
 .ad-adlar button{min-height:56px;font-size:16px;font-weight:700}
 .ad-adlar button:disabled{opacity:.5;background:var(--bg,#f3f4f6)}
-.ad-adlar button small{display:block;font-size:12px;font-weight:600}
+.ad-adlar button small{display:block;font-size:13px;font-weight:600}

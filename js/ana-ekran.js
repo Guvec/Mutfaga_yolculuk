@@ -69,6 +69,7 @@
    <button type="button" class="ae-paper ae-dost" onclick="anaDostMutfak()" aria-label="Aşçı Dostum. Besle ve tepkisini izle">
     <strong>Aşçı Dostum</strong>
     <picture class="ae-dost-artwork" data-dost="${GIRIS.character}">${foto(GIRIS.homeArt())}</picture>
+    <span class="ae-dost-poz" aria-hidden="true"><img alt=""></span>
    </button>
    <nav class="ae-paths" aria-label="Mutfak dalları">
     <button type="button" class="ae-paper" onclick="anaYol('sicak')" aria-pressed="${path()==='sicak'}">${dalArt('sicak')}<span>Sıcak Mutfak</span></button>
@@ -268,12 +269,44 @@
  window.anaKitap=function(){if(typeof EFEKT!=='undefined')EFEKT.cal('click');kitapGeri='mutfakkitabi';go('mutfakkitabi');};
  window.anaAtolye=function(){go('ascilikatolyesi');};
  window.anaDost=function(){GIRIS.ac('home');};
- window.anaDostMutfak=function(){GIRIS.mutfak();};
  window.anaTarif=function(y){
   if(y==='servis'){go('servantkuver');return;}
   if(y==='sicak'||y==='pasta')go(y==='sicak'?'sicakmutfak':'pastacilik');
  };
  window.anaTarifKart=function(id){if(Object.hasOwn(RECIPES,id)){recipe=id;recipeFrom='';go('tarifkart');}};
+ /* Ana sayfada Aşçı Dostum hep canlıdır: hafifçe nefes alır, birkaç saniyede bir selam verir ya da başını eğer.
+    Fare üzerine gelince ya da parmakla dokununca gülümseyip zıplar. Hareket ayarı kapalıysa ya da cihazda
+    "hareketi azalt" açıksa durur. Pozu olmayan dostlar yalnız nefes alır ve zıplar. */
+ const DOST_POZLAR={panda:['panda-selam','panda-bas','panda-kek'],rabbit:['tavsan-selam','tavsan-bas','tavsan-kek']};
+ let dostZaman=null,dostGizle=null;
+ function dostHareketli(){
+  return GIRIS.motion!==false&&document.documentElement.dataset.sakin!=='1'&&
+   !(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches);
+ }
+ function dostDurdur(){clearInterval(dostZaman);clearTimeout(dostGizle);dostZaman=dostGizle=null;}
+ function dostPoz(kart,id,sure){
+  const kutu=kart.querySelector('.ae-dost-poz'),img=kutu?.querySelector('img');
+  clearTimeout(dostGizle);
+  kart.classList.remove('ae-dost-zipla');void kart.offsetWidth;kart.classList.add('ae-dost-zipla');
+  if(img&&id){img.src='assets/ascidostum/'+id+'.webp';kutu.classList.add('acik');}
+  dostGizle=setTimeout(()=>{kutu?.classList.remove('acik');kart.classList.remove('ae-dost-zipla');},sure);
+ }
+ function dostCanlandir(){
+  dostDurdur();
+  const kart=document.querySelector('.ae-home .ae-dost');if(!kart)return;
+  kart.classList.toggle('ae-dost-canli',dostHareketli());
+  if(!dostHareketli())return;
+  const pozlar=DOST_POZLAR[GIRIS.character]||[];let sira=0;
+  dostZaman=setInterval(()=>{if(!document.hidden&&kart.isConnected)dostPoz(kart,pozlar.length?pozlar[sira++%pozlar.length]:null,2200);else if(!kart.isConnected)dostDurdur();},6000);
+  const gulumse=()=>dostPoz(kart,pozlar[0]||null,1800);
+  kart.addEventListener('pointerenter',e=>{if(e.pointerType==='mouse')gulumse();});
+  kart.addEventListener('pointerdown',e=>{if(e.pointerType!=='mouse')gulumse();});
+ }
+ window.anaDostMutfak=function(){
+  const kart=document.querySelector('.ae-home .ae-dost');
+  if(kart&&dostHareketli()&&kart.querySelector('.ae-dost-poz.acik')){setTimeout(()=>{dostDurdur();GIRIS.mutfak();},350);return;}
+  dostDurdur();GIRIS.mutfak();
+ };
  const screens={
   home,welcome:home,yolpenceresi:yolPenceresi,mutfakkitabi:book,ascilikatolyesi:atelier,
   sicakmutfak:()=>recipeList('sicak'),pastacilik:()=>recipeList('pasta'),
@@ -290,9 +323,11 @@
   const isHome=screen==='home'||screen==='welcome';
   if(isHome){subjectReturn='home';kitapGeri='mutfakkitabi';}
   document.body.classList.toggle('ae-is-home',isHome);
-  if(!Object.hasOwn(screens,screen)){prevRender();return;}
+  if(!Object.hasOwn(screens,screen)){dostDurdur();prevRender();return;}
   if(typeof GIRIS.dur==='function'&&document.getElementById('actor'))GIRIS.dur();
+  dostDurdur();
   document.getElementById('app').innerHTML=screens[screen]();
+  if(isHome)dostCanlandir();
   document.body.dataset.screen=isHome?'home':screen;
   document.body.classList.remove('oyun-ekrani');
   if(isHome&&st.prof&&!st.guest){frEnsure();setTimeout(frInvCheck,300);}

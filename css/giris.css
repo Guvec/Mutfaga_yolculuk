@@ -22,7 +22,7 @@ html[data-theme=yuksek] .dost-studio { --ds-bg:var(--bg); --ds-paper:var(--surfa
 .dost-head #gStart { font-size:1.6rem; }
 .dost-head .dost-profil {
   display:flex; align-items:center; gap:5px; text-align:left; border-radius:24px;
-  padding:3px 6px 3px 3px; max-width:clamp(82px,27vw,180px); font-size:.74rem; overflow-wrap:anywhere;
+  padding:3px 6px 3px 3px; max-width:clamp(82px,27vw,180px); font-size:.8125rem; overflow-wrap:anywhere;
 }
 .dost-profil > :first-child:not(:last-child) {
   display:block; width:29px; height:29px; flex:0 0 29px; object-fit:cover; border-radius:50%;
@@ -58,7 +58,7 @@ html[data-theme=yuksek] .dost-studio { --ds-bg:var(--bg); --ds-paper:var(--surfa
 .dost-options img { height:clamp(65px,16vw,150px); }
 .dost-actions { display:flex; align-items:center; justify-content:space-between; gap:6px; margin:6px 0; }
 .dost-actions > button { flex:1; }
-.dost-actions #pageLabel { font-size:.78rem; white-space:nowrap; }
+.dost-actions #pageLabel { font-size:.8125rem; white-space:nowrap; }
 .dost-links { margin-top:6px; }
 .dost-links #gEditor { color:var(--ds-accent); border-color:var(--ds-accent); }
 .dost-controls { display:flex; flex-wrap:wrap; gap:6px; margin-top:7px; }
@@ -93,7 +93,7 @@ html[data-theme=yuksek] .dost-studio { --ds-bg:var(--bg); --ds-paper:var(--surfa
   .dost-stage,.dost-preview { width:min(100%,clamp(158px,40svh,420px)); margin-inline:auto; aspect-ratio:1; height:auto; }
   .dost-stage > img,.dost-preview > img { object-fit:contain; object-position:center; }
 }
-.gs-strip { text-align:right; padding:2px 14px; font-size:12px; font-weight:bold; color:#087f79; }
+.gs-strip { text-align:right; padding:2px 14px; font-size:13px; font-weight:bold; color:#087f79; }
 html[data-theme=dark] .gs-strip { color:#9fd8d2; }
 
 .dost-studio { font-family:Lexend,Tahoma,Arial,sans-serif; }
