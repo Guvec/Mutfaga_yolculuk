@@ -130,6 +130,7 @@ yrLobbyHTML=function(){
   '<div class="lb-salon-alt"><button class="btn" onclick="yrLeave()">Çık</button>'+
   '<button class="btn pri" onclick="yrSetReady()"'+(YR.ready?' disabled':'')+'>'+(YR.ready?'✓ Hazır':'Hazırım')+'</button>'+
   (!duel&&YR.host?'<button class="btn pri" onclick="yrStart()"'+(yrStartNeden()?' disabled':'')+'>▶ Başlat</button>':'')+'</div>'+
-  '<div class="lb-salon-pay"><button class="btn sm" onclick="yrShare()">🔗 Paylaş</button><button class="btn sm" onclick="yrCopy()">📋 Kopyala</button>'+(YR.notice?'<small role="status">'+esc(YR.notice)+'</small>':'')+'</div></div>';
+  /* Kodu paylaşma ve kopyalama yalnız odayı kuranda (13.11); diğer oyuncular "Arkadaş çağır" ile davet eder. */
+  (YR.host?'<div class="lb-salon-pay"><button class="btn sm" onclick="yrShare()">🔗 Paylaş</button><button class="btn sm" onclick="yrCopy()">📋 Kopyala</button>'+(YR.notice?'<small role="status">'+esc(YR.notice)+'</small>':'')+'</div>':(YR.notice?'<div class="lb-salon-pay"><small role="status">'+esc(YR.notice)+'</small></div>':''))+'</div>';
  return h;
 };
