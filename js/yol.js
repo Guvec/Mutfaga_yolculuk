@@ -146,6 +146,15 @@ function yolAile(item,disi,gorselIcin){
 }
 function yolSoru(item,tip,node,tohum,destek){
  const ad=item.answer;
+ /* Özellik → görsel sorusu (13.11 pilotu): öğede 'oz' varsa Görsel seç aşamasında ad yerine Öğren kartındaki özellik sorulur;
+    seçenek görselleri elle belirlenmiştir. Ad soruda geçmez. */
+ if(tip==='s1'&&item.oz&&Array.isArray(item.oz.sec)){
+  const d0=yolVeri(),dig=item.oz.sec.map(id=>d0&&d0.matches.find(m=>m.id===id)).filter(Boolean);
+  if(dig.length===3){
+   const sec=yolKar([item,...dig],tohum+item.id+'G').map(x=>({id:x.id,image:x.image,alt:'Seçenek fotoğrafı'}));
+   return {tip:'gorsel',item,ad,sec,dogru:item.id,oz:item.oz.kok+' '+item.oz.soru};
+  }
+ }
  if(tip==='s1'&&!item.comparison){
   /* Görsel seçenekleri yalnız aynı takımdan gelir. Takımda yeterli görsel yoksa bu öğe için
      görsel sorusu kurulmaz, ad sorusuna düşülür; karışık aileden görsel gösterilmez. */
@@ -424,14 +433,14 @@ function yolOgrenHTML(){
   '<div class="yol-alt">'+(Y.k>0?'<button type="button" class="yol-btn ikinci" onclick="Y.k--;render()">‹ Önceki</button>':'<span></span>')+'<button type="button" class="yol-btn'+(Y.donus&&son?' ikinci':'')+'" onclick="yolSonraki()">'+(son?(Y.donus?'Sorulara dön ›':Y.mode==='oyun'?'Sorulara geç ›':'Kapat'):'Sonraki ›')+'</button></div>'+yolAyak(Y.mode==='oyun')+'</div>';
 }
 function yolSesIk(t,etiket){Y.oku=Y.oku||[];const i=Y.oku.push(t)-1;return '<button type="button" class="spk yol-ses ik" aria-label="'+esc(etiket||'Sesli dinle')+'" onclick="yolSoyleIdx('+i+')">🔊</button>';}
-function yolSoruMetni(q){return q.tip==='gorsel'?'“'+q.ad+'” hangisidir?':(q.item.kok||q.item.prompt||'Görselin adı nedir?');}
+function yolSoruMetni(q){return q.oz?q.oz:q.tip==='gorsel'?'“'+q.ad+'” hangisidir?':(q.item.kok||q.item.prompt||'Görselin adı nedir?');}
 function yolSoruHTML(){
  if(Y.sub==='onay')return yolOnayHTML();
  if(Y.sub==='inceleme')return yolIncelemeHTML();
  const q=Y.qs[Y.k],sel=q.sel,L='ABCDE',soruYazi=yolSoruMetni(q),son=Y.k===Y.qs.length-1;
  let h=yolBar(yolKonuAdi(),'','yolKapat()',true)+'<div class="yol-sayfa yol-soru-sayfa">'+yolUst()+'<div class="yol-say"><span>Soru '+(Y.k+1)+' / '+Y.qs.length+'</span>'+yolSeg(Y.k,Y.qs.length,sel!=null)+'</div>';
  if(q.tip==='gorsel'){
-  h+='<div class="yol-kart yol-soru-kart"><div class="yol-soru-satir"><h2 class="yol-soru" tabindex="-1">'+esc(soruYazi)+'</h2>'+yolSesIk(soruYazi,'Soruyu sesli oku')+'</div></div><div class="yol-gorsel-sec">';
+  h+='<div class="yol-kart yol-soru-kart"><div class="yol-soru-satir"><h2 class="yol-soru'+(q.oz?' oz':'')+'" tabindex="-1">'+esc(soruYazi)+'</h2>'+yolSesIk(soruYazi,'Soruyu sesli oku')+'</div></div><div class="yol-gorsel-sec">';
   q.sec.forEach((c,i)=>{const on=c.id===sel;
    h+='<button type="button" class="yol-gsec'+(on?' sec':'')+'" data-i="'+i+'" aria-pressed="'+on+'" onclick="yolCevap('+i+')" aria-label="'+L[i]+'. '+esc(c.alt)+'"><img src="'+esc(c.image)+'" alt=""><span class="yol-let">'+L[i]+'</span>'+(on?'<em>Seçtin</em>':'')+'</button>';});
   h+='</div>';
@@ -448,7 +457,7 @@ function yolOnayHTML(){
  const L='ABCDE';
  let h=yolBar(yolKonuAdi(),'','yolKapat()',true)+'<div class="yol-sayfa">'+yolUst()+'<h1>Cevaplarından emin misin?</h1><p class="yol-not">Değiştirmek istediğin soruya dokun. “Evet” dediğinde doğru cevaplar gösterilir.</p><div class="yol-onay">';
  Y.qs.forEach((q,i)=>{const c=q.sec.find(x=>x.id===q.sel),gor=q.tip==='gorsel';
-  h+='<button type="button" class="yol-onay-sat" onclick="yolGit('+i+')" aria-label="'+(i+1)+'. soru, cevabını değiştir"><span class="yol-onay-no">'+(i+1)+'</span><img src="'+esc(gor?(c&&c.image):q.item.image)+'" alt=""><span class="yol-onay-ad"><small>'+esc(gor?'“'+q.ad+'” için seçtiğin görsel':yolSoruMetni(q))+'</small><b>'+esc(gor?'Görsel '+L[q.sec.indexOf(c)]:(c?c.text:'—'))+'</b></span><span class="yol-onay-de" aria-hidden="true">Değiştir</span></button>';});
+  h+='<button type="button" class="yol-onay-sat" onclick="yolGit('+i+')" aria-label="'+(i+1)+'. soru, cevabını değiştir"><span class="yol-onay-no">'+(i+1)+'</span><img src="'+esc(gor?(c&&c.image):q.item.image)+'" alt=""><span class="yol-onay-ad"><small>'+esc(q.oz?q.oz:gor?'“'+q.ad+'” için seçtiğin görsel':yolSoruMetni(q))+'</small><b>'+esc(gor?'Görsel '+L[q.sec.indexOf(c)]:(c?c.text:'—'))+'</b></span><span class="yol-onay-de" aria-hidden="true">Değiştir</span></button>';});
  h+='</div><div class="yol-nav"><button type="button" class="yol-btn ikinci" onclick="yolOnceki()">‹ Sorulara dön</button><button type="button" class="yol-btn" onclick="yolOnayla()">Evet, bitirdim ›</button></div></div>';
  return h;
 }
@@ -456,7 +465,7 @@ function yolIncelemeHTML(){
  const q=Y.qs[Y.yanlis[Y.ik]],sec=q.sec.find(c=>c.id===q.cevap),dog=q.sec.find(c=>c.id===q.dogru),gor=q.tip==='gorsel',soruYazi=yolSoruMetni(q),nes=yolK().nesne,son=Y.ik===Y.yanlis.length-1;
  let h=yolBar(yolKonuAdi(),'','yolKapat()',true)+'<div class="yol-sayfa yol-inc">'+yolUst()+'<p class="yol-etiket">Yanlışlarını inceleyelim · '+(Y.ik+1)+' / '+Y.yanlis.length+'</p>';
  if(gor){
-  h+='<div class="yol-kart yol-soru-kart"><div class="yol-soru-satir"><h2 class="yol-soru">'+esc(soruYazi)+'</h2></div></div><div class="yol-inc-cift"><figure class="yol-inc-k bad"><img src="'+esc(sec.image)+'" alt=""><figcaption><b>✕ Senin seçtiğin</b><span>'+esc(yolItemAd(q.cevap)||sec.alt)+'</span></figcaption></figure><figure class="yol-inc-k ok"><img src="'+esc(dog.image)+'" alt=""><figcaption><b>✓ Doğru cevap</b><span>'+esc(q.ad)+'</span></figcaption></figure></div>';
+  h+='<div class="yol-kart yol-soru-kart"><div class="yol-soru-satir"><h2 class="yol-soru'+(q.oz?' oz':'')+'">'+esc(soruYazi)+'</h2></div></div><div class="yol-inc-cift"><figure class="yol-inc-k bad"><img src="'+esc(sec.image)+'" alt=""><figcaption><b>✕ Senin seçtiğin</b><span>'+esc(yolItemAd(q.cevap)||sec.alt)+'</span></figcaption></figure><figure class="yol-inc-k ok"><img src="'+esc(dog.image)+'" alt=""><figcaption><b>✓ Doğru cevap</b><span>'+esc(q.ad)+'</span></figcaption></figure></div>';
  }else{
   h+='<div class="yol-kart yol-soru-kart"><img class="yol-img" src="'+esc(q.item.image)+'" alt="'+esc(q.item.imageAlt||'Soru görseli')+'"><div class="yol-soru-satir"><h2 class="yol-soru">'+esc(soruYazi)+'</h2></div></div><div class="yol-secenek"><div class="yol-sec bad"><span class="yol-ik bad" aria-hidden="true">✕</span><span class="yol-sec-ad"><b>'+esc(sec.text)+'</b><em>Senin cevabın</em></span></div><div class="yol-sec ok"><span class="yol-ik ok" aria-hidden="true">✓</span><span class="yol-sec-ad"><b>'+esc(dog.text)+'</b><em>Doğru cevap</em></span></div></div>';
  }

@@ -2095,7 +2095,7 @@
    "imageAlt": "Besin fotoğrafı",
    "answer": "TARÇIN",
    "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
-   "explanation": "Çubuk veya toz biçiminde kullanılır. Sütlü tatlılarda, içeceklerde ve bazı yemeklerde aroma verir.",
+   "explanation": "Çubuk veya toz biçiminde kullanılır. Sütlü tatlılarda, içeceklerde ve bazı yemeklerde aroma verir. Ağacın iç kabuğundan elde edilir.",
    "source": {
     "file": "Baharat_12_Gorsel_18_Ad.docx",
     "page": 1,
@@ -2107,7 +2107,16 @@
    "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
    "currentBoardCard": 11,
    "ust": "kuru",
-   "aile": "tatli-baharat"
+   "aile": "tatli-baharat",
+   "oz": {
+    "kok": "Bu baharat bir ağacın iç kabuğundan elde edilir.",
+    "soru": "Aşağıdaki görsellerin hangisi bu baharattır?",
+    "sec": [
+     "bh-05-04",
+     "bh-02-12",
+     "bh-02-11"
+    ]
+   }
   },
   {
    "id": "bh-02-01",
@@ -2161,7 +2170,7 @@
    "imageAlt": "Besin fotoğrafı",
    "answer": "SUSAM",
    "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
-   "explanation": "Küçük yağlı tohumlardır. Simit, ekmek ve tatlılarda kullanılır.",
+   "explanation": "Küçük yağlı tohumlardır. Simit, ekmek ve tatlılarda kullanılır. Taneleri açık renkli, yassı ve ovaldir.",
    "source": {
     "file": "Baharat_12_Gorsel_18_Ad.docx",
     "page": 3,
@@ -2173,7 +2182,16 @@
    "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
    "currentBoardCard": 2,
    "ust": "kuru",
-   "aile": "tohum"
+   "aile": "tohum",
+   "oz": {
+    "kok": "Bu tohumlar açık renkli, yassı ve ovaldir.",
+    "soru": "Aşağıdaki görsellerin hangisi bu tohumu gösterir?",
+    "sec": [
+     "bh-02-02",
+     "bh-02-05",
+     "bh-02-09"
+    ]
+   }
   },
   {
    "id": "bh-02-04",
@@ -2337,7 +2355,7 @@
    "imageAlt": "Besin fotoğrafı",
    "answer": "YILDIZ ANASON",
    "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
-   "explanation": "Yıldız biçimli bir baharattır. Tatlı ve içeceklerde aroma vermek için kullanılır; anason tohumuyla aynı bitki değildir.",
+   "explanation": "Yıldız biçimli bir baharattır. Tatlı ve içeceklerde aroma vermek için kullanılır; anason tohumuyla aynı bitki değildir. Ağacın kurutulmuş meyvesidir; kolları ortada birleşir.",
    "source": {
     "file": "Baharat_12_Gorsel_18_Ad.docx",
     "page": 3,
@@ -2349,7 +2367,16 @@
    "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
    "currentBoardCard": 9,
    "ust": "kuru",
-   "aile": "tatli-baharat"
+   "aile": "tatli-baharat",
+   "oz": {
+    "kok": "Bu baharatın kolları ortada birleşir.",
+    "soru": "Aşağıdaki görsellerin hangisi bu baharattır?",
+    "sec": [
+     "bh-02-12",
+     "bh-02-08",
+     "bh-02-10"
+    ]
+   }
   },
   {
    "id": "bh-02-12",
@@ -2359,7 +2386,7 @@
    "imageAlt": "Besin fotoğrafı",
    "answer": "KARANFİL",
    "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
-   "explanation": "Kurutulmuş çiçek tomurcuğudur. Komposto ve tatlılara yoğun aroma verir.",
+   "explanation": "Kurutulmuş çiçek tomurcuğudur. Komposto ve tatlılara yoğun aroma verir. İnce sapın ucunda yuvarlak bir tomurcuk vardır.",
    "source": {
     "file": "Baharat_12_Gorsel_18_Ad.docx",
     "page": 3,
@@ -2371,7 +2398,16 @@
    "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
    "currentBoardCard": 10,
    "ust": "kuru",
-   "aile": "tatli-baharat"
+   "aile": "tatli-baharat",
+   "oz": {
+    "kok": "Bu baharat kurutulmuş çiçek tomurcuğudur.",
+    "soru": "Aşağıdaki görsellerin hangisi bu baharattır?",
+    "sec": [
+     "bh-02-11",
+     "bh-02-08",
+     "bh-02-10"
+    ]
+   }
   },
   {
    "id": "bh-03-01",
@@ -2421,7 +2457,16 @@
    "aile": "odunsu-ot",
    "disla": [
     "BİBERİYE (TAZE VE KURU)"
-   ]
+   ],
+   "oz": {
+    "kok": "Bu bitkinin yaprakları iğne gibi ince ve uzundur.",
+    "soru": "Aşağıdaki görsellerin hangisi bu bitkiyi gösterir?",
+    "sec": [
+     "bh-03-03",
+     "bh-03-07",
+     "bh-03-09"
+    ]
+   }
   },
   {
    "id": "bh-03-03",
@@ -2431,7 +2476,7 @@
    "imageAlt": "Besin fotoğrafı",
    "answer": "TAZE KEKİK",
    "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
-   "explanation": "Küçük yapraklı aromatik bir bitkidir. Yemeklere ve soslara aroma vermek için kullanılır.",
+   "explanation": "Küçük yapraklı aromatik bir bitkidir. Yemeklere ve soslara aroma vermek için kullanılır. Küçük, oval yaprakları ince dallar boyunca dizilir.",
    "source": {
     "file": "Baharat_12_Gorsel_18_Ad.docx",
     "page": 5,
@@ -2446,7 +2491,16 @@
    "aile": "odunsu-ot",
    "disla": [
     "KEKİK (TAZE VE KURU)"
-   ]
+   ],
+   "oz": {
+    "kok": "Bu bitkinin küçük, oval yaprakları ince dallar boyunca dizilir.",
+    "soru": "Aşağıdaki görsellerin hangisi bu bitkiyi gösterir?",
+    "sec": [
+     "bh-03-05",
+     "bh-03-09",
+     "bh-03-02"
+    ]
+   }
   },
   {
    "id": "bh-03-04",
@@ -2478,7 +2532,7 @@
    "imageAlt": "Besin fotoğrafı",
    "answer": "ROKA",
    "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
-   "explanation": "Yeşil yapraklı bir salata bitkisidir. Yaprakları kendine özgü keskin tat verir.",
+   "explanation": "Yeşil yapraklı bir salata bitkisidir. Yaprakları kendine özgü keskin tat verir. Yaprak kenarlarında derin girintiler vardır.",
    "source": {
     "file": "Baharat_12_Gorsel_18_Ad.docx",
     "page": 5,
@@ -2490,7 +2544,16 @@
    "assessmentConstruct": "Görselde sunulan ürünün veya aynı ürünün farklı biçimlerinin adını tanıma; yalnız tozu/kuru biçimi tanıma ya da botanik teşhis değildir.",
    "currentBoardCard": 4,
    "ust": "taze-bitki",
-   "aile": "yesillik"
+   "aile": "yesillik",
+   "oz": {
+    "kok": "Bu bitkinin yaprak kenarlarında derin girintiler vardır.",
+    "soru": "Aşağıdaki görsellerin hangisi bu bitkiyi gösterir?",
+    "sec": [
+     "bh-03-09",
+     "bh-03-01",
+     "bh-03-07"
+    ]
+   }
   },
   {
    "id": "bh-03-06",
@@ -2701,7 +2764,16 @@
    "aile": "odunsu-ot",
    "disla": [
     "TAZE KEKİK"
-   ]
+   ],
+   "oz": {
+    "kok": "Bu bitkinin küçük, oval yaprakları taze veya kuru kullanılır.",
+    "soru": "Aşağıdaki görsellerin hangisi bu bitkinin iki biçimini gösterir?",
+    "sec": [
+     "bh-04-01",
+     "bh-04-05",
+     "bh-04-11"
+    ]
+   }
   },
   {
    "id": "bh-04-05",
@@ -3381,7 +3453,7 @@
    "imageAlt": "Besin fotoğrafı",
    "answer": "KURU ÜZÜM",
    "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
-   "explanation": "Üzümün kurutulmuş biçimidir. Kek, pilav ve tatlılarda kullanılır.",
+   "explanation": "Üzümün kurutulmuş biçimidir. Kek, pilav ve tatlılarda kullanılır. Salkımdaki üzüm tanelerinin kurutulmasıyla elde edilir.",
    "source": {
     "file": "Baharat_12_Gorsel_18_Ad.docx",
     "page": 15,
@@ -3394,7 +3466,16 @@
    "currentBoardCard": 7,
    "kok": "Görseldeki besinin adı nedir?",
    "ust": "meyve-kuruyemis",
-   "aile": "meyve"
+   "aile": "meyve",
+   "oz": {
+    "kok": "Bu kuru meyve, salkımdaki tanelerin kurutulmasıyla elde edilir.",
+    "soru": "Aşağıdaki görsellerin hangisi bu kuru meyveyi gösterir?",
+    "sec": [
+     "bh-08-11",
+     "bh-08-08",
+     "bh-08-09"
+    ]
+   }
   },
   {
    "id": "bh-08-08",
@@ -3473,7 +3554,7 @@
    "imageAlt": "Besin fotoğrafı",
    "answer": "KURU İNCİR",
    "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
-   "explanation": "İncirin kurutulmuş biçimidir. Tatlı ve hamur işlerinde kullanılır.",
+   "explanation": "İncirin kurutulmuş biçimidir. Tatlı ve hamur işlerinde kullanılır. Yassı ve buruşuktur; ucunda kısa bir sapı vardır.",
    "source": {
     "file": "Baharat_12_Gorsel_18_Ad.docx",
     "page": 15,
@@ -3486,7 +3567,16 @@
    "currentBoardCard": 11,
    "kok": "Görseldeki besinin adı nedir?",
    "ust": "meyve-kuruyemis",
-   "aile": "meyve"
+   "aile": "meyve",
+   "oz": {
+    "kok": "Bu kuru meyve yassı ve buruşuktur. Ucunda kısa bir sapı vardır.",
+    "soru": "Aşağıdaki görsellerin hangisi bu kuru meyveyi gösterir?",
+    "sec": [
+     "bh-08-07",
+     "bh-08-08",
+     "bh-08-09"
+    ]
+   }
   },
   {
    "id": "bh-08-12",
@@ -3625,7 +3715,16 @@
    "currentBoardCard": 5,
    "kok": "Görseldeki besinin adı nedir?",
    "ust": "meyve-kuruyemis",
-   "aile": "kuruyemis"
+   "aile": "kuruyemis",
+   "oz": {
+    "kok": "Bu yemişin içi girintili çıkıntılıdır.",
+    "soru": "Aşağıdaki görsellerin hangisi bu yemişi gösterir?",
+    "sec": [
+     "bh-09-07",
+     "bh-09-03",
+     "bh-09-04"
+    ]
+   }
   },
   {
    "id": "bh-09-06",
@@ -3681,7 +3780,7 @@
    "imageAlt": "Besin fotoğrafı",
    "answer": "KAJU",
    "hint": "Tane mi, yaprak mı, toz mu olduğuna bak. Benzer görünümlü ürünleri yalnız renklerinden ayırmaya çalışma.",
-   "explanation": "Kıvrık biçimli bir sert kabuklu yemiştir. Tatlı ve yemeklerde kullanılır.",
+   "explanation": "Kıvrık biçimli bir sert kabuklu yemiştir. Tatlı ve yemeklerde kullanılır. İçi açık renklidir.",
    "source": {
     "file": "Baharat_12_Gorsel_18_Ad.docx",
     "page": 17,
@@ -3694,7 +3793,16 @@
    "currentBoardCard": 8,
    "kok": "Görseldeki besinin adı nedir?",
    "ust": "meyve-kuruyemis",
-   "aile": "kuruyemis"
+   "aile": "kuruyemis",
+   "oz": {
+    "kok": "Bu yemişin içi açık renkli ve kıvrıktır.",
+    "soru": "Aşağıdaki görsellerin hangisi bu yemişi gösterir?",
+    "sec": [
+     "bh-09-03",
+     "bh-09-07",
+     "bh-09-04"
+    ]
+   }
   },
   {
    "id": "bh-09-09",

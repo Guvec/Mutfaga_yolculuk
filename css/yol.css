@@ -206,3 +206,7 @@ body[data-screen=yolum] #app:has(.yh-sayfa){display:flex;flex-direction:column;h
 
 /* Öğren kartı kısa telefonda (13.11): 360×740 gibi ekranlarda kaydırma olmasın. */
 .yol-ogren .yol-img{max-height:min(40vh,max(100px,calc(100vh - 655px)));max-height:min(40svh,max(100px,calc(100svh - 655px)))}
+
+/* Özellik → görsel sorusu: kök iki cümledir, daha küçük ve sola yaslı yazılır. */
+.yol-soru-satir .yol-soru.oz{font-size:17px;line-height:1.3;text-align:left}
+@media(max-height:700px){.yol-soru-satir .yol-soru.oz{font-size:16px;line-height:1.25}}
