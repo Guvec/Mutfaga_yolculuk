@@ -41,9 +41,10 @@ askDelProfile=function(n){try{PS_PID[n]=rkPid(n);}catch(e){}return PS_ASK(n);};
 const PS_SILINDI=profilSilindi;
 profilSilindi=function(n){
  const pid=PS_PID[n];delete PS_PID[n];
- ['rutbe','rutbe_dal','odul','rk_best','rk_win','rk_pek','rk_oyun','rk_setting','arena_devam','arena_odul','arena_pek','haftalik','yol_ma','yol_bh','yol_tk_ma','yol_tk_bh','rk_clean'].forEach(k=>{
+ ['rutbe','rutbe_dal','odul','rk_best','rk_win','rk_pek','rk_oyun','rk_setting','arena_devam','arena_odul','arena_pek','haftalik','yol_ma','yol_bh','yol_tk_ma','yol_tk_bh','rk_clean','pastacilik_ilk_v1'].forEach(k=>{
   try{const a=ls(k,null);if(a&&typeof a==='object'&&!Array.isArray(a)){let ch=false;[pid,n].forEach(x=>{if(x&&x in a){delete a[x];ch=true;}});if(ch)lsSet(k,a);}}catch(e){}
  });
+ if(typeof PastacilikIlk!=='undefined')PastacilikIlk.forget(pid);
  try{lsSet('ana_son_konu_'+n,null);}catch(e){}
  PS_SILINDI(n);
  if(typeof adSync==='function')setTimeout(adSync,600);

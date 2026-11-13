@@ -1,0 +1,217 @@
+/* Pastacılık ilk bölüm. Tüm kurallar bu ekrana bağlıdır. */
+.pi-shell {
+ --pi-green:#075345;
+ --pi-cream:#fbf1e2;
+ --pi-border:#dec29e;
+ --pi-ink:#3a2819;
+ width:min(100%, 540px);
+ margin-inline:auto;
+ min-height:100svh;
+ display:flex;
+ flex-direction:column;
+ color:var(--pi-ink);
+ background:var(--pi-cream);
+ font-size:1rem;
+ line-height:1.25;
+}
+.pi-shell *, .pi-shell *::before { box-sizing:border-box; }
+.pi-shell :is(h1,h2,h3,p,figure,ol) { margin:0; }
+.pi-shell button { font:inherit; font-weight:700; cursor:pointer; touch-action:manipulation; }
+.pi-shell :focus-visible { outline:3px solid #9b5c22; outline-offset:2px; }
+.pi-header {
+ display:grid;
+ grid-template-columns:44px 1fr 44px;
+ align-items:center;
+ gap:12px;
+ padding:6px 12px;
+ background:var(--pi-green);
+ color:#fffaf1;
+}
+.pi-header h1 { font-size:1.35rem; }
+.pi-header button {
+ width:44px;
+ min-height:44px;
+ padding:0;
+ border:1px solid #8bb1a7;
+ border-radius:11px;
+ background:#ffffff12;
+ color:inherit;
+ font-size:1.45rem;
+}
+.pi-header button:focus-visible { outline-color:#ffdb9d; }
+.pi-stage {
+ display:flex;
+ flex:1;
+ flex-direction:column;
+ gap:clamp(4px, 1svh, 8px);
+ padding:8px 10px 10px;
+}
+.pi-stage h2 {
+ padding:5px 8px;
+ border:1px solid var(--pi-border);
+ border-radius:12px;
+ text-align:center;
+ font-size:1.28rem;
+ font-weight:800;
+}
+.pi-panel {
+ background:#fff8ee91;
+ border:1px solid var(--pi-border);
+ border-radius:13px;
+}
+.pi-rank {
+ display:flex;
+ align-items:center;
+ gap:10px;
+ padding:4px 10px;
+}
+.pi-rank img { width:clamp(42px, 8svh, 66px); height:auto; flex:none; }
+.pi-rank div { flex:1; min-width:0; }
+.pi-rank p,.pi-note { font-size:max(13px, .82rem); }
+.pi-rank progress { display:block; width:100%; height:7px; margin:3px 0; accent-color:var(--pi-green); }
+.pi-ranks { display:grid; gap:6px; list-style:none; padding:0; }
+.pi-ranks [aria-current] { border:2px solid var(--pi-green); }
+.pi-button {
+ min-height:44px;
+ padding:5px 12px;
+ border:1px solid var(--pi-green);
+ border-radius:12px;
+ background:var(--pi-green);
+ color:#fffaf1;
+}
+.pi-secondary { color:var(--pi-green); background:transparent; }
+.pi-button:disabled { cursor:wait; }
+.pi-scene {
+ position:relative;
+ isolation:isolate;
+ overflow:hidden;
+ border:1px solid var(--pi-border);
+ border-radius:15px;
+ min-height:70px;
+ background:#b69e85 url('../assets/pastacilik-ilk/mutfak.webp') center 62% / 100% auto no-repeat;
+}
+.pi-hero {
+ flex:1;
+ min-height:clamp(120px, 30svh, 280px);
+ background-size:cover;
+ background-position:center 79%;
+}
+.pi-quiz-scene { height:clamp(70px, 21svh, 193px); background-position:center 79%; }
+.pi-scene img { position:absolute; display:block; object-fit:contain; }
+.pi-actor { position:absolute; overflow:hidden; inset:0 40% 11% 0; }
+.pi-panda {
+ width:100%;
+ height:174%;
+ top:1%;
+ left:0;
+ object-position:center top;
+}
+.pi-hero .pi-actor { right:31%; bottom:24%; }
+.pi-hero .pi-panda { width:117%; left:-6%; height:150%; top:3%; }
+.pi-intro .pi-actor { right:35%; bottom:25%; }
+.pi-intro .pi-panda { width:108%; left:-3%; height:136%; top:2%; }
+img.pi-box { width:39%; height:43%; right:3%; bottom:9%; object-position:center bottom; }
+.pi-intro img.pi-box { width:29%; height:40%; right:4%; bottom:20%; }
+.pi-box-opening { animation:pi-box-open .32s ease-out; }
+@keyframes pi-box-open { 50% { transform:translateY(-4px); } }
+.pi-ingredient {
+ z-index:1;
+ width:48%;
+ height:78%;
+ bottom:2%;
+ right:3%;
+ object-position:center bottom;
+}
+.pi-intro .pi-ingredient { width:57%; height:64%; right:10%; }
+.pi-intro-head { display:flex; align-items:center; justify-content:space-between; padding:4px 8px; gap:8px; }
+.pi-intro-head h2 { border:0; padding:0; text-align:left; font-size:1.05rem; }
+.pi-intro-head span { flex:none; font-size:max(13px,.86rem); }
+.pi-copy,.pi-note { text-align:center; }
+.pi-copy { padding:6px 8px; }
+.pi-copy h3 { font-size:1.35rem; }
+.pi-copy p + p { margin-top:3px; }
+.pi-bubble {
+ position:absolute;
+ top:12%;
+ right:4%;
+ max-width:57%;
+ padding:8px 12px;
+ border-radius:17px;
+ background:#fff5e7;
+ box-shadow:0 2px 6px #33281f3b;
+ font-size:1.2rem;
+ font-weight:800;
+}
+.pi-options { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:6px; }
+.pi-option {
+ position:relative;
+ display:flex;
+ align-items:center;
+ gap:6px;
+ min-width:0;
+ min-height:44px;
+ padding:4px 7px;
+ text-align:left;
+ color:var(--pi-ink);
+}
+.pi-option:hover { border-color:var(--pi-green); background:#fff8ef; }
+.pi-letter {
+ flex:none;
+ display:grid;
+ place-items:center;
+ width:26px;
+ height:26px;
+ border-radius:50%;
+ background:var(--pi-green);
+ color:white;
+ font-size:14px;
+}
+.pi-pictures .pi-option { justify-content:center; height:clamp(74px, 20svh, 175px); }
+.pi-pictures .pi-letter { position:absolute; z-index:1; top:5px; left:6px; }
+.pi-option-image { width:96%; height:100%; object-fit:contain; }
+.pi-pair figure,.pi-learned figure { display:grid; justify-items:center; align-content:center; padding:4px; text-align:center; }
+.pi-pair figure strong { font-size:max(13px,.88rem); }
+.pi-pair figure img,.pi-learned figure img { display:block; width:100%; object-fit:contain; }
+.pi-pair figure img { height:clamp(56px, 16svh, 138px); }
+.pi-options figcaption,.pi-done-title { font-weight:800; }
+.pi-done-title { text-align:center; font-size:1rem; }
+.pi-learned figure img { height:clamp(39px, 9svh, 78px); }
+.pi-learned figcaption { font-size:max(13px,.87rem); }
+@media (max-height:720px) {
+ .pi-done .pi-quiz-scene { height:clamp(70px, 15svh, 110px); }
+ .pi-question:has(.pi-pictures) .pi-quiz-scene { height:clamp(70px, 18svh, 120px); }
+ .pi-pictures .pi-option { height:clamp(68px, 17svh, 117px); }
+}
+@media (max-height:620px) {
+ .pi-stage { gap:4px; padding-block:5px; }
+ .pi-done .pi-quiz-scene { height:70px; }
+ .pi-learned figure img { height:39px; }
+}
+@media (prefers-reduced-motion:reduce) {
+ .pi-box-opening { animation:none; }
+}
+
+.pi-clock { font-variant-numeric:tabular-nums; font-weight:700; }
+.pi-option span:last-child { overflow-wrap:anywhere; }
+.pi-fast-row { display:flex; align-items:center; justify-content:space-between; gap:8px; }
+.pi-fast-row .pi-clock { padding-inline:8px; }
+
+/* Ustalık Yolum (13.11) */
+.pi-yol-hero { display:flex; align-items:center; gap:12px; padding:8px 12px; background:linear-gradient(135deg,#fff8ea,#f3e3c4); }
+.pi-yol-hero img { width:clamp(84px, 17svh, 132px); height:auto; flex:none; filter:drop-shadow(0 4px 6px rgba(60,40,10,.3)); }
+.pi-yol-hero div { flex:1; min-width:0; }
+.pi-yol-hero strong { font-size:1.3rem; }
+.pi-yol-hero p { font-size:max(13px,.85rem); }
+.pi-yol-hero progress { display:block; width:100%; height:10px; margin:4px 0; accent-color:var(--pi-green); }
+.pi-yol { position:relative; display:grid; gap:5px; list-style:none; padding:0; margin:0; }
+.pi-yol::before { content:''; position:absolute; left:calc(10px + clamp(40px,8svh,58px)/2 - 2px); top:20px; bottom:20px; width:4px; border-radius:2px; background:#d9c7a6; }
+.pi-yol li { position:relative; display:flex; align-items:center; gap:10px; padding:3px 10px; min-height:clamp(48px,9.2svh,74px); }
+.pi-yol img { width:clamp(40px,8svh,58px); height:auto; flex:none; position:relative; }
+.pi-yol div { flex:1; min-width:0; }
+.pi-yol p,.pi-yol span { font-size:max(13px,.8rem); }
+.pi-yol span { flex:none; padding:3px 9px; border-radius:999px; border:1px solid var(--pi-border); font-weight:700; }
+.pi-yol-now { border:2px solid var(--pi-green); background:#fffdf6; }
+.pi-yol-now span { background:var(--pi-green); color:#fffaf1; border-color:var(--pi-green); }
+.pi-yol-ok span { color:var(--pi-green); }
+.pi-yol-lock img { filter:grayscale(1); opacity:.45; }
+.pi-yol-lock strong,.pi-yol-lock p { opacity:.7; }

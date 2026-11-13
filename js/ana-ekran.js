@@ -22,7 +22,7 @@
  };
  function profileArt(name){name=String(name||'');const key=/civciv/i.test(name)?'chick':/panda/i.test(name)?'panda':/tavşan/i.test(name)?'rabbit':/tilki/i.test(name)?'fox':/kaplumbağa/i.test(name)?'turtle':null;return key==='chick'?'<img class="ae-avatar-art" src="assets/ascidostum/civciv.webp" alt="" width="96" height="96">':key?art(key,'ae-avatar-art'):'<span class="ae-avatar-emoji" aria-hidden="true">'+esc(typeof adEmo==='function'&&name?adEmo(name):'👨‍🍳')+'</span>';}
  window.anaProfilGorsel=function(){return profileArt(st.prof);};
- function rankHTML(){
+ function rankHTML(ust){
   const pid=st.prof&&!st.guest?rkPid(st.prof,false):null;
   const state=pid?rutbeState(pid):{mp:0,rank:1};
   const ranks=RUTBE_AYAR.ranks;
@@ -33,12 +33,15 @@
   const names=rutbeAdlari(),title=(names[index]||current.name)+(next?' → '+(names[index+1]||next.name):'');
   const note=next?remaining+' puan kaldı':'En yüksek öğrenci rütbesi';
   rankHTML.title=title;
-  return `<button type="button" class="ae-rank" onclick="go('rutbe')" aria-label="${esc(title+'. '+note)}">
-   <span class="ae-rank-copy"><strong>${esc(title)}</strong><span class="ae-progress" role="progressbar"
-    aria-label="Sonraki rütbeye ilerleme" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${Math.round(percent)}" aria-valuetext="${esc(note)}"><span style="width:${percent}%"></span></span>
-    <small class="ae-rank-note">${esc(note)}</small></span>
-   <img class="ae-rank-hat" src="assets/tasarim/sef-kepi-128.png" alt="" width="64" height="64">
-  </button>`;
+  return `<div class="ae-serit${ust?' ae-serit-ust':''}" data-dal="${path()}" role="button" tabindex="0" onclick="go('rutbe')"
+    onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();go('rutbe');}" aria-label="${esc('Rütbem: '+title+'. '+note)}">
+   <img src="assets/rozet/${path()}-${index+1}.webp" alt="" width="96" height="96">
+   <span class="ae-serit-metin">
+    <span class="ae-serit-adlar"><strong>${esc(names[index]||current.name)}</strong>${next?`<small>${esc(names[index+1]||next.name)} ›</small>`:''}</span>
+    <span class="ae-progress" role="progressbar" aria-label="Sonraki rütbeye ilerleme" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${Math.round(percent)}" aria-valuetext="${esc(note)}"><span style="width:${percent}%"></span></span>
+    <small class="ae-serit-not">${esc(note)}</small>
+   </span>
+  </div>`;
  }
  const YOLLAR={
   sicak:{ad:'Sıcak Mutfak',konular:['mutfak-araclari','baharat','beslenme-ilkeleri','bulasik-makinesi-temizligi'],tarif:'sicak'},
@@ -60,12 +63,13 @@
     </button>
     <strong class="ae-profile-name">${esc(name)}</strong>
     <button type="button" class="ae-settings" onclick="anaAyarlar()" aria-label="Ayarlar"><span aria-hidden="true">⚙︎</span></button>
-    ${rankHTML()}<span class="ae-rank-baslik" aria-hidden="true">${esc(rankHTML.title||'')}</span>
+    ${rankHTML(true)}
    </header>
    <nav class="ae-paths" aria-label="Mutfak dalları">
     <button type="button" class="ae-paper" onclick="anaYol('sicak')" aria-pressed="${path()==='sicak'}">${dalArt('sicak')}<span>Sıcak Mutfak</span></button>
     <button type="button" class="ae-paper" onclick="anaYol('pasta')" aria-pressed="${path()==='pasta'}">${dalArt('pasta')}<span>Pastacılık</span></button>
     <button type="button" class="ae-paper" onclick="anaYol('servis')" aria-pressed="${path()==='servis'}">${dalArt('servis')}<span>Servis</span></button>
+    ${rankHTML()}
    </nav>
    <button type="button" class="ae-paper ae-dost" onclick="anaDostMutfak()" aria-label="Aşçı Dostum. Besle ve tepkisini izle">
     <strong>Aşçı Dostum</strong>
@@ -259,7 +263,8 @@
   const konular=y.konular.map(id=>topicRow(TOPICS[id][0],TOPICS[id][1],"anaYolKonu('"+id+"')")).join('');
   const tarifler=y.tarif?Object.entries(RECIPES).filter(([,r])=>r.group===y.tarif)
    .map(([id,r])=>topicRow(r.name,r.image,"anaYolTarif('"+id+"')")).join(''):'';
-  return interior(y.ad+': Konular ve Uygulama','<h2>Konular</h2><div class="ae-list">'+konular+'</div>'+
+  const oyun=path()==='pasta'?topicRow('Pastacılık oyunu','dal-panda-pasta',"PastacilikIlk.navigate('pastacilikilk')"):'';
+  return interior(y.ad+': Konular ve Uygulama',oyun+'<h2>Konular</h2><div class="ae-list">'+konular+'</div>'+
    (tarifler?'<h2>Uygulama</h2><div class="ae-list">'+tarifler+'</div>':''));
  }
  function resume(id){
@@ -337,10 +342,12 @@
   const isHome=screen==='home'||screen==='welcome';
   if(isHome){subjectReturn='home';kitapGeri='mutfakkitabi';}
   document.body.classList.toggle('ae-is-home',isHome);
-  if(!Object.hasOwn(screens,screen)){dostDurdur();prevRender();return;}
+  const pastacilikIlk=PastacilikIlk.screens.includes(screen);
+  if(!pastacilikIlk&&!Object.hasOwn(screens,screen)){dostDurdur();prevRender();return;}
   if(typeof GIRIS.dur==='function'&&document.getElementById('actor'))GIRIS.dur();
   dostDurdur();
-  document.getElementById('app').innerHTML=screens[screen]();
+  if(pastacilikIlk)PastacilikIlk.renderScreen(screen);
+  else document.getElementById('app').innerHTML=screens[screen]();
   if(isHome)dostCanlandir();
   document.body.dataset.screen=isHome?'home':screen;
   document.body.classList.remove('oyun-ekrani');
@@ -350,7 +357,7 @@
  back=function(){
   const destinations={mutfakkitabi:'home',ascilikatolyesi:'home',market:'home',
    sicakmutfak:'ascilikatolyesi',pastacilik:'ascilikatolyesi',
-   yolpenceresi:'home',
+   yolpenceresi:'home',pastacilikilk:'yolpenceresi',pastacilikoyun:'pastacilikilk',pastacilikrutbe:'pastacilikilk',
    tarifkart:recipeFrom==='yol'?'yolpenceresi':RECIPES[recipe]?.group==='pasta'?'pastacilik':'sicakmutfak',
    servantkuver:kitapGeri,servant:'servantkuver',beslenmeokuma:kitapGeri,
    gunlukgorevler:'mutfakkitabi',subject:subjectReturn};
