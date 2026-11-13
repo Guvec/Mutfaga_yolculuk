@@ -210,3 +210,61 @@ body[data-screen=yolum] #app:has(.yh-sayfa){display:flex;flex-direction:column;h
 /* Özellik → görsel sorusu: kök iki cümledir, daha küçük ve sola yaslı yazılır. */
 .yol-soru-satir .yol-soru.oz{font-size:17px;line-height:1.3;text-align:left}
 @media(max-height:700px){.yol-soru-satir .yol-soru.oz{font-size:16px;line-height:1.25}}
+
+/* ---- 13.11: ayar paneli, büyük görseller, rütbe kartı ---- */
+.yol-ayar-btn{display:grid;place-items:center;padding:0!important;font-size:0}
+.yol-ayar-pan{position:fixed;inset:0;z-index:60;display:grid;place-items:center;padding:16px;background:rgba(20,30,30,.45)}
+.yol-ayar-kutu{width:min(340px,100%);display:grid;gap:10px;padding:16px;border-radius:18px;background:var(--surface,#fff);box-shadow:0 12px 40px rgba(0,0,0,.25)}
+.yol-ayar-kutu h2{margin:0;font-size:20px;color:var(--navy,#123)}
+.yol-ayar-kutu button[aria-pressed]{display:flex;justify-content:space-between;align-items:center;min-height:52px;padding:8px 14px;border:2px solid var(--line,#c9d4d4);border-radius:12px;background:var(--surface,#fff);color:var(--navy,#123);font:inherit;font-size:17px;font-weight:700;cursor:pointer}
+.yol-ayar-kutu button[aria-pressed="true"]{border-color:var(--teal,#0b5c5f);background:var(--soft,#e3f0ef)}
+.yol-ayar-kutu button b{font-size:15px;color:var(--teal,#0b5c5f)}
+.yol-ayar-kutu button:focus-visible{outline:3px solid #c08a1e;outline-offset:2px}
+/* Eşleştirme: sayfa tam ekran yüksekliğindedir; görseller kalan alanı doldurur (6 görsel, 2 sıra). Eski svh sınırlarının yerine geçer. */
+#app:has(.yol-es-sayfa){height:100vh;height:100svh;display:flex;flex-direction:column;overflow:hidden}
+.yol-es-sayfa{flex:1;min-height:0;display:flex!important;flex-direction:column;gap:6px;padding-bottom:10px!important}
+.yol-es-sayfa>*{flex:0 0 auto}
+.yol-es-sayfa .yol-soru{margin:0;font-size:19px}
+.yol-es-sayfa .yol-yon{font-size:15px}
+.yol-es-sayfa .yol-es{flex:1 1 auto;min-height:0;display:flex;flex-direction:column;gap:8px}
+.yol-es-sayfa .yol-es-gorseller{flex:1 1 auto;min-height:120px;margin:0;grid-template-rows:1fr 1fr;align-content:stretch}
+.yol-es-sayfa .yol-es-g{position:relative;min-height:0;padding:0}
+.yol-es-sayfa .yol-es-g img{position:absolute;inset:4px;width:calc(100% - 8px);height:calc(100% - 8px);max-height:none;min-height:0;aspect-ratio:auto;object-fit:contain}
+.yol-es-sayfa .yol-es-adlar{flex:0 0 auto}
+.yol-es-sayfa .yol-es-a{min-height:48px;padding:4px 6px}
+.yol-mesaj:empty{display:none}
+@media(min-width:900px){
+ .yol-es-sayfa,.yol-soru-sayfa,.yol-inc{max-width:1080px}
+ .yol-soru-sayfa .yol-gorsel-sec{gap:14px}
+ .yol-es-sayfa .yol-es{flex-direction:row;gap:16px}
+ .yol-es-sayfa .yol-es-gorseller{flex:2.2 1 0}
+ .yol-es-sayfa .yol-es-adlar{flex:1 1 0;grid-template-columns:1fr;grid-auto-rows:1fr}
+ .yol-es-sayfa .yol-es-a{font-size:19px}
+ .yol-soru-sayfa .yol-gsec img{max-height:calc(100vh - 380px);max-height:calc(100svh - 380px)}
+ .yol-ogren .yol-img{max-width:560px}
+}
+/* Soru ekranları tam ekran yüksekliğindedir (13.11): fotoğraflar kalan alanı doldurur, sayfa kaymaz. */
+#app:has(.yol-soru-sayfa){height:100vh;height:100svh;display:flex;flex-direction:column;overflow:hidden}
+.yol-soru-sayfa{flex:1;min-height:0;display:flex!important;flex-direction:column}
+.yol-soru-sayfa>*{flex:0 0 auto}
+.yol-soru-sayfa .yol-gorsel-sec{flex:1 1 auto;min-height:150px;grid-template-rows:1fr 1fr;align-content:stretch}
+.yol-soru-sayfa .yol-gsec{position:relative;min-height:0;padding:0;display:block}
+.yol-soru-sayfa .yol-gsec img{position:absolute;inset:5px;width:calc(100% - 10px);height:calc(100% - 10px);max-height:none;min-height:0;aspect-ratio:auto;object-fit:contain}
+.yol-soru-sayfa .yol-gsec em{position:absolute;left:0;right:0;bottom:0;padding:2px 0;background:var(--soft,#e3f0ef);border-radius:0 0 11px 11px;text-align:center}
+.yol-soru-sayfa .yol-soru-kart:has(.yol-img){flex:1 1 auto;min-height:110px;display:flex;flex-direction:column;align-items:center}
+.yol-soru-sayfa .yol-soru-kart:has(.yol-img) .yol-img{flex:1 1 0;height:0;min-height:60px;max-height:none!important;width:100%;object-fit:contain}
+.yol-soru-sayfa .yol-soru-kart:has(.yol-img) .yol-soru-satir{flex:0 0 auto}
+@media(min-width:900px){
+ .yol-soru-sayfa .yol-secenek{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+}
+@media(min-width:1400px){
+ .yol-es-sayfa,.yol-soru-sayfa,.yol-inc{max-width:1500px}
+ .yol-soru-sayfa .yol-gorsel-sec{grid-template-columns:repeat(4,1fr);grid-template-rows:1fr}
+}
+@media(min-width:760px) and (max-width:1399px){.yol-soru-sayfa .yol-gorsel-sec{grid-template-columns:1fr 1fr}}
+
+/* Aşama şeridi: 4 ya da 5 aşama; başlık küçük ekranda sığar. */
+.yol-asama.n4{grid-template-columns:repeat(4,1fr)}
+.yol-bar-ttl b{overflow-wrap:normal;word-break:normal;hyphens:none;font-size:clamp(14px,4.1vw,17px);line-height:1.15}
+@media(max-width:420px){.yol-bar{gap:6px;padding-inline:8px}.yol-bar .yol-geri-btn{flex-basis:44px;width:44px;height:44px}.yol-sure{padding:4px 6px;gap:3px}.yol-sure b{font-size:15px}}
+@media(min-width:900px){.yol-ogren .yol-img{max-height:calc(100vh - 530px)!important;max-height:calc(100svh - 530px)!important;max-width:620px}}

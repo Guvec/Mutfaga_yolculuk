@@ -1,8 +1,9 @@
 /* © 2026 Ali Arıkoğlu. Tüm hakları saklıdır. */
 /* Mutfak Araçları, Baharat ve Bulaşık · Öğrenme yolu (Parça 2a): etap > bölüm, kilit, bölüm içi akış, açıklama, 6'lı eşleştirme, Yolculuğum.
    Bölüm = 6 öğe. Etap = 4 bölüm + etap sonu eşleştirmesi. Bütün sayılar YOL_AYAR içinde tek yerden ayarlanır.
-   Akış: Öğren -> addan görsele (4 seçenek) -> görselden ada (4 seçenek) -> görselden ada (5 seçenek) -> 6'lı eşleştirme.
-   Geçme ölçütü son aşamadadır (görselden ada, 5 seçenek). İlk iki aşama öğretir, geçmeyi belirlemez. */
+   Akış (13.11): Öğren -> Görseli bul (addan görsele) -> Adını bul (görselden ada) -> Özelliğinden bul (özellik verilir, ad söylenmez) -> 6'lı eşleştirme.
+   Her soru 4 seçeneklidir. Geçme ölçütü "Adını bul" aşamasındadır. "Özelliğinden bul" yalnız özellik cümlesi ('oz') yazılmış öğeler için
+   açılır ve öğretir, geçmeyi belirlemez; bölümde böyle öğe yoksa bu aşama atlanır. */
 'use strict';
 const YOL_AYAR={
  subject:'mutfak-araclari',
@@ -24,7 +25,8 @@ const YOL_KONU={
 };
 function yolKonuVar(id){return !!YOL_KONU[id];}
 function yolK(){return YOL_KONU[YOL_AYAR.subject]||YOL_KONU['mutfak-araclari'];}
-const YOL_ASAMA=[{id:'s1',ad:'Görseli bul'},{id:'s2',ad:'4 seçenek'},{id:'s3',ad:'5 seçenek'}];
+const YOL_ASAMA=[{id:'s1',ad:'Görseli bul'},{id:'s2',ad:'Adını bul'},{id:'s3',ad:'Özelliğinden bul'}];
+function yolOzVar(node){return !!(node&&node.tur==='bolum'&&node.items.some(x=>x.oz&&Array.isArray(x.oz.sec)));}
 let Y=null; /* açık bölüm durumu */
 
 /* ---------- Plan ---------- */
@@ -146,9 +148,8 @@ function yolAile(item,disi,gorselIcin){
 }
 function yolSoru(item,tip,node,tohum,destek){
  const ad=item.answer;
- /* Özellik → görsel sorusu (13.11 pilotu): öğede 'oz' varsa Görsel seç aşamasında ad yerine Öğren kartındaki özellik sorulur;
-    seçenek görselleri elle belirlenmiştir. Ad soruda geçmez. */
- if(tip==='s1'&&item.oz&&Array.isArray(item.oz.sec)){
+ /* Özellik → görsel sorusu: 'Özelliğinden bul' aşamasında Öğren kartındaki özellik sorulur; seçenek görselleri elle belirlenmiştir. Ad soruda geçmez. */
+ if(tip==='s3'&&item.oz&&Array.isArray(item.oz.sec)){
   const d0=yolVeri(),dig=item.oz.sec.map(id=>d0&&d0.matches.find(m=>m.id===id)).filter(Boolean);
   if(dig.length===3){
    const sec=yolKar([item,...dig],tohum+item.id+'G').map(x=>({id:x.id,image:x.image,alt:'Seçenek fotoğrafı'}));
@@ -165,7 +166,7 @@ function yolSoru(item,tip,node,tohum,destek){
    return {tip:'gorsel',item,ad,sec,dogru:item.id};
   }
  }
- const n=(tip==='s3'&&!destek)?5:4;
+ const n=4;
  /* disla = "aynı soruda birlikte çıkmaz" (13.11). Taze kekik ile kekik (taze ve kuru) gibi birbirini kapsayan ya da
     görselden ayırt edilemeyen adlar çeldirici olmaz; iki yönde de denetlenir. Çeldiriciler birbiriyle de çakışmaz. */
  const d=yolVeri(),byAd={};if(d)d.matches.forEach(m=>{byAd[m.answer]=m;});
@@ -179,7 +180,7 @@ function yolSoru(item,tip,node,tohum,destek){
  return {tip:'ad',item,ad,sec,dogru:ad};
 }
 function yolSorular(node,asama,tohum,destek){
- const sira=yolKar(node.items,tohum+asama);
+ const sira=yolKar(asama==='s3'?node.items.filter(x=>x.oz&&Array.isArray(x.oz.sec)):node.items,tohum+asama);
  return sira.map(it=>yolSoru(it,asama,node,tohum+asama,destek));
 }
 
@@ -194,6 +195,7 @@ function yolBaslat(id,gozat){
  const cur=s.cur&&s.cur.id===id?s.cur:null;
  if(cur&&['ogren','s1','s2','s3','esles'].includes(cur.phase)){
   Y={node,mode:'oyun',phase:cur.phase,k:cur.k||0,pick:null,tohum:cur.tohum,destek:!!cur.destek,sk:cur.sk||{},sure:cur.sure|0};
+  if(cur.phase==='s3'&&!yolOzVar(node))Y.phase=cur.phase='esles';
   if(['s1','s2','s3'].includes(cur.phase)){
    const k=cur.k|0,sels=Array.isArray(cur.sels)?cur.sels:[],sub=cur.sub;
    yolFazHazirla();
@@ -227,7 +229,7 @@ window.yolSerbestAc=function(id){
 };
 window.yolSerbestBaslat=function(tur){
  if(!Y||Y.mode!=='serbest')return;Y.sure=0;Y.pick=null;Y.k=0;
- if(tur==='esles'){Y.phase='esles';yolEslesHazirla();}else{Y.phase='s3';Y.qs=yolSorular(Y.node,'s3',Y.tohum,false);}
+ if(tur==='esles'){Y.phase='esles';yolEslesHazirla();}else{Y.phase='s2';Y.qs=yolSorular(Y.node,'s2',Y.tohum,false);}
  render();
 };
 /* Kayıt (13.11): soru aşamasında sıra, seçilen cevaplar ve gözden geçirme ekranı da saklanır; Öğren'e dönülmüşse soru durumu saklanır. */
@@ -253,6 +255,9 @@ function yolEslesHazirla(){
 function yolSoyle(t){if(!t)return;if(SES.acik){sesSoyle(t);return;}SES.acik=true;try{sesSoyle(t);}finally{SES.acik=false;}if(SES.pending)SES.pending.zorla=true;}
 window.yolSoyleIdx=function(i){yolSoyle(Y&&Y.oku&&Y.oku[i]);};
 function yolSesBtn(t,etiket){Y.oku=Y.oku||[];const i=Y.oku.push(t)-1;return '<button type="button" class="spk yol-ses" aria-label="'+esc(etiket||'Sesli dinle')+'" onclick="yolSoyleIdx('+i+')">🔊 <span>'+esc(etiket||'Dinle')+'</span></button>';}
+
+/* Oyun sesleri (13.11): seçimde kısa tık her zaman; doğru/yanlış ve aşama sesleri sesli okuma kapalıyken çalar. Ayardan kapatılabilir. */
+function yolTik(ad){try{if(typeof EFEKT==='undefined')return;if(ad!=='tik'&&typeof SES!=='undefined'&&SES.acik)return;EFEKT.cal(ad);}catch(e){}}
 
 /* ---------- Akış ---------- */
 /* Öğren'e dön (13.11): soru aşamasından bilgi kartlarına geçilir; seçilen cevaplar, sıra ve süre korunur. */
@@ -296,7 +301,7 @@ window.yolOnayla=function(){
   else q.tkEklendi=yolTkYanlis(q.item,q.tip==='gorsel'?yolItemAd(q.cevap):(c&&c.text));});
  const dogru=Y.qs.filter(q=>q.cevap===q.dogru).length;Y.sk[Y.phase]=dogru;Y.fark=dogru;
  Y.yanlis=Y.qs.map((q,i)=>i).filter(i=>Y.qs[i].cevap!==Y.qs[i].dogru);
- if(!Y.yanlis.length){yolFazBitir();return;}
+ if(!Y.yanlis.length){yolTik('tur');yolFazBitir();return;}
  Y.sub='inceleme';Y.ik=0;render();
 };
 window.yolIncSonraki=function(){if(!Y||Y.sub!=='inceleme')return;if(Y.ik<Y.yanlis.length-1){Y.ik++;render();return;}if(Y.mode!=='tekrar'&&typeof yanlisYolAc==='function'&&yanlisYolAc())return;yolFazBitir();};
@@ -305,28 +310,28 @@ function yolFazBitir(){
  if(Y.mode==='tekrar'){Y.phase='tbitti';render();return;}
  if(Y.mode==='serbest'){Y.phase='sbitti';render();return;}
  if(Y.phase==='s1'){Y.phase='s2';Y.k=0;yolFazHazirla();yolKaydet();render();return;}
- if(Y.phase==='s2'){Y.phase='s3';Y.k=0;yolFazHazirla();yolKaydet();render();return;}
- /* son aşama: geçme kararı */
- if(dogru>=YOL_AYAR.gecme){Y.phase='esles';Y.k=0;yolFazHazirla();yolKaydet();render();return;}
+ if(Y.phase==='s3'){Y.phase='esles';Y.k=0;yolFazHazirla();yolKaydet();render();return;}
+ /* Adını bul: geçme kararı. Geçince özellik soruları (varsa), sonra eşleştirme. */
+ if(dogru>=Math.min(YOL_AYAR.gecme,Y.qs.length)){Y.phase=yolOzVar(Y.node)?'s3':'esles';Y.k=0;yolFazHazirla();yolKaydet();render();return;}
  const s=yolS();s.fails[Y.node.id]=(s.fails[Y.node.id]||0)+1;s.cur=null;yolYaz(s);
  Y.phase='basarisiz';Y.fark=dogru;render();
 }
 window.yolCevap=function(i){
  if(!Y||!['s1','s2','s3'].includes(Y.phase)||(Y.sub&&Y.sub!=='soru'))return;
- const q=Y.qs[Y.k];if(!q||!q.sec[i])return;q.sel=q.sec[i].id;Y.pick=i;yolKaydet();Y.odak='sec'+i;Y.duyuru=(q.tip==='gorsel'?'Görsel '+'ABCDE'[i]:q.sec[i].text)+' seçildi.';render();
+ const q=Y.qs[Y.k];if(!q||!q.sec[i])return;q.sel=q.sec[i].id;Y.pick=i;yolTik('tik');yolKaydet();Y.odak='sec'+i;Y.duyuru=(q.tip==='gorsel'?'Görsel '+'ABCDE'[i]:q.sec[i].text)+' seçildi.';render();
 };
 window.yolYenidenDene=function(){
  if(!Y)return;const s=yolS(),fails=s.fails[Y.node.id]||0,destek=fails>=YOL_AYAR.destekDeneme;
  Y.destek=destek;Y.tohum=Y.node.id+'#'+(fails+1)+'#'+Date.now().toString(36);Y.sk={};Y.k=0;
  Y.phase=destek?'ogren':'s1';yolFazHazirla();yolKaydet();render();
 };
-window.yolEsGorsel=function(id){if(!Y||Y.phase!=='esles'||Y.m.eslesen.includes(id))return;Y.m.sel=Y.m.sel===id?null:id;Y.m.mesaj='';render();};
+window.yolEsGorsel=function(id){if(!Y||Y.phase!=='esles'||Y.m.eslesen.includes(id))return;Y.m.sel=Y.m.sel===id?null:id;Y.m.mesaj='';yolTik('tik');render();};
 window.yolEsAd=function(id){
  if(!Y||Y.phase!=='esles'||Y.m.eslesen.includes(id))return;const m=Y.m;
  if(!m.sel){m.mesaj='Önce bir görsel seç.';m.mesajTur='';render();return;}
- if(m.sel===id){m.eslesen.push(id);m.mesaj='Doğru eşleşme.';m.mesajTur='ok';m.sel=null;
+ if(m.sel===id){m.eslesen.push(id);m.mesaj='Doğru eşleşme.';m.mesajTur='ok';m.sel=null;yolTik('dogru');
   if(m.eslesen.length===m.ogeler.length){if(Y.mode==='serbest'){Y.phase='sbitti';Y.fark=undefined;render();return;}yolTamamla();return;}
- }else{yolTkYanlis(m.ogeler.find(x=>x.id===m.sel),yolItemAd(id));m.hata++;m.mesaj='Eşleşmedi. Başka bir ad dene.';m.mesajTur='bad';m.sel=null;}
+ }else{yolTkYanlis(m.ogeler.find(x=>x.id===m.sel),yolItemAd(id));m.hata++;yolTik('tok');m.mesaj='Eşleşmedi. Başka bir ad dene.';m.mesajTur='bad';m.sel=null;}
  render();
 };
 function yolTamamla(){
@@ -358,20 +363,37 @@ function yolKonuAdi(){return (typeof KONU_GORSEL!=='undefined'&&KONU_GORSEL[YOL_
 function yolSureYaz(n){n=n|0;return String(Math.floor(n/60)).padStart(2,'0')+':'+String(n%60).padStart(2,'0');}
 const YOL_KUM='<svg class="kum-svg" viewBox="0 0 32 48" width="26" height="39" focusable="false" aria-hidden="true"><defs><clipPath id="kumU"><path d="M6 5H26V10C26 17 19 21 17.2 24C19 27 26 31 26 38V43H6V38C6 31 13 27 14.8 24C13 21 6 17 6 10Z"/></clipPath></defs><g class="kum-g"><path d="M6 5H26V10C26 17 19 21 17.2 24C19 27 26 31 26 38V43H6V38C6 31 13 27 14.8 24C13 21 6 17 6 10Z" fill="rgba(255,255,255,.55)"/><g clip-path="url(#kumU)"><path class="kum-ust" d="M5 5H27V24H5Z" fill="#E0A93B"/><path class="kum-alt" d="M5 43V39C10 36 13 31 16 30C19 31 22 36 27 39V43Z" fill="#E0A93B"/><line class="kum-akis" x1="16" y1="23" x2="16" y2="40" stroke="#E0A93B" stroke-width="1.3" stroke-dasharray="2 2"/></g><path d="M6 5H26V10C26 17 19 21 17.2 24C19 27 26 31 26 38V43H6V38C6 31 13 27 14.8 24C13 21 6 17 6 10Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><rect x="3" y="2" width="26" height="3.4" rx="1.7" fill="currentColor"/><rect x="3" y="42.6" width="26" height="3.4" rx="1.7" fill="currentColor"/></g></svg>';
 function yolBar(baslik,alt,geri,sure){
- return '<header class="yol-bar"><button type="button" class="yol-geri-btn" onclick="'+geri+'" aria-label="Geri">‹</button><button type="button" class="yol-geri-btn yol-ev-btn" onclick="yolAnaSayfa()" aria-label="Ana sayfa"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M3 11.5 12 4l9 7.5M5.5 10v9.5h5v-6h3v6h5V10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div class="yol-bar-ttl"><b>'+esc(baslik)+'</b>'+(alt?'<span>'+esc(alt)+'</span>':'')+'</div>'+(sure?'<div class="yol-sure" role="timer" aria-label="Geçen süre"><span class="yol-kum" aria-hidden="true">'+YOL_KUM+'</span><b id="yolSureT">'+yolSureYaz(Y.sure)+'</b></div>':'<span class="yol-sure-bos"></span>')+'</header>';
+ return '<header class="yol-bar"><button type="button" class="yol-geri-btn" onclick="'+geri+'" aria-label="Geri">‹</button><button type="button" class="yol-geri-btn yol-ev-btn" onclick="yolAnaSayfa()" aria-label="Ana sayfa"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M3 11.5 12 4l9 7.5M5.5 10v9.5h5v-6h3v6h5V10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button><button type="button" class="yol-geri-btn yol-ayar-btn" onclick="yolAyarAc()" aria-label="Ses ve hareket ayarları"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="3.2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 2.8v3M12 18.2v3M2.8 12h3M18.2 12h3M5.5 5.5l2.1 2.1M16.4 16.4l2.1 2.1M5.5 18.5l2.1-2.1M16.4 7.6l2.1-2.1" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button><div class="yol-bar-ttl"><b>'+esc(baslik)+'</b>'+(alt?'<span>'+esc(alt)+'</span>':'')+'</div>'+(sure?'<div class="yol-sure" role="timer" aria-label="Geçen süre"><span class="yol-kum" aria-hidden="true">'+YOL_KUM+'</span><b id="yolSureT">'+yolSureYaz(Y.sure)+'</b></div>':'<span class="yol-sure-bos"></span>')+'</header>';
 }
-function yolAyak(oyun){
- return '<footer class="yol-ayak"><p>'+(oyun?'İstediğin zaman çıkabilirsin. Geri geldiğinde kaldığın yerden devam edersin.':'İstediğin zaman çıkabilirsin.')+'</p><div class="yol-ayar"><button type="button" onclick="sesAcKapa()">Sesli okuma: '+(SES.acik?'Açık':'Kapalı')+'</button><button type="button" onclick="sakinDegistir();render()">Hareket: '+(sakinAcik()?'Kapalı':'Açık')+'</button></div></footer>';
-}
+/* Ses ve hareket ayarları üst çubuktaki ⚙ düğmesindedir (13.11); ekranın altında yer kaplamaz. */
+function yolAyak(){return '';}
+window.yolAyarAc=function(){
+ const eski=document.getElementById('yolAyarPan');if(eski){eski.remove();return;}
+ const d=document.createElement('div');d.id='yolAyarPan';d.className='yol-ayar-pan';d.setAttribute('role','dialog');d.setAttribute('aria-modal','true');d.setAttribute('aria-label','Ses ve hareket ayarları');
+ const ciz=()=>{d.innerHTML='<div class="yol-ayar-kutu"><h2>Ayarlar</h2>'+
+  '<button type="button" data-a="ses" aria-pressed="'+SES.acik+'">Sesli okuma<b>'+(SES.acik?'Açık':'Kapalı')+'</b></button>'+
+  (typeof EFEKT!=='undefined'&&EFEKT.var()?'<button type="button" data-a="efekt" aria-pressed="'+EFEKT.acikMi()+'">Oyun sesleri<b>'+(EFEKT.acikMi()?'Açık':'Kapalı')+'</b></button>':'')+
+  '<button type="button" data-a="hareket" aria-pressed="'+!sakinAcik()+'">Hareket<b>'+(sakinAcik()?'Kapalı':'Açık')+'</b></button>'+
+  '<button type="button" class="yol-btn" data-a="kapat">Tamam</button></div>';};
+ ciz();
+ d.addEventListener('click',e=>{const b=e.target.closest('button'),a=b&&b.dataset.a;
+  if(!b){if(e.target===d){d.remove();render();}return;}
+  if(a==='kapat'){d.remove();render();return;}
+  if(a==='ses')sesAcKapa();else if(a==='efekt'){EFEKT.ayarla(!EFEKT.acikMi());if(EFEKT.acikMi())EFEKT.cal('tik');}else if(a==='hareket')sakinDegistir();
+  ciz();const y=d.querySelector('[data-a="'+a+'"]');if(y)y.focus();});
+ d.addEventListener('keydown',e=>{if(e.key==='Escape'){d.remove();render();}});
+ document.body.appendChild(d);d.querySelector('button').focus();
+};
+
 function yolSeg(k,n,dolu){let h='<span class="yol-seg" role="img" aria-label="'+k+' / '+n+'">';for(let i=0;i<n;i++)h+='<i class="'+(i<k||(dolu&&i===k)?'dolu':i===k?'simdi':'')+'"></i>';return h+'</span>';}
 /* Etaptaki bölüm sayısı plandan okunur: son etap eksik bölümle bitebilir (ör. Bulaşık'ta 2 bölüm). */
 function yolEtapBolum(n){const plan=YOL_PLANLAR[YOL_AYAR.subject]&&YOL_PLANLAR[YOL_AYAR.subject].nodes;const k=plan?plan.filter(x=>x.etap===n.etap&&x.tur==='bolum').length:0;return k||YOL_AYAR.etapBolum;}
 function yolEtiket(n){return n.tur==='son'?'Etap '+n.etap+' · Etap sonu':'Etap '+n.etap+' · Bölüm '+n.no+' / '+yolEtapBolum(n);}
-const YOL_ASAMA_AD=['Öğren','Görsel seç','4 seçenek','5 seçenek','Eşleştir'];
+const YOL_ASAMA_AD={ogren:'Öğren',s1:'Görseli bul',s2:'Adını bul',s3:'Özelliğinden bul',esles:'Eşleştir'};
 function yolAsamaSeridi(){
- const sira=['ogren','s1','s2','s3','esles'],i=sira.indexOf(Y.phase);
+ const sira=['ogren','s1','s2','s3','esles'].filter(x=>x!=='s3'||yolOzVar(Y.node)),i=sira.indexOf(Y.donus?'ogren':Y.phase);
  const don=Y.mode==='oyun'&&!Y.donus&&['s1','s2','s3'].includes(Y.phase)&&Y.sub!=='inceleme';
- return '<div class="yol-asama" aria-label="Aşamalar">'+YOL_ASAMA_AD.map((a,j)=>j===0&&don?'<button type="button" class="bitti yol-asama-don" onclick="yolOgreneDon()" aria-label="Öğren kartlarına dön. Cevapların kayıtlı kalır.">📖 '+esc(a)+'</button>':'<span class="'+(j<i?'bitti':j===i?'simdi':'')+'"'+(j===i?' aria-current="step"':'')+'>'+(j<i?'✓ ':'')+esc(a)+'</span>').join('')+'</div>';
+ return '<div class="yol-asama n'+sira.length+'" aria-label="Aşamalar">'+sira.map(x=>YOL_ASAMA_AD[x]).map((a,j)=>j===0&&don?'<button type="button" class="bitti yol-asama-don" onclick="yolOgreneDon()" aria-label="Öğren kartlarına dön. Cevapların kayıtlı kalır.">📖 '+esc(a)+'</button>':'<span class="'+(j<i?'bitti':j===i?'simdi':'')+'"'+(j===i?' aria-current="step"':'')+'>'+(j<i?'✓ ':'')+esc(a)+'</span>').join('')+'</div>';
 }
 function yolUst(){
  if(Y.mode==='tekrar')return '<p class="yol-etiket">Tekrar Çalışması</p>';
@@ -476,7 +498,7 @@ function yolIncelemeHTML(){
 }
 function yolEslesHTML(){
  const m=Y.m,eslesti=id=>m.eslesen.includes(id);
- let h=yolBar(yolKonuAdi(),'','yolKapat()',true)+'<div class="yol-sayfa">'+yolUst()+
+ let h=yolBar(yolKonuAdi(),'','yolKapat()',true)+'<div class="yol-sayfa yol-es-sayfa">'+yolUst()+
   '<h2 class="yol-soru">Her görseli adıyla eşleştir</h2><p class="yol-yon">Önce bir görsele, sonra adına dokun. '+m.eslesen.length+' / '+m.ogeler.length+' eşleşti.</p><div class="yol-es">';
  h+='<div class="yol-es-sut yol-es-gorseller" aria-label="Görseller">'+m.gorseller.map(it=>'<button type="button" class="yol-es-g'+(eslesti(it.id)?' ok':'')+(m.sel===it.id?' sec':'')+'" onclick="yolEsGorsel(\''+it.id+'\')"'+(eslesti(it.id)?' disabled':'')+' aria-pressed="'+(m.sel===it.id)+'" aria-label="Görsel: '+esc(it.imageAlt||yolK().nesne)+(eslesti(it.id)?', eşleşti':'')+'"><img src="'+esc(it.image)+'" alt="">'+(eslesti(it.id)?'<em>✓</em>':'')+'</button>').join('')+'</div>';
  h+='<div class="yol-es-sut yol-es-adlar" aria-label="Adlar">'+m.adlar.map(it=>'<button type="button" class="yol-es-a'+(eslesti(it.id)?' ok':'')+'" onclick="yolEsAd(\''+it.id+'\')"'+(eslesti(it.id)?' disabled':'')+'>'+(eslesti(it.id)?'✓ ':'')+esc(it.answer)+'</button>').join('')+'</div></div>';
@@ -501,7 +523,7 @@ function yolTekrarBittiHTML(){
 }
 function yolSerbestSecHTML(){
  const n=Y.node;
- return yolBar(yolKonuAdi(),'','go(\'yolum\')',false)+'<div class="yol-sayfa"><p class="yol-etiket">Serbest Çalışma · '+esc(yolEtiket(n))+'</p><h1>Nasıl çalışmak istersin?</h1><p class="yol-yon">Bu çalışma puanı ve kilidi etkilemez.</p><div class="yol-secim"><button type="button" class="yol-btn" onclick="yolSerbestBaslat(\'soru\')">5 seçenekli sorular</button><button type="button" class="yol-btn" onclick="yolSerbestBaslat(\'esles\')">6’lı eşleştirme</button></div></div>';
+ return yolBar(yolKonuAdi(),'','go(\'yolum\')',false)+'<div class="yol-sayfa"><p class="yol-etiket">Serbest Çalışma · '+esc(yolEtiket(n))+'</p><h1>Nasıl çalışmak istersin?</h1><p class="yol-yon">Bu çalışma puanı ve kilidi etkilemez.</p><div class="yol-secim"><button type="button" class="yol-btn" onclick="yolSerbestBaslat(\'soru\')">Adını bul soruları</button><button type="button" class="yol-btn" onclick="yolSerbestBaslat(\'esles\')">6’lı eşleştirme</button></div></div>';
 }
 function yolSerbestBittiHTML(){
  return yolBar(yolKonuAdi(),'','go(\'yolum\')',false)+'<div class="yol-sayfa"><h1>Çalışma bitti</h1>'+(Y.fark!==undefined&&Y.qs?'<p class="yol-kart yol-sonuc" role="status"><b>'+Y.fark+' / '+Y.qs.length+' doğru</b></p>':'<p class="yol-kart yol-sonuc" role="status"><b>Bütün eşleşmeleri buldun.</b></p>')+'<div class="yol-alt"><button type="button" class="yol-btn ikinci" onclick="go(\'yolum\')">Yolculuğum</button><button type="button" class="yol-btn" onclick="yolSerbestAc(\''+Y.node.id+'\')">Yeniden çalış ›</button></div></div>';
