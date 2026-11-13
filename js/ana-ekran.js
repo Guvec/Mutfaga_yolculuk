@@ -263,7 +263,8 @@
   const konular=y.konular.map(id=>topicRow(TOPICS[id][0],TOPICS[id][1],"anaYolKonu('"+id+"')")).join('');
   const tarifler=y.tarif?Object.entries(RECIPES).filter(([,r])=>r.group===y.tarif)
    .map(([id,r])=>topicRow(r.name,r.image,"anaYolTarif('"+id+"')")).join(''):'';
-  const oyun=path()==='pasta'?topicRow('Pastacılık oyunu','dal-panda-pasta',"PastacilikIlk.navigate('pastacilikilk')"):'';
+  const oyun=path()==='pasta'?topicRow('Pastacılık oyunu','dal-panda-pasta',"PastacilikIlk.navigate('pastacilikilk')"):
+   path()==='sicak'&&typeof BaharatRafi!=='undefined'?topicRow('Baharat Rafı','konu-baharat',"BaharatRafi.ac()",'Kutu 1 · 4 baharat'):'';
   return interior(y.ad+': Konular ve Uygulama',oyun+'<h2>Konular</h2><div class="ae-list">'+konular+'</div>'+
    (tarifler?'<h2>Uygulama</h2><div class="ae-list">'+tarifler+'</div>':''));
  }
@@ -343,10 +344,12 @@
   if(isHome){subjectReturn='home';kitapGeri='mutfakkitabi';}
   document.body.classList.toggle('ae-is-home',isHome);
   const pastacilikIlk=PastacilikIlk.screens.includes(screen);
-  if(!pastacilikIlk&&!Object.hasOwn(screens,screen)){dostDurdur();prevRender();return;}
+  const baharatRafi=typeof BaharatRafi!=='undefined'&&BaharatRafi.screens.includes(screen);
+  if(!pastacilikIlk&&!baharatRafi&&!Object.hasOwn(screens,screen)){dostDurdur();prevRender();return;}
   if(typeof GIRIS.dur==='function'&&document.getElementById('actor'))GIRIS.dur();
   dostDurdur();
   if(pastacilikIlk)PastacilikIlk.renderScreen(screen);
+  else if(baharatRafi)BaharatRafi.renderScreen(screen);
   else document.getElementById('app').innerHTML=screens[screen]();
   if(isHome)dostCanlandir();
   document.body.dataset.screen=isHome?'home':screen;
@@ -357,7 +360,7 @@
  back=function(){
   const destinations={mutfakkitabi:'home',ascilikatolyesi:'home',market:'home',
    sicakmutfak:'ascilikatolyesi',pastacilik:'ascilikatolyesi',
-   yolpenceresi:'home',pastacilikilk:'yolpenceresi',pastacilikoyun:'pastacilikilk',pastacilikrutbe:'pastacilikilk',
+   yolpenceresi:'home',pastacilikilk:'yolpenceresi',baharatrafi:'yolpenceresi',pastacilikoyun:'pastacilikilk',pastacilikrutbe:'pastacilikilk',
    tarifkart:recipeFrom==='yol'?'yolpenceresi':RECIPES[recipe]?.group==='pasta'?'pastacilik':'sicakmutfak',
    servantkuver:kitapGeri,servant:'servantkuver',beslenmeokuma:kitapGeri,
    gunlukgorevler:'mutfakkitabi',subject:subjectReturn};

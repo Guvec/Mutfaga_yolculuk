@@ -26,6 +26,7 @@ const RK_BOARDS=(()=>{const a=[];
  a.push({id:'bl-s1',subject:'bulasik-makinesi-temizligi',kind:'mcq',group:RK_MCQ['bulasik-makinesi-temizligi'][0],total:65,label:'Bütün bölümler · Sorular'});
  a.push({id:'bs-s1',subject:'beslenme-ilkeleri',kind:'mcq',group:RK_MCQ['beslenme-ilkeleri'][0],total:106,label:'Bütün bölümler · Sorular'});
  a.push({id:'bh-s1',subject:'baharat',kind:'mcq',group:RK_MCQ['baharat'][0],total:60,label:'Bütün bölümler · Sorular'});
+ a.push({id:'bh-k1',subject:'baharat',kind:'kutu',total:120,label:'Baharat Rafı · Kutu 1 (puan)'});
  a.forEach(b=>{if(/^(ma|bh|bl)-e\d+$/.test(b.id))b.gizli=true;}); /* 12'li eşleştirme tabloları: bu üç konuda 12'li eşleştirme kalktı, tablolar sıralamada gösterilmez */
  return a;})();
 const RK_SUBJECT_NAMES={baharat:'Baharatlar','mutfak-araclari':'Mutfak Araçları',kuver:'Kuver','bulasik-makinesi-temizligi':'Bulaşık Yıkama ve Atık Yönetimi','beslenme-ilkeleri':'Beslenme İlkeleri',oyun:'Kapışma ve Er Meydanı'};
@@ -59,7 +60,7 @@ function rkErrCode(e){return (e&&(e.code||e.message))||'';}
 
 /* İçerikteki gerçek kart/soru sayısı tablo sınırıyla aynı mı? Değilse o tablo sıralamaya yazılmaz. */
 function rkBoardValid(b){
- if(b.kind==='win'||b.kind==='weekly'||b.dynamic)return true;
+ if(b.kind==='win'||b.kind==='kutu'||b.kind==='weekly'||b.dynamic)return true;
  if(b.kind==='kur')return typeof LEVELS!=='undefined'&&LEVELS[b.lvl]&&LEVELS[b.lvl].items.length===b.total;
  const d=CONTENT[b.subject];if(!d)return false;
  if(b.kind==='match')return d.matches.filter(x=>x.set===b.set).length===b.total;
