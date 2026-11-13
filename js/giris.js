@@ -151,6 +151,12 @@ function girisHTML(){
  }
  /* Ana sayfa: seçili dala göre dost görseli (panda dışındaki dostlar için kıyafet dala uyar). */
  G.dalArt=function(dal){const look={pasta:'pastacilik',servis:'servis'}[dal];const p=preference();if(p.look&&p.look!=='normal')return portrait(G.character,p.look);return portrait(G.character,look);};
+ /* Ana sayfa sahnesi (13.11): kıyafet veya hareket seçilmemişse seçili dostun dal sahnesi (ana-<dost>-<dal>.webp). */
+ G.anaSahne=function(dal){
+  const p=preference();if((p.look&&p.look!=='normal')||pose(p.move))return null;
+  const ad={panda:'panda',rabbit:'tavsan',koala:'koala',civciv:'civciv',penguen:'penguen',papagan:'papagan',kedi:'kedi',keci:'keci',geyik:'geyik'}[G.character];
+  return ad?'ana-'+ad+'-'+({pasta:'pastacilik',servis:'servis'}[dal]||'sicak'):null;
+ };
  G.homeArt=function(){
   const look=preference();
   if(look.look&&look.look!=='normal')return portrait(G.character,look.look);
