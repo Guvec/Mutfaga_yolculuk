@@ -241,7 +241,10 @@ async function uygulamaGuncelle(){
  adToast('Güncelleniyor…');
  try{
   if('serviceWorker' in navigator){const r=await navigator.serviceWorker.getRegistration();if(r)await r.update();}
-  if(window.caches){const ks=await caches.keys();await Promise.all(ks.filter(k=>k.indexOf('mesleki-oyunlar')===0).map(k=>caches.delete(k)));}
+  /* Ders fotoğrafları ve sesler silinmeden önce sürümden bağımsız önbelleğe taşınır (çevrimdışı dersler kaybolmasın). */
+  if(window.caches){const ks=await caches.keys(),v=await caches.open('mesleki-varlik-1'),med=/\.(jpe?g|png|webp|gif|svg|mp3|m4a|ogg)$/i;
+   for(const k of ks){if(k.indexOf('mesleki-oyunlar')!==0)continue;try{const o=await caches.open(k);for(const q of await o.keys()){if(!med.test(new URL(q.url).pathname)||await v.match(q.url))continue;const r=await o.match(q);if(r&&r.ok)await v.put(q.url,r);}}catch(x){}}
+   await Promise.all(ks.filter(k=>k.indexOf('mesleki-oyunlar')===0).map(k=>caches.delete(k)));}
  }catch(e){}
  setTimeout(()=>location.reload(),500);
 }
