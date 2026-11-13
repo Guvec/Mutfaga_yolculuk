@@ -11,7 +11,7 @@ const SUBJECTS = [
 const CONTENT = Object.create(null);
 const OLD_RENDER = render, OLD_NEWQ = newQ, OLD_START = startSession, OLD_RESOLVE = resolve;
 const OLD_QUIZ = quizHtml, OLD_ITEM = itemImg;
-VERSION='Sürüm · 13.11.2026 · v3.9: Pastacılık ilk bölümler, yeni ana sayfa, rütbe şeridi'; // Her yüklemede tarih güncellenir.
+VERSION='Sürüm · 14.11.2026 · v3.10: Yeni ses sistemi (dokunma, geçiş, yarış, Er Meydanı), ses düzeyi, titreşim'; // Her yüklemede tarih güncellenir.
 st.subject='kuver'; st.practice='learn';
 LEVELS={
   1:{name:'Basit Kuver', items:['yemek_catali','yemek_bicagi','pecete','su_bardagi']},

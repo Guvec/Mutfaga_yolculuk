@@ -55,7 +55,10 @@ var EFEKT=(function(){
    return true;
   }catch(e){muzik('efektBitti');return false;}
  }
+ /* 14.11: eski ses adları yeni ses ustasına yönlendirilir; böylece bütün oyunlar yeni sesleri kullanır. */
+ var ESLE={kilic:'kilicCek',bilen:'kilicCek',tur:'kilicCarp',vurus:'kilicCarp',win:'galibiyet',kayip:'maglubiyet',bera:'beraberlik',dogru:'yerlesti',tak:'yerlesti',yanlis:'tekrarDene',tok:'tekrarDene',can:'tekrarDene',kuverTamam:'kutuBitti',rekor:'rekor',rutbe:'rutbe',seri:'seri',tirr:'sureBitti',tik:'saat',click:'dokun'};
  function cal(ad){
+  if(typeof SES_USTASI!=='undefined'&&ESLE[ad])return acikMi()?SES_USTASI.cal(ESLE[ad]):false;
   if(ad==='alkis')return acikMi()?alkis():false;
   if(!acikMi()||!NOTA[ad])return false;
   var c=baglam();if(!c)return false;
@@ -85,8 +88,17 @@ var EFEKT_SN=-1;
 function efektSaniye(left){try{var sn=Math.ceil(left/1000);if(sn!==EFEKT_SN){EFEKT_SN=sn;if(sn>=1&&sn<=5&&!(typeof SES!=='undefined'&&SES.acik)&&typeof EFEKT!=='undefined')EFEKT.cal('tik');}}catch(e){}}
 /* Soru serisi bitince: doğru oranı en az %80 ise servis zili ve üç ting. */
 function efektSeriBitti(){try{var s=st.sess;if(!s||s.efektSeri)return;s.efektSeri=true;var n=(s.ok||0)+(s.fix||0)+(s.bad||0);if(n>=5&&(s.ok||0)/n>=0.8&&!(typeof SES!=='undefined'&&SES.acik))EFEKT.cal('kuverTamam');}catch(e){}}
-function efektAcKapa(){EFEKT.ayarla(!EFEKT.acikMi());document.querySelectorAll('.efekt-ac').forEach(function(b){b.textContent='Efekt sesleri: '+(EFEKT.acikMi()?'Açık':'Kapalı');b.setAttribute('aria-pressed',String(EFEKT.acikMi()));});}
-function efektDugme(){if(!EFEKT.var())return '';return '<button type="button" class="btn sm efekt-ac" aria-pressed="'+EFEKT.acikMi()+'" onclick="efektAcKapa()">Efekt sesleri: '+(EFEKT.acikMi()?'Açık':'Kapalı')+'</button>';}
+/* Efekt düğmesi sırayla değişir: Orta → Yüksek → Kısık → Kapalı → Orta. */
+function efektYazi(){if(!EFEKT.acikMi())return 'Efekt sesleri: Kapalı';var d=typeof SES_USTASI!=='undefined'?SES_USTASI.duzey():'orta';return 'Efekt sesleri: '+({kisik:'Kısık',orta:'Orta',yuksek:'Yüksek'}[d]);}
+function efektAcKapa(){
+ var U=typeof SES_USTASI!=='undefined'?SES_USTASI:null;
+ if(!EFEKT.acikMi()){EFEKT.ayarla(true);if(U)U.duzeyAyarla('orta');}
+ else if(U){var d=U.duzey();if(d==='orta')U.duzeyAyarla('yuksek');else if(d==='yuksek')U.duzeyAyarla('kisik');else EFEKT.ayarla(false);}
+ else EFEKT.ayarla(false);
+ if(U&&EFEKT.acikMi())U.cal('yerlesti');
+ document.querySelectorAll('.efekt-ac').forEach(function(b){b.textContent=efektYazi();b.setAttribute('aria-pressed',String(EFEKT.acikMi()));});
+}
+function efektDugme(){if(!EFEKT.var())return '';return '<button type="button" class="btn sm efekt-ac" data-ses="yok" aria-pressed="'+EFEKT.acikMi()+'" onclick="efektAcKapa()">'+efektYazi()+'</button>';}
 
 /* Profil seçimi başına bir kez; tercihler cihazda kalır. */
 function sesSecimiSor(){

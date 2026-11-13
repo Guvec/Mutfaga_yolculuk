@@ -145,8 +145,11 @@ const PastacilikIlk = (() => {
   state.expired = false;
   if (id === key.split(':')[0]) {
    if (!state.correct.includes(key)) state.correct.push(key);
+   const last = order.every(item => state.correct.includes(item)) && !state.pending.length;
+   sesCal(last ? 'kutuBitti' : 'yerlesti');
    nextQuestion();
   } else {
+   sesCal('tekrarDene');
    state.pending.push({key, turn:state.turn + 3});
    state.chosen = id;
    state.stage = 'feedback';
@@ -155,6 +158,7 @@ const PastacilikIlk = (() => {
   paint();
  }
  function openBox(button) {
+  sesCal('ac');
   const motion = GIRIS.motion !== false && document.documentElement.dataset.sakin !== '1' &&
    !matchMedia('(prefers-reduced-motion: reduce)').matches;
   const reveal = () => {

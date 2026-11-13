@@ -165,6 +165,7 @@ function answer(v){
   var right = st.op==="kur" ? (v===st.q.key) : (v===st.q.ans);
   if(right){ resolve(st.tries===0?1:2); return; }
   st.tries++; st.wrong.push(v);
+  if(typeof sesCal==='function')sesCal('tekrarDene');
   if(st.tries===1){
     st.lastRes={cls:"bad", head:"Tekrar dene.", text: st.op==="kur" ? "Bu yer başka bir parçanın yeri." : "Görsele dikkatle bak."};
   } else {
@@ -183,6 +184,7 @@ function resolve(r){
   S.qs.push({q:it.ad, a: st.op==="kur"?it.yer:it.ad, r:r, s:s});
   if(st.op==="kur") st.placed[st.q.key]=true;
   if(st.op==="kur"&&r>0&&!(typeof SES!=='undefined'&&SES.acik)&&typeof EFEKT!=='undefined') EFEKT.cal('tak');
+  if(st.op!=="kur"&&r>0&&typeof sesCal==='function')sesCal('yerlesti');
   var info = st.op==="kur" ? it.kural : it.ayirt;
   if(r===1) st.lastRes={cls:"ok", head:"Doğru! +"+PTS+" puan", text:info};
   else if(r===2) st.lastRes={cls:"fix", head:"Düzelttin! +5 puan. İkinci denemede buldun.", text:info};
