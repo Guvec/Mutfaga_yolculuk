@@ -6,7 +6,7 @@
 'use strict';
 const AK_SURUM=1;
 /* pid ya da profil adıyla anahtarlanan kayıtlar (profil silmedeki listeyle aynı mantık). */
-const AK_HARITA=['rutbe','odul','rk_best','rk_win','rk_pek','rk_oyun','rk_setting','arena_odul','arena_pek','haftalik','yol_ma','yol_bh','yol_bl','yol_tk_ma','yol_tk_bh','yol_tk_bl','lezzet_tezgah','rk_prof'];
+const AK_HARITA=['rutbe','rutbe_dal','odul','rk_best','rk_win','rk_pek','rk_oyun','rk_setting','arena_odul','arena_pek','haftalik','yol_ma','yol_bh','yol_bl','yol_tk_ma','yol_tk_bh','yol_tk_bl','lezzet_tezgah','rk_prof'];
 function akHash(s){let h=2166136261>>>0;for(const c of String(s)){h^=c.charCodeAt(0);h=Math.imul(h,16777619)>>>0;}return (h>>>0).toString(36);}
 function akB64(u8){let s='';const N=0x8000;for(let i=0;i<u8.length;i+=N)s+=String.fromCharCode.apply(null,u8.subarray(i,i+N));return btoa(s);}
 function akB64Coz(b){const s=atob(b),u=new Uint8Array(s.length);for(let i=0;i<s.length;i++)u[i]=s.charCodeAt(i);return u;}

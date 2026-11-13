@@ -1,6 +1,6 @@
 /* © 2026 Ali Arıkoğlu. Tüm hakları saklıdır. */
 /* Değerler tek yerden değişir. Yalnız pid bazlı yerel kayıt; sunucuya sadece rank yazılır. */
-const RUTBE_AYAR={yolBolum:8,yolEtap:20,yolTamam:40,yolTekrar:1,maxMP:10,daily:3,firstBonus:5,recordBonus:3,matchMP:3,winMP:3,opponentDaily:2,weekly:3,ranks:[{name:'Çırak',mp:0},{name:'Aşçı Yardımcısı',mp:100},{name:'Aşçı',mp:300},{name:'Kaptan',mp:650},{name:'Şef Yardımcısı',mp:1100}]};
+const RUTBE_AYAR={yolBolum:8,yolEtap:20,yolTamam:40,yolTekrar:1,maxMP:10,daily:3,firstBonus:5,recordBonus:3,matchMP:3,winMP:3,opponentDaily:2,weekly:3,ranks:[{name:'Stajyer',mp:0},{name:'Çırak',mp:100},{name:'Aşçı Yardımcısı',mp:300},{name:'Aşçı',mp:650},{name:'Sıcak Mutfak Ustası',mp:1100}]};
 (function(root){
 'use strict';
 function day(ms){return new Date((ms===undefined?Date.now():ms)+10800000).toISOString().slice(0,10);}

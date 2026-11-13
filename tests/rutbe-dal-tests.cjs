@@ -1,0 +1,22 @@
+const http=require('node:http'),fs=require('node:fs'),path=require('node:path');const {chromium}=require('playwright');const assert=require('assert');
+const root=path.join(__dirname,'..');
+(async()=>{const server=http.createServer((q,r)=>{const rel=new URL(q.url,'http://x').pathname;const f=path.join(root,decodeURIComponent(rel==='/'?'/index.html':rel));if(!fs.existsSync(f)||fs.statSync(f).isDirectory()){r.writeHead(404).end();return;}r.writeHead(200,{'Content-Type':{'.js':'text/javascript','.css':'text/css','.html':'text/html','.json':'application/json'}[path.extname(f)]||'application/octet-stream'});fs.createReadStream(f).pipe(r);});
+await new Promise(r=>server.listen(0,'127.0.0.1',r));const url='http://localhost:'+server.address().port+'/';
+const b=await chromium.launch({args:['--no-sandbox']});const c=await b.newContext();await c.route('https://**/*',r=>r.abort());const p=await c.newPage();p.on('pageerror',e=>console.log('HATA',e.message));
+await p.goto(url);await p.locator('.ae-home').waitFor();
+const r=await p.evaluate(()=>{const prof=profiles()[0]||'🐼 Cesur Panda';if(!profiles().includes(prof))lsSet('profiles',[prof]);st.prof=prof;st.guest=false;const pid=rkPid(prof,true);
+ // eski kayıt: 320 puan, rütbe 3
+ const a=rutbeAll();a[pid]={mp:320,rank:3,best:{},badges:{}};lsSet('rutbe',a);lsSet('rutbe_dal',{});
+ const out={};
+ lsSet('ana_yol','servis');out.ilk=[rutbeState(pid).mp,rutbeState(pid).rank];
+ rutbeComplete({id:'yol-x1',table:'yol-kv-e1b1',correct:1,total:1,ilerleme:true,puan:8});
+ out.servis=rutbeDalState(pid,'servis');out.sicak=rutbeDalState(pid,'sicak');out.pasta=rutbeDalState(pid,'pasta');
+ lsSet('ana_yol','pasta');rutbeComplete({id:'yol-x2',table:'yol-bh-e1b1',correct:1,total:1,ilerleme:true,puan:340});
+ out.pasta2=rutbeDalState(pid,'pasta');out.sicak2=rutbeDalState(pid,'sicak');out.no=rutbeNumber(pid);
+ go('home');out.baslik=document.querySelector('.ae-rank strong').textContent;
+ lsSet('ana_yol','servis');go('home');out.baslik2=document.querySelector('.ae-rank strong').textContent;return out;});
+console.log(JSON.stringify(r));
+assert.deepEqual(r.ilk,[320,3]);assert.equal(r.servis.mp,328);assert.equal(r.sicak.mp,320);assert.equal(r.pasta.mp,320);
+assert.equal(r.pasta2.mp,660);assert.equal(r.pasta2.rank,4);assert.equal(r.sicak2.mp,320);assert.equal(r.no,4);
+assert.equal(r.baslik,'Pastacı → Pastacılık Ustası');assert.equal(r.baslik2,'Servis Yardımcısı → Servis Elemanı');
+console.log('GECTI: dal puanlari ayri, eski puan uc dala yazildi');await b.close();server.close();})().catch(e=>{console.error('KALDI',e.message);process.exit(1);});

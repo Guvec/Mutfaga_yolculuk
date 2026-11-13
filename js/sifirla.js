@@ -8,7 +8,7 @@
    İnternet yoksa işler sonraki açılışta ya da internet gelince sürer. */
 (function(){
  const SURUM='2026-11-10-tam';
- const SIL=['rutbe','records','odul','rk_best','rk_win','rk_pek','rk_oyun','rk_setting','arena_devam','arena_odul','arena_pek','haftalik','yol_ma','yol_bh','rk_queue','kaptan_onbellek','kaptan_onbellek2'];
+ const SIL=['rutbe','rutbe_dal','records','odul','rk_best','rk_win','rk_pek','rk_oyun','rk_setting','arena_devam','arena_odul','arena_pek','haftalik','yol_ma','yol_bh','rk_queue','kaptan_onbellek','kaptan_onbellek2'];
  const YEDEK_EK=['profiles','rk_ids','ark_id','ad_map','sonProfil'];
  function yerel(){
   if(ls('sifirlama',null)===SURUM)return;

@@ -6,9 +6,8 @@
  let pendingSubject=null,pendingYol=null;
  function art(k,cls){const c=crops[k];return '<svg class="ae-art '+(cls||'')+'" viewBox="0 0 '+c[2]+' '+c[3]+'" aria-hidden="true" focusable="false"><svg width="'+c[2]+'" height="'+c[3]+'" viewBox="'+c.join(' ')+'" overflow="hidden"><image href="'+ART+'" width="1094" height="1438"/></svg></svg>';}
  function path(){const y=ls('ana_yol','sicak');return y==='pasta'?'pasta':y==='servis'?'servis':'sicak';}
- const pastry=['Çırak','Pastacı Yardımcısı','Pastacı','Kıdemli Pastacı','Pasta Şefi Yardımcısı'];
- const servisAd=['Stajyer','Servis Eleman Yardımcısı','Servis Elemanı','Kaptan','Servis Şefi (Şef Garson)'];
- function rutbeAdlari(){return path()==='pasta'?pastry:path()==='servis'?servisAd:RUTBE_AYAR.ranks.map(r=>r.name);}
+ /* Dala özel rütbe adları (13.11): her dalın kendi puanı ve rütbesi vardır (rutbe-ui.js rutbeDalState). */
+ function rutbeAdlari(){return RUTBE_DAL_AD[path()]||RUTBE_DAL_AD.sicak;}
  window.anaRutbeAdlari=rutbeAdlari;
  function foto(id,cls='ae-art'){return '<img class="'+cls+'" src="assets/ascidostum/'+id+'.webp" alt="">';}
  function dalArt(id){return foto('dal-'+GIRIS.character+'-'+id);}

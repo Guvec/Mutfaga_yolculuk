@@ -7,7 +7,7 @@ assert.equal(r.complete(s,event({at:Date.parse('2026-11-04T21:00:00Z')})).gain,1
 assert.equal(r.day(Date.parse('2026-11-04T20:59:59Z')),'2026-11-04');assert.equal(r.day(Date.parse('2026-11-04T21:00:00Z')),'2026-11-05');
 let m;for(let i=0;i<2;i++)m=r.complete(m,event({match:true,opponents:['q'],win:true})).state;assert.equal(m.mp,12);assert.equal(r.complete(m,event({match:true,opponents:['q'],win:true})).gain,0);assert.equal(r.complete(m,event({match:true,opponents:[null],win:true})).gain,0);
 assert.equal(r.complete(null,event({guest:true})).gain,0);assert.equal(r.complete(null,event({abandoned:true})).gain,0);
-assert.deepEqual(r.config.ranks.map(x=>x.name),['Çırak','Aşçı Yardımcısı','Aşçı','Kaptan','Şef Yardımcısı']);assert.deepEqual(r.config.ranks.map(x=>x.mp),[0,100,300,650,1100]);
+assert.deepEqual(r.config.ranks.map(x=>x.name),['Stajyer','Çırak','Aşçı Yardımcısı','Aşçı','Sıcak Mutfak Ustası']);assert.deepEqual(r.config.ranks.map(x=>x.mp),[0,100,300,650,1100]);
 assert.equal(r.complete({mp:10,rank:5},event()).state.rank,5);
 for(const [key,badge] of [['yol-ma-tamam','arac'],['yol-bh-tamam','baharat']]){assert(!r.badges({best:{}})[badge]);assert(r.badges({best:{[key]:1}})[badge]);}
 /* Yolculuk ilerlemesi: bölüm ilk kez bitince puan verir, yeniden çözmek puan vermez */
