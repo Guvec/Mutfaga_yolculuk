@@ -19,6 +19,21 @@ function yrErrText(e){const m=e&&e.message?String(e.message):'';if(/permission|i
 function yrSetError(e){YR.error=typeof e==='string'?e:yrErrText(e);render();}
 function yrGuestName(){let g='';try{g=sessionStorage.getItem('yr_misafir')||'';if(!g){g='👤 Misafir '+(100+crypto.getRandomValues(new Uint16Array(1))[0]%900);sessionStorage.setItem('yr_misafir',g);}}catch(e){}return g||'👤 Misafir';}
 /* Oyun adı profilden gelir (hazır karakter adı); gerçek ad yazılmaz. */
+/* Saat düzeltmesi (13.11): Er Meydanı'nda oyuncu kaydının zamanı sunucu saatiyle karşılaştırılır. Cihazın saati yanlışsa
+   (1 dakikadan fazla ileri ya da geri) kayıtlar reddedilir ve oyuncu "ayrıldı" sayılıp oyundan düşer. Sunucunun saati
+   sitenin yanıt başlığından okunur; fark 5 saniyeden büyükse kayıt zamanları bu farkla düzeltilir. */
+let YR_SAAT=0,YR_SAAT_AN=0;
+function yrNow(){return Date.now()+YR_SAAT;}
+async function yrSaatAyarla(){
+ if(Date.now()-YR_SAAT_AN<600000)return;
+ try{
+  const t0=Date.now(),r=await fetch('sw.js?saat='+t0,{method:'HEAD',cache:'no-store'}),t1=Date.now();
+  const d=Date.parse(r.headers.get('date')||''),yas=parseInt(r.headers.get('age')||'0',10)||0;
+  if(!isFinite(d))return;
+  const fark=d+yas*1000+500-(t0+t1)/2;
+  YR_SAAT=Math.abs(fark)>5000?Math.round(fark):0;YR_SAAT_AN=Date.now();
+ }catch(e){}
+}
 function yrNickGet(){return st.prof&&!st.guest?YarisModel.cleanNick(st.prof):yrGuestName();}
 function yrNickOk(){return yrNickGet();}
 /* ---------- içerik ve soru yardımcıları ---------- */
@@ -112,7 +127,7 @@ async function yrJoin(code,invite,sifre){
  }catch(e){if(yrInviteLive(invite))YR.error=seen&&seen.kilit&&/permission|insufficient/i.test(String(e&&e.message))?'Şifre yanlış. Yeniden dene.':yrErrText(e);if(seen&&seen.kilit&&typeof lbSifreSor==='function'&&/Şifre/.test(YR.error))lbSifreSor(c,invite);return false;}finally{YR.busy=false;if(yrInviteLive(invite))render();}
 }
 function yrWithPid(pd){if(typeof FR!=='undefined'&&FR.ready&&FR.pid&&st.prof&&!st.guest)pd.pid=FR.pid;return pd;}
-function yrPlayerBase(nick,rid){return yrWithPid({...(YR.room&&YR.room.av===2?{left:false}:{}),ready:!!YR.ready,loaded:true,nick,score:0,ok:0,bad:0,n:0,tt:0,done:false,ts:Date.now(),rid,m:0,r:[],pr:[]});}
+function yrPlayerBase(nick,rid){return yrWithPid({...(YR.room&&YR.room.av===2?{left:false}:{}),ready:!!YR.ready,loaded:true,nick,score:0,ok:0,bad:0,n:0,tt:0,done:false,ts:yrNow(),rid,m:0,r:[],pr:[]});}
 async function yrEnter(code,room,invite){
  await yrPreload(yrBuild(room,0));if(!yrInviteLive(invite))return false;{const sf=YR.sifre;yrReset();YR.sifre=sf;}YR.active=true;YR.code=code;YR.room=room;YR.nick=yrNickGet();YR.host=room.host===yrMe();YR.started=false;
  YR.resumePlayer=null;
@@ -120,7 +135,7 @@ async function yrEnter(code,room,invite){
  else await yrService().setPlayer(code,yrPlayerBase(YR.nick,room.created));
  if(!yrInviteLive(invite)){yrReset();return false;}
  YR.unsubs=yrService().watch(code,yrRoomChanged,yrPlayersChanged,e=>{if(YR.active)yrSetError(e);});
- YR.hb=setInterval(yrBeat,duelOr(8000,10000));st.screen='racelobby';render();
+ yrSaatAyarla();YR.hb=setInterval(yrBeat,duelOr(8000,10000));st.screen='racelobby';render();
  if(typeof frInvSend==='function')frInvSend();if(typeof sesSecimiSor==='function')sesSecimiSor();return true;
 }
 function duelOr(a,b){return yrDuel()?a:b;}
@@ -243,7 +258,7 @@ function yrDrain(w){
  if(w.retired)return Promise.resolve(true);
  w.running=true;
  const current=()=>!w.retired&&YR.active&&YR.code===w.code&&YR.room&&YR.room.created===w.rid&&YR.writer===w;
- w.promise=(async()=>{while(w.items.length){const pd={...w.items[0],ts:Date.now()};
+ w.promise=(async()=>{while(w.items.length){const pd={...w.items[0],ts:yrNow()};
   try{await w.svc.setPlayer(w.code,pd);if(w.retired)return true;w.items.shift();}
   catch(e){if(current()){YR.warn='Bağlantı sorunu: sonuçlar sırayla yeniden gönderilecek.';render();}return false;}
  }

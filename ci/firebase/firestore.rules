@@ -92,7 +92,8 @@ service cloud.firestore {
      return d.keys().hasOnly(['nick','score','ok','bad','n','tt','done','ts','rid','m','r','pr','pid','ready','loaded','left','sf'])
       && (!('sf' in d) || (d.sf is string && d.sf.size() <= 4))
       && d.keys().hasAll(['nick','score','ok','bad','n','tt','done','ts','rid'])
-      && adOk(d.nick)
+      /* Ad yalnız ilk kayıtta ve değiştiğinde denetlenir; oyun içi her yazımda yeniden denetlenmez (kural işlem sınırı). */
+      && ((resource != null && d.nick == resource.data.nick) || adOk(d.nick))
       && d.score is int && d.score >= 0 && d.score <= (arena2()?100:60)
       && d.ok is int && d.ok >= 0 && d.ok <= (arena2()?100:60) && d.bad is int && d.bad >= 0 && d.bad <= (arena2()?arenaErrorLimit():60)
       && d.n is int && d.n >= 0 && d.n <= (arena2()?100:60) && d.n <= room().n && d.ok + d.bad <= d.n && d.tt is int && d.tt >= 0

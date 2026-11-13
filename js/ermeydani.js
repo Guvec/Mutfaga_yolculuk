@@ -93,7 +93,7 @@ function arSync(){
 }
 function arBeat(){
  if(!AR)return;
- for(const p of arSorted())if(!p.done&&p.uid!==yrMe()&&Date.now()-p.ts>65000&&!AR.expiring.has(p.uid)){
+ for(const p of arSorted())if(!p.done&&p.uid!==yrMe()&&yrNow()-p.ts>65000&&!AR.expiring.has(p.uid)){
   AR.expiring.add(p.uid);yrService().arenaExpire(YR.code,p.uid).catch(()=>{}).finally(()=>{if(AR)AR.expiring.delete(p.uid);});
  }
  arSync();
