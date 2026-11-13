@@ -36,7 +36,7 @@ async function adClaim(e,want,self){
 function adKaristir(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=adRnd(0,i);const t=a[i];a[i]=a[j];a[j]=t;}return a;}
 /* Boş bir karakter bul: önce mutfak karakterleri, sonra havuzun geri kalanı. Hepsi doluysa null. */
 async function adClaimAny(self){
- const mut=[],dig=[];AD_KAR.forEach((x,j)=>{(x[2]===adKitchen()?mut:dig).push(j);});
+ const mut=[],dig=[];AD_KAR.forEach((x,j)=>{if(adKapali(j))return;(x[2]===adKitchen()?mut:dig).push(j);});
  for(const e of adKaristir(mut).concat(adKaristir(dig).slice(0,60))){const r=await adClaim(e,0,self);if(r)return r;}
  return null;
 }
@@ -65,7 +65,7 @@ function adRename(o,nw,info){
 function adMigrate(){
  const map=adMap();
  profiles().slice().forEach(p=>{
-  let m=map[p];if(!m||!AD_KAR[m.e]){const e=adRndKitchen();let n=adRnd(1000,9999);while(profiles().includes(adMake(e,n)))n=adRnd(1000,9999);m={e,n,c:false};adRename(p,adMake(e,n),m);return;}
+  let m=map[p];if(!m||!AD_KAR[m.e]||adKapali(m.e)){if(m&&m.c)adRelease(m);const e=adRndKitchen();let n=adRnd(1000,9999);while(profiles().includes(adMake(e,n)))n=adRnd(1000,9999);m={e,n,c:false};adRename(p,adMake(e,n),m);return;}
   const nw=adMake(m.e,m.n);
   if(nw!==p&&profiles().indexOf(nw)<0)adRename(p,nw,m);
  });
@@ -103,7 +103,7 @@ function adDone(p){lsSet('ad_yeni',ls('ad_yeni',[]).filter(x=>x!==p));}
 function adKitchen(){return AD_KAT.length-1;}
 function adTabOrder(){const k=adKitchen(),o=[k];for(let j=0;j<AD_KAT.length;j++)if(j!==k)o.push(j);return o;}
 /* Yeni profilde rastgele bir mutfak karakteri seçili açılır. */
-function adRndKitchen(){const k=adKitchen(),l=[];AD_KAR.forEach((x,j)=>{if(x[2]===k)l.push(j);});return l.length?l[adRnd(0,l.length-1)]:adRnd(0,AD_KAR.length-1);}
+function adRndKitchen(){const k=adKitchen(),l=[];AD_KAR.forEach((x,j)=>{if(x[2]===k&&!adKapali(j))l.push(j);});return l.length?l[adRnd(0,l.length-1)]:adRnd(0,AD_KAR.length-1);}
 /* İlk profil oluşturulunca ad üstte görünür; bir kez değiştirme profil ayrıntısındadır. */
 async function adAuto(){
  if(AD_STATE.auto)return;AD_STATE.auto=true;
@@ -130,7 +130,7 @@ function adCat(c){const P=st.pe;if(!P||P.busy)return;P.cat=c;const t=document.ge
 function adFigur(b){return [b].concat(AD_VAR[b]||[]);}
 function adBosAdlar(b){
  const P=st.pe,own=P.i>=0?adInfo(profiles()[P.i]):null,local=new Set(profiles());
- return adFigur(b).filter(j=>own?.e!==j&&P.av[j]!==false&&!local.has(adMake(j,0)));
+ return adFigur(b).filter(j=>!adKapali(j)&&own?.e!==j&&P.av[j]!==false&&!local.has(adMake(j,0)));
 }
 function adAdlar(){
  const P=st.pe,free=adBosAdlar(P.b);
