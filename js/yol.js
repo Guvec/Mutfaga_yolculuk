@@ -157,10 +157,15 @@ function yolSoru(item,tip,node,tohum,destek){
   }
  }
  const n=(tip==='s3'&&!destek)?5:4;
- let dis=[...new Set((item.disla||[]).filter(x=>x&&x!==ad))];
- dis=yolKar(dis,tohum+item.id+'d').slice(0,n-1);
- if(dis.length<n-1){const aile=[...new Set(yolAile(item,dis).map(x=>x.answer))];dis.push(...yolKar(aile,tohum+item.id+'t').slice(0,n-1-dis.length));}
- if(dis.length<n-1){const diger=[...new Set(node.items.map(x=>x.answer).filter(x=>x&&x!==ad&&!dis.includes(x)&&yolKok(x)!==yolKok(ad)))];dis.push(...yolKar(diger,tohum+item.id+'f').slice(0,n-1-dis.length));}
+ /* disla = "aynı soruda birlikte çıkmaz" (13.11). Taze kekik ile kekik (taze ve kuru) gibi birbirini kapsayan ya da
+    görselden ayırt edilemeyen adlar çeldirici olmaz; iki yönde de denetlenir. Çeldiriciler birbiriyle de çakışmaz. */
+ const d=yolVeri(),byAd={};if(d)d.matches.forEach(m=>{byAd[m.answer]=m;});
+ const yasak=x=>!x||x===ad||yolKok(x)===yolKok(ad)||(item.disla||[]).includes(x)||((byAd[x]&&byAd[x].disla)||[]).includes(ad);
+ const cakis=(x,y)=>yolKok(x)===yolKok(y)||((byAd[x]&&byAd[x].disla)||[]).includes(y)||((byAd[y]&&byAd[y].disla)||[]).includes(x);
+ const dis=[],ekle=l=>{for(const x of l){if(dis.length>=n-1)break;if(!yasak(x)&&!dis.includes(x)&&!dis.some(y=>cakis(x,y)))dis.push(x);}};
+ ekle(yolKar([...new Set(yolAile(item,[]).map(x=>x.answer))],tohum+item.id+'t'));
+ ekle(yolKar([...new Set(node.items.map(x=>x.answer))],tohum+item.id+'f'));
+ if(d&&dis.length<n-1)ekle(yolKar([...new Set(d.matches.filter(x=>!x.comparison).map(x=>x.answer))],tohum+item.id+'h'));
  const sec=yolKar([ad,...dis],tohum+item.id+'D').map(t=>({id:t,text:t}));
  return {tip:'ad',item,ad,sec,dogru:ad};
 }
