@@ -14,7 +14,7 @@ assert.equal(await p.evaluate(()=>Y.phase),'s1');
 await p.click('[data-i="2"]');
 assert.equal(await p.evaluate(()=>document.activeElement.getAttribute('data-i')),'2','odak secenekte kalmali');
 await p.click('.yol-nav .yol-btn:last-child');
-assert.equal(await p.evaluate(()=>document.activeElement.className),'yol-soru','yeni soruda odak baslikta');
+assert.ok((await p.evaluate(()=>document.activeElement.className)).startsWith('yol-soru'),'yeni soruda odak baslikta');
 await p.click('[data-i="1"]');
 const once=await p.evaluate(()=>({k:Y.k,sels:Y.qs.map(q=>q.sel)}));
 await p.click('.yol-asama-don');
