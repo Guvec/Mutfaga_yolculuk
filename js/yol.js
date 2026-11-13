@@ -180,6 +180,15 @@ function yolBaslat(id,gozat){
  const cur=s.cur&&s.cur.id===id?s.cur:null;
  if(cur&&['ogren','s1','s2','s3','esles'].includes(cur.phase)){
   Y={node,mode:'oyun',phase:cur.phase,k:cur.k||0,pick:null,tohum:cur.tohum,destek:!!cur.destek,sk:cur.sk||{},sure:cur.sure|0};
+  if(['s1','s2','s3'].includes(cur.phase)){
+   const k=cur.k|0,sels=Array.isArray(cur.sels)?cur.sels:[],sub=cur.sub;
+   yolFazHazirla();
+   Y.qs.forEach((q,i)=>{const v=sels[i];if(v!=null&&q.sec.some(c=>c.id===v))q.sel=v;});
+   Y.k=Math.min(Math.max(0,k),Y.qs.length-1);
+   /* Gözden geçirme yalnız bütün sorular cevaplıysa geri gelir. */
+   Y.sub=sub==='onay'&&Y.qs.every(q=>q.sel!=null)?'onay':'soru';Y.pick=yolIdx(Y.qs[Y.k]);
+   yolKaydet();go('yolplay');return;
+  }
  }else{
   const tohum=id+'#'+(fails+1)+'#'+Date.now().toString(36);
   Y={node,mode:'oyun',phase:node.tur==='son'?'esles':'ogren',k:0,pick:null,tohum,destek,sk:{},sure:0};
@@ -207,7 +216,12 @@ window.yolSerbestBaslat=function(tur){
  if(tur==='esles'){Y.phase='esles';yolEslesHazirla();}else{Y.phase='s3';Y.qs=yolSorular(Y.node,'s3',Y.tohum,false);}
  render();
 };
-function yolKaydet(){if(!Y||Y.mode!=='oyun')return;const s=yolS();s.cur={id:Y.node.id,phase:Y.phase,k:['s1','s2','s3'].includes(Y.phase)?0:Y.k,tohum:Y.tohum,destek:Y.destek,sk:Y.sk,sure:Y.sure|0};yolYaz(s);}
+/* Kayıt (13.11): soru aşamasında sıra, seçilen cevaplar ve gözden geçirme ekranı da saklanır; Öğren'e dönülmüşse soru durumu saklanır. */
+function yolKaydet(){if(!Y||Y.mode!=='oyun')return;const s=yolS(),d=Y.donus,ph=d?d.phase:Y.phase,soru=['s1','s2','s3'].includes(ph),qs=d?d.qs:Y.qs;
+ const c={id:Y.node.id,phase:ph,k:d?d.k:Y.k,tohum:Y.tohum,destek:Y.destek,sk:Y.sk,sure:Y.sure|0};
+ if(soru&&Array.isArray(qs)){c.sels=qs.map(q=>q.sel==null?null:q.sel);c.sub=(d?d.sub:Y.sub)==='onay'?'onay':'soru';}
+ if(soru&&(d?d.sub:Y.sub)==='inceleme'){c.k=0;delete c.sels;}
+ s.cur=c;yolYaz(s);}
 function yolFazHazirla(){
  Y.pick=null;Y.sub='soru';Y.donOnay=false;
  if(['s1','s2','s3'].includes(Y.phase)){Y.qs=yolSorular(Y.node,Y.phase,Y.tohum,Y.destek);}
@@ -227,10 +241,21 @@ window.yolSoyleIdx=function(i){yolSoyle(Y&&Y.oku&&Y.oku[i]);};
 function yolSesBtn(t,etiket){Y.oku=Y.oku||[];const i=Y.oku.push(t)-1;return '<button type="button" class="spk yol-ses" aria-label="'+esc(etiket||'Sesli dinle')+'" onclick="yolSoyleIdx('+i+')">🔊 <span>'+esc(etiket||'Dinle')+'</span></button>';}
 
 /* ---------- Akış ---------- */
+/* Öğren'e dön (13.11): soru aşamasından bilgi kartlarına geçilir; seçilen cevaplar, sıra ve süre korunur. */
+window.yolOgreneDon=function(){
+ if(!Y||Y.mode!=='oyun'||Y.donus||!['s1','s2','s3'].includes(Y.phase)||Y.sub==='inceleme')return;
+ Y.donus={phase:Y.phase,k:Y.k,sub:Y.sub,qs:Y.qs,pick:Y.pick,donOnay:Y.donOnay};
+ Y.phase='ogren';Y.k=0;yolKaydet();Y.odak='baslik';render();
+};
+window.yolSorularaDon=function(){
+ if(!Y||!Y.donus)return;const d=Y.donus;Y.donus=null;
+ Y.phase=d.phase;Y.k=d.k;Y.sub=d.sub;Y.qs=d.qs;Y.pick=d.pick;Y.donOnay=d.donOnay;yolKaydet();Y.odak='baslik';render();
+};
 window.yolSonraki=function(){
  if(!Y)return;
  if(Y.phase==='ogren'){
   if(Y.k<Y.node.items.length-1){Y.k++;render();return;}
+  if(Y.donus){yolSorularaDon();return;}
   if(Y.mode==='gozat'){go('yolum');return;}
   Y.phase='s1';Y.k=0;yolFazHazirla();yolKaydet();render();return;
  }
@@ -238,17 +263,17 @@ window.yolSonraki=function(){
   if(Y.sub==='inceleme'){yolIncSonraki();return;}
   if(Y.sub==='onay')return;
   const q=Y.qs[Y.k];if(!q||q.sel==null)return;
-  if(Y.donOnay||Y.k>=Y.qs.length-1){Y.sub='onay';Y.donOnay=false;render();return;}
-  Y.k++;Y.pick=yolIdx(Y.qs[Y.k]);render();return;
+  if(Y.donOnay||Y.k>=Y.qs.length-1){Y.sub='onay';Y.donOnay=false;yolKaydet();Y.odak='baslik';render();return;}
+  Y.k++;Y.pick=yolIdx(Y.qs[Y.k]);yolKaydet();Y.odak='baslik';render();return;
  }
 };
 function yolIdx(q){return q.sel==null?null:q.sec.findIndex(c=>c.id===q.sel);}
 window.yolOnceki=function(){
  if(!Y||!['s1','s2','s3'].includes(Y.phase)||Y.sub==='inceleme')return;
- if(Y.sub==='onay'){Y.sub='soru';Y.k=Y.qs.length-1;Y.pick=yolIdx(Y.qs[Y.k]);render();return;}
- if(Y.k>0){Y.k--;Y.pick=yolIdx(Y.qs[Y.k]);render();}
+ if(Y.sub==='onay'){Y.sub='soru';Y.k=Y.qs.length-1;Y.pick=yolIdx(Y.qs[Y.k]);yolKaydet();Y.odak='baslik';render();return;}
+ if(Y.k>0){Y.k--;Y.pick=yolIdx(Y.qs[Y.k]);yolKaydet();Y.odak='baslik';render();}
 };
-window.yolGit=function(k){if(!Y||Y.sub!=='onay'||!Y.qs[k])return;Y.sub='soru';Y.donOnay=true;Y.k=k;Y.pick=yolIdx(Y.qs[k]);render();};
+window.yolGit=function(k){if(!Y||Y.sub!=='onay'||!Y.qs[k])return;Y.sub='soru';Y.donOnay=true;Y.k=k;Y.pick=yolIdx(Y.qs[k]);yolKaydet();Y.odak='baslik';render();};
 /* Cevaplar onaylanınca doğruluk belirlenir; yanlışlar doğru cevabıyla tek tek gösterilir. */
 window.yolOnayla=function(){
  if(!Y||Y.sub!=='onay')return;
@@ -274,7 +299,7 @@ function yolFazBitir(){
 }
 window.yolCevap=function(i){
  if(!Y||!['s1','s2','s3'].includes(Y.phase)||(Y.sub&&Y.sub!=='soru'))return;
- const q=Y.qs[Y.k];if(!q||!q.sec[i])return;q.sel=q.sec[i].id;Y.pick=i;render();
+ const q=Y.qs[Y.k];if(!q||!q.sec[i])return;q.sel=q.sec[i].id;Y.pick=i;yolKaydet();Y.odak='sec'+i;Y.duyuru=(q.tip==='gorsel'?'Görsel '+'ABCDE'[i]:q.sec[i].text)+' seçildi.';render();
 };
 window.yolYenidenDene=function(){
  if(!Y)return;const s=yolS(),fails=s.fails[Y.node.id]||0,destek=fails>=YOL_AYAR.destekDeneme;
@@ -331,11 +356,13 @@ function yolEtiket(n){return n.tur==='son'?'Etap '+n.etap+' · Etap sonu':'Etap 
 const YOL_ASAMA_AD=['Öğren','Görsel seç','4 seçenek','5 seçenek','Eşleştir'];
 function yolAsamaSeridi(){
  const sira=['ogren','s1','s2','s3','esles'],i=sira.indexOf(Y.phase);
- return '<div class="yol-asama" aria-label="Aşamalar">'+YOL_ASAMA_AD.map((a,j)=>'<span class="'+(j<i?'bitti':j===i?'simdi':'')+'"'+(j===i?' aria-current="step"':'')+'>'+(j<i?'✓ ':'')+esc(a)+'</span>').join('')+'</div>';
+ const don=Y.mode==='oyun'&&!Y.donus&&['s1','s2','s3'].includes(Y.phase)&&Y.sub!=='inceleme';
+ return '<div class="yol-asama" aria-label="Aşamalar">'+YOL_ASAMA_AD.map((a,j)=>j===0&&don?'<button type="button" class="bitti yol-asama-don" onclick="yolOgreneDon()" aria-label="Öğren kartlarına dön. Cevapların kayıtlı kalır.">📖 '+esc(a)+'</button>':'<span class="'+(j<i?'bitti':j===i?'simdi':'')+'"'+(j===i?' aria-current="step"':'')+'>'+(j<i?'✓ ':'')+esc(a)+'</span>').join('')+'</div>';
 }
 function yolUst(){
  if(Y.mode==='tekrar')return '<p class="yol-etiket">Tekrar Çalışması</p>';
  if(Y.mode==='serbest')return '<p class="yol-etiket">Serbest Çalışma · '+esc(yolEtiket(Y.node))+'</p>';
+ if(Y.donus)return '<p class="yol-etiket">'+esc(yolEtiket(Y.node))+'</p><button type="button" class="yol-donus" onclick="yolSorularaDon()">Sorulara dön ›<small>Cevapların kayıtlı</small></button>';
  return '<p class="yol-etiket">'+esc(yolEtiket(Y.node))+'</p>'+(Y.node.tur==='bolum'?yolAsamaSeridi():'');
 }
 function yolYukleniyor(baslik){
@@ -389,7 +416,7 @@ function yolOgrenHTML(){
  return yolBar(yolKonuAdi(),'','yolKapat()',Y.mode==='oyun')+'<div class="yol-sayfa">'+(Y.mode==='oyun'?yolUst():'<p class="yol-etiket">Öğrendiklerim</p>')+
   '<div class="yol-say"><span>'+(Y.k+1)+' / '+Y.node.items.length+'</span>'+yolSeg(Y.k,Y.node.items.length,true)+'</div>'+
   '<div class="yol-kart yol-ogren"><img class="yol-img" src="'+esc(it.image)+'" alt="'+esc(it.imageAlt||it.answer)+'"><h2 class="yol-ad">'+esc(it.answer)+'</h2><p class="yol-acik">'+esc(it.explanation||'')+'</p>'+yolSesBtn(it.answer+'. '+(it.explanation||''),'Adını ve açıklamasını dinle')+'</div>'+
-  '<div class="yol-alt">'+(Y.k>0?'<button type="button" class="yol-btn ikinci" onclick="Y.k--;render()">‹ Önceki</button>':'<span></span>')+'<button type="button" class="yol-btn" onclick="yolSonraki()">'+(son?(Y.mode==='oyun'?'Sorulara geç ›':'Kapat'):'Sonraki ›')+'</button></div>'+yolAyak(Y.mode==='oyun')+'</div>';
+  '<div class="yol-alt">'+(Y.k>0?'<button type="button" class="yol-btn ikinci" onclick="Y.k--;render()">‹ Önceki</button>':'<span></span>')+'<button type="button" class="yol-btn'+(Y.donus&&son?' ikinci':'')+'" onclick="yolSonraki()">'+(son?(Y.donus?'Sorulara dön ›':Y.mode==='oyun'?'Sorulara geç ›':'Kapat'):'Sonraki ›')+'</button></div>'+yolAyak(Y.mode==='oyun')+'</div>';
 }
 function yolSesIk(t,etiket){Y.oku=Y.oku||[];const i=Y.oku.push(t)-1;return '<button type="button" class="spk yol-ses ik" aria-label="'+esc(etiket||'Sesli dinle')+'" onclick="yolSoyleIdx('+i+')">🔊</button>';}
 function yolSoruMetni(q){return q.tip==='gorsel'?'“'+q.ad+'” hangisidir?':(q.item.kok||q.item.prompt||'Görselin adı nedir?');}
@@ -399,14 +426,14 @@ function yolSoruHTML(){
  const q=Y.qs[Y.k],sel=q.sel,L='ABCDE',soruYazi=yolSoruMetni(q),son=Y.k===Y.qs.length-1;
  let h=yolBar(yolKonuAdi(),'','yolKapat()',true)+'<div class="yol-sayfa yol-soru-sayfa">'+yolUst()+'<div class="yol-say"><span>Soru '+(Y.k+1)+' / '+Y.qs.length+'</span>'+yolSeg(Y.k,Y.qs.length,sel!=null)+'</div>';
  if(q.tip==='gorsel'){
-  h+='<div class="yol-kart yol-soru-kart"><div class="yol-soru-satir"><h2 class="yol-soru">'+esc(soruYazi)+'</h2>'+yolSesIk(soruYazi,'Soruyu sesli oku')+'</div></div><div class="yol-gorsel-sec">';
+  h+='<div class="yol-kart yol-soru-kart"><div class="yol-soru-satir"><h2 class="yol-soru" tabindex="-1">'+esc(soruYazi)+'</h2>'+yolSesIk(soruYazi,'Soruyu sesli oku')+'</div></div><div class="yol-gorsel-sec">';
   q.sec.forEach((c,i)=>{const on=c.id===sel;
-   h+='<button type="button" class="yol-gsec'+(on?' sec':'')+'" aria-pressed="'+on+'" onclick="yolCevap('+i+')" aria-label="'+L[i]+'. '+esc(c.alt)+'"><img src="'+esc(c.image)+'" alt=""><span class="yol-let">'+L[i]+'</span>'+(on?'<em>Seçtin</em>':'')+'</button>';});
+   h+='<button type="button" class="yol-gsec'+(on?' sec':'')+'" data-i="'+i+'" aria-pressed="'+on+'" onclick="yolCevap('+i+')" aria-label="'+L[i]+'. '+esc(c.alt)+'"><img src="'+esc(c.image)+'" alt=""><span class="yol-let">'+L[i]+'</span>'+(on?'<em>Seçtin</em>':'')+'</button>';});
   h+='</div>';
  }else{
-  h+='<div class="yol-kart yol-soru-kart"><img class="yol-img" src="'+esc(q.item.image)+'" alt="'+esc(q.item.imageAlt||'Soru görseli')+'"><div class="yol-soru-satir"><h2 class="yol-soru">'+esc(soruYazi)+'</h2>'+yolSesIk(soruYazi,'Soruyu sesli oku')+'</div></div><div class="yol-secenek">';
+  h+='<div class="yol-kart yol-soru-kart"><img class="yol-img" src="'+esc(q.item.image)+'" alt="'+esc(q.item.imageAlt||'Soru görseli')+'"><div class="yol-soru-satir"><h2 class="yol-soru" tabindex="-1">'+esc(soruYazi)+'</h2>'+yolSesIk(soruYazi,'Soruyu sesli oku')+'</div></div><div class="yol-secenek">';
   q.sec.forEach((c,i)=>{const on=c.id===sel;
-   h+='<button type="button" class="yol-sec'+(on?' sec':'')+'" aria-pressed="'+on+'" onclick="yolCevap('+i+')"><span class="yol-let">'+(on?'✓':L[i])+'</span><span class="yol-sec-ad"><b>'+esc(c.text)+'</b></span></button>';});
+   h+='<button type="button" class="yol-sec'+(on?' sec':'')+'" data-i="'+i+'" aria-pressed="'+on+'" onclick="yolCevap('+i+')"><span class="yol-let">'+(on?'✓':L[i])+'</span><span class="yol-sec-ad"><b>'+esc(c.text)+'</b></span></button>';});
   h+='</div>';
  }
  h+='<div class="yol-nav">'+(Y.k>0?'<button type="button" class="yol-btn ikinci" onclick="yolOnceki()">‹ Önceki</button>':'<span></span>')+'<button type="button" class="yol-btn" onclick="yolSonraki()"'+(sel==null?' disabled':'')+'>'+(son||Y.donOnay?'Gözden geçir':'Sonraki')+' ›</button></div>';
@@ -477,12 +504,22 @@ function yolPlayHTML(){
  return yolBittiHTML();
 }
 
+/* Odak (13.11): seçimden sonra odak aynı seçenekte kalır; yeni soruda ya da ekranda başlığa geçer. Seçim kısa bir durum bildirimiyle duyurulur. */
+function yolOdakla(app){
+ if(!Y)return;const o=Y.odak,d=Y.duyuru;Y.odak=null;Y.duyuru=null;
+ let el=null;
+ if(o&&o.startsWith('sec'))el=app.querySelector('[data-i="'+o.slice(3)+'"]');
+ else if(o==='baslik')el=app.querySelector('h1,h2.yol-soru,h2.yol-ad');
+ if(el){if(!el.hasAttribute('tabindex')&&!/^(BUTTON|A|INPUT)$/.test(el.tagName))el.setAttribute('tabindex','-1');try{el.focus({preventScroll:true});}catch(e){}}
+ if(d){let r=document.getElementById('yolDuyuru');if(!r){r=document.createElement('div');r.id='yolDuyuru';r.setAttribute('role','status');r.className='sr-only';r.style.cssText='position:fixed;top:0;left:0;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap';document.body.appendChild(r);}r.textContent='';setTimeout(()=>{r.textContent=d;},30);}
+}
+
 /* ---------- Bağlantılar ---------- */
 const YOL_RENDER=render,YOL_BACK=back;
 render=function(){
  const app=document.getElementById('app');
  if(app&&st.screen==='yolum'){app.innerHTML=yolumHTML();return;}
- if(app&&st.screen==='yolplay'){app.innerHTML=yolPlayHTML();return;}
+ if(app&&st.screen==='yolplay'){app.innerHTML=yolPlayHTML();yolOdakla(app);return;}
  YOL_RENDER();
  if(app&&st.screen==='subject'&&YOL_KONU[st.subject]){YOL_AYAR.subject=st.subject;const l=app.querySelector('.list');if(l&&!l.querySelector('.yol-giris'))l.insertAdjacentHTML('afterbegin','<button class="menu-btn yol-giris" onclick="yolAc(\''+st.subject+'\')"><b>Yolculuğum</b><span>'+esc(YOL_KONU[st.subject].giris)+'</span></button>');}
 };

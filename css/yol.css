@@ -55,7 +55,10 @@ div.yol-dugum.bitti{display:flex}
 .yol-etiket{margin:0;font-weight:700;color:var(--navy,#123);font-size:16px}
 .yol-asama{display:grid;grid-template-columns:repeat(5,1fr);gap:5px}
 .yol-asama span{display:grid;place-items:center;text-align:center;padding:6px 2px;min-height:44px;border:2px solid var(--line,#c9d4d4);border-radius:12px;font-size:13px;font-weight:700;line-height:1.15;color:var(--muted,#566);background:var(--soft,#eef1f0)}
-.yol-asama span.bitti{background:var(--okbg,#e3f1e6);border-color:var(--ok,#2b7a45);color:var(--ok,#2b7a45)}
+.yol-asama span.bitti,.yol-asama button.bitti{background:#e3f1e6;border-color:#1f6b3a;color:#1a5530}
+.yol-asama button{display:grid;place-items:center;text-align:center;padding:6px 2px;min-height:44px;border:2px solid #1f6b3a;border-radius:12px;font:inherit;font-size:13px;font-weight:800;line-height:1.15;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+.yol-asama button:focus-visible{outline:3px solid #c08a1e;outline-offset:2px}
+.yol-donus{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;min-height:44px;padding:4px 12px;border:2px solid #0b5c5f;border-radius:12px;background:#0b5c5f;color:#fff;font:inherit;font-size:16px;font-weight:800;cursor:pointer}.yol-donus small{font-size:13px;font-weight:600}.yol-donus:focus-visible{outline:3px solid #c08a1e;outline-offset:2px}
 .yol-asama span.simdi{background:var(--teal,#0b5c5f);border-color:var(--teal,#0b5c5f);color:#fff}
 .yol-say{display:flex;align-items:center;gap:10px;font-weight:700;color:var(--navy,#123)}
 .yol-seg{display:flex;gap:6px;flex:1}
@@ -200,3 +203,6 @@ body[data-screen=yolum] #app:has(.yh-sayfa){display:flex;flex-direction:column;h
 .yh-alt-k small{font-size:13px;color:var(--muted,#566);line-height:1.15}
 .yh-alt-k:disabled,.yh-alt-k.kilit{opacity:.55;cursor:default}
 .yh-not{font-size:15px}
+
+/* Öğren kartı kısa telefonda (13.11): 360×740 gibi ekranlarda kaydırma olmasın. */
+.yol-ogren .yol-img{max-height:min(40vh,max(100px,calc(100vh - 655px)));max-height:min(40svh,max(100px,calc(100svh - 655px)))}

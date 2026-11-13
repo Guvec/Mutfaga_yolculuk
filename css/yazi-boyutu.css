@@ -57,13 +57,13 @@ html[data-yz="cok"] .ae-home :is(.ae-profile-links button,.ae-bottom span,.ae-pa
  .yol-ayak{margin-top:4px}
  .yol-bar{padding-block:4px}
  .yol-sayfa .yol-etiket{margin:4px 0}
- .yol-ogren .yol-img{max-height:22svh}
+ .yol-ogren .yol-img{max-height:min(22svh,max(90px,calc(100svh - 610px)))}
  .yol-ogren .yol-ad{font-size:1.375rem;margin:4px 0}
 }
 @media(max-height:730px){
  .yol-asama span{min-height:36px;padding-block:2px}
  .yol-kart{padding:8px 10px}
- .yol-ogren .yol-img{max-height:16svh}
+ .yol-ogren .yol-img{max-height:min(16svh,max(80px,calc(100svh - 610px)))}
  .yol-ogren .yol-acik{margin:2px 0}
  .yol-ses{min-height:44px;padding-block:4px}
  .yol-ayak .yol-ayar button{min-height:40px;padding-block:4px}
