@@ -19,6 +19,7 @@ require('../js/yaris-baglanti.js');const Constructor=globalThis.YarisFirebase;
    // Arkadaş sistemi açıkken istemci pid ekler
    await env.withSecurityRulesDisabled(async ctx=>{const db=ctx.firestore();await sdk.setDoc(sdk.doc(db,'yrKart','ABCDEFG'),{owner:'pidli',nick:'🐥 Huzurlu Civciv'});await sdk.setDoc(sdk.doc(db,'yrKim','pidli'),{pid:'ABCDEFG'});});
    await dene('pid ile giriş (eşleşen kimlik)',async()=>{const c=mk('pidli');await c.setPlayer(made.code,{...row('🐥 Huzurlu Civciv',made.room.created),pid:'ABCDEFG'});});
+   await dene('pid ile hazır güncellemesi',async()=>{const c=mk('pidli');await c.setPlayer(made.code,{...row('🐥 Huzurlu Civciv',made.room.created),pid:'ABCDEFG',ready:true});});
    await dene('pid ile giriş (kart sahibi farklı)',async()=>{await env.withSecurityRulesDisabled(async ctx=>{const db=ctx.firestore();await sdk.setDoc(sdk.doc(db,'yrKim','pidli2'),{pid:'ABCDEFG'});});const c=mk('pidli2');await c.setPlayer(made.code,{...row('🐱 Aşçı Kedi',made.room.created),pid:'ABCDEFG'});});
    await dene('pid ile giriş (yrKim yok)',async()=>{const c=mk('pidsiz');await c.setPlayer(made.code,{...row('🦋 Renkli Kelebek',made.room.created),pid:'HJKLMNP'});});
   // Ayrıca bütün konular + beslenme seçimi

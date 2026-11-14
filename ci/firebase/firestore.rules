@@ -107,7 +107,8 @@ service cloud.firestore {
       && (!('pr' in d) || (d.pr is list && d.pr.size() <= 60))
       && (arena2()? (d.keys().hasAll(['r','left']) && d.left is bool && d.r.size() == d.n && d.ok + d.bad + (('kl' in d && d.r[d.kl] < 0)?1:0) == d.n
           && (arena5() ? (d.score >= d.ok && d.score <= d.ok*2 + 12) : (d.score == d.ok && !d.keys().hasAny(['kl','sn'])))) : !d.keys().hasAny(['left']))
-      && (!('pid' in d) || (yrPidOk(d.pid) && yrKimOk(uid) && get(/databases/$(database)/documents/yrKim/$(uid)).data.pid == d.pid));
+      /* 14.11: Kural ifade sınırı (1000) aşılıyordu; pid yalnız kişinin kendi yrKim kaydıyla eşleştirilir (yrKim yalnız kart sahibince yazılır). */
+      && (!('pid' in d) || (yrPidOk(d.pid) && get(/databases/$(database)/documents/yrKim/$(uid)).data.pid == d.pid));
     }
     function arenaProgress(d) {
      let o = resource.data;
