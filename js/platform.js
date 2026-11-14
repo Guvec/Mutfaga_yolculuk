@@ -11,7 +11,7 @@ const SUBJECTS = [
 const CONTENT = Object.create(null);
 const OLD_RENDER = render, OLD_NEWQ = newQ, OLD_START = startSession, OLD_RESOLVE = resolve;
 const OLD_QUIZ = quizHtml, OLD_ITEM = itemImg;
-VERSION='Sürüm · 14.11.2026 · v3.20.0: Tek sayfalık maç sonu ekranları, herkesin isteyebildiği rövanş, Hızlı Şef 1’e 1 20 soru'; // Her yüklemede tarih güncellenir.
+VERSION='Sürüm · 14.11.2026 · v3.21.0: Yeni düzen: tek satır üst çubuk, Ustalar Ligi mod karoları, Antrenman Şefi, sade Er Meydanı, Hesabım, Rütbe Yolu ve Sıralama; maç sonu ekranları; oda sahibi oyuncu çıkarabilir'; // Her yüklemede tarih güncellenir.
 st.subject='kuver'; st.practice='learn';
 LEVELS={
   1:{name:'Basit Kuver', items:['yemek_catali','yemek_bicagi','pecete','su_bardagi']},

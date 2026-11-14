@@ -38,7 +38,7 @@ window.rvIste=async function(){
   if(var_&&var_.status==='lobby'){await yrJoin(kod);return;}
   if(bilgi.mode==='arena'){yrCreateOpen('arena');if(bilgi.scope==='konu')Object.assign(YR.cfg,{arenaTopic:bilgi.subject,scope:'konu',subject:bilgi.subject});}
   else{yrCreateOpen('race');Object.assign(YR.cfg,{mode:'race',subject:'mutfak-araclari',scope:'butun',kind:'gorsel',set:0,n:20,lim:30,bz:bilgi.bz||'blitz'});}
-  Object.assign(YR.cfg,{pub:false,kilit:false,ad:'Rövanş',code:kod});
+  Object.assign(YR.cfg,{pub:false,kilit:false,ad:'',code:kod});
   await yrCreate();
   delete YR.cfg.bz;YR.cfg.code='';
   if(!YR.active&&/kullanılıyor/i.test(YR.error||'')){YR.error='';await yrJoin(kod);}

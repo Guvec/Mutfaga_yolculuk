@@ -10,6 +10,7 @@ const MOCK=`(function(){
   async join(code,nick,pd){await this.connect();return window.__hub('join',this.uid,code,nick,pd);}
   async setPlayer(code,pd){return window.__hub('set',this.uid,code,pd);}
   async start(code){return window.__hub('start',this.uid,code);}
+  async kick(code,uid){return window.__hub('kick',this.uid,code,uid);}
   async getPlayer(code){const s=await window.__hub('state',code);return s.players.find(p=>p.uid===this.uid);}
   async arenaExpire(){return;}
   async leave(code,lobby,host){return window.__hub('leave',this.uid,code,lobby,host);}
@@ -24,6 +25,7 @@ const hub={rooms:{},n:0,ops:{
  create(uid,spec,wanted){const code=wanted||('R'+Math.random().toString(36).slice(2,6).toUpperCase());if(hub.rooms[code])throw Error('Bu kod kullanılıyor. Başka bir kod seç.');const room={...spec,host:uid,status:'lobby',guest:null,created:Date.now(),qv:1};if(spec.mode==='race'||spec.mode==='arena')room.cnt=1;hub.rooms[code]={room,players:{}};return {code,room};},
  join(uid,code,nick,pd){const r=hub.rooms[code];if(!r)throw Error('Oda bulunamadı. Kodu kontrol et.');const room=r.room;if(room.host!==uid){if(room.status!=='lobby')throw Error('Yarış başlamış, katılamazsın.');if(room.mode==='duel'){if(room.guest&&room.guest!==uid)throw Error('Bu kapışma dolu.');room.guest=uid;}else if(!r.players[uid]){if((room.cnt||1)>=(room.mode==='arena'?4:8))throw Error('Bu oda dolu (en çok '+(room.mode==='arena'?4:8)+' kişi).');room.cnt=(room.cnt||1)+1;}}r.players[uid]={...pd,rid:room.created};return room;},
  set(uid,code,pd){if(hub.fail)throw Error('ağ yok');const r=hub.rooms[code];if(!r)return;r.players[uid]={...pd};},
+ kick(uid,code,k){const r=hub.rooms[code];if(r.room.host!==uid||r.room.status!=='lobby')throw Error('izin yok');r.room.ban=[...(r.room.ban||[]),k];delete r.players[k];if(r.room.mode==='duel')r.room.guest=null;else r.room.cnt--;},
  start(uid,code){const r=hub.rooms[code];if(r.room.host!==uid)throw Error('izin yok');if(r.room.mode==='arena')r.room.roster=Object.keys(r.players).sort();r.room.status='playing';},
  leave(uid,code,lobby,host){const r=hub.rooms[code];if(!r)return;if(lobby){if(r.players[uid]&&!host&&r.room.mode==='race'&&r.room.cnt>1)r.room.cnt--;delete r.players[uid];if(host)delete hub.rooms[code];}},
  state(code){const r=hub.rooms[code];return r?{room:r.room,players:Object.entries(r.players).map(([uid,p])=>({uid,...p,pending:false,fromCache:false}))}:{room:null,players:[]};}
@@ -87,6 +89,13 @@ const hub={rooms:{},n:0,ops:{
   await ps[0].screenshot({path:'/home/claude/work/sn-davet.png'});
   await ps[0].evaluate(()=>rvIste());await ps[0].waitForFunction(c=>YR.active&&st.screen==='racelobby'&&YR.code===c,rv,{timeout:15000});
   await ps[2].waitForFunction(()=>YR.players.length===2,null,{timeout:5000});
+  /* Oda sahibi (ps[2]) ps[0]'ı çıkarır; ps[0] salondan çıkar ve nedenini görür. */
+  assert((await ps[2].innerText('#app')).includes('Çıkar'),'kurucu Çıkar düğmesini görür');
+  assert(!(await ps[0].innerText('#app')).includes('Çıkar'),'diğer oyuncu Çıkar görmez');
+  const hedef=await ps[0].evaluate(()=>yrMe());
+  await ps[2].evaluate(u=>ocCikar(u),hedef);await ps[2].click('#ov .btn.pri');
+  await ps[0].waitForFunction(()=>st.screen==='racemenu'&&/çıkardı/.test(YR.error),null,{timeout:5000});
+  await ps[2].waitForFunction(()=>YR.players.length===1,null,{timeout:5000});
   /* Blitz tek başına ve Kapışma "Tüm konular" ile kurulabilir. */
   const q=await phone();await giris(q,'🐢 Garson Kaplumbağa');
   await q.evaluate(()=>{yrCreateOpen('duel');yrCfg('scope','butun');});

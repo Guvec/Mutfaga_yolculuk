@@ -336,3 +336,4 @@ html.lig body .top .who > *{background:transparent!important;border-color:#fffff
 .sk-not{margin:6px 2px;font-size:13px;opacity:.8}
 .ry-ust{display:flex;align-items:center;gap:12px}
 .sk-calisma{flex-direction:row!important}
+.oc-cikar{margin-left:auto;flex:none;min-height:32px;padding:2px 10px;border-radius:99px;border:1.5px solid #e2b4ae;background:#fff5f4;color:#b42318;font:inherit;font-size:13px;font-weight:800;cursor:pointer}
