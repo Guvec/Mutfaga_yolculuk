@@ -94,3 +94,9 @@ body.yr-oyun .wrap>.btn.ghost{display:none}
 .sv-chip .sv-arma{margin-block:-6px;filter:drop-shadow(0 2px 2px #0003)}
 .sv-buyuk{width:auto;height:auto;background:none;box-shadow:none;border-radius:0}.sv-buyuk .sv-arma{filter:drop-shadow(0 6px 8px #9c6a0866)}
 .sv-chip .sv-arma{width:1.6em;height:1.84em}
+.sv-mod-bas{font-size:1.05rem;margin:10px 0 6px}.sv-mod-bas small{display:block;font-size:.78rem;font-weight:600;opacity:.75}
+.sv-dereceli{margin:12px 0;padding:12px 14px;border-radius:16px;border:2px dashed #e0a21b;background:linear-gradient(180deg,#fffaf0,#fbefd3);color:#3a2b10}
+.sv-dereceli.acik{border-style:solid}.sv-d-bas{display:flex;gap:10px;align-items:flex-start}.sv-dereceli h2{margin:0 0 4px;font-size:1.05rem}.sv-dereceli p{margin:0 0 6px;font-size:.92rem}
+.sv-dereceli ul{list-style:none;padding:0;margin:6px 0;display:grid;gap:4px;font-weight:700}.sv-dereceli li small{font-weight:500;opacity:.75}
+.sv-kilit-et,.sv-yakin{font-size:.75rem;padding:2px 8px;border-radius:999px;background:#0b3f3c;color:#fff;vertical-align:middle}.sv-d-not{opacity:.8}
+.sv-d-bas .sv-arma{flex:none;width:44px!important;height:51px!important}

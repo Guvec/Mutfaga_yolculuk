@@ -66,3 +66,19 @@ if(typeof render==='function'){
   try{if(st.screen==='home'&&svPid()){const ad=document.querySelector('.ae-profile-name');if(ad&&!ad.querySelector('.sv-chip')){const k=svSeviye();ad.insertAdjacentHTML('beforeend',' <button type="button" class="sv-chip" onclick="svPanel()" aria-label="Aşçı Seviyesi '+k+'. Ayrıntılar">'+svArma(k,26)+'<span>Seviye</span></button>');}}}catch(e){}
  };
 }
+/* 14.11: Ustalar Ligi iki bölüm. Derecesiz maçlar herkese açık (eğlence, XP kazandırır, lig puanı yok).
+   Dereceli lig 10. seviyede ve Mutfağa Kabul Sınavı ile açılır; neden kilitli olduğu açıkça yazılır. */
+if(typeof yrMenuHTML==='function'){
+ const SV_MENU2=yrMenuHTML;
+ yrMenuHTML=function(){
+  let h=SV_MENU2();
+  if(h.indexOf('<div class="lb-eylem">')<0)return h;
+  const k=svPid()?svSeviye():1,acik=k>=SV.ac.kabul;
+  h=h.replace('<div class="lb-eylem">','<h2 class="sv-mod-bas">🎉 Derecesiz maçlar <small>Herkese açık · XP kazandırır · lig puanı yok</small></h2><div class="lb-eylem">');
+  const kart='<section class="sv-dereceli'+(acik?' acik':'')+'" aria-label="Dereceli lig"><div class="sv-d-bas">'+svArma(k,40)+'<div><h2>🏆 Dereceli lig '+(acik?'<span class="sv-yakin">yakında</span>':'<span class="sv-kilit-et">🔒 Kilitli</span>')+'</h2><p>Dereceli maçlar lig puanı ve sezon ödülü verir. Herkes kendi düzeyindeki oyuncularla yarışsın diye bir şartı var.</p></div></div>'+
+   '<ul><li class="'+(k>=SV.ac.kabul?'ok':'')+'">'+(k>=SV.ac.kabul?'✅':'⬜')+' Aşçı Seviyesi 10 <small>(şu an '+k+')</small></li><li>⬜ Mutfağa Kabul Sınavı (5 yerleştirme maçı)</li></ul>'+
+   '<p class="sv-d-not">Derecesiz maçları her zaman oynayabilirsin. Seviye, çalıştıkça ve oynadıkça yükselir.</p></section>';
+  h=h.replace(/(<div class="lb-eylem">[\s\S]*?<\/div>)/,'$1'+kart);
+  return h;
+ };
+}
