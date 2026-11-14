@@ -62,7 +62,7 @@ function arMine(v,why){
  if(YR.tm){clearInterval(YR.tm);YR.tm=null;}AR.ph='fb';AR.why=why;AR.hizli=hizliTebrik(AR,v>0,Math.abs(v));AR.myR.push(v);arCache();
  if(typeof EFEKT!=='undefined')EFEKT.cal(why==='time'?'tirr':v>0?'dogru':'yanlis');
  const s=arStats(AR.myR);if(s.bad>=arErrors()||s.n>=AR.total){arEnd();return;}
- const kutu=v>0&&s.kutu.length&&s.kutu[s.kutu.length-1].at===AR.myR.length;AR.kutuAcik=kutu?s.kutu[s.kutu.length-1].tur:null;if(kutu&&typeof EFEKT!=='undefined')EFEKT.cal('win');
+ const kutu=v>0&&s.kutu.length&&s.kutu[s.kutu.length-1].at===AR.myR.length;AR.kutuAcik=kutu?s.kutu[s.kutu.length-1].tur:null;if(kutu){if(typeof EFEKT!=='undefined')EFEKT.cal('win');setTimeout(()=>arSesli(AR&&AR.kutuAcik==='altin'?'Şans kutusu açıldı! Sonraki soru altın soru.':'Şans kutusu açıldı! Sonraki soruda iki yanlış seçenek gizlenecek.'),300);}
  arWrite();render();const a=AR;a.to=setTimeout(()=>{if(AR===a&&a.ph==='fb'&&!a.over)arNext();},v>0?(a.kutuAcik?2600:a.hizli?2200:350):1400);arRakip();
 }
 function arNext(){if(!AR||AR.over||AR.ph!=='fb')return;arRound(AR.myR.length);}
@@ -149,7 +149,9 @@ function arSiraHTML(){if(!arM5())return '';const rows=arRanks().filter(p=>!p.lef
  else if(alt){hedef='<span class="ar-hedef">👑 Taç sende! En yakın rakibin <b>'+esc(alt.nick)+'</b>, '+(me.score-alt.score)+' puan geride.</span>';}
  return '<p class="ar-sira" role="status">Sıran: <b>'+me.rank+' / '+rows.length+'</b>'+(me.rank===4&&rows.length>3?' · Podyuma 1 adım kaldı!':'')+hedef+'</p>';}
 /* Canlı bildirim: biri seni geçince ya da sen birini geçince kısa bir uyarı çıkar. */
-function arBildir(m,tur){const e=document.createElement('div');e.className='ar-bildirim '+(tur||'');e.setAttribute('role','status');e.textContent=m;document.body.appendChild(e);setTimeout(()=>e.classList.add('git'),2300);setTimeout(()=>e.remove(),2800);}
+/* Uyarılar sesli de okunur (ses açıksa). Emoji okunmaz. */
+function arSesli(m){if(typeof sesSoyle==='function')sesSoyle(String(m).replace(/[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}\u{2B50}\u{FE0F}½]/gu,'').trim());}
+function arBildir(m,tur){arSesli(m);const e=document.createElement('div');e.className='ar-bildirim '+(tur||'');e.setAttribute('role','status');e.textContent=m;document.body.appendChild(e);setTimeout(()=>e.classList.add('git'),2300);setTimeout(()=>e.remove(),2800);}
 function arRakip(){
  if(!AR||!arM5()||AR.over)return;const rows=arRanks().filter(p=>!p.left),i=rows.findIndex(p=>p.uid===yrMe());if(i<0)return;
  const ust=new Set(rows.slice(0,i).map(p=>p.uid)),onceki=AR.ustSet;AR.ustSet=ust;if(!onceki)return;
