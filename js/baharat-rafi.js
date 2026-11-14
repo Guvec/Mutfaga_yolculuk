@@ -110,7 +110,11 @@ function tanisCiz(){
  <button class="btn" onclick="BaharatRafi._ileri()">${S.t<3?'Sonraki baharat':'Göreve başla'}</button></div>`);
 }
 function tanisIleri(){if(S.t<3){S.t++;ses('ileri');}else{S.tanisti=true;S.ekran='soru';ses('basla');}ciz();}
-function kok(q){const b=B[q.id];if(q.hatirla)return '<span class="ozel" style="background:#6a9441">Hatırla</span><br>'+b.soru+' Aşağıdakilerden hangisi bu baharattır?';return {siparis:`Usta <b>${b.ad.toLocaleLowerCase('tr')}</b> istiyor. Tepsiye koy.`,etiket:'Bu kavanozun etiketi hangisi?',soru:b.soru+' Aşağıdakilerden hangisi bu baharattır?',yakin:'Yakından bak. Bu hangi baharat?'}[q.tur];}
+/* Soru sonu ürünün kendi türünü söyler: baharat, yeşillik, kuruyemiş, kuru meyve, gereç. */
+const CINS={baharat:['baharattır','baharat'],yesillik:['yeşilliktir','yeşillik'],kuruyemis:['kuruyemiştir','kuruyemiş'],kurumeyve:['kuru meyvedir','kuru meyve'],gerec:['gereçtir','gereç']};
+['maydanoz','nane','dereotu','roka'].forEach(id=>{if(B[id])B[id].cins='yesillik';});
+function cins(id){return CINS[(B[id]||{}).cins]||CINS.baharat;}
+function kok(q){const b=B[q.id],c=cins(q.id);if(q.hatirla)return '<span class="ozel" style="background:#6a9441">Hatırla</span><br>'+b.soru+' Aşağıdakilerden hangisi bu '+c[0]+'?';return {siparis:`Usta <b>${b.ad.toLocaleLowerCase('tr')}</b> istiyor. Tepsiye koy.`,etiket:'Bu kavanozun etiketi hangisi?',soru:b.soru+' Aşağıdakilerden hangisi bu '+c[0]+'?',yakin:'Yakından bak. Bu hangi '+c[1]+'?'}[q.tur];}
 function hedefHTML(q){const b=B[q.id];
  if(q.tur==='siparis')return `<div class="tepsi">Tepsi</div>`;
  if(q.tur==='etiket')return `<div class="kavanoz"><img src="${b.img}" alt=""><div class="etiket-yer">Etiket</div></div>`;

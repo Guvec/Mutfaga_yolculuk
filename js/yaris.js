@@ -73,10 +73,10 @@ function yrOpen(){
  }
  st.screen='racemenu';render();window.scrollTo(0,0);
 }
-function yrCreateOpen(mode){if(!yrNickOk())return;YR.cfg.mode=mode;if(mode!=='arena'&&YR.cfg.n>20)YR.cfg.n=10;if(mode==='arena')Object.assign(YR.cfg,{arenaTopic:'butun',subject:'mutfak-araclari',scope:'butun',kind:'gorsel',set:0,n:100,lim:20,av:2});YR.error='';st.screen='racecreate';render();window.scrollTo(0,0);}
+function yrCreateOpen(mode){if(!yrNickOk())return;YR.cfg.mode=mode;if(mode!=='arena'&&YR.cfg.n>20)YR.cfg.n=10;if(mode==='arena')Object.assign(YR.cfg,{arenaTopic:'butun',subject:'mutfak-araclari',scope:'butun',kind:'gorsel',set:0,n:150,lim:20,av:2});YR.error='';st.screen='racecreate';render();window.scrollTo(0,0);}
 function yrArenaTopic(topic){
  if(topic!=='butun'&&!YR_SUBJECTS.some(x=>x.id===topic))return;
- Object.assign(YR.cfg,{arenaTopic:topic,scope:topic==='ikili'||topic==='butun'?'butun':'konu',subject:topic==='ikili'||topic==='butun'?'mutfak-araclari':topic,kind:'gorsel',set:0,n:100,lim:20});render();
+ Object.assign(YR.cfg,{arenaTopic:topic,scope:topic==='ikili'||topic==='butun'?'butun':'konu',subject:topic==='ikili'||topic==='butun'?'mutfak-araclari':topic,kind:'gorsel',set:0,n:150,lim:20});render();
 }
 function yrCfg(k,v){YR.cfg[k]=v;if(k==='scope')YR.cfg.set=0;if(k==='subject'){const s=YR_SUBJECTS.find(x=>x.id===v);YR.cfg.kind=v==='kuver'?'kuver':'gorsel';YR.cfg.set=v==='kuver'?1:0;}render();}
 function yrCfgKind(kind,set){YR.cfg.kind=kind;YR.cfg.set=set;render();}
@@ -91,7 +91,7 @@ async function yrCreate(){
   const base={mode:c.mode,subject:c.subject,scope:c.scope||'tek',kind:c.kind,set:c.set,n:c.n||YarisModel.N_DEFAULT,lim:c.lim,seed:crypto.getRandomValues(new Uint32Array(1))[0],rev:yrRoomRev(c),hostNick:nick};
   const kilit=!!c.kilit;if(kilit&&!/^[0-9]{4}$/.test(String(c.sifre||'')))throw Error('Şifre 4 rakam olmalı.');
   Object.assign(base,{pub:c.pub!==false,ad:String(c.ad||(nick+' ile oyna')).slice(0,40),kilit});
-  if(c.mode==='arena')Object.assign(base,{av:2,roster:[],n:100,lim:20,kind:'gorsel',set:0});
+  if(c.mode==='arena')Object.assign(base,{av:2,roster:[],n:150,lim:20,kind:'gorsel',set:0});
   const qs=c.mode==='arena'?yrBuild(base,0):YarisModel.buildScoped(yrAllData(),{...base,n:base.n},base.seed);
   if(c.mode!=='arena'&&qs.length!==base.n)throw Error('Bu seçimde '+base.n+' soru yok ('+qs.length+' soru var). Başka kapsam veya maç uzunluğu seç.');
   base.n=qs.length;if(c.mode==='arena')base.rev=yrRoomRev(base);
@@ -401,7 +401,7 @@ function yrMenuHTML(){
  return yrTop('Birlikte Oynayalım')+'<div class="wrap"><h1>Birlikte Oynayalım</h1><p class="sub">Arkadaşınla ya da sınıfla aynı sorulara birlikte cevap ver. Meydan Okuma dışındaki oyunlar için internet gerekir.</p>'+(!cfg?'<p class="card" role="status">Oda bağlantısı henüz ayarlanmadı. Bireysel oyunları kullanabilirsin.</p>':'')+
   (yrHasName()?'<p class="card" id="yrNick">Oyundaki adın: <b>'+esc(yrNickGet())+'</b></p>':'<p class="card" id="yrNick">Odaya girerken sana bir oyun adı verilecek.</p>')+
   '<button class="btn pri" onclick="yrCreateOpen(\'duel\')"'+(cfg?'':' disabled')+'>1’e 1 Kapışma Kur<span class="yr-sm">İki kişi aynı soruya aynı anda bakar. Önce doğru basan puanı alır.</span></button>'+
-  '<button class="btn pri" onclick="yrCreateOpen(\'arena\')"'+(cfg?'':' disabled')+'>Er Meydanı Kur<span class="yr-sm">3–10 kişi kendi hızında ilerler. En çok 100 soru, 12 yanlışta bitiş.</span></button>'+
+  '<button class="btn pri" onclick="yrCreateOpen(\'arena\')"'+(cfg?'':' disabled')+'>Er Meydanı Kur<span class="yr-sm">3–10 kişi kendi hızında ilerler. En çok 150 soru, 12 yanlışta bitiş.</span></button>'+
   '<button class="btn" onclick="yrCreateOpen(\'canavar\')">Meydan Okuma<span class="yr-sm">Kendi hızında çalış, hakların bitmeden hedefe ulaş. İnternet gerekmez.</span></button>'+
   '<button class="btn ghost" onclick="rkOpenBoard(\'oy-kapisma\')">🏅 Kapışma ve Er Meydanı sıralaması</button>'+
   (code?'<div class="yr-sep"></div><input id="yrCode" type="hidden" value="'+esc(code.toUpperCase())+'"><button class="btn pri" onclick="yrJoin()"'+(cfg&&!YR.busy?'':' disabled')+'>Davet edildiğin odaya gir</button>':'')+yrErr()+'</div>';
