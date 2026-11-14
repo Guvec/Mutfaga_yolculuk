@@ -49,11 +49,11 @@ yrMenuHTML=function(){
   return h+'<section class="card lb-sifre"><h2>Bu oda şifreli</h2><p>Oda kodu: <b>'+esc(LB.sifre.code)+'</b>. Şifreyi odayı kuran arkadaşından öğren.</p><input id="lbSifre" class="inp" inputmode="numeric" pattern="[0-9]*" maxlength="4" autocomplete="off" aria-label="4 rakamlı şifre" placeholder="• • • •" onkeydown="if(event.key===\'Enter\')lbSifreGonder()"><div class="row"><button class="btn" onclick="lbSifreIptal()">Vazgeç</button><button class="btn pri" onclick="lbSifreGonder()"'+(YR.busy?' disabled':'')+'>Odaya gir</button></div>'+yrErr()+'</section></div>';
  }
  h+='<div class="lb-eylem">'+
-  '<button class="btn pri lb-hizli" onclick="lbHizli()"'+(cfg?'':' disabled')+(YR.busy?' disabled':'')+'>⚡ Hızlı oyna <small>Açık bir odaya katıl ya da yeni oda kur</small></button>'+
-  '<button class="btn pri" onclick="yrCreateOpen(\'duel\')"'+(cfg?'':' disabled')+'>⚔️ Kapışma kur</button>'+
-  '<button class="btn pri" onclick="yrCreateOpen(\'arena\')"'+(cfg?'':' disabled')+'>🏟 Er Meydanı kur</button>'+
-  '<button class="btn" onclick="lbKodAc()" aria-expanded="'+LB.kod+'"'+(cfg?'':' disabled')+'>🔑 Kodla gir</button>'+
-  '<button class="btn" onclick="yrCreateOpen(\'canavar\')">🎯 Meydan Okuma</button></div>';
+  '<button class="btn pri lb-hizli" onclick="lbHizli()"'+(cfg?'':' disabled')+(YR.busy?' disabled':'')+'><span class="lb-hizli-ikon" aria-hidden="true">👨‍🍳</span><span class="lb-hizli-yazi"><b>Hızlı Şef</b><small>1’e 1 · 2’ye 2 · Blitz · Er Meydanı</small></span><span class="lb-hizli-ok" aria-hidden="true">›</span></button>'+
+  '<button class="btn pri lb-m lb-m-duel" onclick="yrCreateOpen(\'duel\')"'+(cfg?'':' disabled')+'>⚔️ Kapışma kur</button>'+
+  '<button class="btn pri lb-m lb-m-arena" onclick="yrCreateOpen(\'arena\')"'+(cfg?'':' disabled')+'>🏟 Er Meydanı kur</button>'+
+  '<button class="btn lb-m2" onclick="lbKodAc()" aria-expanded="'+LB.kod+'"'+(cfg?'':' disabled')+'>🔑 Kodla gir</button>'+
+  '<button class="btn lb-m2" onclick="yrCreateOpen(\'canavar\')">🎯 Meydan Okuma</button></div>';
  if(LB.kod||code)h+='<div class="lb-kod"><input id="yrCode" class="inp" maxlength="10" autocapitalize="characters" autocomplete="off" aria-label="Oda kodu" placeholder="Oda kodu" value="'+esc(String(code).toUpperCase())+'" oninput="YR.codeDraft=this.value" onkeydown="if(event.key===\'Enter\')yrJoin()"><button class="btn pri" onclick="yrJoin()"'+(cfg&&!YR.busy?'':' disabled')+'>Gir</button></div>';
  if(YR.notice&&!YR.active)h+='<p class="lb-durum" role="status">'+esc(YR.notice)+'</p>';
  const boy=lbSayfaBoy(),ss=Math.max(1,Math.ceil(LB.liste.length/boy));LB.sayfa=Math.max(0,Math.min(ss-1,LB.sayfa));

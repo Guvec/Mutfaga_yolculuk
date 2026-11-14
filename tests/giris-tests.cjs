@@ -20,7 +20,7 @@ const types={'.js':'text/javascript','.css':'text/css','.html':'text/html','.jso
   const context=await browser.newContext({viewport:{width:360,height:640},isMobile:true,hasTouch:true,serviceWorkers:'allow'});
   await context.addInitScript(()=>localStorage.setItem('mesleki-ses-soru','1'));
   await context.route('https://**/*',route=>route.abort());
-  const p=await context.newPage();
+  await require('./helpers/hazir.cjs')(context);const p=await context.newPage();
   p.on('pageerror',error=>errors.push(error.message));
   p.on('response',r=>{if(r.url().startsWith(url)&&r.status()>=400)errors.push(r.status()+' '+r.url());});
   await p.goto(url);await p.locator('.ae-home').waitFor();

@@ -12,6 +12,7 @@ const MOCK=`(function(){
   async setPlayer(code,pd){return window.__hub('set',this.uid,code,pd);}
   async start(code){return window.__hub('start',this.uid,code);}
   async leave(code,lobby,host){return window.__hub('leave',this.uid,code,lobby,host);}
+  watchList(on){on([]);return Promise.resolve(()=>{});}
   watch(code,onRoom,onPlayers){let last='';const t=setInterval(async()=>{const s=await window.__hub('state',code);const j=JSON.stringify(s);if(j!==last){last=j;onRoom(s.room);onPlayers(s.players);}},60);return [()=>clearInterval(t)];}
  }
  window.YarisFirebase=YarisFirebase;

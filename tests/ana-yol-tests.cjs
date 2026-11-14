@@ -17,7 +17,7 @@ const types={'.js':'text/javascript','.css':'text/css','.html':'text/html','.jso
   browser=await chromium.launch({headless:true,args:['--no-sandbox','--disable-gpu']});
   const context=await browser.newContext({viewport:{width:390,height:760},isMobile:true,hasTouch:true});
   await context.route('https://**/*',route=>route.abort());
-  const p=await context.newPage(),errors=[];
+  await require('./helpers/hazir.cjs')(context);const p=await context.newPage(),errors=[];
   p.on('pageerror',e=>errors.push(e.message));
   await p.goto(url);await p.locator('.ae-home').waitFor();
   await p.evaluate(()=>guest());await p.evaluate(()=>go('home'));

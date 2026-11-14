@@ -8,7 +8,7 @@ let n=0;const ok=(c,m)=>{assert(c,m);n++;};
 const M=require(path.join(root,'js/yaris-model.js'));
 const mc=(M.YarisModel||M).MATCH_CHOICES;
 ok(Array.isArray(mc)&&mc.length===3&&mc[0].n===10&&mc[1].n===15&&mc[2].n===20,'Kısa 10, orta 15, uzun 20 soru');
-const br=await chromium.launch(),pg=await br.newPage();
+const br=await chromium.launch(),pg=await br.newPage();await require('./helpers/hazir.cjs')(pg);
 await pg.route('**/*',r=>r.fulfill({body:'<body><div id="ov"></div></body>',contentType:'text/html'}));await pg.goto('https://t.test/');
 await pg.evaluate(()=>{window.plays=[];window.Audio=function(src){this.src=src;this.paused=true;this.volume=1;this.addEventListener=()=>{};this.pause=()=>{this.paused=true;plays.push('pause:'+this.src)};this.play=()=>{this.paused=false;plays.push('play:'+this.src);return Promise.resolve()};};
  window.st={modalOpen:false};window.pauseT=()=>{};window.resumeT=()=>{};window.closeModal=()=>{st.modalOpen=false;const o=document.getElementById('ov');o.className='';o.innerHTML='';};window.render=()=>{};window.lsSet=()=>{};window.sesSus=()=>{};window.sesAcKapa=()=>{};window.SES={acik:true};window.modalFocus=null;window.sesDugme=()=>{};window.sesSoyle=()=>{};

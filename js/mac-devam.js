@@ -2,7 +2,7 @@
 /* 14.11 akşam: mobil oyun alışkanlıkları.
    1) Kaldığın yerden dön: odadayken ya da maçtayken sayfa yenilenirse aynı odaya yeniden bağlanılır.
       Er Meydanı'nda cevaplar korunur (sunucu kaydı + telefondaki kopya). 1'e 1 başladıktan sonra dönülemez.
-   2) Hızlı oyna: açık ve şifresiz bir odaya katılır; yoksa herkese açık bir Er Meydanı kurar.
+   2) Hızlı Şef: js/blitz.js.
    3) Er Meydanı sonunda tek düğmeyle aynı konuyla yeni oda (rövanş). Kapışmada rövanş zaten vardı. */
 'use strict';
 const MD={anahtar:'yr_devam',denendi:false,yuklendi:Date.now()};
@@ -41,15 +41,7 @@ function mdDene(){
  },0);
 }
 {const t=setInterval(()=>{if(MD.denendi||Date.now()-MD.yuklendi>30000){clearInterval(t);return;}try{mdDene();}catch(e){}},700);}
-/* Hızlı oyna */
-window.lbHizli=function(){
- if(YR.busy||!yrConfigured())return;
- const uygun=(LB.liste||[]).filter(r=>!r.kilit&&(r.mode==='arena'||r.mode==='duel')&&lbSay(r)<lbCap(r))
-  .sort((a,b)=>((b.mode==='arena')-(a.mode==='arena'))||(lbSay(b)-lbSay(a)));
- try{sesEfekt('basla');}catch(e){}
- if(uygun.length){yrJoin(uygun[0].code);return;}
- yrCreateOpen('arena');Object.assign(YR.cfg,{pub:true,kilit:false,ad:''});yrCreate();
-};
+/* Hızlı Şef: js/blitz.js (lbHizli). */
 /* Er Meydanı rövanşı: aynı konuyla yeni, herkese açık oda; arkadaşlar listeden ya da kodla girer. */
 window.mdYeniArena=function(){
  const r=YR.room;if(!r)return;const konu=r.scope==='konu'?r.subject:'butun';

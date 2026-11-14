@@ -14,6 +14,7 @@ const MOCK=`(function(){
   async getPlayer(code){const s=await window.__hub('state',code);return s.players.find(p=>p.uid===this.uid);}
   async arenaExpire(){return;}
   async leave(code,lobby,host){return window.__hub('leave',this.uid,code,lobby,host);}
+  watchList(on){on([]);return Promise.resolve(()=>{});}
   watch(code,onRoom,onPlayers){let last='';const t=setInterval(async()=>{const s=await window.__hub('state',code);const j=JSON.stringify(s);if(j!==last){last=j;onRoom(s.room);onPlayers(s.players);}},60);return [()=>clearInterval(t)];}
  }
  window.YarisFirebase=YarisFirebase;
@@ -29,7 +30,7 @@ const hub={rooms:{},n:0,ops:{
  state(code){const r=hub.rooms[code];return r?{room:r.room,players:Object.entries(r.players).map(([uid,p])=>({uid,...p,pending:false,fromCache:false}))}:{room:null,players:[]};}
 }};
 (async()=>{
- const server=http.createServer((req,res)=>{const u=new URL(req.url,'http://x');const f=path.resolve(root,'.'+(u.pathname==='/'?'/index.html':decodeURIComponent(u.pathname)));if(!f.startsWith(root)||!fs.existsSync(f)||fs.statSync(f).isDirectory()){res.writeHead(404);res.end();return;}const ext=path.extname(f);res.writeHead(200,{'content-type':{'.html':'text/html','.js':'text/javascript','.css':'text/css','.json':'application/json','.jpg':'image/jpeg','.png':'image/png','.webp':'image/webp'}[ext]||'application/octet-stream'});fs.createReadStream(f).pipe(res);});
+ const server=http.createServer((req,res)=>{const u=new URL(req.url,'http://x');const f=path.resolve(root,'.'+(u.pathname==='/'?'/index.html':decodeURIComponent(u.pathname)));if(!f.startsWith(root)||!fs.existsSync(f)||fs.statSync(f).isDirectory()){res.writeHead(404);res.end();return;}const ext=path.extname(f);res.writeHead(200,{'content-type':{'.html':'text/html','.js':'text/javascript','.css':'text/css','.json':'application/json','.jpg':'image/jpeg','.png':'image/png','.webp':'image/webp','.svg':'image/svg+xml'}[ext]||'application/octet-stream'});fs.createReadStream(f).pipe(res);});
  await new Promise(r=>server.listen(0,r));const url='http://localhost:'+server.address().port;
  const browser=await chromium.launch(),errors=[];
  async function phone(width=390,query=''){
