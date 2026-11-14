@@ -4,9 +4,11 @@
 let AR=null;
 function arErrors(){return ArenaModel.errorLimit(YR.room);}
 function arJ(){return AR&&AR.j||{kl:-1,sn:-1,tad:-1};}
-function arStats(r){const j=arJ();return ArenaModel.stats(r,arErrors(),YR.room,{kl:j.kl,sn:j.sn});}
+function arStats(r){const j=arJ();return ArenaModel.stats(r,arErrors(),YR.room,{kl:j.kl,sn:j.sn,uid:yrMe()});}
+/* Şans kutusu: bu soru için kutudan ne çıktı (altin / tadim / yok). */
+function arKutu(k){if(!arM5())return null;const x=arStats(AR.myR.slice(0,k)).kutu.find(b=>b.at===k);return x?x.tur:null;}
 function arM5(){return !!(YR.room&&ArenaModel.modern5(YR.room));}
-function arGold(k){return arM5()&&ArenaModel.goldIdx(YR.room).includes(k);}
+function arGold(k){return arM5()&&(ArenaModel.goldIdx(YR.room).includes(k)||(AR&&arKutu(k)==='altin'));}
 function arLeadersHTML(){return '<button type="button" class="btn sm" onclick="rkOpenBoard(\'oy-arena2\')">Sıralama</button>';}
 function arOn(){return !!(YR.room&&YR.room.mode==='arena');}
 function arSorted(){return YR.players.filter(p=>AR&&AR.roster.includes(p.uid)).slice().sort((a,b)=>String(a.uid).localeCompare(String(b.uid)));}
@@ -60,12 +62,14 @@ function arMine(v,why){
  if(YR.tm){clearInterval(YR.tm);YR.tm=null;}AR.ph='fb';AR.why=why;AR.hizli=hizliTebrik(AR,v>0,Math.abs(v));AR.myR.push(v);arCache();
  if(typeof EFEKT!=='undefined')EFEKT.cal(why==='time'?'tirr':v>0?'dogru':'yanlis');
  const s=arStats(AR.myR);if(s.bad>=arErrors()||s.n>=AR.total){arEnd();return;}
- arWrite();render();const a=AR;a.to=setTimeout(()=>{if(AR===a&&a.ph==='fb'&&!a.over)arNext();},v>0?(a.hizli?2200:350):1400);
+ const kutu=v>0&&s.kutu.length&&s.kutu[s.kutu.length-1].at===AR.myR.length;AR.kutuAcik=kutu?s.kutu[s.kutu.length-1].tur:null;if(kutu&&typeof EFEKT!=='undefined')EFEKT.cal('win');
+ arWrite();render();const a=AR;a.to=setTimeout(()=>{if(AR===a&&a.ph==='fb'&&!a.over)arNext();},v>0?(a.kutuAcik?2600:a.hizli?2200:350):1400);arRakip();
 }
 function arNext(){if(!AR||AR.over||AR.ph!=='fb')return;arRound(AR.myR.length);}
-function arRanks(){return ArenaModel.ranks(arSorted(),arErrors(),YR.room);}
+/* Oyun sürerken kendi satırın telefondaki son yanıtlarla hesaplanır (sunucu kaydı birkaç saniye geriden gelebilir). */
+function arRanks(){const me=yrMe(),ps=arSorted().map(p=>p.uid===me&&AR&&!AR.over&&AR.myR.length>=(p.r||[]).length?{...p,r:AR.myR.slice(),kl:AR.j.kl>=0?AR.j.kl:p.kl,sn:AR.j.sn>=0?AR.j.sn:p.sn}:p);return ArenaModel.ranks(ps,arErrors(),YR.room);}
 /* Jokerler (v3.13): her maçta herkese aynı set, her biri bir kez. Tadımlık iki yanlışı gizler; Kalkan o sorudaki yanlışı saymaz; +10 sn süreyi uzatır. */
-function arTadGizli(q){if(arJ().tad!==AR.k)return [];const w=q.choices.map((c,i)=>({i,id:c.id})).filter(x=>x.id!==q.correct);let h=(Number(YR.room.seed)>>>0)+AR.k*7919;w.sort((a,b)=>((h^a.i*2654435761)>>>0)%97-((h^b.i*2654435761)>>>0)%97);return w.slice(0,2).map(x=>x.i);}
+function arTadGizli(q){if(arJ().tad!==AR.k&&arKutu(AR.k)!=='tadim')return [];const w=q.choices.map((c,i)=>({i,id:c.id})).filter(x=>x.id!==q.correct);let h=(Number(YR.room.seed)>>>0)+AR.k*7919;w.sort((a,b)=>((h^a.i*2654435761)>>>0)%97-((h^b.i*2654435761)>>>0)%97);return w.slice(0,2).map(x=>x.i);}
 function arJoker(t){
  if(!AR||AR.over||AR.ph!=='q'||!arM5())return;const j=AR.j;
  if(t==='tad'&&j.tad<0){j.tad=AR.k;}
@@ -129,7 +133,7 @@ function arSync(){
    }
   }
  }
- if(st.screen==='aover')render();else if(st.screen==='aplay'){const e=document.getElementById('arRank');if(e)e.innerHTML=arScoreHTML();}
+ if(st.screen==='aover')render();else if(st.screen==='aplay'){const e=document.getElementById('arRank');if(e)e.innerHTML=arScoreHTML();const sr=document.querySelector('.ar-sira');if(sr)sr.outerHTML=arSiraHTML()||'<span></span>';arRakip();}
 }
 function arBeat(){
  if(!AR)return;
@@ -139,7 +143,20 @@ function arBeat(){
  arSync();
 }
 function arScoreHTML(){const rows=arRanks(),m5=arM5(),fin=m5&&rows.filter(p=>!p.left).length>3;return '<ul class="yr-rank ar-rank">'+rows.map((p,i)=>(fin&&i===3?'<li class="ar-final-cizgi" aria-hidden="true"><span>Podyum çizgisi</span></li>':'')+'<li class="yr-row'+(p.uid===yrMe()?' me':'')+'"><span class="yr-rk">'+(p.rank||'—')+'</span><span class="yr-nm">'+(m5&&p.rank===1?'<span class="ar-tac" role="img" aria-label="Taç">👑</span> ':'')+esc(p.nick)+(p.uid===yrMe()?' (Sen)':'')+(p.left?' · ayrıldı':p.done?' · bitti':'')+'</span><span class="yr-sc">'+(m5?p.score+' puan · ':p.ok+' doğru · ')+p.n+'/'+AR.total+'</span></li>').join('')+'</ul>';}
-function arSiraHTML(){if(!arM5())return '';const rows=arRanks().filter(p=>!p.left),me=rows.find(p=>p.uid===yrMe());if(!me||rows.length<2)return '';return '<p class="ar-sira" role="status">Sıran: <b>'+me.rank+' / '+rows.length+'</b>'+(me.rank===1?' · <span aria-hidden="true">👑</span> Taç sende!':me.rank===4&&rows.length>3?' · Podyuma 1 adım kaldı!':'')+'</p>';}
+function arSiraHTML(){if(!arM5())return '';const rows=arRanks().filter(p=>!p.left),me=rows.find(p=>p.uid===yrMe());if(!me||rows.length<2)return '';
+ const i=rows.indexOf(me),ust=i>0?rows[i-1]:null,alt=rows[i+1]||null;let hedef='';
+ if(ust){const fark=Math.max(1,ust.score-me.score+(ust.tt<=me.tt?1:0));hedef='<span class="ar-hedef">🎯 Hedef: <b>'+esc(ust.nick)+'</b> · '+(fark<=1?'bir doğruyla geçersin!':fark+' puan önde')+'</span>';}
+ else if(alt){hedef='<span class="ar-hedef">👑 Taç sende! En yakın rakibin <b>'+esc(alt.nick)+'</b>, '+(me.score-alt.score)+' puan geride.</span>';}
+ return '<p class="ar-sira" role="status">Sıran: <b>'+me.rank+' / '+rows.length+'</b>'+(me.rank===4&&rows.length>3?' · Podyuma 1 adım kaldı!':'')+hedef+'</p>';}
+/* Canlı bildirim: biri seni geçince ya da sen birini geçince kısa bir uyarı çıkar. */
+function arBildir(m,tur){const e=document.createElement('div');e.className='ar-bildirim '+(tur||'');e.setAttribute('role','status');e.textContent=m;document.body.appendChild(e);setTimeout(()=>e.classList.add('git'),2300);setTimeout(()=>e.remove(),2800);}
+function arRakip(){
+ if(!AR||!arM5()||AR.over)return;const rows=arRanks().filter(p=>!p.left),i=rows.findIndex(p=>p.uid===yrMe());if(i<0)return;
+ const ust=new Set(rows.slice(0,i).map(p=>p.uid)),onceki=AR.ustSet;AR.ustSet=ust;if(!onceki)return;
+ const gecen=rows.filter(p=>ust.has(p.uid)&&!onceki.has(p.uid)),gecilen=rows.filter(p=>onceki.has(p.uid)&&!ust.has(p.uid));
+ if(gecen.length){arBildir('⚡ '+gecen[0].nick+' seni geçti!','geri');if(typeof EFEKT!=='undefined')EFEKT.cal('tak');}
+ else if(gecilen.length){arBildir(i===0?'👑 '+gecilen[0].nick+' geride kaldı. Taç sende!':'🚀 '+gecilen[0].nick+' geride kaldı!','ileri');}
+}
 function arIntroHTML(){return '<div class="yr-full"><p>'+esc(yrLabel(YR.room))+' · '+YR.qs.length+' soru</p><h1>Er Meydanı</h1><div class="yr-big" id="yrHeading" tabindex="-1" role="status">'+Math.max(1,YR.count)+'</div><p>Kendi hızında ilerle. '+arErrors()+' yanlışta denemen biter.</p>'+arLeadersHTML()+'</div>';}
 function arPlayHTML(){
  const q=YR.qs[AR.k],s=arStats(AR.myR),asking=AR.ph==='q',correct=q.choices.find(c=>c.id===q.correct);
@@ -148,7 +165,7 @@ function arPlayHTML(){
  return yrTop('Er Meydanı')+'<div class="wrap ar-play'+(gold&&asking?' ar-altin':'')+'"><div class="ar-status"><strong>'+(arM5()?s.score+' puan':s.ok+' doğru')+'</strong><span>Yanlış: '+s.bad+' / '+arErrors()+'</span><span>Soru '+(AR.k+1)+' / '+AR.total+'</span></div>'+(YR.warn?'<p class="ar-network" role="status">Bağlantı bekleniyor; sonuçlar saklanıyor.</p>':'')+
  arSiraHTML()+(arM5()&&s.run>=5?'<p class="ar-seri" role="status">🔥 '+s.run+' doğru üst üste'+(s.boost>0?' · sonraki '+s.boost+' doğru +1 puan':'')+'</p>':'')+(gold&&asking?'<p class="ar-altin-bant" role="status">⭐ ALTIN SORU · doğru bilirsen +3 puan</p>':'')+
  '<div class="yr-bar" aria-hidden="true"><div class="yr-fill" id="yrFill"></div></div><p class="yr-sec" id="yrSec">'+(asking?Math.ceil(AR.lim/1000)+' sn':'')+'</p>'+yrQuestionHTML(q)+ch+(asking?arJokerHTML():'')+
- '<div class="ar-feedback" role="status">'+(asking?'':fbTxt)+'</div>'+
+ '<div class="ar-feedback" role="status">'+(asking?'':fbTxt)+'</div>'+(!asking&&AR.kutuAcik?'<div class="ar-kutu" role="status"><span class="ar-kutu-ic" aria-hidden="true">🎁</span><b>Şans kutusu açıldı!</b><span>'+(AR.kutuAcik==='altin'?'⭐ Sonraki soru altın soru!':'½ Sonraki soruda iki yanlış seçenek gizlenecek!')+'</span></div>':'')+(asking&&arKutu(AR.k)==='tadim'?'<p class="ar-kalkan-acik" role="status">🎁 Şans kutusundan: iki yanlış seçenek gizlendi.</p>':'')+
  (asking?'':'<button type="button" class="btn pri ar-next" onclick="arNext()">Sıradaki soru</button>')+
  '<details class="ar-score"><summary>Canlı sıralama</summary><div id="arRank">'+arScoreHTML()+'</div></details></div>';
 }
