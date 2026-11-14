@@ -103,6 +103,7 @@ function efektDugme(){if(!EFEKT.var())return '';return '<button type="button" cl
 /* Profil seçimi başına bir kez; tercihler cihazda kalır. */
 function sesSecimiSor(){
  if(st.modalOpen)return;
+ return; /* 14.11: ses kendiliğinden açık gelir; ayar 🎵 panelinde. */
  try{if(localStorage.getItem('mesleki-ses-soru')==='1')return;}catch(e){}
  try{if(sessionStorage.getItem('mesleki-ses-secim')==='1')return;sessionStorage.setItem('mesleki-ses-secim','1');}catch(e){}
  if(st.modalOpen)return;

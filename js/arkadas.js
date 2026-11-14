@@ -59,7 +59,7 @@ async function frStart(p,id){
   const merge=()=>{
    const l=[],inc=[],out=[],all=Object.assign({},A,B);
    for(const k in all){const x=all[k],o=x.a===id?x.b:x.a;if(x.st==='ok')l.push(o);else if(x.by===id)out.push(o);else inc.push(o);}
-   FR.list=l;FR.inc=inc;FR.out=out;frNicks(l.concat(inc,out));
+   const yeniGelen=inc.filter(o=>!FR.inc.includes(o));FR.list=l;FR.inc=inc;FR.out=out;frNicks(l.concat(inc,out));if(yeniGelen.length&&typeof frYeniIstek==='function')frYeniIstek(yeniGelen);
   };
   FR.unsub.push(fb.onSnapshot(fb.query(fb.collection(t.db,'yrFr'),fb.where('a','==',id)),qs=>{A={};qs.forEach(d=>{A[d.id]=d.data();});merge();},()=>{}));
   FR.unsub.push(fb.onSnapshot(fb.query(fb.collection(t.db,'yrFr'),fb.where('b','==',id)),qs=>{B={};qs.forEach(d=>{B[d.id]=d.data();});merge();},()=>{}));
@@ -107,7 +107,7 @@ function frBody(){
  if(!FR.ready)return '<p class="sub center">⏳ Hazırlanıyor…</p>';
  let h='<div class="card ark-box"><small>Senin oyuncu kodun</small><div class="ark-code">'+esc(FR.pid)+'</div><small>Bu kodu arkadaşına ver. O seni eklesin, sen kabul et.</small><div class="ark-btns"><button class="btn" onclick="frCopy()">📋 Kopyala</button><button class="btn ghost" onclick="frShare()">📤 Paylaş</button></div></div>';
  h+='<label for="fr-code">Arkadaşının kodu</label><input id="fr-code" class="inp" maxlength="9" autocapitalize="characters" autocomplete="off" placeholder="Arkadaşının kodu (ör. ABCDEFG)"><button class="btn pri" onclick="frAdd()">➕ Arkadaş Ekle</button>';
- if(FR.inc.length){h+='<h2>📩 Gelen istekler</h2>';FR.inc.forEach(o=>{h+='<div class="ark-row"><span>'+esc(FR.nick[o]||'…')+'</span><span><button class="mini" onclick="frAccept(\''+o+'\')">✓ Kabul</button> <button class="mini" aria-label="İsteği reddet" onclick="frDel(\''+o+'\',0)">✕</button> <button class="mini" aria-label="Engelle" onclick="frEngelle(\''+o+'\')">🚫</button></span></div>';});}
+ if(FR.inc.length){h+='<h2>📩 Gelen istekler <span class="fr-rozet-ic">'+FR.inc.length+' yeni</span></h2><p class="fr-istek-not">Kabul etmek için ✓ Kabul düğmesine bas.</p>';FR.inc.forEach(o=>{h+='<div class="ark-row istek"><span>'+esc(FR.nick[o]||'…')+'</span><span><button class="mini" onclick="frAccept(\''+o+'\')">✓ Kabul</button> <button class="mini" aria-label="İsteği reddet" onclick="frDel(\''+o+'\',0)">✕</button> <button class="mini" aria-label="Engelle" onclick="frEngelle(\''+o+'\')">🚫</button></span></div>';});}
  h+='<h2>👫 Arkadaşların ('+FR.list.length+')</h2>';
  if(!FR.list.length)h+='<p class="sub center">Henüz arkadaşın yok. Arkadaşının kodunu yazıp ekle.</p>';
  FR.list.slice().sort((a,b)=>(frOnline(b)?1:0)-(frOnline(a)?1:0)||String(FR.nick[a]).localeCompare(String(FR.nick[b]),'tr')).forEach(o=>{
@@ -309,3 +309,24 @@ pickProfile=function(n){FR_PICK(n);setTimeout(frEnsure,50);};
 guest=function(){frStop();FR_GUEST();};
 window.addEventListener('online',()=>{frEnsure();arkWipeRun();});
 document.addEventListener('visibilitychange',()=>{if(!document.hidden){frBeat();frInvCheck();}});
+/* 14.11: Gelen arkadaşlık isteği gözden kaçmasın: ana sayfadaki Arkadaşlarım kartında kırmızı, yanıp sönen sayı;
+   yeni istek gelince ses, kısa bildirim ve sesli okuma; Arkadaşlarım ekranında istek satırı vurgulu. */
+function frRozetYenile(){
+ try{
+  const n=(FR.inc||[]).length;
+  document.querySelectorAll('.ae-friends-open,[data-ark]').forEach(b=>{let r=b.querySelector('.fr-rozet');if(!n){if(r)r.remove();return;}if(!r){r=document.createElement('span');r.className='fr-rozet';b.appendChild(r);}r.textContent=n;r.setAttribute('aria-label',n+' yeni arkadaşlık isteği');});
+  const kart=document.querySelector('.ae-friends');if(kart)kart.classList.toggle('fr-istek-var',n>0);
+ }catch(e){}
+}
+function frYeniIstek(yeni){
+ setTimeout(()=>{
+  const ad=yeni.map(o=>(FR.nick&&FR.nick[o])||'Bir arkadaşın').join(', ');
+  const m='📩 '+ad+' sana arkadaşlık isteği gönderdi!';
+  try{if(typeof sesEfekt==='function')sesEfekt('ac');}catch(e){}
+  try{if(typeof adToast==='function')adToast(m);}catch(e){}
+  try{if(typeof sesSoyle==='function'&&typeof SES!=='undefined'&&SES.acik)sesSoyle(m.replace('📩 ',''));}catch(e){}
+  frRozetYenile();
+ },1500);
+}
+if(typeof render==='function'){const FR_R0=render;render=function(){FR_R0.apply(this,arguments);frRozetYenile();};}
+setInterval(frRozetYenile,3000);
