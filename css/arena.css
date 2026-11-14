@@ -81,3 +81,6 @@ body.yr-oyun .wrap>.btn.ghost{display:none}
 .ar-rekor3 h2{font-size:1.05rem;margin:0 0 6px}.ar-rekor3 .rk-rows{margin:0}
 .ar-rank .yr-row{flex-wrap:wrap}.ar-rank .yr-nm{flex:1 1 0;min-width:0}.ar-rank .yr-sc{flex:1 0 100%;text-align:end;font-variant-numeric:tabular-nums}
 .ar-rekor3 .rk-row{grid-template-columns:2.4em minmax(0,1fr)}.ar-rekor3 .rk-score{grid-column:2;white-space:normal;font-variant-numeric:tabular-nums}
+.mola-kutu{position:fixed;inset:0;z-index:9999;display:grid;place-items:center;padding:16px;background:#1b2a2acc}
+.mola-ic{max-width:420px;width:100%;background:var(--surface,#fffdf8);border-radius:22px;padding:22px 20px;text-align:center;box-shadow:0 10px 30px #0005}
+.mola-simge{font-size:56px;line-height:1}.mola-ic h2{margin:8px 0}.mola-ic p{margin:6px 0}.mola-not{opacity:.8;font-size:.95em}.mola-ic .btn{width:100%;margin-top:10px}

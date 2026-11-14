@@ -25,7 +25,7 @@ function profilAyrintiAc(){
  const wipe=document.getElementById('profileWipe');
  if(wipe)wipe.onclick=function(){if(!profilDegistirilebilir())return;const n=st.prof;closeModal();askDelProfile(n);};
  const rename=document.getElementById('profileRename');
- if(rename)rename.onclick=function(){if(!profilDegistirilebilir())return;closeModal();adOpen(profiles().indexOf(st.prof),st.screen);};
+ if(rename)rename.onclick=function(){if(!profilDegistirilebilir())return;const i=profiles().indexOf(st.prof);if(i<0){if(typeof adToast==='function')adToast('Önce profilini seç.');return;}closeModal();adOpen(i,st.screen);};
  const change=document.getElementById('profileSwitch');
  if(change)change.onclick=function(){if(!profilDegistirilebilir())return;closeModal();go('profiles');};
  const dost=document.getElementById('profileDost');

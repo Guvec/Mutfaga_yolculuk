@@ -161,7 +161,10 @@ function arSiraHTML(){if(!arM5())return '';const rows=arRanks().filter(p=>!p.lef
 /* Canlı bildirim: biri seni geçince ya da sen birini geçince kısa bir uyarı çıkar. */
 /* Uyarılar sesli de okunur (ses açıksa). Emoji okunmaz. */
 function arSesli(m){if(typeof sesSoyle==='function')sesSoyle(String(m).replace(/[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}\u{2B50}\u{FE0F}½]/gu,'').trim());}
-function arBildir(m,tur){arSesli(m);const e=document.createElement('div');e.className='ar-bildirim '+(tur||'');e.setAttribute('role','status');e.textContent=m;document.body.appendChild(e);setTimeout(()=>e.classList.add('git'),2300);setTimeout(()=>e.remove(),2800);}
+/* Uyarılar üst üste binmez: sıraya girer, tek tek gösterilir ve okunur (en çok 3 bekler, aynısı tekrar eklenmez). */
+const AR_BQ=[];let AR_BQ_ON=false;
+function arBildir(m,tur){if(AR_BQ.some(x=>x[0]===m))return;if(AR_BQ.length>=3)AR_BQ.shift();AR_BQ.push([m,tur]);if(!AR_BQ_ON)arBildirSira();}
+function arBildirSira(){const x=AR_BQ.shift();if(!x){AR_BQ_ON=false;return;}AR_BQ_ON=true;const [m,tur]=x;arSesli(m);const e=document.createElement('div');e.className='ar-bildirim '+(tur||'');e.setAttribute('role','status');e.textContent=m;document.body.appendChild(e);setTimeout(()=>e.classList.add('git'),2300);setTimeout(()=>{e.remove();arBildirSira();},2900);}
 function arRakip(){
  if(!AR||!arM5()||AR.over)return;const rows=arRanks().filter(p=>!p.left),i=rows.findIndex(p=>p.uid===yrMe());if(i<0)return;
  const ust=new Set(rows.slice(0,i).map(p=>p.uid)),onceki=AR.ustSet;AR.ustSet=ust;if(!onceki)return;

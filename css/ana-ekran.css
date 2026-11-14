@@ -587,3 +587,6 @@ html:is([data-theme=light],[data-theme=sepia],:not([data-theme])) .ae-home .ae-p
   .ae-home .ae-serit .ae-progress { height:clamp(9px,1.4svh,14px); }
 }
 .ae-home .ae-lig-logo{object-fit:contain}
+/* Emoji profil simgesi daireyi doldursun (PC'de küçük kalıyordu). */
+.ae-home .ae-header .ae-avatar{container-type:inline-size}
+.ae-home .ae-header .ae-avatar-emoji{font-size:clamp(24px,4vw,64px);font-size:58cqw;line-height:1}

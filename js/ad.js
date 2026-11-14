@@ -58,6 +58,12 @@ function adRename(o,nw,info){
   else if(typeof rkForgetProfile==='function')rkForgetProfile(o);
  }
  const m=adMap();delete m[o];m[nw]=info;lsSet('ad_map',m);
+ /* Adla anahtarlanan bütün yerel kayıtlar (yolculuk, rütbe, ödül, rekor, pastacılık vb.) yeni ada taşınır; yoksa ad değişince ilerleme boş görünür. */
+ try{for(let x=0;x<localStorage.length;x++){const k=localStorage.key(x);if(!k||k.indexOf(PRE)!==0)continue;const kk=k.slice(PRE.length);if(['ad_map','rk_ids','profiles','records'].includes(kk))continue;
+   if(kk==='ana_son_konu_'+o){const v=ls(kk,null);if(v!==null&&ls('ana_son_konu_'+nw,null)===null)lsSet('ana_son_konu_'+nw,v);continue;}
+   let v;try{v=JSON.parse(localStorage.getItem(k));}catch(e){continue;}
+   if(v&&typeof v==='object'&&!Array.isArray(v)&&Object.prototype.hasOwnProperty.call(v,o)){if(!Object.prototype.hasOwnProperty.call(v,nw))v[nw]=v[o];delete v[o];lsSet(kk,v);}}
+ }catch(e){}
  if(st.prof===o)st.prof=nw;
  if(typeof arkRenamed==='function')arkRenamed(o,nw);
 }

@@ -28,7 +28,7 @@ function hesabimHTML(){
  return h+'</div>';
 }
 function hsKur(fn){return function(){if(!profilDegistirilebilir())return;fn();};}
-window.hsKarakter=hsKur(function(){adOpen(profiles().indexOf(st.prof),'hesabim');});
+window.hsKarakter=hsKur(function(){const i=profiles().indexOf(st.prof);if(i<0){if(typeof adToast==='function')adToast('Önce profilini seç.');return;}adOpen(i,'hesabim');});
 window.hsDost=hsKur(function(){GIRIS.ac('hesabim',null,true);});
 window.hsProfiller=hsKur(function(){go('profiles');});
 window.hsSil=hsKur(function(){
