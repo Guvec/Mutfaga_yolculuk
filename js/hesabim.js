@@ -8,23 +8,23 @@ function hsYz(){return document.documentElement.getAttribute('data-yz')||'normal
 function hsRutbe(){
  try{if(st.guest||!st.prof||typeof rutbeState!=='function')return '';const s=rutbeState(rkPid(st.prof,true)),r=s.rank||1;return rutbeAd(r-1)+' · '+s.mp+' puan';}catch(e){return '';}
 }
+/* 14.11 akşam (onaylı yapı): Hesabım tek ekran liste. Yazı boyutu, sesli okuma ve tema Ayarlar'a taşındı (tekrar kalktı);
+   arkadaş gizliliği açılır bölümde. */
+function hbSatir(ikon,ad,js,cls,deger){return '<button type="button" class="ay-satir'+(cls?' '+cls:'')+'" onclick="'+js+'"><span class="ay-ikon" aria-hidden="true">'+ikon+'</span><span class="ay-ad">'+ad+'</span>'+(deger?'<span class="ay-deger">'+deger+'</span>':'')+'<span class="ay-ok" aria-hidden="true">›</span></button>';}
 function hesabimHTML(){
  const guest=st.guest||!st.prof,name=guest?'Misafir':st.prof;
- const can=profilDegistirilebilir(),index=guest?-1:profiles().indexOf(st.prof);
- let h=topBar('Hesabım')+'<div class="wrap hesabim">';
- h+='<section class="card hs-kart"><h2>'+esc(name)+'</h2>'+(guest?'<p>Misafir oturumunda sonuçlar kaydedilmez.</p>':'<p>'+esc(hsRutbe())+'</p>')+'</section>';
+ const index=guest?-1:profiles().indexOf(st.prof);
+ let h=topBar('Hesabım')+'<div class="wrap hesabim hs-yeni">';
+ h+='<section class="hs-kimlik"><span class="hs-simge" aria-hidden="true">'+(typeof ucSimge==='function'?ucSimge(name):'👤')+'</span><span><b>'+esc(name)+'</b><small>'+(guest?'Misafir oturumunda sonuçlar kaydedilmez.':esc(hsRutbe()))+'</small></span></section>';
  if(!guest){
-  h+='<section class="card"><h2>Karakterim</h2>';
-  if(index>=0&&!adSabit(st.prof))h+='<button type="button" class="btn" onclick="hsKarakter()">Karakterini değiştir (1 kez)</button>';
-  h+='<button type="button" class="btn" onclick="hsDost()">Aşçı dostunu seç</button><button type="button" class="btn" onclick="hsProfiller()">Bu cihazdaki profiller</button></section>';
-  h+='<section class="card"><h2>Başka cihaza aktar</h2><p>Karakterini, rütbeni ve puanlarını başka telefona ya da bilgisayara taşımak için kod al.</p><button type="button" class="btn pri" onclick="akAc()">Aktarma kodu</button></section>';
+  h+='<p class="ay-grup">Karakterim</p><div class="ay-liste">'+
+   (index>=0&&!adSabit(st.prof)?hbSatir('✏️','Karakterini değiştir','hsKarakter()','','1 kez'):'')+
+   hbSatir('🐼','Aşçı dostunu seç','hsDost()')+hbSatir('👥','Bu cihazdaki profiller','hsProfiller()')+hbSatir('📲','Başka cihaza aktar','akAc()','','Kod al')+'</div>';
  }
- h+='<section class="card"><h2>Yazı boyutu</h2><div class="yr-chips" role="group" aria-label="Yazı boyutu">'+HS_YZ.map(x=>'<button type="button" class="yr-chip'+(hsYz()===x[0]?' on':'')+'" aria-pressed="'+(hsYz()===x[0])+'" onclick="hsYazi(\''+x[0]+'\')">'+x[1]+'</button>').join('')+'</div></section>';
- h+='<section class="card"><h2>Sesli okuma</h2><div class="yr-chips" role="group" aria-label="Sesli okuma">'+[[true,'Açık'],[false,'Kapalı']].map(x=>'<button type="button" class="yr-chip'+(!!SES.acik===x[0]?' on':'')+'" aria-pressed="'+(!!SES.acik===x[0])+'" onclick="hsSes('+x[0]+')">'+x[1]+'</button>').join('')+'</div><button type="button" class="btn ghost" onclick="voiceSettings()">Ses ayarları</button></section>';
- h+='<section class="card"><h2>Görünüm</h2><button type="button" class="btn" onclick="hsTemaDegis()">Tema: '+hsTema()+'</button></section>';
- if(!guest&&typeof frGizlilikHTML==='function'){h+=frGizlilikHTML();if(typeof frEnsure==='function'&&!FR.ready)frEnsure().then(()=>{if(st.screen==='hesabim')render();});}
- h+='<section class="card"><button type="button" class="btn" onclick="go(\'history\')">Çalışma geçmişim</button><button type="button" class="btn" onclick="kilavuzAc()">📖 Kılavuz</button><button type="button" class="btn" onclick="hsPaylas()">Uygulamayı paylaş</button><button type="button" class="btn" onclick="yasalAc(false)">Gizlilik ve koşullar</button></section>';
- if(!guest)h+='<section class="card hs-sil"><h2>Verilerimi sil</h2><p>Karakterin, rütben, puanların, çalışma geçmişin, arkadaşların ve sıralamadaki kayıtların silinir.</p><button type="button" class="btn danger" onclick="hsSil()">Verilerimi sil</button></section>';
+ h+='<p class="ay-grup">Ayarlar</p><div class="ay-liste">'+hbSatir('⚙️','Görünüm ve ses','anaAyarlar()')+'</div>';
+ if(!guest&&typeof frGizlilikHTML==='function'){h+='<details class="hs-gizlilik"><summary><span class="ay-ikon" aria-hidden="true">🔒</span><span class="ay-ad">Arkadaşlar ve gizlilik</span><span class="ay-ok" aria-hidden="true">›</span></summary>'+frGizlilikHTML()+'</details>';if(typeof frEnsure==='function'&&!FR.ready)frEnsure().then(()=>{if(st.screen==='hesabim')render();});}
+ h+='<p class="ay-grup">Diğer</p><div class="ay-liste">'+hbSatir('📅','Çalışma geçmişim',"go('history')")+hbSatir('📖','Kılavuz','kilavuzAc()')+hbSatir('📤','Uygulamayı paylaş','hsPaylas()')+hbSatir('📄','Gizlilik ve koşullar','yasalAc(false)')+'</div>';
+ if(!guest)h+='<div class="ay-liste hs-sil-liste">'+hbSatir('🗑️','Verilerimi sil','hsSil()','hs-sil-satir')+'</div>';
  return h+'</div>';
 }
 function hsKur(fn){return function(){if(!profilDegistirilebilir())return;fn();};}
