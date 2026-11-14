@@ -1,13 +1,13 @@
-== Sat Nov 14 14:54:32 UTC 2026 commit 577496cb6e33bbba9150a263b1edc44ec447cb99
+== Sat Nov 14 14:58:19 UTC 2026 commit 41461f6f48223077d8d2c9f0979a56f42355851c
 == state-tests
 mutfak-araclari: 144 cards, 198 questions; boards and scoring PASS
 bulasik-makinesi-temizligi: 12 cards, 65 questions; boards and scoring PASS
 evalmachine.<anonymous>:1
 st.op='mcq';st.mcqGroup=CONTENT[st.subject].questions[0].group;st.practice='check';startContent();const correct=st.q.correct;answer(correct);if(st.sess.ok!==1||st.lastRes.text.includes(st.q.explanation))throw Error('Independent answer leak');nextQ();const wr=st.q.choices.find(c=>c.id!==st.q.correct);answer(wr.id);if(st.sess.bad!==1||st.sess.qs[1].selectedAnswer!==wr.text||st.sess.qs[1].hintUsed)throw Error('Wrong answer log');finish();if(st.sess.unanswered!==st.contentItems.length-2)throw Error('Missing unfinished questions');
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        ^
+                                                                                                                                                                                                                                                                                                                                                                                                              ^
 
-Error: Missing unfinished questions
-    at evalmachine.<anonymous>:1:495
+Error: Wrong answer log
+    at evalmachine.<anonymous>:1:405
     at Script.runInContext (node:vm:149:12)
     at Object.runInContext (node:vm:301:6)
     at run (/home/runner/work/Mutfaga_yolculuk/work/site/tests/state-tests.cjs:17:17)
@@ -52,16 +52,16 @@ AssertionError [ERR_ASSERTION]: false == true
 exit=1
 == ermeydani-ui-tests
 page.evaluate: TypeError: yrService(...).watchList is not a function
-    at lbBaslat (http://localhost:35649/js/lobi.js:15:14)
-    at render (http://localhost:35649/js/lobi.js:88:30)
-    at render (http://localhost:35649/js/lobi.js:139:64)
-    at render (http://localhost:35649/js/yasal.js:310:76)
-    at render (http://localhost:35649/js/arac-soru.js:102:2)
-    at render (http://localhost:35649/js/hizli-ses.js:33:75)
-    at render (http://localhost:35649/js/asama.js:57:14)
-    at render (http://localhost:35649/js/asama.js:71:14)
-    at render (http://localhost:35649/js/seviye.js:65:13)
-    at render (http://localhost:35649/js/ses-yonetici.js:43:32)
+    at lbBaslat (http://localhost:34629/js/lobi.js:15:14)
+    at render (http://localhost:34629/js/lobi.js:88:30)
+    at render (http://localhost:34629/js/lobi.js:139:64)
+    at render (http://localhost:34629/js/yasal.js:310:76)
+    at render (http://localhost:34629/js/arac-soru.js:102:2)
+    at render (http://localhost:34629/js/hizli-ses.js:33:75)
+    at render (http://localhost:34629/js/asama.js:57:14)
+    at render (http://localhost:34629/js/asama.js:71:14)
+    at render (http://localhost:34629/js/seviye.js:65:13)
+    at render (http://localhost:34629/js/ses-yonetici.js:43:32)
     at openMenu (/home/runner/work/Mutfaga_yolculuk/work/site/tests/ermeydani-ui-tests.cjs:44:42)
     at /home/runner/work/Mutfaga_yolculuk/work/site/tests/ermeydani-ui-tests.cjs:57:9 {
   log: []
@@ -69,26 +69,23 @@ page.evaluate: TypeError: yrService(...).watchList is not a function
 exit=1
 == yaris-ui-tests
 UI failure: page.evaluate: TypeError: yrService(...).watchList is not a function
-    at lbBaslat (http://localhost:34511/js/lobi.js:15:14)
-    at render (http://localhost:34511/js/lobi.js:88:30)
-    at render (http://localhost:34511/js/lobi.js:139:64)
-    at render (http://localhost:34511/js/yasal.js:310:76)
-    at render (http://localhost:34511/js/arac-soru.js:102:2)
-    at render (http://localhost:34511/js/hizli-ses.js:33:75)
-    at render (http://localhost:34511/js/asama.js:57:14)
-    at render (http://localhost:34511/js/asama.js:71:14)
-    at render (http://localhost:34511/js/seviye.js:65:13)
-    at render (http://localhost:34511/js/ses-yonetici.js:43:32)
+    at lbBaslat (http://localhost:42647/js/lobi.js:15:14)
+    at render (http://localhost:42647/js/lobi.js:88:30)
+    at render (http://localhost:42647/js/lobi.js:139:64)
+    at render (http://localhost:42647/js/yasal.js:310:76)
+    at render (http://localhost:42647/js/arac-soru.js:102:2)
+    at render (http://localhost:42647/js/hizli-ses.js:33:75)
+    at render (http://localhost:42647/js/asama.js:57:14)
+    at render (http://localhost:42647/js/asama.js:71:14)
+    at render (http://localhost:42647/js/seviye.js:65:13)
+    at render (http://localhost:42647/js/ses-yonetici.js:43:32)
     at /home/runner/work/Mutfaga_yolculuk/work/site/tests/yaris-ui-tests.cjs:55:11 {
   log: []
 }
 exit=1
 == spice-info-tests
 AssertionError [ERR_ASSERTION]: short/detail mismatch: bh-01-12
-    at /home/runner/work/Mutfaga_yolculuk/work/site/tests/spice-info-tests.cjs:8:262
-    at runNextTicks (node:internal/process/task_queues:60:5)
-    at process.processImmediate (node:internal/timers:454:9)
-    at process.callbackTrampoline (node:internal/async_hooks:130:17) {
+    at /home/runner/work/Mutfaga_yolculuk/work/site/tests/spice-info-tests.cjs:8:262 {
   generatedMessage: false,
   code: 'ERR_ASSERTION',
   actual: false,
@@ -98,12 +95,12 @@ AssertionError [ERR_ASSERTION]: short/detail mismatch: bh-01-12
 exit=1
 == ui-regression
 PASS 390px: cancel keeps selection; same choice is unchanged; atomic replacement; duplicate prevention; chosen label visible; no early correctness/score; image/enlargement targets separate; backdrop closes; final check scoring; no horizontal overflow
-AssertionError [ERR_ASSERTION]: null == 'bh-01-09'
+AssertionError [ERR_ASSERTION]: null == 'bh-01-05'
     at /home/runner/work/Mutfaga_yolculuk/work/site/tests/ui-regression.cjs:6:184 {
   generatedMessage: true,
   code: 'ERR_ASSERTION',
   actual: null,
-  expected: 'bh-01-09',
+  expected: 'bh-01-05',
   operator: '=='
 }
 exit=1
@@ -112,7 +109,10 @@ AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
 
   assert(kep.rank[2].includes('Aşçı Yardımcısı'))
 
-    at /home/runner/work/Mutfaga_yolculuk/work/site/tests/rekor-ui-tests.cjs:22:104 {
+    at /home/runner/work/Mutfaga_yolculuk/work/site/tests/rekor-ui-tests.cjs:22:104
+    at runNextTicks (node:internal/process/task_queues:60:5)
+    at process.processImmediate (node:internal/timers:454:9)
+    at process.callbackTrampoline (node:internal/async_hooks:130:17) {
   generatedMessage: true,
   code: 'ERR_ASSERTION',
   actual: false,
@@ -161,12 +161,16 @@ exit=1
 == geri-tests
 PASS Kullanım bilgisi yalnız Öğreniyorum'da (2 kart); Uyguluyorum'da yok
 PASS Oyun ekranında görünür "← Geri" var
-FAIL page.waitForFunction: Timeout 30000ms exceeded.
-    at /home/runner/work/Mutfaga_yolculuk/work/site/tests/geri-tests.cjs:20:63 {
-  log: [],
-  name: 'TimeoutError'
-}
-exit=1
+PASS Yanıt yokken Geri doğrudan çalışma biçimi ekranına döner
+PASS Çalışma biçimi → takım listesi
+PASS Takım listesi → konu menüsü
+PASS Yanıt varken onay sorusu çıkar
+PASS Hayır: oyunda kalır
+PASS Tarayıcı/telefon geri tuşu aynı soruyu sorar
+PASS Evet: yanıtlar silinir, yarım oturum kayıt listesinde kalmaz, süre durur
+PASS Kart ve büyütülmüş görselde object-fit: contain
+PASS Tarayıcıda JavaScript hatası yok
+exit=0
 == giris-tests
 locator.waitFor: Timeout 30000ms exceeded.
 Call log:
@@ -197,31 +201,41 @@ exit=1
 [36m[1mi  firestore:[22m[39m Firestore Emulator logging to [1mfirestore-debug.log[22m
 [32m[1m✔  firestore:[22m[39m Firestore Emulator UI websocket is running on 9150.
 [36m[1mi [22m[39m Running script: [1mnode site/tests/er-meydani-giris-tests.cjs; node site/tests/arena-baglanti-tests.cjs; node site/tests/arena-kural-tests.cjs; node site/tests/rekor-rules-tests.cjs && node site/tests/rekor-entegrasyon-tests.cjs && node site/tests/yaris-rules-tests.cjs && node site/tests/arkadas-rules-tests.cjs[22m
-[2026-11-14T14:56:39.159Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x2c98c23a error. Code: 7 Message: 7 PERMISSION_DENIED: 
+[2026-11-14T14:59:56.763Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x4c0a49b1 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L135:22 for 'create' @ L135, evaluation error at L141:22 for 'update' @ L141, false for 'update' @ L143, false for 'update' @ L141, false for 'update' @ L143
+[2026-11-14T14:59:56.802Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x4c0a49b5 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L135:22 for 'create' @ L135, evaluation error at L141:22 for 'update' @ L141, false for 'update' @ L143, false for 'update' @ L141, false for 'update' @ L143
+[2026-11-14T14:59:56.896Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x4c0a49b7 error. Code: 7 Message: 7 PERMISSION_DENIED: 
 evaluation error at L135:22 for 'create' @ L135, Unable to evaluate the expression as the maximum of 1000 expressions to evaluate has been reached. for 'update' @ L141, Unable to evaluate the expression as the maximum of 1000 expressions to evaluate has been reached. for 'update' @ L143, Unable to evaluate the expression as the maximum of 1000 expressions to evaluate has been reached. for 'create' @ L135
-[2026-11-14T14:56:39.236Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x2c98c23b error. Code: 7 Message: 7 PERMISSION_DENIED: 
+[2026-11-14T14:59:56.955Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x4c0a49b8 error. Code: 7 Message: 7 PERMISSION_DENIED: 
 evaluation error at L135:22 for 'create' @ L135, Unable to evaluate the expression as the maximum of 1000 expressions to evaluate has been reached. for 'update' @ L141, Unable to evaluate the expression as the maximum of 1000 expressions to evaluate has been reached. for 'update' @ L143, Unable to evaluate the expression as the maximum of 1000 expressions to evaluate has been reached. for 'create' @ L135
-[2026-11-14T14:56:39.357Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x2c98c23d error. Code: 7 Message: 7 PERMISSION_DENIED: 
+[2026-11-14T14:59:57.053Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x4c0a49ba error. Code: 7 Message: 7 PERMISSION_DENIED: 
 evaluation error at L135:22 for 'create' @ L135, Unable to evaluate the expression as the maximum of 1000 expressions to evaluate has been reached. for 'update' @ L141, Unable to evaluate the expression as the maximum of 1000 expressions to evaluate has been reached. for 'update' @ L143, false for 'create' @ L135
-[2026-11-14T14:56:39.413Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x2c98c23e error. Code: 7 Message: 7 PERMISSION_DENIED: 
+[2026-11-14T14:59:57.104Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x4c0a49bb error. Code: 7 Message: 7 PERMISSION_DENIED: 
 evaluation error at L135:22 for 'create' @ L135, Unable to evaluate the expression as the maximum of 1000 expressions to evaluate has been reached. for 'update' @ L141, Unable to evaluate the expression as the maximum of 1000 expressions to evaluate has been reached. for 'update' @ L143, false for 'create' @ L135
-[2026-11-14T14:56:39.436Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x2c98c232 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+[2026-11-14T14:59:57.123Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x4c0a49ac error. Code: 7 Message: 7 PERMISSION_DENIED: 
 false for 'create' @ L49, evaluation error at L74:21 for 'update' @ L74, false for 'create' @ L49
-[2026-11-14T14:56:39.461Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x2c98c23f error. Code: 7 Message: 7 PERMISSION_DENIED: 
+[2026-11-14T14:59:57.142Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x4c0a49bc error. Code: 7 Message: 7 PERMISSION_DENIED: 
 false for 'create' @ L49, evaluation error at L74:21 for 'update' @ L74, false for 'create' @ L49
-[2026-11-14T14:56:39.488Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x2c98c240 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+[2026-11-14T14:59:57.163Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x4c0a49bd error. Code: 7 Message: 7 PERMISSION_DENIED: 
 false for 'create' @ L49, evaluation error at L74:21 for 'update' @ L74, false for 'create' @ L49
-[2026-11-14T14:56:39.513Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x2c98c241 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+[2026-11-14T14:59:57.185Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x4c0a49be error. Code: 7 Message: 7 PERMISSION_DENIED: 
 false for 'create' @ L49, evaluation error at L74:21 for 'update' @ L74, false for 'create' @ L49
-[2026-11-14T14:56:39.538Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x2c98c242 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+[2026-11-14T14:59:57.206Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x4c0a49bf error. Code: 7 Message: 7 PERMISSION_DENIED: 
 false for 'create' @ L49, evaluation error at L74:21 for 'update' @ L74, false for 'create' @ L49
-[2026-11-14T14:56:39.562Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x2c98c243 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+[2026-11-14T14:59:57.224Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x4c0a49c0 error. Code: 7 Message: 7 PERMISSION_DENIED: 
 false for 'create' @ L49, evaluation error at L74:21 for 'update' @ L74, false for 'create' @ L49
 OK  arena5 oda kurma (istemcinin alanları)
 OK  kurucunun oyuncu kaydı
 OK  ikinci oyuncunun girişi
 OK  ikinci oyuncu setPlayer
 OK  üçüncü ad Huzurlu Civciv
+OK  hazır güncellemeleri
+HATA oyunu başlat :: Oyuncu listesi değişti. Yeniden başlat.
+HATA ilk doğru cevap (4,2 sn) :: 7 PERMISSION_DENIED: 
+evaluation error at L135:22 for 'create' @ L135, evaluation error at L141:22 for 'update' @ L141, false for 'update' @ L143, false for 'update' @ L141, false for 'update' @ L143
+HATA ikinci cevap yanlış (6 sn) :: 7 PERMISSION_DENIED: 
+evaluation error at L135:22 for 'create' @ L135, evaluation error at L141:22 for 'update' @ L141, false for 'update' @ L143, false for 'update' @ L141, false for 'update' @ L143
 HATA pid ile giriş (eşleşen kimlik) :: 7 PERMISSION_DENIED: 
 evaluation error at L135:22 for 'create' @ L135, Unable to evaluate the expression as the maximum of 1000 expressions to evaluate has been reached. for 'update' @ L141, Unable to evaluate the expression as the maximum of 1000 expressions to evaluate has been reached. for 'update' @ L143, Unable to evaluate the expression as the maximum of 1000 expressions to evaluate has been
 HATA pid ile hazır güncellemesi :: 7 PERMISSION_DENIED: 
@@ -231,7 +245,7 @@ evaluation error at L135:22 for 'create' @ L135, Unable to evaluate the expressi
 HATA pid ile giriş (yrKim yok) :: 7 PERMISSION_DENIED: 
 evaluation error at L135:22 for 'create' @ L135, Unable to evaluate the expression as the maximum of 1000 expressions to evaluate has been reached. for 'update' @ L141, Unable to evaluate the expression as the maximum of 1000 expressions to evaluate has been reached. for 'update' @ L143, false for 'create' @ L135
 HATA arena5 tüm konular, beslenme dahil :: Oda kurulamadı. Yeniden dene.
-[2026-11-14T14:56:40.496Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x4abd0f5b error. Code: 7 Message: 7 PERMISSION_DENIED: 
+[2026-11-14T14:59:57.820Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x1edd97f3 error. Code: 7 Message: 7 PERMISSION_DENIED: 
 false for 'create' @ L49, evaluation error at L74:21 for 'update' @ L74, false for 'create' @ L49
 [FirebaseError: 7 PERMISSION_DENIED: 
 false for 'create' @ L49, evaluation error at L74:21 for 'update' @ L74, false for 'create' @ L49] {
@@ -239,70 +253,70 @@ false for 'create' @ L49, evaluation error at L74:21 for 'update' @ L74, false f
   customData: undefined,
   toString: [Function (anonymous)]
 }
-[2026-11-14T14:56:41.399Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x23712096 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+[2026-11-14T14:59:58.473Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x16855cf6 error. Code: 7 Message: 7 PERMISSION_DENIED: 
 false for 'create' @ L49, evaluation error at L74:21 for 'update' @ L74, false for 'create' @ L49
 FAIL Arena2 75 kabul
-[2026-11-14T14:56:41.428Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x23712097 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+[2026-11-14T14:59:58.490Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x16855cf7 error. Code: 7 Message: 7 PERMISSION_DENIED: 
 false for 'create' @ L49, evaluation error at L74:21 for 'update' @ L74, false for 'create' @ L49
 FAIL Arena3 bütün konular 75 kabul
-[2026-11-14T14:56:41.451Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x23712098 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+[2026-11-14T14:59:58.507Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x16855cf8 error. Code: 7 Message: 7 PERMISSION_DENIED: 
 false for 'create' @ L49, evaluation error at L74:21 for 'update' @ L74, false for 'create' @ L49
 FAIL Arena3 tek konu baharat kabul
-[2026-11-14T14:56:41.471Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x23712099 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+[2026-11-14T14:59:58.522Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x16855cf9 error. Code: 7 Message: 7 PERMISSION_DENIED: 
 false for 'create' @ L49, evaluation error at L74:21 for 'update' @ L74, false for 'create' @ L49
 FAIL Arena3 tek konu mutfak-araclari kabul
-[2026-11-14T14:56:41.491Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x2371209a error. Code: 7 Message: 7 PERMISSION_DENIED: 
+[2026-11-14T14:59:58.537Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x16855cfa error. Code: 7 Message: 7 PERMISSION_DENIED: 
 false for 'create' @ L49, evaluation error at L74:21 for 'update' @ L74, false for 'create' @ L49
 FAIL Arena3 tek konu bulasik-makinesi-temizligi kabul
-[2026-11-14T14:56:41.512Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x2371209b error. Code: 7 Message: 7 PERMISSION_DENIED: 
+[2026-11-14T14:59:58.551Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x16855cfb error. Code: 7 Message: 7 PERMISSION_DENIED: 
 false for 'create' @ L49, evaluation error at L74:21 for 'update' @ L74, false for 'create' @ L49
 FAIL Arena3 tek konu kuver kabul
-[2026-11-14T14:56:41.531Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x2371209c error. Code: 7 Message: 7 PERMISSION_DENIED: 
+[2026-11-14T14:59:58.564Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x16855cfc error. Code: 7 Message: 7 PERMISSION_DENIED: 
 false for 'create' @ L49, evaluation error at L74:21 for 'update' @ L74, false for 'create' @ L49
 PASS Arena3 76 reddi
-[2026-11-14T14:56:41.547Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x2371209d error. Code: 7 Message: 7 PERMISSION_DENIED: 
+[2026-11-14T14:59:58.577Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x16855cfd error. Code: 7 Message: 7 PERMISSION_DENIED: 
 false for 'create' @ L49, evaluation error at L74:21 for 'update' @ L74, false for 'create' @ L49
 PASS Arena3 iki soru reddi
-[2026-11-14T14:56:41.566Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x2371209e error. Code: 7 Message: 7 PERMISSION_DENIED: 
+[2026-11-14T14:59:58.593Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x16855cfe error. Code: 7 Message: 7 PERMISSION_DENIED: 
 false for 'create' @ L49, evaluation error at L74:21 for 'update' @ L74, false for 'create' @ L49
 PASS Arena3 tek takım kapsamı reddi
-[2026-11-14T14:56:41.584Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x2371209f error. Code: 7 Message: 7 PERMISSION_DENIED: 
+[2026-11-14T14:59:58.605Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x16855cff error. Code: 7 Message: 7 PERMISSION_DENIED: 
 false for 'create' @ L49, evaluation error at L74:21 for 'update' @ L74, false for 'create' @ L49
 PASS Arena3 bilinmeyen konu reddi
-[2026-11-14T14:56:41.604Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x237120a0 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+[2026-11-14T14:59:58.622Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x16855d00 error. Code: 7 Message: 7 PERMISSION_DENIED: 
 false for 'create' @ L49, evaluation error at L74:21 for 'update' @ L74, false for 'create' @ L49
 PASS Arena3 bütün konularda farklı kanonik konu reddi
-[2026-11-14T14:56:41.620Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x237120a1 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+[2026-11-14T14:59:58.639Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x16855d01 error. Code: 7 Message: 7 PERMISSION_DENIED: 
 false for 'create' @ L49, evaluation error at L74:21 for 'update' @ L74, false for 'create' @ L49
 PASS Arena2 76 reddi
-[2026-11-14T14:56:41.639Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x237120a2 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+[2026-11-14T14:59:58.653Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x16855d02 error. Code: 7 Message: 7 PERMISSION_DENIED: 
 false for 'create' @ L49, evaluation error at L74:21 for 'update' @ L74, false for 'create' @ L49
 PASS Arena2 eksik av reddi
-[2026-11-14T14:56:41.656Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x237120a3 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+[2026-11-14T14:59:58.674Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x16855d03 error. Code: 7 Message: 7 PERMISSION_DENIED: 
 false for 'create' @ L49, evaluation error at L74:21 for 'update' @ L74, false for 'create' @ L49
 PASS Arena2 dolu başlangıç roster reddi
-[2026-11-14T14:56:41.670Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x237120a4 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+[2026-11-14T14:59:58.687Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x16855d04 error. Code: 7 Message: 7 PERMISSION_DENIED: 
 false for 'create' @ L49, evaluation error at L74:21 for 'update' @ L74, false for 'create' @ L49
 PASS Arena2 yanlış içerik protokolü reddi
-[2026-11-14T14:56:41.687Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x237120a5 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+[2026-11-14T14:59:58.701Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x16855d05 error. Code: 7 Message: 7 PERMISSION_DENIED: 
 false for 'create' @ L49, evaluation error at L74:21 for 'update' @ L74, false for 'create' @ L49
 PASS Arena2 yanlış konu reddi
-[2026-11-14T14:56:41.705Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x237120a6 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+[2026-11-14T14:59:58.715Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x16855d06 error. Code: 7 Message: 7 PERMISSION_DENIED: 
 false for 'create' @ L49, evaluation error at L74:21 for 'update' @ L74, false for 'create' @ L49
 PASS Arena2 yanlış süre reddi
-[2026-11-14T14:56:41.720Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x237120a7 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+[2026-11-14T14:59:58.731Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x16855d07 error. Code: 7 Message: 7 PERMISSION_DENIED: 
 false for 'create' @ L49, evaluation error at L74:21 for 'update' @ L74, false for 'create' @ L49
 FAIL race 20 kabul
-[2026-11-14T14:56:41.736Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x237120a8 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+[2026-11-14T14:59:58.743Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x16855d08 error. Code: 7 Message: 7 PERMISSION_DENIED: 
 false for 'create' @ L49, evaluation error at L74:21 for 'update' @ L74, false for 'create' @ L49
 PASS race 21 reddi
-[2026-11-14T14:56:41.750Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x237120a9 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+[2026-11-14T14:59:58.757Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x16855d09 error. Code: 7 Message: 7 PERMISSION_DENIED: 
 false for 'create' @ L49, evaluation error at L74:21 for 'update' @ L74, false for 'create' @ L49
 FAIL duel 20 kabul
-[2026-11-14T14:56:41.765Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x237120aa error. Code: 7 Message: 7 PERMISSION_DENIED: 
+[2026-11-14T14:59:58.772Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x16855d0a error. Code: 7 Message: 7 PERMISSION_DENIED: 
 false for 'create' @ L49, evaluation error at L74:21 for 'update' @ L74, false for 'create' @ L49
 PASS duel 21 reddi
-[2026-11-14T14:56:41.781Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x237120ab error. Code: 7 Message: 7 PERMISSION_DENIED: 
+[2026-11-14T14:59:58.785Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x16855d0b error. Code: 7 Message: 7 PERMISSION_DENIED: 
 false for 'create' @ L49, evaluation error at L74:21 for 'update' @ L74, false for 'create' @ L49
 [FirebaseError: 7 PERMISSION_DENIED: 
 false for 'create' @ L49, evaluation error at L74:21 for 'update' @ L74, false for 'create' @ L49] {
@@ -310,32 +324,32 @@ false for 'create' @ L49, evaluation error at L74:21 for 'update' @ L74, false f
   customData: undefined,
   toString: [Function (anonymous)]
 }
-[2026-11-14T14:56:42.447Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x291c159a error. Code: 7 Message: 7 PERMISSION_DENIED: 
+[2026-11-14T14:59:59.337Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x7f2696ae error. Code: 7 Message: 7 PERMISSION_DENIED: 
 false for 'create' @ L173, evaluation error at L176:21 for 'update' @ L176, false for 'create' @ L173
 PASS Başka hesap adına profil açılamaz
-[2026-11-14T14:56:42.461Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x291c159b error. Code: 7 Message: 7 PERMISSION_DENIED: 
+[2026-11-14T14:59:59.351Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x7f2696af error. Code: 7 Message: 7 PERMISSION_DENIED: 
 false for 'create' @ L173, evaluation error at L176:21 for 'update' @ L176, false for 'create' @ L173
 PASS Geçersiz profil kimliği reddedilir
-[2026-11-14T14:56:42.472Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x291c159c error. Code: 7 Message: 7 PERMISSION_DENIED: 
+[2026-11-14T14:59:59.363Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x7f2696b0 error. Code: 7 Message: 7 PERMISSION_DENIED: 
 false for 'create' @ L173, evaluation error at L176:21 for 'update' @ L176, false for 'create' @ L173
 PASS Profil gen 0 ve in ile açılmak zorunda
-[2026-11-14T14:56:42.482Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x291c159d error. Code: 7 Message: 7 PERMISSION_DENIED: 
+[2026-11-14T14:59:59.376Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x7f2696b1 error. Code: 7 Message: 7 PERMISSION_DENIED: 
 false for 'create' @ L173, false for 'update' @ L176
 PASS Profile fazladan alan eklenemez
 PASS Profil açılır
-[2026-11-14T14:56:42.504Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x291c159e error. Code: 7 Message: 7 PERMISSION_DENIED: 
+[2026-11-14T14:59:59.401Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x7f2696b2 error. Code: 7 Message: 7 PERMISSION_DENIED: 
 false for 'create' @ L206, false for 'update' @ L207
 PASS Geçersiz rank 0
-[2026-11-14T14:56:42.517Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x291c159f error. Code: 7 Message: 7 PERMISSION_DENIED: 
+[2026-11-14T14:59:59.420Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x7f2696b3 error. Code: 7 Message: 7 PERMISSION_DENIED: 
 false for 'create' @ L206, false for 'update' @ L207
 PASS Geçersiz rank 6
-[2026-11-14T14:56:42.528Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x291c15a0 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+[2026-11-14T14:59:59.433Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x7f2696b4 error. Code: 7 Message: 7 PERMISSION_DENIED: 
 false for 'create' @ L206, false for 'update' @ L207
 PASS Geçersiz rank "3"
-[2026-11-14T14:56:42.543Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x291c15a1 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+[2026-11-14T14:59:59.446Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x7f2696b5 error. Code: 7 Message: 7 PERMISSION_DENIED: 
 false for 'create' @ L206, false for 'update' @ L207
 PASS Geçersiz rank 2.5
-[2026-11-14T14:56:42.558Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x291c15a2 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+[2026-11-14T14:59:59.459Z]  @firebase/firestore: Firestore (10.12.2): GrpcConnection RPC 'Write' stream 0x7f2696b6 error. Code: 7 Message: 7 PERMISSION_DENIED: 
 false for 'create' @ L206, false for 'update' @ L207
 [FirebaseError: 7 PERMISSION_DENIED: 
 false for 'create' @ L206, false for 'update' @ L207] {
