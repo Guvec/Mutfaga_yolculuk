@@ -50,4 +50,5 @@
 .as-geri.yan{border-left:0;border-top:6px solid var(--as-kirmizi);animation:as-yuksel .25s ease-out}
 .as-kars img{height:min(150px,22dvh)}
 @keyframes as-yuksel{from{transform:translate(-50%,100%)}to{transform:translate(-50%,0)}}
+.as-tur{margin:10px 0 0;padding:10px 12px;border-radius:14px;background:#fff4d6;border:2px solid #e0a21b;font-weight:700;color:#6b4a00}
 /* © 2026 Ali Arıkoğlu. Tüm hakları saklıdır. */

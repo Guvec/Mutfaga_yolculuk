@@ -27,8 +27,9 @@ answer=function(v){
  q.responses=[{answer:v,text:asAd(c),at:Math.round(elapsed()*10)/10,correct:right}];
  st.done=true;st.res=right?1:0;st.asPick=v;st.lastRes=null;
  const S=st.sess;
- if(right){S.ok++;S.s+=10;}else S.bad++;
- S.qs.push({q:q.prompt,qid:q.id,a:asAd(cc),r:st.res,s:secs,selectedAnswer:asAd(c),firstAnswer:asAd(c),attempts:q.responses,attemptCount:1,hintUsed:false,assessment:S.practice==='check',explanation:q.explanation||'',source:q.source});
+ if(q.tekrar){st.asTurOk=(st.asTurOk||0)+(right?1:0);}
+ else{if(right){S.ok++;S.s+=10;}else S.bad++;
+ S.qs.push({q:q.prompt,qid:q.id,a:asAd(cc),r:st.res,s:secs,selectedAnswer:asAd(c),firstAnswer:asAd(c),attempts:q.responses,attemptCount:1,hintUsed:false,assessment:S.practice==='check',explanation:q.explanation||'',source:q.source});}
  if(typeof sesCal==='function')sesCal(right?'yerlesti':'tekrarDene');
  saveProgress();render();
  asTemizle();AS.t=setTimeout(asIleri,right?1500:6000);
@@ -42,10 +43,11 @@ const AS_QUIZ=contentQuizHTML;
 contentQuizHTML=function(){
  if(!asKonu()||!st.q||st.kDone)return AS_QUIZ();
  const q=st.q,done=st.done,pick=st.asPick;
- const say=(st.contentIndex||1),top=(st.contentItems||[]).length||1;
+ const say=(st.contentIndex||1),top=(st.contentItems||[]).length||1,barTop=q.tekrar?top:top-(st.asTurN||0);
  let h=topBar(subjectName()+' · '+(q.group||'Sorular'))+'<div class="wrap as">';
- h+='<div class="as-bar" aria-hidden="true"><i style="width:'+Math.round(100*(say-(done?0:1))/top)+'%"></i></div>';
- h+='<div class="as-durum"><span>Soru '+say+' / '+top+'</span><span>Doğru: '+st.sess.ok+'</span></div>';
+ h+='<div class="as-bar" aria-hidden="true"><i style="width:'+Math.min(100,Math.round(100*(say-(done?0:1))/barTop))+'%"></i></div>';
+ if(q.tekrar){const ilk=top-st.asTurN;h+='<p class="as-tur" role="status">🔁 Tekrar turu: yanlış yaptığın sorular bir kez daha geliyor.</p><div class="as-durum"><span>Tekrar '+(say-ilk)+' / '+st.asTurN+'</span><span>Bu turda doğru: '+(st.asTurOk||0)+'</span></div>';}
+ else h+='<div class="as-durum"><span>Soru '+say+' / '+(top-(st.asTurN||0))+'</span><span>Doğru: '+st.sess.ok+'</span></div>';
  const okunan=q.prompt+(q.choices.some(c=>c.image)?' Seçenekler fotoğraflıdır: A, B, C ve D.':' '+q.choices.map(c=>c.id+', '+asAd(c)).join('. ')+'.');
  h+='<div class="as-kok"><p>'+mcqPromptHTML(q)+'</p>'+(typeof sesDugme==='function'?sesDugme(okunan,'Soruyu dinle'):'')+'</div>';
  if(q.image)h+='<figure class="as-sira"><img src="'+esc(q.image)+'" alt="'+esc(q.imageAlt||'Soru görseli')+'"></figure>';
@@ -74,12 +76,26 @@ contentQuizHTML=function(){
  return h+footHtml()+'</div>';
 };
 
+/* Öğreniyorum'da tekrar turu: ilk tur bitince yanlış yapılan sorular bir kez daha sorulur.
+   Tekrar turundaki yanıtlar puana ve sonuç sayısına girmez. Uyguluyorum'da tekrar turu yoktur (sıralama adil kalsın). */
+const AS_START=startContent;
+startContent=function(n){st.asTur=false;st.asTurN=0;st.asTurOk=0;return AS_START(n);};
+const AS_CN=contentNext;
+contentNext=function(){
+ if(asKonu()&&st.practice==='learn'&&!st.asTur&&st.contentItems&&st.contentIndex>=st.contentItems.length&&st.sess){
+  const ids=new Set(st.sess.qs.filter(r=>r.r===0).map(r=>r.qid));
+  const yan=st.contentItems.filter(q=>ids.has(q.id)).map(q=>({...(typeof mcqShuffled==='function'?mcqShuffled(q):q),tekrar:true}));
+  st.asTur=true;
+  if(yan.length){st.asTurN=yan.length;st.asTurOk=0;st.contentItems=st.contentItems.concat(yan);}
+ }
+ return AS_CN();
+};
 /* Çalışma biçimi seçimi: bu konuda ikinci deneme yok, açıklama hemen görünür. */
 const AS_RENDER=render;
 render=function(){
  if(st.screen==='mcqmode'&&st.subject==='mutfak-araclari'){
   document.getElementById('app').innerHTML=topBar(subjectName())+'<div class="wrap"><h1>Nasıl çalışalım?</h1><div class="list">'+
-   menuButton('Öğreniyorum','Her soruda bir yanıt ver. Yanlışta doğrusunu yan yana görürsün.',"mcqBegin('learn')")+
+   menuButton('Öğreniyorum','Her soruda bir yanıt ver. Yanlışta doğru cevabı yan yana görürsün. Yanlış yaptığın sorular sonda bir kez daha gelir.',"mcqBegin('learn')")+
    menuButton('Uyguluyorum','Aynı sorular karışık sırayla. Sonucun Rekorlarım\'a ve sıralamaya yazılır.',"mcqBegin('check')")+'</div></div>';
   return;
  }
