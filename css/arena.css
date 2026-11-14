@@ -58,3 +58,10 @@ body.yr-oyun .wrap>.btn.ghost{display:none}
 .ar-rekor p,.ar-unvan p{margin:4px 0}
 .ar-yeni-rekor{font-size:20px;font-weight:800;color:#a4460f}
 @media (prefers-reduced-motion:reduce){.ar-altin .yr-qa{box-shadow:none}}
+
+/* Yalnız fotoğraflı seçenekler (Mutfak Araçları gerçek boy soruları): 2×2 kare kart, görsel kartı doldurur. */
+.yr-opts.foto,body.yr-oyun .yr-opts.foto,.ar-play .yr-opts.foto{grid-template-columns:1fr 1fr!important;gap:8px}
+.yr-opts.foto .yr-opt{position:relative;display:block;padding:6px;min-height:0!important;aspect-ratio:1/1;background:#fff}
+.yr-opts.foto .yr-opt .yr-let{position:absolute;left:6px;top:6px;z-index:1}
+.yr-opts.foto .yr-cimg{display:block;width:100%;height:100%;max-height:none!important;object-fit:contain}
+.yr-opts.foto .yr-opt span:not(.yr-let){position:absolute;left:0;right:0;bottom:0;padding:3px 4px;font-size:13px;text-align:center;background:rgba(255,255,255,.92)}

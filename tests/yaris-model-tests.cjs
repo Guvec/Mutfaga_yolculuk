@@ -7,7 +7,7 @@ function check(qs,label){
  assert(qs.length>=3,label+': soru sayısı');
  for(const q of qs){
   assert.equal(q.choices.length,4,label+' dört seçenek');assert.deepEqual(q.choices.map(c=>c.id),['A','B','C','D']);
-  assert.equal(new Set(q.choices.map(c=>c.text)).size,4,label+' seçenekler farklı: '+q.prompt+' '+JSON.stringify(q.choices.map(c=>c.text)));
+  assert.equal(new Set(q.choices.map(c=>c.text||c.image)).size,4,label+' seçenekler farklı: '+q.prompt+' '+JSON.stringify(q.choices.map(c=>c.text||c.image)));
   assert(q.choices.some(c=>c.id===q.correct),label+' doğru seçenek var');assert(q.prompt&&q.prompt.length>3);
  }
  assert.equal(new Set(qs.map(q=>q.id)).size,qs.length,label+' soru kimlikleri benzersiz');
@@ -44,7 +44,7 @@ assert.equal(m.firstName('  Ali Arıkoğlu '),'Ali');assert(m.validNick('Ali'));
 assert.equal(m.slug('zihin 11-b'),'ZIHIN11B');assert.equal(m.slug('çğıöşü'),'CGIOSU');assert(m.validCode('AB3'));assert(!m.validCode('AB'));
 {const d=require('../content/mutfak-araclari/icerik.json');
  for(let seed=0;seed<30;seed++){const qs=m.buildQuestions(d,{subject:'mutfak-araclari',kind:'bilgi',set:0,n:20},seed);qs.forEach(q=>{assert.equal(q.choices.length,4);q.choices.forEach(c=>assert((c.text&&c.text.trim())||c.image,'boş seçenek '+q.id));assert(q.choices.some(c=>c.id===q.correct));});}
- const ph=d.questions.find(q=>q.id==='m-bd-1-1'),orig=ph.choices.find(c=>c.id===ph.correct).image;
+ const ph=d.questions.find(q=>q.id==='ma-t-23'),orig=ph.choices.find(c=>c.id===ph.correct).image;
  for(let seed=0;seed<20;seed++){const q=m.buildQuestions({questions:[ph]},{subject:'mutfak-araclari',kind:'bilgi',set:0,n:1},seed)[0];assert.equal(q.choices.find(c=>c.id===q.correct).image,orig,'foto seçenekte doğru cevap karışmamalı');}
  }
 console.log('PASS: seeded questions (baharat 8, mutfak 12, bulaşık, kuver 1/3, bilgi) have 4 distinct choices; deterministic; rematch differs; duel first-correct rule, ties to host, early finish; shared ranks; first name only; room code slug.');

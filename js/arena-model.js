@@ -53,6 +53,8 @@
    if(!data[subject])throw Error('Konu dosyası yüklenemedi: '+subject);
    const seen=new Set(),fam=new Set();return ym.subjectPool(data,subject,spec,ym.seedFor(seed,i)).filter(q=>{if(seen.has(q.id))return false;seen.add(q.id);if(subject==='baharat'){const k=famKey(q);if(fam.has(k))return false;fam.add(k);}return true;});
   });
+  /* Mutfak Araçları: görselden ad soruları ile sorarken öğreten fotoğraflı sorular karışık gelsin (havuzda önce görsel sorular dizilidir). */
+  subjects.forEach((subject,i)=>{if(subject==='mutfak-araclari')pools[i]=ym.shuffle(pools[i],ym.seeded(ym.seedFor(seed,i+7)));});
   const q=quotas(subjects,pools,cap),qs=[];
   pools.forEach((pool,i)=>qs.push(...pool.slice(0,q[i])));
   if(qs.length<3)throw Error('Er Meydanı için en az üç farklı soru gerekir.');

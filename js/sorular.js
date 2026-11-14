@@ -5,7 +5,6 @@
 const MCQ_PREV_START=startContent,MCQ_PREV_RENDER=render,MCQ_PREV_QUIZ=contentQuizHTML;
 /* Sıralama denemeleri için birleşen gruplar. Ortak hedefi olan küçük gruplar tek deneme olur. */
 const MCQ_MERGE={
-  'mutfak-araclari':[{label:'Tabaklar, kâseler, bardaklar ve fincanlar',parts:['Tabaklar ve kâseler','Bardaklar ve fincanlar']}],
   'bulasik-makinesi-temizligi':[{label:'Bulaşık Yıkama ve Atık Yönetimi · Bütün bölümler',whole:true,parts:['1. Bölüm','2. Bölüm','3. Bölüm','4. Bölüm','5. Bölüm · Atık yönetimi','Genel tekrar · Set 1','Genel tekrar · Set 2','Genel tekrar · Set 3','Genel tekrar · Set 4']}],
   'baharat':[{label:'Baharatlar · Bütün bölümler',whole:true,parts:['1. Bölüm · Biberler ve toz baharatlar','2. Bölüm · Tohumlar ve kuru baharatlar','3. Bölüm · Taze yapraklı bitkiler','4. Bölüm · Taze ve kuru hâlleri','5. Bölüm · Çiçekler, kökler ve tozlar','6. Bölüm · Meyveler ve kuru meyveler','7. Bölüm · Sert kabuklu yemişler','8. Bölüm · Taze ürünler ve diğerleri','Genel tekrar · Set 1','Genel tekrar · Set 2']}],
   'beslenme-ilkeleri':[{label:'Beslenme İlkeleri · Bütün bölümler',whole:true,parts:['1. Bölüm · Yeterli ve dengeli beslenme','2. Bölüm · Besin ögeleri ve besin grupları','3. Bölüm · Besin seçimi ve porsiyonlar','4. Bölüm · Şekerler, su ve içecekler','5. Bölüm · Alışveriş, etiket ve gıda güvenliği','6. Bölüm · Sürdürülebilir beslenme ve Türk mutfağı','Genel tekrar · Set 1','Genel tekrar · Set 2','Genel tekrar · Set 3','Genel tekrar · Set 4','Genel tekrar · Set 5','Genel tekrar · Set 6']}]

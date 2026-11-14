@@ -390,9 +390,10 @@ function yrExplanationHTML(q){return q.explanation?'<details class="yr-explain">
 function yrErr(){return (YR.error?'<p class="yr-err" role="alert">'+esc(YR.error)+'</p>':'')+(!navigator.onLine?'<p class="sub" role="status">İnternet bağlantısı yok.</p>':'');}
 function yrChoicesHTML(q,onclick,state){
  const long=q.choices.some(c=>(c.text||'').length>26);
- return '<div class="yr-opts'+(long?' long':'')+'">'+q.choices.map((c,i)=>{let cls='yr-opt';
+ const foto=q.choices.every(c=>c.image&&!c.text);
+ return '<div class="yr-opts'+(foto?' foto':long?' long':'')+'">'+q.choices.map((c,i)=>{let cls='yr-opt';
   if(state){if(c.id===q.correct)cls+=' ok';else if(state.pick===i)cls+=' bad';}
-  return '<button type="button" class="'+cls+'" onclick="'+onclick+'('+i+')"'+(state?' disabled':'')+'><span class="yr-let">'+c.id+'</span>'+(c.image?'<img class="yr-cimg" src="'+esc(c.image)+'" alt="'+esc(c.alt||('Seçenek '+c.id))+'">':'')+(c.text?'<span>'+esc(c.text)+'</span>':'')+'</button>';}).join('')+'</div></div>';
+  return '<button type="button" class="'+cls+'" onclick="'+onclick+'('+i+')"'+(state?' disabled':'')+'><span class="yr-let">'+c.id+'</span>'+(c.image?'<img class="yr-cimg" src="'+esc(c.image)+'" alt="'+esc(c.alt||('Seçenek '+c.id))+'">':'')+(c.text?'<span>'+esc(c.text)+'</span>':state&&c.ad?'<span>'+esc(c.ad)+'</span>':'')+'</button>';}).join('')+'</div></div>';
 }
 function yrSpeakText(q){return q.prompt+(q.comparisonPosition?' Üçgen '+q.comparisonPosition+'. aracı gösteriyor.':'')+' '+q.choices.filter(c=>c.text).map(c=>c.id+'. '+c.text+'.').join(' ');}
 function yrQuestionHTML(q){return '<div class="yr-qa"><div class="yr-qside">'+(q.image?'<img class="yr-img" src="'+esc(q.image)+'" alt="'+esc(q.imageAlt||'Soru görseli')+'">':'')+'<div class="yr-qrow"><h2 class="yr-q">'+mcqPromptHTML(q)+'</h2>'+(typeof sesDugme==='function'?sesDugme(yrSpeakText(q),'Soruyu ve seçenekleri dinle'):'')+'</div></div>';}
@@ -446,7 +447,7 @@ function yrRaceHTML(){
  h+=yrQuestionHTML(q)+yrChoicesHTML(q,'yrRaceAnswer',g.ph==='fb'?{pick:g.pick}:null);
  if(g.ph==='fb'){
   const last=g.k+1>=YR.qs.length;
-  h+='<div class="yr-fb '+(g.right?'ok':'bad')+'" role="status"><b>'+(g.right?(g.hizli?'Çok hızlısın, minik şef! ⚡':'✓ Doğru!'):(g.pick<0?'Süre doldu.':'Yanlış.'))+'</b>'+(g.right?'':'<br>Doğru cevap: <b>'+esc(q.choices.find(c=>c.id===q.correct).text)+'</b>')+yrCompareHTML(q,g.pick)+yrExplanationHTML(q)+'</div><button class="btn pri" onclick="yrRaceNext()" id="yrNext">'+(last?'Bitir':'Sonraki soru')+'</button>';
+  h+='<div class="yr-fb '+(g.right?'ok':'bad')+'" role="status"><b>'+(g.right?(g.hizli?'Çok hızlısın, minik şef! ⚡':'✓ Doğru!'):(g.pick<0?'Süre doldu.':'Yanlış.'))+'</b>'+(g.right?'':'<br>Doğru cevap: <b>'+esc((c=>c.text||c.ad||c.id)(q.choices.find(c=>c.id===q.correct)))+'</b>')+yrCompareHTML(q,g.pick)+yrExplanationHTML(q)+'</div><button class="btn pri" onclick="yrRaceNext()" id="yrNext">'+(last?'Bitir':'Sonraki soru')+'</button>';
  }
  return h+'<button class="btn ghost" onclick="yrLeave()">Oyundan çık</button></div>';
 }

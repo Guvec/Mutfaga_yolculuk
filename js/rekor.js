@@ -6,7 +6,7 @@
 const RK_TERM='2026-2027', RK_VERSION=1;
 const RK_SUBJ={baharat:'bh','mutfak-araclari':'ma','bulasik-makinesi-temizligi':'bl'};
 const RK_MCQ={
- 'mutfak-araclari':['Tabaklar, kâseler, bardaklar ve fincanlar','Çatal, bıçak ve kaşıklar','Servis araçları','Pişirme kapları ve tavalar','Hazırlık ve doğrama araçları','Ölçme, süzme, aktarma ve kontrol araçları','Hamur ve tatlı araçları','Pişirme ve ısıtma cihazları','Hazırlık cihazları','Saklama araçları ve artan yemek','Temizlik araçları','Koruyucular','1. Bölüm · Bölüm sonu','2. Bölüm · Bölüm sonu','3. Bölüm · Bölüm sonu'],
+ 'mutfak-araclari':['Tabaklar ve kâseler', 'Bardaklar ve fincanlar', 'Çatal, bıçak ve kaşıklar', 'Servis araçları', 'Pişirme kapları ve tavalar', 'Hazırlık ve doğrama araçları', 'Ölçme, süzme, aktarma ve kontrol araçları', 'Hamur ve tatlı araçları', 'Pişirme ve ısıtma cihazları', 'Hazırlık cihazları', 'Saklama araçları ve artan yemek', 'Temizlik araçları', 'Koruyucular', '1. Bölüm · Bölüm sonu', '2. Bölüm · Bölüm sonu', '3. Bölüm · Bölüm sonu'],
  'bulasik-makinesi-temizligi':['Bulaşık Yıkama ve Atık Yönetimi · Bütün bölümler'],
  'beslenme-ilkeleri':['Beslenme İlkeleri · Bütün bölümler'],
  'baharat':['Baharatlar · Bütün bölümler']
@@ -18,8 +18,8 @@ const RK_BOARDS=(()=>{const a=[];
  a.push({id:'bl-e1',subject:'bulasik-makinesi-temizligi',kind:'match',set:1,total:12,label:'1. takım · Eşleştirme'});
  a.push({id:'kv-basit',subject:'kuver',kind:'kur',lvl:1,total:4,label:'Basit Kuver · Kuveri Kur',gizli:true});
  a.push({id:'kv-tabldot',subject:'kuver',kind:'kur',lvl:3,total:6,label:'Tabldot Kuver · Kuveri Kur',gizli:true});
- const mt=[10,5,6,6,7,9,5,5,5,10,8,4,10,10,9];
- RK_MCQ['mutfak-araclari'].forEach((g,i)=>a.push({id:'ma-s'+String(i+1).padStart(2,'0'),subject:'mutfak-araclari',kind:'mcq',group:g,total:mt[i],label:g+' · Sorular'}));
+ const mt=[22, 18, 23, 5, 15, 15, 23, 9, 8, 4, 4, 6, 5, 17, 15, 9];
+ RK_MCQ['mutfak-araclari'].forEach((g,i)=>a.push({id:'ma-q'+String(i+1).padStart(2,'0'),subject:'mutfak-araclari',kind:'mcq',group:g,total:mt[i],label:g+' · Sorular'}));
  a.push({id:'oy-kapisma',subject:'oyun',kind:'win',total:999,label:'1’e 1 Kapışma · kazanılan maç'});
  a.push({id:'oy-arena',subject:'oyun',kind:'win',total:999,label:'Er Meydanı (önceki sürüm) · kazanılan tur'});
  a.push({id:'oy-arena2',subject:'oyun',kind:'win',total:999,label:'Er Meydanı · kazanılan oyun'});

@@ -21,7 +21,7 @@ function haftaState(){return ls('haftalik',{});}
 function haftaSave(){if(!HAFTA||!HAFTA.pid)return;haftaTick();const all=haftaState();all[HAFTA.pid]=all[HAFTA.pid]||{};all[HAFTA.pid].resume=HAFTA;lsSet('haftalik',all);}
 function haftaSafe(q){
  if(q.ambiguous||q.conflict||q.unsafe||q.belirsiz||q.cakisma||q.guvensiz||q.disabled||q.exclude)return false;
- const correct=q.choices&&q.choices.find(c=>c.id===q.correct),a=correct?correct.text||'':q.answer||'';
+ const correct=q.choices&&q.choices.find(c=>c.id===q.correct),a=correct?correct.text||correct.ad||'':q.answer||'';
  return !(/(?:yangın|gaz kaçağı|kırık cam|kırık bardak)/i.test(q.prompt||q.kok||'')&&/(?:müdahale eder|toplar|toplamalı|süpürür|vanayı kapat|söndür)/i.test(a));
 }
 function haftaData(){const all=yrAllData();return Object.fromEntries(Object.entries(all).filter(([k,v])=>v).map(([k,v])=>[k,k==='kuver'?v:{...v,matches:(v.matches||[]).filter(haftaSafe),questions:(v.questions||[]).filter(haftaSafe)}]));}

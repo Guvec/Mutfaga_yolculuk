@@ -49,7 +49,7 @@
  function textQuestions(d,n,rng){
   return uniqueQuestions(shuffle(d.questions,rng)).slice(0,n).map(q=>{
    const order=q.choiceOrder?q.choices.slice():shuffle(q.choices,rng),ids=['A','B','C','D'];
-   const choices=order.map((c,i)=>{const o={id:ids[i],text:c.text||''};if(c.image){o.image=c.image;o.alt=c.alt||('Seçenek '+ids[i]+' fotoğrafı');}return o;});
+   const choices=order.map((c,i)=>{const o={id:ids[i],text:c.text||''};if(c.image){o.image=c.image;o.alt=c.alt||('Seçenek '+ids[i]+' fotoğrafı');}if(c.ad)o.ad=c.ad;return o;});
    return {id:q.id,prompt:q.prompt,image:q.image,imageAlt:q.imageAlt,explanation:q.explanation||'',hint:(q.hint&&q.hint.trim()!==String(q.explanation||'').trim())?q.hint:'',choices,correct:ids[order.findIndex(c=>c.id===q.correct)],equivalenceKey:q.equivalenceKey,choiceOrder:q.choiceOrder,emphasis:q.emphasis};
   });
  }
