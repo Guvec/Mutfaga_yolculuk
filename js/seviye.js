@@ -6,7 +6,7 @@
    Geçmiş çalışmalar sayılır ama bu sürümden önce toplanan puan en çok 9. seviyeye götürür (sv_baz). */
 'use strict';
 /* 14.11 karar (Valorant gibi): bugün kullanılan her şey açık kalır; kilit yalnız yeni dereceli moda (Mutfağa Kabul Sınavı, 10. seviye). */
-const SV={max:30,ac:{kabul:10},ad:{kabul:'Mutfağa Kabul Sınavı ve dereceli lig'}};
+const SV={max:30,ac:{kabul:10},ad:{kabul:'Mutfağa Kabul Sınavı ve Ustalık Ligi'}};
 function svEsik(k){return 15*(k-1)*k;}
 /* Seviye arması: Pastacının Yolu rozetleri gibi koyu yeşil kalkan, altın çerçeve, üstte yıldız. */
 function svArma(k,boy){boy=boy||34;return '<svg class="sv-arma" width="'+boy+'" height="'+Math.round(boy*1.15)+'" viewBox="0 0 60 69" aria-hidden="true"><defs><linearGradient id="svAltin" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffe9a3"/><stop offset=".45" stop-color="#e0a21b"/><stop offset="1" stop-color="#9c6a08"/></linearGradient><linearGradient id="svYesil" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1f7a72"/><stop offset="1" stop-color="#0b3f3c"/></linearGradient></defs><path d="M30 8 L53 16 V36 C53 51 42 61 30 66 C18 61 7 51 7 36 V16 Z" fill="url(#svAltin)"/><path d="M30 12.5 L49 19 V36 C49 48.5 40 57 30 61.5 C20 57 11 48.5 11 36 V19 Z" fill="url(#svYesil)"/><path d="M30 1 l2.6 5.3 5.8.8-4.2 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8-4.2-4.1 5.8-.8z" fill="url(#svAltin)" stroke="#7a5206" stroke-width=".8"/><path d="M14 21 Q30 15 46 21" stroke="#ffffff33" stroke-width="2" fill="none"/><text x="30" y="'+(k>=10?45:46)+'" text-anchor="middle" font-family="Arial,sans-serif" font-weight="900" font-size="'+(k>=10?20:24)+'" fill="#fff8e1" stroke="#0b3f3c" stroke-width=".6">'+k+'</text></svg>';}
@@ -74,10 +74,10 @@ if(typeof yrMenuHTML==='function'){
   let h=SV_MENU2();
   if(h.indexOf('<div class="lb-eylem">')<0)return h;
   const k=svPid()?svSeviye():1,acik=k>=SV.ac.kabul;
-  h=h.replace('<div class="lb-eylem">','<h2 class="sv-mod-bas">🎉 Derecesiz maçlar <small>Herkese açık · XP kazandırır · lig puanı yok</small></h2><div class="lb-eylem">');
-  const kart='<section class="sv-dereceli'+(acik?' acik':'')+'" aria-label="Dereceli lig"><div class="sv-d-bas">'+svArma(k,40)+'<div><h2>🏆 Dereceli lig '+(acik?'<span class="sv-yakin">yakında</span>':'<span class="sv-kilit-et">🔒 Kilitli</span>')+'</h2><p>Dereceli maçlar lig puanı ve sezon ödülü verir. Herkes kendi düzeyindeki oyuncularla yarışsın diye bir şartı var.</p></div></div>'+
+  h=h.replace('<div class="lb-eylem">','<h2 class="sv-mod-bas">🌱 Ümit Ligi <small>Herkese açık · eğlence için · XP kazandırır, lig puanı yok</small></h2><div class="lb-eylem">');
+  const kart='<section class="sv-dereceli'+(acik?' acik':'')+'" aria-label="Ustalık Ligi"><div class="sv-d-bas">'+svArma(k,40)+'<div><h2>🏆 Ustalık Ligi '+(acik?'<span class="sv-yakin">yakında</span>':'<span class="sv-kilit-et">🔒 Kilitli</span>')+'</h2><p>Ustalık Ligi maçları lig puanı ve sezon ödülü verir. Herkes kendi düzeyindeki oyuncularla yarışsın diye bir şartı var.</p></div></div>'+
    '<ul><li class="'+(k>=SV.ac.kabul?'ok':'')+'">'+(k>=SV.ac.kabul?'✅':'⬜')+' Aşçı Seviyesi 10 <small>(şu an '+k+')</small></li><li>⬜ Mutfağa Kabul Sınavı (5 yerleştirme maçı)</li></ul>'+
-   '<p class="sv-d-not">Derecesiz maçları her zaman oynayabilirsin. Seviye, çalıştıkça ve oynadıkça yükselir.</p></section>';
+   '<p class="sv-d-not">Ümit Ligi maçlarını her zaman oynayabilirsin. Seviye, çalıştıkça ve oynadıkça yükselir.</p></section>';
   h=h.replace(/(<div class="lb-eylem">[\s\S]*?<\/div>)/,'$1'+kart);
   return h;
  };
