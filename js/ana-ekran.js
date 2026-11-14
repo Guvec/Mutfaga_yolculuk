@@ -83,7 +83,7 @@
     <button type="button" class="ae-friends-add" onclick="anaArkadas(true)" aria-label="Arkadaş ekle"><span aria-hidden="true">+</span></button>
    </section>
    <nav class="ae-paper ae-bottom" aria-label="Oyun ve başarılar">
-    <button type="button" class="ae-paper" onclick="tasarimOda('create')">${foto('ana-birlikte')}<span>Ustalar Ligi</span></button>
+    <button type="button" class="ae-paper" onclick="tasarimOda('create')"><img class="ae-art ae-lig-logo" src="assets/lig/ustalar-ligi.webp" alt=""><span>Ustalar Ligi</span></button>
     <button type="button" class="ae-paper" onclick="rkOpenBoard()">${foto('ana-siralama')}<span>Sıralama</span></button>
     <button type="button" class="ae-paper" onclick="rutbeYolAc()">${foto('ana-rozet')}<span>Rozetlerim</span></button>
    </nav>
