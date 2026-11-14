@@ -37,7 +37,7 @@ jobs:
           { echo "== $(date -u) commit ${GITHUB_SHA}"; 
             for t in state-tests speech-tests yaris-model-tests rutbe-tests paket-akis-tests paket-ui-tests ermeydani-ui-tests yaris-ui-tests spice-info-tests ui-regression rekor-ui-tests efekt-tests ad-tests arkadas-ui-tests geri-tests giris-tests ana-yol-tests; do echo "== $t"; node site/tests/$t.cjs; echo "exit=$?"; done;
             echo "== emulator: rekor-rules-tests + yaris-rules-tests";
-            npx firebase emulators:exec --only auth,firestore --project demo-mesleki-yaris --config firebase/firebase.json "node site/tests/er-meydani-giris-tests.cjs; node site/tests/rekor-rules-tests.cjs && node site/tests/rekor-entegrasyon-tests.cjs && node site/tests/yaris-rules-tests.cjs && node site/tests/arkadas-rules-tests.cjs"; echo "exit=$?";
+            npx firebase emulators:exec --only auth,firestore --project demo-mesleki-yaris --config firebase/firebase.json "node site/tests/er-meydani-giris-tests.cjs; node site/tests/arena-baglanti-tests.cjs; node site/tests/arena-kural-tests.cjs; node site/tests/rekor-rules-tests.cjs && node site/tests/rekor-entegrasyon-tests.cjs && node site/tests/yaris-rules-tests.cjs && node site/tests/arkadas-rules-tests.cjs"; echo "exit=$?";
           } > out/sonuc.txt 2>&1
           cat out/sonuc.txt
       - name: Sonucu dala yaz

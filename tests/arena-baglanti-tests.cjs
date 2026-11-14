@@ -3,7 +3,7 @@ const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('n
 const {initializeTestEnvironment}=require('@firebase/rules-unit-testing'),sdk=require('firebase/firestore'),model=require('../js/arena-model.js');
 require('../js/yaris-baglanti.js');const Constructor=globalThis.YarisFirebase;
 const wait=async fn=>{const until=Date.now()+8000;while(!fn()){if(Date.now()>until)throw Error('Snapshot bekleme süresi doldu');await new Promise(r=>setTimeout(r,20));}};
-(async()=>{const env=await initializeTestEnvironment({projectId:'demo-mesleki-yaris',firestore:{host:'127.0.0.1',port:8080,rules:fs.readFileSync(path.join(__dirname,'../ci/firebase/firestore.rules'),'utf8')}});const stop=[];let checks=0;const ok=s=>{checks++;console.log('PASS '+s);};
+(async()=>{const env=await initializeTestEnvironment({projectId:'demo-mesleki-yaris',firestore:{host:'127.0.0.1',port:8080,rules:fs.readFileSync([path.join(__dirname,'../ci/firebase/firestore.rules'),path.join(__dirname,'../../firebase/firestore.rules')].find(f=>fs.existsSync(f)),'utf8')}});const stop=[];let checks=0;const ok=s=>{checks++;console.log('PASS '+s);};
  try{await env.clearFirestore();const uids=['host','alice','bob'],clients=uids.map(uid=>{const c=new Constructor({});c.uid=uid;c.db=env.authenticatedContext(uid).firestore();c.sdk=sdk;c.connect=async()=>c;return c;});
  const spec={mode:'arena',av:2,roster:[],subject:'mutfak-araclari',scope:'butun',kind:'gorsel',set:0,n:75,lim:15,seed:42,rev:'arena2-sdk',hostNick:'Host'},made=await clients[0].create(spec,'SDK99'),code=made.code;
  const row=(nick)=>({nick,score:0,ok:0,bad:0,n:0,tt:0,done:false,left:false,ts:Date.now(),rid:made.room.created,m:0,r:[],pr:[],loaded:true,ready:true});

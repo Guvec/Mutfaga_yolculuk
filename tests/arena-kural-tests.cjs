@@ -4,7 +4,7 @@ const fs=require('node:fs'),path=require('node:path'),assert=require('node:asser
 const {initializeTestEnvironment,assertSucceeds,assertFails}=require('@firebase/rules-unit-testing');
 const {doc,setDoc,updateDoc,deleteDoc,getDoc,writeBatch}=require('firebase/firestore');
 (async()=>{
- const env=await initializeTestEnvironment({projectId:'demo-mesleki-yaris',firestore:{host:'127.0.0.1',port:8080,rules:fs.readFileSync(path.join(__dirname,'../ci/firebase/firestore.rules'),'utf8')}});
+ const env=await initializeTestEnvironment({projectId:'demo-mesleki-yaris',firestore:{host:'127.0.0.1',port:8080,rules:fs.readFileSync([path.join(__dirname,'../ci/firebase/firestore.rules'),path.join(__dirname,'../../firebase/firestore.rules')].find(f=>fs.existsSync(f)),'utf8')}});
  let passed=0;const failures=[];
  const check=async(name,p,allowed=true)=>{try{await (allowed?assertSucceeds(p):assertFails(p));passed++;console.log('PASS '+name);}catch(e){failures.push(name+': '+String(e.message).slice(0,220));console.log('FAIL '+name);}};
  const users=['host','alice','bob','cara','outsider'],db=Object.fromEntries(users.map(u=>[u,env.authenticatedContext(u).firestore()]));
