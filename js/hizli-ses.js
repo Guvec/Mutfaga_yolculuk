@@ -25,9 +25,9 @@ function hsAc(){
  const kapat=()=>{k.remove();if(typeof render==='function')render();};
  k.addEventListener('click',e=>{if(e.target===k)kapat();});k.querySelector('#hsKapat').onclick=kapat;k.querySelector('#hsMuzik').focus();
 }
-(function(){
- const b=document.createElement('button');b.type='button';b.id='hsDugme';b.className='hs-dugme';b.setAttribute('aria-label','Ses ayarları: müzik, sesli okuma, efektler');b.innerHTML='<span aria-hidden="true">🎵</span>';b.onclick=hsAc;
- const ekle=()=>{if(!document.getElementById('hsDugme'))document.body.appendChild(b);};
- if(document.body)ekle();else document.addEventListener('DOMContentLoaded',ekle);
- setInterval(()=>{const m=typeof MUZIK!=='undefined'&&MUZIK.acikMi();b.classList.toggle('kapali',!m);b.hidden=typeof st!=='undefined'&&['home','profiles','pedit','welcome'].includes(st.screen);b.querySelector('span').textContent=m?'🎵':'🔇';},1000);
-})();
+/* 14.11 akşam: Yüzen 🎵 düğmesi başka düğmelerin üstüne biniyordu. Ses paneli artık üst çubuktaki "Ses" düğmesinden açılır. */
+function hsDurum(){const m=typeof MUZIK!=='undefined'&&MUZIK.acikMi(),o=typeof SES!=='undefined'&&SES.acik;return o&&m?'Okuma + Müzik':o?'Okuma':m?'Müzik':'Kapalı';}
+function hsBagla(){
+ document.querySelectorAll('.top .ses-ac').forEach(b=>{b.textContent='🎧 Ses: '+hsDurum();b.setAttribute('aria-label','Ses ayarları: '+hsDurum()+'. Müzik, sesli okuma ve efektleri aç ya da kapat');b.onclick=e=>{e.preventDefault();e.stopPropagation();hsAc();};});
+}
+if(typeof render==='function'){const HS_R0=render;render=function(){HS_R0.apply(this,arguments);hsBagla();};}
