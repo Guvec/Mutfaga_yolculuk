@@ -110,7 +110,7 @@ function girisHTML(){
     <div class="dost-actions dost-preview-actions">
      <button type="button" id="gWatch">▶︎ İzle</button><button type="button" id="gUse">Kullan</button>
     </div>
-    <button type="button" id="gBesle" class="dost-besle">🍎 Besle ve tepkisini izle</button>
+    <button type="button" id="gBesle" class="dost-besle">🍓 Dostuna lezzet tattır</button>
     <p class="dost-applied" id="gApplied" role="status"></p>
     <div id="gOptions" class="dost-options"></div>
    </section>
@@ -122,7 +122,7 @@ function girisHTML(){
  let origin='home',entry=null;
  const $=id=>document.getElementById(id);
  /* Ana sayfadaki Aşçı Dostum kartı: doğrudan besleme ekranı (tepkiler) açılır. */
- /* 14.11: Ana sayfadaki Aşçı Dostum kartı doğrudan dost seçimi ve kontratlarla açılır; besleme "Besle ve tepkisini izle" düğmesindedir. */
+ /* 14.11: Ana sayfadaki Aşçı Dostum kartı doğrudan dost seçimi ve kontratlarla açılır; tadım ekranı "Dostuna lezzet tattır" düğmesindedir. */
  G.mutfak=function(){origin='home';entry={food:null,editor:true,profileChoice:false};go('giris');};
  G.ac=function(from,food=null,profileChoice=false){
   origin=from;
@@ -274,7 +274,7 @@ function girisHTML(){
   $('gWatch').hidden=tab!=='hareket';
   const pid=dostPid(),canOpen=dostPuanBakiye(dostGorevProfil(pid))>=DOST_ACMA_PUANI;
   $('gUse').disabled=!!item.locked&&(!pid||(item.active&&!canOpen));
-  $('gUse').textContent=item.active?'Kontratı tamamla ve aç':item.locked?'📜 Kontratı başlat':'Dostum olsun';
+  $('gUse').textContent=item.active?'🔓 Kilidi aç':item.locked?'🎯 Hedefim olsun':'Dostum olsun';
   $('gQuest').innerHTML=tab==='dost'&&!profileChoice?dostPuanHTML(item.id):'';
   $('gWardrobe').querySelectorAll('[data-dost-tab]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.dostTab===tab)));
   $('gOptions').dataset.tab=tab;

@@ -141,7 +141,7 @@ html[data-theme=dark] .gs-strip { color:#9fd8d2; }
 .dost-options[data-tab=dost] button[data-dost-item]:nth-child(3n+2){background:radial-gradient(circle at 50% 35%,#f1fbf6 0,#bfe3d2 55%,#7cc3a6 100%)}
 .dost-options[data-tab=dost] button[data-dost-item]:nth-child(3n){background:radial-gradient(circle at 50% 35%,#fdf1f4 0,#f3c6d2 55%,#e597ad 100%)}
 .dost-options[data-tab=dost] button[aria-pressed=true]{outline:4px solid #e0a21b;outline-offset:-4px}
-.dost-options[data-tab=dost] img{height:clamp(90px,20vw,190px)!important;object-fit:contain;filter:drop-shadow(0 6px 6px #0003)}
+.dost-options[data-tab=dost] img{height:clamp(120px,26vw,230px)!important;object-fit:contain;filter:drop-shadow(0 6px 6px #0003)}
 .dost-options[data-tab=dost] span{font-weight:900;font-size:1.05rem}
 .dost-options .dost-locked img{filter:saturate(.45) drop-shadow(0 6px 6px #0003)!important}
 .dost-kontrat{margin:8px auto;max-width:760px;padding:14px 16px;border-radius:18px;background:linear-gradient(135deg,#1b2a5a,#0e5e61);color:#fff;display:grid;gap:8px;box-shadow:0 6px 18px #0e5e6133}
@@ -150,5 +150,5 @@ html[data-theme=dark] .gs-strip { color:#9fd8d2; }
 .dk-cubuk{height:16px;border-radius:999px;background:#ffffff33;overflow:hidden}.dk-cubuk i{display:block;height:100%;min-width:8px;background:linear-gradient(90deg,#f5cf63,#e0a21b);border-radius:999px}
 .dost-kontrat p{margin:0;opacity:.95}
 .dost-besle{display:block;margin:8px auto;max-width:760px;width:100%;border-radius:14px;padding:12px;font-weight:800;border:2px solid #0e5e61;background:#fff;color:#0e5e61;cursor:pointer}
-#gPreview.sahne{flex:none!important;width:min(100%,600px)!important;height:auto!important;aspect-ratio:16/9!important;max-height:none!important;padding:0!important;background:#3a2818}
+#gPreview.sahne{flex:none!important;width:min(100%,720px)!important;height:auto!important;aspect-ratio:16/9!important;max-height:none!important;padding:0!important;background:#3a2818}
 #gPreview.sahne>img{width:100%!important;height:100%!important;object-fit:cover!important;object-position:50% 45%!important}

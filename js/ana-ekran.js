@@ -71,7 +71,7 @@
     <button type="button" class="ae-paper" onclick="anaYol('servis')" aria-pressed="${path()==='servis'}">${dalArt('servis')}<span>Servis</span></button>
     ${rankHTML()}
    </nav>
-   <button type="button" class="ae-paper ae-dost" onclick="anaDostMutfak()" aria-label="Aşçı Dostum. Besle ve tepkisini izle">
+   <button type="button" class="ae-paper ae-dost" onclick="anaDostMutfak()" aria-label="Aşçı Dostum. Dostunu seç">
     <strong>Aşçı Dostum</strong>
     <picture class="ae-dost-artwork" data-dost="${GIRIS.character}">${foto(scene)}</picture>
     <span class="ae-dost-poz" aria-hidden="true"><img alt=""></span>
