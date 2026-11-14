@@ -82,3 +82,17 @@
 html[data-sakin="1"] .br-shell *{animation:none!important}
 
 body[data-screen=baharatrafi]{overflow:hidden}
+/* Raf: kutu listesi */
+.br-shell .raf-liste{flex:1;min-height:0;display:flex;flex-direction:column;gap:10px;overflow:auto}
+.br-shell .raf-ozet{display:flex;flex-direction:column;gap:2px;font-size:15px}
+.br-shell .raf-ozet b{font-size:18px;color:var(--yesil2)}
+.br-shell .kutu-kart{display:grid;grid-template-columns:auto 1fr;grid-template-areas:"no foto" "alt alt";gap:6px 10px;align-items:center;text-align:left;background:var(--kart);border:2px solid #bfd0bd;border-radius:16px;padding:10px 12px;min-height:44px;font:inherit;color:inherit;box-shadow:0 3px 0 #d9d2c3;cursor:pointer}
+.br-shell .kutu-kart:active{transform:translateY(2px);box-shadow:0 1px 0 #d9d2c3}
+.br-shell .kutu-no{grid-area:no;font-weight:bold;font-size:18px;color:var(--yesil2)}
+.br-shell .kutu-foto{grid-area:foto;display:flex;gap:6px;justify-content:flex-end}
+.br-shell .kutu-foto img,.br-shell .kutu-foto i{width:44px;height:44px;border-radius:10px;object-fit:cover;border:1px solid var(--cizgi);background:#fff}
+.br-shell .kutu-foto i{display:grid;place-items:center;font-style:normal;font-weight:bold;color:#8d8576;background:linear-gradient(#ece7dc,#d9d2c3)}
+.br-shell .kutu-alt{grid-area:alt;display:flex;justify-content:space-between;align-items:center;font-size:14px}
+.br-shell .kutu-yildiz{color:var(--altin);font-size:20px;letter-spacing:2px}
+.br-shell .kutu-yildiz .bos{color:#d8cfbd}
+.br-shell .kutu-kart.kilitli{opacity:.65;cursor:default;border-style:dashed}
