@@ -27,7 +27,7 @@
  /* Konu seçilen yeni odalar; arena2 odalarının 38+37 havuzu değişmez. */
  /* Er Meydanı konuları: Beslenme yalnız burada "Tüm konular"a katılır; diğer oyunların SUBJECT_ORDER'ı değişmez. */
  const EXTRA=['beslenme-ilkeleri'];
- const WEIGHT={'mutfak-araclari':45,'beslenme-ilkeleri':35,baharat:35,'bulasik-makinesi-temizligi':20,kuver:15};
+ const WEIGHT={'beslenme-ilkeleri':50,'mutfak-araclari':40,baharat:25,'bulasik-makinesi-temizligi':20,kuver:15};
  function allSubjects(ym){return ym.SUBJECT_ORDER.concat(EXTRA);}
  function selectedSubjects(spec,ym){return spec.scope==='konu'?[spec.subject]:allSubjects(ym);}
  /* Aynı baharatın farklı hâlleri (taze/kuru, yaprak/tohum) bir odada tek soru sayılır. */
