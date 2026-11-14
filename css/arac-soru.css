@@ -75,3 +75,7 @@
 .asama-ic{display:grid;gap:10px}.asama-yildiz{font-size:60px;line-height:1;text-align:center;animation:asama-pop .6s ease-out}@keyframes asama-pop{0%{transform:scale(.3);opacity:0}70%{transform:scale(1.2)}100%{transform:scale(1);opacity:1}}
 .asama-skor{font-size:1.15rem;font-weight:800;margin:0}.asama-sonra{margin:4px 0}.asama-sonra b{display:block;font-size:1.2rem;color:#0e5e61}
 .asama-ic .btn{width:100%;margin:0}
+.yol-dur{display:block;width:100%;margin-top:10px}
+.opt.secildi{border-width:3px!important;border-color:var(--teal,#0e5e61)!important;background:color-mix(in srgb,var(--teal,#0e5e61) 20%,var(--surface,#fff))!important;opacity:1!important;position:relative}
+.opt.secildi::after{content:"✓ Seçimin";position:absolute;right:10px;top:50%;transform:translateY(-50%);font-size:.8em;font-weight:800;padding:2px 8px;border-radius:999px;background:var(--teal,#0e5e61);color:#fff}
+.hs-dugme[hidden]{display:none!important}

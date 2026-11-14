@@ -63,3 +63,23 @@ if(typeof render==='function'){
   }catch(e){}
  };
 }
+/* Yolculuğum (Mutfak Araçları, Baharat, Bulaşık): bölüm bitince "Devam et" 10 saniye sonra kendiliğinden basılır; öğrenci isterse durur. */
+let YOL_OTO=null,YOL_OTO_KEY=null;
+if(typeof render==='function'){
+ const AS_RENDER1=render;
+ render=function(){
+  AS_RENDER1.apply(this,arguments);
+  try{
+   if(st.screen!=='yolplay'||typeof Y==='undefined'||!Y||Y.phase!=='bitti'){if(YOL_OTO){clearInterval(YOL_OTO);YOL_OTO=null;}return;}
+   const key=(Y.node&&Y.node.id)+'|'+(Y.tohum||'');if(YOL_OTO_KEY===key)return;YOL_OTO_KEY=key;
+   const btn=[...document.querySelectorAll('.yol-alt .yol-btn:not(.ikinci)')].find(b=>/Devam et/.test(b.textContent));if(!btn)return;
+   try{if(typeof EFEKT!=='undefined')EFEKT.cal('tur');}catch(e){}
+   const alt=btn.parentNode;alt.insertAdjacentHTML('afterend','<button type="button" class="yol-btn ikinci yol-dur" id="yolDur">Devam etmek istemiyorum</button>');
+   let kalan=10;btn.textContent='Sonraki bölüme geç ('+kalan+') ›';
+   YOL_OTO=setInterval(()=>{kalan--;if(!document.body.contains(btn)){clearInterval(YOL_OTO);YOL_OTO=null;return;}btn.textContent='Sonraki bölüme geç ('+kalan+') ›';if(kalan<=0){clearInterval(YOL_OTO);YOL_OTO=null;btn.click();}},1000);
+   document.getElementById('yolDur').onclick=()=>{clearInterval(YOL_OTO);YOL_OTO=null;go('yolum');};
+  }catch(e){}
+ };
+}
+/* Uyguluyorum'da doğru/yanlış gösterilmez ama öğrencinin seçtiği şık renkli görünür. */
+if(typeof answer==='function'){const AS_ANS=answer;answer=function(id){st.secim=id;return AS_ANS.apply(this,arguments);};}

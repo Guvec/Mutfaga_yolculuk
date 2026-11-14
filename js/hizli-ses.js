@@ -28,5 +28,5 @@ function hsAc(){
  const b=document.createElement('button');b.type='button';b.id='hsDugme';b.className='hs-dugme';b.setAttribute('aria-label','Ses ayarları: müzik, sesli okuma, efektler');b.innerHTML='<span aria-hidden="true">🎵</span>';b.onclick=hsAc;
  const ekle=()=>{if(!document.getElementById('hsDugme'))document.body.appendChild(b);};
  if(document.body)ekle();else document.addEventListener('DOMContentLoaded',ekle);
- setInterval(()=>{const m=typeof MUZIK!=='undefined'&&MUZIK.acikMi();b.classList.toggle('kapali',!m);b.querySelector('span').textContent=m?'🎵':'🔇';},1000);
+ setInterval(()=>{const m=typeof MUZIK!=='undefined'&&MUZIK.acikMi();b.classList.toggle('kapali',!m);b.hidden=typeof st!=='undefined'&&['home','profiles','pedit','welcome'].includes(st.screen);b.querySelector('span').textContent=m?'🎵':'🔇';},1000);
 })();

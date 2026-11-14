@@ -62,7 +62,7 @@ contentQuizHTML=function(){
   const pic=q.choices.some(c=>c.image);
   h+='<div class="opts'+(pic?' opts-pic':' opts-mcq')+'">';
   q.choices.forEach(c=>{const dis=st.done||st.tries>=2||st.wrong.includes(c.id);
-    h+='<button class="opt'+(st.practice!=='check'&&st.wrong.includes(c.id)?' wrong':'')+(st.practice!=='check'&&st.done&&c.id===q.correct?' right':'')+'" data-choice="'+esc(c.id)+'"'+(dis?' disabled':'')+'>'+
+    h+='<button class="opt'+(st.practice!=='check'&&st.wrong.includes(c.id)?' wrong':'')+(st.practice!=='check'&&st.done&&c.id===q.correct?' right':'')+(st.practice==='check'&&st.done&&c.id===st.secim?' secildi':'')+'" data-choice="'+esc(c.id)+'"'+(dis?' disabled':'')+'>'+
       (c.image?'<img src="'+esc(c.image)+'" alt="'+esc(c.imageAlt||c.id+' seçeneği')+'"><span class="olet">'+esc(c.id)+')</span>':'<span class="olet">'+esc(c.id)+')</span> '+esc(c.text))+'</button>';});
   h+='</div></section>'+msgHtml();
   if(st.done)h+='<button class="btn pri" onclick="nextQ()">Devam</button>';else if(st.tries>=2)h+='<button class="btn pri" onclick="showSol()">Yanıtı Gör</button>';

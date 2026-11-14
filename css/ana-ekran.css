@@ -590,7 +590,7 @@ html:is([data-theme=light],[data-theme=sepia],:not([data-theme])) .ae-home .ae-p
 /* Emoji profil simgesi daireyi doldursun (PC'de küçük kalıyordu). */
 .ae-home .ae-header .ae-avatar{container-type:inline-size}
 .ae-home .ae-header .ae-avatar-emoji{font-size:clamp(24px,4vw,64px);font-size:58cqw;line-height:1}
-.ae-home .ae-bottom .ae-lig-logo{transform:scale(1.4);transform-origin:center bottom}
+@media(min-width:900px) and (orientation:landscape){.ae-home .ae-bottom .ae-lig-logo{transform:scale(1.4);transform-origin:center bottom}}
 /* Üst kart (14.11): sıradaki rütbe okunaklı, ad ile rütbe şeridi arasında boşluk yok. */
 .ae-serit-sonra{font-size:clamp(.85rem,3.6vw,1.05rem);font-weight:700;white-space:nowrap;padding:2px 10px;border-radius:999px;background:color-mix(in srgb,var(--dal,#0e5e61) 12%,#fff);color:var(--dal,#0e5e61)}
 .ae-serit-sonra b{font-weight:900}
@@ -600,3 +600,28 @@ html:is([data-theme=light],[data-theme=sepia],:not([data-theme])) .ae-home .ae-p
   .ae-home .ae-header .ae-profile-name{padding-right:10px}
   .ae-serit-sonra{font-size:clamp(.9rem,2.2svh,1.3rem)}
 }
+
+/* 14.11: Renkli temalarda ana sayfa da temanın rengini alır; dal düğmeleri açık renkli ve derinlikli (koyu dolgu yok). */
+html:is([data-theme=okyanus],[data-theme=orman],[data-theme=lavanta],[data-theme=seftali]) .ae-home .ae-paths button,
+html:is([data-theme=okyanus],[data-theme=orman],[data-theme=lavanta],[data-theme=seftali]) .ae-home .ae-paths button[aria-pressed=true] {
+  --dal:var(--teal); --dal-koyu:var(--navy);
+  overflow:visible; color:var(--dal-koyu); text-shadow:none; border-radius:16px;
+  border:2px solid color-mix(in srgb,var(--dal) 38%,#fff);
+  background:linear-gradient(180deg,var(--surface) 0%,color-mix(in srgb,var(--dal) 16%,var(--surface)) 100%);
+  box-shadow:0 4px 0 color-mix(in srgb,var(--dal) 62%,#fff),0 7px 10px rgba(40,30,60,.14),inset 0 2px 0 #fff;
+}
+html:is([data-theme=okyanus],[data-theme=orman],[data-theme=lavanta],[data-theme=seftali]) .ae-home .ae-paths button:nth-child(2) { --dal:color-mix(in srgb,var(--teal) 45%,#b8456b); }
+html:is([data-theme=okyanus],[data-theme=orman],[data-theme=lavanta],[data-theme=seftali]) .ae-home .ae-paths button:nth-child(3) { --dal:color-mix(in srgb,var(--teal) 45%,#8a6a2f); }
+html:is([data-theme=okyanus],[data-theme=orman],[data-theme=lavanta],[data-theme=seftali]) .ae-home .ae-paths button span { text-shadow:none; color:var(--dal-koyu); }
+html:is([data-theme=okyanus],[data-theme=orman],[data-theme=lavanta],[data-theme=seftali]) .ae-home .ae-paths button .ae-art { transform:scale(1.1); transform-origin:50% 100%; filter:drop-shadow(0 3px 3px rgba(40,30,60,.25)); }
+html:is([data-theme=okyanus],[data-theme=orman],[data-theme=lavanta],[data-theme=seftali]) .ae-home .ae-paths button[aria-pressed=true] {
+  border-color:var(--dal);
+  background:radial-gradient(120% 90% at 50% 0%,var(--surface) 0%,color-mix(in srgb,var(--dal) 30%,var(--surface)) 100%);
+  box-shadow:0 4px 0 var(--dal),0 0 0 3px color-mix(in srgb,var(--dal) 28%,transparent),0 9px 14px color-mix(in srgb,var(--dal) 30%,transparent),inset 0 2px 0 #fff;
+}
+html:is([data-theme=okyanus],[data-theme=orman],[data-theme=lavanta],[data-theme=seftali]) .ae-home .ae-serit { --dal:var(--teal); }
+html:is([data-theme=okyanus],[data-theme=orman],[data-theme=lavanta],[data-theme=seftali]) .ae-home .ae-serit[data-dal=pasta] { --dal:color-mix(in srgb,var(--teal) 45%,#b8456b); }
+html:is([data-theme=okyanus],[data-theme=orman],[data-theme=lavanta],[data-theme=seftali]) .ae-home .ae-serit[data-dal=servis] { --dal:color-mix(in srgb,var(--teal) 45%,#8a6a2f); }
+/* Seviye rozeti adın yanında küçük kalır; telefonda alt satıra taşıp dal düğmelerinin üstüne binmez. */
+.ae-home .ae-profile-name .sv-chip{font-size:clamp(.78rem,3.4vw,1rem);padding:1px 10px 1px 3px;margin-block:2px}
+@media(min-width:900px) and (orientation:landscape){.ae-home .ae-profile-name .sv-chip{font-size:clamp(.95rem,2.2svh,1.35rem)}}
