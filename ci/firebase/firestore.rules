@@ -72,10 +72,23 @@ service cloud.firestore {
     && (!('cnt' in request.resource.data) || ((request.resource.data.mode == 'race' || request.resource.data.mode == 'arena') && request.resource.data.cnt == 1))
     && request.resource.data.created is int && request.resource.data.created > request.time.toMillis() - 3600000 && request.resource.data.created < request.time.toMillis() + 3600000;
    allow update: if signed() && (
-    (resource.data.host == request.auth.uid && resource.data.status == 'lobby' && request.resource.data.status == 'playing'
+    /* 14.11 akşam: Oda sahibi salonda (oyun başlamadan) bir oyuncuyu çıkarır. Çıkarılan "ban" listesine eklenir, oyuncu kaydı aynı işlemde silinir;
+       Kapışmada guest boşalır, diğer odalarda sayaç bir azalır. Çıkarılan kişi bu odaya yeniden giremez. */
+    (resource.data.host == request.auth.uid && resource.data.status == 'lobby'
+      && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['cnt','guest','ban'])
+      && request.resource.data.ban is list && request.resource.data.ban.size() <= 20
+      && request.resource.data.ban.size() == resource.data.get('ban',[]).size() + 1
+      && request.resource.data.ban.hasAll(resource.data.get('ban',[]))
+      && !(request.auth.uid in request.resource.data.ban)
+      && !existsAfter(/databases/$(database)/documents/oyunOdalari/$(code)/players/$(request.resource.data.ban[request.resource.data.ban.size()-1]))
+      && (resource.data.mode == 'duel'
+          ? (request.resource.data.guest == null && resource.data.guest == request.resource.data.ban[request.resource.data.ban.size()-1] && request.resource.data.get('cnt',0) == resource.data.get('cnt',0))
+          : (request.resource.data.guest == resource.data.guest && request.resource.data.cnt is int && request.resource.data.cnt == resource.data.cnt - 1 && request.resource.data.cnt >= 1)))
+    || (resource.data.host == request.auth.uid && resource.data.status == 'lobby' && request.resource.data.status == 'playing'
       && ((resource.data.mode == 'arena' && ('av' in resource.data) && resource.data.av == 2)? (request.resource.data.diff(resource.data).affectedKeys().hasOnly(['status','roster']) && rosterReady(request.resource.data)) : request.resource.data.diff(resource.data).affectedKeys().hasOnly(['status'])))
     || (resource.data.mode == 'duel' && resource.data.status == 'lobby' && resource.data.host != request.auth.uid
       && resource.data.guest == null && request.resource.data.guest == request.auth.uid
+      && !(request.auth.uid in resource.data.get('ban',[]))
       && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['guest']))
     || (resource.data.mode in ['race','arena'] && resource.data.status == 'lobby' && resource.data.host != request.auth.uid
       && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['cnt'])
@@ -133,6 +146,7 @@ service cloud.firestore {
     allow get: if signed() && (request.auth.uid == uid || member());
     allow list: if signed() && member();
     allow create: if signed() && request.auth.uid == uid && room().status == 'lobby'
+     && !(request.auth.uid in room().get('ban',[]))
      && (room().mode in ['race','arena'] || room().host == uid || room().guest == uid || getAfter(/databases/$(database)/documents/oyunOdalari/$(code)).data.guest == uid)
      /* Şifreli oda: kurucu dışında giren, şifreyi oyuncu kaydında getirir; şifre okunamayan gizli/sifre belgesiyle karşılaştırılır. */
      && (!('kilit' in room()) || room().kilit != true || room().host == uid
