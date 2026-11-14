@@ -71,11 +71,22 @@ const hub={rooms:{},n:0,ops:{
   for(const p of ps)await p.waitForFunction(()=>st.screen==='raceover',null,{timeout:5000});
   await ps[0].waitForFunction(()=>yrAllDone(),null,{timeout:5000});
   const son=await ps[0].innerText('#app');
-  assert(son.includes('Ateş Takımı')&&/8\s*puan/.test(son),'takım puanı 8');
+  assert(son.includes('Ateş')&&son.includes('Fesleğen'),'takımlar sonuçta');assert.deepStrictEqual(await ps[0].evaluate(()=>bzTakimPuan()),[8,8],'takım puanı 8');
   assert(son.includes('Berabere'),'eşit takım puanı berabere');
   await ps[1].waitForFunction(()=>yrAllDone(),null,{timeout:5000});
   const pl=await ps[1].evaluate(()=>YR.players.map(p=>p.score+'/'+p.n+'/'+p.done));
   assert(pl.every(x=>x==='4/4/true'),'kayıtlar: '+pl);
+  /* Tek sayfa: sonuç ekranı kaydırmasız; rövanş daveti diğerlerine görünür. */
+  for(const p of ps){const sh=await p.evaluate(()=>[document.documentElement.scrollHeight,innerHeight]);assert(sh[0]<=sh[1]+2,'sonuç ekranı tek sayfa: '+sh);}
+  await ps[0].screenshot({path:'/home/claude/work/sn-blitz.png'});
+  const eski=code;
+  await ps[2].evaluate(()=>rvIste());await ps[2].waitForFunction(()=>YR.active&&st.screen==='racelobby',null,{timeout:15000});
+  const rv=await ps[2].evaluate(()=>YR.code);assert(/^RV/.test(rv)&&rv!==eski,'rövanş odası');
+  assert(/^takim-/.test(await ps[2].evaluate(()=>YR.room.rev)),'rövanş aynı tür');
+  await ps[0].waitForFunction(()=>/rövanş istiyor/.test(document.getElementById('rvAlan')?.innerText||''),null,{timeout:8000});
+  await ps[0].screenshot({path:'/home/claude/work/sn-davet.png'});
+  await ps[0].evaluate(()=>rvIste());await ps[0].waitForFunction(c=>YR.active&&st.screen==='racelobby'&&YR.code===c,rv,{timeout:15000});
+  await ps[2].waitForFunction(()=>YR.players.length===2,null,{timeout:5000});
   /* Blitz tek başına ve Kapışma "Tüm konular" ile kurulabilir. */
   const q=await phone();await giris(q,'🐢 Garson Kaplumbağa');
   await q.evaluate(()=>{yrCreateOpen('duel');yrCfg('scope','butun');});

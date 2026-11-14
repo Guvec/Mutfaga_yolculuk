@@ -135,7 +135,7 @@ window.bzRovans=function(){const t=bzTur(YR.room);yrLeaveNow();bzKur(t);};
 {const O=yrReset;yrReset=function(){if(BZ.tm){clearInterval(BZ.tm);BZ.tm=null;}return O.apply(this,arguments);};}
 /* ---------- Hızlı Şef ---------- */
 const HS_MODLAR=[
- {id:'duel',ikon:'⚔️',ad:'1’e 1',not:'İki kişi, aynı soru; önce doğru basan alır'},
+ {id:'duel',ikon:'⚔️',ad:'1’e 1',not:'İki kişi · 20 soru · önce doğru basan alır'},
  {id:'takim',ikon:'👥',ad:'2’ye 2',not:'Dört kişi, iki takım · 120 saniye'},
  {id:'blitz',ikon:'⏱',ad:'Blitz',not:'2–8 kişi · 120 saniye · son 20 sn çift puan'},
  {id:'arena',ikon:'🏟',ad:'Er Meydanı',not:'3–10 kişi · 12 yanlışta biter'}
@@ -166,7 +166,7 @@ function hsfBasla(id){
  if(uygun.length){yrJoin(uygun[0].code);return;}
  if(id==='takim'||id==='blitz'){bzKur(id);return;}
  if(id==='arena'){yrCreateOpen('arena');Object.assign(YR.cfg,{pub:true,kilit:false,ad:''});yrCreate();return;}
- yrCreateOpen('duel');Object.assign(YR.cfg,{subject:'mutfak-araclari',scope:'butun',kind:'gorsel',set:0,n:10,lim:20,pub:true,kilit:false,ad:''});yrCreate();
+ yrCreateOpen('duel');Object.assign(YR.cfg,{subject:'mutfak-araclari',scope:'butun',kind:'gorsel',set:0,n:20,lim:20,pub:true,kilit:false,ad:''});yrCreate();
 }
 /* ---------- Kapışma ve Oyun Odası: Konu satırında "Tüm konular" ---------- */
 {const O=yrCreateHTML;yrCreateHTML=function(){

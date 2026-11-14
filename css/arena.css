@@ -196,3 +196,50 @@ html.lig body .top .ses-ac.hs-kisa{background:transparent;color:#fff;border:1.5p
 .ay-aksan .aksan-ad{display:none}
 .ay-aksan .aksan-sec p{flex-basis:auto!important;margin-right:auto!important}
 .ay-satir{min-height:48px}
+/* 14.11 akşam: tek sayfalık maç sonu ekranı */
+body:has(.sn-ekran) #app{display:flex;flex-direction:column;height:100dvh;box-sizing:border-box}
+.sn-ekran{flex:1 1 auto;min-height:0;display:flex;flex-direction:column;gap:8px;padding-block:8px!important;box-sizing:border-box;width:100%}
+.sn-ekran > *{flex:none;margin:0!important}
+.sn-gizli{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.sn-kahraman{display:flex;flex-direction:column;align-items:center;text-align:center;gap:2px;padding:12px 14px;border-radius:18px;background:linear-gradient(160deg,#24386e,#14234a);color:#fff;border:1.5px solid #c99a2e;box-shadow:0 8px 20px #14234a2e}
+.sn-kahraman .sn-ikon{font-size:36px;line-height:1}
+.sn-kahraman b{font-size:22px;line-height:1.2}
+.sn-kahraman small{font-size:13.5px;color:#d8deeb;font-weight:600}
+.sn-kahraman.bekle,.sn-kahraman.sn-notr{background:#fff;color:#14234a;border-color:#e3dccb;box-shadow:none}
+.sn-kahraman.bekle small,.sn-kahraman.sn-notr small{color:#5b6478}
+.sn-skor{display:flex;align-items:center;justify-content:center;gap:18px;margin:4px 0}
+.sn-skor span{display:flex;flex-direction:column;align-items:center;min-width:80px}.sn-skor strong{font-size:34px;line-height:1}.sn-skor em{font-style:normal;font-size:22px}
+.sn-takim{display:grid!important;grid-template-columns:1fr 1fr;gap:8px;background:#fff!important;border-color:#e3dccb!important;box-shadow:none!important;padding:8px!important}
+.sn-takim .bz-takim{align-items:center}.sn-takim strong{font-size:30px;line-height:1.1}
+.sn-takim-sonuc{grid-column:1/-1;margin:0;font-weight:800;color:#14234a}
+.sn-ben{text-align:center;font-size:15px;color:#14234a}
+.sn-rozet{display:inline-block;padding:1px 8px;border-radius:99px;background:#f3e3b5;color:#5a4410;font-weight:800}
+.sn-liste{flex:1 1 auto!important;min-height:64px;overflow:auto;border:1.5px solid #e3dccb;border-radius:14px;background:#fff}
+.sn-liste ol{list-style:none;margin:0;padding:0}
+.sn-satir{display:flex;align-items:center;gap:8px;padding:8px 12px;border-top:1px solid #efe9da;font-size:15px;color:#14234a}
+.sn-satir:first-child{border-top:0}
+.sn-satir.ben{background:#fbf3dc;font-weight:800}
+.sn-sira{flex:none;width:30px;text-align:center;font-size:18px}
+.sn-ad{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.sn-deger{flex:none;font-weight:700;font-variant-numeric:tabular-nums}
+.sn-rv:empty{display:none}
+.sn-davet{display:flex;align-items:center;gap:10px;width:100%;padding:10px 12px;border-radius:14px;border:2px solid #c99a2e;background:#fffaf0;color:#14234a;font:inherit;text-align:left;cursor:pointer;animation:sn-davet 1.2s ease-in-out infinite}
+.sn-davet > span:first-child{font-size:26px}.sn-davet span{display:flex;flex-direction:column}.sn-davet small{font-size:13px;color:#5b6478}.sn-davet em{margin-left:auto;font-style:normal;font-weight:900;color:#a2491b;white-space:nowrap}
+@keyframes sn-davet{0%,100%{box-shadow:0 0 0 0 #c99a2e66}50%{box-shadow:0 0 0 6px #c99a2e22}}
+.sn-eylem{display:grid;gap:6px;padding-bottom:max(4px,env(safe-area-inset-bottom))}
+.sn-eylem .btn{margin:0;min-height:48px}
+.sn-rovans{min-height:56px!important;font-size:18px!important}
+.sn-titre{animation:sn-davet 1.2s ease-in-out infinite}
+.sn-ikili{display:flex;gap:6px}.sn-ikili .btn{flex:1;font-size:15px;padding:6px 8px}
+.sn-panel{max-height:85dvh;display:flex;flex-direction:column}.sn-panel-govde{overflow:auto;flex:1;display:grid;gap:8px;margin-bottom:10px}
+.sn-ark{display:grid;gap:6px}
+body:has(.sn-ekran) .gs-strip{display:none}
+.sn-ekran.rv-var .sn-rovans{display:none}
+.sn-dost{white-space:nowrap}
+@media (max-width:519px){.top .ses-ac.hs-kisa{min-width:44px!important;width:44px!important;max-width:44px;height:44px;padding:0!important;font-size:20px;flex:none;display:grid;place-items:center}}
+.sn-liste{flex:0 1 auto!important}
+.sn-ekran .sn-rv,.sn-ekran .sn-eylem{}
+.sn-ekran .sn-rv{margin-top:auto!important}
+.sn-ekran .sn-rv:empty + .sn-eylem{margin-top:auto!important}
+.sn-ikili .btn{font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+html.lig body .top .who > *{background:transparent!important;border-color:#ffffff66!important;color:#fff!important}

@@ -3,7 +3,7 @@
    1) Kaldığın yerden dön: odadayken ya da maçtayken sayfa yenilenirse aynı odaya yeniden bağlanılır.
       Er Meydanı'nda cevaplar korunur (sunucu kaydı + telefondaki kopya). 1'e 1 başladıktan sonra dönülemez.
    2) Hızlı Şef: js/blitz.js.
-   3) Er Meydanı sonunda tek düğmeyle aynı konuyla yeni oda (rövanş). Kapışmada rövanş zaten vardı. */
+   3) Rövanş: js/sonuc-ekrani.js. */
 'use strict';
 const MD={anahtar:'yr_devam',denendi:false,yuklendi:Date.now()};
 function mdKaydet(){try{if(YR.active&&YR.code)sessionStorage.setItem(MD.anahtar,JSON.stringify({code:YR.code,s:YR.sifre||'',t:Date.now()}));}catch(e){}}
@@ -42,20 +42,4 @@ function mdDene(){
 }
 {const t=setInterval(()=>{if(MD.denendi||Date.now()-MD.yuklendi>30000){clearInterval(t);return;}try{mdDene();}catch(e){}},700);}
 /* Hızlı Şef: js/blitz.js (lbHizli). */
-/* Er Meydanı rövanşı: aynı konuyla yeni, herkese açık oda; arkadaşlar listeden ya da kodla girer. */
-window.mdYeniArena=function(){
- const r=YR.room;if(!r)return;const konu=r.scope==='konu'?r.subject:'butun';
- yrLeaveNow();yrCreateOpen('arena');
- if(konu!=='butun')Object.assign(YR.cfg,{arenaTopic:konu,scope:'konu',subject:konu});
- Object.assign(YR.cfg,{pub:true,kilit:false,ad:''});yrCreate();
-};
-if(typeof arOverHTML==='function'){
- const MD_AROVER=arOverHTML;
- arOverHTML=function(){
-  const h=MD_AROVER.apply(this,arguments);
-  if(!AR||!AR.finalized)return h;
-  const i=h.lastIndexOf('<button type="button" class="btn" onclick="yrLeave()">Çık</button>');
-  if(i<0)return h;
-  return h.slice(0,i)+'<button type="button" class="btn pri md-rovans" onclick="mdYeniArena()">🔁 Rövanş: aynı konuyla yeni Er Meydanı</button>'+h.slice(i);
- };
-}
+/* Rövanş: js/sonuc-ekrani.js */
