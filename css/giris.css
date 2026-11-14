@@ -130,3 +130,25 @@ html[data-theme=dark] .gs-strip { color:#9fd8d2; }
 .yanlis-alt{position:sticky;bottom:0;z-index:2;display:grid;grid-template-columns:auto 1fr;gap:8px;align-items:center;margin-top:10px;padding:10px 0 max(10px,env(safe-area-inset-bottom));background:var(--bg,#faf3e8);box-shadow:0 -6px 10px -6px #47301c33}
 .yanlis-alt p{grid-column:1 / -1;margin:0}
 .yanlis-alt .btn.pri{margin:0}
+/* 14.11 Aşçı Dostum: büyük renkli sahne, renkli dost kartları, kontrat paneli */
+.dost-preview.sahne{width:100%;max-width:760px;aspect-ratio:16/9;height:auto;margin-inline:auto;border-radius:22px;overflow:hidden;box-shadow:0 8px 24px #3a281833}
+.dost-preview.sahne>img{object-fit:cover;object-position:50% 40%;width:100%;height:100%}
+.dost-preview.sahne.kilitli>img{filter:saturate(.55) brightness(.92)}
+.dost-preview.sahne.kilitli::after{content:"🔒";position:absolute;right:12px;top:10px;font-size:28px;filter:drop-shadow(0 2px 3px #0006)}
+.dost-preview{position:relative}
+.dost-preview-title{font-size:clamp(1.2rem,3vw,1.6rem)!important;font-weight:900}
+.dost-options[data-tab=dost] button[data-dost-item]{position:relative;overflow:hidden;border:0;border-radius:18px;padding:8px 6px 10px;background:radial-gradient(circle at 50% 35%,#fff8e6 0,#f3d9a4 55%,#e7b866 100%);box-shadow:0 3px 10px #5a3d1a26;color:#3a2716}
+.dost-options[data-tab=dost] button[data-dost-item]:nth-child(3n+2){background:radial-gradient(circle at 50% 35%,#f1fbf6 0,#bfe3d2 55%,#7cc3a6 100%)}
+.dost-options[data-tab=dost] button[data-dost-item]:nth-child(3n){background:radial-gradient(circle at 50% 35%,#fdf1f4 0,#f3c6d2 55%,#e597ad 100%)}
+.dost-options[data-tab=dost] button[aria-pressed=true]{outline:4px solid #e0a21b;outline-offset:-4px}
+.dost-options[data-tab=dost] img{height:clamp(90px,20vw,190px)!important;object-fit:contain;filter:drop-shadow(0 6px 6px #0003)}
+.dost-options[data-tab=dost] span{font-weight:900;font-size:1.05rem}
+.dost-options .dost-locked img{filter:saturate(.45) drop-shadow(0 6px 6px #0003)!important}
+.dost-kontrat{margin:8px auto;max-width:760px;padding:14px 16px;border-radius:18px;background:linear-gradient(135deg,#1b2a5a,#0e5e61);color:#fff;display:grid;gap:8px;box-shadow:0 6px 18px #0e5e6133}
+.dost-kontrat.tamam{background:linear-gradient(135deg,#4f7a2e,#6a9441)}
+.dost-kontrat .dk-bas{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap}.dost-kontrat .dk-bas b{font-size:1.15rem}
+.dk-cubuk{height:16px;border-radius:999px;background:#ffffff33;overflow:hidden}.dk-cubuk i{display:block;height:100%;min-width:8px;background:linear-gradient(90deg,#f5cf63,#e0a21b);border-radius:999px}
+.dost-kontrat p{margin:0;opacity:.95}
+.dost-besle{display:block;margin:8px auto;max-width:760px;width:100%;border-radius:14px;padding:12px;font-weight:800;border:2px solid #0e5e61;background:#fff;color:#0e5e61;cursor:pointer}
+#gPreview.sahne{flex:none!important;width:min(100%,600px)!important;height:auto!important;aspect-ratio:16/9!important;max-height:none!important;padding:0!important;background:#3a2818}
+#gPreview.sahne>img{width:100%!important;height:100%!important;object-fit:cover!important;object-position:50% 45%!important}

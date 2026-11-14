@@ -8,6 +8,8 @@
 /* 14.11 karar (Valorant gibi): bugün kullanılan her şey açık kalır; kilit yalnız yeni dereceli moda (Mutfağa Kabul Sınavı, 10. seviye). */
 const SV={max:30,ac:{kabul:10},ad:{kabul:'Mutfağa Kabul Sınavı ve dereceli lig'}};
 function svEsik(k){return 15*(k-1)*k;}
+/* Seviye arması: Pastacının Yolu rozetleri gibi koyu yeşil kalkan, altın çerçeve, üstte yıldız. */
+function svArma(k,boy){boy=boy||34;return '<svg class="sv-arma" width="'+boy+'" height="'+Math.round(boy*1.15)+'" viewBox="0 0 60 69" aria-hidden="true"><defs><linearGradient id="svAltin" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffe9a3"/><stop offset=".45" stop-color="#e0a21b"/><stop offset="1" stop-color="#9c6a08"/></linearGradient><linearGradient id="svYesil" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1f7a72"/><stop offset="1" stop-color="#0b3f3c"/></linearGradient></defs><path d="M30 8 L53 16 V36 C53 51 42 61 30 66 C18 61 7 51 7 36 V16 Z" fill="url(#svAltin)"/><path d="M30 12.5 L49 19 V36 C49 48.5 40 57 30 61.5 C20 57 11 48.5 11 36 V19 Z" fill="url(#svYesil)"/><path d="M30 1 l2.6 5.3 5.8.8-4.2 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8-4.2-4.1 5.8-.8z" fill="url(#svAltin)" stroke="#7a5206" stroke-width=".8"/><path d="M14 21 Q30 15 46 21" stroke="#ffffff33" stroke-width="2" fill="none"/><text x="30" y="'+(k>=10?45:46)+'" text-anchor="middle" font-family="Arial,sans-serif" font-weight="900" font-size="'+(k>=10?20:24)+'" fill="#fff8e1" stroke="#0b3f3c" stroke-width=".6">'+k+'</text></svg>';}
 function svPid(){return (!st.guest&&st.prof&&typeof rkPid==='function')?rkPid(st.prof,true):null;}
 function svPuan(pid){
  pid=pid||svPid();if(!pid||typeof rutbeGenel!=='function')return 0;
@@ -29,7 +31,7 @@ function svPanel(){
  const k=svSeviye(),p=svPuan(),alt=svEsik(k),ust=svEsik(k+1),yuzde=k>=SV.max?100:Math.round(100*(p-alt)/(ust-alt));
  const satir=Object.keys(SV.ac).map(m=>{const a=k>=SV.ac[m];return '<li class="'+(a?'acik':'')+'">'+(a?'✅':'🔒')+' <b>'+SV.ac[m]+'. seviye:</b> '+SV.ad[m]+(m==='kabul'?' (yakında)':'')+'</li>';}).join('');
  const kutu=document.createElement('div');kutu.className='mola-kutu';kutu.id='svKutu';kutu.setAttribute('role','dialog');kutu.setAttribute('aria-modal','true');
- kutu.innerHTML='<div class="mola-ic sv-ic"><div class="sv-buyuk" aria-hidden="true">'+k+'</div><h2>Aşçı Seviyesi '+k+'</h2><div class="sv-cubuk" aria-hidden="true"><i style="width:'+yuzde+'%"></i></div><p>'+(k>=SV.max?'En yüksek seviyedesin.':'Sonraki seviyeye <b>'+(ust-p)+' puan</b> kaldı.')+'</p><p class="mola-not">Yolculuk bölümleri, sorular, kartlar ve Ustalar Ligi maçları puan kazandırır.</p><ul class="sv-liste">'+satir+'</ul><button type="button" class="btn pri" id="svKapat">Tamam</button></div>';
+ kutu.innerHTML='<div class="mola-ic sv-ic"><div class="sv-buyuk" aria-hidden="true">'+svArma(k,84)+'</div><h2>Aşçı Seviyesi '+k+'</h2><div class="sv-cubuk" aria-hidden="true"><i style="width:'+yuzde+'%"></i></div><p>'+(k>=SV.max?'En yüksek seviyedesin.':'Sonraki seviyeye <b>'+(ust-p)+' puan</b> kaldı.')+'</p><p class="mola-not">Yolculuk bölümleri, sorular, kartlar ve Ustalar Ligi maçları puan kazandırır.</p><ul class="sv-liste">'+satir+'</ul><button type="button" class="btn pri" id="svKapat">Tamam</button></div>';
  document.body.appendChild(kutu);kutu.addEventListener('click',e=>{if(e.target===kutu)kutu.remove();});document.getElementById('svKapat').onclick=()=>kutu.remove();document.getElementById('svKapat').focus();
 }
 /* Seviye atlayınca kutlama: rütbe puanı yazıldıktan sonra karşılaştırılır. */
@@ -61,6 +63,6 @@ if(typeof render==='function'){
  const SV_RENDER=render;
  render=function(){
   SV_RENDER.apply(this,arguments);
-  try{if(st.screen==='home'&&svPid()){const ad=document.querySelector('.ae-profile-name');if(ad&&!ad.querySelector('.sv-chip')){const k=svSeviye();ad.insertAdjacentHTML('beforeend',' <button type="button" class="sv-chip" onclick="svPanel()" aria-label="Aşçı Seviyesi '+k+'. Ayrıntılar">⭐ Seviye '+k+'</button>');}}}catch(e){}
+  try{if(st.screen==='home'&&svPid()){const ad=document.querySelector('.ae-profile-name');if(ad&&!ad.querySelector('.sv-chip')){const k=svSeviye();ad.insertAdjacentHTML('beforeend',' <button type="button" class="sv-chip" onclick="svPanel()" aria-label="Aşçı Seviyesi '+k+'. Ayrıntılar">'+svArma(k,26)+'<span>Seviye</span></button>');}}}catch(e){}
  };
 }

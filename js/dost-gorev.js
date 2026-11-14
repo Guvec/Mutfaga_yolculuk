@@ -44,7 +44,16 @@ function dostOyunPuanla(sonuc){
  entry.seen[sonuc.key]=puan;
  return dostGorevYaz(pid,entry)?puan:0;
 }
+/* 14.11: Valorant'taki ajan kontratı gibi: seçilen dost için dost puanı biriktirilir, dolunca dost açılır. */
 function dostPuanHTML(id){
+ const pid0=dostPid();
+ if(pid0&&id){const entry=dostGorevProfil(pid0),bal=dostPuanBakiye(entry),locked=!dostGorevAcik(id,pid0),aktif=entry.active===id,ad=(typeof DOST_CHARACTERS!=='undefined'&&DOST_CHARACTERS[id]?DOST_CHARACTERS[id].ad:'Dost');
+  if(!locked)return '<div class="dost-kontrat tamam"><b>✅ '+esc(ad)+' senin dostun</b><span>Kullanılabilir dost puanı: '+bal+'</span></div>';
+  const v=Math.min(bal,DOST_ACMA_PUANI),y=Math.round(100*v/DOST_ACMA_PUANI);
+  return '<div class="dost-kontrat'+(aktif?' aktif':'')+'"><div class="dk-bas"><b>📜 '+esc(ad)+' kontratı</b><span>'+v+' / '+DOST_ACMA_PUANI+' dost puanı</span></div><div class="dk-cubuk" role="progressbar" aria-label="Kontrat ilerlemesi" aria-valuemin="0" aria-valuemax="'+DOST_ACMA_PUANI+'" aria-valuenow="'+v+'"><i style="width:'+y+'%"></i></div><p>'+(bal>=DOST_ACMA_PUANI?'Kontrat doldu! "Kontratı tamamla ve aç" düğmesine bas.':(aktif?'Kontrat sürüyor. ':'Bu dostu hedefine almak için kontratı başlat. ')+'Her biten oyun 5–10 dost puanı kazandırır.')+'</p></div>';}
+ return dostPuanHTMLEski(id);
+}
+function dostPuanHTMLEski(id){
  const pid=dostPid();
  if(!pid)return '<div class="dost-gorev"><p>Dost puanlarını biriktirmek için profil seçilir.</p></div>';
  const entry=dostGorevProfil(pid),balance=dostPuanBakiye(entry);

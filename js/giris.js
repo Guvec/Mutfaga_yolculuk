@@ -110,6 +110,7 @@ function girisHTML(){
     <div class="dost-actions dost-preview-actions">
      <button type="button" id="gWatch">▶︎ İzle</button><button type="button" id="gUse">Kullan</button>
     </div>
+    <button type="button" id="gBesle" class="dost-besle">🍎 Besle ve tepkisini izle</button>
     <p class="dost-applied" id="gApplied" role="status"></p>
     <div id="gOptions" class="dost-options"></div>
    </section>
@@ -121,7 +122,8 @@ function girisHTML(){
  let origin='home',entry=null;
  const $=id=>document.getElementById(id);
  /* Ana sayfadaki Aşçı Dostum kartı: doğrudan besleme ekranı (tepkiler) açılır. */
- G.mutfak=function(){origin='home';entry={food:null,editor:false,profileChoice:false};go('giris');};
+ /* 14.11: Ana sayfadaki Aşçı Dostum kartı doğrudan dost seçimi ve kontratlarla açılır; besleme "Besle ve tepkisini izle" düğmesindedir. */
+ G.mutfak=function(){origin='home';entry={food:null,editor:true,profileChoice:false};go('giris');};
  G.ac=function(from,food=null,profileChoice=false){
   origin=from;
   entry={food,editor:profileChoice||from==='home'&&!food,profileChoice};
@@ -233,7 +235,8 @@ function girisHTML(){
  function options(){
   if(tab==='dost'){
    const pid=dostPid(),active=dostGorevProfil(pid).active;
-   return Object.entries(DOST_CHARACTERS).map(([id,data])=>({id,...data,locked:!dostAcik(id,pid),active:id===active}))
+   const dk={sicak:'sicak',pasta:'pasta',servis:'servis'}[ls('ana_yol','sicak')]||'sicak';
+   return Object.entries(DOST_CHARACTERS).map(([id,data])=>({id,...data,art:'dal-'+id+'-'+dk,locked:!dostAcik(id,pid),active:id===active}))
     .filter(x=>!profileChoice||(!x.locked&&x.id!==G.character));
   }
   if(dostDalKiyafeti()&&tab==='kiyafet')return [
@@ -262,12 +265,16 @@ function girisHTML(){
   option=item.id;
   $('gPreview').dataset.effect='';
   $('gPreview').dataset.character=tab==='dost'?item.id:G.character;
-  $('gPreview').querySelector('img').src=DOST_ASSETS+item.art+'.webp';
+  /* Dostlar sekmesinde büyük, renkli mutfak sahnesi (varsa) gösterilir; yoksa portre. */
+  const SAHNE=['civciv','geyik','keci','kedi','koala','panda','papagan','penguen','tavsan'],dalAd={sicak:'sicak',pasta:'pastacilik',servis:'servis'}[ls('ana_yol','sicak')]||'sicak';
+  const sk={panda:'panda',rabbit:'tavsan',koala:'koala',civciv:'civciv',penguen:'penguen',papagan:'papagan',kedi:'kedi',keci:'keci',geyik:'geyik'}[item.id],sahne=tab==='dost'&&SAHNE.includes(sk);
+  $('gPreview').classList.toggle('sahne',sahne);$('gPreview').classList.toggle('kilitli',!!(tab==='dost'&&item.locked));
+  $('gPreview').querySelector('img').src=sahne?DOST_ASSETS+'ana-'+sk+'-'+dalAd+'.webp':DOST_ASSETS+item.art+'.webp';
   $('gPreviewTitle').textContent=item.ad;
   $('gWatch').hidden=tab!=='hareket';
   const pid=dostPid(),canOpen=dostPuanBakiye(dostGorevProfil(pid))>=DOST_ACMA_PUANI;
   $('gUse').disabled=!!item.locked&&(!pid||(item.active&&!canOpen));
-  $('gUse').textContent=item.active?'Dostu aç':item.locked?'Hedef olarak seç':'Kullan';
+  $('gUse').textContent=item.active?'Kontratı tamamla ve aç':item.locked?'📜 Kontratı başlat':'Dostum olsun';
   $('gQuest').innerHTML=tab==='dost'&&!profileChoice?dostPuanHTML(item.id):'';
   $('gWardrobe').querySelectorAll('[data-dost-tab]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.dostTab===tab)));
   $('gOptions').dataset.tab=tab;
@@ -279,7 +286,7 @@ function girisHTML(){
   G.editor=show;
   $('gKitchen').hidden=show;
   $('gWardrobe').hidden=!show;
-  document.querySelector('.dost-head h1').textContent=show?'Görünüm ve Hareketler':'Aşçı Dostum';
+  document.querySelector('.dost-head h1').textContent='Aşçı Dostum';
   $('gStart').setAttribute('aria-label',show&&origin!=='home'?'Aşçı Dostum ekranına dön':origin==='market'?'Markete dön':'Ana sayfa');
   if(show){$('gWardrobe').querySelectorAll('[data-dost-tab]').forEach(b=>{b.hidden=profileChoice?b.dataset.dostTab!=='dost':b.dataset.dostTab==='aksesuar'&&dostDalKiyafeti();});tab=initialTab;option=applied();$('gApplied').textContent='';preview();$('gStart').focus();}
   else{$('gEditor').focus();}
@@ -310,6 +317,7 @@ function girisHTML(){
   $('gLezzet').onclick=()=>{stop();go('lezzet');};
   $('gStart').onclick=G.geri;
   $('gEditor').onclick=()=>showEditor(true);
+  $('gBesle').onclick=()=>showEditor(false);
   $('gWardrobe').onclick=e=>{
    const sy=e.target.closest('[data-dost-sayfa]');if(sy){G.sayfa=(G.sayfa|0)+Number(sy.dataset.dostSayfa);preview();return;}
    const t=e.target.closest('[data-dost-tab]'),i=e.target.closest('[data-dost-item]');
