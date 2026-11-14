@@ -40,3 +40,21 @@ body.yr-oyun .wrap>.btn.ghost{display:none}
  body.yr-oyun .yr-feedback .yr-img{max-height:100px}
  body.yr-oyun .yr-qrow{gap:6px}
 }
+
+/* Er Meydanı paketi (v3.13): altın soru, seri, jokerler, taç, podyum çizgisi, ünvan, rekor */
+.ar-altin .yr-qa{outline:4px solid #d9a520;border-radius:16px;box-shadow:0 0 0 6px rgba(217,165,32,.18)}
+.ar-altin-bant{margin:6px 0;padding:8px 12px;border-radius:12px;background:linear-gradient(90deg,#f6d36a,#d9a520);color:#14234a;font-weight:800;text-align:center}
+.ar-seri{margin:4px 0;font-weight:700;color:#a4460f}
+.ar-sira{margin:4px 0;font-weight:600}
+.ar-jokerler{display:flex;gap:8px;margin:10px 0 4px}
+.ar-joker{flex:1;min-height:48px;border-radius:14px;border:2px solid #d9a520;background:#fbf6ea;color:#14234a;font-weight:700;font-size:15px;display:flex;align-items:center;justify-content:center;gap:6px}
+.ar-joker span{font-size:18px}
+.ar-joker.kullanildi{opacity:.4;border-style:dashed}
+.ar-kalkan-acik{margin:4px 0;font-weight:700;color:#14234a}
+.yr-opt.ar-gizli{visibility:hidden}
+.ar-final-cizgi{list-style:none;margin:4px 0;border-top:3px dashed #d9a520;text-align:center;font-size:12px;color:#8a6a10}
+.ar-final-cizgi span{background:var(--bg,#fff);padding:0 8px;position:relative;top:-10px}
+.ar-tac{font-size:1.1em}
+.ar-rekor p,.ar-unvan p{margin:4px 0}
+.ar-yeni-rekor{font-size:20px;font-weight:800;color:#a4460f}
+@media (prefers-reduced-motion:reduce){.ar-altin .yr-qa{box-shadow:none}}

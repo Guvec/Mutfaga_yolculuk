@@ -28,6 +28,7 @@ service cloud.firestore {
    function recent(ms) { return request.time.toMillis() - ms < 86400000; }
    function arena2() { return room().mode == 'arena' && ('av' in room()) && room().av == 2; }
    function arenaErrorLimit() { return room().rev.matches('^arena5-.*') ? 12 : (room().rev.matches('^arena[34]-.*') ? 7 : 4); }
+   function arena5() { return arena2() && room().rev.matches('^arena5-.*'); }
    function rosterReady(d) {
     return d.roster is list && d.roster.size() >= 3 && d.roster.size() <= (resource.data.rev.matches('^arena[45]-.*') ? 10 : 4) && d.roster.size() == resource.data.cnt
      && d.roster.toSet().size() == d.roster.size() && request.auth.uid in d.roster
@@ -89,12 +90,13 @@ service cloud.firestore {
 
    match /players/{uid} {
     function shape(d) {
-     return d.keys().hasOnly(['nick','score','ok','bad','n','tt','done','ts','rid','m','r','pr','pid','ready','loaded','left','sf'])
+     return d.keys().hasOnly(['nick','score','ok','bad','n','tt','done','ts','rid','m','r','pr','pid','ready','loaded','left','sf','kl','sn'])
+      && (!('kl' in d) || (d.kl is int && d.kl >= 0 && d.kl < d.n)) && (!('sn' in d) || (d.sn is int && d.sn >= 0 && d.sn < d.n))
       && (!('sf' in d) || (d.sf is string && d.sf.size() <= 4))
       && d.keys().hasAll(['nick','score','ok','bad','n','tt','done','ts','rid'])
       /* Ad yalnız ilk kayıtta ve değiştiğinde denetlenir; oyun içi her yazımda yeniden denetlenmez (kural işlem sınırı). */
       && ((resource != null && d.nick == resource.data.nick) || adOk(d.nick))
-      && d.score is int && d.score >= 0 && d.score <= (arena2()?150:60)
+      && d.score is int && d.score >= 0 && d.score <= (arena2()?312:60)
       && d.ok is int && d.ok >= 0 && d.ok <= (arena2()?150:60) && d.bad is int && d.bad >= 0 && d.bad <= (arena2()?arenaErrorLimit():60)
       && d.n is int && d.n >= 0 && d.n <= (arena2()?150:60) && d.n <= room().n && d.ok + d.bad <= d.n && d.tt is int && d.tt >= 0
       && (!('loaded' in d) || d.loaded is bool)
@@ -103,7 +105,8 @@ service cloud.firestore {
       && (!('m' in d) || (d.m is int && d.m >= 0 && d.m <= 50))
       && (!('r' in d) || (d.r is list && d.r.size() <= (arena2()?150:60)))
       && (!('pr' in d) || (d.pr is list && d.pr.size() <= 60))
-      && (arena2()? (d.keys().hasAll(['r','left']) && d.left is bool && d.r.size() == d.n && d.ok + d.bad == d.n && d.score == d.ok) : !d.keys().hasAny(['left']))
+      && (arena2()? (d.keys().hasAll(['r','left']) && d.left is bool && d.r.size() == d.n && d.ok + d.bad + (('kl' in d && d.r[d.kl] < 0)?1:0) == d.n
+          && (arena5() ? (d.score >= d.ok && d.score <= d.ok*2 + 12) : (d.score == d.ok && !d.keys().hasAny(['kl','sn'])))) : !d.keys().hasAny(['left']))
       && (!('pid' in d) || (yrPidOk(d.pid) && yrKimOk(uid) && get(/databases/$(database)/documents/yrKim/$(uid)).data.pid == d.pid));
     }
     function arenaProgress(d) {
@@ -111,14 +114,20 @@ service cloud.firestore {
      let v = d.n > 0 ? d.r[d.n-1] : 0;
      let ms = v > 0 ? v : -v;
      let modern = room().rev.matches('^arena[45]-.*');
+     /* Jokerler (v3.13): kl = Kalkan kullanılan soru (yanlışı sayılmaz), sn = +10 sn kullanılan soru. Bir kez yazılır, değişmez. */
+     let newKl = ('kl' in d) && !('kl' in o) && d.kl == d.n-1;
+     let newSn = ('sn' in d) && !('sn' in o) && d.sn == d.n-1;
+     let jSame = (('kl' in d) == ('kl' in o)) && (!('kl' in o) || d.kl == o.kl) && (('sn' in d) == ('sn' in o)) && (!('sn' in o) || d.sn == o.sn);
+     let jNew = ((('kl' in o) && d.kl == o.kl) || !('kl' in o)) && ((('sn' in o) && d.sn == o.sn) || !('sn' in o)) && (!('kl' in d) || ('kl' in o) || newKl) && (!('sn' in d) || ('sn' in o) || newSn);
      let sec = (modern ? 20 : 15) - int(o.ok / (modern ? 6 : 5));
      return d.nick == o.nick && d.ts <= request.time.toMillis()+60000 && d.ts >= request.time.toMillis()-60000
       && (o.done
        ? d.diff(o).affectedKeys().hasOnly(['ts'])
-       : ((d.n == o.n && d.r == o.r && d.ok == o.ok && d.bad == o.bad && d.tt == o.tt
+       : ((d.n == o.n && d.r == o.r && d.ok == o.ok && d.bad == o.bad && d.tt == o.tt && d.score == o.score && jSame
             && ((d.done == o.done && !d.left) || (room().status == 'playing' && d.done && d.left)))
-          || (room().status == 'playing' && d.n == o.n+1 && d.r == o.r.concat([v]) && v is int && v != 0 && ms <= (sec < 7 ? 7000 : sec*1000)
-            && d.tt == o.tt+ms && d.ok == o.ok+(v>0?1:0) && d.bad == o.bad+(v<0?1:0)
+          || (room().status == 'playing' && d.n == o.n+1 && d.r == o.r.concat([v]) && v is int && v != 0 && ms <= (sec < 7 ? 7000 : sec*1000) + (newSn ? 10000 : 0) && jNew
+            && d.tt == o.tt+ms && d.ok == o.ok+(v>0?1:0) && d.bad == o.bad+((v<0 && !newKl)?1:0)
+            && d.score >= o.score+(v>0?1:0) && d.score <= o.score+(v>0?4:0)
             && !d.left && d.done == (d.bad == arenaErrorLimit() || d.n == room().n))));
     }
     allow get: if signed() && (request.auth.uid == uid || member());

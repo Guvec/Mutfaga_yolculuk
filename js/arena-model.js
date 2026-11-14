@@ -6,8 +6,22 @@
  function limit(ok,room){const modern=/^arena[45]-/.test(room&&room.rev||'');return Math.max(7000,(modern?20000:15000)-Math.floor(Math.max(0,ok)/(modern?6:5))*1000);}
  function maxPlayers(room){return /^arena[45]-/.test(room&&room.rev||'')?10:4;}
  function errorLimit(room){const r=room&&room.rev||'';return /^arena5-/.test(r)?12:/^arena[34]-/.test(r)?7:ERRORS;}
- function stats(r,errors=ERRORS,room){const a=Array.isArray(r)?r:[],out={ok:0,bad:0,n:0,tt:0};for(const v of a){if(!Number.isInteger(v)||v===0||Math.abs(v)>limit(out.ok,room)||out.bad>=errors||out.n>=maxQ(room))break;out.n++;out.tt+=Math.abs(v);if(v>0)out.ok++;else out.bad++;}return out;}
- function ranks(players,errors=ERRORS,room){const a=players.map(p=>({...p,...stats(p.r,errors,room)})).sort((a,b)=>Number(!!a.left)-Number(!!b.left)||b.ok-a.ok||a.tt-b.tt||String(a.nick).localeCompare(String(b.nick),'tr')||String(a.uid).localeCompare(String(b.uid)));return a.map((p,i)=>({...p,rank:p.left?null:(i&&a[i-1].ok===p.ok&&a[i-1].tt===p.tt?a.findIndex(x=>!x.left&&x.ok===p.ok&&x.tt===p.tt)+1:i+1)}));}
+ function modern5(room){return /^arena5-/.test(room&&room.rev||'');}
+ /* Altın soru (v3.13): her 25 soruluk dilimde bir tane, odanın tohumundan; odadaki herkes için aynı sıra. */
+ function goldIdx(room){if(!modern5(room))return [];const s=(Number(room.seed)>>>0)||1,out=[];for(let b=0;b<6;b++){let h=Math.imul(s^Math.imul(b+1,2654435761),2246822519)>>>0;h=(h^(h>>>13))>>>0;out.push(25*b+5+(h%20));}return out;}
+ /* Puan: doğru 1; altın soru +2; 5 doğruluk seriden sonraki 3 doğru +1. Kalkan (kl) o sorudaki yanlışı saymaz; +10 sn (sn) o sorunun süresini uzatır. */
+ function stats(r,errors=ERRORS,room,pl){
+  const a=Array.isArray(r)?r:[],m5=modern5(room),kl=pl&&Number.isInteger(pl.kl)?pl.kl:-1,sn=pl&&Number.isInteger(pl.sn)?pl.sn:-1,G=new Set(goldIdx(room));
+  const out={ok:0,bad:0,n:0,tt:0,score:0,gold:0,best:0,run:0};let boost=0;
+  for(let i=0;i<a.length;i++){const v=a[i];const lim=limit(out.ok,room)+(m5&&i===sn?10000:0);
+   if(!Number.isInteger(v)||v===0||Math.abs(v)>lim||out.bad>=errors||out.n>=maxQ(room))break;
+   out.n++;out.tt+=Math.abs(v);
+   if(v>0){out.ok++;out.score++;if(m5){if(G.has(i)){out.score+=2;out.gold++;}if(boost>0){out.score++;boost--;}out.run++;if(out.run>out.best)out.best=out.run;if(out.run%5===0)boost=3;}}
+   else{if(!(m5&&i===kl))out.bad++;out.run=0;boost=0;}
+  }
+  if(!m5)out.score=out.ok;out.boost=boost;return out;
+ }
+ function ranks(players,errors=ERRORS,room){const a=players.map(p=>({...p,...stats(p.r,errors,room,p)})).sort((a,b)=>Number(!!a.left)-Number(!!b.left)||b.score-a.score||a.tt-b.tt||String(a.nick).localeCompare(String(b.nick),'tr')||String(a.uid).localeCompare(String(b.uid)));return a.map((p,i)=>({...p,rank:p.left?null:(i&&a[i-1].score===p.score&&a[i-1].tt===p.tt?a.findIndex(x=>!x.left&&x.score===p.score&&x.tt===p.tt)+1:i+1)}));}
  function complete(roster,players){return roster.length>=3&&roster.every(uid=>players.some(p=>p.uid===uid&&p.done&&p.pending===false&&p.fromCache===false));}
  function build(data,seed,ym){let qs=[];['mutfak-araclari','baharat'].forEach((subject,i)=>{const pool=ym.buildQuestions(data[subject],{subject,kind:'gorsel',set:0,n:500,pool:true},ym.seedFor(seed,i));const n=i?37:38;if(pool.length<n)throw Error('Er Meydanı için soru havuzu yetersiz.');qs.push(...pool.slice(0,n).map(q=>({...q,subject,id:subject+'|'+q.id})));});return ym.shuffle(qs,ym.seeded(seed));}
  /* Konu seçilen yeni odalar; arena2 odalarının 38+37 havuzu değişmez. */
@@ -44,5 +58,5 @@
   if(qs.length<3)throw Error('Er Meydanı için en az üç farklı soru gerekir.');
   return ym.shuffle(qs,ym.seeded(seed));
  }
- const api={MAX,MAX5,maxQ,ERRORS,errorLimit,maxPlayers,limit,stats,ranks,complete,build,buildSelected,selectedSubjects,famKey,quotas};root.ArenaModel=api;if(typeof module!=='undefined')module.exports=api;
+ const api={modern5,goldIdx,MAX,MAX5,maxQ,ERRORS,errorLimit,maxPlayers,limit,stats,ranks,complete,build,buildSelected,selectedSubjects,famKey,quotas};root.ArenaModel=api;if(typeof module!=='undefined')module.exports=api;
 })(typeof window!=='undefined'?window:globalThis);

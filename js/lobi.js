@@ -136,4 +136,4 @@ yrLobbyHTML=function(){
 };
 
 /* Ustalar Ligi rengi: lig ekranlarında html.lig sınıfı (css/yaris.css). */
-(function(){const LIG_R=render;render=function(){const r=LIG_R.apply(this,arguments);try{document.documentElement.classList.toggle('lig',/^race/.test(st.screen||''));}catch(e){}return r;};})();
+(function(){const LIG_R=render;render=function(){const r=LIG_R.apply(this,arguments);try{document.documentElement.classList.toggle('lig',/^(race|aintro|aplay|aover)/.test(st.screen||''));}catch(e){}return r;};})();

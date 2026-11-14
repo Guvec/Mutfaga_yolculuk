@@ -11,7 +11,7 @@ const SUBJECTS = [
 const CONTENT = Object.create(null);
 const OLD_RENDER = render, OLD_NEWQ = newQ, OLD_START = startSession, OLD_RESOLVE = resolve;
 const OLD_QUIZ = quizHtml, OLD_ITEM = itemImg;
-VERSION='Sürüm · 14.11.2026 · v3.12.0: Ustalar Ligi (lacivert-altın), ortak Rütbe Yolu, Verilerimi sil; Er Meydanında Beslenme, konu payları ve tekrarsız baharat; gerçekçi kum saati, Er Meydanı 150 soru, Baharat Rafı (4 kutu, 16 baharat; sürükle ya da dokun, Hatırla, tencere, yıldız, sınıf sırası)'; // Her yüklemede tarih güncellenir.
+VERSION='Sürüm · 14.11.2026 · v3.13.0: Er Meydanı altın soru, seri ateşi, jokerler (Tadımlık, Kalkan, +10 sn), taç, podyum çizgisi, ünvanlar, rekor; Ustalar Ligi (lacivert-altın), ortak Rütbe Yolu, Verilerimi sil; Er Meydanında Beslenme, konu payları ve tekrarsız baharat; gerçekçi kum saati, Er Meydanı 150 soru, Baharat Rafı (4 kutu, 16 baharat; sürükle ya da dokun, Hatırla, tencere, yıldız, sınıf sırası)'; // Her yüklemede tarih güncellenir.
 st.subject='kuver'; st.practice='learn';
 LEVELS={
   1:{name:'Basit Kuver', items:['yemek_catali','yemek_bicagi','pecete','su_bardagi']},
