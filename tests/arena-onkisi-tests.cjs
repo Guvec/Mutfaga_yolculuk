@@ -3,7 +3,7 @@ const assert=require('node:assert/strict'),fs=require('node:fs');
 const {initializeTestEnvironment}=require('@firebase/rules-unit-testing'),sdk=require('firebase/firestore'),model=require('../js/arena-model.js');
 require('../js/yaris-baglanti.js');
 (async()=>{let checks=0;const pass=s=>{checks++;console.log('PASS '+s);};const modern={rev:'arena4-test'};
- assert.deepEqual([0,5,6,11,12,72,78].map(n=>model.limit(n,modern)),[20000,20000,19000,19000,18000,8000,7000]);assert.equal(model.maxPlayers(modern),10);assert.equal(model.errorLimit(modern),7);pass('20 saniye, altı doğruda bir saniye, yedi saniye alt sınırı');
+ assert.deepEqual([0,5,6,11,12,72,78].map(n=>model.limit(n,modern)),[20000,20000,19000,19000,18000,12000,12000]);assert.equal(model.maxPlayers(modern),10);assert.equal(model.errorLimit(modern),7);pass('20 saniye, altı doğruda bir saniye, on iki saniye alt sınırı');
  assert.equal(model.stats([20000,20000],7,modern).ok,2);assert.equal(model.stats([20000],7,{rev:'arena3-test'}).ok,0);pass('Yeni süreyle sıralama hesaplanır; eski oda sözleşmesi korunur');
  const env=await initializeTestEnvironment({projectId:'demo-mesleki-yaris',firestore:{host:'127.0.0.1',port:8080,rules:fs.readFileSync('ci/firebase/firestore.rules','utf8')}});try{
  await env.clearFirestore();const clients=Array.from({length:11},(_,i)=>{const c=new globalThis.YarisFirebase({});c.uid='p'+i;c.db=env.authenticatedContext(c.uid).firestore();c.sdk=sdk;c.connect=async()=>c;return c;});

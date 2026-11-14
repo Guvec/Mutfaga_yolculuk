@@ -3,7 +3,7 @@
 (function(root){'use strict';
  const MAX=100,MAX5=150,ERRORS=4;
  function maxQ(room){return /^arena5-/.test(room&&room.rev||'')?MAX5:MAX;}
- function limit(ok,room){const modern=/^arena[45]-/.test(room&&room.rev||'');return Math.max(7000,(modern?20000:15000)-Math.floor(Math.max(0,ok)/(modern?6:5))*1000);}
+ function limit(ok,room){const modern=/^arena[45]-/.test(room&&room.rev||'');return Math.max(modern?12000:7000,(modern?20000:15000)-Math.floor(Math.max(0,ok)/(modern?6:5))*1000);}
  function maxPlayers(room){return /^arena[45]-/.test(room&&room.rev||'')?10:4;}
  function errorLimit(room){const r=room&&room.rev||'';return /^arena5-/.test(r)?12:/^arena[34]-/.test(r)?7:ERRORS;}
  function modern5(room){return /^arena5-/.test(room&&room.rev||'');}

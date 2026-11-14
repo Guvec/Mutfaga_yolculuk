@@ -125,7 +125,7 @@ service cloud.firestore {
        ? d.diff(o).affectedKeys().hasOnly(['ts'])
        : ((d.n == o.n && d.r == o.r && d.ok == o.ok && d.bad == o.bad && d.tt == o.tt && d.score == o.score && jSame
             && ((d.done == o.done && !d.left) || (room().status == 'playing' && d.done && d.left)))
-          || (room().status == 'playing' && d.n == o.n+1 && d.r == o.r.concat([v]) && v is int && v != 0 && ms <= (sec < 7 ? 7000 : sec*1000) + (newSn ? 10000 : 0) && jNew
+          || (room().status == 'playing' && d.n == o.n+1 && d.r == o.r.concat([v]) && v is int && v != 0 && ms <= (modern ? (sec < 12 ? 12000 : sec*1000) : (sec < 7 ? 7000 : sec*1000)) + (newSn ? 10000 : 0) && jNew
             && d.tt == o.tt+ms && d.ok == o.ok+(v>0?1:0) && d.bad == o.bad+((v<0 && !newKl)?1:0)
             && d.score >= o.score+(v>0?1:0) && d.score <= o.score+(v>0?4:0)
             && !d.left && d.done == (d.bad == arenaErrorLimit() || d.n == room().n))));
