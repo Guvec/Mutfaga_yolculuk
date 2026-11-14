@@ -126,7 +126,8 @@ async function yrJoin(code,invite,sifre){
   if(invite)invite.entered=true;return true;
  }catch(e){if(yrInviteLive(invite))YR.error=seen&&seen.kilit&&/permission|insufficient/i.test(String(e&&e.message))?'Şifre yanlış. Yeniden dene.':yrErrText(e);if(seen&&seen.kilit&&typeof lbSifreSor==='function'&&/Şifre/.test(YR.error))lbSifreSor(c,invite);return false;}finally{YR.busy=false;if(yrInviteLive(invite))render();}
 }
-function yrWithPid(pd){if(typeof FR!=='undefined'&&FR.ready&&FR.pid&&st.prof&&!st.guest)pd.pid=FR.pid;return pd;}
+/* 14.11: Er Meydanı oyuncu kaydına pid eklenmez: kural denetimi 1000 ifade sınırını aşıyor ve oyuncu odaya giremiyordu (CI ile doğrulandı). */
+function yrWithPid(pd){if(typeof FR!=='undefined'&&FR.ready&&FR.pid&&st.prof&&!st.guest&&!(YR.room&&YR.room.mode==='arena'))pd.pid=FR.pid;return pd;}
 function yrPlayerBase(nick,rid){return yrWithPid({...(YR.room&&YR.room.av===2?{left:false}:{}),ready:!!YR.ready,loaded:true,nick,score:0,ok:0,bad:0,n:0,tt:0,done:false,ts:yrNow(),rid,m:0,r:[],pr:[]});}
 async function yrEnter(code,room,invite){
  await yrPreload(yrBuild(room,0));if(!yrInviteLive(invite))return false;{const sf=YR.sifre;yrReset();YR.sifre=sf;}YR.active=true;YR.code=code;YR.room=room;YR.nick=yrNickGet();YR.host=room.host===yrMe();YR.started=false;
