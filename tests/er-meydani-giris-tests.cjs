@@ -16,6 +16,11 @@ require('../js/yaris-baglanti.js');const Constructor=globalThis.YarisFirebase;
    await dene('ikinci oyuncu setPlayer',async()=>{await ali.setPlayer(made.code,row('🐱 Aşçı Kedi',made.room.created));});
    await dene('üçüncü ad Huzurlu Civciv',async()=>{const c=mk('civuid');await c.setPlayer(made.code,row('🐥 Huzurlu Civciv',made.room.created));});
   }
+   // Arkadaş sistemi açıkken istemci pid ekler
+   await env.withSecurityRulesDisabled(async ctx=>{const db=ctx.firestore();await sdk.setDoc(sdk.doc(db,'yrKart','ABCDEFG'),{owner:'pidli',nick:'🐥 Huzurlu Civciv'});await sdk.setDoc(sdk.doc(db,'yrKim','pidli'),{pid:'ABCDEFG'});});
+   await dene('pid ile giriş (eşleşen kimlik)',async()=>{const c=mk('pidli');await c.setPlayer(made.code,{...row('🐥 Huzurlu Civciv',made.room.created),pid:'ABCDEFG'});});
+   await dene('pid ile giriş (kart sahibi farklı)',async()=>{await env.withSecurityRulesDisabled(async ctx=>{const db=ctx.firestore();await sdk.setDoc(sdk.doc(db,'yrKim','pidli2'),{pid:'ABCDEFG'});});const c=mk('pidli2');await c.setPlayer(made.code,{...row('🐱 Aşçı Kedi',made.room.created),pid:'ABCDEFG'});});
+   await dene('pid ile giriş (yrKim yok)',async()=>{const c=mk('pidsiz');await c.setPlayer(made.code,{...row('🦋 Renkli Kelebek',made.room.created),pid:'HJKLMNP'});});
   // Ayrıca bütün konular + beslenme seçimi
   await dene('arena5 tüm konular, beslenme dahil',async()=>{await host.create({...base,subject:'beslenme-ilkeleri'},'');});
  }finally{console.log(sonuc.join('\n'));await env.cleanup();}
