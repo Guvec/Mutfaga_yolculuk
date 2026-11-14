@@ -79,3 +79,4 @@
 .opt.secildi{border-width:3px!important;border-color:var(--teal,#0e5e61)!important;background:color-mix(in srgb,var(--teal,#0e5e61) 20%,var(--surface,#fff))!important;opacity:1!important;position:relative}
 .opt.secildi::after{content:"✓ Seçimin";position:absolute;right:10px;top:50%;transform:translateY(-50%);font-size:.8em;font-weight:800;padding:2px 8px;border-radius:999px;background:var(--teal,#0e5e61);color:#fff}
 .hs-dugme[hidden]{display:none!important}
+.ys-hediye{font-size:64px;line-height:1;text-align:center;animation:asama-pop .6s ease-out}

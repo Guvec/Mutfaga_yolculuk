@@ -11,6 +11,7 @@ function hsCiz(k){
   '<button type="button" class="hs-sonraki" id="hsSonraki"'+(typeof MUZIK==='undefined'?' disabled':'')+'>⏭ Sonraki parça</button>'+
   hsSatir('hsOkuma','🗣️','Sesli okuma',o,o?'Sorular sesli okunur':'Kapalı')+
   hsSatir('hsEfekt','🔔','Efekt sesleri',e,e?'Doğru, yanlış ve kutlama sesleri':'Kapalı');
+ k.querySelectorAll('.hs-satir').forEach(x=>x.addEventListener('click',()=>{try{sesEfekt('dokun');}catch(e){}}));
  k.querySelector('#hsMuzik').onclick=()=>{if(MUZIK.acikMi())MUZIK.kapat();else MUZIK.ac();hsCiz(k);};
  k.querySelector('#hsSonraki').onclick=()=>{MUZIK.sonraki();hsCiz(k);};
  k.querySelector('#hsOkuma').onclick=()=>{SES.acik=!SES.acik;lsSet('ses',SES.acik);if(!SES.acik&&typeof sesSus==='function')sesSus();hsCiz(k);};

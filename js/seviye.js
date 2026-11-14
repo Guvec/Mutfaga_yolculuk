@@ -41,7 +41,7 @@ if(typeof rutbeComplete==='function'){
   const once=svPid()?svSeviye():null,r=SV_RC(e);
   try{if(once!==null){const sonra=svSeviye();if(sonra>once){const acilan=Object.keys(SV.ac).filter(m=>SV.ac[m]>once&&SV.ac[m]<=sonra&&m!=='kabul').map(m=>SV.ad[m]);
    const m='Tebrikler Şefim! Aşçı Seviyesi '+sonra+'.'+(acilan.length?' Açıldı: '+acilan.join(', ')+'.':'');
-   setTimeout(()=>{if(typeof adToast==='function')adToast('⭐ '+m);if(typeof sesSoyle==='function')try{sesSoyle(m);}catch(x){}if(typeof EFEKT!=='undefined')try{EFEKT.cal('tur');}catch(x){}},1200);}}}catch(x){}
+   setTimeout(()=>{if(typeof adToast==='function')adToast('⭐ '+m);if(typeof sesSoyle==='function')try{sesSoyle(m);}catch(x){}try{sesEfekt('yildiz');}catch(x){}},1200);}}}catch(x){}
   return r;
  };
 }

@@ -119,3 +119,12 @@ function sesSecimiSor(){
  uyari();setTimeout(uyari,2500);
  document.getElementById('sesSecOku').focus();
 }
+/* 14.11: Doğrudan ses ustası sesi (efektler açıksa). Ses tarayıcı izni yüzünden çalamazsa ilk dokunuşta bir kez çalar. */
+function sesEfekt(ad){
+ try{
+  if(typeof EFEKT==='undefined'||!EFEKT.acikMi()||typeof SES_USTASI==='undefined')return false;
+  var r=SES_USTASI.cal(ad);
+  if(r===false){var bir=function(){document.removeEventListener('pointerdown',bir,true);try{SES_USTASI.cal(ad);}catch(e){}};document.addEventListener('pointerdown',bir,true);}
+  return r;
+ }catch(e){return false;}
+}

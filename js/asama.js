@@ -46,7 +46,7 @@ function asamaGoster(){
  document.getElementById('asTekrar').onclick=()=>{asamaKapat();if(st.op==='match'&&typeof startBoard==='function')startBoard(st.practice);else if(st.op==='mcq'&&typeof mcqBegin==='function')mcqBegin(st.practice);else choosePractice(st.practice);};
  document.getElementById('asCik').onclick=()=>{asamaKapat();finish();};
  /* Kutlama: efekt (sesli okuma açık olsa da) + sesli tebrik. */
- try{if(typeof EFEKT!=='undefined')EFEKT.cal(st.op==='kur'?'kuverTamam':'tur');}catch(e){}
+ try{if(typeof EFEKT!=='undefined')sesEfekt('galibiyet')||EFEKT.cal('kuverTamam');}catch(e){}
  const soz='Tebrikler! '+(PRAK[st.practice]||'Aşama')+' bitti.'+(sonraki?' Sıradaki aşama: '+sonraki.ad+'.':' Bu konunun bütün aşamalarını bitirdin.');
  setTimeout(()=>{if(typeof sesSoyle==='function'&&typeof SES!=='undefined'&&SES.acik)try{sesSoyle(soz);}catch(e){}},900);
  (sonraki?document.getElementById('asIleriBtn'):document.getElementById('asRapor')).focus();
@@ -73,7 +73,7 @@ if(typeof render==='function'){
    if(st.screen!=='yolplay'||typeof Y==='undefined'||!Y||Y.phase!=='bitti'){if(YOL_OTO){clearInterval(YOL_OTO);YOL_OTO=null;}return;}
    const key=(Y.node&&Y.node.id)+'|'+(Y.tohum||'');if(YOL_OTO_KEY===key)return;YOL_OTO_KEY=key;
    const btn=[...document.querySelectorAll('.yol-alt .yol-btn:not(.ikinci)')].find(b=>/Devam et/.test(b.textContent));if(!btn)return;
-   try{if(typeof EFEKT!=='undefined')EFEKT.cal('tur');}catch(e){}
+   /* Bölüm sonu sesi yol-ses.js'te çalar. */
    const alt=btn.parentNode;alt.insertAdjacentHTML('afterend','<button type="button" class="yol-btn ikinci yol-dur" id="yolDur">Devam etmek istemiyorum</button>');
    let kalan=10;btn.textContent='Sonraki bölüme geç ('+kalan+') ›';
    YOL_OTO=setInterval(()=>{kalan--;if(!document.body.contains(btn)){clearInterval(YOL_OTO);YOL_OTO=null;return;}btn.textContent='Sonraki bölüme geç ('+kalan+') ›';if(kalan<=0){clearInterval(YOL_OTO);YOL_OTO=null;btn.click();}},1000);

@@ -17,7 +17,7 @@
  function goster(){
   const k=document.createElement('div');k.id='molaKutu';k.className='mola-kutu';k.setAttribute('role','dialog');k.setAttribute('aria-modal','true');k.setAttribute('aria-labelledby','molaBas');
   k.innerHTML='<div class="mola-ic"><div class="mola-simge" aria-hidden="true">🍵</div><h2 id="molaBas">Şefim, mola zamanı!</h2><p>30 dakikadır çalışıyorsun. Gözlerini ekrandan ayır, biraz su iç, kalkıp birkaç adım at.</p><p class="mola-not">İyi bir şef de ara verir; dinlenince daha iyi odaklanırsın.</p><button type="button" class="btn pri" id="molaTamam">Mola veriyorum</button><button type="button" class="btn" id="molaSonra">10 dakika sonra hatırlat</button></div>';
-  document.body.appendChild(k);
+  document.body.appendChild(k);try{if(typeof sesEfekt==='function')sesEfekt('gong');}catch(e){}
   const kapat=()=>{k.remove();};
   document.getElementById('molaTamam').onclick=()=>{yaz({s:0,t:Date.now(),mola:Date.now()});kapat();};
   document.getElementById('molaSonra').onclick=()=>{const v=al();v.s=ESIK-ERTELE;v.t=Date.now();yaz(v);kapat();};

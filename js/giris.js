@@ -335,7 +335,7 @@ function girisHTML(){
    if(!selected)return;
    if(selected.locked){
     if(selected.active){
-     if(dostGorevAc(selected.id)){preview();$('gApplied').textContent=selected.ad+' açıldı.';}
+     if(dostGorevAc(selected.id)){preview();$('gApplied').textContent=selected.ad+' açıldı.';try{sesEfekt('rutbe');}catch(e){}}
      return;
     }
     if(dostGorevSec(selected.id)){preview();$('gApplied').textContent=selected.ad+' hedef olarak seçildi.';}

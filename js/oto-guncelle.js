@@ -9,7 +9,7 @@
   window.YENI_SURUM_HAZIR=true;if(window.surumKapiDene)window.surumKapiDene();
   if(document.getElementById('yeniSurum'))return;
   const d=document.createElement('div');d.id='yeniSurum';d.className='yeni-surum';d.setAttribute('role','alert');
-  d.innerHTML='<span>Yeni sürüm hazır</span><button type="button" id="yeniSurumBtn">Güncelle</button>';
+  d.innerHTML='<span>🎁 Yeni güncelleme geldi! Oyuna yeni şeyler eklendi.</span><button type="button" id="yeniSurumBtn">Hemen aç</button>';try{if(typeof sesEfekt==='function')sesEfekt('rekor');}catch(e){}
   document.body.appendChild(d);document.getElementById('yeniSurumBtn').onclick=yenile;
  }
  /* Yeni sürüm hazırsa: oyun sürerken küçük bildirim; oyun bitince ya da başka ekrana geçince kapı çıkar ve güncellenmeden devam edilmez. */
@@ -26,7 +26,7 @@
   if(document.getElementById('yeniSurumKilit'))return;
   try{if(typeof Y!=='undefined'&&Y&&Y.mode==='oyun'&&typeof yolKaydet==='function')yolKaydet();}catch(e){}
   var k=document.createElement('div');k.id='yeniSurumKilit';k.className='yeni-surum-kilit';k.setAttribute('role','alertdialog');k.setAttribute('aria-modal','true');k.setAttribute('aria-labelledby','ysBaslik');
-  k.innerHTML='<div class="ys-kutu"><h2 id="ysBaslik">Yeni sürüm hazır</h2><p>Çalışmaya devam etmek için uygulamayı güncelle. İlerlemen ve puanların kaybolmaz.</p><button type="button" class="btn pri" id="yeniSurumKilitBtn">Güncelle</button></div>';
+  k.innerHTML='<div class="ys-kutu"><div class="ys-hediye" aria-hidden="true">🎁</div><h2 id="ysBaslik">Yeni güncelleme geldi!</h2><p>Oyuna yeni şeyler eklendi. Açmak için düğmeye bas. İlerlemen ve puanların kaybolmaz.</p><button type="button" class="btn pri" id="yeniSurumKilitBtn">🎉 Yenilikleri aç</button></div>';try{if(typeof sesEfekt==='function')sesEfekt('rekor');if(typeof sesSoyle==='function'&&typeof SES!=='undefined'&&SES.acik)setTimeout(function(){sesSoyle('Yeni güncelleme geldi! Oyuna yeni şeyler eklendi.');},1200);}catch(e){}
   document.body.appendChild(k);
   var b=document.getElementById('yeniSurumKilitBtn');b.onclick=yenile;b.focus();
  }
