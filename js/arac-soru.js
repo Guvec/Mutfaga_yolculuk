@@ -66,8 +66,8 @@ contentQuizHTML=function(){
    h+='<div class="as-geri ok" role="status"><b>Doğru! '+esc(asAd(cc))+'</b><span>'+esc(q.explanation||'')+'</span></div>';
   }else{
    const a=asResim(pc),b=asResim(cc);
-   h+='<div class="as-geri yan" role="status" onclick="asIleri()"><b>Doğrusu: '+esc(asAd(cc))+'</b>';
-   if(a&&b)h+='<div class="as-kars"><figure><img src="'+esc(a)+'" alt=""><figcaption>Seçtiğin<br><b>'+esc(asAd(pc))+'</b></figcaption></figure><figure class="dogru"><img src="'+esc(b)+'" alt=""><figcaption>Doğrusu<br><b>'+esc(asAd(cc))+'</b></figcaption></figure></div>';
+   h+='<div class="as-geri yan" role="status" onclick="asIleri()"><b>Doğru cevap: '+esc(asAd(cc))+'</b>';
+   if(a&&b)h+='<div class="as-kars"><figure><img src="'+esc(a)+'" alt=""><figcaption>Seçtiğin<br><b>'+esc(asAd(pc))+'</b></figcaption></figure><figure class="dogru"><img src="'+esc(b)+'" alt=""><figcaption>Doğru cevap<br><b>'+esc(asAd(cc))+'</b></figcaption></figure></div>';
    h+='<span>'+esc(q.explanation||'')+'</span><div class="as-cubuk" aria-hidden="true"><i></i></div><small>Beklemeden geçmek için dokun.</small></div>';
   }
  }

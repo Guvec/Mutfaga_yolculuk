@@ -41,4 +41,13 @@
 .as-cubuk i{display:block;height:100%;width:0;background:var(--as-kirmizi);animation:as-dol 6s linear forwards}
 @keyframes as-dol{to{width:100%}}
 @media (prefers-reduced-motion:reduce){.as-cubuk i{animation-duration:6s}}
+/* Taşma olmasın: kartlar ekranın kalan yüksekliğine sığar; geri bildirim alttan açılan panelde, sayfayı uzatmaz. */
+.as-grid{width:min(100%,calc(100dvh - 430px));margin:0 auto}
+.as-grid.uzun{width:min(100%,calc((100dvh - 430px)/1.25 + 12px))}
+.as-grid.metin{width:100%}
+.as-geri{position:fixed;left:50%;bottom:0;transform:translateX(-50%);width:min(100%,520px);z-index:40;margin:0;border-radius:20px 20px 0 0;box-shadow:0 -8px 24px rgba(0,0,0,.18);padding:14px 16px calc(14px + env(safe-area-inset-bottom))}
+.as-geri.ok{border-left:0;border-top:6px solid var(--as-acik);animation:as-yuksel .25s ease-out}
+.as-geri.yan{border-left:0;border-top:6px solid var(--as-kirmizi);animation:as-yuksel .25s ease-out}
+.as-kars img{height:min(150px,22dvh)}
+@keyframes as-yuksel{from{transform:translate(-50%,100%)}to{transform:translate(-50%,0)}}
 /* © 2026 Ali Arıkoğlu. Tüm hakları saklıdır. */
