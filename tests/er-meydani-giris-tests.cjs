@@ -2,7 +2,7 @@
 const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path');
 const {initializeTestEnvironment}=require('@firebase/rules-unit-testing'),sdk=require('firebase/firestore');
 require('../js/yaris-baglanti.js');const Constructor=globalThis.YarisFirebase;
-(async()=>{const env=await initializeTestEnvironment({projectId:'demo-mesleki-yaris',firestore:{host:'127.0.0.1',port:8080,rules:fs.readFileSync(path.join(__dirname,'../ci/firebase/firestore.rules'),'utf8')}});
+(async()=>{const env=await initializeTestEnvironment({projectId:'demo-mesleki-yaris',firestore:{host:'127.0.0.1',port:8080,rules:fs.readFileSync([path.join(__dirname,'../ci/firebase/firestore.rules'),path.join(__dirname,'../../firebase/firestore.rules')].find(f=>fs.existsSync(f)),'utf8')}});
  const sonuc=[];const dene=async(ad,fn)=>{try{await fn();sonuc.push('OK  '+ad);}catch(e){sonuc.push('HATA '+ad+' :: '+String(e&&e.message||e).slice(0,400));}};
  try{await env.clearFirestore();const mk=uid=>{const c=new Constructor({});c.uid=uid;c.db=env.authenticatedContext(uid).firestore();c.sdk=sdk;c.connect=async()=>c;return c;};
   const host=mk('hostuid'),ali=mk('aliuid');
