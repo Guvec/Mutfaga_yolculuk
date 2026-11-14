@@ -69,7 +69,7 @@ newKuverBtn=function(){startSession();};
 statsHtml=function(){const total=st.op==='kur'?LEVELS[st.lvl].items.length:st.op==='ad'?10:(st.contentItems||[]).length;
   return '<div class="stats"><span class="chip">Tamamlanan <b>'+st.sess.qs.length+' / '+total+'</b></span><span class="chip">Puan <b>'+st.sess.s+'</b></span></div>';};
 /* Mola ve Bitir soru alanından kaldırıldı (dikkat dağıtıyordu): köşedeki küçük ⏸ düğmesi bir menü açar. */
-footHtml=function(){return (st.done&&st.op==='mcq'?'':'<button type="button" class="foot-dur" onclick="footMenu()" aria-label="Duraklat: mola ver ya da bitir"><span aria-hidden="true">⏸</span></button>')+'<p class="saved">'+esc(st.savedMsg)+'</p>';};
+footHtml=function(){return ((st.done&&st.op==='mcq')||st.kDone?'':'<button type="button" class="foot-dur" onclick="footMenu()" aria-label="Duraklat: mola ver ya da bitir"><span aria-hidden="true">⏸</span></button>')+'<p class="saved">'+esc(st.savedMsg)+'</p>';};
 function footMenu(){
  if(document.getElementById('footMenu'))return;
  const k=document.createElement('div');k.id='footMenu';k.className='foot-menu';k.setAttribute('role','dialog');k.setAttribute('aria-modal','true');k.setAttribute('aria-label','Duraklat');

@@ -62,3 +62,16 @@
 .foot-menu{position:fixed;inset:0;z-index:9998;background:#1b2a2a99;display:flex;align-items:flex-end;justify-content:center}
 .foot-menu-ic{width:100%;max-width:480px;background:var(--surface,#fffdf8);border-radius:22px 22px 0 0;padding:18px 16px max(18px,env(safe-area-inset-bottom));display:grid;gap:10px}
 .foot-menu-ic h2{margin:0 0 4px;font-size:1.15rem}
+/* Hızlı ses paneli */
+.hs-dugme{position:fixed;left:12px;bottom:max(12px,env(safe-area-inset-bottom));z-index:40;width:46px;height:46px;border-radius:50%;border:1px solid var(--line,#cfd8d4);background:var(--surface,#fff);font-size:20px;display:grid;place-items:center;box-shadow:0 2px 8px #0002;opacity:.85;cursor:pointer}
+.hs-dugme:hover,.hs-dugme:focus-visible{opacity:1}
+.hs-govde{display:grid;gap:8px}
+.hs-satir{display:grid;grid-template-columns:36px 1fr auto;align-items:center;gap:10px;width:100%;text-align:left;padding:12px;border-radius:16px;border:1px solid var(--line,#d9d2c3);background:var(--surface,#fff);color:inherit;font:inherit;cursor:pointer}
+.hs-satir.acik{background:#e9f4ee;border-color:#6a9441}
+.hs-ikon{font-size:24px}.hs-ad{font-weight:800}.hs-ad small{display:block;font-weight:500;opacity:.75;font-size:.85em}
+.hs-anahtar{width:52px;height:30px;border-radius:999px;background:#c9c2b5;position:relative;transition:background .2s}.hs-anahtar i{position:absolute;top:3px;left:3px;width:24px;height:24px;border-radius:50%;background:#fff;box-shadow:0 1px 3px #0004;transition:left .2s}
+.hs-satir.acik .hs-anahtar{background:#2f8a4e}.hs-satir.acik .hs-anahtar i{left:25px}
+.hs-sonraki{justify-self:start;margin:-2px 0 4px 46px;padding:8px 14px;border-radius:999px;border:1px solid #0e5e61;background:#fff;color:#0e5e61;font-weight:800;cursor:pointer}
+.asama-ic{display:grid;gap:10px}.asama-yildiz{font-size:60px;line-height:1;text-align:center;animation:asama-pop .6s ease-out}@keyframes asama-pop{0%{transform:scale(.3);opacity:0}70%{transform:scale(1.2)}100%{transform:scale(1);opacity:1}}
+.asama-skor{font-size:1.15rem;font-weight:800;margin:0}.asama-sonra{margin:4px 0}.asama-sonra b{display:block;font-size:1.2rem;color:#0e5e61}
+.asama-ic .btn{width:100%;margin:0}

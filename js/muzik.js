@@ -39,7 +39,9 @@ var MUZIK=(function(){
  function ilkDokunus(){document.removeEventListener('pointerdown',ilkDokunus,true);document.removeEventListener('keydown',ilkDokunus,true);cal();}
  document.addEventListener('pointerdown',ilkDokunus,true);document.addEventListener('keydown',ilkDokunus,true);
  document.addEventListener('visibilitychange',function(){if(document.hidden)durdur();else if(audio&&!konusmaTakip)cal();});
- return {acikMi:acikMi,ac:ac,kapat:kapat,cal:cal,okumaIcinDuraklat:okumaIcinDuraklat,efektIcinDuraklat:efektIcinDuraklat,efektBitti:efektBitti,etiketleriYenile:etiketleriYenile};
+ function sonraki(){sira=(sira+1)%PARCALAR.length;var au=hazirla();au.src=PARCALAR[sira];if(tercih!=='acik'){tercih='acik';kaydet();}cal();}
+ function parca(){return PARCALAR[sira];}
+ return {sonraki:sonraki,parca:parca,acikMi:acikMi,ac:ac,kapat:kapat,cal:cal,okumaIcinDuraklat:okumaIcinDuraklat,efektIcinDuraklat:efektIcinDuraklat,efektBitti:efektBitti,etiketleriYenile:etiketleriYenile};
 })();
 
 function muzikDugme(){return '<button type="button" class="muzik-ac" aria-pressed="'+MUZIK.acikMi()+'" onclick="muzikAcKapa()">Müzik: '+(MUZIK.acikMi()?'Açık':'Kapalı')+'</button>';}
