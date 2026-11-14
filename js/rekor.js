@@ -26,6 +26,7 @@ const RK_BOARDS=(()=>{const a=[];
  a.push({id:'bl-s1',subject:'bulasik-makinesi-temizligi',kind:'mcq',group:RK_MCQ['bulasik-makinesi-temizligi'][0],total:65,label:'Bütün bölümler · Sorular'});
  a.push({id:'bs-s1',subject:'beslenme-ilkeleri',kind:'mcq',group:RK_MCQ['beslenme-ilkeleri'][0],total:145,label:'Bütün bölümler · Sorular'});
  a.push({id:'bh-s1',subject:'baharat',kind:'mcq',group:RK_MCQ['baharat'][0],total:60,label:'Bütün bölümler · Sorular'});
+ a.push({id:'ar-puan',subject:'oyun',kind:'kutu',total:312,label:'Er Meydanı · en yüksek puan (tek oyun)'});
  [1,2,3,4].forEach(n=>a.push({id:'bh-k'+n,subject:'baharat',kind:'kutu',total:120,label:'Baharat Rafı · Kutu '+n+' (puan)'}));
  a.forEach(b=>{if(/^(ma|bh|bl)-e\d+$/.test(b.id))b.gizli=true;}); /* 12'li eşleştirme tabloları: bu üç konuda 12'li eşleştirme kalktı, tablolar sıralamada gösterilmez */
  return a;})();
@@ -151,7 +152,9 @@ async function rkFlush(sessId){
 function rkDurV(r){return Number.isInteger(r.dur)&&r.dur>0?r.dur:Infinity;}
 function rkBetter(a,b){return a.correct>b.correct||(a.correct===b.correct&&rkDurV(a)<rkDurV(b));}
 function rkSame(a,b){return a.correct===b.correct&&rkDurV(a)===rkDurV(b);}
-function rkFmtDur(s){const m=Math.floor(s/60);return String(m).padStart(2,'0')+':'+String(s%60).padStart(2,'0');}
+/* Er Meydanı süresi salise (1/100 sn) olarak tutulur: 48,07 sn · 4 dk 05,32 sn */
+function rkSaliseYaz(cs){cs=Math.max(0,Math.round(cs));const m=Math.floor(cs/6000),sn=Math.floor(cs%6000/100),sl=cs%100,t=String(sn).padStart(m?2:1,'0')+','+String(sl).padStart(2,'0')+' sn';return m?m+' dk '+t:t;}
+function rkFmtDur(s,board){if(board==='ar-puan')return rkSaliseYaz(s);const m=Math.floor(s/60);return String(m).padStart(2,'0')+':'+String(s%60).padStart(2,'0');}
 function rkSorted(rows){return rows.slice().sort((a,b)=>b.correct-a.correct||(rkDurV(a)===rkDurV(b)?0:rkDurV(a)<rkDurV(b)?-1:1)||String(a.name).localeCompare(String(b.name),'tr'));}
 function rkRank(rows,pid){const me=rows.find(r=>r.pid===pid);if(!me)return null;return {rank:rows.filter(r=>rkBetter(r,me)).length+1,tie:rows.filter(r=>rkSame(r,me)).length,row:me};}
 

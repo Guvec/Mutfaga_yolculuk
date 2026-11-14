@@ -9,7 +9,17 @@ function arStats(r){const j=arJ();return ArenaModel.stats(r,arErrors(),YR.room,{
 function arKutu(k){if(!arM5())return null;const x=arStats(AR.myR.slice(0,k)).kutu.find(b=>b.at===k);return x?x.tur:null;}
 function arM5(){return !!(YR.room&&ArenaModel.modern5(YR.room));}
 function arGold(k){return arM5()&&(ArenaModel.goldIdx(YR.room).includes(k)||(AR&&arKutu(k)==='altin'));}
-function arLeadersHTML(){return '<button type="button" class="btn sm" onclick="rkOpenBoard(\'oy-arena2\')">Sıralama</button>';}
+/* Tüm zamanların en iyi 3 oyunu (tek oyunda en yüksek puan; eşit puanda kısa süre önde). */
+function arRekor3HTML(){if(typeof rkInlineHTML!=='function'||typeof rkBoard!=='function'||!rkBoard('ar-puan'))return '';return rkInlineHTML('ar-puan','genel',undefined,3).replace('İlgili sıralama · ilk 10','🏆 Tüm zamanların en iyi 3 oyunu').replace('class="card rk-inline"','class="card rk-inline ar-rekor3"');}
+function arSure(ms){return typeof rkSaliseYaz==='function'?rkSaliseYaz((Number(ms)||0)/10):'';}
+/* Biten oyunun puanı ve salise süresi 'ar-puan' tablosuna yazılır (genel ve haftalık); sunucu yalnız daha iyisini saklar. */
+function arPuanYaz(s){
+ if(AR.puanYazildi||AR.quit||st.guest||!st.prof||typeof rkQueue!=='function')return;AR.puanYazildi=true;
+ try{const pid=rkPid(st.prof,true),p=rkProf(pid);if(p.status!=='in'||!(s.score>0))return;const q=rkQueue(),name=rkName(st.prof),dur=Math.max(1,Math.round((s.tt||0)/10));
+  ['genel','hafta'].forEach(period=>q.push({qid:rkRandomId(),pid,board:'ar-puan',period,name,correct:s.score,gen:p.gen,at:Date.now(),sess:null,meta:{dur}}));
+  lsSet('rk_queue',q);Promise.resolve(rkFlush(0)).then(()=>{if(typeof RK_INLINE!=='undefined')RK_INLINE.delete(rkInlineKey('ar-puan','genel'));}).catch(()=>{});}catch(e){}
+}
+function arLeadersHTML(){return arRekor3HTML()+'<button type="button" class="btn sm" onclick="rkOpenBoard(\'oy-arena2\')">Sıralama</button>';}
 function arOn(){return !!(YR.room&&YR.room.mode==='arena');}
 function arSorted(){return YR.players.filter(p=>AR&&AR.roster.includes(p.uid)).slice().sort((a,b)=>String(a.uid).localeCompare(String(b.uid)));}
 function arGone(p){return !!p.left;}
@@ -142,7 +152,7 @@ function arBeat(){
  }
  arSync();
 }
-function arScoreHTML(){const rows=arRanks(),m5=arM5(),fin=m5&&rows.filter(p=>!p.left).length>3;return '<ul class="yr-rank ar-rank">'+rows.map((p,i)=>(fin&&i===3?'<li class="ar-final-cizgi" aria-hidden="true"><span>Podyum çizgisi</span></li>':'')+'<li class="yr-row'+(p.uid===yrMe()?' me':'')+'"><span class="yr-rk">'+(p.rank||'—')+'</span><span class="yr-nm">'+(m5&&p.rank===1?'<span class="ar-tac" role="img" aria-label="Taç">👑</span> ':'')+esc(p.nick)+(p.uid===yrMe()?' (Sen)':'')+(p.left?' · ayrıldı':p.done?' · bitti':'')+'</span><span class="yr-sc">'+(m5?p.score+' puan · ':p.ok+' doğru · ')+p.n+'/'+AR.total+'</span></li>').join('')+'</ul>';}
+function arScoreHTML(){const rows=arRanks(),m5=arM5(),fin=m5&&rows.filter(p=>!p.left).length>3;return '<ul class="yr-rank ar-rank">'+rows.map((p,i)=>(fin&&i===3?'<li class="ar-final-cizgi" aria-hidden="true"><span>Podyum çizgisi</span></li>':'')+'<li class="yr-row'+(p.uid===yrMe()?' me':'')+'"><span class="yr-rk">'+(p.rank||'—')+'</span><span class="yr-nm">'+(m5&&p.rank===1?'<span class="ar-tac" role="img" aria-label="Taç">👑</span> ':'')+esc(p.nick)+(p.uid===yrMe()?' (Sen)':'')+(p.left?' · ayrıldı':p.done?' · bitti':'')+'</span><span class="yr-sc">'+(m5?p.score+' puan · ':p.ok+' doğru · ')+p.n+'/'+AR.total+(p.n?' · '+arSure(p.tt):'')+'</span></li>').join('')+'</ul>';}
 function arSiraHTML(){if(!arM5())return '';const rows=arRanks().filter(p=>!p.left),me=rows.find(p=>p.uid===yrMe());if(!me||rows.length<2)return '';
  const i=rows.indexOf(me),ust=i>0?rows[i-1]:null,alt=rows[i+1]||null;let hedef='';
  if(ust){const fark=Math.max(1,ust.score-me.score+(ust.tt<=me.tt?1:0));hedef='<span class="ar-hedef">🎯 Hedef: <b>'+esc(ust.nick)+'</b> · '+(fark<=1?'bir doğruyla geçersin!':fark+' puan önde')+'</span>';}
@@ -174,10 +184,10 @@ function arPlayHTML(){
 function arOverHTML(){
  const s=arStats(AR.myR),pending=!AR.finalized,first=pending?[]:arRanks().filter(p=>p.rank===1&&!p.left),winners=first.map(p=>p.nick).join(', ');
  return yrTop('Er Meydanı sonucu')+'<div class="wrap ar-over"><h1 id="yrHeading" tabindex="-1">'+(pending?'Denemen bitti':AR.final===1?'Birinci sensin!':'Oyun tamamlandı')+'</h1>'+yrWarnHTML()+
- (!pending&&first.length?'<section class="ar-winner" role="status"><span class="ar-winner-crown" role="img" aria-label="Kral tacı">👑</span><strong>'+esc(winners)+'</strong><span>'+(first.length>1?'Bu oyunun ortak birincileri':'Bu oyunun birincisi')+'</span></section>':'')+
- '<section class="card ar-final-ranks"><h2>'+(pending?'Geçici maç sıralaması':'Bu oyunun kesin sıralaması')+'</h2>'+(pending?'<p role="status">Diğer katılımcıların sunucu onaylı sonuçları bekleniyor.</p>':'<p>Eşit doğruda toplam yanıt süresi kullanılır.</p>')+arScoreHTML()+'</section>'+
+ (!pending&&first.length?'<section class="ar-winner" role="status"><span class="ar-winner-crown" role="img" aria-label="Kral tacı">👑</span><strong>'+esc(winners)+'</strong><span>'+(first.length>1?'Bu oyunun ortak birincileri':'Bu oyunun birincisi')+'</span><span class="ar-winner-sure">'+(arM5()?first[0].score+' puan · ':'')+first[0].ok+' doğru · '+arSure(first[0].tt)+'</span></section>':'')+
+ '<section class="card ar-final-ranks"><h2>'+(pending?'Geçici maç sıralaması':'Bu oyunun kesin sıralaması')+'</h2>'+(pending?'<p role="status">Diğer katılımcıların sunucu onaylı sonuçları bekleniyor.</p>':'<p>Puanı eşit olanlarda toplam süresi kısa olan öne geçer.</p>')+arScoreHTML()+'</section>'+
  (!pending&&typeof rkInlineHTML==='function'?rkInlineHTML('oy-arena2','genel',undefined,10).replace('İlgili sıralama','Genel Er Meydanı sıralaması'):'')+
- (arM5()?(arRekorYaz(s),arRekorHTML(s)):'')+(!pending&&arM5()?arUnvanHTML():'')+'<p>'+(arM5()?s.score+' puan · ':'')+s.ok+' doğru · '+s.bad+' yanlış · '+s.n+' soru'+(s.n>=AR.total&&arM5()?' · 🏆 Meydan Şampiyonu!':'')+'</p>'+(!pending&&AR.reviewCount?'<button type="button" class="btn pri" onclick="arReviewOpen()">Pekiştiriyorum ('+AR.reviewCount+' soru)</button>':'')+(AR.rapor?sonucGoster(AR.rapor):'')+
+ (arM5()?(arRekorYaz(s),(!pending&&arPuanYaz(s)),arRekorHTML(s)):'')+(!pending&&arM5()?arUnvanHTML():'')+'<p>'+(arM5()?s.score+' puan · ':'')+s.ok+' doğru · '+s.bad+' yanlış · '+s.n+' soru'+(s.n>=AR.total&&arM5()?' · 🏆 Meydan Şampiyonu!':'')+'</p>'+(!pending&&AR.reviewCount?'<button type="button" class="btn pri" onclick="arReviewOpen()">Pekiştiriyorum ('+AR.reviewCount+' soru)</button>':'')+(AR.rapor?sonucGoster(AR.rapor):'')+
  (!pending?'<button type="button" class="btn" onclick="rkOpenBoard(\'oy-arena2\')">Er Meydanı listesinin tamamı</button>':'')+
  (!pending&&typeof frBtn==='function'?arRanks().filter(p=>p.uid!==yrMe()).map(p=>frBtn(p,true)).join(''):'')+'<button type="button" class="btn" onclick="yrLeave()">Çık</button></div>';
 }

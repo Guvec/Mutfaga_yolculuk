@@ -77,3 +77,7 @@ body.yr-oyun .wrap>.btn.ghost{display:none}
 @keyframes ar-kutu{from{transform:scale(.6);opacity:0}to{transform:scale(1);opacity:1}}
 @keyframes ar-salla{0%,100%{transform:rotate(0)}25%{transform:rotate(-12deg)}75%{transform:rotate(12deg)}}
 @media (prefers-reduced-motion:reduce){.ar-bildirim,.ar-kutu,.ar-kutu-ic{animation:none}}
+.ar-winner span:nth-last-child(2){flex-basis:100%;text-align:center}.ar-winner-sure{font-weight:700}
+.ar-rekor3 h2{font-size:1.05rem;margin:0 0 6px}.ar-rekor3 .rk-rows{margin:0}
+.ar-rank .yr-row{flex-wrap:wrap}.ar-rank .yr-nm{flex:1 1 0;min-width:0}.ar-rank .yr-sc{flex:1 0 100%;text-align:end;font-variant-numeric:tabular-nums}
+.ar-rekor3 .rk-row{grid-template-columns:2.4em minmax(0,1fr)}.ar-rekor3 .rk-score{grid-column:2;white-space:normal;font-variant-numeric:tabular-nums}
