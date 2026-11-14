@@ -68,7 +68,20 @@ newQ=function(keepMsg){
 newKuverBtn=function(){startSession();};
 statsHtml=function(){const total=st.op==='kur'?LEVELS[st.lvl].items.length:st.op==='ad'?10:(st.contentItems||[]).length;
   return '<div class="stats"><span class="chip">Tamamlanan <b>'+st.sess.qs.length+' / '+total+'</b></span><span class="chip">Puan <b>'+st.sess.s+'</b></span></div>';};
-footHtml=function(){return '<div class="foot"><button class="btn sm ghost" onclick="askBreak()"'+((st.brk||st.done||st.kDone)?' disabled':'')+'>Mola ver'+(st.brk?' (kullanıldı)':' (1 hak)')+'</button><button class="btn sm" onclick="askFinish()">Bitir ve Raporu Gör</button></div><p class="saved">'+esc(st.savedMsg)+'</p>';};
+/* Mola ve Bitir soru alanından kaldırıldı (dikkat dağıtıyordu): köşedeki küçük ⏸ düğmesi bir menü açar. */
+footHtml=function(){return (st.done&&st.op==='mcq'?'':'<button type="button" class="foot-dur" onclick="footMenu()" aria-label="Duraklat: mola ver ya da bitir"><span aria-hidden="true">⏸</span></button>')+'<p class="saved">'+esc(st.savedMsg)+'</p>';};
+function footMenu(){
+ if(document.getElementById('footMenu'))return;
+ const k=document.createElement('div');k.id='footMenu';k.className='foot-menu';k.setAttribute('role','dialog');k.setAttribute('aria-modal','true');k.setAttribute('aria-label','Duraklat');
+ const molaYok=st.brk||st.done||st.kDone;
+ k.innerHTML='<div class="foot-menu-ic"><h2>Ne yapmak istersin?</h2><button type="button" class="btn pri" id="fmDevam">▶ Devam et</button><button type="button" class="btn" id="fmMola"'+(molaYok?' disabled':'')+'>☕ Mola ver'+(st.brk?' (kullanıldı)':' (1 hak)')+'</button><button type="button" class="btn" id="fmBitir">🏁 Bitir ve raporu gör</button></div>';
+ document.body.appendChild(k);const kapat=()=>k.remove();
+ k.addEventListener('click',e=>{if(e.target===k)kapat();});
+ document.getElementById('fmDevam').onclick=kapat;
+ document.getElementById('fmMola').onclick=()=>{kapat();askBreak();};
+ document.getElementById('fmBitir').onclick=()=>{kapat();askFinish();};
+ document.getElementById('fmDevam').focus();
+}
 tableHtml=function(){
   let h='<div class="table" id="tbl" aria-label="Kuver yerleştirme alanı">';
   const keys=['kuver_tabagi'].concat(LEVELS[st.lvl].items);
