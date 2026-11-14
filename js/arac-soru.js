@@ -7,14 +7,14 @@
      Çubuk 6 saniyede dolar ve soru geçer; öğrenci dokunarak beklemeden geçebilir. */
 'use strict';
 const AS={t:null};
-function asKonu(){return st.op==='mcq'&&st.subject==='mutfak-araclari';}
+function asKonu(){return st.op==='mcq'&&(st.subject==='mutfak-araclari'||st.subject==='baharat');}
 function asTemizle(){if(AS.t){clearTimeout(AS.t);AS.t=null;}}
 function asCh(id){return st.q?st.q.choices.find(c=>c.id===id):null;}
 function asAd(c){return c?(c.ad||c.text||c.id+' seçeneği'):'';}
 /* Karşılaştırmada kullanılacak görsel: fotoğraflı seçenekte kendi görseli, adlı seçenekte aynı ailenin gerçek boy görseli. */
 function asResim(c){return c?(c.image||c.ornek||''):'';}
 /* Kart biçimi: kaşık-çatal-bıçak uzun ve dar, fincan-bardak uzun, tabaklar kare kartta. */
-function asBicim(q){const im=q.choices.map(c=>c.image||'');if(im.every(x=>/\/boy\/(kasik|catal|bicak)-/.test(x)))return ' uzun';if(im.every(x=>/\/boy\/(fincan|bardak)-/.test(x)))return ' uzun kap';return '';}
+function asBicim(q){const im=q.choices.map(c=>c.image||'');if(im.every(x=>/\/baharat\//.test(x)))return ' bh';if(im.every(x=>/\/boy\/(kasik|catal|bicak)-/.test(x)))return ' uzun';if(im.every(x=>/\/boy\/(fincan|bardak)-/.test(x)))return ' uzun kap';return '';}
 function asIleri(){asTemizle();if(st.screen==='quiz'&&asKonu()&&st.done&&!st.kDone)nextQ();}
 
 const AS_ANSWER=answer;
@@ -93,10 +93,10 @@ contentNext=function(){
 /* Çalışma biçimi seçimi: bu konuda ikinci deneme yok, açıklama hemen görünür. */
 const AS_RENDER=render;
 render=function(){
- if(st.screen==='mcqmode'&&st.subject==='mutfak-araclari'){
+ if(st.screen==='mcqmode'&&(st.subject==='mutfak-araclari'||st.subject==='baharat')){const sirada=typeof RK_BOARDS!=='undefined'&&RK_BOARDS.some(x=>x.kind==='mcq'&&x.subject===st.subject&&x.group===st.mcqGroup);
   document.getElementById('app').innerHTML=topBar(subjectName())+'<div class="wrap"><h1>Nasıl çalışalım?</h1><div class="list">'+
    menuButton('Öğreniyorum','Her soruda bir yanıt ver. Yanlışta doğru cevabı yan yana görürsün. Yanlış yaptığın sorular sonda bir kez daha gelir.',"mcqBegin('learn')")+
-   menuButton('Uyguluyorum','Aynı sorular karışık sırayla. Sonucun Rekorlarım\'a ve sıralamaya yazılır.',"mcqBegin('check')")+'</div></div>';
+   menuButton('Uyguluyorum','Aynı sorular karışık sırayla.'+(sirada?' Sonucun Rekorlarım\'a ve sıralamaya yazılır.':' Sıralama için “Bütün bölümler” denemesini çöz.'),"mcqBegin('check')")+'</div></div>';
   return;
  }
  AS_RENDER();

@@ -5,26 +5,26 @@ const qs=d.questions||[];
 const ok=m=>console.log('PASS '+m);
 const etiketler=new Set((d.groups||[]).map(g=>g.label));
 
-assert.equal(qs.length,60,'Altmış soru olmalı');
+assert.equal(qs.length,104,'104 soru olmalı');
 const bolum={};qs.forEach(q=>bolum[q.group]=(bolum[q.group]||0)+1);
 Object.entries(bolum).forEach(([g,n])=>assert(etiketler.has(g),'Tanımsız grup: '+g));
-assert.equal(Object.keys(bolum).length,10);ok('60 soru, 10 grup; her grup içerikte tanımlı');
+assert.equal(Object.keys(bolum).length,10);ok('104 soru, 10 grup; her grup içerikte tanımlı');
 
 const yasak=/\b(en doğru|temel nedeni|hangi bilgiye göre|sen ne|senin|hepsi|hiçbiri)\b/i;
 const koklar=new Set(),idler=new Set();
 qs.forEach(q=>{
  assert(!idler.has(q.id),'Aynı kimlik: '+q.id);idler.add(q.id);
- assert(!koklar.has(q.prompt),'Aynı soru kökü: '+q.prompt);koklar.add(q.prompt);
+ if(!q.image){assert(!koklar.has(q.prompt),'Aynı soru kökü: '+q.prompt);koklar.add(q.prompt);}
  assert(/\?$/.test(q.prompt),'Soru kökü soru işaretiyle bitmeli: '+q.id);
- assert(q.prompt.length<=95,'Soru kökü kısa olmalı: '+q.id+' ('+q.prompt.length+')');
+ assert(q.prompt.length<=(q.kalip==='tarif'?140:95),'Soru kökü kısa olmalı: '+q.id+' ('+q.prompt.length+')');
  assert(!yasak.test(q.prompt),'Yasak kalıp (kök): '+q.id);
  assert.equal(q.choices.length,4,'Dört seçenek: '+q.id);
  assert.deepEqual(q.choices.map(c=>c.id),['A','B','C','D'],q.id);
- const metin=q.choices.map(c=>c.text);
+ const metin=q.choices.map(c=>c.text||c.ad);
  assert.equal(new Set(metin).size,4,'Seçenekler birbirinden farklı: '+q.id);
  metin.forEach(t=>{assert(t.length>0&&t.length<=60,'Seçenek uzunluğu: '+q.id);assert(!yasak.test(t),'Yasak kalıp (seçenek): '+q.id);});
  assert(['A','B','C','D'].includes(q.correct),q.id);
- const dogru=q.choices.find(c=>c.id===q.correct).text;
+ const dogru=(c=>c.text||c.ad)(q.choices.find(c=>c.id===q.correct));
  const digerleri=metin.filter(t=>t!==dogru);
  const ort=digerleri.reduce((a,t)=>a+t.length,0)/3;
  assert(dogru.length<=ort*1.8+6,'Doğru seçenek belirgin uzun: '+q.id+' ('+dogru.length+' / ort '+Math.round(ort)+')');

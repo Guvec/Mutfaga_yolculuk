@@ -1,24 +1,372 @@
 {
  "questions": [
   {
+   "id": "bhg-01",
+   "prompt": "Bu baharatın adı nedir?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Anason",
+     "ad": "Anason",
+     "ornek": "assets/baharat/t02_10.jpg"
+    },
+    {
+     "id": "B",
+     "text": "Kişniş tohumu",
+     "ad": "Kişniş tohumu",
+     "ornek": "assets/baharat/t02_01.jpg"
+    },
+    {
+     "id": "C",
+     "text": "Rezene tohumu",
+     "ad": "Rezene tohumu",
+     "ornek": "assets/baharat/t02_04.jpg"
+    },
+    {
+     "id": "D",
+     "text": "Kimyon",
+     "ad": "Kimyon",
+     "ornek": "assets/baharat/t01_10.jpg"
+    }
+   ],
+   "correct": "D",
+   "group": "1. Bölüm · Biberler ve toz baharatlar",
+   "chapter": 1,
+   "explanation": "Tane veya öğütülmüş olarak kullanılır. Köfte ve bakliyat yemeklerine aroma verir.",
+   "source": {
+    "file": "Baharatlar ve Aromatik Ürünler kart seti",
+    "section": "1. Bölüm · Biberler ve toz baharatlar"
+   },
+   "hint": "Tanenin biçimine, rengine ve büyüklüğüne bak.",
+   "kalip": "gorsel-ad",
+   "image": "assets/baharat/t01_10.jpg",
+   "imageAlt": "Baharat fotoğrafı"
+  },
+  {
+   "id": "bhg-03",
+   "prompt": "Bu baharatın adı nedir?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Sumak",
+     "ad": "Sumak",
+     "ornek": "assets/baharat/t01_02.jpg"
+    },
+    {
+     "id": "B",
+     "text": "İsot",
+     "ad": "İsot",
+     "ornek": "assets/baharat/t01_03.jpg"
+    },
+    {
+     "id": "C",
+     "text": "Kırmızı toz biber",
+     "ad": "Kırmızı toz biber",
+     "ornek": "assets/baharat/t01_05.jpg"
+    },
+    {
+     "id": "D",
+     "text": "Pul biber",
+     "ad": "Pul biber",
+     "ornek": "assets/baharat/t01_01.jpg"
+    }
+   ],
+   "correct": "D",
+   "group": "1. Bölüm · Biberler ve toz baharatlar",
+   "chapter": 1,
+   "explanation": "Kırmızı biberin kurutulup parçalanmasıyla hazırlanır. Yemeklere ve çorbalara eklenir; acılığı ürüne göre değişir.",
+   "source": {
+    "file": "Baharatlar ve Aromatik Ürünler kart seti",
+    "section": "1. Bölüm · Biberler ve toz baharatlar"
+   },
+   "hint": "Rengine ve parçaların iriliğine bak.",
+   "kalip": "gorsel-ad",
+   "image": "assets/baharat/t01_01.jpg",
+   "imageAlt": "Baharat fotoğrafı"
+  },
+  {
+   "id": "bhg-04",
+   "prompt": "Bu baharatın adı nedir?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Kırmızı toz biber",
+     "ad": "Kırmızı toz biber",
+     "ornek": "assets/baharat/t01_05.jpg"
+    },
+    {
+     "id": "B",
+     "text": "Sumak",
+     "ad": "Sumak",
+     "ornek": "assets/baharat/t01_02.jpg"
+    },
+    {
+     "id": "C",
+     "text": "Pul biber",
+     "ad": "Pul biber",
+     "ornek": "assets/baharat/t01_01.jpg"
+    },
+    {
+     "id": "D",
+     "text": "İsot",
+     "ad": "İsot",
+     "ornek": "assets/baharat/t01_03.jpg"
+    }
+   ],
+   "correct": "B",
+   "group": "1. Bölüm · Biberler ve toz baharatlar",
+   "chapter": 1,
+   "explanation": "Kırmızımsı, ekşi tat veren bir baharattır. Soğan salatasında ve salatalarda kullanılır.",
+   "source": {
+    "file": "Baharatlar ve Aromatik Ürünler kart seti",
+    "section": "1. Bölüm · Biberler ve toz baharatlar"
+   },
+   "hint": "Yaprağın, çiçeğin ya da parçanın biçimine ve rengine bak.",
+   "kalip": "gorsel-ad",
+   "image": "assets/baharat/t01_02.jpg",
+   "imageAlt": "Baharat fotoğrafı"
+  },
+  {
+   "id": "bhg-05",
+   "prompt": "Bu baharatın adı nedir?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "İsot",
+     "ad": "İsot",
+     "ornek": "assets/baharat/t01_03.jpg"
+    },
+    {
+     "id": "B",
+     "text": "Sumak",
+     "ad": "Sumak",
+     "ornek": "assets/baharat/t01_02.jpg"
+    },
+    {
+     "id": "C",
+     "text": "Kırmızı toz biber",
+     "ad": "Kırmızı toz biber",
+     "ornek": "assets/baharat/t01_05.jpg"
+    },
+    {
+     "id": "D",
+     "text": "Pul biber",
+     "ad": "Pul biber",
+     "ornek": "assets/baharat/t01_01.jpg"
+    }
+   ],
+   "correct": "A",
+   "group": "1. Bölüm · Biberler ve toz baharatlar",
+   "chapter": 1,
+   "explanation": "Koyu renkli bir biber ürünüdür. Çiğ köfte ve çeşitli yemeklerde kullanılır; yalnız renkten acılık miktarı anlaşılmaz.",
+   "source": {
+    "file": "Baharatlar ve Aromatik Ürünler kart seti",
+    "section": "1. Bölüm · Biberler ve toz baharatlar"
+   },
+   "hint": "Rengine ve parçaların iriliğine bak.",
+   "kalip": "gorsel-ad",
+   "image": "assets/baharat/t01_03.jpg",
+   "imageAlt": "Baharat fotoğrafı"
+  },
+  {
+   "id": "bhg-06",
+   "prompt": "Bu baharatın adı nedir?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Karabiber",
+     "ad": "Karabiber",
+     "ornek": "assets/baharat/t01_04.jpg"
+    },
+    {
+     "id": "B",
+     "text": "Kişniş tohumu",
+     "ad": "Kişniş tohumu",
+     "ornek": "assets/baharat/t02_01.jpg"
+    },
+    {
+     "id": "C",
+     "text": "Beyaz biber",
+     "ad": "Beyaz biber",
+     "ornek": "assets/baharat/t01_07.jpg"
+    },
+    {
+     "id": "D",
+     "text": "Yenibahar",
+     "ad": "Yenibahar",
+     "ornek": "assets/baharat/t01_06.jpg"
+    }
+   ],
+   "correct": "A",
+   "group": "1. Bölüm · Biberler ve toz baharatlar",
+   "chapter": 1,
+   "explanation": "Tane veya öğütülmüş olarak kullanılır. Yemeklere belirgin bir aroma ve yakıcılık verir.",
+   "source": {
+    "file": "Baharatlar ve Aromatik Ürünler kart seti",
+    "section": "1. Bölüm · Biberler ve toz baharatlar"
+   },
+   "hint": "Rengine ve parçaların iriliğine bak.",
+   "kalip": "gorsel-ad",
+   "image": "assets/baharat/t01_04.jpg",
+   "imageAlt": "Baharat fotoğrafı"
+  },
+  {
+   "id": "bhg-07",
+   "prompt": "Bu baharatın adı nedir?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Safran",
+     "ad": "Safran",
+     "ornek": "assets/baharat/t05_05.jpg"
+    },
+    {
+     "id": "B",
+     "text": "Muskat",
+     "ad": "Muskat",
+     "ornek": "assets/baharat/t08_06.jpg"
+    },
+    {
+     "id": "C",
+     "text": "Tarçın",
+     "ad": "Tarçın",
+     "ornek": "assets/baharat/t01_12.jpg"
+    },
+    {
+     "id": "D",
+     "text": "Yenibahar",
+     "ad": "Yenibahar",
+     "ornek": "assets/baharat/t01_06.jpg"
+    }
+   ],
+   "correct": "D",
+   "group": "1. Bölüm · Biberler ve toz baharatlar",
+   "chapter": 1,
+   "explanation": "Tane veya öğütülmüş olarak kullanılır. Dolma içi ve köfte gibi yemeklere aroma verir.",
+   "source": {
+    "file": "Baharatlar ve Aromatik Ürünler kart seti",
+    "section": "1. Bölüm · Biberler ve toz baharatlar"
+   },
+   "hint": "Biçimine bak: çubuk, kapsül, yıldız ya da tomurcuk olabilir.",
+   "kalip": "gorsel-ad",
+   "image": "assets/baharat/t01_06.jpg",
+   "imageAlt": "Baharat fotoğrafı"
+  },
+  {
+   "id": "bhg-08",
+   "prompt": "Bu tohumun adı nedir?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Kimyon",
+     "ad": "Kimyon",
+     "ornek": "assets/baharat/t01_10.jpg"
+    },
+    {
+     "id": "B",
+     "text": "Kişniş tohumu",
+     "ad": "Kişniş tohumu",
+     "ornek": "assets/baharat/t02_01.jpg"
+    },
+    {
+     "id": "C",
+     "text": "Karabiber",
+     "ad": "Karabiber",
+     "ornek": "assets/baharat/t01_04.jpg"
+    },
+    {
+     "id": "D",
+     "text": "Yenibahar",
+     "ad": "Yenibahar",
+     "ornek": "assets/baharat/t01_06.jpg"
+    }
+   ],
+   "correct": "B",
+   "group": "1. Bölüm · Biberler ve toz baharatlar",
+   "chapter": 1,
+   "explanation": "Yuvarlak taneli bir baharattır. Tane veya öğütülmüş hâlde yemeklerde kullanılır; kişniş yaprağından farklıdır.",
+   "source": {
+    "file": "Baharatlar ve Aromatik Ürünler kart seti",
+    "section": "1. Bölüm · Biberler ve toz baharatlar"
+   },
+   "hint": "Tanenin biçimine, rengine ve büyüklüğüne bak.",
+   "kalip": "gorsel-ad",
+   "image": "assets/baharat/t02_01.jpg",
+   "imageAlt": "Baharat fotoğrafı"
+  },
+  {
+   "id": "bhg-15",
+   "prompt": "Bu baharatın adı nedir?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Muskat",
+     "ad": "Muskat",
+     "ornek": "assets/baharat/t08_06.jpg"
+    },
+    {
+     "id": "B",
+     "text": "Meyan kökü",
+     "ad": "Meyan kökü",
+     "ornek": "assets/baharat/t05_10.jpg"
+    },
+    {
+     "id": "C",
+     "text": "Tarçın",
+     "ad": "Tarçın",
+     "ornek": "assets/baharat/t01_12.jpg"
+    },
+    {
+     "id": "D",
+     "text": "Karanfil",
+     "ad": "Karanfil",
+     "ornek": "assets/baharat/t02_12.jpg"
+    }
+   ],
+   "correct": "C",
+   "group": "1. Bölüm · Biberler ve toz baharatlar",
+   "chapter": 1,
+   "explanation": "Çubuk veya toz biçiminde kullanılır. Sütlü tatlılarda, içeceklerde ve bazı yemeklerde aroma verir. Ağacın iç kabuğundan elde edilir.",
+   "source": {
+    "file": "Baharatlar ve Aromatik Ürünler kart seti",
+    "section": "1. Bölüm · Biberler ve toz baharatlar"
+   },
+   "hint": "Biçimine bak: çubuk, kapsül, yıldız ya da tomurcuk olabilir.",
+   "kalip": "gorsel-ad",
+   "image": "assets/baharat/t01_12.jpg",
+   "imageAlt": "Baharat fotoğrafı"
+  },
+  {
    "id": "bhq-1-1",
    "prompt": "Soğan salatasına ekşi tat veren baharat hangisidir?",
    "choices": [
     {
      "id": "A",
-     "text": "Sumak"
+     "text": "",
+     "ad": "Sumak",
+     "image": "assets/baharat/t01_02.jpg",
+     "alt": "Seçenek A"
     },
     {
      "id": "B",
-     "text": "Pul biber"
+     "text": "",
+     "ad": "Pul biber",
+     "image": "assets/baharat/t01_01.jpg",
+     "alt": "Seçenek B"
     },
     {
      "id": "C",
-     "text": "Kimyon"
+     "text": "",
+     "ad": "Kimyon",
+     "image": "assets/baharat/t01_10.jpg",
+     "alt": "Seçenek C"
     },
     {
      "id": "D",
-     "text": "Tarçın"
+     "text": "",
+     "ad": "Tarçın",
+     "image": "assets/baharat/t01_12.jpg",
+     "alt": "Seçenek D"
     }
    ],
    "correct": "A",
@@ -29,38 +377,8 @@
     "file": "Baharatlar ve Aromatik Ürünler kart seti",
     "section": "1. Bölüm · Biberler ve toz baharatlar"
    },
-   "hint": "Hangi baharatın tadı ekşidir, onu düşün."
-  },
-  {
-   "id": "bhq-1-2",
-   "prompt": "Açık renkli çorbada rengi koyulaştırmamak için hangi baharat seçilir?",
-   "choices": [
-    {
-     "id": "A",
-     "text": "Pul biber"
-    },
-    {
-     "id": "B",
-     "text": "Beyaz biber"
-    },
-    {
-     "id": "C",
-     "text": "İsot"
-    },
-    {
-     "id": "D",
-     "text": "Sumak"
-    }
-   ],
-   "correct": "B",
-   "group": "1. Bölüm · Biberler ve toz baharatlar",
-   "chapter": 1,
-   "explanation": "Beyaz biber açık renklidir. Açık renkli çorba ve soslarda tercih edilebilir.",
-   "source": {
-    "file": "Baharatlar ve Aromatik Ürünler kart seti",
-    "section": "1. Bölüm · Biberler ve toz baharatlar"
-   },
-   "hint": "Baharatın kendi rengine bak."
+   "hint": "Hangi baharatın tadı ekşidir, onu düşün.",
+   "kalip": "tarif"
   },
   {
    "id": "bhq-1-3",
@@ -68,19 +386,31 @@
    "choices": [
     {
      "id": "A",
-     "text": "Yenibahar"
+     "text": "",
+     "ad": "Yenibahar",
+     "image": "assets/baharat/t01_06.jpg",
+     "alt": "Seçenek A"
     },
     {
      "id": "B",
-     "text": "Kimyon"
+     "text": "",
+     "ad": "Kimyon",
+     "image": "assets/baharat/t01_10.jpg",
+     "alt": "Seçenek B"
     },
     {
      "id": "C",
-     "text": "Tarçın"
+     "text": "",
+     "ad": "Tarçın",
+     "image": "assets/baharat/t01_12.jpg",
+     "alt": "Seçenek C"
     },
     {
      "id": "D",
-     "text": "Kişniş tohumu"
+     "text": "",
+     "ad": "Kişniş tohumu",
+     "image": "assets/baharat/t02_01.jpg",
+     "alt": "Seçenek D"
     }
    ],
    "correct": "C",
@@ -91,7 +421,220 @@
     "file": "Baharatlar ve Aromatik Ürünler kart seti",
     "section": "1. Bölüm · Biberler ve toz baharatlar"
    },
-   "hint": "Çubuk hâlinde de satılan baharatı düşün."
+   "hint": "Çubuk hâlinde de satılan baharatı düşün.",
+   "kalip": "tarif"
+  },
+  {
+   "id": "bhq-1-5",
+   "prompt": "Köfte ve bakliyat yemeklerine aroma vermek için kullanılan baharat hangisidir?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "",
+     "ad": "Kimyon",
+     "image": "assets/baharat/t01_10.jpg",
+     "alt": "Seçenek A"
+    },
+    {
+     "id": "B",
+     "text": "",
+     "ad": "Tarçın",
+     "image": "assets/baharat/t01_12.jpg",
+     "alt": "Seçenek B"
+    },
+    {
+     "id": "C",
+     "text": "",
+     "ad": "Sumak",
+     "image": "assets/baharat/t01_02.jpg",
+     "alt": "Seçenek C"
+    },
+    {
+     "id": "D",
+     "text": "",
+     "ad": "Mahlep",
+     "image": "assets/baharat/t02_07.jpg",
+     "alt": "Seçenek D"
+    }
+   ],
+   "correct": "A",
+   "group": "1. Bölüm · Biberler ve toz baharatlar",
+   "chapter": 1,
+   "explanation": "Kimyon tane veya öğütülmüş olarak kullanılır. Köfte ve bakliyat yemeklerine aroma verir.",
+   "source": {
+    "file": "Baharatlar ve Aromatik Ürünler kart seti",
+    "section": "1. Bölüm · Biberler ve toz baharatlar"
+   },
+   "hint": "Kuru fasulyede ve köftede kullanılan baharatı düşün.",
+   "kalip": "tarif"
+  },
+  {
+   "id": "bhy-01",
+   "prompt": "Kırmızımsı renkli, ekşi tadı olan bir baharattır. Soğan salatasında kullanılır. Aşağıdakilerden hangisi bu baharattır?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "",
+     "image": "assets/baharat/t01_03.jpg",
+     "alt": "Seçenek A",
+     "ad": "İsot"
+    },
+    {
+     "id": "B",
+     "text": "",
+     "image": "assets/baharat/t01_01.jpg",
+     "alt": "Seçenek B",
+     "ad": "Pul biber"
+    },
+    {
+     "id": "C",
+     "text": "",
+     "image": "assets/baharat/t01_05.jpg",
+     "alt": "Seçenek C",
+     "ad": "Kırmızı toz biber"
+    },
+    {
+     "id": "D",
+     "text": "",
+     "image": "assets/baharat/t01_02.jpg",
+     "alt": "Seçenek D",
+     "ad": "Sumak"
+    }
+   ],
+   "correct": "D",
+   "group": "1. Bölüm · Biberler ve toz baharatlar",
+   "chapter": 1,
+   "explanation": "Sumak koyu kırmızı-mor renkli, ince tanelidir ve ekşi tat verir. Pul biber parlak kırmızı pullar hâlindedir ve acıdır.",
+   "source": {
+    "file": "Baharatlar ve Aromatik Ürünler kart seti",
+    "section": "1. Bölüm · Biberler ve toz baharatlar"
+   },
+   "hint": "Tadı ekşi olan baharatı düşün.",
+   "kalip": "tarif"
+  },
+  {
+   "id": "bhy-09",
+   "prompt": "Koyu bordo, siyaha yakın renkli bir biber ürünüdür. Çiğ köftede kullanılır. Aşağıdakilerden hangisi bu üründür?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "",
+     "image": "assets/baharat/t01_02.jpg",
+     "alt": "Seçenek A",
+     "ad": "Sumak"
+    },
+    {
+     "id": "B",
+     "text": "",
+     "image": "assets/baharat/t01_03.jpg",
+     "alt": "Seçenek B",
+     "ad": "İsot"
+    },
+    {
+     "id": "C",
+     "text": "",
+     "image": "assets/baharat/t01_01.jpg",
+     "alt": "Seçenek C",
+     "ad": "Pul biber"
+    },
+    {
+     "id": "D",
+     "text": "",
+     "image": "assets/baharat/t01_05.jpg",
+     "alt": "Seçenek D",
+     "ad": "Kırmızı toz biber"
+    }
+   ],
+   "correct": "B",
+   "group": "1. Bölüm · Biberler ve toz baharatlar",
+   "chapter": 1,
+   "explanation": "İsot koyu bordo, siyaha yakın renklidir. Pul biber parlak kırmızıdır.",
+   "source": {
+    "file": "Baharatlar ve Aromatik Ürünler kart seti",
+    "section": "1. Bölüm · Biberler ve toz baharatlar"
+   },
+   "hint": "En koyu renkli biber ürününü ara.",
+   "kalip": "tarif"
+  },
+  {
+   "id": "bhy-04",
+   "prompt": "Sütlacın üstüne serpilen baharat hangisidir?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Yenibahar",
+     "ad": "Yenibahar",
+     "ornek": "assets/baharat/t01_06.jpg"
+    },
+    {
+     "id": "B",
+     "text": "Kimyon",
+     "ad": "Kimyon",
+     "ornek": "assets/baharat/t01_10.jpg"
+    },
+    {
+     "id": "C",
+     "text": "Tarçın",
+     "ad": "Tarçın",
+     "ornek": "assets/baharat/t01_12.jpg"
+    },
+    {
+     "id": "D",
+     "text": "Karanfil",
+     "ad": "Karanfil",
+     "ornek": "assets/baharat/t02_12.jpg"
+    }
+   ],
+   "correct": "C",
+   "group": "1. Bölüm · Biberler ve toz baharatlar",
+   "chapter": 1,
+   "explanation": "Tarçın, sütlaç gibi sütlü tatlıların üstüne toz hâlinde serpilir. Karanfil komposto ve tatlılara yoğun aroma verir.",
+   "source": {
+    "file": "Baharatlar ve Aromatik Ürünler kart seti",
+    "section": "1. Bölüm · Biberler ve toz baharatlar"
+   },
+   "hint": "Sütlü tatlılarda en çok kullanılan baharatı düşün.",
+   "kalip": "durum"
+  },
+  {
+   "id": "bhq-1-2",
+   "prompt": "Açık renkli çorbada rengi koyulaştırmamak için hangi baharat seçilir?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Pul biber",
+     "ad": "Pul biber",
+     "ornek": "assets/baharat/t01_01.jpg"
+    },
+    {
+     "id": "B",
+     "text": "Beyaz biber",
+     "ad": "Beyaz biber",
+     "ornek": "assets/baharat/t01_07.jpg"
+    },
+    {
+     "id": "C",
+     "text": "İsot",
+     "ad": "İsot",
+     "ornek": "assets/baharat/t01_03.jpg"
+    },
+    {
+     "id": "D",
+     "text": "Sumak",
+     "ad": "Sumak",
+     "ornek": "assets/baharat/t01_02.jpg"
+    }
+   ],
+   "correct": "B",
+   "group": "1. Bölüm · Biberler ve toz baharatlar",
+   "chapter": 1,
+   "explanation": "Beyaz biber açık renklidir. Açık renkli çorba ve soslarda tercih edilebilir.",
+   "source": {
+    "file": "Baharatlar ve Aromatik Ürünler kart seti",
+    "section": "1. Bölüm · Biberler ve toz baharatlar"
+   },
+   "hint": "Baharatın kendi rengine bak.",
+   "kalip": "bilgi"
   },
   {
    "id": "bhq-1-4",
@@ -122,38 +665,302 @@
     "file": "Baharatlar ve Aromatik Ürünler kart seti",
     "section": "1. Bölüm · Biberler ve toz baharatlar"
    },
-   "hint": "Adı benzeyen her ürün aynı bitkiden gelmez."
+   "hint": "Adı benzeyen her ürün aynı bitkiden gelmez.",
+   "kalip": "bilgi"
   },
   {
-   "id": "bhq-1-5",
-   "prompt": "Köfte ve bakliyat yemeklerine aroma vermek için kullanılan baharat hangisidir?",
+   "id": "bhg-02",
+   "prompt": "Bu baharatın adı nedir?",
    "choices": [
     {
      "id": "A",
-     "text": "Kimyon"
+     "text": "Yenibahar",
+     "ad": "Yenibahar",
+     "ornek": "assets/baharat/t01_06.jpg"
     },
     {
      "id": "B",
-     "text": "Tarçın"
+     "text": "Muskat",
+     "ad": "Muskat",
+     "ornek": "assets/baharat/t08_06.jpg"
     },
     {
      "id": "C",
-     "text": "Sumak"
+     "text": "Kakule",
+     "ad": "Kakule",
+     "ornek": "assets/baharat/t02_08.jpg"
     },
     {
      "id": "D",
-     "text": "Mahlep"
+     "text": "Karanfil",
+     "ad": "Karanfil",
+     "ornek": "assets/baharat/t02_12.jpg"
+    }
+   ],
+   "correct": "C",
+   "group": "2. Bölüm · Tohumlar ve kuru baharatlar",
+   "chapter": 2,
+   "explanation": "Kabuklu kapsülünün içinde aromalı tohumları bulunur. Kahve ve tatlılarda kullanılır.",
+   "source": {
+    "file": "Baharatlar ve Aromatik Ürünler kart seti",
+    "section": "2. Bölüm · Tohumlar ve kuru baharatlar"
+   },
+   "hint": "Biçimine bak: çubuk, kapsül, yıldız ya da tomurcuk olabilir.",
+   "kalip": "gorsel-ad",
+   "image": "assets/baharat/t02_08.jpg",
+   "imageAlt": "Baharat fotoğrafı"
+  },
+  {
+   "id": "bhg-09",
+   "prompt": "Bu tohumun adı nedir?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Haşhaş tohumu",
+     "ad": "Haşhaş tohumu",
+     "ornek": "assets/baharat/t02_09.jpg"
+    },
+    {
+     "id": "B",
+     "text": "Susam",
+     "ad": "Susam",
+     "ornek": "assets/baharat/t02_03.jpg"
+    },
+    {
+     "id": "C",
+     "text": "Çörek otu",
+     "ad": "Çörek otu",
+     "ornek": "assets/baharat/t02_05.jpg"
+    },
+    {
+     "id": "D",
+     "text": "Keten tohumu",
+     "ad": "Keten tohumu",
+     "ornek": "assets/baharat/t09_10.jpg"
+    }
+   ],
+   "correct": "B",
+   "group": "2. Bölüm · Tohumlar ve kuru baharatlar",
+   "chapter": 2,
+   "explanation": "Küçük yağlı tohumlardır. Simit, ekmek ve tatlılarda kullanılır. Taneleri açık renkli, yassı ve ovaldir.",
+   "source": {
+    "file": "Baharatlar ve Aromatik Ürünler kart seti",
+    "section": "2. Bölüm · Tohumlar ve kuru baharatlar"
+   },
+   "hint": "Tanenin biçimine, rengine ve büyüklüğüne bak.",
+   "kalip": "gorsel-ad",
+   "image": "assets/baharat/t02_03.jpg",
+   "imageAlt": "Baharat fotoğrafı"
+  },
+  {
+   "id": "bhg-10",
+   "prompt": "Bu tohumun adı nedir?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Kimyon",
+     "ad": "Kimyon",
+     "ornek": "assets/baharat/t01_10.jpg"
+    },
+    {
+     "id": "B",
+     "text": "Haşhaş tohumu",
+     "ad": "Haşhaş tohumu",
+     "ornek": "assets/baharat/t02_09.jpg"
+    },
+    {
+     "id": "C",
+     "text": "Rezene tohumu",
+     "ad": "Rezene tohumu",
+     "ornek": "assets/baharat/t02_04.jpg"
+    },
+    {
+     "id": "D",
+     "text": "Anason",
+     "ad": "Anason",
+     "ornek": "assets/baharat/t02_10.jpg"
+    }
+   ],
+   "correct": "C",
+   "group": "2. Bölüm · Tohumlar ve kuru baharatlar",
+   "chapter": 2,
+   "explanation": "Uzunca ve çizgili tanelerdir. Hamur işleri ve bazı yemeklerde aroma vermek için kullanılır.",
+   "source": {
+    "file": "Baharatlar ve Aromatik Ürünler kart seti",
+    "section": "2. Bölüm · Tohumlar ve kuru baharatlar"
+   },
+   "hint": "Tanenin biçimine, rengine ve büyüklüğüne bak.",
+   "kalip": "gorsel-ad",
+   "image": "assets/baharat/t02_04.jpg",
+   "imageAlt": "Baharat fotoğrafı"
+  },
+  {
+   "id": "bhg-11",
+   "prompt": "Bu baharatın adı nedir?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Susam",
+     "ad": "Susam",
+     "ornek": "assets/baharat/t02_03.jpg"
+    },
+    {
+     "id": "B",
+     "text": "Çörek otu",
+     "ad": "Çörek otu",
+     "ornek": "assets/baharat/t02_05.jpg"
+    },
+    {
+     "id": "C",
+     "text": "Keten tohumu",
+     "ad": "Keten tohumu",
+     "ornek": "assets/baharat/t09_10.jpg"
+    },
+    {
+     "id": "D",
+     "text": "Haşhaş tohumu",
+     "ad": "Haşhaş tohumu",
+     "ornek": "assets/baharat/t02_09.jpg"
+    }
+   ],
+   "correct": "B",
+   "group": "2. Bölüm · Tohumlar ve kuru baharatlar",
+   "chapter": 2,
+   "explanation": "Küçük siyah tanelerdir. Ekmek ve tuzlu hamur işlerinde kullanılır; siyah susamla karıştırılabilir.",
+   "source": {
+    "file": "Baharatlar ve Aromatik Ürünler kart seti",
+    "section": "2. Bölüm · Tohumlar ve kuru baharatlar"
+   },
+   "hint": "Tanenin biçimine, rengine ve büyüklüğüne bak.",
+   "kalip": "gorsel-ad",
+   "image": "assets/baharat/t02_05.jpg",
+   "imageAlt": "Baharat fotoğrafı"
+  },
+  {
+   "id": "bhg-12",
+   "prompt": "Bu tohumun adı nedir?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Kimyon",
+     "ad": "Kimyon",
+     "ornek": "assets/baharat/t01_10.jpg"
+    },
+    {
+     "id": "B",
+     "text": "Keten tohumu",
+     "ad": "Keten tohumu",
+     "ornek": "assets/baharat/t09_10.jpg"
+    },
+    {
+     "id": "C",
+     "text": "Haşhaş tohumu",
+     "ad": "Haşhaş tohumu",
+     "ornek": "assets/baharat/t02_09.jpg"
+    },
+    {
+     "id": "D",
+     "text": "Rezene tohumu",
+     "ad": "Rezene tohumu",
+     "ornek": "assets/baharat/t02_04.jpg"
+    }
+   ],
+   "correct": "C",
+   "group": "2. Bölüm · Tohumlar ve kuru baharatlar",
+   "chapter": 2,
+   "explanation": "Çok küçük taneli bir üründür. Hamur işlerinde ve süslemede kullanılır; ezme biçiminden farklıdır.",
+   "source": {
+    "file": "Baharatlar ve Aromatik Ürünler kart seti",
+    "section": "2. Bölüm · Tohumlar ve kuru baharatlar"
+   },
+   "hint": "Tanenin biçimine, rengine ve büyüklüğüne bak.",
+   "kalip": "gorsel-ad",
+   "image": "assets/baharat/t02_09.jpg",
+   "imageAlt": "Baharat fotoğrafı"
+  },
+  {
+   "id": "bhg-13",
+   "prompt": "Bu baharatın adı nedir?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Kakule",
+     "ad": "Kakule",
+     "ornek": "assets/baharat/t02_08.jpg"
+    },
+    {
+     "id": "B",
+     "text": "Anason",
+     "ad": "Anason",
+     "ornek": "assets/baharat/t02_10.jpg"
+    },
+    {
+     "id": "C",
+     "text": "Karanfil",
+     "ad": "Karanfil",
+     "ornek": "assets/baharat/t02_12.jpg"
+    },
+    {
+     "id": "D",
+     "text": "Yıldız anason",
+     "ad": "Yıldız anason",
+     "ornek": "assets/baharat/t02_11.jpg"
+    }
+   ],
+   "correct": "D",
+   "group": "2. Bölüm · Tohumlar ve kuru baharatlar",
+   "chapter": 2,
+   "explanation": "Yıldız biçimli bir baharattır. Tatlı ve içeceklerde aroma vermek için kullanılır; anason tohumuyla aynı bitki değildir. Ağacın kurutulmuş meyvesidir; kolları ortada birleşir.",
+   "source": {
+    "file": "Baharatlar ve Aromatik Ürünler kart seti",
+    "section": "2. Bölüm · Tohumlar ve kuru baharatlar"
+   },
+   "hint": "Biçimine bak: çubuk, kapsül, yıldız ya da tomurcuk olabilir.",
+   "kalip": "gorsel-ad",
+   "image": "assets/baharat/t02_11.jpg",
+   "imageAlt": "Baharat fotoğrafı"
+  },
+  {
+   "id": "bhg-14",
+   "prompt": "Bu baharatın adı nedir?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Karanfil",
+     "ad": "Karanfil",
+     "ornek": "assets/baharat/t02_12.jpg"
+    },
+    {
+     "id": "B",
+     "text": "Yıldız anason",
+     "ad": "Yıldız anason",
+     "ornek": "assets/baharat/t02_11.jpg"
+    },
+    {
+     "id": "C",
+     "text": "Yenibahar",
+     "ad": "Yenibahar",
+     "ornek": "assets/baharat/t01_06.jpg"
+    },
+    {
+     "id": "D",
+     "text": "Kakule",
+     "ad": "Kakule",
+     "ornek": "assets/baharat/t02_08.jpg"
     }
    ],
    "correct": "A",
-   "group": "1. Bölüm · Biberler ve toz baharatlar",
-   "chapter": 1,
-   "explanation": "Kimyon tane veya öğütülmüş olarak kullanılır. Köfte ve bakliyat yemeklerine aroma verir.",
+   "group": "2. Bölüm · Tohumlar ve kuru baharatlar",
+   "chapter": 2,
+   "explanation": "Kurutulmuş çiçek tomurcuğudur. Komposto ve tatlılara yoğun aroma verir. İnce sapın ucunda yuvarlak bir tomurcuk vardır.",
    "source": {
     "file": "Baharatlar ve Aromatik Ürünler kart seti",
-    "section": "1. Bölüm · Biberler ve toz baharatlar"
+    "section": "2. Bölüm · Tohumlar ve kuru baharatlar"
    },
-   "hint": "Kuru fasulyede ve köftede kullanılan baharatı düşün."
+   "hint": "Biçimine bak: çubuk, kapsül, yıldız ya da tomurcuk olabilir.",
+   "kalip": "gorsel-ad",
+   "image": "assets/baharat/t02_12.jpg",
+   "imageAlt": "Baharat fotoğrafı"
   },
   {
    "id": "bhq-2-1",
@@ -161,19 +968,31 @@
    "choices": [
     {
      "id": "A",
-     "text": "Susam"
+     "text": "",
+     "ad": "Susam",
+     "image": "assets/baharat/t02_03.jpg",
+     "alt": "Seçenek A"
     },
     {
      "id": "B",
-     "text": "Çörek otu"
+     "text": "",
+     "ad": "Çörek otu",
+     "image": "assets/baharat/t02_05.jpg",
+     "alt": "Seçenek B"
     },
     {
      "id": "C",
-     "text": "Kişniş tohumu"
+     "text": "",
+     "ad": "Kişniş tohumu",
+     "image": "assets/baharat/t02_01.jpg",
+     "alt": "Seçenek C"
     },
     {
      "id": "D",
-     "text": "Rezene tohumu"
+     "text": "",
+     "ad": "Rezene tohumu",
+     "image": "assets/baharat/t02_04.jpg",
+     "alt": "Seçenek D"
     }
    ],
    "correct": "B",
@@ -184,38 +1003,8 @@
     "file": "Baharatlar ve Aromatik Ürünler kart seti",
     "section": "2. Bölüm · Tohumlar ve kuru baharatlar"
    },
-   "hint": "Tanelerin rengine bak."
-  },
-  {
-   "id": "bhq-2-2",
-   "prompt": "Çörek otu hangi ürünle karıştırılabilir?",
-   "choices": [
-    {
-     "id": "A",
-     "text": "Pul biber"
-    },
-    {
-     "id": "B",
-     "text": "Kuru üzüm"
-    },
-    {
-     "id": "C",
-     "text": "Siyah susam"
-    },
-    {
-     "id": "D",
-     "text": "Esmer şeker"
-    }
-   ],
-   "correct": "C",
-   "group": "2. Bölüm · Tohumlar ve kuru baharatlar",
-   "chapter": 2,
-   "explanation": "Çörek otu ile siyah susam birbirine benzer görünür. Ürün etiketinden doğrulanır.",
-   "source": {
-    "file": "Baharatlar ve Aromatik Ürünler kart seti",
-    "section": "2. Bölüm · Tohumlar ve kuru baharatlar"
-   },
-   "hint": "Rengi ve tane büyüklüğü ona en çok benzeyen ürünü düşün."
+   "hint": "Tanelerin rengine bak.",
+   "kalip": "tarif"
   },
   {
    "id": "bhq-2-3",
@@ -223,19 +1012,31 @@
    "choices": [
     {
      "id": "A",
-     "text": "Yıldız anason"
+     "text": "",
+     "ad": "Yıldız anason",
+     "image": "assets/baharat/t02_11.jpg",
+     "alt": "Seçenek A"
     },
     {
      "id": "B",
-     "text": "Karanfil"
+     "text": "",
+     "ad": "Karanfil",
+     "image": "assets/baharat/t02_12.jpg",
+     "alt": "Seçenek B"
     },
     {
      "id": "C",
-     "text": "Mahlep"
+     "text": "",
+     "ad": "Mahlep",
+     "image": "assets/baharat/t02_07.jpg",
+     "alt": "Seçenek C"
     },
     {
      "id": "D",
-     "text": "Kakule"
+     "text": "",
+     "ad": "Kakule",
+     "image": "assets/baharat/t02_08.jpg",
+     "alt": "Seçenek D"
     }
    ],
    "correct": "D",
@@ -246,7 +1047,8 @@
     "file": "Baharatlar ve Aromatik Ürünler kart seti",
     "section": "2. Bölüm · Tohumlar ve kuru baharatlar"
    },
-   "hint": "İçinde tohum taşıyan kapsülü olan baharatı düşün."
+   "hint": "İçinde tohum taşıyan kapsülü olan baharatı düşün.",
+   "kalip": "tarif"
   },
   {
    "id": "bhq-2-4",
@@ -254,19 +1056,31 @@
    "choices": [
     {
      "id": "A",
-     "text": "Mahlep"
+     "text": "",
+     "ad": "Mahlep",
+     "image": "assets/baharat/t02_07.jpg",
+     "alt": "Seçenek A"
     },
     {
      "id": "B",
-     "text": "Susam"
+     "text": "",
+     "ad": "Susam",
+     "image": "assets/baharat/t02_03.jpg",
+     "alt": "Seçenek B"
     },
     {
      "id": "C",
-     "text": "Hardal tohumu"
+     "text": "",
+     "ad": "Hardal tohumu",
+     "image": "assets/baharat/t02_02.jpg",
+     "alt": "Seçenek C"
     },
     {
      "id": "D",
-     "text": "Haşhaş tohumu"
+     "text": "",
+     "ad": "Haşhaş tohumu",
+     "image": "assets/baharat/t02_09.jpg",
+     "alt": "Seçenek D"
     }
    ],
    "correct": "A",
@@ -277,7 +1091,90 @@
     "file": "Baharatlar ve Aromatik Ürünler kart seti",
     "section": "2. Bölüm · Tohumlar ve kuru baharatlar"
    },
-   "hint": "Hamur işine kokusuyla katılan öğütülmüş ürünü düşün."
+   "hint": "Hamur işine kokusuyla katılan öğütülmüş ürünü düşün.",
+   "kalip": "tarif"
+  },
+  {
+   "id": "bhy-02",
+   "prompt": "Küçük, siyah, köşeli tanelerdir. Ekmek ve tuzlu hamur işlerinin üstüne serpilir. Aşağıdakilerden hangisi bu baharattır?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "",
+     "image": "assets/baharat/t02_03.jpg",
+     "alt": "Seçenek A",
+     "ad": "Susam"
+    },
+    {
+     "id": "B",
+     "text": "",
+     "image": "assets/baharat/t02_05.jpg",
+     "alt": "Seçenek B",
+     "ad": "Çörek otu"
+    },
+    {
+     "id": "C",
+     "text": "",
+     "image": "assets/baharat/t09_10.jpg",
+     "alt": "Seçenek C",
+     "ad": "Keten tohumu"
+    },
+    {
+     "id": "D",
+     "text": "",
+     "image": "assets/baharat/t02_09.jpg",
+     "alt": "Seçenek D",
+     "ad": "Haşhaş tohumu"
+    }
+   ],
+   "correct": "B",
+   "group": "2. Bölüm · Tohumlar ve kuru baharatlar",
+   "chapter": 2,
+   "explanation": "Çörek otu taneleri siyah ve köşelidir. Haşhaş taneleri çok küçük ve yuvarlaktır.",
+   "source": {
+    "file": "Baharatlar ve Aromatik Ürünler kart seti",
+    "section": "2. Bölüm · Tohumlar ve kuru baharatlar"
+   },
+   "hint": "Tanelerin rengine ve köşeli olup olmadığına bak.",
+   "kalip": "tarif"
+  },
+  {
+   "id": "bhq-2-2",
+   "prompt": "Çörek otu hangi ürünle karıştırılabilir?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Pul biber",
+     "ad": "Pul biber",
+     "ornek": "assets/baharat/t01_01.jpg"
+    },
+    {
+     "id": "B",
+     "text": "Kuru üzüm",
+     "ad": "Kuru üzüm",
+     "ornek": "assets/baharat/v10-uzum.png"
+    },
+    {
+     "id": "C",
+     "text": "Siyah susam"
+    },
+    {
+     "id": "D",
+     "text": "Esmer şeker",
+     "ad": "Esmer şeker",
+     "ornek": "assets/baharat/t11_07.jpg"
+    }
+   ],
+   "correct": "C",
+   "group": "2. Bölüm · Tohumlar ve kuru baharatlar",
+   "chapter": 2,
+   "explanation": "Çörek otu ile siyah susam birbirine benzer görünür. Ürün etiketinden doğrulanır.",
+   "source": {
+    "file": "Baharatlar ve Aromatik Ürünler kart seti",
+    "section": "2. Bölüm · Tohumlar ve kuru baharatlar"
+   },
+   "hint": "Rengi ve tane büyüklüğü ona en çok benzeyen ürünü düşün.",
+   "kalip": "bilgi"
   },
   {
    "id": "bhq-2-5",
@@ -308,7 +1205,134 @@
     "file": "Baharatlar ve Aromatik Ürünler kart seti",
     "section": "2. Bölüm · Tohumlar ve kuru baharatlar"
    },
-   "hint": "Biçimlerine bak: biri yıldız, biri küçük tohum."
+   "hint": "Biçimlerine bak: biri yıldız, biri küçük tohum.",
+   "kalip": "bilgi"
+  },
+  {
+   "id": "bhg-16",
+   "prompt": "Bu bitkinin adı nedir?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Taze biberiye",
+     "ad": "Taze biberiye",
+     "ornek": "assets/baharat/t03_02.jpg"
+    },
+    {
+     "id": "B",
+     "text": "Defne yaprağı",
+     "ad": "Defne yaprağı",
+     "ornek": "assets/baharat/t10_01.jpg"
+    },
+    {
+     "id": "C",
+     "text": "Mercanköşk",
+     "ad": "Mercanköşk",
+     "ornek": "assets/baharat/t03_06.jpg"
+    },
+    {
+     "id": "D",
+     "text": "Limon otu",
+     "ad": "Limon otu",
+     "ornek": "assets/baharat/t05_11.jpg"
+    }
+   ],
+   "correct": "A",
+   "group": "3. Bölüm · Taze yapraklı bitkiler",
+   "chapter": 3,
+   "explanation": "İnce, iğneye benzeyen yaprakları vardır. Patates ve et yemeklerinde aroma vermek için kullanılır.",
+   "source": {
+    "file": "Baharatlar ve Aromatik Ürünler kart seti",
+    "section": "3. Bölüm · Taze yapraklı bitkiler"
+   },
+   "hint": "Yaprağın, çiçeğin ya da parçanın biçimine ve rengine bak.",
+   "kalip": "gorsel-ad",
+   "image": "assets/baharat/t03_02.jpg",
+   "imageAlt": "Baharat fotoğrafı"
+  },
+  {
+   "id": "bhg-17",
+   "prompt": "Bu bitkinin adı nedir?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Taze dereotu",
+     "ad": "Taze dereotu",
+     "ornek": "assets/baharat/t03_12.jpg"
+    },
+    {
+     "id": "B",
+     "text": "Tarhun",
+     "ad": "Tarhun",
+     "ornek": "assets/baharat/t03_04.jpg"
+    },
+    {
+     "id": "C",
+     "text": "Maydanoz",
+     "ad": "Maydanoz",
+     "ornek": "assets/baharat/t03_08.jpg"
+    },
+    {
+     "id": "D",
+     "text": "Taze yeşil fesleğen",
+     "ad": "Taze yeşil fesleğen",
+     "ornek": "assets/baharat/t03_01.jpg"
+    }
+   ],
+   "correct": "A",
+   "group": "3. Bölüm · Taze yapraklı bitkiler",
+   "chapter": 3,
+   "explanation": "İnce, dallanmış yaprakları vardır. Salata, yoğurtlu yemek ve hamur işlerinde kullanılır.",
+   "source": {
+    "file": "Baharatlar ve Aromatik Ürünler kart seti",
+    "section": "3. Bölüm · Taze yapraklı bitkiler"
+   },
+   "hint": "Yaprağın, çiçeğin ya da parçanın biçimine ve rengine bak.",
+   "kalip": "gorsel-ad",
+   "image": "assets/baharat/t03_12.jpg",
+   "imageAlt": "Baharat fotoğrafı"
+  },
+  {
+   "id": "bhg-18",
+   "prompt": "Bu bitkinin adı nedir?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Taze nane",
+     "ad": "Taze nane",
+     "ornek": "assets/baharat/t03_09.jpg"
+    },
+    {
+     "id": "B",
+     "text": "Taze mor reyhan",
+     "ad": "Taze mor reyhan",
+     "ornek": "assets/baharat/t04_07.jpg"
+    },
+    {
+     "id": "C",
+     "text": "Taze yeşil fesleğen",
+     "ad": "Taze yeşil fesleğen",
+     "ornek": "assets/baharat/t03_01.jpg"
+    },
+    {
+     "id": "D",
+     "text": "Taze kekik",
+     "ad": "Taze kekik",
+     "ornek": "assets/baharat/t03_03.jpg"
+    }
+   ],
+   "correct": "B",
+   "group": "3. Bölüm · Taze yapraklı bitkiler",
+   "chapter": 3,
+   "explanation": "Mor yapraklı aromatik bir bitkidir. Salata ve içeceklerde kullanılır; farklı çeşitlerde renk değişebilir.",
+   "source": {
+    "file": "Baharatlar ve Aromatik Ürünler kart seti",
+    "section": "3. Bölüm · Taze yapraklı bitkiler"
+   },
+   "hint": "Yaprağın, çiçeğin ya da parçanın biçimine ve rengine bak.",
+   "kalip": "gorsel-ad",
+   "image": "assets/baharat/t04_07.jpg",
+   "imageAlt": "Baharat fotoğrafı"
   },
   {
    "id": "bhq-3-1",
@@ -316,19 +1340,31 @@
    "choices": [
     {
      "id": "A",
-     "text": "Maydanoz"
+     "text": "",
+     "ad": "Maydanoz",
+     "image": "assets/baharat/t03_08.jpg",
+     "alt": "Seçenek A"
     },
     {
      "id": "B",
-     "text": "Taze kekik"
+     "text": "",
+     "ad": "Taze kekik",
+     "image": "assets/baharat/t03_03.jpg",
+     "alt": "Seçenek B"
     },
     {
      "id": "C",
-     "text": "Taze biberiye"
+     "text": "",
+     "ad": "Taze biberiye",
+     "image": "assets/baharat/t03_02.jpg",
+     "alt": "Seçenek C"
     },
     {
      "id": "D",
-     "text": "Taze nane"
+     "text": "",
+     "ad": "Taze nane",
+     "image": "assets/baharat/t03_09.jpg",
+     "alt": "Seçenek D"
     }
    ],
    "correct": "C",
@@ -339,38 +1375,8 @@
     "file": "Baharatlar ve Aromatik Ürünler kart seti",
     "section": "3. Bölüm · Taze yapraklı bitkiler"
    },
-   "hint": "Yaprağın biçimine bak."
-  },
-  {
-   "id": "bhq-3-2",
-   "prompt": "Mercanköşk hangi bitkiyle benzer görünebilir?",
-   "choices": [
-    {
-     "id": "A",
-     "text": "Taze dereotu"
-    },
-    {
-     "id": "B",
-     "text": "Maydanoz"
-    },
-    {
-     "id": "C",
-     "text": "Roka"
-    },
-    {
-     "id": "D",
-     "text": "Kekik"
-    }
-   ],
-   "correct": "D",
-   "group": "3. Bölüm · Taze yapraklı bitkiler",
-   "chapter": 3,
-   "explanation": "Mercanköşk ile kekik benzer görünebilir. Etiketli örnekle karşılaştırılarak ayırt edilir.",
-   "source": {
-    "file": "Baharatlar ve Aromatik Ürünler kart seti",
-    "section": "3. Bölüm · Taze yapraklı bitkiler"
-   },
-   "hint": "Küçük yapraklı bitkileri düşün."
+   "hint": "Yaprağın biçimine bak.",
+   "kalip": "tarif"
   },
   {
    "id": "bhq-3-3",
@@ -378,19 +1384,31 @@
    "choices": [
     {
      "id": "A",
-     "text": "Taze dereotu"
+     "text": "",
+     "ad": "Taze dereotu",
+     "image": "assets/baharat/t03_12.jpg",
+     "alt": "Seçenek A"
     },
     {
      "id": "B",
-     "text": "Taze kekik"
+     "text": "",
+     "ad": "Taze kekik",
+     "image": "assets/baharat/t03_03.jpg",
+     "alt": "Seçenek B"
     },
     {
      "id": "C",
-     "text": "Roka"
+     "text": "",
+     "ad": "Roka",
+     "image": "assets/baharat/t03_05.jpg",
+     "alt": "Seçenek C"
     },
     {
      "id": "D",
-     "text": "Tarhun"
+     "text": "",
+     "ad": "Tarhun",
+     "image": "assets/baharat/t03_04.jpg",
+     "alt": "Seçenek D"
     }
    ],
    "correct": "A",
@@ -401,7 +1419,92 @@
     "file": "Baharatlar ve Aromatik Ürünler kart seti",
     "section": "3. Bölüm · Taze yapraklı bitkiler"
    },
-   "hint": "Yaprakları iplik gibi ince olan bitkiyi düşün."
+   "hint": "Yaprakları iplik gibi ince olan bitkiyi düşün.",
+   "kalip": "tarif"
+  },
+  {
+   "id": "bhy-10",
+   "prompt": "Yaprakları mor renkli, fesleğene benzeyen aromatik bitki hangisidir?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "",
+     "image": "assets/baharat/t04_07.jpg",
+     "alt": "Seçenek A",
+     "ad": "Taze mor reyhan"
+    },
+    {
+     "id": "B",
+     "text": "",
+     "image": "assets/baharat/t03_03.jpg",
+     "alt": "Seçenek B",
+     "ad": "Taze kekik"
+    },
+    {
+     "id": "C",
+     "text": "",
+     "image": "assets/baharat/t03_09.jpg",
+     "alt": "Seçenek C",
+     "ad": "Taze nane"
+    },
+    {
+     "id": "D",
+     "text": "",
+     "image": "assets/baharat/t03_01.jpg",
+     "alt": "Seçenek D",
+     "ad": "Taze yeşil fesleğen"
+    }
+   ],
+   "correct": "A",
+   "group": "3. Bölüm · Taze yapraklı bitkiler",
+   "chapter": 3,
+   "explanation": "Mor reyhanın yaprakları mordur. Yeşil fesleğenin yaprakları yeşildir.",
+   "source": {
+    "file": "Baharatlar ve Aromatik Ürünler kart seti",
+    "section": "3. Bölüm · Taze yapraklı bitkiler"
+   },
+   "hint": "Yaprağın rengine bak.",
+   "kalip": "tarif"
+  },
+  {
+   "id": "bhq-3-2",
+   "prompt": "Mercanköşk hangi bitkiyle benzer görünebilir?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Taze dereotu",
+     "ad": "Taze dereotu",
+     "ornek": "assets/baharat/t03_12.jpg"
+    },
+    {
+     "id": "B",
+     "text": "Maydanoz",
+     "ad": "Maydanoz",
+     "ornek": "assets/baharat/t03_08.jpg"
+    },
+    {
+     "id": "C",
+     "text": "Roka",
+     "ad": "Roka",
+     "ornek": "assets/baharat/t03_05.jpg"
+    },
+    {
+     "id": "D",
+     "text": "Kekik",
+     "ad": "Kekik",
+     "ornek": "assets/baharat/t04_03.jpg"
+    }
+   ],
+   "correct": "D",
+   "group": "3. Bölüm · Taze yapraklı bitkiler",
+   "chapter": 3,
+   "explanation": "Mercanköşk ile kekik benzer görünebilir. Etiketli örnekle karşılaştırılarak ayırt edilir.",
+   "source": {
+    "file": "Baharatlar ve Aromatik Ürünler kart seti",
+    "section": "3. Bölüm · Taze yapraklı bitkiler"
+   },
+   "hint": "Küçük yapraklı bitkileri düşün.",
+   "kalip": "bilgi"
   },
   {
    "id": "bhq-3-4",
@@ -432,7 +1535,8 @@
     "file": "Baharatlar ve Aromatik Ürünler kart seti",
     "section": "3. Bölüm · Taze yapraklı bitkiler"
    },
-   "hint": "Adı bilinmeyen bitkide güvenlik önce gelir."
+   "hint": "Adı bilinmeyen bitkide güvenlik önce gelir.",
+   "kalip": "bilgi"
   },
   {
    "id": "bhq-3-5",
@@ -440,19 +1544,27 @@
    "choices": [
     {
      "id": "A",
-     "text": "Roka"
+     "text": "Roka",
+     "ad": "Roka",
+     "ornek": "assets/baharat/t03_05.jpg"
     },
     {
      "id": "B",
-     "text": "Taze nane"
+     "text": "Taze nane",
+     "ad": "Taze nane",
+     "ornek": "assets/baharat/t03_09.jpg"
     },
     {
      "id": "C",
-     "text": "Maydanoz"
+     "text": "Maydanoz",
+     "ad": "Maydanoz",
+     "ornek": "assets/baharat/t03_08.jpg"
     },
     {
      "id": "D",
-     "text": "Tere"
+     "text": "Tere",
+     "ad": "Tere",
+     "ornek": "assets/baharat/t10_11.jpg"
     }
    ],
    "correct": "C",
@@ -463,7 +1575,264 @@
     "file": "Baharatlar ve Aromatik Ürünler kart seti",
     "section": "3. Bölüm · Taze yapraklı bitkiler"
    },
-   "hint": "Yaprakları aynı biçimde kesilmiş görünen bitkiyi düşün."
+   "hint": "Yaprakları aynı biçimde kesilmiş görünen bitkiyi düşün.",
+   "kalip": "bilgi"
+  },
+  {
+   "id": "bhg-20",
+   "prompt": "Bu baharatın adı nedir?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Safran",
+     "ad": "Safran",
+     "ornek": "assets/baharat/t05_05.jpg"
+    },
+    {
+     "id": "B",
+     "text": "Kırmızı toz biber",
+     "ad": "Kırmızı toz biber",
+     "ornek": "assets/baharat/t01_05.jpg"
+    },
+    {
+     "id": "C",
+     "text": "Pul biber",
+     "ad": "Pul biber",
+     "ornek": "assets/baharat/t01_01.jpg"
+    },
+    {
+     "id": "D",
+     "text": "Zerdeçal",
+     "ad": "Zerdeçal",
+     "ornek": "assets/baharat/t06_01.jpg"
+    }
+   ],
+   "correct": "A",
+   "group": "4. Bölüm · Taze ve kuru hâlleri",
+   "chapter": 4,
+   "explanation": "İnce iplik biçimli bir baharattır. Pilav ve tatlılara renk ve aroma verir; zerdeçalla aynı ürün değildir.",
+   "source": {
+    "file": "Baharatlar ve Aromatik Ürünler kart seti",
+    "section": "4. Bölüm · Taze ve kuru hâlleri"
+   },
+   "hint": "Biçimine bak: çubuk, kapsül, yıldız ya da tomurcuk olabilir.",
+   "kalip": "gorsel-ad",
+   "image": "assets/baharat/t05_05.jpg",
+   "imageAlt": "Baharat fotoğrafı"
+  },
+  {
+   "id": "bhg-23",
+   "prompt": "Bu ürünün adı nedir?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Ihlamur",
+     "ad": "Ihlamur",
+     "ornek": "assets/baharat/t05_03.jpg"
+    },
+    {
+     "id": "B",
+     "text": "Kelebek bezelyesi çiçeği",
+     "ad": "Kelebek bezelyesi çiçeği",
+     "ornek": "assets/baharat/t05_08.jpg"
+    },
+    {
+     "id": "C",
+     "text": "Kuşburnu",
+     "ad": "Kuşburnu",
+     "ornek": "assets/baharat/t05_02.jpg"
+    },
+    {
+     "id": "D",
+     "text": "Papatya",
+     "ad": "Papatya",
+     "ornek": "assets/baharat/t05_09.jpg"
+    }
+   ],
+   "correct": "A",
+   "group": "4. Bölüm · Taze ve kuru hâlleri",
+   "chapter": 4,
+   "explanation": "Ihlamurun çiçekleri, yanlarındaki açık renkli ince yapraklarla birlikte kurutulur. Sıcak içecek hazırlamak için kullanılır.",
+   "source": {
+    "file": "Baharatlar ve Aromatik Ürünler kart seti",
+    "section": "4. Bölüm · Taze ve kuru hâlleri"
+   },
+   "hint": "Yaprağın, çiçeğin ya da parçanın biçimine ve rengine bak.",
+   "kalip": "gorsel-ad",
+   "image": "assets/baharat/t05_03.jpg",
+   "imageAlt": "Baharat fotoğrafı"
+  },
+  {
+   "id": "bhq-4-3",
+   "prompt": "Pilava ve tatlıya renk ve aroma veren, ince iplik biçimli baharat hangisidir?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "",
+     "ad": "Zerdeçal",
+     "image": "assets/baharat/t06_01.jpg",
+     "alt": "Seçenek A"
+    },
+    {
+     "id": "B",
+     "text": "",
+     "ad": "Safran",
+     "image": "assets/baharat/t05_05.jpg",
+     "alt": "Seçenek B"
+    },
+    {
+     "id": "C",
+     "text": "",
+     "ad": "Kuşburnu",
+     "image": "assets/baharat/t05_02.jpg",
+     "alt": "Seçenek C"
+    },
+    {
+     "id": "D",
+     "text": "",
+     "ad": "Ihlamur",
+     "image": "assets/baharat/t05_03.jpg",
+     "alt": "Seçenek D"
+    }
+   ],
+   "correct": "B",
+   "group": "4. Bölüm · Taze ve kuru hâlleri",
+   "chapter": 4,
+   "explanation": "Safran ince iplik biçimlidir. Pilav ve tatlılara renk ve aroma verir.",
+   "source": {
+    "file": "Baharatlar ve Aromatik Ürünler kart seti",
+    "section": "4. Bölüm · Taze ve kuru hâlleri"
+   },
+   "hint": "Biçimi iplik gibi olan baharatı düşün.",
+   "kalip": "tarif"
+  },
+  {
+   "id": "bhq-4-4",
+   "prompt": "Yenilebilir deniz yosununun yaprak biçimli ürünü hangisidir?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "",
+     "ad": "Defne yaprağı",
+     "image": "assets/baharat/t10_01.jpg",
+     "alt": "Seçenek A"
+    },
+    {
+     "id": "B",
+     "text": "",
+     "ad": "Gül yaprağı",
+     "image": "assets/baharat/t05_01.jpg",
+     "alt": "Seçenek B"
+    },
+    {
+     "id": "C",
+     "text": "",
+     "ad": "Nori",
+     "image": "assets/baharat/t04_12.jpg",
+     "alt": "Seçenek C"
+    },
+    {
+     "id": "D",
+     "text": "",
+     "ad": "Kuşburnu",
+     "image": "assets/baharat/t05_02.jpg",
+     "alt": "Seçenek D"
+    }
+   ],
+   "correct": "C",
+   "group": "4. Bölüm · Taze ve kuru hâlleri",
+   "chapter": 4,
+   "explanation": "Nori, yenilebilir deniz yosununun yaprak biçimli ürünüdür. Sarma ve süslemede kullanılır.",
+   "source": {
+    "file": "Baharatlar ve Aromatik Ürünler kart seti",
+    "section": "4. Bölüm · Taze ve kuru hâlleri"
+   },
+   "hint": "Denizden gelen ürünü düşün.",
+   "kalip": "tarif"
+  },
+  {
+   "id": "bhy-03",
+   "prompt": "İnce, kırmızı iplik biçiminde bir baharattır. Pilava ve zerdeye sarı renk verir. Aşağıdakilerden hangisi bu baharattır?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "",
+     "image": "assets/baharat/t01_01.jpg",
+     "alt": "Seçenek A",
+     "ad": "Pul biber"
+    },
+    {
+     "id": "B",
+     "text": "",
+     "image": "assets/baharat/t06_01.jpg",
+     "alt": "Seçenek B",
+     "ad": "Zerdeçal"
+    },
+    {
+     "id": "C",
+     "text": "",
+     "image": "assets/baharat/t05_05.jpg",
+     "alt": "Seçenek C",
+     "ad": "Safran"
+    },
+    {
+     "id": "D",
+     "text": "",
+     "image": "assets/baharat/t01_05.jpg",
+     "alt": "Seçenek D",
+     "ad": "Kırmızı toz biber"
+    }
+   ],
+   "correct": "C",
+   "group": "4. Bölüm · Taze ve kuru hâlleri",
+   "chapter": 4,
+   "explanation": "Safran kırmızı, ince ipliklerdir; yemeğe sarı renk ve aroma verir. Zerdeçal sarı toz ya da turuncu köktür.",
+   "source": {
+    "file": "Baharatlar ve Aromatik Ürünler kart seti",
+    "section": "4. Bölüm · Taze ve kuru hâlleri"
+   },
+   "hint": "İplik biçimli olanı ara.",
+   "kalip": "tarif"
+  },
+  {
+   "id": "bhy-06",
+   "prompt": "Yayla çorbasına eklenen kuru yaprak hangisidir?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Kuru biberiye",
+     "ad": "Kuru biberiye",
+     "ornek": "assets/baharat/t04_11.jpg"
+    },
+    {
+     "id": "B",
+     "text": "Kuru dereotu",
+     "ad": "Kuru dereotu",
+     "ornek": "assets/baharat/t04_05.jpg"
+    },
+    {
+     "id": "C",
+     "text": "Kuru kekik",
+     "ad": "Kuru kekik",
+     "ornek": "assets/baharat/t04_03.jpg"
+    },
+    {
+     "id": "D",
+     "text": "Kuru nane",
+     "ad": "Kuru nane",
+     "ornek": "assets/baharat/t04_01.jpg"
+    }
+   ],
+   "correct": "D",
+   "group": "4. Bölüm · Taze ve kuru hâlleri",
+   "chapter": 4,
+   "explanation": "Yayla çorbasına tereyağında çevrilen kuru nane eklenir.",
+   "source": {
+    "file": "Baharatlar ve Aromatik Ürünler kart seti",
+    "section": "4. Bölüm · Taze ve kuru hâlleri"
+   },
+   "hint": "Cacıkta da kullanılan yaprağı düşün.",
+   "kalip": "durum"
   },
   {
    "id": "bhq-4-1",
@@ -494,7 +1863,8 @@
     "file": "Baharatlar ve Aromatik Ürünler kart seti",
     "section": "4. Bölüm · Taze ve kuru hâlleri"
    },
-   "hint": "Paketin üzerindeki adı düşün."
+   "hint": "Paketin üzerindeki adı düşün.",
+   "kalip": "bilgi"
   },
   {
    "id": "bhq-4-2",
@@ -525,69 +1895,8 @@
     "file": "Baharatlar ve Aromatik Ürünler kart seti",
     "section": "4. Bölüm · Taze ve kuru hâlleri"
    },
-   "hint": "Biçimlerine bak: biri iplik, biri toz."
-  },
-  {
-   "id": "bhq-4-3",
-   "prompt": "Pilava ve tatlıya renk ve aroma veren, ince iplik biçimli baharat hangisidir?",
-   "choices": [
-    {
-     "id": "A",
-     "text": "Zerdeçal"
-    },
-    {
-     "id": "B",
-     "text": "Safran"
-    },
-    {
-     "id": "C",
-     "text": "Kuşburnu"
-    },
-    {
-     "id": "D",
-     "text": "Ihlamur"
-    }
-   ],
-   "correct": "B",
-   "group": "4. Bölüm · Taze ve kuru hâlleri",
-   "chapter": 4,
-   "explanation": "Safran ince iplik biçimlidir. Pilav ve tatlılara renk ve aroma verir.",
-   "source": {
-    "file": "Baharatlar ve Aromatik Ürünler kart seti",
-    "section": "4. Bölüm · Taze ve kuru hâlleri"
-   },
-   "hint": "Biçimi iplik gibi olan baharatı düşün."
-  },
-  {
-   "id": "bhq-4-4",
-   "prompt": "Yenilebilir deniz yosununun yaprak biçimli ürünü hangisidir?",
-   "choices": [
-    {
-     "id": "A",
-     "text": "Defne yaprağı"
-    },
-    {
-     "id": "B",
-     "text": "Gül yaprağı"
-    },
-    {
-     "id": "C",
-     "text": "Nori"
-    },
-    {
-     "id": "D",
-     "text": "Kuşburnu"
-    }
-   ],
-   "correct": "C",
-   "group": "4. Bölüm · Taze ve kuru hâlleri",
-   "chapter": 4,
-   "explanation": "Nori, yenilebilir deniz yosununun yaprak biçimli ürünüdür. Sarma ve süslemede kullanılır.",
-   "source": {
-    "file": "Baharatlar ve Aromatik Ürünler kart seti",
-    "section": "4. Bölüm · Taze ve kuru hâlleri"
-   },
-   "hint": "Denizden gelen ürünü düşün."
+   "hint": "Biçimlerine bak: biri iplik, biri toz.",
+   "kalip": "bilgi"
   },
   {
    "id": "bhq-4-5",
@@ -618,7 +1927,92 @@
     "file": "Baharatlar ve Aromatik Ürünler kart seti",
     "section": "4. Bölüm · Taze ve kuru hâlleri"
    },
-   "hint": "Kurutulmuş ihlamurun görünüşünü düşün."
+   "hint": "Kurutulmuş ihlamurun görünüşünü düşün.",
+   "kalip": "bilgi"
+  },
+  {
+   "id": "bhg-21",
+   "prompt": "Bu baharatın adı nedir?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Meyan kökü",
+     "ad": "Meyan kökü",
+     "ornek": "assets/baharat/t05_10.jpg"
+    },
+    {
+     "id": "B",
+     "text": "Demirhindi",
+     "ad": "Demirhindi",
+     "ornek": "assets/baharat/t07_04.jpg"
+    },
+    {
+     "id": "C",
+     "text": "Zerdeçal",
+     "ad": "Zerdeçal",
+     "ornek": "assets/baharat/t06_01.jpg"
+    },
+    {
+     "id": "D",
+     "text": "Zencefil",
+     "ad": "Zencefil",
+     "ornek": "assets/baharat/t06_02.jpg"
+    }
+   ],
+   "correct": "C",
+   "group": "5. Bölüm · Çiçekler, kökler ve tozlar",
+   "chapter": 5,
+   "explanation": "Zerdeçal, bitkinin toprak altı gövdesinden elde edilen bir baharattır. Yemeklere sarı renk ve aroma verir.",
+   "source": {
+    "file": "Baharatlar ve Aromatik Ürünler kart seti",
+    "section": "5. Bölüm · Çiçekler, kökler ve tozlar"
+   },
+   "hint": "Yaprağın, çiçeğin ya da parçanın biçimine ve rengine bak.",
+   "kalip": "gorsel-ad",
+   "image": "assets/baharat/t06_01.jpg",
+   "imageAlt": "Baharat fotoğrafı"
+  },
+  {
+   "id": "bhg-22",
+   "prompt": "Bu ürünün adı nedir?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Lavanta",
+     "ad": "Lavanta",
+     "ornek": "assets/baharat/t05_06.jpg"
+    },
+    {
+     "id": "B",
+     "text": "Kuşburnu",
+     "ad": "Kuşburnu",
+     "ornek": "assets/baharat/t05_02.jpg"
+    },
+    {
+     "id": "C",
+     "text": "Gül yaprağı",
+     "ad": "Gül yaprağı",
+     "ornek": "assets/baharat/t05_01.jpg"
+    },
+    {
+     "id": "D",
+     "text": "Hibiskus",
+     "ad": "Hibiskus",
+     "ornek": "assets/baharat/t05_07.jpg"
+    }
+   ],
+   "correct": "D",
+   "group": "5. Bölüm · Çiçekler, kökler ve tozlar",
+   "chapter": 5,
+   "explanation": "Kurutulmuş çanak yaprakları içeceklere kırmızı renk ve ekşi tat verir. Gıda kullanımına uygun ürün seçilir.",
+   "source": {
+    "file": "Baharatlar ve Aromatik Ürünler kart seti",
+    "section": "5. Bölüm · Çiçekler, kökler ve tozlar"
+   },
+   "hint": "Yaprağın, çiçeğin ya da parçanın biçimine ve rengine bak.",
+   "kalip": "gorsel-ad",
+   "image": "assets/baharat/t05_07.jpg",
+   "imageAlt": "Baharat fotoğrafı"
   },
   {
    "id": "bhq-5-1",
@@ -626,19 +2020,31 @@
    "choices": [
     {
      "id": "A",
-     "text": "Zerdeçal"
+     "text": "",
+     "ad": "Zerdeçal",
+     "image": "assets/baharat/t06_01.jpg",
+     "alt": "Seçenek A"
     },
     {
      "id": "B",
-     "text": "Zencefil"
+     "text": "",
+     "ad": "Zencefil",
+     "image": "assets/baharat/t06_02.jpg",
+     "alt": "Seçenek B"
     },
     {
      "id": "C",
-     "text": "Kakao"
+     "text": "",
+     "ad": "Kakao",
+     "image": "assets/baharat/t06_05.jpg",
+     "alt": "Seçenek C"
     },
     {
      "id": "D",
-     "text": "Hibiskus"
+     "text": "",
+     "ad": "Hibiskus",
+     "image": "assets/baharat/t05_07.jpg",
+     "alt": "Seçenek D"
     }
    ],
    "correct": "A",
@@ -649,7 +2055,52 @@
     "file": "Baharatlar ve Aromatik Ürünler kart seti",
     "section": "5. Bölüm · Çiçekler, kökler ve tozlar"
    },
-   "hint": "Rengi en belirgin olan baharatı düşün."
+   "hint": "Rengi en belirgin olan baharatı düşün.",
+   "kalip": "tarif"
+  },
+  {
+   "id": "bhq-5-4",
+   "prompt": "Kek ve kurabiyeye koyu renk ve tat veren ürün hangisidir?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "",
+     "ad": "Zerdeçal",
+     "image": "assets/baharat/t06_01.jpg",
+     "alt": "Seçenek A"
+    },
+    {
+     "id": "B",
+     "text": "",
+     "ad": "Esmer şeker",
+     "image": "assets/baharat/t11_07.jpg",
+     "alt": "Seçenek B"
+    },
+    {
+     "id": "C",
+     "text": "",
+     "ad": "Meyan kökü",
+     "image": "assets/baharat/t05_10.jpg",
+     "alt": "Seçenek C"
+    },
+    {
+     "id": "D",
+     "text": "",
+     "ad": "Kakao",
+     "image": "assets/baharat/t06_05.jpg",
+     "alt": "Seçenek D"
+    }
+   ],
+   "correct": "D",
+   "group": "5. Bölüm · Çiçekler, kökler ve tozlar",
+   "chapter": 5,
+   "explanation": "Kakao tozu, kakao çekirdeklerinin işlenmesiyle elde edilir. Kek, kurabiye ve tatlılarda kullanılır.",
+   "source": {
+    "file": "Baharatlar ve Aromatik Ürünler kart seti",
+    "section": "5. Bölüm · Çiçekler, kökler ve tozlar"
+   },
+   "hint": "Rengi koyulaştıran ürünü düşün.",
+   "kalip": "tarif"
   },
   {
    "id": "bhq-5-2",
@@ -657,19 +2108,27 @@
    "choices": [
     {
      "id": "A",
-     "text": "Papatya"
+     "text": "Papatya",
+     "ad": "Papatya",
+     "ornek": "assets/baharat/t05_09.jpg"
     },
     {
      "id": "B",
-     "text": "Hibiskus"
+     "text": "Hibiskus",
+     "ad": "Hibiskus",
+     "ornek": "assets/baharat/t05_07.jpg"
     },
     {
      "id": "C",
-     "text": "Lavanta"
+     "text": "Lavanta",
+     "ad": "Lavanta",
+     "ornek": "assets/baharat/t05_06.jpg"
     },
     {
      "id": "D",
-     "text": "Melisa"
+     "text": "Melisa",
+     "ad": "Melisa",
+     "ornek": "assets/baharat/t03_11.jpg"
     }
    ],
    "correct": "B",
@@ -680,7 +2139,8 @@
     "file": "Baharatlar ve Aromatik Ürünler kart seti",
     "section": "5. Bölüm · Çiçekler, kökler ve tozlar"
    },
-   "hint": "Rengi kırmızı olan içeceği düşün."
+   "hint": "Rengi kırmızı olan içeceği düşün.",
+   "kalip": "bilgi"
   },
   {
    "id": "bhq-5-3",
@@ -711,38 +2171,8 @@
     "file": "Baharatlar ve Aromatik Ürünler kart seti",
     "section": "5. Bölüm · Çiçekler, kökler ve tozlar"
    },
-   "hint": "Paketin üzerindeki bilgiyi düşün."
-  },
-  {
-   "id": "bhq-5-4",
-   "prompt": "Kek ve kurabiyeye koyu renk ve tat veren ürün hangisidir?",
-   "choices": [
-    {
-     "id": "A",
-     "text": "Zerdeçal"
-    },
-    {
-     "id": "B",
-     "text": "Esmer şeker"
-    },
-    {
-     "id": "C",
-     "text": "Meyan kökü"
-    },
-    {
-     "id": "D",
-     "text": "Kakao"
-    }
-   ],
-   "correct": "D",
-   "group": "5. Bölüm · Çiçekler, kökler ve tozlar",
-   "chapter": 5,
-   "explanation": "Kakao tozu, kakao çekirdeklerinin işlenmesiyle elde edilir. Kek, kurabiye ve tatlılarda kullanılır.",
-   "source": {
-    "file": "Baharatlar ve Aromatik Ürünler kart seti",
-    "section": "5. Bölüm · Çiçekler, kökler ve tozlar"
-   },
-   "hint": "Rengi koyulaştıran ürünü düşün."
+   "hint": "Paketin üzerindeki bilgiyi düşün.",
+   "kalip": "bilgi"
   },
   {
    "id": "bhq-5-5",
@@ -773,7 +2203,178 @@
     "file": "Baharatlar ve Aromatik Ürünler kart seti",
     "section": "5. Bölüm · Çiçekler, kökler ve tozlar"
    },
-   "hint": "Çiçeğin rengi tek başına yetmez."
+   "hint": "Çiçeğin rengi tek başına yetmez.",
+   "kalip": "bilgi"
+  },
+  {
+   "id": "bhg-29",
+   "prompt": "Bu meyvenin adı nedir?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Kuru dut",
+     "ad": "Kuru dut",
+     "ornek": "assets/baharat/t08_09.jpg"
+    },
+    {
+     "id": "B",
+     "text": "Limon",
+     "ad": "Limon",
+     "ornek": "assets/baharat/t08_04.jpg"
+    },
+    {
+     "id": "C",
+     "text": "Kuru kayısı",
+     "ad": "Kuru kayısı",
+     "ornek": "assets/baharat/v10-kayisi.png"
+    },
+    {
+     "id": "D",
+     "text": "Nar",
+     "ad": "Nar",
+     "ornek": "assets/baharat/t08_01.jpg"
+    }
+   ],
+   "correct": "C",
+   "group": "6. Bölüm · Meyveler ve kuru meyveler",
+   "chapter": 6,
+   "explanation": "Kayısının kurutulmuş biçimidir. Tatlı, komposto ve bazı yemeklerde kullanılır.",
+   "source": {
+    "file": "Baharatlar ve Aromatik Ürünler kart seti",
+    "section": "6. Bölüm · Meyveler ve kuru meyveler"
+   },
+   "hint": "Rengine, biçimine ve yüzeyine bak.",
+   "kalip": "gorsel-ad",
+   "image": "assets/baharat/v10-kayisi.png",
+   "imageAlt": "Baharat fotoğrafı"
+  },
+  {
+   "id": "bhg-30",
+   "prompt": "Bu meyvenin adı nedir?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Nar",
+     "ad": "Nar",
+     "ornek": "assets/baharat/t08_01.jpg"
+    },
+    {
+     "id": "B",
+     "text": "Turna yemişi",
+     "ad": "Turna yemişi",
+     "ornek": "assets/baharat/t08_05.jpg"
+    },
+    {
+     "id": "C",
+     "text": "Kuru kayısı",
+     "ad": "Kuru kayısı",
+     "ornek": "assets/baharat/v10-kayisi.png"
+    },
+    {
+     "id": "D",
+     "text": "Kuru incir",
+     "ad": "Kuru incir",
+     "ornek": "assets/baharat/v10-incir.png"
+    }
+   ],
+   "correct": "D",
+   "group": "6. Bölüm · Meyveler ve kuru meyveler",
+   "chapter": 6,
+   "explanation": "İncirin kurutulmuş biçimidir. Tatlı ve hamur işlerinde kullanılır. Yassı ve buruşuktur; ucunda kısa bir sapı vardır.",
+   "source": {
+    "file": "Baharatlar ve Aromatik Ürünler kart seti",
+    "section": "6. Bölüm · Meyveler ve kuru meyveler"
+   },
+   "hint": "Rengine, biçimine ve yüzeyine bak.",
+   "kalip": "gorsel-ad",
+   "image": "assets/baharat/v10-incir.png",
+   "imageAlt": "Baharat fotoğrafı"
+  },
+  {
+   "id": "bhg-31",
+   "prompt": "Bu meyvenin adı nedir?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Kuru kayısı",
+     "ad": "Kuru kayısı",
+     "ornek": "assets/baharat/v10-kayisi.png"
+    },
+    {
+     "id": "B",
+     "text": "Nar",
+     "ad": "Nar",
+     "ornek": "assets/baharat/t08_01.jpg"
+    },
+    {
+     "id": "C",
+     "text": "Hurma",
+     "ad": "Hurma",
+     "ornek": "assets/baharat/t08_10.jpg"
+    },
+    {
+     "id": "D",
+     "text": "Limon",
+     "ad": "Limon",
+     "ornek": "assets/baharat/t08_04.jpg"
+    }
+   ],
+   "correct": "C",
+   "group": "6. Bölüm · Meyveler ve kuru meyveler",
+   "chapter": 6,
+   "explanation": "Çekirdekli bir meyvedir. Tatlı hazırlanırken çekirdeği çıkarılır.",
+   "source": {
+    "file": "Baharatlar ve Aromatik Ürünler kart seti",
+    "section": "6. Bölüm · Meyveler ve kuru meyveler"
+   },
+   "hint": "Rengine, biçimine ve yüzeyine bak.",
+   "kalip": "gorsel-ad",
+   "image": "assets/baharat/t08_10.jpg",
+   "imageAlt": "Baharat fotoğrafı"
+  },
+  {
+   "id": "bhq-6-5",
+   "prompt": "Pekmez ve toz ürünlerde kullanılan, uzun ve koyu renkli meyve hangisidir?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "",
+     "ad": "Kuru incir",
+     "image": "assets/baharat/v10-incir.png",
+     "alt": "Seçenek A"
+    },
+    {
+     "id": "B",
+     "text": "",
+     "ad": "Keçiboynuzu",
+     "image": "assets/baharat/t08_12.jpg",
+     "alt": "Seçenek B"
+    },
+    {
+     "id": "C",
+     "text": "",
+     "ad": "Hurma",
+     "image": "assets/baharat/t08_10.jpg",
+     "alt": "Seçenek C"
+    },
+    {
+     "id": "D",
+     "text": "",
+     "ad": "Kuru kayısı",
+     "image": "assets/baharat/v10-kayisi.png",
+     "alt": "Seçenek D"
+    }
+   ],
+   "correct": "B",
+   "group": "6. Bölüm · Meyveler ve kuru meyveler",
+   "chapter": 6,
+   "explanation": "Keçiboynuzunun uzun ve koyu renkli meyveleri vardır. Toz ve pekmez gibi ürünlerde kullanılır.",
+   "source": {
+    "file": "Baharatlar ve Aromatik Ürünler kart seti",
+    "section": "6. Bölüm · Meyveler ve kuru meyveler"
+   },
+   "hint": "Biçimi uzun ve yassı olan meyveyi düşün.",
+   "kalip": "tarif"
   },
   {
    "id": "bhq-6-1",
@@ -804,7 +2405,8 @@
     "file": "Baharatlar ve Aromatik Ürünler kart seti",
     "section": "6. Bölüm · Meyveler ve kuru meyveler"
    },
-   "hint": "Kabuğun hangi katmanı kokuludur, onu düşün."
+   "hint": "Kabuğun hangi katmanı kokuludur, onu düşün.",
+   "kalip": "bilgi"
   },
   {
    "id": "bhq-6-2",
@@ -835,7 +2437,8 @@
     "file": "Baharatlar ve Aromatik Ürünler kart seti",
     "section": "6. Bölüm · Meyveler ve kuru meyveler"
    },
-   "hint": "Tabağa konan bölümü düşün."
+   "hint": "Tabağa konan bölümü düşün.",
+   "kalip": "bilgi"
   },
   {
    "id": "bhq-6-3",
@@ -866,7 +2469,8 @@
     "file": "Baharatlar ve Aromatik Ürünler kart seti",
     "section": "6. Bölüm · Meyveler ve kuru meyveler"
    },
-   "hint": "Meyvenin içinde ne var, onu düşün."
+   "hint": "Meyvenin içinde ne var, onu düşün.",
+   "kalip": "bilgi"
   },
   {
    "id": "bhq-6-4",
@@ -874,19 +2478,27 @@
    "choices": [
     {
      "id": "A",
-     "text": "Kuru üzüm"
+     "text": "Kuru üzüm",
+     "ad": "Kuru üzüm",
+     "ornek": "assets/baharat/v10-uzum.png"
     },
     {
      "id": "B",
-     "text": "Kuru dut"
+     "text": "Kuru dut",
+     "ad": "Kuru dut",
+     "ornek": "assets/baharat/t08_09.jpg"
     },
     {
      "id": "C",
-     "text": "Turna yemişi"
+     "text": "Turna yemişi",
+     "ad": "Turna yemişi",
+     "ornek": "assets/baharat/t08_05.jpg"
     },
     {
      "id": "D",
-     "text": "Keçiboynuzu"
+     "text": "Keçiboynuzu",
+     "ad": "Keçiboynuzu",
+     "ornek": "assets/baharat/t08_12.jpg"
     }
    ],
    "correct": "A",
@@ -897,38 +2509,302 @@
     "file": "Baharatlar ve Aromatik Ürünler kart seti",
     "section": "6. Bölüm · Meyveler ve kuru meyveler"
    },
-   "hint": "Adı meyvenin adıyla aynı olan ürünü düşün."
+   "hint": "Adı meyvenin adıyla aynı olan ürünü düşün.",
+   "kalip": "bilgi"
   },
   {
-   "id": "bhq-6-5",
-   "prompt": "Pekmez ve toz ürünlerde kullanılan, uzun ve koyu renkli meyve hangisidir?",
+   "id": "bhg-19",
+   "prompt": "Bu bitkinin adı nedir?",
    "choices": [
     {
      "id": "A",
-     "text": "Kuru incir"
+     "text": "Limon otu",
+     "ad": "Limon otu",
+     "ornek": "assets/baharat/t05_11.jpg"
     },
     {
      "id": "B",
-     "text": "Keçiboynuzu"
+     "text": "Mercanköşk",
+     "ad": "Mercanköşk",
+     "ornek": "assets/baharat/t03_06.jpg"
     },
     {
      "id": "C",
-     "text": "Hurma"
+     "text": "Defne yaprağı",
+     "ad": "Defne yaprağı",
+     "ornek": "assets/baharat/t10_01.jpg"
     },
     {
      "id": "D",
-     "text": "Kuru kayısı"
+     "text": "Biberiye",
+     "ad": "Biberiye",
+     "ornek": "assets/baharat/t04_11.jpg"
+    }
+   ],
+   "correct": "C",
+   "group": "7. Bölüm · Sert kabuklu yemişler",
+   "chapter": 7,
+   "explanation": "Bütün yaprakları yemeğe aroma verir. Servisten önce yaprak çıkarılır.",
+   "source": {
+    "file": "Baharatlar ve Aromatik Ürünler kart seti",
+    "section": "7. Bölüm · Sert kabuklu yemişler"
+   },
+   "hint": "Yaprağın, çiçeğin ya da parçanın biçimine ve rengine bak.",
+   "kalip": "gorsel-ad",
+   "image": "assets/baharat/t10_01.jpg",
+   "imageAlt": "Baharat fotoğrafı"
+  },
+  {
+   "id": "bhg-24",
+   "prompt": "Bu yemişin adı nedir?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Dolmalık fıstık",
+     "ad": "Dolmalık fıstık",
+     "ornek": "assets/baharat/t09_01.jpg"
+    },
+    {
+     "id": "B",
+     "text": "Yer fıstığı",
+     "ad": "Yer fıstığı",
+     "ornek": "assets/baharat/t09_06.jpg"
+    },
+    {
+     "id": "C",
+     "text": "Fındık",
+     "ad": "Fındık",
+     "ornek": "assets/baharat/t09_07.jpg"
+    },
+    {
+     "id": "D",
+     "text": "Antep fıstığı",
+     "ad": "Antep fıstığı",
+     "ornek": "assets/baharat/t09_04.jpg"
+    }
+   ],
+   "correct": "D",
+   "group": "7. Bölüm · Sert kabuklu yemişler",
+   "chapter": 7,
+   "explanation": "Yeşil iç rengiyle tanınan bir sert kabuklu yemiştir. Tatlı ve süslemede kullanılır.",
+   "source": {
+    "file": "Baharatlar ve Aromatik Ürünler kart seti",
+    "section": "7. Bölüm · Sert kabuklu yemişler"
+   },
+   "hint": "Biçimine ve iç rengine bak.",
+   "kalip": "gorsel-ad",
+   "image": "assets/baharat/t09_04.jpg",
+   "imageAlt": "Baharat fotoğrafı"
+  },
+  {
+   "id": "bhg-25",
+   "prompt": "Bu yemişin adı nedir?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Fındık",
+     "ad": "Fındık",
+     "ornek": "assets/baharat/t09_07.jpg"
+    },
+    {
+     "id": "B",
+     "text": "Antep fıstığı",
+     "ad": "Antep fıstığı",
+     "ornek": "assets/baharat/t09_04.jpg"
+    },
+    {
+     "id": "C",
+     "text": "Yer fıstığı",
+     "ad": "Yer fıstığı",
+     "ornek": "assets/baharat/t09_06.jpg"
+    },
+    {
+     "id": "D",
+     "text": "Dolmalık fıstık",
+     "ad": "Dolmalık fıstık",
+     "ornek": "assets/baharat/t09_01.jpg"
+    }
+   ],
+   "correct": "C",
+   "group": "7. Bölüm · Sert kabuklu yemişler",
+   "chapter": 7,
+   "explanation": "Taneleri kabuk içinde bulunur. Ezme, tatlı ve yemeklerde kullanılır; Antep fıstığından farklıdır.",
+   "source": {
+    "file": "Baharatlar ve Aromatik Ürünler kart seti",
+    "section": "7. Bölüm · Sert kabuklu yemişler"
+   },
+   "hint": "Biçimine ve iç rengine bak.",
+   "kalip": "gorsel-ad",
+   "image": "assets/baharat/t09_06.jpg",
+   "imageAlt": "Baharat fotoğrafı"
+  },
+  {
+   "id": "bhg-26",
+   "prompt": "Bu yemişin adı nedir?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Fındık",
+     "ad": "Fındık",
+     "ornek": "assets/baharat/t09_07.jpg"
+    },
+    {
+     "id": "B",
+     "text": "Yer fıstığı",
+     "ad": "Yer fıstığı",
+     "ornek": "assets/baharat/t09_06.jpg"
+    },
+    {
+     "id": "C",
+     "text": "Badem",
+     "ad": "Badem",
+     "ornek": "assets/baharat/t09_03.jpg"
+    },
+    {
+     "id": "D",
+     "text": "Kaju",
+     "ad": "Kaju",
+     "ornek": "assets/baharat/t09_08.jpg"
+    }
+   ],
+   "correct": "D",
+   "group": "7. Bölüm · Sert kabuklu yemişler",
+   "chapter": 7,
+   "explanation": "Kıvrık biçimli bir sert kabuklu yemiştir. Tatlı ve yemeklerde kullanılır. İçi açık renklidir.",
+   "source": {
+    "file": "Baharatlar ve Aromatik Ürünler kart seti",
+    "section": "7. Bölüm · Sert kabuklu yemişler"
+   },
+   "hint": "Biçimine ve iç rengine bak.",
+   "kalip": "gorsel-ad",
+   "image": "assets/baharat/t09_08.jpg",
+   "imageAlt": "Baharat fotoğrafı"
+  },
+  {
+   "id": "bhg-27",
+   "prompt": "Bu yemişin adı nedir?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Fındık",
+     "ad": "Fındık",
+     "ornek": "assets/baharat/t09_07.jpg"
+    },
+    {
+     "id": "B",
+     "text": "Badem",
+     "ad": "Badem",
+     "ornek": "assets/baharat/t09_03.jpg"
+    },
+    {
+     "id": "C",
+     "text": "Ceviz",
+     "ad": "Ceviz",
+     "ornek": "assets/baharat/t09_05.jpg"
+    },
+    {
+     "id": "D",
+     "text": "Kaju",
+     "ad": "Kaju",
+     "ornek": "assets/baharat/t09_08.jpg"
     }
    ],
    "correct": "B",
-   "group": "6. Bölüm · Meyveler ve kuru meyveler",
-   "chapter": 6,
-   "explanation": "Keçiboynuzunun uzun ve koyu renkli meyveleri vardır. Toz ve pekmez gibi ürünlerde kullanılır.",
+   "group": "7. Bölüm · Sert kabuklu yemişler",
+   "chapter": 7,
+   "explanation": "Uzunca biçimli bir sert kabuklu yemiştir. Tatlı, hamur işi ve yemeklerde kullanılır.",
    "source": {
     "file": "Baharatlar ve Aromatik Ürünler kart seti",
-    "section": "6. Bölüm · Meyveler ve kuru meyveler"
+    "section": "7. Bölüm · Sert kabuklu yemişler"
    },
-   "hint": "Biçimi uzun ve yassı olan meyveyi düşün."
+   "hint": "Biçimine ve iç rengine bak.",
+   "kalip": "gorsel-ad",
+   "image": "assets/baharat/t09_03.jpg",
+   "imageAlt": "Baharat fotoğrafı"
+  },
+  {
+   "id": "bhg-28",
+   "prompt": "Bu yemişin adı nedir?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Ceviz",
+     "ad": "Ceviz",
+     "ornek": "assets/baharat/t09_05.jpg"
+    },
+    {
+     "id": "B",
+     "text": "Fındık",
+     "ad": "Fındık",
+     "ornek": "assets/baharat/t09_07.jpg"
+    },
+    {
+     "id": "C",
+     "text": "Antep fıstığı",
+     "ad": "Antep fıstığı",
+     "ornek": "assets/baharat/t09_04.jpg"
+    },
+    {
+     "id": "D",
+     "text": "Dolmalık fıstık",
+     "ad": "Dolmalık fıstık",
+     "ornek": "assets/baharat/t09_01.jpg"
+    }
+   ],
+   "correct": "A",
+   "group": "7. Bölüm · Sert kabuklu yemişler",
+   "chapter": 7,
+   "explanation": "Girintili çıkıntılı iç yapısı vardır. Tatlı, salata ve hamur işlerinde kullanılır.",
+   "source": {
+    "file": "Baharatlar ve Aromatik Ürünler kart seti",
+    "section": "7. Bölüm · Sert kabuklu yemişler"
+   },
+   "hint": "Biçimine ve iç rengine bak.",
+   "kalip": "gorsel-ad",
+   "image": "assets/baharat/t09_05.jpg",
+   "imageAlt": "Baharat fotoğrafı"
+  },
+  {
+   "id": "bhg-34",
+   "prompt": "Bu tohumun adı nedir?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Kişniş tohumu",
+     "ad": "Kişniş tohumu",
+     "ornek": "assets/baharat/t02_01.jpg"
+    },
+    {
+     "id": "B",
+     "text": "Anason",
+     "ad": "Anason",
+     "ornek": "assets/baharat/t02_10.jpg"
+    },
+    {
+     "id": "C",
+     "text": "Keten tohumu",
+     "ad": "Keten tohumu",
+     "ornek": "assets/baharat/t09_10.jpg"
+    },
+    {
+     "id": "D",
+     "text": "Çemen",
+     "ad": "Çemen",
+     "ornek": "assets/baharat/t02_06.jpg"
+    }
+   ],
+   "correct": "C",
+   "group": "7. Bölüm · Sert kabuklu yemişler",
+   "chapter": 7,
+   "explanation": "Küçük ve parlak yüzeyli tohumlardır. Ekmek ve bazı tariflerde kullanılır.",
+   "source": {
+    "file": "Baharatlar ve Aromatik Ürünler kart seti",
+    "section": "7. Bölüm · Sert kabuklu yemişler"
+   },
+   "hint": "Tanenin biçimine, rengine ve büyüklüğüne bak.",
+   "kalip": "gorsel-ad",
+   "image": "assets/baharat/t09_10.jpg",
+   "imageAlt": "Baharat fotoğrafı"
   },
   {
    "id": "bhq-7-1",
@@ -936,19 +2812,31 @@
    "choices": [
     {
      "id": "A",
-     "text": "Antep fıstığı"
+     "text": "",
+     "ad": "Antep fıstığı",
+     "image": "assets/baharat/t09_04.jpg",
+     "alt": "Seçenek A"
     },
     {
      "id": "B",
-     "text": "Yer fıstığı"
+     "text": "",
+     "ad": "Yer fıstığı",
+     "image": "assets/baharat/t09_06.jpg",
+     "alt": "Seçenek B"
     },
     {
      "id": "C",
-     "text": "Dolmalık fıstık"
+     "text": "",
+     "ad": "Dolmalık fıstık",
+     "image": "assets/baharat/t09_01.jpg",
+     "alt": "Seçenek C"
     },
     {
      "id": "D",
-     "text": "Kaju"
+     "text": "",
+     "ad": "Kaju",
+     "image": "assets/baharat/t09_08.jpg",
+     "alt": "Seçenek D"
     }
    ],
    "correct": "C",
@@ -959,7 +2847,224 @@
     "file": "Baharatlar ve Aromatik Ürünler kart seti",
     "section": "7. Bölüm · Sert kabuklu yemişler"
    },
-   "hint": "Adı yemeğin adıyla anılan yemişi düşün."
+   "hint": "Adı yemeğin adıyla anılan yemişi düşün.",
+   "kalip": "tarif"
+  },
+  {
+   "id": "bhq-7-3",
+   "prompt": "Girintili çıkıntılı iç yapısıyla tanınan sert kabuklu yemiş hangisidir?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "",
+     "ad": "Ceviz",
+     "image": "assets/baharat/t09_05.jpg",
+     "alt": "Seçenek A"
+    },
+    {
+     "id": "B",
+     "text": "",
+     "ad": "Badem",
+     "image": "assets/baharat/t09_03.jpg",
+     "alt": "Seçenek B"
+    },
+    {
+     "id": "C",
+     "text": "",
+     "ad": "Fındık",
+     "image": "assets/baharat/t09_07.jpg",
+     "alt": "Seçenek C"
+    },
+    {
+     "id": "D",
+     "text": "",
+     "ad": "Kaju",
+     "image": "assets/baharat/t09_08.jpg",
+     "alt": "Seçenek D"
+    }
+   ],
+   "correct": "A",
+   "group": "7. Bölüm · Sert kabuklu yemişler",
+   "chapter": 7,
+   "explanation": "Cevizin içi girintili çıkıntılıdır. Tatlı, salata ve hamur işlerinde kullanılır.",
+   "source": {
+    "file": "Baharatlar ve Aromatik Ürünler kart seti",
+    "section": "7. Bölüm · Sert kabuklu yemişler"
+   },
+   "hint": "İçinin biçimine bak.",
+   "kalip": "tarif"
+  },
+  {
+   "id": "bhq-7-5",
+   "prompt": "Yeşil iç rengiyle tanınan sert kabuklu yemiş hangisidir?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "",
+     "ad": "Kestane",
+     "image": "assets/baharat/t09_09.jpg",
+     "alt": "Seçenek A"
+    },
+    {
+     "id": "B",
+     "text": "",
+     "ad": "Badem",
+     "image": "assets/baharat/t09_03.jpg",
+     "alt": "Seçenek B"
+    },
+    {
+     "id": "C",
+     "text": "",
+     "ad": "Antep fıstığı",
+     "image": "assets/baharat/t09_04.jpg",
+     "alt": "Seçenek C"
+    },
+    {
+     "id": "D",
+     "text": "",
+     "ad": "Fındık",
+     "image": "assets/baharat/t09_07.jpg",
+     "alt": "Seçenek D"
+    }
+   ],
+   "correct": "C",
+   "group": "7. Bölüm · Sert kabuklu yemişler",
+   "chapter": 7,
+   "explanation": "Antep fıstığı yeşil iç rengiyle tanınır. Tatlı ve süslemede kullanılır.",
+   "source": {
+    "file": "Baharatlar ve Aromatik Ürünler kart seti",
+    "section": "7. Bölüm · Sert kabuklu yemişler"
+   },
+   "hint": "İçinin rengine bak.",
+   "kalip": "tarif"
+  },
+  {
+   "id": "bhy-07",
+   "prompt": "İç pilava ve sarmalara eklenen, küçük, uzunca, krem renkli yemiş hangisidir?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "",
+     "image": "assets/baharat/t09_03.jpg",
+     "alt": "Seçenek A",
+     "ad": "Badem"
+    },
+    {
+     "id": "B",
+     "text": "",
+     "image": "assets/baharat/t09_01.jpg",
+     "alt": "Seçenek B",
+     "ad": "Dolmalık fıstık"
+    },
+    {
+     "id": "C",
+     "text": "",
+     "image": "assets/baharat/t09_06.jpg",
+     "alt": "Seçenek C",
+     "ad": "Yer fıstığı"
+    },
+    {
+     "id": "D",
+     "text": "",
+     "image": "assets/baharat/t09_04.jpg",
+     "alt": "Seçenek D",
+     "ad": "Antep fıstığı"
+    }
+   ],
+   "correct": "B",
+   "group": "7. Bölüm · Sert kabuklu yemişler",
+   "chapter": 7,
+   "explanation": "Dolmalık fıstık küçük, uzunca ve krem renklidir; çam fıstığı olarak da bilinir. Antep fıstığının içi yeşildir.",
+   "source": {
+    "file": "Baharatlar ve Aromatik Ürünler kart seti",
+    "section": "7. Bölüm · Sert kabuklu yemişler"
+   },
+   "hint": "Küçük ve krem renkli olanı ara.",
+   "kalip": "tarif"
+  },
+  {
+   "id": "bhy-08",
+   "prompt": "Yeşil iç rengiyle tanınan, tatlı süslemesinde kullanılan yemiş hangisidir?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "",
+     "image": "assets/baharat/t09_07.jpg",
+     "alt": "Seçenek A",
+     "ad": "Fındık"
+    },
+    {
+     "id": "B",
+     "text": "",
+     "image": "assets/baharat/t09_06.jpg",
+     "alt": "Seçenek B",
+     "ad": "Yer fıstığı"
+    },
+    {
+     "id": "C",
+     "text": "",
+     "image": "assets/baharat/t09_04.jpg",
+     "alt": "Seçenek C",
+     "ad": "Antep fıstığı"
+    },
+    {
+     "id": "D",
+     "text": "",
+     "image": "assets/baharat/t09_01.jpg",
+     "alt": "Seçenek D",
+     "ad": "Dolmalık fıstık"
+    }
+   ],
+   "correct": "C",
+   "group": "7. Bölüm · Sert kabuklu yemişler",
+   "chapter": 7,
+   "explanation": "Antep fıstığının içi yeşildir. Yer fıstığı bej renklidir ve ince kırmızımsı bir zarı vardır.",
+   "source": {
+    "file": "Baharatlar ve Aromatik Ürünler kart seti",
+    "section": "7. Bölüm · Sert kabuklu yemişler"
+   },
+   "hint": "İç rengine bak.",
+   "kalip": "tarif"
+  },
+  {
+   "id": "bhy-05",
+   "prompt": "Yemeğe pişerken bütün olarak eklenen, servisten önce çıkarılan yaprak hangisidir?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Defne yaprağı",
+     "ad": "Defne yaprağı",
+     "ornek": "assets/baharat/t10_01.jpg"
+    },
+    {
+     "id": "B",
+     "text": "Adaçayı",
+     "ad": "Adaçayı",
+     "ornek": "assets/baharat/t03_07.jpg"
+    },
+    {
+     "id": "C",
+     "text": "Taze biberiye",
+     "ad": "Taze biberiye",
+     "ornek": "assets/baharat/t03_02.jpg"
+    },
+    {
+     "id": "D",
+     "text": "Taze kekik",
+     "ad": "Taze kekik",
+     "ornek": "assets/baharat/t03_03.jpg"
+    }
+   ],
+   "correct": "A",
+   "group": "7. Bölüm · Sert kabuklu yemişler",
+   "chapter": 7,
+   "explanation": "Defne yaprağı yemeğe bütün olarak aroma verir. Sert olduğu için servisten önce çıkarılır.",
+   "source": {
+    "file": "Baharatlar ve Aromatik Ürünler kart seti",
+    "section": "7. Bölüm · Sert kabuklu yemişler"
+   },
+   "hint": "Sert, bütün olarak kullanılan yaprağı düşün.",
+   "kalip": "durum"
   },
   {
    "id": "bhq-7-2",
@@ -990,38 +3095,8 @@
     "file": "Baharatlar ve Aromatik Ürünler kart seti",
     "section": "7. Bölüm · Sert kabuklu yemişler"
    },
-   "hint": "İç renklerine bak."
-  },
-  {
-   "id": "bhq-7-3",
-   "prompt": "Girintili çıkıntılı iç yapısıyla tanınan sert kabuklu yemiş hangisidir?",
-   "choices": [
-    {
-     "id": "A",
-     "text": "Ceviz"
-    },
-    {
-     "id": "B",
-     "text": "Badem"
-    },
-    {
-     "id": "C",
-     "text": "Fındık"
-    },
-    {
-     "id": "D",
-     "text": "Kaju"
-    }
-   ],
-   "correct": "A",
-   "group": "7. Bölüm · Sert kabuklu yemişler",
-   "chapter": 7,
-   "explanation": "Cevizin içi girintili çıkıntılıdır. Tatlı, salata ve hamur işlerinde kullanılır.",
-   "source": {
-    "file": "Baharatlar ve Aromatik Ürünler kart seti",
-    "section": "7. Bölüm · Sert kabuklu yemişler"
-   },
-   "hint": "İçinin biçimine bak."
+   "hint": "İç renklerine bak.",
+   "kalip": "bilgi"
   },
   {
    "id": "bhq-7-4",
@@ -1052,38 +3127,180 @@
     "file": "Baharatlar ve Aromatik Ürünler kart seti",
     "section": "7. Bölüm · Sert kabuklu yemişler"
    },
-   "hint": "Yaprak tabakta kalırsa ne olur, onu düşün."
+   "hint": "Yaprak tabakta kalırsa ne olur, onu düşün.",
+   "kalip": "bilgi"
   },
   {
-   "id": "bhq-7-5",
-   "prompt": "Yeşil iç rengiyle tanınan sert kabuklu yemiş hangisidir?",
+   "id": "bhg-32",
+   "prompt": "Bu ürünün adı nedir?",
    "choices": [
     {
      "id": "A",
-     "text": "Kestane"
+     "text": "Havlıcan",
+     "ad": "Havlıcan",
+     "ornek": "assets/baharat/t10_08.jpg"
     },
     {
      "id": "B",
-     "text": "Badem"
+     "text": "Taze soğan",
+     "ad": "Taze soğan",
+     "ornek": "assets/baharat/t10_03.jpg"
     },
     {
      "id": "C",
-     "text": "Antep fıstığı"
+     "text": "Kapari",
+     "ad": "Kapari",
+     "ornek": "assets/baharat/t10_06.jpg"
     },
     {
      "id": "D",
-     "text": "Fındık"
+     "text": "Domates",
+     "ad": "Domates",
+     "ornek": "assets/baharat/t07_03.jpg"
     }
    ],
    "correct": "C",
-   "group": "7. Bölüm · Sert kabuklu yemişler",
-   "chapter": 7,
-   "explanation": "Antep fıstığı yeşil iç rengiyle tanınır. Tatlı ve süslemede kullanılır.",
+   "group": "8. Bölüm · Taze ürünler ve diğerleri",
+   "chapter": 8,
+   "explanation": "Genellikle salamura biçiminde satılan çiçek tomurcuklarıdır. Sos ve yemeklerde kullanılır.",
    "source": {
     "file": "Baharatlar ve Aromatik Ürünler kart seti",
-    "section": "7. Bölüm · Sert kabuklu yemişler"
+    "section": "8. Bölüm · Taze ürünler ve diğerleri"
    },
-   "hint": "İçinin rengine bak."
+   "hint": "Yaprağın, çiçeğin ya da parçanın biçimine ve rengine bak.",
+   "kalip": "gorsel-ad",
+   "image": "assets/baharat/t10_06.jpg",
+   "imageAlt": "Baharat fotoğrafı"
+  },
+  {
+   "id": "bhg-33",
+   "prompt": "Bu ürünün adı nedir?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Sarı kuru soğan",
+     "ad": "Sarı kuru soğan",
+     "ornek": "assets/baharat/t10_07.jpg"
+    },
+    {
+     "id": "B",
+     "text": "Taze soğan",
+     "ad": "Taze soğan",
+     "ornek": "assets/baharat/t10_03.jpg"
+    },
+    {
+     "id": "C",
+     "text": "Kırmızı soğan",
+     "ad": "Kırmızı soğan",
+     "ornek": "assets/baharat/t10_09.jpg"
+    },
+    {
+     "id": "D",
+     "text": "Siyah sarımsak",
+     "ad": "Siyah sarımsak",
+     "ornek": "assets/baharat/t10_12.jpg"
+    }
+   ],
+   "correct": "C",
+   "group": "8. Bölüm · Taze ürünler ve diğerleri",
+   "chapter": 8,
+   "explanation": "Dış kabuğu ve katmanları morumsu olan soğandır. Salata ve yemeklerde kullanılır.",
+   "source": {
+    "file": "Baharatlar ve Aromatik Ürünler kart seti",
+    "section": "8. Bölüm · Taze ürünler ve diğerleri"
+   },
+   "hint": "Yaprağın, çiçeğin ya da parçanın biçimine ve rengine bak.",
+   "kalip": "gorsel-ad",
+   "image": "assets/baharat/t10_09.jpg",
+   "imageAlt": "Baharat fotoğrafı"
+  },
+  {
+   "id": "bhq-8-4",
+   "prompt": "Sütlü tatlılara aroma veren, küçük reçine parçaları hâlindeki ürün hangisidir?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "",
+     "ad": "Kapari",
+     "image": "assets/baharat/t10_06.jpg",
+     "alt": "Seçenek A"
+    },
+    {
+     "id": "B",
+     "text": "",
+     "ad": "Esmer şeker",
+     "image": "assets/baharat/t11_07.jpg",
+     "alt": "Seçenek B"
+    },
+    {
+     "id": "C",
+     "text": "",
+     "ad": "Damla sakızı",
+     "image": "assets/baharat/t11_11.jpg",
+     "alt": "Seçenek C"
+    },
+    {
+     "id": "D",
+     "text": "",
+     "ad": "Havlıcan",
+     "image": "assets/baharat/t10_08.jpg",
+     "alt": "Seçenek D"
+    }
+   ],
+   "correct": "C",
+   "group": "8. Bölüm · Taze ürünler ve diğerleri",
+   "chapter": 8,
+   "explanation": "Damla sakızı küçük reçine parçaları hâlindedir. Sütlü tatlılara ve bazı hamur işlerine aroma verir.",
+   "source": {
+    "file": "Baharatlar ve Aromatik Ürünler kart seti",
+    "section": "8. Bölüm · Taze ürünler ve diğerleri"
+   },
+   "hint": "Tanelerin biçimine bak.",
+   "kalip": "tarif"
+  },
+  {
+   "id": "bhq-8-5",
+   "prompt": "Salamura biçiminde satılan çiçek tomurcukları hangisidir?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "",
+     "ad": "Havlıcan",
+     "image": "assets/baharat/t10_08.jpg",
+     "alt": "Seçenek A"
+    },
+    {
+     "id": "B",
+     "text": "",
+     "ad": "Karanfil",
+     "image": "assets/baharat/t02_12.jpg",
+     "alt": "Seçenek B"
+    },
+    {
+     "id": "C",
+     "text": "",
+     "ad": "Tere",
+     "image": "assets/baharat/t10_11.jpg",
+     "alt": "Seçenek C"
+    },
+    {
+     "id": "D",
+     "text": "",
+     "ad": "Kapari",
+     "image": "assets/baharat/t10_06.jpg",
+     "alt": "Seçenek D"
+    }
+   ],
+   "correct": "D",
+   "group": "8. Bölüm · Taze ürünler ve diğerleri",
+   "chapter": 8,
+   "explanation": "Kapari, genellikle salamura biçiminde satılan çiçek tomurcuklarıdır. Sos ve yemeklerde kullanılır.",
+   "source": {
+    "file": "Baharatlar ve Aromatik Ürünler kart seti",
+    "section": "8. Bölüm · Taze ürünler ve diğerleri"
+   },
+   "hint": "Kavanozda sıvı içinde satılan ürünü düşün.",
+   "kalip": "tarif"
   },
   {
    "id": "bhq-8-1",
@@ -1114,7 +3331,8 @@
     "file": "Baharatlar ve Aromatik Ürünler kart seti",
     "section": "8. Bölüm · Taze ürünler ve diğerleri"
    },
-   "hint": "Aynı renkte tatlı ve acı biber olabilir."
+   "hint": "Aynı renkte tatlı ve acı biber olabilir.",
+   "kalip": "bilgi"
   },
   {
    "id": "bhq-8-2",
@@ -1145,7 +3363,8 @@
     "file": "Baharatlar ve Aromatik Ürünler kart seti",
     "section": "8. Bölüm · Taze ürünler ve diğerleri"
    },
-   "hint": "Ürünün yenilebilir olması gerekir."
+   "hint": "Ürünün yenilebilir olması gerekir.",
+   "kalip": "bilgi"
   },
   {
    "id": "bhq-8-3",
@@ -1176,69 +3395,140 @@
     "file": "Baharatlar ve Aromatik Ürünler kart seti",
     "section": "8. Bölüm · Taze ürünler ve diğerleri"
    },
-   "hint": "Rengin nasıl oluştuğunu düşün."
+   "hint": "Rengin nasıl oluştuğunu düşün.",
+   "kalip": "bilgi"
   },
   {
-   "id": "bhq-8-4",
-   "prompt": "Sütlü tatlılara aroma veren, küçük reçine parçaları hâlindeki ürün hangisidir?",
+   "id": "bhq-9-6",
+   "prompt": "Yemeğe ekşi tat vermek için kullanılan baharat hangisidir?",
    "choices": [
     {
      "id": "A",
-     "text": "Kapari"
+     "text": "",
+     "ad": "Tarçın",
+     "image": "assets/baharat/t01_12.jpg",
+     "alt": "Seçenek A"
     },
     {
      "id": "B",
-     "text": "Esmer şeker"
+     "text": "",
+     "ad": "Sumak",
+     "image": "assets/baharat/t01_02.jpg",
+     "alt": "Seçenek B"
     },
     {
      "id": "C",
-     "text": "Damla sakızı"
+     "text": "",
+     "ad": "Kakule",
+     "image": "assets/baharat/t02_08.jpg",
+     "alt": "Seçenek C"
     },
     {
      "id": "D",
-     "text": "Havlıcan"
+     "text": "",
+     "ad": "Mahlep",
+     "image": "assets/baharat/t02_07.jpg",
+     "alt": "Seçenek D"
     }
    ],
-   "correct": "C",
-   "group": "8. Bölüm · Taze ürünler ve diğerleri",
-   "chapter": 8,
-   "explanation": "Damla sakızı küçük reçine parçaları hâlindedir. Sütlü tatlılara ve bazı hamur işlerine aroma verir.",
+   "correct": "B",
+   "group": "Genel tekrar · Set 1",
+   "chapter": 9,
+   "explanation": "Sumak ekşi tat verir. Salatalarda ve bazı yemeklerde kullanılır.",
    "source": {
     "file": "Baharatlar ve Aromatik Ürünler kart seti",
-    "section": "8. Bölüm · Taze ürünler ve diğerleri"
+    "section": "Genel tekrar · Set 1"
    },
-   "hint": "Tanelerin biçimine bak."
+   "hint": "Tadı ekşi olanı düşün.",
+   "kalip": "tarif"
   },
   {
-   "id": "bhq-8-5",
-   "prompt": "Salamura biçiminde satılan çiçek tomurcukları hangisidir?",
+   "id": "bhq-9-8",
+   "prompt": "Fırın yemeğine aroma veren, taze ve kuru hâli bulunan bitki hangisidir?",
    "choices": [
     {
      "id": "A",
-     "text": "Havlıcan"
+     "text": "",
+     "ad": "Nori",
+     "image": "assets/baharat/t04_12.jpg",
+     "alt": "Seçenek A"
     },
     {
      "id": "B",
-     "text": "Karanfil"
+     "text": "",
+     "ad": "Hibiskus",
+     "image": "assets/baharat/t05_07.jpg",
+     "alt": "Seçenek B"
     },
     {
      "id": "C",
-     "text": "Tere"
+     "text": "",
+     "ad": "Meyan kökü",
+     "image": "assets/baharat/t05_10.jpg",
+     "alt": "Seçenek C"
     },
     {
      "id": "D",
-     "text": "Kapari"
+     "text": "",
+     "ad": "Biberiye",
+     "image": "assets/baharat/t04_11.jpg",
+     "alt": "Seçenek D"
     }
    ],
    "correct": "D",
-   "group": "8. Bölüm · Taze ürünler ve diğerleri",
-   "chapter": 8,
-   "explanation": "Kapari, genellikle salamura biçiminde satılan çiçek tomurcuklarıdır. Sos ve yemeklerde kullanılır.",
+   "group": "Genel tekrar · Set 1",
+   "chapter": 9,
+   "explanation": "Biberiyenin taze ve kurutulmuş yaprakları kullanılır. Fırın yemeklerine ve soslara aroma verir.",
    "source": {
     "file": "Baharatlar ve Aromatik Ürünler kart seti",
-    "section": "8. Bölüm · Taze ürünler ve diğerleri"
+    "section": "Genel tekrar · Set 1"
    },
-   "hint": "Kavanozda sıvı içinde satılan ürünü düşün."
+   "hint": "Yaprakları iğne gibi olan bitkiyi düşün.",
+   "kalip": "tarif"
+  },
+  {
+   "id": "bhq-9-9",
+   "prompt": "Dolma içinde ve bazı soslarda kullanılan yemiş hangisidir?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "",
+     "ad": "Dolmalık fıstık",
+     "image": "assets/baharat/t09_01.jpg",
+     "alt": "Seçenek A"
+    },
+    {
+     "id": "B",
+     "text": "",
+     "ad": "Kestane",
+     "image": "assets/baharat/t09_09.jpg",
+     "alt": "Seçenek B"
+    },
+    {
+     "id": "C",
+     "text": "",
+     "ad": "Ceviz",
+     "image": "assets/baharat/t09_05.jpg",
+     "alt": "Seçenek C"
+    },
+    {
+     "id": "D",
+     "text": "",
+     "ad": "Fındık",
+     "image": "assets/baharat/t09_07.jpg",
+     "alt": "Seçenek D"
+    }
+   ],
+   "correct": "A",
+   "group": "Genel tekrar · Set 1",
+   "chapter": 9,
+   "explanation": "Dolmalık fıstık dolma içinde ve bazı soslarda kullanılır.",
+   "source": {
+    "file": "Baharatlar ve Aromatik Ürünler kart seti",
+    "section": "Genel tekrar · Set 1"
+   },
+   "hint": "Adı yemeğin adını taşıyan yemişi düşün.",
+   "kalip": "tarif"
   },
   {
    "id": "bhq-9-1",
@@ -1269,7 +3559,8 @@
     "file": "Baharatlar ve Aromatik Ürünler kart seti",
     "section": "Genel tekrar · Set 1"
    },
-   "hint": "Pakette yazan bilgiyi düşün."
+   "hint": "Pakette yazan bilgiyi düşün.",
+   "kalip": "bilgi"
   },
   {
    "id": "bhq-9-2",
@@ -1300,7 +3591,8 @@
     "file": "Baharatlar ve Aromatik Ürünler kart seti",
     "section": "Genel tekrar · Set 1"
    },
-   "hint": "Adı kesin bilinen bir örnek işe yarar."
+   "hint": "Adı kesin bilinen bir örnek işe yarar.",
+   "kalip": "bilgi"
   },
   {
    "id": "bhq-9-3",
@@ -1331,7 +3623,8 @@
     "file": "Baharatlar ve Aromatik Ürünler kart seti",
     "section": "Genel tekrar · Set 1"
    },
-   "hint": "Reçetede yazan adı düşün."
+   "hint": "Reçetede yazan adı düşün.",
+   "kalip": "bilgi"
   },
   {
    "id": "bhq-9-4",
@@ -1362,7 +3655,8 @@
     "file": "Baharatlar ve Aromatik Ürünler kart seti",
     "section": "Genel tekrar · Set 1"
    },
-   "hint": "Parçaların büyüklüğüne bak."
+   "hint": "Parçaların büyüklüğüne bak.",
+   "kalip": "bilgi"
   },
   {
    "id": "bhq-9-5",
@@ -1393,38 +3687,8 @@
     "file": "Baharatlar ve Aromatik Ürünler kart seti",
     "section": "Genel tekrar · Set 1"
    },
-   "hint": "Yeşil bölümün kullanılıp kullanılmadığını düşün."
-  },
-  {
-   "id": "bhq-9-6",
-   "prompt": "Yemeğe ekşi tat vermek için kullanılan baharat hangisidir?",
-   "choices": [
-    {
-     "id": "A",
-     "text": "Tarçın"
-    },
-    {
-     "id": "B",
-     "text": "Sumak"
-    },
-    {
-     "id": "C",
-     "text": "Kakule"
-    },
-    {
-     "id": "D",
-     "text": "Mahlep"
-    }
-   ],
-   "correct": "B",
-   "group": "Genel tekrar · Set 1",
-   "chapter": 9,
-   "explanation": "Sumak ekşi tat verir. Salatalarda ve bazı yemeklerde kullanılır.",
-   "source": {
-    "file": "Baharatlar ve Aromatik Ürünler kart seti",
-    "section": "Genel tekrar · Set 1"
-   },
-   "hint": "Tadı ekşi olanı düşün."
+   "hint": "Yeşil bölümün kullanılıp kullanılmadığını düşün.",
+   "kalip": "bilgi"
   },
   {
    "id": "bhq-9-7",
@@ -1455,69 +3719,8 @@
     "file": "Baharatlar ve Aromatik Ürünler kart seti",
     "section": "Genel tekrar · Set 1"
    },
-   "hint": "Markette hangi hâlde satıldığını düşün."
-  },
-  {
-   "id": "bhq-9-8",
-   "prompt": "Fırın yemeğine aroma veren, taze ve kuru hâli bulunan bitki hangisidir?",
-   "choices": [
-    {
-     "id": "A",
-     "text": "Nori"
-    },
-    {
-     "id": "B",
-     "text": "Hibiskus"
-    },
-    {
-     "id": "C",
-     "text": "Meyan kökü"
-    },
-    {
-     "id": "D",
-     "text": "Biberiye"
-    }
-   ],
-   "correct": "D",
-   "group": "Genel tekrar · Set 1",
-   "chapter": 9,
-   "explanation": "Biberiyenin taze ve kurutulmuş yaprakları kullanılır. Fırın yemeklerine ve soslara aroma verir.",
-   "source": {
-    "file": "Baharatlar ve Aromatik Ürünler kart seti",
-    "section": "Genel tekrar · Set 1"
-   },
-   "hint": "Yaprakları iğne gibi olan bitkiyi düşün."
-  },
-  {
-   "id": "bhq-9-9",
-   "prompt": "Dolma içinde ve bazı soslarda kullanılan yemiş hangisidir?",
-   "choices": [
-    {
-     "id": "A",
-     "text": "Dolmalık fıstık"
-    },
-    {
-     "id": "B",
-     "text": "Kestane"
-    },
-    {
-     "id": "C",
-     "text": "Ceviz"
-    },
-    {
-     "id": "D",
-     "text": "Fındık"
-    }
-   ],
-   "correct": "A",
-   "group": "Genel tekrar · Set 1",
-   "chapter": 9,
-   "explanation": "Dolmalık fıstık dolma içinde ve bazı soslarda kullanılır.",
-   "source": {
-    "file": "Baharatlar ve Aromatik Ürünler kart seti",
-    "section": "Genel tekrar · Set 1"
-   },
-   "hint": "Adı yemeğin adını taşıyan yemişi düşün."
+   "hint": "Markette hangi hâlde satıldığını düşün.",
+   "kalip": "bilgi"
   },
   {
    "id": "bhq-9-10",
@@ -1548,7 +3751,140 @@
     "file": "Baharatlar ve Aromatik Ürünler kart seti",
     "section": "Genel tekrar · Set 1"
    },
-   "hint": "Reçetede yazan ölçüyü düşün."
+   "hint": "Reçetede yazan ölçüyü düşün.",
+   "kalip": "bilgi"
+  },
+  {
+   "id": "bhq-10-2",
+   "prompt": "Çiğ köftede ve çeşitli yemeklerde kullanılan koyu renkli biber ürünü hangisidir?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "",
+     "ad": "Beyaz biber",
+     "image": "assets/baharat/t01_07.jpg",
+     "alt": "Seçenek A"
+    },
+    {
+     "id": "B",
+     "text": "",
+     "ad": "Sumak",
+     "image": "assets/baharat/t01_02.jpg",
+     "alt": "Seçenek B"
+    },
+    {
+     "id": "C",
+     "text": "",
+     "ad": "Yenibahar",
+     "image": "assets/baharat/t01_06.jpg",
+     "alt": "Seçenek C"
+    },
+    {
+     "id": "D",
+     "text": "",
+     "ad": "İsot",
+     "image": "assets/baharat/t01_03.jpg",
+     "alt": "Seçenek D"
+    }
+   ],
+   "correct": "D",
+   "group": "Genel tekrar · Set 2",
+   "chapter": 9,
+   "explanation": "İsot koyu renkli bir biber ürünüdür. Çiğ köfte ve çeşitli yemeklerde kullanılır.",
+   "source": {
+    "file": "Baharatlar ve Aromatik Ürünler kart seti",
+    "section": "Genel tekrar · Set 2"
+   },
+   "hint": "Rengi en koyu biber ürününü düşün.",
+   "kalip": "tarif"
+  },
+  {
+   "id": "bhq-10-3",
+   "prompt": "Dolma içine ve köfteye aroma veren baharat hangisidir?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "",
+     "ad": "Yenibahar",
+     "image": "assets/baharat/t01_06.jpg",
+     "alt": "Seçenek A"
+    },
+    {
+     "id": "B",
+     "text": "",
+     "ad": "Tarçın",
+     "image": "assets/baharat/t01_12.jpg",
+     "alt": "Seçenek B"
+    },
+    {
+     "id": "C",
+     "text": "",
+     "ad": "Kakule",
+     "image": "assets/baharat/t02_08.jpg",
+     "alt": "Seçenek C"
+    },
+    {
+     "id": "D",
+     "text": "",
+     "ad": "Karanfil",
+     "image": "assets/baharat/t02_12.jpg",
+     "alt": "Seçenek D"
+    }
+   ],
+   "correct": "A",
+   "group": "Genel tekrar · Set 2",
+   "chapter": 9,
+   "explanation": "Yenibahar tane veya öğütülmüş olarak kullanılır. Dolma içi ve köfte gibi yemeklere aroma verir.",
+   "source": {
+    "file": "Baharatlar ve Aromatik Ürünler kart seti",
+    "section": "Genel tekrar · Set 2"
+   },
+   "hint": "Dolma harcında kullanılan baharatı düşün.",
+   "kalip": "tarif"
+  },
+  {
+   "id": "bhq-10-4",
+   "prompt": "Komposto ve tatlılara yoğun aroma veren kurutulmuş çiçek tomurcuğu hangisidir?",
+   "choices": [
+    {
+     "id": "A",
+     "text": "",
+     "ad": "Kapari",
+     "image": "assets/baharat/t10_06.jpg",
+     "alt": "Seçenek A"
+    },
+    {
+     "id": "B",
+     "text": "",
+     "ad": "Karanfil",
+     "image": "assets/baharat/t02_12.jpg",
+     "alt": "Seçenek B"
+    },
+    {
+     "id": "C",
+     "text": "",
+     "ad": "Lavanta",
+     "image": "assets/baharat/t05_06.jpg",
+     "alt": "Seçenek C"
+    },
+    {
+     "id": "D",
+     "text": "",
+     "ad": "Papatya",
+     "image": "assets/baharat/t05_09.jpg",
+     "alt": "Seçenek D"
+    }
+   ],
+   "correct": "B",
+   "group": "Genel tekrar · Set 2",
+   "chapter": 9,
+   "explanation": "Karanfil kurutulmuş çiçek tomurcuğudur. Komposto ve tatlılara yoğun aroma verir.",
+   "source": {
+    "file": "Baharatlar ve Aromatik Ürünler kart seti",
+    "section": "Genel tekrar · Set 2"
+   },
+   "hint": "Kompostoya atılan baharatı düşün.",
+   "kalip": "tarif"
   },
   {
    "id": "bhq-10-1",
@@ -1579,100 +3915,8 @@
     "file": "Baharatlar ve Aromatik Ürünler kart seti",
     "section": "Genel tekrar · Set 2"
    },
-   "hint": "Değirmende çekilen baharatı düşün."
-  },
-  {
-   "id": "bhq-10-2",
-   "prompt": "Çiğ köftede ve çeşitli yemeklerde kullanılan koyu renkli biber ürünü hangisidir?",
-   "choices": [
-    {
-     "id": "A",
-     "text": "Beyaz biber"
-    },
-    {
-     "id": "B",
-     "text": "Sumak"
-    },
-    {
-     "id": "C",
-     "text": "Yenibahar"
-    },
-    {
-     "id": "D",
-     "text": "İsot"
-    }
-   ],
-   "correct": "D",
-   "group": "Genel tekrar · Set 2",
-   "chapter": 9,
-   "explanation": "İsot koyu renkli bir biber ürünüdür. Çiğ köfte ve çeşitli yemeklerde kullanılır.",
-   "source": {
-    "file": "Baharatlar ve Aromatik Ürünler kart seti",
-    "section": "Genel tekrar · Set 2"
-   },
-   "hint": "Rengi en koyu biber ürününü düşün."
-  },
-  {
-   "id": "bhq-10-3",
-   "prompt": "Dolma içine ve köfteye aroma veren baharat hangisidir?",
-   "choices": [
-    {
-     "id": "A",
-     "text": "Yenibahar"
-    },
-    {
-     "id": "B",
-     "text": "Tarçın"
-    },
-    {
-     "id": "C",
-     "text": "Kakule"
-    },
-    {
-     "id": "D",
-     "text": "Karanfil"
-    }
-   ],
-   "correct": "A",
-   "group": "Genel tekrar · Set 2",
-   "chapter": 9,
-   "explanation": "Yenibahar tane veya öğütülmüş olarak kullanılır. Dolma içi ve köfte gibi yemeklere aroma verir.",
-   "source": {
-    "file": "Baharatlar ve Aromatik Ürünler kart seti",
-    "section": "Genel tekrar · Set 2"
-   },
-   "hint": "Dolma harcında kullanılan baharatı düşün."
-  },
-  {
-   "id": "bhq-10-4",
-   "prompt": "Komposto ve tatlılara yoğun aroma veren kurutulmuş çiçek tomurcuğu hangisidir?",
-   "choices": [
-    {
-     "id": "A",
-     "text": "Kapari"
-    },
-    {
-     "id": "B",
-     "text": "Karanfil"
-    },
-    {
-     "id": "C",
-     "text": "Lavanta"
-    },
-    {
-     "id": "D",
-     "text": "Papatya"
-    }
-   ],
-   "correct": "B",
-   "group": "Genel tekrar · Set 2",
-   "chapter": 9,
-   "explanation": "Karanfil kurutulmuş çiçek tomurcuğudur. Komposto ve tatlılara yoğun aroma verir.",
-   "source": {
-    "file": "Baharatlar ve Aromatik Ürünler kart seti",
-    "section": "Genel tekrar · Set 2"
-   },
-   "hint": "Kompostoya atılan baharatı düşün."
+   "hint": "Değirmende çekilen baharatı düşün.",
+   "kalip": "bilgi"
   },
   {
    "id": "bhq-10-5",
@@ -1703,7 +3947,8 @@
     "file": "Baharatlar ve Aromatik Ürünler kart seti",
     "section": "Genel tekrar · Set 2"
    },
-   "hint": "Üründe yazan bilgiyi düşün."
+   "hint": "Üründe yazan bilgiyi düşün.",
+   "kalip": "bilgi"
   },
   {
    "id": "bhq-10-6",
@@ -1734,7 +3979,8 @@
     "file": "Baharatlar ve Aromatik Ürünler kart seti",
     "section": "Genel tekrar · Set 2"
    },
-   "hint": "Tatlının üzerine serpilen beyaz ürünü düşün."
+   "hint": "Tatlının üzerine serpilen beyaz ürünü düşün.",
+   "kalip": "bilgi"
   },
   {
    "id": "bhq-10-7",
@@ -1765,7 +4011,8 @@
     "file": "Baharatlar ve Aromatik Ürünler kart seti",
     "section": "Genel tekrar · Set 2"
    },
-   "hint": "Çorbaya serpilen hâlini düşün."
+   "hint": "Çorbaya serpilen hâlini düşün.",
+   "kalip": "bilgi"
   },
   {
    "id": "bhq-10-8",
@@ -1796,7 +4043,8 @@
     "file": "Baharatlar ve Aromatik Ürünler kart seti",
     "section": "Genel tekrar · Set 2"
    },
-   "hint": "Bitkinin hangi bölümünün yendiğini düşün."
+   "hint": "Bitkinin hangi bölümünün yendiğini düşün.",
+   "kalip": "bilgi"
   },
   {
    "id": "bhq-10-9",
@@ -1827,7 +4075,8 @@
     "file": "Baharatlar ve Aromatik Ürünler kart seti",
     "section": "Genel tekrar · Set 2"
    },
-   "hint": "Reçetede yazan iki bilgiyi düşün."
+   "hint": "Reçetede yazan iki bilgiyi düşün.",
+   "kalip": "bilgi"
   },
   {
    "id": "bhq-10-10",
@@ -1858,7 +4107,8 @@
     "file": "Baharatlar ve Aromatik Ürünler kart seti",
     "section": "Genel tekrar · Set 2"
    },
-   "hint": "Çiçeğin renkli bölümünü düşün."
+   "hint": "Çiçeğin renkli bölümünü düşün.",
+   "kalip": "bilgi"
   }
  ],
  "matches": [
@@ -6494,7 +8744,7 @@
    "assets/baharat/t11_11.jpg"
   ]
  },
- "revision": "v13-soru-seti-20261111",
+ "revision": "baharat-yeni-duzen-20261114",
  "groups": [
   {
    "label": "1. Bölüm · Biberler ve toz baharatlar",

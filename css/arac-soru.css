@@ -52,3 +52,7 @@
 @keyframes as-yuksel{from{transform:translate(-50%,100%)}to{transform:translate(-50%,0)}}
 .as-tur{margin:10px 0 0;padding:10px 12px;border-radius:14px;background:#fff4d6;border:2px solid #e0a21b;font-weight:700;color:#6b4a00}
 /* © 2026 Ali Arıkoğlu. Tüm hakları saklıdır. */
+/* Baharat fotoğrafları kare ve beyaz zeminli: kartı doldurur. */
+.as-grid.bh .as-ol{inset:6px 6px 6px 6px;align-items:center}
+.as-grid.bh .as-ol img{width:100%;height:100%;object-fit:cover;border-radius:12px}
+.as-grid.bh.cevap .as-ol,.as-grid.bh .as-k.ok .as-ol,.as-grid.bh .as-k.yan .as-ol{inset:6px 6px 36px 6px}
