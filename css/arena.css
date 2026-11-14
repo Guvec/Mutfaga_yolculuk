@@ -287,3 +287,21 @@ html.lig body .top .who > *{background:transparent!important;border-color:#fffff
 .ant-bar{height:8px;border-radius:99px;background:#e3dccb;overflow:hidden}.ant-bar div{height:100%;width:100%;background:linear-gradient(90deg,#c99a2e,#f2cf5b);transition:width .1s linear}
 .ant-sef{margin:4px 0 6px;font-size:14px;font-weight:700;color:#24386e;display:flex;justify-content:space-between}.ant-sef.yanildi{color:#a2491b}
 .ant-ekran #antNext{position:sticky;bottom:8px;z-index:2;box-shadow:0 6px 16px #14234a33}
+/* Er Meydanı sade */
+.em-kural{list-style:none;display:grid;grid-template-columns:repeat(3,1fr);gap:6px;padding:0;margin:8px 0}
+.em-kural li{display:flex;flex-direction:column;align-items:center;padding:8px 4px;border-radius:12px;background:#fff;border:1.5px solid #e3dccb}
+.em-kural b{font-size:20px;color:#14234a}.em-kural small{font-size:12px;color:#5b6478}
+.em-not{font-size:13px;color:#5b6478;margin:4px 0 8px}
+.ar-play .ar-status{display:flex!important;align-items:center;gap:8px;padding:6px 10px!important;border-radius:14px;background:#14234a;color:#fff;margin:0 0 6px!important}
+.ar-play .ar-status strong{font-size:18px;color:#f2cf5b;margin-right:auto}
+.ar-play .ar-status span{font-size:14px;font-weight:700;color:#fff}
+.em-sira{border:1.5px solid #ffffff55;border-radius:99px;background:#ffffff14;color:#fff;font:inherit;font-weight:800;font-size:14px;padding:2px 10px;min-height:32px;cursor:pointer}
+.ar-play .ar-sira{font-size:13px!important;margin:0 0 4px!important;padding:4px 10px!important;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ar-play .ar-seri,.ar-play .ar-altin-bant{margin:0 0 4px!important;padding:4px 10px!important;font-size:13px!important}
+.em-sure{position:relative;margin:2px 0 6px}
+.em-sure .yr-bar{height:18px!important;border-radius:99px;margin:0!important}
+.em-sure .yr-sec{position:absolute;right:10px;top:0;height:18px;line-height:18px;margin:0!important;font-size:12px!important;font-weight:800;color:#14234a}
+.ar-play .ar-next{position:sticky;bottom:8px;z-index:2;box-shadow:0 6px 16px #14234a33}
+.ar-play .ar-feedback:empty{display:none}
+.ar-play .ar-sira:empty{display:none}
+.ar-play .ar-feedback{margin:0 0 6px!important;padding:6px 10px;border-radius:12px;background:#fbf3dc;font-weight:800;color:#14234a;text-align:center}
