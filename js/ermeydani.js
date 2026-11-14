@@ -184,10 +184,19 @@ function arPlayHTML(){
  (asking?'':'<button type="button" class="btn pri ar-next" onclick="arNext()">Sıradaki soru</button>')+
  '<details class="ar-score"><summary>Canlı sıralama</summary><div id="arRank">'+arScoreHTML()+'</div></details></div>';
 }
+/* Dönüm noktası: aynı soru sayısında puanlar karşılaştırılır; birincinin öne geçip bir daha bırakmadığı soru bulunur. */
+function arDonum(first){
+ try{if(!first||!arM5())return '';const ps=arRanks().filter(p=>!p.left),er=arErrors();if(ps.length<2)return '';
+  const kim=first.uid,max=Math.max(...ps.map(p=>(p.r||[]).length));let son=0;
+  for(let k=1;k<=max;k++){let ust=null,ustP=-1;ps.forEach(p=>{const r=(p.r||[]).slice(0,k);const sc=ArenaModel.stats(r,er,YR.room,{kl:p.kl,sn:p.sn,uid:p.uid}).score;if(sc>ustP||(sc===ustP&&p.uid===kim)){ustP=sc;ust=p.uid;}});if(ust!==kim)son=k;}
+  const ad=esc(first.nick);
+  return '<p class="ar-donum">🔄 <b>Dönüm noktası:</b> '+(son===0?ad+' ilk sorudan sonuna kadar önde kaldı.':ad+' '+(son+1)+'. soruda öne geçti ve birinciliği bir daha bırakmadı.')+'</p>';
+ }catch(e){return '';}
+}
 function arOverHTML(){
  const s=arStats(AR.myR),pending=!AR.finalized,first=pending?[]:arRanks().filter(p=>p.rank===1&&!p.left),winners=first.map(p=>p.nick).join(', ');
  return yrTop('Er Meydanı sonucu')+'<div class="wrap ar-over"><h1 id="yrHeading" tabindex="-1">'+(pending?'Denemen bitti':AR.final===1?'Birinci sensin!':'Oyun tamamlandı')+'</h1>'+yrWarnHTML()+
- (!pending&&first.length?'<section class="ar-winner" role="status"><span class="ar-winner-crown" role="img" aria-label="Kral tacı">👑</span><strong>'+esc(winners)+'</strong><span>'+(first.length>1?'Bu oyunun ortak birincileri':'Bu oyunun birincisi')+'</span><span class="ar-winner-sure">'+(arM5()?first[0].score+' puan · ':'')+first[0].ok+' doğru · '+arSure(first[0].tt)+'</span></section>':'')+
+ (!pending&&first.length?'<section class="ar-winner" role="status"><span class="ar-winner-crown" role="img" aria-label="Kral tacı">👑</span><strong>'+esc(winners)+'</strong><span>'+(first.length>1?'Bu oyunun ortak birincileri':'Bu oyunun birincisi')+'</span><span class="ar-winner-sure">'+(arM5()?first[0].score+' puan · ':'')+first[0].ok+' doğru · '+arSure(first[0].tt)+'</span></section>'+(first.length===1?arDonum(first[0]):''):'')+
  '<section class="card ar-final-ranks"><h2>'+(pending?'Geçici maç sıralaması':'Bu oyunun kesin sıralaması')+'</h2>'+(pending?'<p role="status">Diğer katılımcıların sunucu onaylı sonuçları bekleniyor.</p>':'<p>Puanı eşit olanlarda toplam süresi kısa olan öne geçer.</p>')+arScoreHTML()+'</section>'+
  (!pending&&typeof rkInlineHTML==='function'?rkInlineHTML('oy-arena2','genel',undefined,10).replace('İlgili sıralama','Genel Er Meydanı sıralaması'):'')+
  (arM5()?(arRekorYaz(s),(!pending&&arPuanYaz(s)),arRekorHTML(s)):'')+(!pending&&arM5()?arUnvanHTML():'')+'<p>'+(arM5()?s.score+' puan · ':'')+s.ok+' doğru · '+s.bad+' yanlış · '+s.n+' soru'+(s.n>=AR.total&&arM5()?' · 🏆 Meydan Şampiyonu!':'')+'</p>'+(!pending&&AR.reviewCount?'<button type="button" class="btn pri" onclick="arReviewOpen()">Pekiştiriyorum ('+AR.reviewCount+' soru)</button>':'')+(AR.rapor?sonucGoster(AR.rapor):'')+

@@ -1,11 +1,12 @@
 /* © 2026 Ali Arıkoğlu. Tüm hakları saklıdır. */
 /* Aşçı Seviyesi (14.11.2026, 2. aşama): rütbe puanlarının toplamı XP sayılır; ayrı bir puan sistemi yoktur.
    Eşik: seviye k için 15·(k−1)·k puan (2: 30, 5: 300, 10: 1350).
-   Açılışlar: 2 → Er Meydanı kurma, 5 → Kapışma ve Meydan Okuma kurma, 10 → Mutfağa Kabul Sınavı (dereceli; sonraki aşama).
-   Kodla girme ve açık odaya katılma her seviyede serbesttir (sınıfta öğretmenle oynanabilsin).
+   Açılış: 10 → Mutfağa Kabul Sınavı ve dereceli lig (sonraki aşama). Bugün kullanılan modlar (Kapışma, Er Meydanı, Meydan Okuma) her seviyede açık.
+   Kodla girme ve açık odaya katılma her seviyede serbesttir.
    Geçmiş çalışmalar sayılır ama bu sürümden önce toplanan puan en çok 9. seviyeye götürür (sv_baz). */
 'use strict';
-const SV={max:30,ac:{arena:2,duel:5,canavar:5,kabul:10},ad:{arena:'Er Meydanı kurma',duel:'Kapışma kurma',canavar:'Meydan Okuma',kabul:'Mutfağa Kabul Sınavı'}};
+/* 14.11 karar (Valorant gibi): bugün kullanılan her şey açık kalır; kilit yalnız yeni dereceli moda (Mutfağa Kabul Sınavı, 10. seviye). */
+const SV={max:30,ac:{kabul:10},ad:{kabul:'Mutfağa Kabul Sınavı ve dereceli lig'}};
 function svEsik(k){return 15*(k-1)*k;}
 function svPid(){return (!st.guest&&st.prof&&typeof rkPid==='function')?rkPid(st.prof,true):null;}
 function svPuan(pid){
@@ -43,7 +44,7 @@ if(typeof rutbeComplete==='function'){
  };
 }
 /* Ustalar Ligi: kurma düğmeleri seviyeye göre kilitli. */
-if(typeof yrMenuHTML==='function'){
+if(false&&typeof yrMenuHTML==='function'){
  const SV_MENU=yrMenuHTML;
  yrMenuHTML=function(){
   let h=SV_MENU();
@@ -60,6 +61,6 @@ if(typeof render==='function'){
  const SV_RENDER=render;
  render=function(){
   SV_RENDER.apply(this,arguments);
-  try{if(st.screen==='home'&&svPid()){const ad=document.querySelector('.ae-profile-name');if(ad&&!ad.querySelector('.sv-chip')){const k=svSeviye();ad.insertAdjacentHTML('beforeend',' <button type="button" class="sv-chip" onclick="svPanel()" aria-label="Aşçı Seviyesi '+k+'. Ayrıntılar">⭐ '+k+'</button>');}}}catch(e){}
+  try{if(st.screen==='home'&&svPid()){const ad=document.querySelector('.ae-profile-name');if(ad&&!ad.querySelector('.sv-chip')){const k=svSeviye();ad.insertAdjacentHTML('beforeend',' <button type="button" class="sv-chip" onclick="svPanel()" aria-label="Aşçı Seviyesi '+k+'. Ayrıntılar">⭐ Seviye '+k+'</button>');}}}catch(e){}
  };
 }

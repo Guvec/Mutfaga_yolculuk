@@ -89,3 +89,4 @@ body.yr-oyun .wrap>.btn.ghost{display:none}
 .sv-cubuk{height:12px;border-radius:999px;background:#eee4cf;overflow:hidden;margin:8px 0}.sv-cubuk i{display:block;height:100%;background:linear-gradient(90deg,#6a9441,#e0a21b)}
 .sv-liste{list-style:none;padding:0;margin:8px 0;text-align:left;display:grid;gap:6px}.sv-liste li{opacity:.75}.sv-liste li.acik{opacity:1}
 .sv-kilitli{opacity:.6}.sv-kilit{display:block;font-size:.72em;font-weight:700;margin-top:2px}
+.ar-donum{margin:8px 0 0;padding:10px 12px;border-radius:12px;background:#fff7e0;border:1px solid #e0a21b55}

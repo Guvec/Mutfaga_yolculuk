@@ -591,3 +591,12 @@ html:is([data-theme=light],[data-theme=sepia],:not([data-theme])) .ae-home .ae-p
 .ae-home .ae-header .ae-avatar{container-type:inline-size}
 .ae-home .ae-header .ae-avatar-emoji{font-size:clamp(24px,4vw,64px);font-size:58cqw;line-height:1}
 .ae-home .ae-bottom .ae-lig-logo{transform:scale(1.4);transform-origin:center bottom}
+/* Üst kart (14.11): sıradaki rütbe okunaklı, ad ile rütbe şeridi arasında boşluk yok. */
+.ae-serit-sonra{font-size:clamp(.85rem,3.6vw,1.05rem);font-weight:700;white-space:nowrap;padding:2px 10px;border-radius:999px;background:color-mix(in srgb,var(--dal,#0e5e61) 12%,#fff);color:var(--dal,#0e5e61)}
+.ae-serit-sonra b{font-weight:900}
+.ae-serit-not{opacity:.9}
+@media(min-width:900px) and (orientation:landscape){
+  .ae-home .ae-header{grid-template-columns:clamp(64px,12svh,118px) minmax(0,max-content) minmax(0,1fr) 64px}
+  .ae-home .ae-header .ae-profile-name{padding-right:10px}
+  .ae-serit-sonra{font-size:clamp(.9rem,2.2svh,1.3rem)}
+}

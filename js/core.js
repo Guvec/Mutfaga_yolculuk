@@ -373,8 +373,7 @@ function render(){
     });
     h+='</div><div class="card" style="margin-top:14px"><b>Yeni profil</b><p class="note" style="margin:4px 0 10px">Karakterini seç. Seçtiğin karakterin adı oyun adın olur.</p>'+
        '<div style="margin-top:10px"><button class="btn pri" onclick="createProfile()">➕ Yeni profil</button></div></div>'+
-       '<div style="margin-top:14px"><button class="btn ghost" onclick="guest()">Misafir Olarak Devam Et</button>'+
-       '<p class="note">Misafir oturumunda skor kaydedilmez.</p></div></div>';
+       '</div>';/* 14.11: Misafir girişi kaldırıldı; ilerleme, seviye ve sıralama profil gerektirir. */
     break;
   case "home":
     h=topBar("Ana menü")+'<div class="wrap"><h2>Ne çalışmak istiyorsun?</h2><div class="list">'+

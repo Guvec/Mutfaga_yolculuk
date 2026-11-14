@@ -31,13 +31,13 @@
   const remaining=next?Math.max(0,next.mp-points):0;
   const percent=next?Math.max(0,Math.min(100,100*(points-current.mp)/(next.mp-current.mp))):100;
   const names=rutbeAdlari(),title=(names[index]||current.name)+(next?' → '+(names[index+1]||next.name):'');
-  const note=next?remaining+' puan kaldı':'En yüksek öğrenci rütbesi';
+  const note=next?(names[index+1]||next.name)+' olmak için '+remaining+' puan':'En yüksek öğrenci rütbesi';
   rankHTML.title=title;
   return `<div class="ae-serit${ust?' ae-serit-ust':''}" data-dal="${path()}" role="button" tabindex="0" onclick="rutbeYolAc()"
     onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();rutbeYolAc();}" aria-label="${esc('Rütbem: '+title+'. '+note)}">
    <img src="assets/rozet/${path()}-${index+1}.webp" alt="" width="96" height="96">
    <span class="ae-serit-metin">
-    <span class="ae-serit-adlar"><strong>${esc(names[index]||current.name)}</strong>${next?`<small>${esc(names[index+1]||next.name)} ›</small>`:''}</span>
+    <span class="ae-serit-adlar"><strong>${esc(names[index]||current.name)}</strong>${next?`<span class="ae-serit-sonra">Sıradaki: <b>${esc(names[index+1]||next.name)}</b> ›</span>`:''}</span>
     <span class="ae-progress" role="progressbar" aria-label="Sonraki rütbeye ilerleme" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${Math.round(percent)}" aria-valuetext="${esc(note)}"><span style="width:${percent}%"></span></span>
     <small class="ae-serit-not">${esc(note)}</small>
    </span>
