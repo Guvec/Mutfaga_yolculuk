@@ -33,8 +33,8 @@
   const names=rutbeAdlari(),title=(names[index]||current.name)+(next?' → '+(names[index+1]||next.name):'');
   const note=next?remaining+' puan kaldı':'En yüksek öğrenci rütbesi';
   rankHTML.title=title;
-  return `<div class="ae-serit${ust?' ae-serit-ust':''}" data-dal="${path()}" role="button" tabindex="0" onclick="go('rutbe')"
-    onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();go('rutbe');}" aria-label="${esc('Rütbem: '+title+'. '+note)}">
+  return `<div class="ae-serit${ust?' ae-serit-ust':''}" data-dal="${path()}" role="button" tabindex="0" onclick="rutbeYolAc()"
+    onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();rutbeYolAc();}" aria-label="${esc('Rütbem: '+title+'. '+note)}">
    <img src="assets/rozet/${path()}-${index+1}.webp" alt="" width="96" height="96">
    <span class="ae-serit-metin">
     <span class="ae-serit-adlar"><strong>${esc(names[index]||current.name)}</strong>${next?`<small>${esc(names[index+1]||next.name)} ›</small>`:''}</span>
@@ -83,9 +83,9 @@
     <button type="button" class="ae-friends-add" onclick="anaArkadas(true)" aria-label="Arkadaş ekle"><span aria-hidden="true">+</span></button>
    </section>
    <nav class="ae-paper ae-bottom" aria-label="Oyun ve başarılar">
-    <button type="button" class="ae-paper" onclick="tasarimOda('create')">${foto('ana-birlikte')}<span>Birlikte Oyna</span></button>
+    <button type="button" class="ae-paper" onclick="tasarimOda('create')">${foto('ana-birlikte')}<span>Ustalar Ligi</span></button>
     <button type="button" class="ae-paper" onclick="rkOpenBoard()">${foto('ana-siralama')}<span>Sıralama</span></button>
-    <button type="button" class="ae-paper" onclick="go('rutbe')">${foto('ana-rozet')}<span>Rozetlerim</span></button>
+    <button type="button" class="ae-paper" onclick="rutbeYolAc()">${foto('ana-rozet')}<span>Rozetlerim</span></button>
    </nav>
   </div>`;
  }

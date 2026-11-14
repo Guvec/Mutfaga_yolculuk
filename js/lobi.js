@@ -44,7 +44,7 @@ function lbOdaKutu(r){
 }
 yrMenuHTML=function(){
  const cfg=yrConfigured(),code=YR.codeDraft||new URLSearchParams(location.search).get('oda')||'';
- let h=yrTop('Birlikte Oyna')+'<div class="wrap lb-ekran"><div class="lb-bas"><div><h1>Birlikte Oyna</h1><p class="sub">'+(yrHasName()?'Oyundaki adın: <b>'+esc(yrNickGet())+'</b>':'Odaya girerken sana bir oyun adı verilir.')+'</p></div><button class="btn sm lb-sira" onclick="rkOpenBoard(\'oy-kapisma\')" aria-label="Kapışma ve Er Meydanı sıralaması">🏅 Sıralama</button></div>';
+ let h=yrTop('Ustalar Ligi')+'<div class="wrap lb-ekran"><div class="lb-bas"><div class="lig-bas"><img class="lig-logo" src="assets/lig/ustalar-ligi.webp" alt=""><div><h1>Ustalar Ligi</h1><p class="sub">'+(yrHasName()?'Oyundaki adın: <b>'+esc(yrNickGet())+'</b>':'Odaya girerken sana bir oyun adı verilir.')+'</p></div></div><button class="btn sm lb-sira" onclick="rkOpenBoard(\'oy-kapisma\')" aria-label="Kapışma ve Er Meydanı sıralaması">🏅 Sıralama</button></div>';
  if(LB.sifre){
   return h+'<section class="card lb-sifre"><h2>Bu oda şifreli</h2><p>Oda kodu: <b>'+esc(LB.sifre.code)+'</b>. Şifreyi odayı kuran arkadaşından öğren.</p><input id="lbSifre" class="inp" inputmode="numeric" pattern="[0-9]*" maxlength="4" autocomplete="off" aria-label="4 rakamlı şifre" placeholder="• • • •" onkeydown="if(event.key===\'Enter\')lbSifreGonder()"><div class="row"><button class="btn" onclick="lbSifreIptal()">Vazgeç</button><button class="btn pri" onclick="lbSifreGonder()"'+(YR.busy?' disabled':'')+'>Odaya gir</button></div>'+yrErr()+'</section></div>';
  }
@@ -134,3 +134,6 @@ yrLobbyHTML=function(){
   (YR.host?'<div class="lb-salon-pay"><button class="btn sm" onclick="yrShare()">🔗 Paylaş</button><button class="btn sm" onclick="yrCopy()">📋 Kopyala</button>'+(YR.notice?'<small role="status">'+esc(YR.notice)+'</small>':'')+'</div>':(YR.notice?'<div class="lb-salon-pay"><small role="status">'+esc(YR.notice)+'</small></div>':''))+'</div>';
  return h;
 };
+
+/* Ustalar Ligi rengi: lig ekranlarında html.lig sınıfı (css/yaris.css). */
+(function(){const LIG_R=render;render=function(){const r=LIG_R.apply(this,arguments);try{document.documentElement.classList.toggle('lig',/^race/.test(st.screen||''));}catch(e){}return r;};})();

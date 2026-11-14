@@ -188,7 +188,7 @@ function yrStartNeden(){
 function yrStart(){if(!YR.host||yrDuel()||YR.players.length<YarisModel.LIMITS[YR.room.mode].min||YR.players.some(p=>!p.loaded)||YR.room.status!=='lobby')return;yrService().start(YR.code).catch(e=>yrSetError(e));}
 function yrLink(){return location.origin+location.pathname+'?oda='+encodeURIComponent(YR.code||'');}
 async function yrCopy(){let ok=false;try{await navigator.clipboard.writeText(yrLink());ok=true;}catch(e){}YR.notice=ok?'Bağlantı kopyalandı.':'Bağlantıyı kutudan seçip kopyalayabilirsin.';render();}
-function yrShare(){if(navigator.share)navigator.share({title:'Birlikte Oynayalım',text:'Oyuna katıl! Oda kodu: '+YR.code,url:yrLink()}).catch(e=>{if(!e||e.name!=='AbortError')yrCopy();});else yrCopy();}
+function yrShare(){if(navigator.share)navigator.share({title:'Ustalar Ligi',text:'Oyuna katıl! Oda kodu: '+YR.code,url:yrLink()}).catch(e=>{if(!e||e.name!=='AbortError')yrCopy();});else yrCopy();}
 /* ---------- çıkış ---------- */
 function yrLeaveNow(target){
  yrInviteClear();
@@ -398,7 +398,7 @@ function yrSpeakText(q){return q.prompt+(q.comparisonPosition?' Üçgen '+q.comp
 function yrQuestionHTML(q){return '<div class="yr-qa"><div class="yr-qside">'+(q.image?'<img class="yr-img" src="'+esc(q.image)+'" alt="'+esc(q.imageAlt||'Soru görseli')+'">':'')+'<div class="yr-qrow"><h2 class="yr-q">'+mcqPromptHTML(q)+'</h2>'+(typeof sesDugme==='function'?sesDugme(yrSpeakText(q),'Soruyu ve seçenekleri dinle'):'')+'</div></div>';}
 function yrMenuHTML(){
  const code=YR.codeDraft||new URLSearchParams(location.search).get('oda')||'',cfg=yrConfigured();
- return yrTop('Birlikte Oynayalım')+'<div class="wrap"><h1>Birlikte Oynayalım</h1><p class="sub">Arkadaşınla ya da sınıfla aynı sorulara birlikte cevap ver. Meydan Okuma dışındaki oyunlar için internet gerekir.</p>'+(!cfg?'<p class="card" role="status">Oda bağlantısı henüz ayarlanmadı. Bireysel oyunları kullanabilirsin.</p>':'')+
+ return yrTop('Ustalar Ligi')+'<div class="wrap"><h1>Ustalar Ligi</h1><p class="sub">Arkadaşınla ya da sınıfla aynı sorulara birlikte cevap ver. Meydan Okuma dışındaki oyunlar için internet gerekir.</p>'+(!cfg?'<p class="card" role="status">Oda bağlantısı henüz ayarlanmadı. Bireysel oyunları kullanabilirsin.</p>':'')+
   (yrHasName()?'<p class="card" id="yrNick">Oyundaki adın: <b>'+esc(yrNickGet())+'</b></p>':'<p class="card" id="yrNick">Odaya girerken sana bir oyun adı verilecek.</p>')+
   '<button class="btn pri" onclick="yrCreateOpen(\'duel\')"'+(cfg?'':' disabled')+'>1’e 1 Kapışma Kur<span class="yr-sm">İki kişi aynı soruya aynı anda bakar. Önce doğru basan puanı alır.</span></button>'+
   '<button class="btn pri" onclick="yrCreateOpen(\'arena\')"'+(cfg?'':' disabled')+'>Er Meydanı Kur<span class="yr-sm">3–10 kişi kendi hızında ilerler. En çok 150 soru, 12 yanlışta bitiş.</span></button>'+
@@ -523,7 +523,7 @@ render=function(){
   return;
  }
  YR_RENDER();
- if(st.screen==='home'){const list=document.getElementById('app').querySelector('.list');if(list&&!list.querySelector('[data-yr]'))list.insertAdjacentHTML('beforeend',menuButton('Birlikte Oynayalım','Arkadaşınla ya da sınıfla aynı sorulara birlikte cevap ver.',"yrOpen()").replace('<button ','<button data-yr="1" '));}
+ if(st.screen==='home'){const list=document.getElementById('app').querySelector('.list');if(list&&!list.querySelector('[data-yr]'))list.insertAdjacentHTML('beforeend',menuButton('Ustalar Ligi','Er Meydanı, kapışma ve arkadaşlarınla yarış.',"yrOpen()").replace('<button ','<button data-yr="1" '));}
 };
 window.addEventListener('online',()=>{if(YR.active)render();});
 window.addEventListener('offline',()=>{if(YR.active)render();});

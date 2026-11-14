@@ -333,7 +333,7 @@ const PastacilikIlk = (() => {
    case 'back': back(); return;
    case 'settings': anaAyarlar(); return;
    case 'start': navigate('pastacilikoyun'); return;
-   case 'rank': navigate('pastacilikrutbe'); return;
+   case 'rank': if (typeof rutbeYolAc === 'function') { window.RUTBE_DONUS = 'pastacilikilk'; rutbeYolAc('pasta'); } else navigate('pastacilikrutbe'); return;
    case 'return': navigate('pastacilikilk'); return;
    case 'box': openBox(control); return;
    case 'answer': answer(control.dataset.choice); return;
@@ -371,3 +371,6 @@ const PastacilikIlk = (() => {
  }
  return {screens, renderScreen, navigate, forget};
 })();
+
+/* Ortak Rütbe Yolu'ndan geri: Pastacılık'tan açıldıysa oraya döner. */
+(function(){const PI_BACK=back;back=function(){if(st.screen==='rutbe'&&window.RUTBE_DONUS){const d=window.RUTBE_DONUS;window.RUTBE_DONUS=null;go(d);return;}return PI_BACK.apply(this,arguments);};})();

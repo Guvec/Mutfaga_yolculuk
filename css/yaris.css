@@ -225,3 +225,16 @@ body[data-screen=racelobby] #app:has(.lb-salon){display:flex;flex-direction:colu
 .lb-hazir{color:var(--ok,#2b7a45);font-weight:800}
 .lb-durum{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .lb-salon-orta{overflow:visible}
+
+/* Ustalar Ligi (14.11): lig ekranları lacivert-altın; uygulamanın geri kalanı kendi teması. */
+html.lig{--lig-lac:#14234a;--lig-lac2:#1d3266;--lig-alt:#d9a520;--lig-alt2:#f2cf5b;--lig-krem:#fbf6ea}
+html.lig body .top{background:linear-gradient(180deg,var(--lig-lac2),var(--lig-lac));border-bottom:2px solid var(--lig-alt)}
+html.lig body .top .ttl,html.lig body .top .back,html.lig body .top .who,html.lig body .top .who *{color:#fff}
+html.lig body .btn.pri{background:var(--lig-lac);color:#fff;border-color:var(--lig-alt);box-shadow:inset 0 -3px 0 var(--lig-alt)}
+html.lig body .yr-chip.on{background:var(--lig-lac);color:#fff;border-color:var(--lig-alt)}
+.lig-logo{display:block;width:96px;height:96px;object-fit:contain;flex:none}
+.lig-bas{display:flex;align-items:center;gap:12px}
+.lig-bas h1{margin:0;color:var(--lig-lac,#14234a)}
+html.lig body .lb-bas h1{color:var(--lig-lac)}
+@media (max-width:380px){.lig-logo{width:72px;height:72px}}
+html.lig body .wrap .btn:not(.pri):not(.danger){color:var(--lig-lac);border-color:var(--lig-lac)}

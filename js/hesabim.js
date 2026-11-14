@@ -24,14 +24,18 @@ function hesabimHTML(){
  h+='<section class="card"><h2>Görünüm</h2><button type="button" class="btn" onclick="hsTemaDegis()">Tema: '+hsTema()+'</button></section>';
  if(!guest&&typeof frGizlilikHTML==='function'){h+=frGizlilikHTML();if(typeof frEnsure==='function'&&!FR.ready)frEnsure().then(()=>{if(st.screen==='hesabim')render();});}
  h+='<section class="card"><button type="button" class="btn" onclick="go(\'history\')">Çalışma geçmişim</button><button type="button" class="btn" onclick="kilavuzAc()">📖 Kılavuz</button><button type="button" class="btn" onclick="hsPaylas()">Uygulamayı paylaş</button><button type="button" class="btn" onclick="yasalAc(false)">Gizlilik ve koşullar</button></section>';
- if(!guest)h+='<section class="card hs-sil"><h2>Hesabımı sil</h2><p>Hesabını silersen bu cihazdaki karakterin, rütben, puanların ve çalışma geçmişin silinir.</p><button type="button" class="btn danger" onclick="hsSil()">Hesabımı sil</button></section>';
+ if(!guest)h+='<section class="card hs-sil"><h2>Verilerimi sil</h2><p>Karakterin, rütben, puanların, çalışma geçmişin, arkadaşların ve sıralamadaki kayıtların silinir.</p><button type="button" class="btn danger" onclick="hsSil()">Verilerimi sil</button></section>';
  return h+'</div>';
 }
 function hsKur(fn){return function(){if(!profilDegistirilebilir())return;fn();};}
 window.hsKarakter=hsKur(function(){adOpen(profiles().indexOf(st.prof),'hesabim');});
 window.hsDost=hsKur(function(){GIRIS.ac('hesabim',null,true);});
 window.hsProfiller=hsKur(function(){go('profiles');});
-window.hsSil=hsKur(function(){askDelProfile(st.prof);});
+window.hsSil=hsKur(function(){
+ const n=st.prof;
+ /* 1. adım: neyin silineceği; 2. adım: mevcut silme akışı (rekor.js, profil-oturum.js) kendi onayını sorar. */
+ modal('<b>Emin misin?</b><br>“'+esc(n)+'” için karakter, rütbe ve puanlar, çalışma geçmişi, arkadaşlar ve sıralamadaki kayıtlar silinir.<br><b>Bu işlem geri alınamaz.</b>',function(){closeModal();askDelProfile(n);});
+});
 window.hsYazi=function(v){document.documentElement.setAttribute('data-yz',v);try{localStorage.setItem('mesleki-yazi',v);}catch(e){}render();};
 window.hsSes=function(on){SES.acik=!!on;lsSet('ses',SES.acik);if(!SES.acik)sesSus();render();};
 window.hsTemaDegis=function(){temaDegistir();render();};
