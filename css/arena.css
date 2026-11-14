@@ -108,3 +108,21 @@ body.yr-oyun .wrap>.btn.ghost{display:none}
 @media(prefers-reduced-motion:reduce){.fr-rozet,.ae-friends.fr-istek-var{animation:none}}
 .ark-row.istek{border-left:6px solid #d62828;background:#fff1f1}
 .fr-rozet-ic{font-size:.7em;padding:2px 10px;border-radius:999px;background:#d62828;color:#fff;vertical-align:middle}.fr-istek-not{margin:-4px 0 8px;font-weight:700;color:#a11}
+/* 14.11 akşam: Ustalar Ligi ekranı sade ve kaydırmasız. */
+.lb-bas .lig-logo{width:56px;height:56px}
+.lb-bas .lig-bas h1{font-size:1.35rem;line-height:1.15;white-space:nowrap}
+@media (max-width:380px){.lb-bas .lig-logo{width:48px;height:48px}.lb-bas .lig-bas h1{font-size:1.2rem}}
+.lb-ekran .sv-mod-bas{margin:2px 0 0!important;display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+.lb-ekran .sv-mod-bas small{display:inline;font-size:.8rem}
+.lb-eylem .lb-hizli{grid-column:1/-1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0;min-height:56px;font-size:17px;background:linear-gradient(180deg,#2f9e5a,#1f7a43)!important;border-color:#f2cf5b!important;box-shadow:inset 0 -3px 0 #145c31!important;color:#fff!important}
+.lb-eylem .lb-hizli small{font-size:12px;font-weight:600;opacity:.9}
+details.sv-dereceli{margin:0!important;padding:6px 12px}
+details.sv-dereceli summary{list-style:none;display:flex;align-items:center;gap:8px;cursor:pointer;min-height:40px;font-size:1rem}
+details.sv-dereceli summary::-webkit-details-marker{display:none}
+details.sv-dereceli summary .sv-arma{flex:none;width:30px!important;height:35px!important}
+details.sv-dereceli summary .sv-ok{margin-left:auto;font-size:1.4rem;transition:transform .2s}
+details.sv-dereceli[open] summary .sv-ok{transform:rotate(90deg)}
+details.sv-dereceli[open]{max-height:46vh;overflow:auto}
+details.sv-dereceli p{margin:6px 0 4px}
+/* Üst çubuktaki ses düğmesi kısa: dar ekranda yalnız simge ve durum. */
+.top .ses-ac.hs-kisa{min-width:0;width:auto;padding:4px 10px;white-space:nowrap}

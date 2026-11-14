@@ -74,10 +74,12 @@ if(typeof yrMenuHTML==='function'){
   let h=SV_MENU2();
   if(h.indexOf('<div class="lb-eylem">')<0)return h;
   const k=svPid()?svSeviye():1,acik=k>=SV.ac.kabul;
-  h=h.replace('<div class="lb-eylem">','<h2 class="sv-mod-bas">🌱 Ümit Ligi <small>Herkese açık · eğlence için · XP kazandırır, lig puanı yok</small></h2><div class="lb-eylem">');
-  const kart='<section class="sv-dereceli'+(acik?' acik':'')+'" aria-label="Ustalık Ligi"><div class="sv-d-bas">'+svArma(k,40)+'<div><h2>🏆 Ustalık Ligi '+(acik?'<span class="sv-yakin">yakında</span>':'<span class="sv-kilit-et">🔒 Kilitli</span>')+'</h2><p>Ustalık Ligi maçları lig puanı ve sezon ödülü verir. Herkes kendi düzeyindeki oyuncularla yarışsın diye bir şartı var.</p></div></div>'+
+  h=h.replace('<div class="lb-eylem">','<h2 class="sv-mod-bas">🌱 Ümit Ligi <small>Herkese açık · XP kazandırır</small></h2><div class="lb-eylem">');
+  /* 14.11 akşam: kart katlanır; kapalıyken tek satır, dokununca şartlar ve açıklama açılır (bilgi azaltılmadı). */
+  const kart='<details class="sv-dereceli'+(acik?' acik':'')+'"><summary>'+svArma(k,30)+'<b>🏆 Ustalık Ligi</b>'+(acik?'<span class="sv-yakin">yakında</span>':'<span class="sv-kilit-et">🔒 Seviye 10</span>')+'<span class="sv-ok" aria-hidden="true">›</span></summary>'+
+   '<p>Ustalık Ligi maçları lig puanı ve sezon ödülü verir. Herkes kendi düzeyindeki oyuncularla yarışsın diye bir şartı var.</p>'+
    '<ul><li class="'+(k>=SV.ac.kabul?'ok':'')+'">'+(k>=SV.ac.kabul?'✅':'⬜')+' Aşçı Seviyesi 10 <small>(şu an '+k+')</small></li><li>⬜ Mutfağa Kabul Sınavı (5 yerleştirme maçı)</li></ul>'+
-   '<p class="sv-d-not">Ümit Ligi maçlarını her zaman oynayabilirsin. Seviye, çalıştıkça ve oynadıkça yükselir.</p></section>';
+   '<p class="sv-d-not">Ümit Ligi maçlarını her zaman oynayabilirsin. Seviye, çalıştıkça ve oynadıkça yükselir.</p></details>';
   h=h.replace(/(<div class="lb-eylem">[\s\S]*?<\/div>)/,'$1'+kart);
   return h;
  };

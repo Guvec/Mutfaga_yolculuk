@@ -11,7 +11,7 @@ const SUBJECTS = [
 const CONTENT = Object.create(null);
 const OLD_RENDER = render, OLD_NEWQ = newQ, OLD_START = startSession, OLD_RESOLVE = resolve;
 const OLD_QUIZ = quizHtml, OLD_ITEM = itemImg;
-VERSION='Sürüm · 14.11.2026 · v3.17.0: Baharat soruları yeni düzende (104 soru, fotoğraflı seçenekler, yanlışta karşılaştırma, tekrar turu); ad değişince ilerleme korunur; mola hatırlatması'; // Her yüklemede tarih güncellenir.
+VERSION='Sürüm · 14.11.2026 · v3.18.0: Hızlı oyna, sayfa yenilenince maça dönüş, Er Meydanı rövanşı, sade Ustalar Ligi ekranı'; // Her yüklemede tarih güncellenir.
 st.subject='kuver'; st.practice='learn';
 LEVELS={
   1:{name:'Basit Kuver', items:['yemek_catali','yemek_bicagi','pecete','su_bardagi']},

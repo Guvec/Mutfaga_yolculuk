@@ -28,6 +28,6 @@ function hsAc(){
 /* 14.11 akşam: Yüzen 🎵 düğmesi başka düğmelerin üstüne biniyordu. Ses paneli artık üst çubuktaki "Ses" düğmesinden açılır. */
 function hsDurum(){const m=typeof MUZIK!=='undefined'&&MUZIK.acikMi(),o=typeof SES!=='undefined'&&SES.acik;return o&&m?'Okuma + Müzik':o?'Okuma':m?'Müzik':'Kapalı';}
 function hsBagla(){
- document.querySelectorAll('.top .ses-ac').forEach(b=>{b.textContent='🎧 Ses: '+hsDurum();b.setAttribute('aria-label','Ses ayarları: '+hsDurum()+'. Müzik, sesli okuma ve efektleri aç ya da kapat');b.onclick=e=>{e.preventDefault();e.stopPropagation();hsAc();};});
+ document.querySelectorAll('.top .ses-ac').forEach(b=>{b.textContent='🎧 '+(innerWidth<520?(hsDurum()==='Kapalı'?'Kapalı':'Ses'):'Ses: '+hsDurum());b.classList.add('hs-kisa');b.setAttribute('aria-label','Ses ayarları: '+hsDurum()+'. Müzik, sesli okuma ve efektleri aç ya da kapat');b.onclick=e=>{e.preventDefault();e.stopPropagation();hsAc();};});
 }
 if(typeof render==='function'){const HS_R0=render;render=function(){HS_R0.apply(this,arguments);hsBagla();};}
