@@ -16,6 +16,12 @@ require('../js/yaris-baglanti.js');const Constructor=globalThis.YarisFirebase;
    await dene('ikinci oyuncu setPlayer',async()=>{await ali.setPlayer(made.code,row('🐱 Aşçı Kedi',made.room.created));});
    await dene('üçüncü ad Huzurlu Civciv',async()=>{const c=mk('civuid');await c.setPlayer(made.code,row('🐥 Huzurlu Civciv',made.room.created));});
   }
+   // Tam akış: 3 oyuncu hazır, başlat, ilk cevaplar
+   const r2=(nick)=>({...row(nick,made.room.created),ready:true});
+   await dene('hazır güncellemeleri',async()=>{await host.setPlayer(made.code,r2('🍰 Çilekli Pasta'));await ali.setPlayer(made.code,r2('🐱 Aşçı Kedi'));await mk('civuid').setPlayer(made.code,r2('🐥 Huzurlu Civciv'));});
+   await dene('oyunu başlat',async()=>{await host.start(made.code);});
+   await dene('ilk doğru cevap (4,2 sn)',async()=>{const d=r2('🐱 Aşçı Kedi');Object.assign(d,{n:1,r:[4200],ok:1,score:1,tt:4200,ts:Date.now()});await ali.setPlayer(made.code,d);});
+   await dene('ikinci cevap yanlış (6 sn)',async()=>{const d=r2('🐱 Aşçı Kedi');Object.assign(d,{n:2,r:[4200,-6000],ok:1,bad:1,score:1,tt:10200,ts:Date.now()});await ali.setPlayer(made.code,d);});
    // Arkadaş sistemi açıkken istemci pid ekler
    await env.withSecurityRulesDisabled(async ctx=>{const db=ctx.firestore();await sdk.setDoc(sdk.doc(db,'yrKart','ABCDEFG'),{owner:'pidli',nick:'🐥 Huzurlu Civciv'});await sdk.setDoc(sdk.doc(db,'yrKim','pidli'),{pid:'ABCDEFG'});});
    await dene('pid ile giriş (eşleşen kimlik)',async()=>{const c=mk('pidli');await c.setPlayer(made.code,{...row('🐥 Huzurlu Civciv',made.room.created),pid:'ABCDEFG'});});
