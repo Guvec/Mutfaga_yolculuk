@@ -149,8 +149,11 @@ function hsUygun(id,r){
 window.lbHizli=function(){
  if(YR.busy||!yrConfigured())return;
  if(document.getElementById('hsfPanel'))return;
+ /* 14.11: tek dokunuş — açık bir maç varsa en kalabalık olana katılır; yoksa mod seçilip yeni oda kurulur. */
+ const acik=(LB.liste||[]).filter(r=>HS_MODLAR.some(m=>hsUygun(m.id,r))).sort((a,b)=>lbSay(b)-lbSay(a));
+ if(acik.length){try{sesEfekt('basla');}catch(e){}yrJoin(acik[0].code);return;}
  const k=document.createElement('div');k.id='hsfPanel';k.className='foot-menu';k.setAttribute('role','dialog');k.setAttribute('aria-modal','true');k.setAttribute('aria-label','Hızlı Şef');
- k.innerHTML='<div class="foot-menu-ic hsf-ic"><h2>👨‍🍳 Hızlı Şef</h2><p class="hsf-alt">Bir mod seç. Açık oda varsa hemen katılırsın; yoksa yeni oda kurulur.</p><div class="hsf-liste">'+
+ k.innerHTML='<div class="foot-menu-ic hsf-ic"><h2>👨‍🍳 Hızlı Şef</h2><p class="hsf-alt">Şu an açık maç yok. Bir mod seç; odayı sen aç, diğerleri katılsın.</p><div class="hsf-liste">'+
   HS_MODLAR.map(m=>{const n=(LB.liste||[]).filter(r=>hsUygun(m.id,r)).length;return '<button type="button" class="hsf-mod hsf-'+m.id+'" data-m="'+m.id+'"><span class="hsf-ikon" aria-hidden="true">'+m.ikon+'</span><span class="hsf-ad"><b>'+m.ad+'</b><small>'+m.not+'</small></span><span class="hsf-oda">'+(n?n+' açık oda':'Yeni oda')+'</span></button>';}).join('')+
   '</div><button type="button" class="btn" id="hsfKapat">Vazgeç</button></div>';
  document.body.appendChild(k);

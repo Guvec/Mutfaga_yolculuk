@@ -1,0 +1,13 @@
+/* 14.11 akşam: tek satır üst çubuk ve yana kaymanın önlenmesi. */
+html,body{max-width:100%;overflow-x:clip}
+body .top.uc{display:flex!important;flex-wrap:nowrap!important;align-items:center;gap:6px!important;min-height:56px;padding:6px 8px!important;box-sizing:border-box;width:100%}
+body .top.uc .uc-geri{order:0!important}
+body .top.uc .ttl{order:1!important;flex:1 1 auto!important;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:17px;font-weight:800;margin:0;text-align:left}
+body .top.uc .uc-ev{order:2!important}
+body .top.uc .ses-ac{order:3!important;margin-left:0!important}
+body .top.uc .who{order:4!important;flex:none!important;max-width:none!important}
+body .top.uc .uc-geri,body .top.uc .uc-ev,body .top.uc .ses-ac,body .top.uc .uc-profil{flex:none!important;width:44px!important;min-width:44px!important;max-width:44px!important;height:44px!important;min-height:44px!important;padding:0!important;display:grid!important;place-items:center;border-radius:12px!important;font-size:20px!important;line-height:1!important;box-sizing:border-box}
+body .top.uc .uc-geri{font-size:24px!important;font-weight:900}
+body .top.uc .uc-ev,body .top.uc .uc-geri{border:1.5px solid transparent!important;background:transparent!important}
+body .top.uc .uc-profil{border-radius:50%!important;border:1.5px solid var(--line,#d8d2c2)!important;background:var(--surface,#fff)!important;font-size:22px!important;overflow:hidden;white-space:nowrap}
+html.lig body .top.uc .uc-profil,html.lig body .top.uc .ses-ac{border-color:#ffffff66!important;background:#ffffff14!important;color:#fff!important}
