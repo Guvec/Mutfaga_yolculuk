@@ -11,10 +11,19 @@
  window.anaRutbeAdlari=rutbeAdlari;
  function foto(id,cls='ae-art'){return '<img class="'+cls+'" src="assets/ascidostum/'+id+'.webp" alt="">';}
  function dalArt(id){return foto('dal-'+GIRIS.character+'-'+id);}
+ /* 14.11: Arkadaşın simgesi kendi adından bulunur (oyun adı emojiyle başlar ya da karakter listesinde vardır); bulunamazsa 🙂 yerine baş harf. */
+ function arkadasSimge(nick){
+  const n=String(nick||'').trim(),ilk=n.split(' ')[0];
+  if(/\p{Extended_Pictographic}/u.test(ilk))return '<span class="ae-avatar-emoji" aria-hidden="true">'+esc(ilk)+'</span>';
+  const ad=n.replace(/\s*#\d+$/,'');
+  if(typeof AD_KAR!=='undefined'){const k=AD_KAR.find(x=>ad===x[1]||ad.endsWith(' '+x[1])||ad===x[1].split(' ').pop());if(k)return '<span class="ae-avatar-emoji" aria-hidden="true">'+esc(k[0])+'</span>';}
+  const pa=profileArt(n);if(pa.indexOf('🙂')<0)return pa;
+  return '<span class="ae-avatar-emoji ae-bas-harf" aria-hidden="true">'+esc((ad[0]||'?').toLocaleUpperCase('tr'))+'</span>';
+ }
  function arkadasPortreleri(){
   if(!st.prof||st.guest||!FR.ready||FR.prof!==st.prof)return '';
   return FR.list.filter(id=>FR.nick[id]&&FR.nick[id]!=='(silinmiş profil)').slice(0,3)
-   .map(id=>'<span class="ae-avatar" title="'+esc(adRest(FR.nick[id]))+'">'+profileArt(FR.nick[id])+'</span>').join('');
+   .map(id=>'<span class="ae-avatar" title="'+esc(adRest(FR.nick[id]))+'">'+arkadasSimge(FR.nick[id])+'</span>').join('');
  }
  window.anaArkadasPortreleri=function(){
   const box=document.getElementById('aeArkadasPortreleri');
