@@ -11,19 +11,38 @@
  function complete(roster,players){return roster.length>=3&&roster.every(uid=>players.some(p=>p.uid===uid&&p.done&&p.pending===false&&p.fromCache===false));}
  function build(data,seed,ym){let qs=[];['mutfak-araclari','baharat'].forEach((subject,i)=>{const pool=ym.buildQuestions(data[subject],{subject,kind:'gorsel',set:0,n:500,pool:true},ym.seedFor(seed,i));const n=i?37:38;if(pool.length<n)throw Error('Er Meydanı için soru havuzu yetersiz.');qs.push(...pool.slice(0,n).map(q=>({...q,subject,id:subject+'|'+q.id})));});return ym.shuffle(qs,ym.seeded(seed));}
  /* Konu seçilen yeni odalar; arena2 odalarının 38+37 havuzu değişmez. */
- function selectedSubjects(spec,ym){return spec.scope==='konu'?[spec.subject]:ym.SUBJECT_ORDER.slice();}
+ /* Er Meydanı konuları: Beslenme yalnız burada "Tüm konular"a katılır; diğer oyunların SUBJECT_ORDER'ı değişmez. */
+ const EXTRA=['beslenme-ilkeleri'];
+ const WEIGHT={'mutfak-araclari':45,'beslenme-ilkeleri':35,baharat:35,'bulasik-makinesi-temizligi':20,kuver:15};
+ function allSubjects(ym){return ym.SUBJECT_ORDER.concat(EXTRA);}
+ function selectedSubjects(spec,ym){return spec.scope==='konu'?[spec.subject]:allSubjects(ym);}
+ /* Aynı baharatın farklı hâlleri (taze/kuru, yaprak/tohum) bir odada tek soru sayılır. */
+ function famKey(q){
+  const c=(q.choices||[]).find(x=>x.id===q.correct);if(!c)return q.id;
+  let t=String(c.text).replace(/\([^)]*\)/g,'').trim().toLocaleUpperCase('tr');
+  t=t.replace(/^TAZE\s+(?=\S)/,'').replace(/^(KİŞNİŞ)\s+(TOHUMU|YAPRAĞI)$/,'$1').replace(/\s+/g,' ');
+  return t;
+ }
+ function quotas(subjects,pools,cap){
+  const w=subjects.map(s=>WEIGHT[s]||10),tot=w.reduce((a,b)=>a+b,0),q=w.map(x=>Math.floor(cap*x/tot));
+  let rest=cap-q.reduce((a,b)=>a+b,0);
+  const ord=w.map((x,i)=>[cap*x/tot-q[i],i]).sort((a,b)=>b[0]-a[0]);for(let k=0;rest>0&&k<ord.length;k++,rest--)q[ord[k][1]]++;
+  for(let i=0;i<q.length;i++)if(q[i]>pools[i].length){rest+=q[i]-pools[i].length;q[i]=pools[i].length;}
+  while(rest>0){let moved=false;for(let i=0;i<q.length&&rest>0;i++)if(q[i]<pools[i].length){q[i]++;rest--;moved=true;}if(!moved)break;}
+  return q;
+ }
  function buildSelected(data,seed,ym,spec){
   const cap=Math.min(maxQ(spec),Number.isInteger(spec&&spec.n)&&spec.n>=3?spec.n:maxQ(spec));
   const subjects=selectedSubjects(spec,ym);
-  if(!subjects.length||subjects.some(x=>!ym.SUBJECT_ORDER.includes(x)))throw Error('Er Meydanı konusu geçersiz.');
+  if(!subjects.length||subjects.some(x=>!allSubjects(ym).includes(x)))throw Error('Er Meydanı konusu geçersiz.');
   const pools=subjects.map((subject,i)=>{
    if(!data[subject])throw Error('Konu dosyası yüklenemedi: '+subject);
-   const seen=new Set();return ym.subjectPool(data,subject,spec,ym.seedFor(seed,i)).filter(q=>{if(seen.has(q.id))return false;seen.add(q.id);return true;});
+   const seen=new Set(),fam=new Set();return ym.subjectPool(data,subject,spec,ym.seedFor(seed,i)).filter(q=>{if(seen.has(q.id))return false;seen.add(q.id);if(subject==='baharat'){const k=famKey(q);if(fam.has(k))return false;fam.add(k);}return true;});
   });
-  const qs=[];let pos=0;
-  while(qs.length<cap&&pools.some(p=>pos<p.length)){for(const pool of pools){if(pool[pos])qs.push(pool[pos]);if(qs.length===cap)break;}pos++;}
+  const q=quotas(subjects,pools,cap),qs=[];
+  pools.forEach((pool,i)=>qs.push(...pool.slice(0,q[i])));
   if(qs.length<3)throw Error('Er Meydanı için en az üç farklı soru gerekir.');
   return ym.shuffle(qs,ym.seeded(seed));
  }
- const api={MAX,MAX5,maxQ,ERRORS,errorLimit,maxPlayers,limit,stats,ranks,complete,build,buildSelected,selectedSubjects};root.ArenaModel=api;if(typeof module!=='undefined')module.exports=api;
+ const api={MAX,MAX5,maxQ,ERRORS,errorLimit,maxPlayers,limit,stats,ranks,complete,build,buildSelected,selectedSubjects,famKey,quotas};root.ArenaModel=api;if(typeof module!=='undefined')module.exports=api;
 })(typeof window!=='undefined'?window:globalThis);

@@ -11,7 +11,7 @@ const SUBJECTS = [
 const CONTENT = Object.create(null);
 const OLD_RENDER = render, OLD_NEWQ = newQ, OLD_START = startSession, OLD_RESOLVE = resolve;
 const OLD_QUIZ = quizHtml, OLD_ITEM = itemImg;
-VERSION='Sürüm · 14.11.2026 · v3.11.1: gerçekçi kum saati, Er Meydanı 150 soru, Baharat Rafı (4 kutu, 16 baharat; sürükle ya da dokun, Hatırla, tencere, yıldız, sınıf sırası)'; // Her yüklemede tarih güncellenir.
+VERSION='Sürüm · 14.11.2026 · v3.11.2: Er Meydanı'na Beslenme, konu payları ve tekrarsız baharat; gerçekçi kum saati, Er Meydanı 150 soru, Baharat Rafı (4 kutu, 16 baharat; sürükle ya da dokun, Hatırla, tencere, yıldız, sınıf sırası)'; // Her yüklemede tarih güncellenir.
 st.subject='kuver'; st.practice='learn';
 LEVELS={
   1:{name:'Basit Kuver', items:['yemek_catali','yemek_bicagi','pecete','su_bardagi']},
