@@ -157,7 +157,37 @@ STİL: yumuşak 3B oyun simgesi (mobil oyun kalitesi), soldan üstten tek sıcak
 SİMGELER: 1 Öğren (açık yemek kitabı + küçük şef şapkası) · 2 Oyna (çapraz çelik kepçe ve spatula + altın yıldız) · 3 Mutfağım (kavanozlu çelik raf + tencere) · 4 Ben (altın kenarlı rozet + şef şapkası) · 5 Sıcak Mutfak (buharı tüten çelik tencere) · 6 Pastacılık (dilimli çilekli pasta, pasta servis küreği) · 7 Servis (beyaz tabak + çatal bıçak + peçete) · 8 Mutfak Araçları (çırpma teli, kepçe, rende) · 9 Baharatlar (3 cam baharat kavanozu) · 10 Beslenme (dengeli tabak: sebze, protein, tahıl) · 11 Bulaşık ve Atık (temiz tabak yığını + su damlası) · 12 Kuver (tabldot kuveri, üstten) · 13 Hızlı Şef (şimşek + şef şapkası) · 14 1'e 1 (iki çelik kepçe karşılıklı) · 15 2'ye 2 (iki şef şapkası yan yana, iki renk) · 16 Blitz (kum saati + şimşek) · 17 Er Meydanı (küçük arena, bayraklar) · 18 Antrenman Şefi (sevimli robot aşçı) · 19 Sıralama (altın kupa) · 20 Ayarlar (çelik dişli) · 21 Arkadaşlar (iki şef şapkası ve kalp) · 22 Görevler (pano ve tik) · 23 Rozet (altın madalya) · 24 Tekrar (dairesel ok + kitap).
 ```
 
-## 9. Doğrulama listesi (her teslimden önce)
+## 9. Matematik Canavarı'ndan (sürüm 67) uyarlanacaklar
+Kaynak: github.com/digerpchesabim-stack/matematikcanavari — CLAUDE.md (pakette MC-REFERANS-CLAUDE.md olarak var). Aynı öğretmenin oyunu; teknik çözümleri denenmiş. Kopyalanmaz, mutfak oyununa uyarlanır ve geliştirilir.
+
+| # | MC'de | Bizde şu an | Uyarlama ve geliştirme | Öncelik |
+|---|---|---|---|---|
+| 1 | Alt çubuk: Oyna · Arkadaşlar · Kartım · Ayarlar | Yok | 4 kapı: Öğren · Oyna · Mutfağım · Ben (Arkadaşlar ve Kartım "Ben"in içinde, arkadaş isteği kırmızı rozetle alt çubukta) | 1 |
+| 2 | Kabartmalı 3B tasarım sistemi; tek dosyada renk belirteçleri; düğmede alt kenar gölgesi + basınca inme; 3 tema | Her menü farklı ton | Bölüm 8: tek tema "Mutfak Atölyesi"; kabartma kuralı aynen; temalar yalnız ton değiştirir | 1 |
+| 3 | Canlı maskot (durum görselleri; zayıf telefonda hazır pozlar); karşılama sahnesi; dokununca tepki | Panda tek resim | Aşçı Dostu durum görselleri (bekliyor, sevinç, kutlama, düşünüyor); dokununca tepki + ses; ana sayfada hafif yüzme | 1 |
+| 4 | Sade mod: "hareketi azalt" ayarı, düşük bellek (deviceMemory ≤1) veya ≤2 çekirdekte efektler kapanır | Sakin mod elle | Sakin mod + otomatik sade mod birlikte | 1 |
+| 5 | Ekran geçişleri (ileri kayma, geri kayma, oyun ekranlarında solma) | Yok | Aynısı; oyun ve soru ekranlarında yalnız solma | 2 |
+| 6 | Online Oyna: açık odalar listesi, 🔄 Yenile, seviyeye göre sıra, 🔒 şifreli, kişi sayısı, renkli konu karesi, Hemen Oyna | Var (Hızlı Şef, açık odalar, Kodun var mı) | Liste her zaman canlı yerine 20 sn önbellek + Yenile (Firestore okuma tasarrufu); konu renk karesi; oda kartında kurucunun rütbe rozeti | 2 |
+| 7 | Rütbesi çok farklı oyuncuların odaları listede görünmez | Yok | Ustalık Ligi'nde zorunlu; Ümit Ligi'nde yalnız Hızlı Şef eşleşmesinde yakın düzey önceliği | 3 |
+| 8 | Botlar: kimse gelmezse "Botla oyna"; kurucu boş yerlere bot ekler; gerçek oyuncu gelince bot yer açar; bota karşı rütbe puanı yok | Antrenman Şefi tek başına | Odalarda "Şef ekle" (Antrenman Şefi botu): 2'ye 2 ve Er Meydanı eksik kişiyle başlayabilir; bot maçında XP var, lig puanı yok | 2 |
+| 9 | Takım odası: Kırmızı/Mavi takımı oyuncu seçer, dolu takıma girilemez, başlarken eşitlenir, eksik yer botla dolar; Takım 2'ye 2 … 5'e 5 | 2'ye 2 kura ile | Takım seçimi (🔥 Ateş / 🌿 Fesleğen), 2'ye 2–4'e 4, eksik yere Şef botu | 2 |
+| 10 | Herkes Tek: en hızlı doğru 3, ikinci 2, üçüncü 1 puan | Blitz (her doğru 1, son 20 sn 2) | Blitz'e "hız sırası" puanı eklenmez (bilgi önce); yalnız eşitlik bozucu olarak kalır | — (alınmadı) |
+| 11 | Takımım: kalıcı takım (≤4), takım adı listeden, kaptan, galibiyet/mağlubiyet, takım kapışması, Takım Oyuncusu madalyası | Yok | Faz 3 "Mutfak Ekibi" bu yapıyla: ekip adı hazır listeden (yazı yok), kaptan, haftalık ekip puanı | 3 |
+| 12 | Karakter Kartı: büyük rozet, rütbe, madalyalar, 6 istatistik, oyuncu kodu, paylaşılabilir PNG | Hesabım + Rütbe ayrı | "Ben" kapısında Aşçı Kartı: Aşçı Dostu, seviye, rütbe, rozetler, 6 istatistik, oyuncu kodu; paylaşım PNG (kişisel veri yok) | 2 |
+| 13 | Madalyalar bronz/gümüş/altın; adil oyun: aynı rakiple günde en çok 5 puanlı maç, yarıdan önce çıkan rakip sayılmaz | Rozetler var, adil oyun sınırı yok | Aynı rakiple günlük sınır ve erken çıkış kuralı Ustalık Ligi'ne | 3 |
+| 14 | Davete cevap: Kabul et / Meşgulüm / Daha sonra; gönderen "gördü" bilgisini görür | Davet var, cevap seçenekleri yok | Aynı üç cevap; "Daha sonra" → Zamanlı Oyun | 3 |
+| 15 | Zamanlı Oyun (randevu, 15–60 dk sonra) + 5 dk kala hatırlatma | Yok | Okul saatine uygun: teneffüs için 15/30 dk randevu | 4 |
+| 16 | Herkesi çağır (çevrimiçi arkadaşlara toplu davet) + hazır mesajlar ve emoji (yazı yok) | Hazır mesaj kararı var, uygulanmadı | Aynısı; mutfak temalı hazır mesajlar ("Hazırım şef!", "Rövanş?") | 3 |
+| 17 | Web bildirimleri (Cloudflare Worker, ücretsiz) | Yok | Ali'nin Cloudflare hesabıyla; önce Ali'ye kurulum adımları verilir | 4 |
+| 18 | Başlangıç kartı: zirve ve ilk hedef, 5 sn sayım, düdük; birini geçince alkış kartı | Er Meydanı'nda hedef rakip var | Bütün maçlara aynı giriş kartı (iki ad, VS, sayım, düdük) | 2 |
+| 19 | Arkadaş profili: aranızdaki skor, son maçlar, çağır | Yok | "Ben → Arkadaşlar"da arkadaş kartı + aranızdaki skor | 3 |
+| 20 | Telefon geri tuşu = uygulama içi geri; çıkışta soru | Kısmen | NAV geçmiş tamponu yaklaşımı denetlenip uygulanır | 2 |
+| 21 | Okuma tasarrufu (Firestore günlük 50 bin okuma): sıralama 2 dk önbellek, arkadaş durumu 2 dk | Kısmen | Bütün listelere önbellek | 2 |
+| 22 | Her yeni özellikte kılavuz metni güncellenir | Kılavuz eski | Kılavuz yeni menüye göre baştan; kural olarak her sürümde güncellenir | 2 |
+
+Not: MC'de 1'e 1'de hız her telefonda yerel ölçülür (adil hız karşılaştırması); bizde de aynı. MC'nin "hepsi hız motorunda" kararı bizde alınmadı: Er Meydanı ve Yolculuk bilgi önceliklidir.
+
+## 10. Doğrulama listesi (her teslimden önce)
 - 360×640, 390×844, 1280×800'de ekran görüntüsü; yatay taşma 0; menüler kaydırmasız.
 - Sayfa hatası (pageerror) 0.
 - tests/blitz-ui-tests.cjs geçer; kural değiştiyse emülatör testi geçer.
