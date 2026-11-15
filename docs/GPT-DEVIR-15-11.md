@@ -235,17 +235,26 @@ Not: Tariflerin malzeme, baharat, miktar ve adımları yalnız Ali'nin onaylı r
 - Sonuç: müşteri memnuniyeti 1–3 yıldız; Aşçı Dostu servis eder; tarif "Menüm"e girer.
 - Tek başına ya da 2'ye 2 takım (ekip mutfağı: biri pişirir, biri servis kurar). Yarış avantajı yok; XP ve unvan var.
 
-**10.3 Yeni soru tipleri (her konuda karışık kullanılır):**
-1. Görsel seç (var) · 2. Ad seç (var) · 3. Eşleştir (var)
-4. **Adım sıralama:** reçete ya da iş adımlarını sürükleyerek sırala (Pastacılık, bulaşık makinesi, kuver kurma sırası).
-5. **Eksik olanı bul:** kuverde/tarifte eksik parça hangisi?
-6. **Hatayı bul:** yanlış kurulmuş kuver, yanlış yerde duran bıçak, yanlış kaba konan atık.
-7. **Ayır (kategori):** atıkları kutulara, besinleri besin gruplarına, baharatları tohum/yaprak/kabuk diye.
-8. **Tabak doldur:** dengeli tabak için doğru grupları seç (Beslenme).
-9. **Yerleştir:** kuver parçalarını yerine koy (var; Servis Günü'ne bağlanır).
-10. **Durum sorusu (vaka):** kısa atölye durumu, ne yapılmalı? (güvenlikte doğru davranış: uzaklaş, öğretmene haber ver).
-11. **Hızlı doğru/yanlış:** Blitz ve ısınma için.
-Kural: her soru tipinin tek düzen kartı olur (görsel üstte, soru, seçenekler, alt sabit düğme); geri bildirimde doğru cevap + bir cümlelik "Neden?".
+**10.3 Soru tipleri (Ali beğendi; konuya göre ayrıntılı)**
+Ortak ilkeler: her tipin tek kart düzeni (görsel üstte, kısa kök, en çok 4 seçenek, alt sabit düğme); sürükleme gereken her yerde "dokun-yerleştir" seçeneği de olur (ince motor güçlüğü); her tipin Öğreniyorum (ipuçlu, destekli) ve Uyguluyorum (bağımsız) kipi; cevaptan sonra doğru cevap + bir cümlelik "Neden?"; kök üçüncü şahıs ve kural dili.
+
+| Tip | Ne yapılır | Mutfak Araçları | Baharatlar | Beslenme | Pastacılık | Kuver / Servant | Bulaşık ve Atık |
+|---|---|---|---|---|---|---|---|
+| Görsel seç / Ad seç | Görsel ↔ ad | ✓ | ✓ | besin | malzeme | parça adı | malzeme |
+| İşlev eşleştir | Araç/ürün ↔ ne işe yarar | "Hangi iş için hangi araç?" | "Bu yemeğe hangi baharat?" | besin ↔ besin grubu | araç ↔ adım | parça ↔ kullanım | ürün ↔ temizlik işi |
+| Boy/sıra diz | Büyükten küçüğe, önce-sonra | tabak, tencere boyları | — | porsiyon | — | kuver kurma sırası | — |
+| Adım sıralama | Adımları sırala | — | — | — | reçete adımları | servis sırası | makine çalıştırma |
+| Eksik olanı bul | Setteki eksik | takımdaki eksik araç | tarifteki eksik baharat | tabaktaki eksik grup | tarifteki eksik malzeme | kuverdeki eksik parça | temizlik sırasındaki eksik adım |
+| Hatayı bul | Görselde yanlış olan | yanlış işte kullanılan araç | yanlış rafa konan kavanoz | dengesiz tabak | yanlış araçla yapılan adım | yanlış yerdeki bıçak | yanlış kutuya atılan atık |
+| Ayır (kategori) | Kutulara dağıt | kesme/karıştırma/ölçme | tohum/yaprak/kabuk/kök | besin grupları | kuru/yaş malzeme | servis/hazırlık | geri dönüşüm/organik/atık yağ |
+| Benzerini ayırt et | İki benzer öğeden doğrusu | kepçe ↔ süzgeçli kepçe | kimyon ↔ çörek otu | — | vanilin ↔ pudra şekeri | tatlı ↔ yemek kaşığı | — |
+| Tabak doldur | Dengeli tabak kur | — | — | ✓ | tatlının menüdeki yeri | — | — |
+| Durum (vaka) | Kısa atölye durumu, ne yapılmalı? | güvenli kullanım | — | — | — | — | kırık cam, kaygan zemin (öğrenci uzaklaşır, öğretmene haber verir) |
+| Vaka zinciri | Aynı durumda 3–4 bağlı soru: kavram → neden → sonuç → uygulama | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| Hızlı doğru/yanlış | Blitz ve ısınma | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+
+Servis Günü aşamaları bu tiplerden kurulur: menü → Tabak doldur; malzeme ve baharat → İşlev eşleştir + Eksik olanı bul; araçlar → İşlev eşleştir; pişirme → Adım sıralama; kuver → Yerleştir + Hatayı bul; servis → Adım sıralama; bulaşık → Ayır + Adım sıralama.
+Yazım: her yeni soru "olcme-degerlendirme-uzmani" ölçütleriyle denetlenir (tek doğru, aynı aileden çeldirici, ipucu cevabı vermez); görselli tiplerde görsel metinle birebir uyar.
 
 **10.4 Modlar ve menüler:**
 - **Öğren:** Yolculuğum (her konuda aynı harita), Kartları incele, Tekrar.
@@ -258,6 +267,48 @@ Kural: her soru tipinin tek düzen kartı olur (görsel üstte, soru, seçenekle
 - Her etkinlik sonunda "Bu iş neye yaradı?" şeridi: "+3 XP · Kimyon kartı ★★ · Mercimek Çorbası tarifine 1 adım kaldı".
 - Konu sayfalarında "Bu konu şu tariflerde işe yarar" satırı.
 - Mutfağım'da kilitli tarife dokununca eksik kartlar ve onları öğreteceği bölümlere tek dokunuşla geçiş.
+
+**10.6 Hikâye ve dünya (MMORPG, Valorant, Battlefield'dan uyarlama)**
+İlke: Bu oyunlardan "anlam, görev, rol ve ekip" alınır; "süre harcayarak güçlenme", para ve şans alınmaz. Her ilerleme kapısı bilgidir.
+
+*Dünya (MMORPG haritası) — adı Ali seçecek; öneriler: Lezzet Vadisi (önerilen), Şefler Şehri, Lezzet Limanı, Usta Köyü:* Her konu yolculuğun bir durağıdır: Baharat Çarşısı (Baharatlar), Araç Atölyesi (Mutfak Araçları), Pazar ve Kiler (Beslenme), Pastane (Pastacılık), Restoran Salonu (Kuver, Servant), Bulaşıkhane (Bulaşık ve Atık). Öğrenci dünyaya stajyer olarak gelir. Haritada bir anda yalnız bir "parlayan görev" vurgulanır (bilişsel yük az, OSB için öngörülebilir).
+
+*Görev verenler (NPC):* İnsan görseli kuralı gereği hepsi hayvan aşçı karakterler: ör. Baharat Çarşısı'nda Attar Baykuş, Pastane'de Pastacı Kirpi, Salon'da Garson Penguen, Atölye'de Usta Ayı. Kısa, sesli okunan görev metni: "Çarşıya yeni kimyon geldi. Kimyonu tanıyıp rafa koyar mısın?"
+
+*Toplama (gathering) = hatırlama çalışması:* Baharat toplama, Çarşı'da kısa soru turudur; doğru bilinen baharat kavanoza girer (Mutfağım kartı). Rastgele düşme, saatlerce toplama yok; günlük toplama sınırı ve mola hatırlatması var. Toplanan her kart Servis Günü'nde kullanılır (10.1).
+
+*Üretim (crafting) = tarif pişirme* (10.2); *meslek = dal* (Sıcak Mutfak, Pastacılık, Servis); *yetenek ağacı = Rütbe Yolu + konu ustalıkları* (ör. "Bıçak Ustası", "Baharat Uzmanı" unvanı; yalnız görünüş ve prestij).
+
+*İtibar (para yerine):* Her durakta itibar çubuğu (görev ve doğru cevapla dolar). İtibar yeni görevleri, tezgâh süslerini ve Aşçı Dostu kıyafetlerini açar.
+
+*Hikâye kampanyası — adı "Ustalık Yolculuğum" (Ali'nin kararı; mevcut "Yolculuğum" öğrenme haritası bu hikâyenin içine katılır):* Her sezon bir bölüm (4 hafta). Kısa ara sahneler (2–3 görsel + sesli okunan 1–2 cümle; atlanabilir). Sezon sonunda büyük açılış: öğrencinin restoranı açılır, Menüm sergilenir.
+
+*Ekip baskını (raid) — "Büyük Ziyafet":* 4 kişilik Mutfak Ekibi büyük bir siparişi birlikte tamamlar. Her üyenin rolü var (Valorant'taki rol mantığı): Sıcak Mutfak (pişirme adımları), Pastacı (tatlı), Servis (kuver ve servis sırası), Hijyen (bulaşık ve atık). Herkes kendi rolünün sorularını cevaplar; ekip ilerleme çubuğu birlikte dolar. Kaybeden yok; yıldız sayısı değişir. Rol, ekipte herkesin gerekli olduğunu öğretir.
+
+*Bölge savaşı (Battlefield'ın Conquest mantığı):* Haftalık takım etkinliği; Gastronomi Haritası'nda bölgeler (ör. Ege, Karadeniz, İtalya mutfağı). Bir bölgeyi ele geçirmek için takım o bölgenin sorularında en çok doğruyu yapar. Hafta sonunda haritayı en çok tutan takım kupayı alır. Yalnız Ümit Ligi etkinliği; lig puanı vermez.
+
+*Valorant'tan rekabet:* yerleştirme maçları (Mutfağa Kabul Sınavı), basamaklar, sezon (act), maç sonu MVP, ajan seçimi yerine Aşçı Dostu seçimi (yalnız görünüş; dereceli maçta güç yok).
+
+*Daha fazla MMORPG öğesi (öğrenmeye uyarlanmış):*
+- **Zindan = Usta Sınavı:** Her durağın sonunda o durağın ustası (ör. Usta Ayı) ile kısa sınav; geçince durak rozeti ve sonraki durak açılır. Kaybetmek yok; eksik kartlar gösterilir, "Antrenmana git" önerilir.
+- **Envanter = Mutfağım; ekipman = iş kıyafeti** (önlük, şapka, ceket; yalnız görünüş).
+- **Keşif:** Haritada gizli "Biliyor muydun?" kartları (gastronomi tarihi; doğrulanmış bilgi). Toplanınca Mutfak Ansiklopedisi'ne girer (oyunun bilgi kitabı = Mutfak Kitabım).
+- **Mentor (usta-çırak):** Üst rütbedeki oyuncu bir arkadaşını Antrenman'a davet eder; çırak doğru yaptıkça ikisi de bonus XP alır. Akran öğrenmesi.
+- **Uzmanlık seçimi:** 10. seviyeden sonra öğrenci bir dalı "uzmanlık" seçer; o dalın görevlerinde unvan ve kıyafet kazanır (güç vermez).
+- **Mevsim haftaları:** "Sonbahar Sofrası" (mevsimin sebze ve meyveleri: balkabağı, nar, ayva…), "Kış Çorbaları Haftası", "Pastacılar Haftası" (dinî ve siyasi tema yok); o haftanın konusu çift XP.
+- **Unvan ve başarımlar (ad biçiminde):** "Baharat Uzmanı" (bütün baharat kartları ★), "Kuver Ustası" (10 kuver hatasız), "Çorba Ustası" (çorba tarifleri), "Gastronomi Tarihçisi" (10.7); Aşçı Kartı'nda görünür.
+- **Hızlı seyahat:** Haritadaki duraklara tek dokunuşla gidilir; uzun yürüme/yükleme yok.
+
+*Uyum ve risk:* Bu yapı öğrenmeye uyar, çünkü toplama ve görev aslında aralıklı tekrar ve amaçlı uygulamadır. Risk, karmaşıklıktır: harita küçük tutulur (6 durak), aynı anda tek görev, her ekranda tek ana eylem, okunan kısa metin. Uygulama sırası: önce Mutfağım ve Servis Günü (10.1–10.2), sonra harita ve görevler, en son baskın ve bölge savaşı.
+
+**10.7 Gastronomi Tarihi (itibar ve "Gastronomi Tarihçisi" unvanı)**
+- Ürünlerin keşif ve ad hikâyeleri (ör. yoğurdun bulunuşu, menemen, çatal ve kaşığın tarihi, sütlacın adı) keşif kartı olarak toplanır; her kart 2 kısa cümle, sesli okunur, bir araca ya da malzemeye bağlanır (ör. menemen kartı → sahan aracı).
+- Her kartta üç etiketten biri (Ali'nin kararı): **Biliniyor** (kaynakla doğrulanmış), **Bir anlatıya göre** (efsane; kesin bilgi gibi sunulmaz), **Adı nereden gelir?** (ad kökeni).
+- Onaylı örnek kart metni: "Yoğurt nasıl bulundu? Kesin bilinmiyor. Bir anlatıya göre süt, kapta kendiliğinden ekşiyip koyulaştı. Anadolu'da eskiden yoğurt, palamut ya da çam kozalağıyla da mayalanırdı." (Evde deneme çağrışımı yok.) "Sütlaç adı nereden gelir? Eskiden bu tatlıya 'sütlü aş' denirdi. Söylene söylene 'sütlaç' oldu."
+- Efsane olarak verilecekler: yoğurdun at sırtında bulunması, pastırmanın eyer altı, çayın bardağa düşen yaprağı, peynirin mide tulumu, kazandibinin yanık kazası, menemen–1920 göçü. Doğrulanmış yıllar: Türk kahvesi kültürü UNESCO 2013, Napoli pizza ustalığı 2017, ince ekmek/yufka 2016.
+- Yapılmadı (kartlardan önce şart): Ali'nin gönderdiği ~50 metnin tek tek kaynakla "doğru / anlatı / çıkarılmalı" diye ayrılması. Uydurma tarih, yıl, kişi adı yazılmaz.
+- İtibar: her kart Gastronomi Tarihi itibarını doldurur; bütün kartlar ve bölüm sorusu tamamlanınca **Gastronomi Tarihçisi** unvanı.
+- Soru: her kartın 1 sorusu olur (Biliniyor ve Adı nereden gelir? kartlarından; efsaneden kesin bilgi sorusu sorulmaz). Er Meydanı'na gastronomi tarihinden 5 soru girer (konu payı). Gastronomi Haritası (ülkeler ve ünlü yiyecekleri) bu bölümün devamıdır.
 
 ## 11. Doğrulama listesi (her teslimden önce)
 - 360×640, 390×844, 1280×800'de ekran görüntüsü; yatay taşma 0; menüler kaydırmasız.
