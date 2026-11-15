@@ -400,7 +400,7 @@ function yrSpeakText(q){return q.prompt+(q.comparisonPosition?' Üçgen '+q.comp
 function yrQuestionHTML(q){return '<div class="yr-qa"><div class="yr-qside">'+(q.image?'<img class="yr-img" src="'+esc(q.image)+'" alt="'+esc(q.imageAlt||'Soru görseli')+'">':'')+'<div class="yr-qrow"><h2 class="yr-q">'+mcqPromptHTML(q)+'</h2>'+(typeof sesDugme==='function'?sesDugme(yrSpeakText(q),'Soruyu ve seçenekleri dinle'):'')+'</div></div>';}
 function yrMenuHTML(){
  const code=YR.codeDraft||new URLSearchParams(location.search).get('oda')||'',cfg=yrConfigured();
- return yrTop('Ustalar Ligi')+'<div class="wrap"><h1>Ustalar Ligi</h1><p class="sub">Arkadaşınla ya da sınıfla aynı sorulara birlikte cevap ver. Meydan Okuma dışındaki oyunlar için internet gerekir.</p>'+(!cfg?'<p class="card" role="status">Oda bağlantısı henüz ayarlanmadı. Bireysel oyunları kullanabilirsin.</p>':'')+
+ return yrTop('Ustalar Ligi')+'<div class="wrap"><h1>Ustalar Ligi</h1><p class="sub">Arkadaşlarınla aynı sorulara birlikte cevap ver. Meydan Okuma dışındaki oyunlar için internet gerekir.</p>'+(!cfg?'<p class="card" role="status">Oda bağlantısı henüz ayarlanmadı. Bireysel oyunları kullanabilirsin.</p>':'')+
   (yrHasName()?'<p class="card" id="yrNick">Oyundaki adın: <b>'+esc(yrNickGet())+'</b></p>':'<p class="card" id="yrNick">Odaya girerken sana bir oyun adı verilecek.</p>')+
   '<button class="btn pri" onclick="yrCreateOpen(\'duel\')"'+(cfg?'':' disabled')+'>1’e 1 Kapışma Kur<span class="yr-sm">İki kişi aynı soruya aynı anda bakar. Önce doğru basan puanı alır.</span></button>'+
   '<button class="btn pri" onclick="yrCreateOpen(\'arena\')"'+(cfg?'':' disabled')+'>Er Meydanı Kur<span class="yr-sm">3–10 kişi kendi hızında ilerler. En çok 150 soru, 12 yanlışta bitiş.</span></button>'+

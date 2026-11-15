@@ -48,7 +48,7 @@ function dostOyunPuanla(sonuc){
 function dostPuanHTML(id){
  const pid0=dostPid();
  if(pid0&&id){const entry=dostGorevProfil(pid0),bal=dostPuanBakiye(entry),locked=!dostGorevAcik(id,pid0),aktif=entry.active===id,ad=(typeof DOST_CHARACTERS!=='undefined'&&DOST_CHARACTERS[id]?DOST_CHARACTERS[id].ad:'Dost');
-  if(!locked)return '<div class="dost-kontrat tamam"><b>✅ '+esc(ad)+' senin dostun</b><span>Kullanılabilir dost puanı: '+bal+'</span></div>';
+  if(!locked)return '<div class="dost-kontrat tamam"><b>✅ '+esc(ad)+' senin mutfağında</b><span>Kullanılabilir dost puanı: '+bal+'</span></div>';
   const v=Math.min(bal,DOST_ACMA_PUANI),y=Math.round(100*v/DOST_ACMA_PUANI);
   return '<div class="dost-kontrat'+(aktif?' aktif':'')+'"><div class="dk-bas"><b>'+(aktif?'🎯 Hedefin: ':'🔒 ')+esc(ad)+'</b><span>Açmak için '+v+' / '+DOST_ACMA_PUANI+' dost puanı</span></div><div class="dk-cubuk" role="progressbar" aria-label="Kilidi açma ilerlemesi" aria-valuemin="0" aria-valuemax="'+DOST_ACMA_PUANI+'" aria-valuenow="'+v+'"><i style="width:'+y+'%"></i></div><p>'+(bal>=DOST_ACMA_PUANI?'Puanın yetti! "Kilidi aç" düğmesine bas.':(aktif?'Oynadıkça puanın dolacak. ':'Bu dostu açmak istiyorsan "Hedefim olsun" düğmesine bas. ')+'Her biten oyun 5–10 dost puanı kazandırır.')+'</p></div>';}
  return dostPuanHTMLEski(id);

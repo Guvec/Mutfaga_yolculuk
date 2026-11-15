@@ -13,7 +13,7 @@ const BaharatRafi=(function(){
  function kayit(n){n=n||K.no;const p=profil();if(!p)return MISAFIR['k'+n]||{};try{return (ls(ANAHTAR,{})[p]||{})['k'+n]||{};}catch(e){return {};}}
  function kaydet(v,n){n=n||K.no;const p=profil();if(!p){MISAFIR['k'+n]=v;return;}const a=ls(ANAHTAR,{});a[p]={...(a[p]||{}),['k'+n]:v};lsSet(ANAHTAR,a);}
  function acikMi(n){return n===1||!!(kayit(n-1).yildiz);}
- /* Sınıf sırası: kutu puanı rekor sistemine 'bh-k1' tablosu olarak yazılır (genel ve haftalık).
+ /* Haftalık sıra: kutu puanı rekor sistemine 'bh-k1' tablosu olarak yazılır (genel ve haftalık).
     Yalnız kendi rekorunu geçen puan gönderilir. Sıra, haftalık tablodan okunup kutu sonunda gösterilir. */
  function siralama(puan,once){
   try{
@@ -29,7 +29,7 @@ const BaharatRafi=(function(){
     const be=rkBackend();if(!be)return;
     const rows=await be.list(rkTable('bh-k'+K.no,'hafta'));const r=rkRank(rows,pid);
     const el=document.getElementById('br-sira');if(!el||!r)return;
-    el.textContent=r.rank===1?'Bu hafta bu kutuda sınıfta 1. sıradasın! 👑':'Bu hafta bu kutuda sınıfta '+r.rank+'. sıradasın.';
+    el.textContent=r.rank===1?'Bu hafta bu kutuda 1. sıradasın! 👑':'Bu hafta bu kutuda '+r.rank+'. sıradasın.';
     el.hidden=false;if(r.rank<=3)ses('seri');
    }).catch(()=>{});
   }catch(e){}

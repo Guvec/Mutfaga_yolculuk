@@ -50,7 +50,7 @@ var GIRIS={foods:[
 {id:'cola',name:'Kola',icon:'🥤',type:'drink',effect:'refuse',text:'Teşekkür ederim. Ben suyu seçiyorum.'}],
  character:'panda',guestCharacter:dostAcik(DOST_SAVED,null)?DOST_SAVED:'panda',motion:ls('dost_hareket',true),last:null,page:0,editor:false};
 const DOST_ASSETS='assets/ascidostum/';
-const DOST_TABS={dost:'Dostlar',kiyafet:'Kıyafetler',aksesuar:'Aksesuarlar',hareket:'Hareketler'};
+const DOST_TABS={dost:'Karakterler',kiyafet:'Kıyafetler',aksesuar:'Aksesuarlar',hareket:'Hareketler'};
 const DOST_MOVES={
  selam:{ad:'El salla',art:'panda-selam',rabbit:'tavsan-selam'},
  bas:{ad:'Başınla selam ver',art:'panda-bas',rabbit:'tavsan-bas'},
@@ -274,7 +274,10 @@ function girisHTML(){
   $('gWatch').hidden=tab!=='hareket';
   const pid=dostPid(),canOpen=dostPuanBakiye(dostGorevProfil(pid))>=DOST_ACMA_PUANI;
   $('gUse').disabled=!!item.locked&&(!pid||(item.active&&!canOpen));
-  $('gUse').textContent=item.active?'🔓 Kilidi aç':item.locked?'🎯 Hedefim olsun':'Dostum olsun';
+  /* 15.11: "Dostum olsun" yerine "Mutfağıma al"; zaten seçili olan için "✓ Mutfağımda" (basılamaz). */
+  const zaten=tab==='dost'&&!item.locked&&!item.active&&item.id===applied();
+  $('gUse').textContent=item.active?'🔓 Kilidi aç':item.locked?'🎯 Hedefim olsun':zaten?'✓ Mutfağımda':tab==='dost'?'Mutfağıma al':'Bunu giy';
+  if(zaten)$('gUse').disabled=true;
   $('gQuest').innerHTML=tab==='dost'&&!profileChoice?dostPuanHTML(item.id):'';
   $('gWardrobe').querySelectorAll('[data-dost-tab]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.dostTab===tab)));
   $('gOptions').dataset.tab=tab;

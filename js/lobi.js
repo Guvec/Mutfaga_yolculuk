@@ -5,7 +5,7 @@
    Şifre 4 rakamdır, odanın gizli/sifre belgesinde durur; öğrenci okuyamaz, giriş kontrolünü kurallar yapar. */
 'use strict';
 const LB={liste:[],hata:'',unsub:null,bekliyor:false,sayfa:0,kod:false,sifre:null};
-const LB_ADLAR=['Hızlılar','Şefler','Mutfak Ekibi','Sınıf yarışı','Tatlıcılar','Servis Ekibi'];
+const LB_ADLAR=['Hızlılar','Şefler','Mutfak Ekibi','Tatlıcılar','Servis Ekibi'];
 function lbCap(r){return r.mode==='duel'?2:r.mode==='arena'?(typeof ArenaModel!=='undefined'?ArenaModel.maxPlayers(r):10):((YarisModel.LIMITS[r.mode]||{}).max||8);}
 function lbSay(r){return r.mode==='duel'?(r.guest?2:1):(r.cnt||1);}
 function lbTur(r){return r.mode==='duel'?'⚔️ 1’e 1 Kapışma':r.mode==='arena'?'🏟 Er Meydanı':'🏁 Yarış';}
