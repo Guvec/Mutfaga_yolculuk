@@ -133,7 +133,31 @@ Bir mobil oyunda toplanan "malzeme kartı" için çerçeve tasarımı üret: 3 s
 - 24 lezzet görseli: Ali'de; "Şefe sun" etkileşimi bunlarla yapılacak.
 - Rütbe ve lig basamak rozetleri (Çırak, Kalfa, Usta, Şef, Baş Şef; her biri 3 kademe): Faz 2'de istenecek.
 
-## 8. Doğrulama listesi (her teslimden önce)
+## 8. Tek tasarım dili ve hareketli arayüz (Ali'nin 15.11 isteği — EN ÖNCE YAPILACAK İŞLERDEN)
+Sorun: Her menü farklı tonda; oyun "birçok oyun bir arada" gibi görünüyor. Hedef: tek, modern, üst düzey, 3B görsel dil; ana sayfa ve menüler canlı ve hareketli. Örnek: Ali'nin Matematik Canavarı oyunu (github.com/digerpchesabim-stack/matematikcanavari) — ana sayfa düğmeleri ve maskot sürekli hafifçe hareket eder; maskotun durum görselleri ayrıdır (mc-idle, mc-happy, mc-cheer, mc-look, mc-wait.webp); ekran geçişleri perspektifli kayar.
+
+**8.1 Tasarım sistemi (önce bu, sonra kod):**
+- Tek tema adı: "Mutfak Atölyesi". Renk belirteçleri (CSS değişkeni): mürekkep lacivert #14234a, altın vurgu #c99a2e, krem zemin #fbf7ee, kart beyaz, doğru yeşil, yanlış kiremit; her konu için yalnız simgede kullanılan tek bir konu rengi. Kullanıcının seçtiği tema (lavanta vb.) yalnız zemin ve vurgu tonunu değiştirir; yapı aynı kalır.
+- Yazı: tek aile (şu an kullanılan yuvarlak sans-serif), 3 boy (başlık, gövde, küçük), 2 kalınlık.
+- Bileşenler: üst çubuk, birincil düğme (ekranda tek), kart düğme (görsel + başlık + alt yazı), liste satırı, alt pencere, rozet/çip, boş durum. Hepsi bir CSS dosyasında (ör. css/tasarim-sistemi.css); eski ekran CSS'leri bunları kullanacak biçimde sadeleşir.
+- Görsel dil: bütün simgeler ve kart görselleri aynı 3B stil (aynı ışık yönü, aynı kamera açısı, aynı malzeme parlaklığı, aynı renk paleti), saydam zemin WebP.
+
+**8.2 Hareket kuralları:**
+- Ana sayfa ve menü kartları: sıra kaydırılmış (her kart 0,2 sn arayla) 2,4–2,8 sn'lik yumuşak yüzme (translateY −4…−8 px); birincil düğmede ara sıra parlama geçişi; basınca küçülme (scale .96) ve bırakınca yaylanma.
+- Panda (ve her Aşçı Dostu): tek resim yerine durum görselleri — bekliyor (nefes alır gibi yüzme), dokununca sevinç, doğru cevapta kutlama, yanlışta "birlikte bakalım", beklerken etrafa bakma; durumlar arasında kısa geçiş.
+- Ekran geçişi: perspektifli kayma (0,25 sn). Ödül anlarında konfeti/parıltı.
+- Yalnız transform ve opacity ile; ekran dışı animasyonlar durur. Sakin mod ve işletim sisteminin "hareketi azalt" ayarında hareketler kapanır (OSB'li öğrenciler için zorunlu).
+
+**8.3 Uygulama sırası:** (1) tasarım sistemi belgesi + örnek 3 ekran görseli → Ali onayı; (2) GPT görsel paketi (simgeler, kart görselleri, panda durumları); (3) css/tasarim-sistemi.css + hareket; (4) ekran ekran geçiş (ana sayfa Ali'nin onayıyla en son).
+
+**8.4 GPT görsel komutu — tek stil 3B simge paketi:**
+```
+Mutfak temalı mobil eğitim oyunu için TEK STİLDE 3B simge paketi üret. Hepsini tek seferde ver; arada onay bekleme.
+STİL: yumuşak 3B oyun simgesi (mobil oyun kalitesi), soldan üstten tek sıcak ışık, hafif parlak malzeme, kalın sade biçim, aynı kamera açısı (hafif üstten 3/4), saydam zemin, 1024x1024, nesne ortada ve aynı ölçekte. Renk paleti: lacivert #14234a, altın #c99a2e, krem #fbf7ee, çelik gümüş; konuya göre tek vurgu rengi. Yazı, logo, marka, insan, el yok. Ahşap ve plastik görünüm yok (çelik, cam, seramik, silikon olabilir).
+SİMGELER: 1 Öğren (açık yemek kitabı + küçük şef şapkası) · 2 Oyna (çapraz çelik kepçe ve spatula + altın yıldız) · 3 Mutfağım (kavanozlu çelik raf + tencere) · 4 Ben (altın kenarlı rozet + şef şapkası) · 5 Sıcak Mutfak (buharı tüten çelik tencere) · 6 Pastacılık (dilimli çilekli pasta, pasta servis küreği) · 7 Servis (beyaz tabak + çatal bıçak + peçete) · 8 Mutfak Araçları (çırpma teli, kepçe, rende) · 9 Baharatlar (3 cam baharat kavanozu) · 10 Beslenme (dengeli tabak: sebze, protein, tahıl) · 11 Bulaşık ve Atık (temiz tabak yığını + su damlası) · 12 Kuver (tabldot kuveri, üstten) · 13 Hızlı Şef (şimşek + şef şapkası) · 14 1'e 1 (iki çelik kepçe karşılıklı) · 15 2'ye 2 (iki şef şapkası yan yana, iki renk) · 16 Blitz (kum saati + şimşek) · 17 Er Meydanı (küçük arena, bayraklar) · 18 Antrenman Şefi (sevimli robot aşçı) · 19 Sıralama (altın kupa) · 20 Ayarlar (çelik dişli) · 21 Arkadaşlar (iki şef şapkası ve kalp) · 22 Görevler (pano ve tik) · 23 Rozet (altın madalya) · 24 Tekrar (dairesel ok + kitap).
+```
+
+## 9. Doğrulama listesi (her teslimden önce)
 - 360×640, 390×844, 1280×800'de ekran görüntüsü; yatay taşma 0; menüler kaydırmasız.
 - Sayfa hatası (pageerror) 0.
 - tests/blitz-ui-tests.cjs geçer; kural değiştiyse emülatör testi geçer.

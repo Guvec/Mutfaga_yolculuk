@@ -1,0 +1,11 @@
+Ekteki ZIP, "İşin Mutfağına Yolculuk" adlı eğitim odaklı mobil rekabetçi oyunumun (PWA, saf JavaScript) bütün kodunu ve devir belgesini içeriyor. Önce GPT-DEVIR-15-11.md dosyasını baştan sona oku; çalışma kuralları değişmez.
+
+Görevin: Oyuna TEK, modern, üst düzey bir tasarım dili kurmak. Şu an her menü farklı tonda; oyun birçok oyun bir araya getirilmiş gibi görünüyor. Bütün ekranlar aynı tema, aynı renkler, aynı bileşenler ve aynı 3B görsel stille birbirine bağlanmalı. Ana sayfa ve menüler canlı ve hareketli olmalı: kartlar ve düğmeler yumuşakça yüzmeli, Aşçı Dostu (panda vb.) tek resim değil, durumları olan canlı bir karakter olmalı (bekliyor, sevinç, kutlama, etrafa bakma). Örnek aldığım kendi oyunum: github.com/digerpchesabim-stack/matematikcanavari (ana sayfa hareketleri ve maskot durumları). Bizimki ondan daha üst seviye olmalı. Belgede 8. bölüm bu işin kurallarını veriyor (renk belirteçleri, bileşenler, hareket kuralları, sakin mod).
+
+Çalışma sırası:
+1. Önce bana bir tasarım sistemi önerisi sun: renkler, yazı boyları, bileşenler, hareket kuralları ve 3 örnek ekran görseli (Ustalar Ligi, bir konu sayfası, maç sonu). Onaylamadan koda geçme.
+2. Onaydan sonra belgedeki 8.4 komutuyla tek stilde 3B simge paketini üret; panda durum görsellerini de aynı stilde üret.
+3. Sonra css/tasarim-sistemi.css dosyasını yaz ve ekranları tek tek bu sisteme geçir. Ana sayfayı en sona bırak; ana sayfa değişikliği benim onayımla yapılır.
+4. Her adımdan sonra 360x640 telefon ekran görüntüsü göster; yatay taşma ve kaydırma olmasın; sakin modda hareketler kapansın.
+
+Kurallar: para yok, alkol yok, insan/el/marka/logo görseli yok, ahşap ve plastik eşya yok, serbest yazışma yok. Yapmadığın kontrolü yapılmış gibi yazma. Değiştirdiğin dosyaları ve neden değiştirdiğini kısa liste olarak ver.
