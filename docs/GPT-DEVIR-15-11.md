@@ -2,6 +2,81 @@
 
 Bu belge oyunu devralan yapay zekâ (GPT) ve Ali Arıkoğlu için hazırlandı. Önce "Çalışma kuralları"nı oku. Sonra "Oyun ağacı", "Yeni menü yapısı", "Denetim bulguları" ve "İş listesi" sırasıyla ilerle.
 
+## ★ GÜNCEL ANA YAPI VE SADELEŞTİRME KARARLARI (15.11.2026 11:05 — Ali onayladı)
+Bu bölüm belgenin geri kalanıyla çelişirse **bu bölüm geçerlidir.** Amaç: daha sade ama mantıklı bir bütün. Ağaç budandı.
+
+**A. Ağaç (budanmış hâli)**
+- Kök: konular (Mutfak Araçları, Baharatlar, Yeterli ve Dengeli Beslenme, Pastacılık, Servant ve Kuver, Bulaşık ve Atık, Gastronomi Tarihi).
+- Gövde: XP (Aşçı Seviyesi) + **"Bugün ne yapayım?"** (oyunun önerdiği sıradaki adım).
+- Dallar: **tek harita**, 7 durak.
+- Yapraklar: bölümler, Antrenman Şefi, maçlar.
+- Meyve: kart yıldızları, tarifler (Servis Günü), unvanlar.
+
+**B. Yalnız üç ilerleme ölçüsü** (öğrenci "neyi neden kazandım?" sorusunu kolay cevaplasın)
+1. **XP** — ne kadar çalıştığını gösterir → Aşçı Seviyesi. Dal rütbeleri (Rütbe Yolu) XP'nin dala göre görünümüdür, ayrı puan değildir. Dost puanı XP'ye katılır (ayrı sayaç kalkar). Ekrandaki "Mutfak Puanı" adı da XP olur.
+2. **Kart yıldızı (1–3)** — ne kadar bildiğini gösterir → Mutfağım ve duraklar. İtibar ayrı puan değildir: bir duraktaki kart yıldızlarının toplamıdır (durak ilerleme çubuğu).
+3. **Lig puanı** — yalnız Kupa Ligi'nde, rekabet için.
+
+**C. Tek harita: "Ustalık Yolculuğum"**
+- Hikâyenin ve haritanın adı **Ustalık Yolculuğum**. Dünya adı ayrıca kullanılmaz (gerekirse ileride).
+- 7 durak = 7 konu: Araç Atölyesi · Baharat Çarşısı · Pazar ve Kiler (Beslenme) · Pastane · Restoran Salonu (Servant ve Kuver) · Bulaşıkhane · **Gastronomi Tarihçisi** (dünya haritası; aşağıda F).
+- Durak = Mutfağım istasyonu: bir durağa girilince içinde **Bölümler** (eski konu başına Yolculuğum haritası), **Raf** (o durağın kartları ve yıldızları), **Usta Sınavı** ve durak ilerleme çubuğu var. Ayrı istasyon ekranı, ayrı Gastronomi Haritası yok.
+- Aynı anda tek "parlayan" görev; ekranda tek ana eylem.
+
+**D. Adlar (karışıklık giderildi)**
+- Hikâye: **Ustalık Yolculuğum**.
+- Yarış menüsü: **Oyna** kapısı ("Ustalar Ligi" adı kalkar).
+- Ligler: **Ümit Ligi** (derecesiz, herkese açık) ve **Kupa Ligi** (dereceli; eski adı "Ustalık Ligi" kalkar). Lig basamakları: Çırak, Kalfa, Usta, Şef, Baş Şef.
+- Unvanlar: Baharat Uzmanı, Kuver Ustası, Çorba Ustası, Gastronomi Tarihçisi…
+- Tek ad sözlüğü (bölüm 4) geçerli: Tekrar, Çalışma geçmişim, Kılavuz, Karakterler, Mutfağıma al.
+
+**E. "Bugün ne yapayım?"**
+- Oyuna her girişte (ana sayfa açılırken) kısa bir kart olarak çıkar; ana sayfada da sürekli büyük bir düğmedir. Mevcut "Kaldığın yer" kartı bunun içine katılır.
+- İçeriği oyun seçer, öncelik sırası: (1) solan kart varsa 2 dakikalık Antrenman ("Kimyon kartın soluyor"), (2) yarım kalan bölüm ("Kaldığın yer: Baharat Çarşısı · Bölüm 3"), (3) bir tarife eksik tek kart ("Mercimek Çorbası'na 1 kart kaldı"), (4) günlük görev, (5) "Bir maç oyna".
+- Tek dokunuşla ilgili ekrana gider. Kart kapatılabilir; sakin modda hareketsiz.
+
+**F. Gastronomi Tarihçisi durağı (harita)**
+- Bir dünya haritası; **Türkiye'den başlar.** Önce Türkiye'nin bölgeleri: her bölgede **coğrafi işaretli ürünler** (ör. Antep baklavası, Afyon kaymağı, Malatya kayısısı gibi) ve ünlü yemek-tatlılar; sonra mutfağıyla ünlü ülkeler ve onların dünyaca ünlü yemek ve tatlıları.
+- Coğrafi işaret bilgisi yalnız resmî kayıttan (TÜRKPATENT coğrafi işaret veri tabanı) doğrulanarak yazılır; doğrulanmayan ürün eklenmez. Alkollü ürün yok.
+- Her ürün = keşif kartı (bölüm 10.7'deki üç etiket: Biliniyor / Bir anlatıya göre / Adı nereden gelir?) + 1 soru. Bölge kartları toplanınca bölge açılır, harita bitince **Gastronomi Tarihçisi** unvanı. Er Meydanı'na gastronomi tarihinden 5 soru.
+- Kartlar yazılmadan önce Ali'nin ~50 metni kaynakla ayrılır (zorunlu).
+
+**G. Tek haftalık etkinlik: "Bu Hafta"**
+- Her hafta tek tema döner: bir konu (ör. Baharat Haftası), bir mevsim (ör. Kış Çorbaları, Sonbahar Sofrası) ya da bir bölge (ör. Ege Mutfağı). O temadan XP iki katı.
+- Hafta sonunda tek **Er Meydanı finali** (Haftanın Turnuvası bunun adıdır). Ayrı mevsim haftası, ayrı turnuva, ayrı bölge savaşı yok.
+
+**H. Her menüde hareketli görseller (Matematik Canavarı gibi, ondan üst seviye)**
+- Evet: **bütün menülerde** kart ve düğmeler hafifçe yüzer (sıra kaydırılmış), birincil düğmede ara sıra parıltı, basınca küçülüp yaylanma; durak ve mod simgeleri 3B ve canlı (hafif sallanma, ışık geçişi); Aşçı Dostu her menüde köşede canlı (bekliyor/sevinç/kutlama/düşünüyor).
+- Soru ekranları **sakin** kalır: yalnız doğru-yanlış geri bildirimi hareket eder (dikkat dağılmasın).
+- Sakin mod ve "hareketi azalt" ayarında hepsi durur; zayıf telefonda otomatik sade mod. Kurallar bölüm 8.2.
+
+**I. Öğrenme yolları süreye bağlanmaz (kural)**
+- Yolculuğum, Antrenman Şefi, Raf ve Usta Sınavı süresiz. Süre baskısı yalnız seçmeli yarış modlarında (Blitz, 1'e 1, Er Meydanı) vardır.
+
+**J. İlk 10 dakika (yeni öğrenci akışı)**
+- Karakter seç → Aşçı Dostu tanışma (1 cümle) → ilk durakta ilk bölüm → ilk kart ★ → 2 dakikalık ilk antrenman → "Bugün ne yapayım?" ile tanışma → isteğe bağlı ilk maç. Her adımda tek düğme.
+
+**K. Ertelenenler (son faza)**
+- Ekip baskını (Büyük Ziyafet) ve bölge savaşı: aynı anda çok kişinin çevrimiçi olmasını ve yeni Firestore kurallarını gerektirir; okul telefon/internet koşulu belirsiz.
+- Zamanlı oyun ve telefon bildirimleri (Cloudflare kurulumu gerektirir).
+- Mutfak Ekibi (kalıcı takım) Kupa Ligi'nden sonra.
+- Dev Sipariş kaldırıldı. Ayrı mevsim haftaları kaldırıldı (G'ye katıldı). Ayrı Gastronomi Haritası kaldırıldı (F'ye katıldı). Ayrı itibar puanı ve dost puanı kaldırıldı (B).
+
+**L. Servis Günü kapsamı**
+- 3 onaylı tarifle başlar: Mercimek Çorbası, Sebzeli Omlet, Kek (miktarlar Ali'nin onaylı reçetelerinden). Diğer tarifler onaylandıkça eklenir.
+
+**M. Güncel iş sırası (önceki iş listelerinin yerine)**
+1. Tek tasarım dili + hareketli menüler (örnek-önce kuralıyla; bölüm 8) ve alt çubuk (Öğren · Oyna · Mutfağım · Ben).
+2. Tek ad sözlüğü + Ustalar Ligi → Oyna, Ustalık Ligi → Kupa Ligi; Mutfak Puanı → XP; dost puanının XP'ye katılması.
+3. "Bugün ne yapayım?" + İlk 10 dakika.
+4. Ustalık Yolculuğum haritası: 6 durak (mevcut konular), durak içi Bölümler + Raf + Usta Sınavı; kart yıldızı (solma dahil) ve Antrenman Şefi'nin solan kartlardan soru seçmesi.
+5. Yeni soru tipleri (bölüm 10.3) konu konu.
+6. Servis Günü (3 tarif).
+7. Gastronomi Tarihçisi durağı (önce metinlerin kaynakla ayrılması, sonra Türkiye coğrafi işaretli ürünler, sonra dünya).
+8. "Bu Hafta" etkinliği.
+9. Kupa Ligi (Mutfağa Kabul Sınavı, basamaklar, sezon), usta-çırak, uzmanlık seçimi.
+10. Matematik Canavarı uyarlamalarından kalanlar (bölüm 9), ertelenenler (K).
+
 ## 0. Çalışma kuralları (değişmez)
 - Hedef kitle: 14–17 yaş; hafif düzeyde zihinsel yetersizliği olan, bir kısmı otizm spektrumunda meslek lisesi öğrencileri. Dil: doğal Türkiye Türkçesi, yaşa saygılı, çocuksu değil.
 - Kimlik: eğitim odaklı **mobil rekabetçi oyun**. Rekabet bilgiyle kazanılır. "Sınıf yarışı" çerçevesi yok.
@@ -92,7 +167,7 @@ Her maddede: dosya, yapılacak, kabul ölçütü. Her madde ayrı onay ister.
 5. **Antrenman Şefi zayıf konular:** Tekrar listesinden ve solan kartlardan soru seçer (js/antrenman.js antBasla). Ölçüt: tekrar listesi boş değilse sorular en az yarı yarıya oradan gelir.
 6. **Günlük 3 görev** ana sayfa kartında; görev türleri: Yolculuğum'da 1 bölüm, Antrenman'da 8 doğru, 1 maç. Ölçüt: gece yarısı yenilenir; kaçırınca ceza yok.
 7. **Haftanın Turnuvası:** Haftalık Mutfak Yarışması (js/haftalik.js, js/kaptan.js) Ustalar Ligi'ne taşınır.
-8. **Tarif defteri ve pişirme mini oyunu** (Mutfağım v2): ilk 5 tarif atölye uygulamalarından (Mercimek Çorbası, Sebze Çorbası, Sebzeli Omlet, Kek ve bir pastacılık tarifi). Reçete miktarları onaylı kaynaktan; uydurulmaz.
+8. **Tarif defteri ve pişirme mini oyunu** (Mutfağım v2): ilk 3 tarif (★L): Mercimek Çorbası, Sebzeli Omlet, Kek. Reçete miktarları onaylı kaynaktan; uydurulmaz.
 9. **Ustalık Ligi:** Mutfağa Kabul Sınavı, lig basamakları, sezon, ücretsiz sezon şeridi (bkz. claude/oyun-plan-15-11-rekabetci.md Faz 2).
 10. **Mutfak Ekibi** (3–5 kişi), hazır tepkiler, joker seçimi, MVP ekranı.
 11. **İçerik:** baharat kutu 5–7, beslenme ~250 soru, reçete sıralama.
