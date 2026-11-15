@@ -76,7 +76,7 @@ function girisHTML(){
   <div class="dost-wrap">
    <header class="dost-head">
     <button type="button" id="gStart" aria-label="Ana sayfa">‹</button>
-    <h1>Yol Arkadaşım</h1>${dostProfil()}
+    <h1>Aşçı Dostum</h1>${dostProfil()}
    </header>
    <section id="gKitchen" aria-label="Etkileşimli mutfak">
     <div class="dost-choice" aria-label="Şefini seç">
@@ -110,7 +110,7 @@ function girisHTML(){
     <div class="dost-actions dost-preview-actions">
      <button type="button" id="gWatch">▶︎ İzle</button><button type="button" id="gUse">Kullan</button>
     </div>
-    <button type="button" id="gBesle" class="dost-besle">🍓 Yol arkadaşına tattır</button>
+    <button type="button" id="gBesle" class="dost-besle">🍓 Lezzet tattır</button>
     <p class="dost-applied" id="gApplied" role="status"></p>
     <div id="gOptions" class="dost-options"></div>
    </section>
@@ -289,8 +289,8 @@ function girisHTML(){
   G.editor=show;
   $('gKitchen').hidden=show;
   $('gWardrobe').hidden=!show;
-  document.querySelector('.dost-head h1').textContent='Yol Arkadaşım';
-  $('gStart').setAttribute('aria-label',show&&origin!=='home'?'Yol Arkadaşım ekranına dön':origin==='market'?'Markete dön':'Ana sayfa');
+  document.querySelector('.dost-head h1').textContent='Aşçı Dostum';
+  $('gStart').setAttribute('aria-label',show&&origin!=='home'?'Aşçı Dostum ekranına dön':origin==='market'?'Markete dön':'Ana sayfa');
   if(show){$('gWardrobe').querySelectorAll('[data-dost-tab]').forEach(b=>{b.hidden=profileChoice?b.dataset.dostTab!=='dost':b.dataset.dostTab==='aksesuar'&&dostDalKiyafeti();});tab=initialTab;option=applied();$('gApplied').textContent='';preview();$('gStart').focus();}
   else{$('gEditor').focus();}
  }

@@ -47,20 +47,20 @@ function dostOyunPuanla(sonuc){
 /* 14.11: Kilitli dost için açma hedefi (Valorant ajan kontratı mantığı, öğrenci diliyle): dost puanı biriktirilir, dolunca kilit açılır. */
 function dostPuanHTML(id){
  const pid0=dostPid();
- if(pid0&&id){const entry=dostGorevProfil(pid0),bal=dostPuanBakiye(entry),locked=!dostGorevAcik(id,pid0),aktif=entry.active===id,ad=(typeof DOST_CHARACTERS!=='undefined'&&DOST_CHARACTERS[id]?DOST_CHARACTERS[id].ad:'Yol arkadaşı');
-  if(!locked)return '<div class="dost-kontrat tamam"><b>✅ '+esc(ad)+' senin mutfağında</b><span>Kullanılabilir arkadaş puanı: '+bal+'</span></div>';
+ if(pid0&&id){const entry=dostGorevProfil(pid0),bal=dostPuanBakiye(entry),locked=!dostGorevAcik(id,pid0),aktif=entry.active===id,ad=(typeof DOST_CHARACTERS!=='undefined'&&DOST_CHARACTERS[id]?DOST_CHARACTERS[id].ad:'Dost');
+  if(!locked)return '<div class="dost-kontrat tamam"><b>✅ '+esc(ad)+' senin mutfağında</b><span>Kullanılabilir dost puanı: '+bal+'</span></div>';
   const v=Math.min(bal,DOST_ACMA_PUANI),y=Math.round(100*v/DOST_ACMA_PUANI);
-  return '<div class="dost-kontrat'+(aktif?' aktif':'')+'"><div class="dk-bas"><b>'+(aktif?'🎯 Hedefin: ':'🔒 ')+esc(ad)+'</b><span>Açmak için '+v+' / '+DOST_ACMA_PUANI+' arkadaş puanı</span></div><div class="dk-cubuk" role="progressbar" aria-label="Kilidi açma ilerlemesi" aria-valuemin="0" aria-valuemax="'+DOST_ACMA_PUANI+'" aria-valuenow="'+v+'"><i style="width:'+y+'%"></i></div><p>'+(bal>=DOST_ACMA_PUANI?'Puanın yetti! "Kilidi aç" düğmesine bas.':(aktif?'Oynadıkça puanın dolacak. ':'Bu yol arkadaşını açmak istiyorsan "Hedefim olsun" düğmesine bas. ')+'Her biten oyun 5–10 arkadaş puanı kazandırır.')+'</p></div>';}
+  return '<div class="dost-kontrat'+(aktif?' aktif':'')+'"><div class="dk-bas"><b>'+(aktif?'🎯 Hedefin: ':'🔒 ')+esc(ad)+'</b><span>Açmak için '+v+' / '+DOST_ACMA_PUANI+' dost puanı</span></div><div class="dk-cubuk" role="progressbar" aria-label="Kilidi açma ilerlemesi" aria-valuemin="0" aria-valuemax="'+DOST_ACMA_PUANI+'" aria-valuenow="'+v+'"><i style="width:'+y+'%"></i></div><p>'+(bal>=DOST_ACMA_PUANI?'Puanın yetti! "Kilidi aç" düğmesine bas.':(aktif?'Oynadıkça puanın dolacak. ':'Bu dostu açmak istiyorsan "Hedefim olsun" düğmesine bas. ')+'Her biten oyun 5–10 dost puanı kazandırır.')+'</p></div>';}
  return dostPuanHTMLEski(id);
 }
 function dostPuanHTMLEski(id){
  const pid=dostPid();
- if(!pid)return '<div class="dost-gorev"><p>Arkadaş puanı biriktirmek için profil seçilir.</p></div>';
+ if(!pid)return '<div class="dost-gorev"><p>Dost puanlarını biriktirmek için profil seçilir.</p></div>';
  const entry=dostGorevProfil(pid),balance=dostPuanBakiye(entry);
  const locked=id&&!dostGorevAcik(id,pid);
- return '<div class="dost-gorev"><p><strong>Kullanılabilir arkadaş puanı: '+balance+'</strong></p><p>Toplam kazanılan: '+entry.total+'</p>'+
-  (locked?'<p>Açma bedeli: '+DOST_ACMA_PUANI+' puan</p><progress aria-label="Yol arkadaşını açma ilerlemesi" value="'+Math.min(balance,DOST_ACMA_PUANI)+'" max="'+DOST_ACMA_PUANI+'"></progress>'+
-   '<p>'+ (balance>=DOST_ACMA_PUANI?'Bu yol arkadaşını açmak için yeterli puan var.':DOST_ACMA_PUANI-balance+' puan kaldı. Her tamamlanan oyun puan kazandırır.')+'</p>':'')+'</div>';
+ return '<div class="dost-gorev"><p><strong>Kullanılabilir dost puanı: '+balance+'</strong></p><p>Toplam kazanılan: '+entry.total+'</p>'+
+  (locked?'<p>Açma bedeli: '+DOST_ACMA_PUANI+' puan</p><progress aria-label="Dostu açma ilerlemesi" value="'+Math.min(balance,DOST_ACMA_PUANI)+'" max="'+DOST_ACMA_PUANI+'"></progress>'+
+   '<p>'+ (balance>=DOST_ACMA_PUANI?'Bu dostu açmak için yeterli puan var.':DOST_ACMA_PUANI-balance+' puan kaldı. Her tamamlanan oyun puan kazandırır.')+'</p>':'')+'</div>';
 }
 function dostPuanSonucu(){
  switch(st.screen){
@@ -97,5 +97,5 @@ function dostPuanSonucGoster(){
  if(!puan)return;
  const target=document.querySelector('#app .wrap, #app .quiz .side, #app .yol-sayfa');
  if(!target||target.querySelector('.dost-puan-sonuc'))return;
- target.insertAdjacentHTML('afterbegin','<p class="card dost-puan-sonuc"><strong>+'+puan+' arkadaş puanı</strong> · Kullanılabilir: '+dostPuanBakiye(dostGorevProfil())+'</p>');
+ target.insertAdjacentHTML('afterbegin','<p class="card dost-puan-sonuc"><strong>+'+puan+' dost puanı</strong> · Kullanılabilir: '+dostPuanBakiye(dostGorevProfil())+'</p>');
 }

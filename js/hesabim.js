@@ -19,7 +19,7 @@ function hesabimHTML(){
  if(!guest){
   h+='<p class="ay-grup">Karakterim</p><div class="ay-liste">'+
    (index>=0&&!adSabit(st.prof)?hbSatir('✏️','Karakterini değiştir','hsKarakter()','','1 kez'):'')+
-   hbSatir('🐼','Yol arkadaşını seç','hsDost()')+hbSatir('👥','Bu cihazdaki profiller','hsProfiller()')+hbSatir('📲','Başka cihaza aktar','akAc()','','Kod al')+'</div>';
+   hbSatir('🐼','Aşçı dostunu seç','hsDost()')+hbSatir('👥','Bu cihazdaki profiller','hsProfiller()')+hbSatir('📲','Başka cihaza aktar','akAc()','','Kod al')+'</div>';
  }
  h+='<p class="ay-grup">Ayarlar</p><div class="ay-liste">'+hbSatir('⚙️','Görünüm ve ses','anaAyarlar()')+'</div>';
  if(!guest&&typeof frGizlilikHTML==='function'){h+='<details class="hs-gizlilik"><summary><span class="ay-ikon" aria-hidden="true">🔒</span><span class="ay-ad">Arkadaşlar ve gizlilik</span><span class="ay-ok" aria-hidden="true">›</span></summary>'+frGizlilikHTML()+'</details>';if(typeof frEnsure==='function'&&!FR.ready)frEnsure().then(()=>{if(st.screen==='hesabim')render();});}

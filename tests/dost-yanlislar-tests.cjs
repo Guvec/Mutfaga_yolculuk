@@ -75,7 +75,7 @@ const open=require('./helpers/dom-app.cjs');
   w.__q=[a,b,c,d];
   w.eval(`CV={id:'review-1',over:true,win:false,qs:window.__q,log:[{ok:false,pick:1},{ok:true,pick:0},{ok:false,pick:1}],hp:1,hp0:2,lives:0,cfg:{subject:'baharat'}}`);
   w.go('cvover');
-  assert.match(w.document.querySelector('.dost-puan-sonuc').textContent,/\+7 arkadaş puanı/);
+  assert.match(w.document.querySelector('.dost-puan-sonuc').textContent,/\+7 dost puanı/);
   assert.equal(w.dostGorevProfil().total,112);
   w.render();
   assert.equal(w.dostGorevProfil().total,112);

@@ -29,7 +29,7 @@ const assert=require('node:assert/strict'),open=require('./helpers/dom-app.cjs')
    assert.deepEqual(images,['sicak','pasta','servis'].map(dal=>'assets/ascidostum/dal-'+id+'-'+dal+'.webp'));
    assert.equal(w.document.querySelector('.ae-dost-artwork').dataset.dost,id);
   }
-  ok('Yol Arkadaşım seçimi üç dal görselini birlikte değiştirir');
+  ok('Aşçı Dostum seçimi üç dal görselini birlikte değiştirir');
   w.st.prof='Huzurlu Civciv';w.lsSet('rk_ids',{'Huzurlu Civciv':'test-profil'});
   w.lsSet('kaptan_onbellek3',{ts:Date.now(),hafta:w.rkWeekNo(),kayit:{pid:'test-profil',ad:'Huzurlu Civciv',dogru:10}});
   w.render();

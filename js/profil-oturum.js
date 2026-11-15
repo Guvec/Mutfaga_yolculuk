@@ -19,7 +19,7 @@ function profilAyrintiAc(){
  ov.innerHTML='<div class="modal profile-detail" role="dialog" aria-modal="true" aria-labelledby="profileTitle"><h2 id="profileTitle">'+esc(name)+'</h2><p>'+(st.guest?'Misafir oturumunda sonuçlar kaydedilmez.':'Bu cihazda bu profille devam edersin.')+'</p>'+
  (!can?'<p>Profilini değiştirmek için önce çalışmayı veya odayı bitir.</p>':
  (!st.guest&&index>=0&&!adSabit(st.prof)?'<button type="button" class="btn" id="profileRename">Karakterini değiştir (1 kez)</button>':'')+
- '<button type="button" class="btn" id="profileDost">Yol arkadaşını seç</button><button type="button" class="btn" id="profileSwitch">Bu cihazdaki profiller</button>')+
+ '<button type="button" class="btn" id="profileDost">Aşçı dostunu seç</button><button type="button" class="btn" id="profileSwitch">Bu cihazdaki profiller</button>')+
  (st.guest?'':'<details class="gizlilik"><summary>Gizlilik</summary><p>Bu cihazda profil adın, puanların, rütben ve çalışma geçmişin saklanır.</p><p>İnternet varsa sıralama ve arkadaşlar için oyun adın, puanların ve arkadaş kayıtların sunucuda da tutulur.</p><p>Gerçek adın, telefon numaran veya fotoğrafın istenmez.</p><p>Hesabını silersen bu kayıtların hepsi gider.</p></details>'+(can?'<button type="button" class="btn danger" id="profileWipe">Hesabımı sil</button>':'<p>Hesabını silmek için önce çalışmayı veya odayı bitir.</p>'))+
  '<button type="button" class="btn pri" id="profileClose">Kapat</button></div>';
  const wipe=document.getElementById('profileWipe');
