@@ -8,6 +8,10 @@ EN ÖNEMLİ KURAL: Örnek üretmeden hiçbir tasarımı toplu yapma (8.5). Önce
 
 Gerekirse ajan/araç kipini kullan (kod çalıştırma, görsel üretim, tarayıcıda deneme) ve işi alt görevlere böl; her alt görevin sonunda ekran görüntüsü ve kısa rapor ver.
 
-İlk adım olarak yalnız şunu yap: 8.6'daki 1. komut (tasarım dili önerisi, A/B/C seçenekleri). Kod yazma.
+İŞ İKİ PARTİDE yapılır (belgedeki ★M): Parti 1 = sağlam temel (hız/boyut, tek ilerleme veri katmanı, duman testleri), menü yapısı + tasarım dili, Baharat Çarşısı tam dilimi, Aşçı Dostum açma ekranı, bildirimler; sonra öğrencilerle deneme. Parti 2 = diğer duraklar, Servis Günü, Gastronomi Tarihçisi, Bu Hafta, Kupa Ligi. Kararların gerekçesi ★N bölümündedir. Şimdi yalnız PARTİ 1 üzerinde çalış.
+
+KALİTE HER ZAMAN HIZDAN ÖNCE GELİR. İş uzun sürebilir; acele etme. Her adımın sonunda ekran görüntüsü ve kısa rapor ver, onayımı bekle.
+
+İlk adım olarak yalnız şunu yap: Parti 1'in 1. ve 2. adımı için kısa bir plan yaz (hangi dosyalar, nasıl ölçeceksin, nasıl geri dönülür) ve aynı mesajda 8.6'daki 1. komutu (tasarım dili önerisi, A/B/C seçenekleri) cevapla. Kod yazma.
 
 Kurallar: para yok, alkol yok, insan/el/marka/logo görseli yok, ahşap ve plastik eşya yok, serbest yazışma yok, tarif miktarları uydurulmaz. Yapmadığın kontrolü yapılmış gibi yazma. Değiştirdiğin dosyaları ve nedenini kısa liste olarak ver. GitHub'a gönderme ben "Gönder" deyince yapılır.

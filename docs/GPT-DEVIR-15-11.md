@@ -28,7 +28,7 @@ Bu bölüm belgenin geri kalanıyla çelişirse **bu bölüm geçerlidir.** Ama�
 **D. Adlar (karışıklık giderildi)**
 - Hikâye: **Ustalık Yolculuğum**.
 - Yarış menüsü: **Oyna** kapısı ("Ustalar Ligi" adı kalkar).
-- Ligler: **Ümit Ligi** (derecesiz, herkese açık) ve **Kupa Ligi** (dereceli; eski adı "Ustalık Ligi" kalkar). Lig basamakları: Çırak, Kalfa, Usta, Şef, Baş Şef.
+- Ligler: **Ümit Ligi** (derecesiz, herkese açık) ve **Kupa Ligi** (dereceli; eski adı "Ustalık Ligi" kalkar). Lig basamakları: Bakır Kepçe, Gümüş Kepçe, Altın Kepçe, Elmas Kepçe, Şampiyon Kepçe (★N-12; rütbe adlarıyla çakışmasın diye).
 - Unvanlar: Baharat Uzmanı, Kuver Ustası, Çorba Ustası, Gastronomi Tarihçisi…
 - Tek ad sözlüğü (bölüm 4) geçerli: Tekrar, Çalışma geçmişim, Kılavuz, Karakterler, Mutfağıma al.
 
@@ -61,24 +61,50 @@ Bu bölüm belgenin geri kalanıyla çelişirse **bu bölüm geçerlidir.** Ama�
 
 **K. Ertelenenler (son faza)**
 - Ekip baskını (Büyük Ziyafet) ve bölge savaşı: aynı anda çok kişinin çevrimiçi olmasını ve yeni Firestore kurallarını gerektirir; okul telefon/internet koşulu belirsiz.
-- Zamanlı oyun ve telefon bildirimleri (Cloudflare kurulumu gerektirir).
+- Zamanlı oyun (randevulu maç). (Telefon bildirimleri ertelemeden çıkarıldı: ★N-9.)
 - Mutfak Ekibi (kalıcı takım) Kupa Ligi'nden sonra.
-- Dev Sipariş kaldırıldı. Ayrı mevsim haftaları kaldırıldı (G'ye katıldı). Ayrı Gastronomi Haritası kaldırıldı (F'ye katıldı). Ayrı itibar puanı ve dost puanı kaldırıldı (B).
+- Dev Sipariş kaldırıldı. Ayrı mevsim haftaları kaldırıldı (G'ye katıldı). Ayrı Gastronomi Haritası kaldırıldı (F'ye katıldı). Ayrı itibar puanı ve dost puanı kaldırıldı (B). Sezon şeridi kaldırıldı (★N-7).
 
 **L. Servis Günü kapsamı**
 - 3 onaylı tarifle başlar: Mercimek Çorbası, Sebzeli Omlet, Kek (miktarlar Ali'nin onaylı reçetelerinden). Diğer tarifler onaylandıkça eklenir.
 
-**M. Güncel iş sırası (önceki iş listelerinin yerine)**
-1. Tek tasarım dili + hareketli menüler (örnek-önce kuralıyla; bölüm 8) ve alt çubuk (Öğren · Oyna · Mutfağım · Ben).
-2. Tek ad sözlüğü + Ustalar Ligi → Oyna, Ustalık Ligi → Kupa Ligi; Mutfak Puanı → XP; dost puanının XP'ye katılması.
-3. "Bugün ne yapayım?" + İlk 10 dakika.
-4. Ustalık Yolculuğum haritası: 6 durak (mevcut konular), durak içi Bölümler + Keşif kartları + Usta Sınavı; kart yıldızı (solma dahil) ve Antrenman Şefi'nin solan kartlardan soru seçmesi.
-5. Yeni soru tipleri (bölüm 10.3) konu konu.
-6. Servis Günü (3 tarif).
-7. Gastronomi Tarihçisi durağı (önce metinlerin kaynakla ayrılması, sonra Türkiye coğrafi işaretli ürünler, sonra dünya).
-8. "Bu Hafta" etkinliği.
-9. Kupa Ligi (Mutfağa Kabul Sınavı, basamaklar, sezon), usta-çırak, uzmanlık seçimi.
-10. Matematik Canavarı uyarlamalarından kalanlar (bölüm 9), ertelenenler (K).
+**M. Güncel iş sırası — İKİ PARTİ (önceki iş listelerinin yerine; 15.11 son hâli, Ali onayladı)**
+Kalite her zaman hızdan önce gelir: iş uzun sürebilir. Her adım bitince ekran görüntüsü + kısa rapor + Ali onayı; onay gelmeden sonraki adıma geçilmez.
+
+*PARTİ 1 — Sağlam temel ve ilk tam dilim*
+1. **Hız ve boyut (★N-1):** İlk açılış 5 MB'ın altına; görseller WebP ve küçültülmüş; yalnız açılan bölümün görselleri indirilir.
+2. **Kod temeli (★N-2):** Tek ilerleme veri katmanı (XP, kart yıldızı, durak ilerlemesi, tanışma yolu); en az 10 çalışan duman testi; yeni modüllerde sarmalama yerine bu katman.
+3. **Menü yapısı taslağı + tasarım örnekleri birlikte (★N-3, bölüm 8):** alt çubuk (Öğren · Oyna · Mutfağım · Ben), Oyna ekranının Matematik Canavarı düzeni (★N-8), 3 örnek ekran → Ali onayı.
+4. **Onaylanan tasarım dilinin koda uygulanması** (ekran grubu grubu; ana sayfa en son, Ali onayıyla) + tek ad sözlüğü (Ustalar Ligi → Oyna; Mutfak Puanı → XP; dost puanı → XP/tanışma yolu).
+5. **"Bugün ne yapayım?" + İlk 10 dakika.**
+6. **Baharat Çarşısı tam dilimi (★N-4):** harita (yalnız bu durak açık, diğerleri "yakında"), bölümler, keşif kartları, yıldız (oyun gününe bağlı solma, ★N-5), Antrenman Şefi bağlantısı, Usta Sınavı, 1 tarifle 3 aşamalı Servis Günü (★N-6).
+7. **Aşçı Dostum açma ekranı** (Valorant tarzı tanışma yolu; ★D altındaki plan).
+8. **Telefon bildirimleri ve Arkadaşlarım ekranı (★N-9, ★N-10).** Firestore kuralı gerekirse tek dosya → Ali yayımlar → sonra gönderim.
+9. **Öğrencilerle 2 haftalık deneme** (gerçek telefonlar, okul interneti); bulgulara göre düzeltme. Parti 2 bu deneme bitmeden başlamaz.
+
+*PARTİ 2 — Genişleme*
+10. Diğer 5 durak (Araç Atölyesi, Pazar ve Kiler, Pastane, Restoran Salonu, Bulaşıkhane) Baharat Çarşısı kalıbıyla; yeni soru tipleri (10.3) konu konu.
+11. Servis Günü'nün 3 tarifle tamamı; aşamalar denemeye göre 3'ten yukarı çıkarılabilir.
+12. Gastronomi Tarihçisi durağı (7. durak; önce ~50 metnin kaynakla ayrılması, sonra TÜRKPATENT'ten doğrulanmış coğrafi işaretli ürünler, sonra dünya).
+13. "Bu Hafta" etkinliği ve Er Meydanı finali.
+14. Kupa Ligi — haftalık lig turu biçiminde (★N-11), yeni basamak adlarıyla (★N-12); usta-çırak; uzmanlık seçimi.
+15. Matematik Canavarı uyarlamalarından kalanlar (bölüm 9) ve ertelenenler (K).
+
+**N. 15.11 son eleştiri ve kararlar (Claude'un mobil oyun geliştirici gözüyle incelemesi; Ali hepsini onayladı)**
+1. **Hız ve boyut:** Bugün sw.js 555 görseli (≈54 MB) ilk girişte önbelleğe alıyor; okulda mobil veriyle ve eski telefonda ilk açılış uzun sürer veya yarıda kalır. Hedef: ilk açılış < 5 MB; görseller WebP ve ekrandaki boyuta küçültülmüş; durak/bölüm görselleri ilk açıldığında indirilip sonra çevrimdışı saklanır; hareketli menüler eklenince de bu bütçe korunur. Ölçüt: 360×640, yavaş 4G benzetiminde ana sayfa 3 sn içinde açılır.
+2. **Kod temeli:** Bugün 11 dosya genel fonksiyonları üst üste sarıyor; 62 testin çoğu eski ekranlara göre ya da jsdom gerektiriyor. Önce: tek ilerleme veri katmanı (ör. js/ilerleme.js; XP, kart yıldızı, durak, tanışma yolu tek yerde; okuma/yazma tek fonksiyonla) ve Playwright ile en az 10 duman testi (açılış, ana sayfa, bir bölüm, Antrenman, maç sonu, Aşçı Dostum, ayarlar, çevrimdışı açılış, sayfa hatası 0, yatay taşma 0). Yeni özellikler bu katmanı kullanır; eski sarmalamalar fırsat buldukça sadeleşir.
+3. **Önce yapı, sonra görünüş:** Menü yapısı (alt çubuk, kapılar, Oyna düzeni) tasarım örnekleriyle birlikte onaylanır; görsel dil yapı kesinleşmeden bütün ekranlara uygulanmaz (aksi hâlde iş iki kez yapılır).
+4. **Dikey dilim:** Önce yalnız Baharat Çarşısı baştan sona biter ve öğrencilerle denenir; işe yarıyorsa diğer duraklara kopyalanır.
+5. **Yıldız solması oyun gününe bağlı:** Solma takvim gününe değil, öğrencinin oynadığı gün sayısına göre (ör. 7 ve 21 oyun günü). Tatilde ve oynanmayan günlerde hiçbir kart solmaz. 1 yıldız kuralı (★B) geçerli.
+6. **Servis Günü ilk sürüm 3 aşama:** malzeme ve baharat seç → adımları sırala → kuveri kur. Bir oturum 5–7 dakikayı geçmez. Diğer aşamalar (menü dengesi, araç, servis sırası, bulaşık) denemeden sonra eklenir.
+7. **Sezon şeridi kaldırıldı:** Ekranda en çok üç ilerleme çubuğu olur (durak ilerlemesi, Aşçı Seviyesi/rütbe, tanışma yolu). Günlük görevler "Bugün ne yapayım?" içindedir; ayrı ana sayfa kartı yoktur.
+8. **Oyna ekranı Matematik Canavarı düzeninde (Ali beğendi):** en üstte büyük **Hızlı Şef** kartı ("Sana uygun odaya girersin"; MC'deki "Hemen Oyna"nın karşılığı) → iki büyük karo **Oda Kur** (mod seçimi burada: 1'e 1, 2'ye 2, Blitz, Er Meydanı) ve **Kodla Gir** → **Açık odalar** + **Yenile** düğmesi; boşsa "Şu an açık oda yok. Hızlı Şef ile ilk odayı sen aç!" → altta **Yarış Geçmişim** ve **Nasıl oynanır?** → **Antrenman Şefi** ayrı bir kart olarak (çevrimiçi değil). Bugünkü 2×2 mod karoları Oda Kur'un içine taşınır. Bu, Ali'nin örnek ekran görüntüsündeki sadeliği hedefler; bizim tasarım dilimizle ve daha üst kalitede yapılır.
+9. **Telefon bildirimleri (ertelemeden çıkarıldı, Ali istedi):** Arkadaşlarım ekranında **"🔔 Bildirimleri aç"** düğmesi ve altında açıklama: "Uygulama kapalıyken bir arkadaşın seni kapışmaya çağırırsa telefonuna haber gelir." Altyapı Matematik Canavarı'ndaki gibi ücretsiz Cloudflare Worker + web bildirimi; kurulum adımları önce Ali'ye yazılır, Ali kendi hesabında kurar. Kurallar: bildirim yalnız oyun içi olay için (kapışma daveti, rövanş, arkadaşlık isteği); bildirimde gerçek ad yok, oyun adı var; sessiz saatler (21.00–08.00 ve ders saatlerinde bildirim gönderilmez; okul saatleri ayardan); tek dokunuşla kapatılır; reklam/hatırlatma bildirimi yok. Abonelik bilgisi için Firestore kuralı gerekirse tek kural dosyası → Ali yayımlar → sonra gönderim.
+10. **Arkadaşlarım ekranı (MC örneği):** üstte Takımım kartı (Mutfak Ekibi gelince; o zamana kadar gizli) → Bildirimleri aç → **Senin oyuncu kodun** (büyük harflerle, **Kopyala** ve **Paylaş**; "Bu kodu arkadaşına ver. O seni eklesin, sen kabul et.") → arkadaşın kodunu ekleme alanı → arkadaş listesi (çevrimiçi noktası, "Çağır", aranızdaki skor). Alt çubuk düğmesi kırmızı rozetle arkadaşlık isteğini gösterir. Bu ekran "Ben" kapısının içindedir. Alt çubuktaki son öğe sayfa içeriğini örtmemeli (ekran görüntüsünde arkadaş kodu alanı alt çubuğun altında kalmış; bizde alt boşluk zorunlu).
+11. **Kupa Ligi canlı eşleşmeye bağlanmaz:** Bir okulda aynı anda çevrimiçi oyuncu az; lig "haftalık lig turu" olur: herkes hafta içinde istediği zaman aynı soru setini bir kez çözer, hafta sonunda tablo ve basamak değişimi çıkar (hayalet maçı değildir; aynı sınava farklı saatte girmek gibidir). Canlı modlarda eksik yerleri Antrenman Şefi botu doldurur (bot maçında XP var, lig puanı yok). Basamak düşmesi en çok bir basamak ve "koruma" haftası ile; listelerde sonuncular gösterilmez.
+12. **Lig basamaklarının adı değişti (rütbe adlarıyla çakışıyordu):** Rütbe Yolu adları (Stajyer, Çırak, Aşçı Yardımcısı, Aşçı, Usta) kalır. Kupa Ligi basamakları: **Bakır Kepçe · Gümüş Kepçe · Altın Kepçe · Elmas Kepçe · Şampiyon Kepçe** (her biri 3 kademe). Rozetler önce örnekle Ali'ye sunulur.
+13. **Yayın yolu ve geri dönüş:** GPT her teslimi ayrı paket olarak verir (değişen dosyalar + sürüm numarası + kısa değişiklik listesi). GitHub'a yükleme yalnız Ali "Gönder" deyince. Her sürümden önce bir önceki sürümün paketi saklanır; sorun çıkarsa o paket geri yüklenir. sw.js CACHE adı her sürümde değişir.
+14. **Gerçek telefon denemesi:** Her sürüm öğrencilere açılmadan önce en az 1 eski Android telefonda ve okul internetinde denenir (açılış süresi, ses, kaydırma, çevrimdışı açılış).
 
 ## 0. Çalışma kuralları (değişmez)
 - Hedef kitle: 14–17 yaş; hafif düzeyde zihinsel yetersizliği olan, bir kısmı otizm spektrumunda meslek lisesi öğrencileri. Dil: doğal Türkiye Türkçesi, yaşa saygılı, çocuksu değil.
@@ -117,7 +143,7 @@ Oyun bir ağaç gibi kurulur. Her yaprak (etkinlik) gövdeyi besler ve meyve ver
 | Yolculuğum bölümü | ✓ (en çok) | Kartı açar (gri → renkli) | ✓ | Sonraki bölüm, dal rütbesi |
 | Antrenman Şefi | ✓ | Yıldız tazeler | Kapatır | Üst zorluk |
 | 1'e 1, 2'ye 2, Blitz, Er Meydanı | ✓ | Yıldız tazeler | ✓ | Rövanş, görev |
-| Günlük 3 görev | ✓ bonus | — | — | Sezon şeridi adımı |
+| Günlük görev ("Bugün ne yapayım?" içinde) | ✓ bonus | — | — | — |
 | Tarif pişirme (Mutfağım) | ✓ | Tarif kartı | — | Menü, unvan |
 | Kupa Ligi | lig puanı | — | ✓ | Basamak, kupa |
 
@@ -135,11 +161,11 @@ Gemini'nin Metin2 tarzı "topla-üret-güçlen" önerisi rekabete güç kattığ
 Bugün aynı yere birden çok yoldan gidiliyor: Aşçılık Atölyesi, Mutfak Kitabım ve dal pencereleri aynı konuları gösteriyor. Ayrıca Haftalık Mutfak Yarışması Ustalar Ligi'nin dışında duruyor ve dört farklı "tekrar" adı var. Öneri: alt çubukta 4 kapı.
 
 1. **Öğren** — Yolculuğum (dallar → konular → bölümler); konu sayfası tek düzen: Yolculuğum · Kartları incele · Sorular. Aşçılık Atölyesi ve Mutfak Kitabım buraya katılır.
-2. **Oyna** — Hızlı Şef, mod karoları, Antrenman Şefi, açık odalar, Kupa Ligi. Haftalık Mutfak Yarışması burada "Bu Hafta" Er Meydanı finali olur.
+2. **Oyna** — ★N-8 düzeni: Hızlı Şef, Oda Kur (modlar içinde), Kodla Gir, açık odalar + Yenile, Yarış Geçmişim, Nasıl oynanır?, Antrenman Şefi, Kupa Ligi. Haftalık Mutfak Yarışması burada "Bu Hafta" Er Meydanı finali olur.
 3. **Mutfağım** — Kart dolabım (bütün keşif kartları), tarif defteri, Servis Günü, Menüm, Aşçı Dostum (karakter, kıyafet, "Lezzet tattır").
 4. **Ben** — Profil, Aşçı Seviyesi, Rütbe Yolu, rozetler, Rekorlarım, Sıralama, arkadaşlar, Ayarlar.
 
-Ana sayfa: Günlük 3 görev kartı + "Kaldığın yer" + 4 kapı. Ana sayfanın görsel düzeni Ali'nin onayıyla değişir.
+Ana sayfa: "Bugün ne yapayım?" (Kaldığın yer ve günlük görevler bunun içinde; ★E) + 4 kapı. Ana sayfanın görsel düzeni Ali'nin onayıyla değişir.
 
 **Tek ad sözlüğü (her kavram için tek ad):**
 - "Yanlışlarımı çalış", "Pekiştiriyorum", "Tekrar", "Pekiştir" → **Tekrar**.
@@ -173,9 +199,9 @@ Ana sayfa: Günlük 3 görev kartı + "Kaldığın yer" + 4 kapı. Ana sayfanın
 8. **Hesabım** 849 px (1,3 ekran), **Kılavuz** 658 px; ikisi de tek ekrana indirilebilir.
 9. **Ayarlar penceresi** 821 px; kendi içinde kayıyor. Grup başlıkları küçültülebilir.
 10. **Rütbe Yolu** sekmeleri (Sıcak Mutfak / Pastacılık / Servis) ile ana sayfa dal renkleri farklı.
-11. **Odalar:** Yeni düzen kuruldu (Hızlı Şef, mod karoları, Kodun var mı?). Gerçek telefonlarla denenmeli.
+11. **Odalar:** Yeni düzen kuruldu (Hızlı Şef, mod karoları, Kodun var mı?); ★N-8'e göre MC düzenine geçecek. Gerçek telefonlarla denenmeli.
 
-## 6. İş listesi (öncelik sırasıyla)
+## 6. İş listesi (ESKİ — geçerli sıra ★M'deki iki partidir; aşağıdaki maddeler yalnız ayrıntı ve kabul ölçütü için okunur)
 Her maddede: dosya, yapılacak, kabul ölçütü. Her madde ayrı onay ister.
 
 1. **Tek tasarım dili:** Yüzen panelli ekranlar (yolpenceresi, ascilikatolyesi, mutfakkitabi, market, gunlukgorevler, servantkuver; kodu bulmak için: grep "st.screen==='<ad>'" js/*.js) üst çubuk + tam sayfa düzenine geçer. Ölçüt: 360×640'ta kaydırmasız, yatay taşma yok, hepsinde aynı başlık yapısı.
@@ -183,10 +209,10 @@ Her maddede: dosya, yapılacak, kabul ölçütü. Her madde ayrı onay ister.
 3. **Tek ad sözlüğü:** Bütün metinlerde (js/*.js) uygulanır. Ölçüt: eski adlar hiçbir ekranda görünmez.
 4. **Mutfağım v1:** Kart dolabım + durak keşif kartları + yıldız (solma dahil); Yolculuğum ve Antrenman bağlantısı. Ölçüt: bir bölüm bitince kartlar açılır, Antrenman doğrusu yıldız verir, 7 gün sonra yıldız solar.
 5. **Antrenman Şefi zayıf konular:** Tekrar listesinden ve solan kartlardan soru seçer (js/antrenman.js antBasla). Ölçüt: tekrar listesi boş değilse sorular en az yarı yarıya oradan gelir.
-6. **Günlük 3 görev** ana sayfa kartında; görev türleri: Yolculuğum'da 1 bölüm, Antrenman'da 8 doğru, 1 maç. Ölçüt: gece yarısı yenilenir; kaçırınca ceza yok.
+6. **Günlük görevler** "Bugün ne yapayım?" içinde (★E; ayrı ana sayfa kartı yok); görev türleri: Yolculuğum'da 1 bölüm, Antrenman'da 8 doğru, 1 maç. Ölçüt: gece yarısı yenilenir; kaçırınca ceza yok.
 7. **Bu Hafta finali:** Haftalık Mutfak Yarışması (js/haftalik.js, js/kaptan.js) Oyna kapısına "Bu Hafta" finali olarak taşınır.
 8. **Tarif defteri ve pişirme mini oyunu** (Mutfağım v2): ilk 3 tarif (★L): Mercimek Çorbası, Sebzeli Omlet, Kek. Reçete miktarları onaylı kaynaktan; uydurulmaz.
-9. **Kupa Ligi:** Mutfağa Kabul Sınavı, lig basamakları, sezon, ücretsiz sezon şeridi (bkz. claude/oyun-plan-15-11-rekabetci.md Faz 2).
+9. **Kupa Ligi:** Mutfağa Kabul Sınavı, haftalık lig turu (★N-11), lig basamakları (★N-12), sezon. Sezon şeridi yok (★N-7).
 10. **Mutfak Ekibi** (3–5 kişi), hazır tepkiler, joker seçimi, MVP ekranı.
 11. **İçerik:** baharat kutu 5–7, beslenme ~250 soru, reçete sıralama.
 12. **Eski testlerin güncellenmesi** ve son denetim.
@@ -206,7 +232,7 @@ Yazı yok.
 
 ### 7.2 Durak görselleri (6; Gastronomi Tarihçisi durağı için ayrıca harita görseli)
 ```
-Bir mutfak eğitim oyununun "Ustalık Yolculuğum" haritasındaki 6 durak için iç mekân görseli üret. 1600x900 yatay, aynı kamera açısı (hafif yukarıdan), aynı sıcak ışık, 3B animasyon filmi kalitesi, profesyonel çelik mutfak. İnsan ve hayvan yok, yazı yok.
+Bir mutfak eğitim oyununun "Ustalık Yolculuğum" haritasındaki ilk 6 durak için iç mekân görseli üret (7. durak Gastronomi Tarihçisi için ayrıca harita görseli istenir). 1600x900 yatay, aynı kamera açısı (hafif yukarıdan), aynı sıcak ışık, 3B animasyon filmi kalitesi, profesyonel çelik mutfak. İnsan ve hayvan yok, yazı yok.
 1. Hazırlık tezgâhı: çelik tezgâh, bıçak seti çelik tutucuda, çelik kaseler, rende, çırpma teli.
 2. Baharat rafı: duvarda cam kavanozlu baharat rafı, kavanozlarda kırmızı pul biber, kimyon, nane, karabiber, sumak.
 3. Kiler: raflarda bakliyat kavanozları, sebze sepeti (çelik tel sepet), süt ve yoğurt cam şişelerde.
@@ -224,7 +250,7 @@ Bir mobil oyunda toplanan "malzeme kartı" için çerçeve tasarımı üret: 3 s
 ### 7.4 Diğer bekleyenler
 - Aşçı Dostum tepki pozları, 7 yeni karakter, arayüz örnek ekranları: claude/gpt-komutlari-14-11-canlilik.md (proje dosyası).
 - 24 lezzet görseli: Ali'de; "Şefe sun" etkileşimi bunlarla yapılacak.
-- Rütbe ve lig basamak rozetleri (Çırak, Kalfa, Usta, Şef, Baş Şef; her biri 3 kademe): Faz 2'de istenecek.
+- Kupa Ligi basamak rozetleri (Bakır, Gümüş, Altın, Elmas, Şampiyon Kepçe; her biri 3 kademe; ★N-12): Parti 2'de, önce örnekle.
 
 ## 8. Tek tasarım dili ve hareketli arayüz (Ali'nin 15.11 isteği — EN ÖNCE YAPILACAK İŞLERDEN)
 Sorun: Her menü farklı tonda; oyun "birçok oyun bir arada" gibi görünüyor. Hedef: tek, modern, üst düzey, 3B görsel dil; ana sayfa ve menüler canlı ve hareketli. Örnek: Ali'nin Matematik Canavarı oyunu (github.com/digerpchesabim-stack/matematikcanavari) — ana sayfa düğmeleri ve maskot sürekli hafifçe hareket eder; maskotun durum görselleri ayrıdır (mc-idle, mc-happy, mc-cheer, mc-look, mc-wait.webp); ekran geçişleri perspektifli kayar.
@@ -261,7 +287,7 @@ Mobil rekabetçi eğitim oyunları için üst düzey bir görsel dil öner. Önc
 ```
 2. **Örnek ekranlar (onay için):**
 ```
-Seçtiğim tasarım dili ile 3 telefon ekranı görseli üret (390x844, dikey, tek seferde): 1) Oyna (Hızlı Şef, 2x2 mod karosu, Antrenman Şefi, açık odalar, alt çubuk), 2) Mutfak Araçları konu sayfası (Yolculuğum, Kartları incele, Sorular; alt çubuk), 3) Maç sonu (kazanan kartı, sıralama, Rövanş iste). Türkçe yazılar okunaklı; insan, el, marka, alkol yok; Aşçı Dostu panda görünebilir. Her ekranın altına hareket tarifi yaz (hangi öğe nasıl ve kaç saniyede hareket eder). Kod yazma.
+Seçtiğim tasarım dili ile 3 telefon ekranı görseli üret (390x844, dikey, tek seferde): 1) Oyna (★N-8 düzeni: büyük Hızlı Şef kartı, Oda Kur ve Kodla Gir karoları, Açık odalar + Yenile, Yarış Geçmişim, Nasıl oynanır?, Antrenman Şefi, alt çubuk), 2) Mutfak Araçları konu sayfası (Yolculuğum, Kartları incele, Sorular; alt çubuk), 3) Maç sonu (kazanan kartı, sıralama, Rövanş iste). Türkçe yazılar okunaklı; insan, el, marka, alkol yok; Aşçı Dostu panda görünebilir. Her ekranın altına hareket tarifi yaz (hangi öğe nasıl ve kaç saniyede hareket eder). Kod yazma.
 ```
 3. **Hareket kılavuzu:**
 ```
@@ -284,18 +310,18 @@ Kaynak: github.com/digerpchesabim-stack/matematikcanavari — CLAUDE.md (pakette
 | 3 | Canlı maskot (durum görselleri; zayıf telefonda hazır pozlar); karşılama sahnesi; dokununca tepki | Panda tek resim | Aşçı Dostu durum görselleri (bekliyor, sevinç, kutlama, düşünüyor); dokununca tepki + ses; ana sayfada hafif yüzme | 1 |
 | 4 | Sade mod: "hareketi azalt" ayarı, düşük bellek (deviceMemory ≤1) veya ≤2 çekirdekte efektler kapanır | Sakin mod elle | Sakin mod + otomatik sade mod birlikte | 1 |
 | 5 | Ekran geçişleri (ileri kayma, geri kayma, oyun ekranlarında solma) | Yok | Aynısı; oyun ve soru ekranlarında yalnız solma | 2 |
-| 6 | Online Oyna: açık odalar listesi, 🔄 Yenile, seviyeye göre sıra, 🔒 şifreli, kişi sayısı, renkli konu karesi, Hemen Oyna | Var (Hızlı Şef, açık odalar, Kodun var mı) | Liste her zaman canlı yerine 20 sn önbellek + Yenile (Firestore okuma tasarrufu); konu renk karesi; oda kartında kurucunun rütbe rozeti | 2 |
+| 6 | Online Oyna (★N-8: Hemen Oyna → Hızlı Şef, Oda Kur, Kodla Gir, Açık odalar + Yenile, Yarış Geçmişim, Nasıl çalışır?): açık odalar listesi, 🔄 Yenile, seviyeye göre sıra, 🔒 şifreli, kişi sayısı, renkli konu karesi, Hemen Oyna | Var (Hızlı Şef, açık odalar, Kodun var mı) | Liste her zaman canlı yerine 20 sn önbellek + Yenile (Firestore okuma tasarrufu); konu renk karesi; oda kartında kurucunun rütbe rozeti | 2 |
 | 7 | Rütbesi çok farklı oyuncuların odaları listede görünmez | Yok | Kupa Ligi'nde zorunlu; Ümit Ligi'nde yalnız Hızlı Şef eşleşmesinde yakın düzey önceliği | 3 |
 | 8 | Botlar: kimse gelmezse "Botla oyna"; kurucu boş yerlere bot ekler; gerçek oyuncu gelince bot yer açar; bota karşı rütbe puanı yok | Antrenman Şefi tek başına | Odalarda "Şef ekle" (Antrenman Şefi botu): 2'ye 2 ve Er Meydanı eksik kişiyle başlayabilir; bot maçında XP var, lig puanı yok | 2 |
 | 9 | Takım odası: Kırmızı/Mavi takımı oyuncu seçer, dolu takıma girilemez, başlarken eşitlenir, eksik yer botla dolar; Takım 2'ye 2 … 5'e 5 | 2'ye 2 kura ile | Takım seçimi (🔥 Ateş / 🌿 Fesleğen), 2'ye 2–4'e 4, eksik yere Şef botu | 2 |
 | 10 | Herkes Tek: en hızlı doğru 3, ikinci 2, üçüncü 1 puan | Blitz (her doğru 1, son 20 sn 2) | Blitz'e "hız sırası" puanı eklenmez (bilgi önce); yalnız eşitlik bozucu olarak kalır | — (alınmadı) |
-| 11 | Takımım: kalıcı takım (≤4), takım adı listeden, kaptan, galibiyet/mağlubiyet, takım kapışması, Takım Oyuncusu madalyası | Yok | Faz 3 "Mutfak Ekibi" bu yapıyla: ekip adı hazır listeden (yazı yok), kaptan, haftalık ekip puanı | 3 |
+| 11 | Takımım: kalıcı takım (≤4), takım adı listeden, kaptan, galibiyet/mağlubiyet, takım kapışması, Takım Oyuncusu madalyası | Yok | Parti 2 sonrası "Mutfak Ekibi" bu yapıyla: ekip adı hazır listeden (yazı yok), kaptan, haftalık ekip puanı | 3 |
 | 12 | Karakter Kartı: büyük rozet, rütbe, madalyalar, 6 istatistik, oyuncu kodu, paylaşılabilir PNG | Hesabım + Rütbe ayrı | "Ben" kapısında Aşçı Kartı: Aşçı Dostu, seviye, rütbe, rozetler, 6 istatistik, oyuncu kodu; paylaşım PNG (kişisel veri yok) | 2 |
-| 13 | Madalyalar bronz/gümüş/altın; adil oyun: aynı rakiple günde en çok 5 puanlı maç, yarıdan önce çıkan rakip sayılmaz | Rozetler var, adil oyun sınırı yok | Aynı rakiple günlük sınır ve erken çıkış kuralı Ustalık Ligi'ne | 3 |
+| 13 | Madalyalar bronz/gümüş/altın; adil oyun: aynı rakiple günde en çok 5 puanlı maç, yarıdan önce çıkan rakip sayılmaz | Rozetler var, adil oyun sınırı yok | Aynı rakiple günlük sınır ve erken çıkış kuralı Kupa Ligi'ne | 3 |
 | 14 | Davete cevap: Kabul et / Meşgulüm / Daha sonra; gönderen "gördü" bilgisini görür | Davet var, cevap seçenekleri yok | Aynı üç cevap; "Daha sonra" → Zamanlı Oyun | 3 |
 | 15 | Zamanlı Oyun (randevu, 15–60 dk sonra) + 5 dk kala hatırlatma | Yok | Okul saatine uygun: teneffüs için 15/30 dk randevu | 4 |
 | 16 | Herkesi çağır (çevrimiçi arkadaşlara toplu davet) + hazır mesajlar ve emoji (yazı yok) | Hazır mesaj kararı var, uygulanmadı | Aynısı; mutfak temalı hazır mesajlar ("Hazırım şef!", "Rövanş?") | 3 |
-| 17 | Web bildirimleri (Cloudflare Worker, ücretsiz) | Yok | Ali'nin Cloudflare hesabıyla; önce Ali'ye kurulum adımları verilir | 4 |
+| 17 | Web bildirimleri (Cloudflare Worker, ücretsiz) | Yok | ★N-9 (Parti 1, 8. adım; Ali beğendi). Ali'nin Cloudflare hesabıyla; önce Ali'ye kurulum adımları verilir | 4 |
 | 18 | Başlangıç kartı: zirve ve ilk hedef, 5 sn sayım, düdük; birini geçince alkış kartı | Er Meydanı'nda hedef rakip var | Bütün maçlara aynı giriş kartı (iki ad, VS, sayım, düdük) | 2 |
 | 19 | Arkadaş profili: aranızdaki skor, son maçlar, çağır | Yok | "Ben → Arkadaşlar"da arkadaş kartı + aranızdaki skor | 3 |
 | 20 | Telefon geri tuşu = uygulama içi geri; çıkışta soru | Kısmen | NAV geçmiş tamponu yaklaşımı denetlenip uygulanır | 2 |
@@ -364,7 +390,7 @@ Yazım: her yeni soru "olcme-degerlendirme-uzmani" ölçütleriyle denetlenir (t
 **10.6 Hikâye ve dünya (MMORPG, Valorant, Battlefield'dan uyarlama)**
 İlke: Bu oyunlardan "anlam, görev, rol ve ekip" alınır; "süre harcayarak güçlenme", para ve şans alınmaz. Her ilerleme kapısı bilgidir.
 
-*Dünya (MMORPG haritası) — adı Ali seçecek; öneriler: Lezzet Vadisi (önerilen), Şefler Şehri, Lezzet Limanı, Usta Köyü:* Her konu yolculuğun bir durağıdır: Baharat Çarşısı (Baharatlar), Araç Atölyesi (Mutfak Araçları), Pazar ve Kiler (Beslenme), Pastane (Pastacılık), Restoran Salonu (Kuver, Servant), Bulaşıkhane (Bulaşık ve Atık). Öğrenci dünyaya stajyer olarak gelir. Haritada bir anda yalnız bir "parlayan görev" vurgulanır (bilişsel yük az, OSB için öngörülebilir).
+*Dünya (MMORPG haritası; ★C: ayrı dünya adı kullanılmaz, harita "Ustalık Yolculuğum" adını taşır):* Her konu yolculuğun bir durağıdır: Baharat Çarşısı (Baharatlar), Araç Atölyesi (Mutfak Araçları), Pazar ve Kiler (Beslenme), Pastane (Pastacılık), Restoran Salonu (Kuver, Servant), Bulaşıkhane (Bulaşık ve Atık). Öğrenci dünyaya stajyer olarak gelir. Haritada bir anda yalnız bir "parlayan görev" vurgulanır (bilişsel yük az, OSB için öngörülebilir).
 
 *Görev verenler (NPC):* İnsan görseli kuralı gereği hepsi hayvan aşçı karakterler: ör. Baharat Çarşısı'nda Attar Baykuş, Pastane'de Pastacı Kirpi, Salon'da Garson Penguen, Atölye'de Usta Ayı. Kısa, sesli okunan görev metni: "Çarşıya yeni kimyon geldi. Kimyonu tanıyıp rafa koyar mısın?"
 
