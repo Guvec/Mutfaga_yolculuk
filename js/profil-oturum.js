@@ -22,6 +22,7 @@ function profilAyrintiAc(){
  '<button type="button" class="btn" id="profileDost">Aşçı dostunu seç</button><button type="button" class="btn" id="profileSwitch">Bu cihazdaki profiller</button>')+
  (st.guest?'':'<details class="gizlilik"><summary>Gizlilik</summary><p>Bu cihazda profil adın, puanların, rütben ve çalışma geçmişin saklanır.</p><p>İnternet varsa sıralama ve arkadaşlar için oyun adın, puanların ve arkadaş kayıtların sunucuda da tutulur.</p><p>Gerçek adın, telefon numaran veya fotoğrafın istenmez.</p><p>Hesabını silersen bu kayıtların hepsi gider.</p></details>'+(can?'<button type="button" class="btn danger" id="profileWipe">Hesabımı sil</button>':'<p>Hesabını silmek için önce çalışmayı veya odayı bitir.</p>'))+
  '<button type="button" class="btn pri" id="profileClose">Kapat</button></div>';
+ if(!st.guest){document.getElementById('profileClose').insertAdjacentHTML('beforebegin','<section id="profileCode" aria-live="polite"></section>');profilKodGuncelle(true);}
  const wipe=document.getElementById('profileWipe');
  if(wipe)wipe.onclick=function(){if(!profilDegistirilebilir())return;const n=st.prof;closeModal();askDelProfile(n);};
  const rename=document.getElementById('profileRename');
@@ -49,3 +50,11 @@ profilSilindi=function(n){
  PS_SILINDI(n);
  if(typeof adSync==='function')setTimeout(adSync,600);
 };
+
+async function profilKodGuncelle(prepare){
+ const el=document.getElementById('profileCode');if(!el)return;
+ const prof=st.prof;
+ const draw=()=>{if(!el.isConnected||st.prof!==prof)return;const ready=typeof FR!=='undefined'&&FR.ready&&FR.prof===prof;
+ el.innerHTML=ready?'<h3>Oyuncu kodun</h3><strong style="font-size:1.5em;letter-spacing:.12em">'+esc(FR.pid)+'</strong><div class="row"><button class="btn" onclick="frCopy()">Kopyala</button><button class="btn" onclick="frShare()">Paylaş</button></div>':'<p role="status">'+esc(typeof FR!=='undefined'&&FR.error||'Oyuncu kodun hazırlanıyor…')+'</p><button class="btn" onclick="profilKodGuncelle(true)">Yeniden dene</button>';};
+ draw();if(prepare&&typeof frEnsure==='function'){await frEnsure();draw();}
+}

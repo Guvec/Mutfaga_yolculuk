@@ -17,12 +17,13 @@ function hesabimHTML(){
  let h=topBar('Hesabım')+'<div class="wrap hesabim hs-yeni">';
  h+='<section class="hs-kimlik"><span class="hs-simge" aria-hidden="true">'+(typeof ucSimge==='function'?ucSimge(name):'👤')+'</span><span><b>'+esc(name)+'</b><small>'+(guest?'Misafir oturumunda sonuçlar kaydedilmez.':esc(hsRutbe()))+'</small></span></section>';
  if(!guest){
+  h+='<section id="profileCode" aria-live="polite"><h3>Oyuncu kodun</h3>'+(FR.ready&&FR.prof===st.prof?'<strong style="font-size:1.5em;letter-spacing:.12em">'+esc(FR.pid)+'</strong><div class="row"><button class="btn" onclick="frCopy()">Kopyala</button><button class="btn" onclick="frShare()">Paylaş</button></div>':'<p>'+esc(FR.error||'Oyuncu kodun hazırlanıyor…')+'</p><button class="btn" onclick="profilKodGuncelle(true)">Yeniden dene</button>')+'</section>';
   h+='<p class="ay-grup">Karakterim</p><div class="ay-liste">'+
    (index>=0&&!adSabit(st.prof)?hbSatir('✏️','Karakterini değiştir','hsKarakter()','','1 kez'):'')+
    hbSatir('🐼','Aşçı dostunu seç','hsDost()')+hbSatir('👥','Bu cihazdaki profiller','hsProfiller()')+hbSatir('📲','Başka cihaza aktar','akAc()','','Kod al')+'</div>';
  }
  h+='<p class="ay-grup">Ayarlar</p><div class="ay-liste">'+hbSatir('⚙️','Görünüm ve ses','anaAyarlar()')+'</div>';
- if(!guest&&typeof frGizlilikHTML==='function'){h+='<details class="hs-gizlilik"><summary><span class="ay-ikon" aria-hidden="true">🔒</span><span class="ay-ad">Arkadaşlar ve gizlilik</span><span class="ay-ok" aria-hidden="true">›</span></summary>'+frGizlilikHTML()+'</details>';if(typeof frEnsure==='function'&&!FR.ready)frEnsure().then(()=>{if(st.screen==='hesabim')render();});}
+ if(!guest&&typeof frGizlilikHTML==='function'){h+='<details class="hs-gizlilik"><summary><span class="ay-ikon" aria-hidden="true">🔒</span><span class="ay-ad">Arkadaşlar ve gizlilik</span><span class="ay-ok" aria-hidden="true">›</span></summary>'+frGizlilikHTML()+'</details>';if(typeof frEnsure==='function'&&!FR.ready&&!FR.busy&&!FR.error)frEnsure().then(()=>{if(st.screen==='hesabim')render();});}
  h+='<p class="ay-grup">Diğer</p><div class="ay-liste">'+hbSatir('📅','Çalışma geçmişim',"go('history')")+hbSatir('📖','Kılavuz','kilavuzAc()')+hbSatir('📤','Uygulamayı paylaş','hsPaylas()')+hbSatir('📄','Gizlilik ve koşullar','yasalAc(false)')+'</div>';
  if(!guest)h+='<div class="ay-liste hs-sil-liste">'+hbSatir('🗑️','Verilerimi sil','hsSil()','hs-sil-satir')+'</div>';
  return h+'</div>';

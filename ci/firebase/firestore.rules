@@ -103,9 +103,13 @@ service cloud.firestore {
 
    match /players/{uid} {
     function shape(d) {
-     return d.keys().hasOnly(['nick','score','ok','bad','n','tt','done','ts','rid','m','r','pr','pid','ready','loaded','left','sf','kl','sn'])
+     return d.keys().hasOnly(['nick','score','ok','bad','n','tt','done','ts','rid','m','r','pr','pid','ready','loaded','left','sf','kl','sn','dm','dk','dt'])
       && (!('kl' in d) || (d.kl is int && d.kl >= 0 && d.kl < d.n)) && (!('sn' in d) || (d.sn is int && d.sn >= 0 && d.sn < d.n))
       && (!('sf' in d) || (d.sf is string && d.sf.size() <= 4))
+      && (!d.keys().hasAny(['dm','dk','dt']) || (room().mode == 'duel' && uid == room().host
+          && d.keys().hasAll(['dm','dk','dt']) && d.dm is int && d.dm >= 0 && d.dm <= 50
+          && d.dk is int && d.dk >= 0 && d.dk < room().n && d.dt is timestamp
+          && ((resource != null && d.dt == resource.data.get('dt',null) && d.dk == resource.data.get('dk',-1) && d.dm == resource.data.get('dm',-1)) || (d.dt == request.time && ((d.dm == resource.data.get('dm',-1) && d.dk == resource.data.get('dk',-1)+1) || (d.dm == resource.data.get('dm',-1)+1 && d.dk == 0))))))
       && d.keys().hasAll(['nick','score','ok','bad','n','tt','done','ts','rid'])
       /* Ad yalnız ilk kayıtta ve değiştiğinde denetlenir; oyun içi her yazımda yeniden denetlenmez (kural işlem sınırı). */
       && ((resource != null && d.nick == resource.data.nick) || adOk(d.nick))

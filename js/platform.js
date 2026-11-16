@@ -11,7 +11,7 @@ const SUBJECTS = [
 const CONTENT = Object.create(null);
 const OLD_RENDER = render, OLD_NEWQ = newQ, OLD_START = startSession, OLD_RESOLVE = resolve;
 const OLD_QUIZ = quizHtml, OLD_ITEM = itemImg;
-VERSION='Sürüm · 15.11.2026 · v3.21.2: Aşçı Dostum adı korundu; tadım düğmesi "Lezzet tattır"'; // Her yüklemede tarih güncellenir.
+VERSION='Sürüm · 16.11.2026 · v3.21.3: Oda, davet ve kapışma eşitleme düzeltmeleri';
 st.subject='kuver'; st.practice='learn';
 LEVELS={
   1:{name:'Basit Kuver', items:['yemek_catali','yemek_bicagi','pecete','su_bardagi']},

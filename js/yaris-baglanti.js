@@ -14,7 +14,7 @@
     const base='https://www.gstatic.com/firebasejs/10.12.2/';
     const [app,auth,db]=await Promise.all([import(base+'firebase-app.js'),import(base+'firebase-auth.js'),import(base+'firebase-firestore.js')]);
     this.sdk={...app,...auth,...db};const fb=this.sdk;
-    const inst=fb.initializeApp(this.config,'mesleki-yaris');this.auth=fb.getAuth(inst);this.db=fb.getFirestore(inst);
+    const inst=fb.getApps().find(a=>a.name==='mesleki-yaris')||fb.initializeApp(this.config,'mesleki-yaris');this.auth=fb.getAuth(inst);this.db=fb.getFirestore(inst);
     if(this.config.projectId.startsWith('demo-')&&['localhost','127.0.0.1'].includes(location.hostname)){fb.connectAuthEmulator(this.auth,'http://127.0.0.1:9099',{disableWarnings:true});fb.connectFirestoreEmulator(this.db,'127.0.0.1',8080);}
     await fb.setPersistence(this.auth,fb.browserLocalPersistence);await this.auth.authStateReady();
     if(!this.auth.currentUser)await fb.signInAnonymously(this.auth);this.uid=this.auth.currentUser.uid;return this;
@@ -40,7 +40,7 @@
     }
     const data={...spec,host:this.uid,status:'lobby',guest:null,created:Date.now(),qv:1};
     if(spec.mode==='race'||spec.mode==='arena')data.cnt=1;
-    try{await fb.setDoc(ref,data);if(data.kilit&&sifre)await fb.setDoc(this.secret(code),{s:String(sifre)});return {code,room:data};}catch(e){if(wanted)throw e;}
+    try{await fb.setDoc(ref,data);if(data.kilit&&sifre)await fb.setDoc(this.secret(code),{s:String(sifre)});return {code,room:data};}catch(e){throw e;}
    }
    throw Error('Oda kurulamadı. Yeniden dene.');
   }
@@ -73,7 +73,8 @@
    });
    return room;
   }
-  async setPlayer(code,pdata){await this.sdk.setDoc(this.player(code),pdata);}
+  async setPlayer(code,pdata,replace=false){await this.sdk.setDoc(this.player(code),pdata,{merge:!replace});}
+  async duelRound(code,m,k){await this.sdk.setDoc(this.player(code),{dm:m,dk:k,dt:this.sdk.serverTimestamp()},{merge:true});}
   async getPlayer(code){const p=await this.sdk.getDoc(this.player(code));return p.exists()?p.data():null;}
   async arenaExpire(code,uid){await this.sdk.updateDoc(this.player(code,uid),{done:true,left:true});}
   async start(code){

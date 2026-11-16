@@ -1,0 +1,17 @@
+const fs=require('fs'),path=require('path'),assert=require('node:assert/strict');
+const {initializeTestEnvironment,assertSucceeds,assertFails}=require('@firebase/rules-unit-testing');
+const {doc,setDoc,updateDoc,getDoc,serverTimestamp,Timestamp}=require('firebase/firestore');
+(async()=>{const env=await initializeTestEnvironment({projectId:'demo-mesleki-yaris',firestore:{host:'127.0.0.1',port:8080,rules:fs.readFileSync(path.join(__dirname,'../ci/firebase/firestore.rules'),'utf8')}});let n=0;const ok=s=>{n++;console.log('PASS '+s)};
+try{const now=Date.now(),base={nick:'🐼 Aşçı Panda',score:0,ok:0,bad:0,n:0,tt:0,done:false,ts:now,rid:now,m:0,r:[],pr:[],ready:true,loaded:true};const room={host:'host',hostNick:'🐼 Aşçı Panda',mode:'duel',subject:'baharat',kind:'gorsel',set:0,n:10,lim:20,seed:42,rev:'duel3-test',created:now,status:'lobby',guest:null,qv:1,pub:true,ad:'Şefler',kilit:false,scope:'konu'};
+await env.withSecurityRulesDisabled(async c=>{const db=c.firestore();await setDoc(doc(db,'yrKim/host'),{pid:'ABCDEFG'});await setDoc(doc(db,'yrKart/ABCDEFG'),{owner:'host',nick:'🐼 Aşçı Panda'});});
+const h=env.authenticatedContext('host').firestore(),g=env.authenticatedContext('guest').firestore();
+await assertSucceeds(setDoc(doc(h,'oyunOdalari/BUG01'),room));await assertSucceeds(setDoc(doc(h,'oyunOdalari/BUG01/players/host'),{...base,pid:'ABCDEFG'}));ok('Yeni senkron sürümüyle oda ve kurucu kaydı oluşturulur');
+await env.withSecurityRulesDisabled(async c=>{await updateDoc(doc(c.firestore(),'oyunOdalari/BUG01'),{guest:'guest'});});await assertSucceeds(setDoc(doc(g,'oyunOdalari/BUG01/players/guest'),{...base,nick:'🐨 Şef Koala'}));await assertSucceeds(updateDoc(doc(h,'oyunOdalari/BUG01'),{status:'playing'}));ok('Konuk katılır, oda başlatılır');
+const hp=doc(h,'oyunOdalari/BUG01/players/host'),gp=doc(g,'oyunOdalari/BUG01/players/guest');await assertSucceeds(setDoc(hp,{dm:0,dk:0,dt:serverTimestamp()},{merge:true}));ok('Kurucu ortak tur saatini sunucu zamanıyla yazar');
+await assertFails(setDoc(gp,{dm:0,dk:0,dt:serverTimestamp()},{merge:true}));ok('Konuk ortak başlangıç saatini değiştiremez');
+await assertFails(setDoc(hp,{dm:0,dk:1,dt:Timestamp.fromMillis(now+100000)},{merge:true}));ok('Uydurma istemci zaman damgası reddedilir');
+await assertSucceeds(setDoc(hp,{...base,pid:'ABCDEFG',n:1,r:[1000],ts:Date.now()},{merge:true}));const got=(await getDoc(hp)).data();assert.equal(got.dk,0);assert(got.dt instanceof Timestamp);ok('Cevap/kalp atışı ortak zaman bilgisini silmez');
+await assertSucceeds(setDoc(gp,{...base,nick:'🐨 Şef Koala',n:1,r:[-1500],ts:Date.now()},{merge:true}));await assertSucceeds(setDoc(hp,{dm:0,dk:1,dt:serverTimestamp()},{merge:true}));ok('Yanlış/doğru cevaplar ve sonraki ortak tur kurallardan geçer');
+await assertFails(setDoc(hp,{dm:0,dk:4,dt:serverTimestamp()},{merge:true}));await assertSucceeds(setDoc(hp,{dm:1,dk:0,dt:serverTimestamp()},{merge:true}));ok('Tur atlama reddedilir, yeni rövanş sıfırıncı turla başlar');
+await assertFails(setDoc(hp,{dm:0,dk:10,dt:serverTimestamp()},{merge:true}));await assertFails(setDoc(hp,{dm:51,dk:1,dt:serverTimestamp()},{merge:true}));ok('Soru ve rövanş sınırı dışındaki tur verisi reddedilir');
+console.log(n+' kural kontrolü geçti.');}finally{await env.cleanup();}})().catch(e=>{console.error(e);process.exitCode=1});
