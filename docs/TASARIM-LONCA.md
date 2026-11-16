@@ -7,7 +7,7 @@
 - Krem parşömen, lacivert, işlenmiş altın, turkuaz; sıcak ışık ve kahverengi temas gölgeleri. Renkli yapraklı kart kenarları kullanılmaz. İnce altın örgü/düğüm ve kıvrımlı, kartla bütünleşen isimlikler kullanılır.
 - Üstte oyuncunun özgün profil portresi ve hazır adı; isim ve portre aynı profil parşömenini açar. Oyuncu kodu mevcut arkadaş kimliğinden gelir. Müzik, arkadaşlar ve ayarlar küçük yardımcı kontrollerdir.
 - Kompakt rütbe şeridi mevcut dalın gerçek rütbesini, sıradaki basamağı ve ilerlemeyi kullanır. Puanlar, eşikler ve kayıt kimlikleri değişmez.
-- Yolculuğum büyük ana karttır. Başlık büyük açık krem; “Senin yolun, senin hikâyen.” sıcak altın-kremdir. Koyu geçiş okunurluğu destekler. Arkadan görünen erzak çantalı dost, orman, dağ ve üç yol ayrımı referanstır.
+- Yolculuğum büyük ana karttır; başlığı küçük açık krem metin olarak görselin sol altına yerleşir. “Senin yolun, senin hikâyen.” sıcak altın-kremdir. Alttaki koyu geçiş okunurluğu destekler. Arkadan görünen erzak çantalı dost, orman, dağ ve üç yol ayrımı referanstır.
 - Altında Aşçı Dostum / Ustalar Ligi; Sıralama / Rozetlerim sırasıyla eşit 2×2 kartlar. Ortak görsel alanı ve başlık taban çizgisi; aynı genişlikte nesne zorlaması yoktur. Panda kepi kart içinde kalır.
 - Lig: mutfak araçlı arma. Sıralama: turkuaz taşlı oymalı altın kupa, krem taş kaide. Rozet menüsü: pasta, aşçı şapkası ve çırpma telli üç yuvarlak lonca rozeti. Bu dekoratif menü simgeleri yeni kazanım veya ödül kuralı değildir.
 
@@ -36,3 +36,13 @@ Ortak sistem bütün mevcut menülere temel görünüm sağlar. Her özel alt ek
 - Service worker sürümü artırıldı. Yeni arayüz, font ve temel görseller çekirdek önbelleğe eklendi; derslerin tam çevrimdışı hazırlığı mevcut ayrı kullanıcı işlemi olarak kaldı.
 
 Sonraki geliştirmelerde bu görünüşü koruyun; ekran düzenini veya nesne motiflerini tekrar tasarlamayın. Özel ekranın görsel incelemesini ve gerekli işlev kontrollerini ayrıca kaydedin.
+
+## 16 Kasım — küçük başlık ve mobil düzen düzeltmesi
+
+- Karşılaştırma temeli main `b1674530cd888a16229b45f59f1c7488b7a7f316`. En yeni kayıtlı `Mutfaga_Yolculuk_v3_21_3_Hata_Duzeltmeleri.zip` içindeki 18 kaynak/test dosyasından 17'si depoyla birebir aynı; service worker depoda daha yeni lonca önbelleğini içeriyor. ZIP'teki eski service worker geri alınmadı. Paket içindeki açıklama ve eski test sonuçları uygulama kaynağı değildir.
+- `.lc-home` için eksik `display:grid` eklendi; tanımlı satırlar ve boşluklar artık etkin. Tek sütunun asgari genişliği sıfırlandı ve ana alan yatayda ortalandı.
+- Yolculuğum başlığı normal yazı boyutunda 1.2–1.5rem aralığına indirildi; sol altta görsel içine yerleştirildi. Küçük ekranın eski büyük başlık kuralı kaldırıldı. Slogan ve sağ ok korundu; okunurluk geçişi görselin altına taşındı. Büyük yazı tercihi ölçeklenmeye devam eder.
+- Yeni düğme gerektiren bir eksik bulunmadı. 13 ana sayfa kontrolü (profil, üç üst araç, yolculuk, dört kart ve dört bilgi düğmesi) gerçek uygulama betiklerini yükleyen JSDOM ortamında tıklanarak doğrulandı. Dokuz dostun 63 karakter/sahne/yol dosyası başvurusu mevcut.
+- 10 lonca, 16 oda, 12 davet/konu ve 8 çoklu oyun kontrolü ile mevcut rütbe modeli testi geçti. Bunlar tarayıcı geometrisi veya canlı çok oyunculu ağ testi değildir.
+- Bu turda yerel Chromium `socket() failed: Operation not permitted` nedeniyle açılamadı. Canlı site ayrı tarayıcıda kullanım koşulları ekranına açıldı; kabul verilmedi. Yerel önizleme bağlantısı reddedildi ve veri URL'si tarayıcı güvenlik ilkesi tarafından engellendi. Bu nedenle bu düzeltmenin 360×740, 390×844 ve masaüstündeki son görünüşü veya 48px dokunma ölçüleri bu turda ölçüldü sayılmaz. İlk yardım açıkken ve büyük yazıda kaydırma kullanılabilir.
+- Service worker v178'e çıkarıldı; görseller dosya olarak korundu, Base64 dönüşümü yapılmadı. Soru bankası, kayıtlar, puanlar ve sunucu kuralları değiştirilmedi.
