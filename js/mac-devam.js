@@ -18,7 +18,7 @@ function mdOku(){try{const v=JSON.parse(sessionStorage.getItem(MD.anahtar)||'nul
  yrRoomChanged=function(room){if(!room&&YR.active)mdSil();return MD_ROOM.apply(this,arguments);};
  const MD_R=render;
  render=function(){
-  const r=MD_R.apply(this,arguments);
+  const r=MD_R.apply(this,arguments);try{if(st.screen==='racemenu')sessionStorage.setItem('yr_menu_profil',st.prof||'');else if(st.screen==='home')sessionStorage.removeItem('yr_menu_profil');}catch(e){}
   try{
    if(/^(aover|dover|raceover)$/.test(st.screen||''))mdSil();
    else if(YR.active)mdKaydet();
@@ -43,3 +43,5 @@ function mdDene(){
 {const t=setInterval(()=>{if(MD.denendi||Date.now()-MD.yuklendi>30000){clearInterval(t);return;}try{mdDene();}catch(e){}},700);}
 /* Hızlı Şef: js/blitz.js (lbHizli). */
 /* Rövanş: js/sonuc-ekrani.js */
+
+try{if(!new URLSearchParams(location.search).has('oda')&&st.prof&&sessionStorage.getItem('yr_menu_profil')===st.prof){st.screen='racemenu';}}catch(e){}

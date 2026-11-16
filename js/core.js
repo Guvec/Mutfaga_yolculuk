@@ -96,7 +96,7 @@ function profilSilindi(n){
   if(ls('sonProfil',null)===n)lsSet('sonProfil',null);
   if(st.prof===n){st.prof=null;st.guest=false;}
 }
-if(profilDevamEt())st.screen='home';
+if(profilDevamEt()){st.screen='home';try{if(!new URLSearchParams(location.search).has('oda')&&sessionStorage.getItem('yr_menu_profil')===st.prof)st.screen='racemenu';}catch(e){}}
 
 /* ===================== YARDIMCILAR ===================== */
 function esc(s){ return String(s).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];}); }

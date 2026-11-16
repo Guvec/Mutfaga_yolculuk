@@ -4,7 +4,7 @@
    yrFr/{a_b} (istek ve arkadaşlık), yrDav/{gönderen_alıcı_oda} (davet), yrEngel (engel; arayüzü sonra). Kurallar: ci/firebase/firestore.rules.
    Ad gerçek ad değildir (hazır karakter), bu yüzden kart ve çevrim içi bilgisi giriş yapanlara açıktır; liste yoktur. */
 'use strict';
-const FR={ayar:{ri:false,di:false,gz:false},engel:[],ready:false,busy:null,pid:null,prof:null,list:[],inc:[],out:[],nick:{},seen:{},unsub:[],beat:null,invs:[],invSeen:{},call:null,bn:0};
+const FR={codeDraft:'',addBusy:false,error:'',ayar:{ri:false,di:false,gz:false},engel:[],ready:false,busy:null,pid:null,prof:null,list:[],inc:[],out:[],nick:{},seen:{},unsub:[],beat:null,invs:[],invSeen:{},call:null,bn:0};
 const FR_CH='ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
 function frIds(){return ls('ark_id',{});}
 function frRand(n){const b=crypto.getRandomValues(new Uint8Array(n));return Array.from(b,x=>FR_CH[x%FR_CH.length]).join('');}
@@ -23,18 +23,18 @@ function frEnsure(){
  if(FR.ready&&FR.prof===p)return Promise.resolve(FR.pid);
  if(FR.busy)return FR.busy;
  FR.busy=(async()=>{
-  const t=await adFb(),fb=t.sdk,all=frIds();let me=all[p]&&all[p].id||null;
+  FR.error='';const t=await yrWithTimeout(adFb(),10000),fb=t.sdk,all=frIds();let me=all[p]&&all[p].id||null;
   for(let tries=0;tries<5;tries++){
    const id=me||frRand(7);
    try{
     const b=fb.writeBatch(t.db);
     b.set(fb.doc(t.db,'yrKart',id),{owner:t.uid,nick:p},{merge:true});
     b.set(fb.doc(t.db,'yrKim',t.uid),{pid:id});
-    await b.commit();
+    await yrWithTimeout(b.commit(),10000);
     all[p]={id};lsSet('ark_id',all);
     /* Kendi kartındaki gizlilik ayarları (istek, davet, çevrim içi durumu). */
-    try{const k=await fb.getDoc(fb.doc(t.db,'yrKart',id));const d=k.exists()?k.data():{};FR.ayar={ri:d.ri===true,di:d.di===true,gz:d.gz===true};}catch(x){}
-    if(!FR.ayar.gz)await fb.setDoc(fb.doc(t.db,'yrDurum',id),{seen:fb.serverTimestamp()}).catch(()=>{});
+    try{const k=await yrWithTimeout(fb.getDoc(fb.doc(t.db,'yrKart',id)),8000);const d=k.exists()?k.data():{};FR.ayar={ri:d.ri===true,di:d.di===true,gz:d.gz===true};}catch(x){}
+    if(!FR.ayar.gz)fb.setDoc(fb.doc(t.db,'yrDurum',id),{seen:fb.serverTimestamp()}).catch(()=>{});
     if(st.prof!==p)return null;
     frStart(p,id);return id;
    }catch(e){
@@ -42,8 +42,8 @@ function frEnsure(){
     throw e;
    }
   }
-  return null;
- })().catch(()=>null).finally(()=>{FR.busy=null;});
+  throw Error('Oyuncu kartı için sunucu izni alınamadı.');
+ })().catch(e=>{FR.error=yrErrText(e);return null;}).finally(()=>{FR.busy=null;frUi();});
  return FR.busy;
 }
 function frStop(){
@@ -61,10 +61,10 @@ async function frStart(p,id){
    for(const k in all){const x=all[k],o=x.a===id?x.b:x.a;if(x.st==='ok')l.push(o);else if(x.by===id)out.push(o);else inc.push(o);}
    const yeniGelen=inc.filter(o=>!FR.inc.includes(o));FR.list=l;FR.inc=inc;FR.out=out;frNicks(l.concat(inc,out));if(yeniGelen.length&&typeof frYeniIstek==='function')frYeniIstek(yeniGelen);
   };
-  FR.unsub.push(fb.onSnapshot(fb.query(fb.collection(t.db,'yrFr'),fb.where('a','==',id)),qs=>{A={};qs.forEach(d=>{A[d.id]=d.data();});merge();},()=>{}));
-  FR.unsub.push(fb.onSnapshot(fb.query(fb.collection(t.db,'yrFr'),fb.where('b','==',id)),qs=>{B={};qs.forEach(d=>{B[d.id]=d.data();});merge();},()=>{}));
-  FR.unsub.push(fb.onSnapshot(fb.query(fb.collection(t.db,'yrEngel'),fb.where('by','==',id)),qs=>{FR.engel=qs.docs.map(d=>d.data().to);frNicks(FR.engel);frUi();if(st.screen==='hesabim'&&typeof render==='function')render();},()=>{}));
-  FR.unsub.push(fb.onSnapshot(fb.query(fb.collection(t.db,'yrDav'),fb.where('to','==',id)),qs=>{FR.invs=qs.docs.map(d=>({id:d.id,...d.data()}));frInvCheck();},()=>{}));
+  FR.unsub.push(fb.onSnapshot(fb.query(fb.collection(t.db,'yrFr'),fb.where('a','==',id)),qs=>{A={};qs.forEach(d=>{A[d.id]=d.data();});merge();},e=>{FR.error=yrErrText(e);frUi();}));
+  FR.unsub.push(fb.onSnapshot(fb.query(fb.collection(t.db,'yrFr'),fb.where('b','==',id)),qs=>{B={};qs.forEach(d=>{B[d.id]=d.data();});merge();},e=>{FR.error=yrErrText(e);frUi();}));
+  FR.unsub.push(fb.onSnapshot(fb.query(fb.collection(t.db,'yrEngel'),fb.where('by','==',id)),qs=>{FR.engel=qs.docs.map(d=>d.data().to);frNicks(FR.engel);frUi();if(st.screen==='hesabim'&&typeof render==='function')render();},e=>{FR.error=yrErrText(e);frUi();}));
+  FR.unsub.push(fb.onSnapshot(fb.query(fb.collection(t.db,'yrDav'),fb.where('to','==',id)),qs=>{FR.invs=qs.docs.map(d=>({id:d.id,...d.data()}));frInvCheck();},e=>{FR.error=yrErrText(e);frUi();}));
   FR.beat=setInterval(frBeat,60000);
  }catch(e){}
  frUi();
@@ -95,6 +95,9 @@ function frBtn(p,big){
  return big?'<button class="btn ghost" onclick="frAddId(\''+p.pid+'\')">➕ '+esc(p.nick)+' arkadaş ekle</button>':' <button class="mini" aria-label="Arkadaş ekle" onclick="frAddId(\''+p.pid+'\')">➕</button>';
 }
 function frUi(){
+ if(st.screen==='hesabim'){render();return;}
+ if(st.screen==='racelobby'){render();return;}
+ if(st.modalOpen&&typeof profilKodGuncelle==='function')profilKodGuncelle(false);
  if(st.screen==='dover'||st.screen==='raceover'){render();return;}
  if(st.screen==='friends'){const e=document.getElementById('fr-body');if(e)e.innerHTML=frBody();}
  if(st.screen==='home'){if(typeof anaArkadasPortreleri==='function')anaArkadasPortreleri();const b=document.getElementById('fr-badge');if(b)b.textContent=FR.inc.length?' · '+FR.inc.length+' yeni istek':'';const lv=document.getElementById('fr-live');if(lv){const h=frLive();lv.innerHTML=h;lv.style.display=h?'':'none';}}
@@ -104,9 +107,9 @@ function frBody(){
  if(!st.prof||st.guest)return '<p class="sub center">Arkadaş eklemek için bir <b>profil</b> ile giriş yap. Misafirler arkadaş ekleyemez.</p>';
  if(!navigator.onLine)return '<p class="sub center">Arkadaşlar için internet gerekir.</p>';
  if(!frOn())return '<p class="sub center">Arkadaş bağlantısı henüz ayarlanmadı.</p>';
- if(!FR.ready)return '<p class="sub center">⏳ Hazırlanıyor…</p>';
- let h='<div class="card ark-box"><small>Senin oyuncu kodun</small><div class="ark-code">'+esc(FR.pid)+'</div><small>Bu kodu arkadaşına ver. O seni eklesin, sen kabul et.</small><div class="ark-btns"><button class="btn" onclick="frCopy()">📋 Kopyala</button><button class="btn ghost" onclick="frShare()">📤 Paylaş</button></div></div>';
- h+='<label for="fr-code">Arkadaşının kodu</label><input id="fr-code" class="inp" maxlength="9" autocapitalize="characters" autocomplete="off" placeholder="Arkadaşının kodu (ör. ABCDEFG)"><button class="btn pri" onclick="frAdd()">➕ Arkadaş Ekle</button>';
+ if(!FR.ready)return '<p class="sub center" role="status">'+esc(FR.error||'Arkadaş bağlantısı hazırlanıyor…')+'</p><button class="btn" onclick="frEnsure().then(frUi)">Yeniden dene</button>';
+ let h=(FR.error?'<p role="status">'+esc(FR.error)+'</p>':'')+'<p class="sub">Kendi oyuncu kodun profil kartında.</p><button class="btn" onclick="profilAyrintiAc()">Oyuncu kodumu göster</button>';
+ h+='<label for="fr-code">Arkadaşının kodu</label><input id="fr-code" class="inp" maxlength="9" autocapitalize="characters" autocomplete="off" placeholder="Arkadaşının kodu (ör. ABCDEFG)" value="'+esc(FR.codeDraft||'')+'" oninput="FR.codeDraft=this.value"><button class="btn pri" onclick="frAdd()"'+(FR.addBusy?' disabled':'')+'>'+(FR.addBusy?'Gönderiliyor…':'➕ Arkadaş Ekle')+'</button>';
  if(FR.inc.length){h+='<h2>📩 Gelen istekler <span class="fr-rozet-ic">'+FR.inc.length+' yeni</span></h2><p class="fr-istek-not">Kabul etmek için ✓ Kabul düğmesine bas.</p>';FR.inc.forEach(o=>{h+='<div class="ark-row istek"><span>'+esc(FR.nick[o]||'…')+'</span><span><button class="mini" onclick="frAccept(\''+o+'\')">✓ Kabul</button> <button class="mini" aria-label="İsteği reddet" onclick="frDel(\''+o+'\',0)">✕</button> <button class="mini" aria-label="Engelle" onclick="frEngelle(\''+o+'\')">🚫</button></span></div>';});}
  h+='<h2>👫 Arkadaşların ('+FR.list.length+')</h2>';
  if(!FR.list.length)h+='<p class="sub center">Henüz arkadaşın yok. Arkadaşının kodunu yazıp ekle.</p>';
@@ -137,21 +140,23 @@ function frAdd(){
  frAddId(c,e);
 }
 async function frAddId(c,e){
+ if(FR.addBusy)return;
  if(!FR.ready||!st.prof){adToast('Arkadaş eklemek için profil ile gir');return;}
  if(c===FR.pid){adToast('Bu senin kendi kodun');return;}
  if(FR.list.indexOf(c)>=0){adToast('Zaten arkadaşsınız');return;}
  if(FR.out.indexOf(c)>=0){adToast('İsteğin zaten gönderildi');return;}
  if(FR.inc.indexOf(c)>=0){frAccept(c);return;}
+ FR.codeDraft=c;FR.addBusy=true;frUi();
  try{
-  const t=await adFb(),fb=t.sdk,s=await fb.getDoc(fb.doc(t.db,'yrKart',c));
+  const t=await yrWithTimeout(adFb(),10000),fb=t.sdk,s=await yrWithTimeout(fb.getDoc(fb.doc(t.db,'yrKart',c)),10000);
   if(!s.exists()){adToast('Bu koda ait oyuncu bulunamadı');return;}
   const nk=s.data().nick,a=FR.pid<c?FR.pid:c,b=FR.pid<c?c:FR.pid;
-  await fb.setDoc(fb.doc(t.db,'yrFr',frKey(FR.pid,c)),{a,b,by:FR.pid,st:'p',ts:fb.serverTimestamp()});
+  await yrWithTimeout(fb.setDoc(fb.doc(t.db,'yrFr',frKey(FR.pid,c)),{a,b,by:FR.pid,st:'p',ts:fb.serverTimestamp()}),10000);FR.codeDraft='';
   FR.nick[c]=nk;if(FR.out.indexOf(c)<0)FR.out.push(c);adToast(nk+' kişisine istek gönderildi');if(e&&e.value!==undefined)e.value='';frUi();
- }catch(x){adToast('İstek gönderilemedi, tekrar dene');}
+ }catch(x){adToast('İstek gönderilemedi: '+yrErrText(x));}finally{FR.addBusy=false;frUi();}
 }
 async function frAccept(o){
- try{const t=await adFb(),fb=t.sdk;await fb.updateDoc(fb.doc(t.db,'yrFr',frKey(FR.pid,o)),{st:'ok',ts:fb.serverTimestamp()});adToast('Artık arkadaşsınız 🎉');}
+ try{const t=await adFb(),fb=t.sdk;await yrWithTimeout(fb.updateDoc(fb.doc(t.db,'yrFr',frKey(FR.pid,o)),{st:'ok',ts:fb.serverTimestamp()}),10000);adToast('Artık arkadaşsınız 🎉');}
  catch(e){adToast('Kabul edilemedi, tekrar dene');}
 }
 function frDel(o,ask){
@@ -165,7 +170,7 @@ function frEngelle(o){
   try{const t=await adFb(),fb=t.sdk,b=fb.writeBatch(t.db);
    b.set(fb.doc(t.db,'yrEngel',FR.pid+'_'+o),{by:FR.pid,to:o});
    b.delete(fb.doc(t.db,'yrFr',frKey(FR.pid,o)));
-   await b.commit();adToast('Engellendi');
+   await yrWithTimeout(b.commit(),10000);adToast('Engellendi');
   }catch(e){adToast('Engellenemedi, tekrar dene');}
  });
 }
@@ -200,7 +205,8 @@ function frLobbyHTML(){
  if(!st.prof||st.guest||!frOn()||!YR.room||YR.room.status!=='lobby')return '';
  const cap=YR.room.mode==='arena'&&typeof ArenaModel!=='undefined'?ArenaModel.maxPlayers(YR.room):YarisModel.LIMITS[YR.room.mode].max;if(YR.players.length>=cap)return '';
  let h='<div class="card ark-live"><div class="ark-lvh">👫 Arkadaşını çağır</div>';
- if(!FR.ready)return h+'<small>⏳ Arkadaşların yükleniyor…</small></div>';
+ if(FR.error)return h+'<p role="status">'+esc(FR.error)+'</p><button class="mini" onclick="frStop();frEnsure().then(frUi)">Bağlantıyı yeniden kur</button></div>';
+ if(!FR.ready)return h+'<small role="status">'+esc(FR.error||'Arkadaşların yükleniyor…')+'</small><button class="mini" onclick="frEnsure().then(frUi)">Yeniden dene</button></div>';
  /* Bütün arkadaşlar listelenir (12.11: önceden ilk 6 gösteriliyordu, yedinci ve sonrası çağrılamıyordu). Çevrim içi olanlar üstte, sayfa sayfa. */
  const tum=FR.list.filter(o=>FR.nick[o]!=='(silinmiş profil)').sort((a,b)=>((frOnline(b)?1:0)-(frOnline(a)?1:0))||String(FR.nick[a]||'').localeCompare(String(FR.nick[b]||''),'tr'));
  const BOY=6,ss=Math.max(1,Math.ceil(tum.length/BOY));FR.arkSayfa=Math.max(0,Math.min(ss-1,FR.arkSayfa|0));
@@ -215,12 +221,12 @@ async function frInviteTo(o){
  if(await frInvSend())FR_SENT[YR.code+'_'+o]=1;if(st.screen==='racelobby')render();
 }
 async function frInvSend(){
- const c=FR.call;if(!c||!FR.pid||!YR.room||!YR.code)return;FR.call=null;
+ const c=FR.call,code=YR.code;if(!c||!YR.room||!code)return false;if(!FR.ready||FR.prof!==st.prof)await frEnsure();if(!FR.pid||!FR.ready||FR.prof!==st.prof){adToast(FR.error||'Oyuncu kodu hazırlanamadı. Yeniden dene.');return false;}if(YR.code!==code||!YR.active)return false;FR.call=null;
  try{
-  const t=await adFb(),fb=t.sdk,r=YR.room,sub=(typeof YR_SUBJECTS!=='undefined'&&(YR_SUBJECTS.find(x=>x.id===r.subject)||{}).name)||r.subject;
-  await fb.setDoc(fb.doc(t.db,'yrDav',FR.pid+'_'+c.to+'_'+YR.code),{from:FR.pid,to:c.to,nick:YR.nick,code:YR.code,rid:r.created,subject:String(sub).slice(0,30),mode:r.mode,ts:fb.serverTimestamp(),...(YR.sifre?{sf:YR.sifre}:{})});
+  const t=await yrWithTimeout(adFb(),10000),fb=t.sdk,r=YR.room,sub=(typeof YR_SUBJECTS!=='undefined'&&(YR_SUBJECTS.find(x=>x.id===r.subject)||{}).name)||r.subject;
+  await yrWithTimeout(fb.setDoc(fb.doc(t.db,'yrDav',FR.pid+'_'+c.to+'_'+YR.code),{from:FR.pid,to:c.to,nick:YR.nick,code:YR.code,rid:r.created,subject:String(sub).slice(0,30),mode:r.mode,ts:fb.serverTimestamp(),...(YR.sifre?{sf:YR.sifre}:{})}),10000);
   adToast((c.nick||'Arkadaşın')+' davet edildi');return true;
- }catch(e){adToast('Davet gönderilemedi');return false;}
+ }catch(e){adToast('Davet gönderilemedi: '+yrErrText(e));return false;}
 }
 /* Gelen davet: oyun sırasında rahatsız etme; menüye dönünce göster. */
 const FR_SAFE=['home','racemenu','profiles','friends','siralama','rekor'];
@@ -242,6 +248,7 @@ function frJoinCode(code,sf){YR.codeDraft=code;st.screen='racemenu';render();yrJ
 function frLive(){
  if(!st.prof||st.guest||!navigator.onLine||!frOn())return '';
  let h='<div class="ark-lvh">🟢 Şu an oyunda</div>';
+ if(FR.error)return h+'<p role="status">'+esc(FR.error)+'</p><button class="mini" onclick="frStop();frEnsure().then(frUi)">Bağlantıyı yeniden kur</button></div>';
  if(!FR.ready)return h+'<small>⏳ Arkadaşların yükleniyor…</small>';
  const on=FR.list.filter(frOnline);
  if(!on.length)return h+'<div class="ark-row"><small>Şu an çevrim içi arkadaşın yok.</small><button class="mini" onclick="frOpen()">👫 Arkadaşlarım</button></div>';
