@@ -15,9 +15,9 @@ var HAZIRLANIYOR=[];
 (function(){
  const root=document.documentElement;
  let theme='light';
- const THEMES=['light','sepia','okyanus','orman','lavanta','seftali','yuksek','dark'],THEME_NAME={light:'Açık',sepia:'Sepya',okyanus:'Okyanus',orman:'Orman',lavanta:'Lavanta',seftali:'Şeftali',yuksek:'Yüksek kontrast',dark:'Gece'},THEME_COLOR={light:'#ffffff',sepia:'#f3ead4',okyanus:'#e6eff5',orman:'#e8f0e3',lavanta:'#eeeaf6',seftali:'#fbeee6',yuksek:'#ffffff',dark:'#14231f'};
- try{const t=localStorage.getItem('mesleki-tema');theme=THEMES.includes(t)?t:(localStorage.getItem('mesleki-gece')==='true'?'dark':'light');}catch(e){}
- function applyTheme(){root.dataset.theme=theme;root.style.colorScheme=theme==='dark'?'dark':'light';document.querySelectorAll('.theme-toggle').forEach(b=>{b.textContent='Tema: '+THEME_NAME[theme];b.removeAttribute('aria-pressed');b.setAttribute('aria-label','Tema: '+THEME_NAME[theme]+'. Değiştirmek için dokun.');});const m=document.querySelector('meta[name="theme-color"]');if(m)m.content=THEME_COLOR[theme];}
+ const THEMES=['lonca','loncakrem','light','sepia','okyanus','orman','lavanta','seftali','yuksek','dark'],THEME_NAME={lonca:'Lonca Gecesi',loncakrem:'Lonca Işığı',light:'Açık',sepia:'Sepya',okyanus:'Okyanus',orman:'Orman',lavanta:'Lavanta',seftali:'Şeftali',yuksek:'Yüksek kontrast',dark:'Gece'},THEME_COLOR={lonca:'#503221',loncakrem:'#f5dfb9',light:'#ffffff',sepia:'#f3ead4',okyanus:'#e6eff5',orman:'#e8f0e3',lavanta:'#eeeaf6',seftali:'#fbeee6',yuksek:'#ffffff',dark:'#14231f'};
+ try{const t=localStorage.getItem('mesleki-tema');theme=THEMES.includes(t)?t:(localStorage.getItem('mesleki-gece')==='true'?'dark':'lonca');}catch(e){}
+ function applyTheme(){root.dataset.theme=theme;root.style.colorScheme=theme==='dark'?'dark':'lonca';document.querySelectorAll('.theme-toggle').forEach(b=>{b.textContent='Tema: '+THEME_NAME[theme];b.removeAttribute('aria-pressed');b.setAttribute('aria-label','Tema: '+THEME_NAME[theme]+'. Değiştirmek için dokun.');});const m=document.querySelector('meta[name="theme-color"]');if(m)m.content=THEME_COLOR[theme];}
  window.temaDegistir=function(){theme=THEMES[(THEMES.indexOf(theme)+1)%THEMES.length];try{localStorage.setItem('mesleki-tema',theme);localStorage.setItem('mesleki-gece',String(theme==='dark'));}catch(e){}applyTheme();};
  const themeButton=()=>'<button type="button" class="theme-toggle" aria-label="Tema: '+THEME_NAME[theme]+'. Değiştirmek için dokun." onclick="temaDegistir()">Tema: '+THEME_NAME[theme]+'</button>';
  const sesYazi=()=>'Sesli okuma: '+(SES.acik?'Açık':'Kapalı');

@@ -45,7 +45,7 @@
   return `<div class="ae-serit${ust?' ae-serit-ust':''}" data-dal="${path()}" role="button" tabindex="0" onclick="rutbeYolAc()"
     onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();rutbeYolAc();}" aria-label="${esc('Rütbem: '+title+'. '+note)}">
    <img src="assets/rozet/${path()}-${index+1}.webp" alt="" width="96" height="96">
-   <span class="ae-serit-metin">
+   <span class="ae-serit-metin"><span class="lc-rank-label">Rütbeler · ${esc(YOLLAR[path()].ad)}</span>
     <span class="ae-serit-adlar"><strong>${esc(names[index]||current.name)}</strong>${next?`<span class="ae-serit-sonra">Sıradaki: <b>${esc(names[index+1]||next.name)}</b> ›</span>`:''}</span>
     <span class="ae-progress" role="progressbar" aria-label="Sonraki rütbeye ilerleme" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${Math.round(percent)}" aria-valuetext="${esc(note)}"><span style="width:${percent}%"></span></span>
     <small class="ae-serit-not">${esc(note)}</small>
@@ -58,6 +58,7 @@
   servis:{ad:'Servis',konular:['kuver','bulasik-makinesi-temizligi'],tarif:null}
  };
  function home(){
+  if(typeof window.loncaHome==='function')return window.loncaHome(rankHTML(true));
   GIRIS.character=dostSecili();
   const name=st.guest?'Misafir':st.prof?adRest(st.prof):'Profil seç';
   const action=devamBilgi();
@@ -322,7 +323,7 @@
  }
  function dostCanlandir(){
   dostDurdur();
-  const kart=document.querySelector('.ae-home .ae-dost');if(!kart)return;
+  const kart=document.querySelector('.lc-home .lc-dost, .ae-home .ae-dost');if(!kart)return;
   kart.classList.toggle('ae-dost-canli',dostHareketli());
   if(!dostHareketli())return;
   const pozlar=DOST_POZLAR[GIRIS.character]||[];let sira=0;
@@ -332,7 +333,7 @@
   kart.addEventListener('pointerdown',e=>{if(e.pointerType!=='mouse')gulumse();});
  }
  window.anaDostMutfak=function(){
-  const kart=document.querySelector('.ae-home .ae-dost');
+  const kart=document.querySelector('.lc-home .lc-dost, .ae-home .ae-dost');
   if(kart&&dostHareketli()&&kart.querySelector('.ae-dost-poz.acik')){setTimeout(()=>{dostDurdur();GIRIS.mutfak();},350);return;}
   dostDurdur();GIRIS.mutfak();
  };

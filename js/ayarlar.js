@@ -3,7 +3,7 @@
    Mutfak Kitabım (dal pencerelerinde Teori), Görünüm ve Hareketler (Aşçı Dostum), Lezzetleri Keşfet (Aşçı Dostum → lezzet tattır),
    Çalışma geçmişim ve Kılavuz (Hesabım), Sesi dene/Durdur (Okuyan ses sayfasında). Ses, müzik ve efekt: 🎧 Ses paneli. */
 'use strict';
-const AY_TEMA={light:'Aydınlık',sepia:'Sepya',okyanus:'Okyanus',orman:'Orman',lavanta:'Lavanta',seftali:'Şeftali',yuksek:'Yüksek kontrast',dark:'Gece'};
+const AY_TEMA={lonca:'Lonca Gecesi',loncakrem:'Lonca Işığı',light:'Aydınlık',sepia:'Sepya',okyanus:'Okyanus',orman:'Orman',lavanta:'Lavanta',seftali:'Şeftali',yuksek:'Yüksek kontrast',dark:'Gece'};
 const AY_YZ=['normal','buyuk','cok'],AY_YZN={normal:'Normal',buyuk:'Büyük',cok:'Çok büyük'};
 function ayAc(html,label){
  if(typeof sesSus==='function')sesSus();try{modalFocus=document.activeElement;}catch(e){}

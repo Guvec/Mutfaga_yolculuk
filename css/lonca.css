@@ -1,0 +1,86 @@
+/* Ortak lonca kitabı: gerçek metin ve kontroller, dekor ayrı katmanda. */
+@font-face{font-family:'Lonca Hikaye';src:url('../assets/yazi/lonca-hikaye-bold.ttf') format('truetype');font-weight:700;font-display:swap}
+:root{--lc-ink:#142c35;--lc-gold:#b77d24;--lc-edge:#e8b852;--lc-paper:#fff0d2;--lc-shadow:#3c201747;--lc-navy:#093746;--lc-textscale:1}
+html[data-theme=lonca]{--bg:#503221;--surface:#fff0d2;--soft:#eed9b0;--text:#142c35;--muted:#4d5351;--navy:#142c35;--teal:#087e81;--teal2:#d4eddf;--line:#b77d24;--shadow:0 6px 20px #2c170d38;--ae-ink:#142c35}
+html[data-theme=lonca] body{background:radial-gradient(ellipse at 20% 10%,#a2774770,transparent 55%),linear-gradient(120deg,#3d291e,#745035 48%,#3e281d);background-attachment:fixed;color:var(--text)}
+html[data-theme=lonca] #app{background:transparent}
+html[data-theme=loncakrem]{--bg:#f5dfb9;--surface:#fff6e1;--soft:#efd9ad;--text:#142c35;--muted:#4d5351;--navy:#142c35;--teal:#087e81;--teal2:#d4eddf;--line:#b77d24;--shadow:0 5px 18px #79501e30}
+html[data-theme=loncakrem] body,html[data-theme=loncakrem] #app{background:radial-gradient(ellipse at top,#fff7e6,#f2d5a1);color:var(--text)}
+html[data-yz=buyuk]{--lc-textscale:1.12}html[data-yz=cok]{--lc-textscale:1.25}
+html[data-font=hikaye] body :is(.lc-title,.lc-nameplate,.top .ttl,.ae-interior h1,.ay-bas,.ry-bas,.lc-parchment h2){font-family:'Lonca Hikaye',Georgia,serif!important;font-weight:700;letter-spacing:0}
+html[data-font=sade] body :is(.lc-title,.lc-nameplate){font-family:Lexend,Arial,sans-serif!important;font-weight:650}
+html body .lc-home{width:100%;max-width:520px;min-height:670px;height:100svh;grid-template-columns:1fr;grid-template-rows:auto auto minmax(172px,.95fr) minmax(290px,1.6fr);gap:10px;padding:12px 12px max(12px,env(safe-area-inset-bottom));color:var(--lc-ink);background:transparent;box-sizing:border-box}
+.lc-home *, .lc-parchment *{box-sizing:border-box}
+.lc-paper,.lc-card,.lc-parchment{background:radial-gradient(ellipse at 45% 30%,#fff8e7 0%,#fff0d2 70%,#e8c88b 100%);border:2px solid var(--lc-gold);box-shadow:inset 0 0 0 1px #fff6b8,inset 0 0 0 3px #dca94c,0 3px 7px var(--lc-shadow)}
+.lc-header{display:flex;align-items:center;gap:4px;border-radius:26px;padding:4px 6px 4px 4px;min-width:0}
+.lc-home button{min-height:48px;cursor:pointer;font:inherit}
+.lc-profile{display:flex;align-items:center;gap:7px;flex:1;min-width:0;background:transparent;border:0;padding:0;text-align:left;color:inherit}
+.lc-profile strong{font-size:clamp(16px,4.9vw,25px);line-height:1.05;overflow-wrap:anywhere;min-width:0}
+.lc-avatar{height:49px;width:49px;border:2px solid var(--lc-gold);border-radius:50%;box-shadow:0 2px 3px #57351f66;overflow:hidden;flex:none;background:#f8e5be;display:grid;place-items:center}
+.lc-avatar img,.lc-avatar svg{width:100%;height:100%;object-fit:cover;display:block}
+.lc-avatar .ae-avatar-emoji{font-size:28px}.lc-tool,.lc-info{display:grid;place-items:center;background:linear-gradient(135deg,#15556c,#062534);color:#ffe8a6!important;border:2px solid #cd9a3c;box-shadow:inset 0 0 0 1px #fff0ac,0 2px 3px #3c20175c;border-radius:15px;padding:9px}
+.lc-tool{flex:none;width:48px;height:48px}.lc-tool svg{width:24px;height:24px}
+.lc-rank{border-radius:23px;padding:7px 10px}
+html .lc-rank .ae-serit{display:flex!important;align-items:center;gap:10px;width:100%;margin:0!important;padding:0!important;border:0!important;box-shadow:none!important;background:transparent!important;color:var(--lc-ink)!important;cursor:pointer;min-height:62px}
+html .lc-rank .ae-serit>img{height:55px!important;width:55px!important;object-fit:contain}
+html .lc-rank .ae-serit-metin{display:grid!important;gap:3px!important;padding:0!important;min-width:0;flex:1;border:0}
+html .lc-rank .ae-serit-adlar{display:flex;align-items:baseline;flex-wrap:wrap;gap:2px 10px;line-height:1.2}
+html .lc-rank .ae-serit-adlar strong{font-size:calc(.9rem * var(--lc-textscale))}
+html .lc-rank .ae-serit-sonra{font-size:calc(.7rem * var(--lc-textscale));color:#354447}
+.lc-rank .ae-serit-not{display:none!important}.lc-rank-label{font-size:calc(.85rem * var(--lc-textscale));font-weight:700}
+html .lc-rank .ae-progress{height:12px;min-width:0;background:#735331;border:1px solid #c28a35;box-shadow:inset 0 1px 3px #30190055,0 1px 0 #fff7cd;border-radius:9px}
+html .lc-rank .ae-progress>span{background:linear-gradient(#7ae9df,#159e9c 45%,#077477);box-shadow:inset 0 0 0 1px #97e9dc;height:100%}
+.lc-journey{position:relative;display:block;width:100%;overflow:hidden;border:3px solid #cb963b;border-radius:23px;box-shadow:inset 0 0 0 2px #ffe8a1,0 5px 10px #20120b55;background:linear-gradient(90deg,#06292b77,transparent 80%),url('../assets/lonca/yolculuk-panda.png') 60% center/cover;text-align:left;padding:14px!important;isolation:isolate}
+.lc-journey-copy{display:flex;flex-direction:column;align-items:flex-start;justify-content:center;height:100%;width:70%;position:relative;z-index:1}
+.lc-journey-copy strong{font-size:clamp(2.2rem,8.5vw,3.5rem);color:#fff0d2;line-height:1.05;text-shadow:0 2px 5px #000b;white-space:nowrap}
+.lc-journey-copy>span{font-size:calc(.9rem * var(--lc-textscale));font-weight:600;color:#ffe0ab;text-shadow:0 2px 3px #000;line-height:1.4;max-width:95%;margin-top:6px}
+.lc-journey-copy>b{font-size:38px;color:#ffd47f;line-height:1;margin-top:5px}
+.lc-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:repeat(2,minmax(0,1fr));gap:10px;min-height:0}
+.lc-card{position:relative;min-width:0;min-height:0;border-radius:16px;isolation:isolate}
+.lc-card:before{content:'';position:absolute;inset:5px;border:1px solid #c18d3d;border-radius:10px;pointer-events:none;z-index:1}
+.lc-knot{position:absolute;top:-8px;left:50%;transform:translateX(-50%);font-size:21px;color:#a36a1c;text-shadow:0 1px #fff4bd;pointer-events:none;line-height:1;z-index:3}
+.lc-card-open{display:grid;grid-template-rows:minmax(0,1fr) auto;width:100%;height:100%;border:0;background:transparent;padding:9px 7px 6px;position:relative;z-index:2;border-radius:14px;color:var(--lc-ink)!important}
+.lc-stage{display:flex;align-items:center;justify-content:center;min-height:0;padding:7px 10px 2px;overflow:hidden;width:100%;position:relative}
+.lc-emblem{display:block;width:100%;height:100%;max-height:180px;overflow:hidden;filter:drop-shadow(0 3px 2px #643b1733)}
+.lc-companion{width:auto;height:100%;max-width:90%;max-height:176px;object-fit:contain;border-radius:26% 26% 18% 18%;filter:drop-shadow(0 3px 2px #643b1733)}
+.lc-nameplate{display:block;position:relative;margin:2px 5px 0;border:1px solid #be8834;border-radius:45% 45% 20% 20%/14% 14% 20% 20%;box-shadow:inset 0 1px #fff7ca,0 1px 2px #ac6c2433;background:linear-gradient(#fff3d5,#f4d8a5 50%,#fff0d2);padding:5px 7px;font-size:calc(clamp(1.15rem,4.9vw,1.65rem) * var(--lc-textscale));line-height:1.08;white-space:nowrap;text-align:center}
+.lc-nameplate:before,.lc-nameplate:after{content:'';position:absolute;width:9px;top:0;bottom:0;border:1px solid #b77d24;border-radius:9px;background:linear-gradient(90deg,#e2b46b,#fff0c7,#c68f38);box-shadow:1px 1px 2px #663b1733}
+.lc-nameplate:before{left:-6px}.lc-nameplate:after{right:-6px}
+.lc-info{position:absolute;top:4px;right:4px;width:48px;height:48px;min-height:48px;border-radius:50%;font:700 22px Georgia,serif!important;padding:5px;z-index:4;transform:scale(.8);transform-origin:top right}
+/* 48px hit area is independent from the smaller visible ring. */
+.lc-info{transform:none;background:radial-gradient(circle,#0b3a4a 0 44%,#d8a14a 46% 49%,#fff1ac 50% 53%,transparent 55%);border:0;box-shadow:none}
+.lc-info:hover,.lc-info:focus-visible{background-color:#f0d29166}
+html body :is(button,a,input,select):focus-visible{outline:3px solid #0b8c9b;outline-offset:3px}
+.lc-card-open:active{transform:translateY(-2px)}
+.lc-card-open:active .lc-emblem{filter:drop-shadow(0 0 6px #e9bd69)}
+/* All existing menus share the same parchment/material system in the two new themes. */
+html:is([data-theme=lonca],[data-theme=loncakrem]) body :is(.card,.ae-paper,.menu-btn,.set-card,.phone-sheet,.race-ranks li,.ry-yol>li,.lig-hero,.yr-card,.ar-card){background:radial-gradient(ellipse at 40% 25%,#fff7e5,#ffedcd 80%,#ead0a0);color:#142c35;border:1px solid #bf8a37;box-shadow:inset 0 0 0 2px #fff1c1,0 3px 8px #3c201727;border-radius:16px}
+html:is([data-theme=lonca],[data-theme=loncakrem]) body :is(.top,.ae-interior-head,.dost-head){background:linear-gradient(#fff5de,#edd0a0);color:#142c35;border-bottom:2px solid #c08e3e;box-shadow:0 2px 7px #32180d33}
+html:is([data-theme=lonca],[data-theme=loncakrem]) body :is(h1,h2,h3,.ttl,.sub,.note,.ay-ad,.ay-deger){color:#142c35}
+html:is([data-theme=lonca],[data-theme=loncakrem]) body :is(input,select,textarea){background:#fff9ee;color:#142c35;border-color:#ad7b30}
+html:is([data-theme=lonca],[data-theme=loncakrem]) body :is(.btn,.yr-chip,.next,.ay-satir){border:1px solid #b78334;background:#fff0d2;color:#142c35;min-height:48px}
+html:is([data-theme=lonca],[data-theme=loncakrem]) body :is(.btn.pri,.ae-primary,.yr-chip.on){background:linear-gradient(#18586b,#072e40);color:#fff1d3;border-color:#c6923d;box-shadow:inset 0 0 0 1px #efcc7a}
+html:is([data-theme=lonca],[data-theme=loncakrem]) .ay-liste{background:#fff4dd;color:#142c35;border-color:#ba873a}
+html body #ov .lc-parchment{position:relative;background:radial-gradient(ellipse at 45% 25%,#fff8e6,#f7e5bf 80%,#dcb775);color:#142c35;border:2px solid #bf8a37;border-radius:23px 16px 26px 18px;box-shadow:inset 0 0 0 3px #fff3cd,0 15px 55px #160d0866;padding:30px 22px;max-height:calc(100svh - 32px);overflow:auto}
+.lc-parchment h2{font-size:1.9rem;margin:0 34px 16px 0;color:#142c35!important}.lc-parchment p{line-height:1.6;color:#142c35!important}
+.lc-close{position:absolute;top:7px;right:7px;width:48px;min-height:48px;border-radius:50%;background:#883b28;color:#fff4d3;border:2px solid #c6994d;font-size:30px;line-height:1;z-index:1}
+.lc-help-art{height:150px;display:flex;justify-content:center}.lc-help-choice{display:flex;align-items:center;gap:8px;min-height:48px;font-size:.9rem;margin:10px 0}.lc-help-choice input{width:24px;height:24px;accent-color:#0b6c74;flex:none}
+.lc-seal{display:block;margin:12px auto -22px;border-radius:50%;border:2px solid #8f271f;background:#b43f2b;box-shadow:inset 0 0 0 2px #ce6e44;color:#f4b66b;text-align:center;width:36px;height:36px;font-size:24px}
+.lc-preferences{border-top:1px solid #be934e;margin-top:15px;padding-top:10px}.lc-preferences label{display:block}.lc-preferences select{width:100%;min-height:48px}.lc-font-preview{font-size:1.3rem!important}.lc-preferences .lc-help-choice{display:flex}
+.lc-path-page{text-align:center}.lc-path-choices{display:grid;gap:15px;margin-top:20px}.lc-path{display:flex;align-items:center;text-align:left;gap:15px;padding:10px 15px;min-height:110px;border-radius:18px}.lc-path img{width:90px;height:90px;object-fit:contain;border-radius:12px}.lc-path strong{font-size:1.6rem;flex:1}
+html[data-theme=dark] .lc-parchment{--lc-ink:#142c35}
+html[data-theme=yuksek] .lc-card,html[data-theme=yuksek] .lc-paper{background:white;border:3px solid black;box-shadow:none}
+html[data-font=sade] .lc-nameplate{font-size:calc(clamp(.85rem,3.7vw,1.2rem) * var(--lc-textscale));white-space:normal}
+html[data-yz=cok] .lc-home,html[data-yz=buyuk] .lc-home{height:auto;min-height:100svh;grid-template-rows:auto auto minmax(180px,26svh) auto}
+html[data-yz=cok] .lc-grid,html[data-yz=buyuk] .lc-grid{grid-auto-rows:minmax(170px,auto)}
+@media(min-width:650px){html body .lc-home{max-width:600px;min-height:750px}.lc-profile strong{font-size:1.6rem}.lc-nameplate{font-size:1.75rem}}
+@media(max-width:374px){html body .lc-home{padding:8px;gap:8px}.lc-grid{gap:8px}.lc-header{gap:1px}.lc-profile{gap:3px}.lc-profile strong{font-size:17px}.lc-avatar{width:42px;height:46px}.lc-tool{width:48px;padding:10px}.lc-nameplate{font-size:1.15rem;padding:7px 3px}.lc-rank{padding:6px}.lc-journey-copy strong{font-size:2.1rem}}
+@media(prefers-reduced-motion:reduce){.lc-home *,.lc-parchment *{animation:none!important;transition:none!important;scroll-behavior:auto!important}.lc-card-open:active{transform:none}}
+html[data-sakin='1'] .lc-home *,html[data-sakin='1'] .lc-parchment *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+html[data-sakin='1'] .lc-card-open:active{transform:none}
+.lc-profile-portrait{width:112px;height:112px;overflow:hidden;border:3px solid #bf8a37;border-radius:50%;margin:5px auto;box-shadow:0 3px 10px #8c60293f}.lc-profile-portrait img,.lc-profile-portrait svg{height:100%;width:100%;object-fit:cover}.lc-profile-portrait .ae-avatar-emoji{font-size:65px;height:100%;display:grid;place-items:center}
+.lc-journey{background-image:linear-gradient(90deg,#06292b99,transparent 80%),var(--lc-scene,url('../assets/lonca/yolculuk-panda.png'))}
+
+.lc-onboard{padding:10px 12px;border-radius:14px;display:grid;grid-template-columns:1fr auto;gap:4px 10px;font-size:.85rem}.lc-onboard p{grid-column:1 / -1;margin:0}.lc-onboard label{display:flex;align-items:center;gap:7px}.lc-onboard input{width:22px;height:22px;accent-color:#087e81}.lc-onboard button{min-height:48px}.lc-home:has(.lc-onboard){height:auto;grid-template-rows:auto auto 180px 350px auto;min-height:100svh}
+
+.lc-stage .ae-dost-poz{position:absolute;inset:7px 10px 2px;display:none!important;align-items:center;justify-content:center;background:radial-gradient(#fff6e0,#ffefce)}.lc-stage .ae-dost-poz.acik{display:flex!important}.lc-stage .ae-dost-poz img{height:100%;width:auto;max-width:90%;max-height:176px;object-fit:contain;border-radius:24%}
