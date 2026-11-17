@@ -154,3 +154,11 @@ html body .lc-home .lc-journey-copy::before{right:-4%;bottom:-6%;width:60%;heigh
 @media (max-height:720px){html body .lc-home .lc-journey-copy{padding:0 9% 2.5% 0!important}html body .lc-home .lc-yol-alt{font-size:calc(.56rem * var(--lc-textscale))!important}html body .lc-home .lc-yol-dugme{font-size:calc(.62rem * var(--lc-textscale))!important;padding:3px 10px 4px!important}}
 html body .lc-home .lc-journey-copy{padding:0 11% 2.2% 0!important}
 @media (max-height:720px){html body .lc-home .lc-journey{background-position:center 88%!important}html body .lc-home .lc-journey-copy{padding:0 11% 2% 0!important}}
+/* Kış zemininde köşe buzları (kartların arkasında). */
+#lcBuz{position:fixed;inset:0;z-index:0;pointer-events:none}
+#lcBuz[hidden]{display:none}
+#lcBuz i{position:absolute;width:min(30vw,150px);aspect-ratio:1;background:url('../assets/arayuz/buz-kose.webp') 0 0/contain no-repeat;opacity:.9}
+#lcBuz i:nth-child(1){left:0;top:0}
+#lcBuz i:nth-child(2){right:0;top:0;transform:scaleX(-1)}
+#lcBuz i:nth-child(3){left:0;bottom:0;transform:scaleY(-1)}
+#lcBuz i:nth-child(4){right:0;bottom:0;transform:scale(-1,-1)}

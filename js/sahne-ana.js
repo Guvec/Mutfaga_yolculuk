@@ -87,6 +87,10 @@
   document.body.classList.toggle('lc-kis',m==='kis');
   document.body.classList.toggle('lc-sonbahar',m==='sonbahar');
   if(ev)yolKartKur();
+  /* Kış: zeminin dört köşesinde buz deseni */
+  let buz=document.getElementById('lcBuz');
+  if(!buz){buz=document.createElement('div');buz.id='lcBuz';buz.setAttribute('aria-hidden','true');buz.innerHTML='<i></i><i></i><i></i><i></i>';document.body.prepend(buz);}
+  buz.hidden=!(ev&&m==='kis');
   /* Sıralama kartı: kupalı kürsü (mevsime göre CSS seçer). */
   const sira=document.querySelector('#app .lc-home .lc-grid .lc-card:nth-child(3) .lc-stage');
   if(sira&&!sira.querySelector('.lc-kursu')){const e=sira.querySelector('.lc-emblem');if(e)e.remove();sira.insertAdjacentHTML('afterbegin','<span class="lc-emblem lc-kursu" aria-hidden="true"></span>');}
