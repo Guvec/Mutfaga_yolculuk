@@ -26,13 +26,19 @@
 
  /* ---------- Yağış: kar taneleri ya da yapraklar (tek canvas, ~30 kare/sn) ---------- */
  const YAPRAK=[1,2,3,4].map(i=>{const im=new Image();im.decoding='async';im.src='assets/sahne/yaprak-'+i+'.webp';return im;});
- let kar=null;
- function karTanesi(){ // önceden çizilmiş yumuşak kar tanesi
-  if(kar)return kar;kar=document.createElement('canvas');kar.width=kar.height=32;
-  const g=kar.getContext('2d'),r=g.createRadialGradient(16,16,0,16,16,16);
-  r.addColorStop(0,'rgba(255,255,255,1)');r.addColorStop(.45,'rgba(250,253,255,.85)');r.addColorStop(1,'rgba(235,245,255,0)');
-  g.fillStyle=r;g.fillRect(0,0,32,32);return kar;
+ /* Kar taneleri: önceden çizilmiş birkaç biçim. Uzak kar küçük ve net; yakın kar iri, düzensiz "lapa" topakları. */
+ let karlar=null;
+ function karSprite(){
+  if(karlar)return karlar;karlar={net:[],lapa:[]};
+  const yap=(boy,parca,yum)=>{const cv=document.createElement('canvas');cv.width=cv.height=boy;const g=cv.getContext('2d'),m=boy/2;
+   for(let k=0;k<parca;k++){const a=Math.random()*6.283,u=k===0?0:Math.random()*boy*.2,x=m+Math.cos(a)*u,y=m+Math.sin(a)*u,r=boy*(k===0?.26:.12+Math.random()*.12);
+    const gr=g.createRadialGradient(x,y,0,x,y,r);gr.addColorStop(0,'rgba(255,255,255,.95)');gr.addColorStop(yum,'rgba(250,253,255,.75)');gr.addColorStop(1,'rgba(240,247,255,0)');g.fillStyle=gr;g.beginPath();g.arc(x,y,r,0,6.283);g.fill();}
+   return cv;};
+  for(let k=0;k<3;k++)karlar.net.push(yap(16,1,.55));
+  for(let k=0;k<6;k++)karlar.lapa.push(yap(64,6+((Math.random()*5)|0),.5));
+  return karlar;
  }
+ let ruzgar=0,ruzgarHedef=0,ruzgarZaman=0;
  function yagisYap(tuval,adet,lapa){
   const c=tuval.getContext&&tuval.getContext('2d');
   if(!c)return {kur(){},boyut(){},baslat(){},durdur(){}}; // canvas yoksa sessizce çalışmaz
@@ -41,7 +47,7 @@
    tuval.width=Math.max(1,Math.round(W*olcek));tuval.height=Math.max(1,Math.round(H*olcek));c.setTransform(olcek,0,0,olcek,0,0);}
   function yeni(p,ilk){
    p.x=Math.random()*W;p.y=ilk?Math.random()*H:-30;p.faz=Math.random()*6.3;
-   if(tur==='kis'){if(lapa){p.r=2.6+Math.random()*3.4;p.hiz=20+p.r*5+Math.random()*10;p.salin=14+Math.random()*18;p.a=.7+Math.random()*.3;}else{p.r=1.2+Math.random()*2.4;p.hiz=16+p.r*7+Math.random()*8;p.salin=6+Math.random()*12;p.a=.55+Math.random()*.4;}}
+   if(tur==='kis'){const S=karSprite();if(lapa){p.r=6+Math.random()*9;p.hiz=26+p.r*2.2+Math.random()*14;p.salin=10+Math.random()*22;p.sf=.5+Math.random()*.9;p.a=.75+Math.random()*.25;p.im=S.lapa[(Math.random()*S.lapa.length)|0];p.don=(Math.random()-.5)*1.2;p.aci=Math.random()*6.3;}else{p.r=1+Math.random()*1.8;p.hiz=14+p.r*9+Math.random()*10;p.salin=4+Math.random()*10;p.sf=.7+Math.random()*.8;p.a=.5+Math.random()*.45;p.im=S.net[(Math.random()*S.net.length)|0];p.don=0;p.aci=0;}}
    else{p.r=14+Math.random()*12;p.hiz=24+Math.random()*22;p.salin=18+Math.random()*26;p.a=.85;p.don=(Math.random()-.5)*2.4;p.im=YAPRAK[(Math.random()*4)|0];}
    return p;
   }
@@ -49,10 +55,15 @@
    if(!calis)return;id=requestAnimationFrame(kare);
    if(n-son<32)return;const dt=Math.min((n-son)/1000,.1);son=n;
    c.clearRect(0,0,W,H);
+   if(n>ruzgarZaman){ruzgarHedef=(Math.random()<.35?(Math.random()<.5?-1:1)*(18+Math.random()*26):(Math.random()-.5)*10);ruzgarZaman=n+6000+Math.random()*8000;}
+   ruzgar+=(ruzgarHedef-ruzgar)*Math.min(1,dt*.6);
    for(const p of parca){
-    p.y+=p.hiz*dt;p.faz+=dt*(tur==='kis'?.9:1.2);
-    const x=p.x+Math.sin(p.faz)*p.salin;
-    if(tur==='kis'){c.globalAlpha=p.a;c.drawImage(karTanesi(),x-p.r*2,p.y-p.r*2,p.r*4,p.r*4);}
+    p.y+=p.hiz*dt;p.faz+=dt*(tur==='kis'?p.sf:1.2);
+    if(tur==='kis')p.x+=ruzgar*(lapa?1:.6)*dt;
+    const x=p.x+Math.sin(p.faz)*p.salin+Math.sin(p.faz*2.3)*p.salin*.25;
+    if(tur==='kis'){if(p.x<-40)p.x+=W+80;else if(p.x>W+40)p.x-=W+80;c.globalAlpha=p.a;
+     if(lapa){c.save();c.translate(x,p.y);c.rotate(p.aci+p.faz*p.don);c.drawImage(p.im,-p.r,-p.r,p.r*2,p.r*2);c.restore();}
+     else c.drawImage(p.im,x-p.r,p.y-p.r,p.r*2,p.r*2);}
     else if(p.im.complete&&p.im.naturalWidth){c.save();c.globalAlpha=p.a;c.translate(x,p.y);c.rotate(p.faz*p.don);c.scale(Math.cos(p.faz*1.3),1);c.drawImage(p.im,-p.r/2,-p.r/2,p.r,p.r);c.restore();}
     if(p.y>H+30)yeni(p,false);
    }
@@ -68,9 +79,9 @@
  let arka=null,arkaYagis=null,on=null,onYagis=null,yolYagis=null,yolTuval=null;
  function arkaKur(){
   if(arka)return;arka=document.createElement('canvas');arka.id='lcYagis';arka.setAttribute('aria-hidden','true');
-  document.body.prepend(arka);arkaYagis=yagisYap(arka,55);
+  document.body.prepend(arka);arkaYagis=yagisYap(arka,70);
   /* Ön katman: iri, lapa lapa kar kartların ve yazıların önünden de geçer; dokunmayı engellemez. */
-  on=document.createElement('canvas');on.id='lcYagisOn';on.setAttribute('aria-hidden','true');document.body.appendChild(on);onYagis=yagisYap(on,16,true);
+  on=document.createElement('canvas');on.id='lcYagisOn';on.setAttribute('aria-hidden','true');document.body.appendChild(on);onYagis=yagisYap(on,34,true);
   addEventListener('resize',()=>{arkaYagis.boyut();onYagis.boyut();if(yolYagis)yolYagis.boyut();});
  }
 
@@ -240,7 +251,7 @@
   if(!hareketli()){pozGoster('bekliyor');return;}
   pz.sonDokunus=performance.now();
   /* Sayfaya gelişte alttan bakar, sonra yerine oturur. */
-  pozGoster('saklanip-bakiyor');pz.gecici=true;sonra(900,()=>{pz.gecici=false;pozGoster('bekliyor');});
+  {const y=pz.kart.querySelector('.lc-poz-yigin');pozGoster('bekliyor');if(y){y.dataset.h='';void y.offsetWidth;y.dataset.h='giris';}}
   pz.kart.addEventListener('pointerdown',()=>{uyan();pozTemizle();gecici(Math.random()<.5?'selam':'sevincli',1200);dongu();});
   dongu();
  }

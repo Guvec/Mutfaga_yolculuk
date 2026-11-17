@@ -209,3 +209,5 @@ html body .lc-home .lc-journey-copy>span.lc-yol-dugme{font-size:calc(10px * var(
 html:not([data-theme=yuksek]) body.lc-sahne-acik{background:#0f2c36!important;background-attachment:scroll!important}
 html:not([data-theme=yuksek]) body.lc-sahne-acik::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(ellipse at 50% 40%,transparent 45%,#0006 100%),url('../assets/arayuz/deri-yaz.webp') center/320px repeat}
 html:not([data-theme=yuksek]) body.lc-sahne-acik.lc-kis::before{background:radial-gradient(ellipse at 50% 40%,transparent 45%,#0007 100%),url('../assets/arayuz/deri-kis.webp') center/320px repeat}
+/* 18.11: Yolculuğum oranı 1,8 — pandanın kepi tam görünür, tabela yazının üstünde kalır. */
+html body .lc-home .lc-journey{aspect-ratio:1.8/1!important;background-position:center 30%!important}

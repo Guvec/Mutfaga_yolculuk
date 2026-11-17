@@ -44,7 +44,7 @@ html[data-sakin="1"] body .lc-home :is(.lc-card,.lc-emblem,.lc-poz-yigin){animat
    Her poz değişimine kısa bir gövde hareketi eşlik eder, ardından nefes alma ve hafif salınma sürer. */
 .lc-poz-yigin{transform-origin:50% 94%;will-change:transform}
 .lc-poz-yigin img{transition:opacity .09s linear}
-@keyframes lc-dur{0%,100%{transform:scale(1,1) rotate(0)}20%{transform:scale(1.01,.99) rotate(-2deg)}45%{transform:scale(.985,1.03) rotate(-.4deg)}70%{transform:scale(1.01,.99) rotate(2deg)}88%{transform:scale(.99,1.015) rotate(.6deg)}}
+@keyframes lc-dur{0%,100%{transform:scale(1,1) rotate(0)}20%{transform:scale(1.008,.992) rotate(-.9deg)}45%{transform:scale(.99,1.022) rotate(-.2deg)}70%{transform:scale(1.008,.992) rotate(.9deg)}88%{transform:scale(.995,1.01) rotate(.3deg)}}
 @keyframes lc-kirp{0%,100%{transform:none}50%{transform:scale(1.03,.96)}}
 @keyframes lc-bak-sag{0%{transform:none}30%{transform:translateX(3%) rotate(5deg)}70%{transform:translateX(3%) rotate(4deg)}100%{transform:none}}
 @keyframes lc-bak-sol{0%{transform:none}30%{transform:translateX(-3%) rotate(-5deg)}70%{transform:translateX(-3%) rotate(-4deg)}100%{transform:none}}
@@ -124,3 +124,6 @@ body.lc-sahne-acik .lc-home .lc-rank img{animation:lc-halka 11s ease-in-out 6s i
 html[data-sakin="1"] body .lc-home :is(.lc-parla,.lc-avatar,.lc-rank img,.lc-tool::after,.lc-emblem){animation:none!important}
 html[data-sakin="1"] #lcYagisOn{display:none}
 @media (prefers-reduced-motion:reduce){body .lc-home :is(.lc-parla,.lc-avatar,.lc-rank img,.lc-tool::after,.lc-emblem){animation:none!important}#lcYagisOn{display:none}}
+
+/* 18.11: açılışta panda yerinde belirir (aşağıdan kaymaz). */
+body.lc-sahne-acik .lc-poz-yigin[data-h=giris]{animation:lc-cik .8s cubic-bezier(.2,1.2,.4,1) both,lc-dur 3.6s ease-in-out .8s infinite}
