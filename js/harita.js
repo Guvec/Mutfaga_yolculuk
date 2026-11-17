@@ -28,7 +28,8 @@
  const H={katman:'dunya',bolge:null,yuruyor:null,konum:'baslangic'};
  function hareketli(){return document.documentElement.dataset.sakin!=='1'&&!(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches);}
  function dost(){try{return typeof dostSecili==='function'?dostSecili():'panda';}catch(e){return 'panda';}}
- function piyon(){return dost()==='panda'?'<span class="hr-piyon" aria-hidden="true"><img src="assets/harita/panda-adim-1.webp" alt=""><img src="assets/harita/panda-adim-2.webp" alt=""></span>':'<span class="hr-piyon hr-piyon-dost" aria-hidden="true"><img src="assets/ascidostum/'+dost()+'.webp" alt="" onerror="this.src=\'assets/harita/panda-adim-1.webp\'"></span>';}
+ const YURUYEN=['panda','civciv'];
+ function piyon(){return YURUYEN.includes(dost())?'<span class="hr-piyon" aria-hidden="true"><img src="assets/harita/'+dost()+'-adim-1.webp" alt=""><img src="assets/harita/'+dost()+'-adim-2.webp" alt=""></span>':'<span class="hr-piyon hr-piyon-dost" aria-hidden="true"><img src="assets/ascidostum/'+dost()+'.webp" alt="" onerror="this.src=\'assets/harita/panda-adim-1.webp\'"></span>';}
  function cizim(){
   const d=DUNYA,y=d.yollar;
   const yolDug=Object.keys(y).map(k=>{const s=y[k].yol[y[k].yol.length-1],e=y[k].etiket;

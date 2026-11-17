@@ -86,7 +86,7 @@
   const yol=document.querySelector('#app .lc-home .lc-journey');if(!yol)return;
   const m=kartMevsimi();
   /* Kışın pandasız sahne + Aşçı Dostu ayrı katman; "Yolculuğa başla"ya basınca karda yürür, iz bırakır. */
-  const katman=m==='kis';
+  const katman=false; /* 18.11: yürüyüş doğal durmadı (Ali); pandalı sahne geri geldi, sahne yavaşça kıpırdar. */
   yol.style.setProperty('--lc-scene',"url('"+new URL('assets/yolculuk/kart-'+(katman?'kis-bos':m)+'.webp',document.baseURI).href+"')");
   yol.dataset.mevsim=m;
   let k=yol.querySelector('.lc-yol-dost');

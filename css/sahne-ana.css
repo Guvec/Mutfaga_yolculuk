@@ -141,3 +141,8 @@ body.lc-sahne-acik .lc-poz-yigin[data-h=giris]{animation:lc-cik .8s cubic-bezier
 .lc-home .lc-journey-copy{z-index:2}
 html[data-sakin="1"] .lc-yol-dost{animation:none}
 @media (prefers-reduced-motion:reduce){.lc-yol-dost{animation:none}}
+/* Yolculuğum sahnesi: kamera çok yavaş yaklaşıp uzaklaşır (yaklaşık 24 sn), sahne canlı durur. */
+@keyframes lc-sahne-kamera{0%,100%{background-size:100% auto;background-position:center 30%}50%{background-size:108% auto;background-position:42% 34%}}
+body.lc-sahne-acik .lc-home .lc-journey{animation:lc-sahne-kamera 24s ease-in-out infinite}
+html[data-sakin="1"] body .lc-home .lc-journey{animation:none!important}
+@media (prefers-reduced-motion:reduce){body .lc-home .lc-journey{animation:none!important}}
