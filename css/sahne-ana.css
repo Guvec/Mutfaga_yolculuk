@@ -1,0 +1,29 @@
+/* © 2026 Ali Arıkoğlu. Ana sayfa canlı sahnesi: arka katman, kart yüzmesi, ödül ışığı, panda pozları. */
+#lcSahne{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;display:none;background:#e9c58f}
+body.lc-sahne-acik #lcSahne{display:block}
+body.lc-sahne-acik #app{position:relative;z-index:1}
+.lc-sahne-durgun img{position:absolute;max-width:none;display:block}
+.lc-sahne-tuval{position:absolute;inset:0;width:100%;height:100%;opacity:0;transition:opacity .7s ease}
+#lcSahne.lc-sahne-canli .lc-sahne-tuval{opacity:1}
+#lcSahne.lc-sahne-sakin .lc-sahne-tuval{display:none}
+
+/* Kartlar sırayla, hafifçe yüzer (aynı anda değil). */
+@keyframes lc-yuz{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+body.lc-sahne-acik .lc-grid .lc-card{animation:lc-yuz 5.6s ease-in-out infinite}
+body.lc-sahne-acik .lc-grid .lc-card:nth-child(2){animation-delay:-1.4s}
+body.lc-sahne-acik .lc-grid .lc-card:nth-child(3){animation-delay:-2.8s}
+body.lc-sahne-acik .lc-grid .lc-card:nth-child(4){animation-delay:-4.2s}
+
+/* Arma, kupa ve rozet ara sıra kısa bir ışık alır; her biri ayrı zamanda. */
+@keyframes lc-isik{0%,86%,100%{filter:drop-shadow(0 3px 2px #643b1733)}91%{filter:brightness(1.16) drop-shadow(0 0 9px #ffd77a) drop-shadow(0 3px 2px #643b1733)}}
+body.lc-sahne-acik .lc-grid .lc-emblem{animation:lc-isik 10s ease-in-out infinite}
+body.lc-sahne-acik .lc-grid .lc-card:nth-child(2) .lc-emblem{animation-delay:-2s}
+body.lc-sahne-acik .lc-grid .lc-card:nth-child(3) .lc-emblem{animation-delay:-5.5s}
+body.lc-sahne-acik .lc-grid .lc-card:nth-child(4) .lc-emblem{animation-delay:-8.5s}
+
+/* Panda pozları: hepsi aynı tuvalde; değişimde kayma olmaz. */
+.lc-poz-yigin{position:relative;display:block;height:100%;max-height:176px;aspect-ratio:1/1;max-width:100%}
+.lc-poz-yigin img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;opacity:0;filter:drop-shadow(0 3px 2px #643b1733)}
+.lc-poz-yigin img.on{opacity:1}
+@keyframes lc-nefes{0%,100%{transform:scale(1,1)}50%{transform:scale(1.008,1.018)}}
+body.lc-sahne-acik .lc-poz-yigin{animation:lc-nefes 3.8s ease-in-out infinite;transform-origin:50% 92%}
