@@ -6,7 +6,7 @@
 {const O=yrCreateHTML;yrCreateHTML=function(){
  let h=O.apply(this,arguments);if(YR.cfg.mode!=='arena')return h;
  h=h.replace(/<h1>Er Meydanı<\/h1>[\s\S]*?<h2>Konu<\/h2>/,'<h2>Konu</h2>');
- h=h.replace(/<p>150 soruya kadar[\s\S]*?en az 12 saniye olur\.<\/p>/,'<ul class="em-kural"><li><b>150</b><small>soruya kadar</small></li><li><b>12</b><small>yanlışta biter</small></li><li><b>20→12</b><small>saniye</small></li></ul><p class="em-not">3–10 kişi · herkes kendi hızında · Ümit Ligi maçı: XP kazandırır, lig puanı vermez. Her 6 doğruda süre 1 saniye kısalır.</p>');
+ h=h.replace(/<p>150 soruya kadar[\s\S]*?en az 12 saniye olur\.<\/p>/,'<ul class="em-kural"><li><b>150</b><small>soruya kadar</small></li><li><b>12</b><small>yanlışta biter</small></li><li><b>20→12</b><small>saniye</small></li></ul><p class="em-not">3–10 kişi · herkes kendi hızında · Ümit Ligi maçı: Tecrübe Puanı kazandırır, lig puanı vermez. Her 6 doğruda süre 1 saniye kısalır.</p>');
  return h;
 };}
 window.emSiraAc=function(){

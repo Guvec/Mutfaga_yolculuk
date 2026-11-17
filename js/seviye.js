@@ -74,7 +74,7 @@ if(typeof yrMenuHTML==='function'){
   let h=SV_MENU2();
   if(h.indexOf('<div class="lb-eylem">')<0)return h;
   const k=svPid()?svSeviye():1,acik=k>=SV.ac.kabul;
-  h=h.replace('<div class="lb-eylem">','<h2 class="sv-mod-bas">🌱 Ümit Ligi <small>Herkese açık · XP kazandırır</small></h2><div class="lb-eylem">');
+  h=h.replace('<div class="lb-eylem">','<h2 class="sv-mod-bas">🌱 Ümit Ligi <small>Herkese açık · Tecrübe Puanı kazandırır</small></h2><div class="lb-eylem">');
   /* 14.11 akşam: kart katlanır; kapalıyken tek satır, dokununca şartlar ve açıklama açılır (bilgi azaltılmadı). */
   const kart='<details class="sv-dereceli'+(acik?' acik':'')+'"><summary>'+svArma(k,30)+'<b>🏆 Ustalık Ligi</b>'+(acik?'<span class="sv-yakin">yakında</span>':'<span class="sv-kilit-et">🔒 Seviye 10</span>')+'<span class="sv-ok" aria-hidden="true">›</span></summary>'+
    '<p>Ustalık Ligi maçları lig puanı ve sezon ödülü verir. Herkes kendi düzeyindeki oyuncularla yarışsın diye bir şartı var.</p>'+

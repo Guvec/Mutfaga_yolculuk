@@ -5,14 +5,17 @@
 'use strict';
 (function(){
  const ANAHTAR='mesleki-mevsim';
- function tercih(){try{const v=localStorage.getItem(ANAHTAR);return v==='kis'||v==='kapali'?v:'oto';}catch(e){return 'oto';}}
- /* Otomatik: 15 Kasım – Şubat sonu kış; Eylül – 14 Kasım sonbahar; diğer aylarda şimdilik efekt yok
-    (ilkbahar ve yaz görselleri gelince eklenecek). */
+ const SIRA=['oto','kis','ilkbahar','yaz','sonbahar','kapali'];
+ function tercih(){try{const v=localStorage.getItem(ANAHTAR);return SIRA.includes(v)?v:'oto';}catch(e){return 'oto';}}
+ /* Otomatik: 15 Kasım – Şubat sonu kış; Mart – Mayıs ilkbahar; Haziran – Ağustos yaz; Eylül – 14 Kasım sonbahar. */
  function takvimMevsimi(t){const a=t.getMonth()+1,g=t.getDate();
   if(a===12||a===1||a===2||(a===11&&g>=15))return 'kis';
-  if(a>=9&&a<=11)return 'sonbahar';
-  return '';}
- function mevsim(){const p=tercih();if(p==='kapali')return '';if(p==='kis')return 'kis';return takvimMevsimi(new Date());}
+  if(a>=3&&a<=5)return 'ilkbahar';
+  if(a>=6&&a<=8)return 'yaz';
+  return 'sonbahar';}
+ /* mevsim(): efektler için (Kapalı seçilince boş). kartMevsimi(): Yolculuğum resmi için (Kapalı'da takvime uyar). */
+ function mevsim(){const p=tercih();if(p==='kapali')return '';if(p!=='oto')return p;return takvimMevsimi(new Date());}
+ function kartMevsimi(){return mevsim()||takvimMevsimi(new Date());}
  window.sahneMevsim=mevsim;
  function hareketli(){
   if(document.documentElement.dataset.sakin==='1')return false;
@@ -31,7 +34,9 @@
   g.fillStyle=r;g.fillRect(0,0,32,32);return kar;
  }
  function yagisYap(tuval,adet){
-  const c=tuval.getContext('2d');let W=0,H=0,olcek=1,parca=[],tur='',calis=false,id=0,son=0;
+  const c=tuval.getContext&&tuval.getContext('2d');
+  if(!c)return {kur(){},boyut(){},baslat(){},durdur(){}}; // canvas yoksa sessizce çalışmaz
+  let W=0,H=0,olcek=1,parca=[],tur='',calis=false,id=0,son=0;
   function boyut(){const r=tuval.getBoundingClientRect();W=r.width;H=r.height;olcek=Math.min(window.devicePixelRatio||1,2);
    tuval.width=Math.max(1,Math.round(W*olcek));tuval.height=Math.max(1,Math.round(H*olcek));c.setTransform(olcek,0,0,olcek,0,0);}
   function yeni(p,ilk){
@@ -96,6 +101,32 @@
   });
  }
 
+ /* ---------- Yolculuğum kartı: mevsimin yolculuk sahnesi ve arkadan yürüyen panda ---------- */
+ let adimId=0;
+ function yolKartKur(){
+  const yol=document.querySelector('#app .lc-home .lc-journey');if(!yol)return;
+  const m=kartMevsimi();
+  yol.style.setProperty('--lc-scene',"url('"+new URL('assets/yolculuk/kart-'+m+'.webp',document.baseURI).href+"')");
+  yol.dataset.mevsim=m;
+  const panda=typeof dostSecili==='function'&&dostSecili()==='panda';
+  let p=yol.querySelector(':scope>.lc-yol-panda');
+  if(!panda){if(p)p.remove();return;}
+  const kiyafet=m==='kis'?'kis':'yaz';
+  if(!p||p.dataset.kiyafet!==kiyafet){if(p)p.remove();p=document.createElement('span');p.className='lc-yol-panda';p.dataset.kiyafet=kiyafet;p.setAttribute('aria-hidden','true');
+   p.innerHTML='<img alt="" decoding="async" src="assets/yolculuk/panda-'+kiyafet+'-1.webp"><img alt="" decoding="async" src="assets/yolculuk/panda-'+kiyafet+'-2.webp">';
+   const kopya=yol.querySelector('.lc-journey-copy');yol.insertBefore(p,kopya);}
+ }
+ /* Ara sıra yerinde birkaç adım atar; sonra durur ve nefes alır. */
+ function adimDongusu(){
+  clearTimeout(adimId);
+  adimId=setTimeout(function adim(){
+   const p=document.querySelector('#app .lc-yol-panda');
+   if(p&&hareketli()&&!document.hidden){let n=0;const t=setInterval(()=>{p.classList.toggle('adim',n%2===0);n++;if(n>5){clearInterval(t);p.classList.remove('adim');}},380);}
+   adimId=setTimeout(adim,6500+Math.random()*3000);
+  },2500);
+ }
+ adimDongusu();
+
  /* ---------- Güncelleme ---------- */
  function guncelle(){
   const ev=!!document.querySelector('#app .lc-home')&&temaUygun();
@@ -104,7 +135,8 @@
   document.body.classList.toggle('lc-kis',m==='kis');
   document.body.classList.toggle('lc-sonbahar',m==='sonbahar');
   karBiriktir(m==='kis');
-  const dus=ev&&m&&hareketli()&&!document.hidden;
+  if(ev)yolKartKur();
+  const dus=ev&&(m==='kis'||m==='sonbahar')&&hareketli()&&!document.hidden;
   if(!dus){if(arkaYagis)arkaYagis.durdur();if(yolYagis)yolYagis.durdur();if(arka)arka.hidden=true;return;}
   arkaKur();arka.hidden=false;arkaYagis.kur(m);arkaYagis.baslat();
   /* Yolculuğum kartının içinde de, yazının arkasında hafif yağış */
@@ -115,8 +147,8 @@
  document.addEventListener('visibilitychange',guncelle);
 
  /* ---------- Ayarlar: Mevsim satırı (Sakin mod satırının altına) ---------- */
- const AD={oto:'Otomatik',kis:'Kış',kapali:'Kapalı'};
- function mevsimYazi(){const p=tercih(),m=mevsim();return p==='oto'?'Otomatik'+(m==='kis'?' (Kış)':m==='sonbahar'?' (Sonbahar)':''):AD[p];}
+ const AD={oto:'Otomatik',kis:'Kış',ilkbahar:'İlkbahar',yaz:'Yaz',sonbahar:'Sonbahar',kapali:'Kapalı'};
+ function mevsimYazi(){const p=tercih(),m=mevsim();return p==='oto'?'Otomatik ('+AD[m]+')':AD[p];}
  const eskiAyarlar=window.anaAyarlar;
  if(typeof eskiAyarlar==='function')window.anaAyarlar=function(){
   const s=eskiAyarlar.apply(this,arguments);
@@ -125,8 +157,8 @@
    sakin.insertAdjacentHTML('afterend',aySatir('ayMevsim','❄️','Mevsim',mevsimYazi()));
    const b=document.getElementById('ayMevsim');
    b.setAttribute('aria-describedby','ayMevsimNot');
-   b.insertAdjacentHTML('afterend','<p id="ayMevsimNot" class="ay-not">Kar yağışı, kartlarda kar birikimi ve sonbahar yaprakları. Otomatik seçimde kış 15 Kasım\'da başlar.</p>');
-   b.onclick=()=>{const sira=['oto','kis','kapali'],n=sira[(sira.indexOf(tercih())+1)%3];try{localStorage.setItem(ANAHTAR,n);}catch(e){}b.querySelector('.ay-deger').textContent=mevsimYazi();guncelle();};
+   b.insertAdjacentHTML('afterend','<p id="ayMevsimNot" class="ay-not">Yolculuğum resmi ve hava efektleri mevsime göre değişir: kışın kar, sonbaharda yaprak. Otomatik seçimde kış 15 Kasım\'da başlar. Kapalı seçilirse efektler durur.</p>');
+   b.onclick=()=>{const n=SIRA[(SIRA.indexOf(tercih())+1)%SIRA.length];try{localStorage.setItem(ANAHTAR,n);}catch(e){}b.querySelector('.ay-deger').textContent=mevsimYazi();guncelle();};
   }
   return s;
  };

@@ -15,7 +15,7 @@ let ANT=null;
 window.antAc=function(){
  if(document.getElementById('antPanel'))return;
  const k=document.createElement('div');k.id='antPanel';k.className='foot-menu';k.setAttribute('role','dialog');k.setAttribute('aria-modal','true');k.setAttribute('aria-label','Antrenman Şefi');
- k.innerHTML='<div class="foot-menu-ic lm-panel"><h2>🤖 Antrenman Şefi</h2><p class="lm-panel-alt">Bilgisayardaki şefe karşı 10 soru. Önce doğru basan puanı alır. Her sorudan sonra doğru cevabı ve nedenini görürsün. XP kazandırır; lig puanı vermez.</p>'+
+ k.innerHTML='<div class="foot-menu-ic lm-panel"><h2>🤖 Antrenman Şefi</h2><p class="lm-panel-alt">Bilgisayardaki şefe karşı 10 soru. Önce doğru basan puanı alır. Her sorudan sonra doğru cevabı ve nedenini görürsün. Tecrübe Puanı kazandırır; lig puanı vermez.</p>'+
   Object.entries(ANT_SEV).map(([id,s])=>'<button type="button" class="lm-secim" data-s="'+id+'"><span aria-hidden="true">'+s.ikon+'</span><span><b>'+s.ad+'</b><small>'+s.not+'</small></span></button>').join('')+
   '<button type="button" class="lm-secim lm-ikincil" data-s="meydan"><span aria-hidden="true">🎯</span><span><b>Meydan Okuma</b><small>Rakipsiz, kendi rekoruna karşı</small></span></button>'+
   '<button type="button" class="btn" id="antKapat">Vazgeç</button></div>';
