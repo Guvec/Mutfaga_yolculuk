@@ -196,3 +196,16 @@ html[data-font=sade] body .lc-home .lc-journey-copy>span.lc-yol-alt{font:500 cal
 html[data-font=sade] body .lc-home .lc-journey-copy>span.lc-yol-dugme{font:600 calc(11px * var(--lc-textscale))/1.35 Lexend,Arial,sans-serif!important}
 /* Yolculuğum oranı referanstaki gibi geniş ve basık (≈1,93); sahne üstten kırpılır, panda ve tabela kalır. */
 html body .lc-home .lc-journey{aspect-ratio:1.93/1!important;background-size:cover!important;background-position:center 78%!important}
+/* 18.11: referansa göre — ad portreden ayrık ve dikeyde ortalı; üst simgeler büyük; Ustalar Ligi arması büyük. */
+html body .lc-home .lc-profile strong{padding-left:9px!important;align-self:center}
+html body .lc-home .lc-tool::after{inset:15%!important}
+html body .lc-home .lc-header .lc-tool:nth-child(3)::after{inset:12%!important}
+html body .lc-home .lc-grid .lc-card:nth-child(2) .lc-emblem{transform:scale(1.16)!important;transform-origin:50% 55%}
+/* Yolculuğum: sahne üstten kırpılır; tabela ve taş yukarı çıkar, yazıyla çakışmaz. Yazılar daha küçük. */
+html body .lc-home .lc-journey{background-position:center 100%!important}
+html body .lc-home .lc-journey-copy>span.lc-yol-alt{font-size:calc(9px * var(--lc-textscale))!important}
+html body .lc-home .lc-journey-copy>span.lc-yol-dugme{font-size:calc(10px * var(--lc-textscale))!important;padding:3px 14px 4px!important}
+/* 18.11: Zemin deseni sabit ayrı katmanda. "background-attachment:fixed" Android'de kaydırırken titreme ve kayma yapar. */
+html:not([data-theme=yuksek]) body.lc-sahne-acik{background:#0f2c36!important;background-attachment:scroll!important}
+html:not([data-theme=yuksek]) body.lc-sahne-acik::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(ellipse at 50% 40%,transparent 45%,#0006 100%),url('../assets/arayuz/deri-yaz.webp') center/320px repeat}
+html:not([data-theme=yuksek]) body.lc-sahne-acik.lc-kis::before{background:radial-gradient(ellipse at 50% 40%,transparent 45%,#0007 100%),url('../assets/arayuz/deri-kis.webp') center/320px repeat}

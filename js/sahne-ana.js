@@ -33,7 +33,7 @@
   r.addColorStop(0,'rgba(255,255,255,1)');r.addColorStop(.45,'rgba(250,253,255,.85)');r.addColorStop(1,'rgba(235,245,255,0)');
   g.fillStyle=r;g.fillRect(0,0,32,32);return kar;
  }
- function yagisYap(tuval,adet){
+ function yagisYap(tuval,adet,lapa){
   const c=tuval.getContext&&tuval.getContext('2d');
   if(!c)return {kur(){},boyut(){},baslat(){},durdur(){}}; // canvas yoksa sessizce çalışmaz
   let W=0,H=0,olcek=1,parca=[],tur='',calis=false,id=0,son=0;
@@ -41,7 +41,7 @@
    tuval.width=Math.max(1,Math.round(W*olcek));tuval.height=Math.max(1,Math.round(H*olcek));c.setTransform(olcek,0,0,olcek,0,0);}
   function yeni(p,ilk){
    p.x=Math.random()*W;p.y=ilk?Math.random()*H:-30;p.faz=Math.random()*6.3;
-   if(tur==='kis'){p.r=.9+Math.random()*1.7;p.hiz=14+p.r*8+Math.random()*8;p.salin=5+Math.random()*10;p.a=.45+Math.random()*.4;}
+   if(tur==='kis'){if(lapa){p.r=2.6+Math.random()*3.4;p.hiz=20+p.r*5+Math.random()*10;p.salin=14+Math.random()*18;p.a=.7+Math.random()*.3;}else{p.r=1.2+Math.random()*2.4;p.hiz=16+p.r*7+Math.random()*8;p.salin=6+Math.random()*12;p.a=.55+Math.random()*.4;}}
    else{p.r=14+Math.random()*12;p.hiz=24+Math.random()*22;p.salin=18+Math.random()*26;p.a=.85;p.don=(Math.random()-.5)*2.4;p.im=YAPRAK[(Math.random()*4)|0];}
    return p;
   }
@@ -65,11 +65,13 @@
    durdur(){calis=false;cancelAnimationFrame(id);c.clearRect(0,0,W,H);}
   };
  }
- let arka=null,arkaYagis=null,yolYagis=null,yolTuval=null;
+ let arka=null,arkaYagis=null,on=null,onYagis=null,yolYagis=null,yolTuval=null;
  function arkaKur(){
   if(arka)return;arka=document.createElement('canvas');arka.id='lcYagis';arka.setAttribute('aria-hidden','true');
-  document.body.prepend(arka);arkaYagis=yagisYap(arka,30);
-  addEventListener('resize',()=>{arkaYagis.boyut();if(yolYagis)yolYagis.boyut();});
+  document.body.prepend(arka);arkaYagis=yagisYap(arka,55);
+  /* Ön katman: iri, lapa lapa kar kartların ve yazıların önünden de geçer; dokunmayı engellemez. */
+  on=document.createElement('canvas');on.id='lcYagisOn';on.setAttribute('aria-hidden','true');document.body.appendChild(on);onYagis=yagisYap(on,16,true);
+  addEventListener('resize',()=>{arkaYagis.boyut();onYagis.boyut();if(yolYagis)yolYagis.boyut();});
  }
 
  /* ---------- Yolculuğum kartı: mevsimin yolculuk sahnesi (karakterli sahneler GPT'den gelecek) ---------- */
@@ -79,6 +81,78 @@
   yol.style.setProperty('--lc-scene',"url('"+new URL('assets/yolculuk/kart-'+m+'.webp',document.baseURI).href+"')");
   yol.dataset.mevsim=m;
  }
+ /* ---------- Kış ortam sesi: rüzgâr, ara sıra esinti ve şömine çıtırtısı (kodla üretilir, dosya yok) ----------
+    Ayrı tercih: mesleki-kis-sesi (varsayılan açık). Tarayıcı kuralı gereği ilk dokunuştan sonra başlar.
+    Yalnız ana sayfada ve kışın çalar; sayfa gizlenince susar. Sakin modda kısıktır. */
+ const kisSesi=(function(){
+  const ANAHTAR_SES='mesleki-kis-sesi';let C=null,cikis=null,istek=false,izin=false,calisiyor=false,citir=0,esinti=0;
+  function acik(){try{return localStorage.getItem(ANAHTAR_SES)!=='kapali';}catch(e){return true;}}
+  function gurultu(sn){const n=Math.floor(C.sampleRate*sn),b=C.createBuffer(1,n,C.sampleRate),d=b.getChannelData(0);let son=0;
+   for(let i=0;i<n;i++){const w=Math.random()*2-1;son=(son+.02*w)/1.02;d[i]=son*3.5;}return b;}
+  function kur(){
+   if(C)return true;const K=window.AudioContext||window.webkitAudioContext;if(!K)return false;
+   try{C=new K();}catch(e){return false;}
+   cikis=C.createGain();cikis.gain.value=0;cikis.connect(C.destination);
+   /* Rüzgâr: yumuşak gürültü, yavaşça gezinen bant süzgeci ve dalgalanan ses düzeyi. */
+   const kaynak=C.createBufferSource();kaynak.buffer=gurultu(6);kaynak.loop=true;
+   const bant=C.createBiquadFilter();bant.type='bandpass';bant.frequency.value=420;bant.Q.value=.7;
+   const lfo=C.createOscillator();lfo.frequency.value=.07;const lfoG=C.createGain();lfoG.gain.value=220;lfo.connect(lfoG);lfoG.connect(bant.frequency);
+   const ruzgar=C.createGain();ruzgar.gain.value=.55;
+   const lfo2=C.createOscillator();lfo2.frequency.value=.13;const lfo2G=C.createGain();lfo2G.gain.value=.25;lfo2.connect(lfo2G);lfo2G.connect(ruzgar.gain);
+   kaynak.connect(bant);bant.connect(ruzgar);ruzgar.connect(cikis);kaynak.start();lfo.start();lfo2.start();
+   esintiG=ruzgar;return true;
+  }
+  let esintiG=null;
+  function cit(){ /* şömine çıtırtısı: çok kısa, süzülmüş gürültü vuruşu */
+   if(!calisiyor)return;const t=C.currentTime,n=C.createBufferSource(),b=C.createBuffer(1,Math.floor(C.sampleRate*.03),C.sampleRate),d=b.getChannelData(0);
+   for(let i=0;i<d.length;i++)d[i]=(Math.random()*2-1)*Math.pow(1-i/d.length,3);
+   n.buffer=b;const f=C.createBiquadFilter();f.type='highpass';f.frequency.value=900+Math.random()*1800;const g=C.createGain();g.gain.value=.08+Math.random()*.22;
+   n.connect(f);f.connect(g);g.connect(cikis);n.start(t);
+   citir=setTimeout(cit,Math.random()<.25?40+Math.random()*80:180+Math.random()*900);
+  }
+  function es(){ /* ara sıra güçlenen esinti */
+   if(!calisiyor||!esintiG)return;const t=C.currentTime;esintiG.gain.cancelScheduledValues(t);esintiG.gain.setValueAtTime(esintiG.gain.value,t);
+   esintiG.gain.linearRampToValueAtTime(1.15,t+2.2);esintiG.gain.linearRampToValueAtTime(.55,t+5.5);esinti=setTimeout(es,11000+Math.random()*9000);
+  }
+  function duzey(){return document.documentElement.dataset.sakin==='1'?.05:.11;}
+  function baslat(){
+   if(calisiyor||!kur())return;if(C.state==='suspended')C.resume().catch(()=>{});calisiyor=true;
+   const t=C.currentTime;cikis.gain.cancelScheduledValues(t);cikis.gain.setValueAtTime(cikis.gain.value,t);cikis.gain.linearRampToValueAtTime(duzey(),t+2.5);
+   clearTimeout(citir);clearTimeout(esinti);citir=setTimeout(cit,600);esinti=setTimeout(es,6000);
+  }
+  function durdur(){
+   if(!calisiyor)return;calisiyor=false;clearTimeout(citir);clearTimeout(esinti);
+   const t=C.currentTime;cikis.gain.cancelScheduledValues(t);cikis.gain.setValueAtTime(cikis.gain.value,t);cikis.gain.linearRampToValueAtTime(0,t+1.2);
+  }
+  function uygula(){if(istek&&izin&&acik()&&!document.hidden)baslat();else durdur();}
+  function ilk(){izin=true;uygula();}
+  ['pointerdown','keydown'].forEach(e=>document.addEventListener(e,ilk,{passive:true}));
+  /* Kış dokunuşu: kartlara ve Yolculuğum'a basınca karda adım çıtırtısı ve ince bir çan. Efekt sesi kapalıysa çalmaz. */
+  function dokunus(){
+   try{if(typeof EFEKT!=='undefined'&&!EFEKT.acikMi())return;}catch(e){}
+   if(!istek||!kur())return;if(C.state==='suspended')C.resume().catch(()=>{});
+   const t=C.currentTime,o=C.createGain();o.gain.value=document.documentElement.dataset.sakin==='1'?.15:.32;o.connect(C.destination);
+   const n=C.createBufferSource(),b=C.createBuffer(1,Math.floor(C.sampleRate*.12),C.sampleRate),d=b.getChannelData(0);
+   for(let i=0;i<d.length;i++)d[i]=(Math.random()*2-1)*Math.pow(1-i/d.length,2)*(Math.random()<.3?1:.35);
+   n.buffer=b;const f=C.createBiquadFilter();f.type='bandpass';f.frequency.value=2600;f.Q.value=.9;const g=C.createGain();g.gain.value=.5;n.connect(f);f.connect(g);g.connect(o);n.start(t);
+   [[1568,.0],[2349,.06]].forEach(([hz,gec])=>{const os=C.createOscillator(),og=C.createGain();os.type='sine';os.frequency.value=hz;og.gain.setValueAtTime(0,t+gec);og.gain.linearRampToValueAtTime(.18,t+gec+.01);og.gain.exponentialRampToValueAtTime(.001,t+gec+.9);os.connect(og);og.connect(o);os.start(t+gec);os.stop(t+gec+1);});
+  }
+  document.addEventListener('pointerdown',e=>{if(e.target&&e.target.closest&&e.target.closest('.lc-home :is(.lc-card,.lc-journey)'))dokunus();},{passive:true});
+  return {guncelle(ev){istek=ev;uygula();},acik,ayarla(v){try{localStorage.setItem(ANAHTAR_SES,v?'acik':'kapali');}catch(e){}uygula();}};
+ })();
+ window.kisSesi=kisSesi;
+
+ /* ---------- Arma, kupa ve rozetlerde yalnız şeklin üstünden geçen ışık ---------- */
+ function parlamaKur(){
+  document.querySelectorAll('#app .lc-home .lc-grid .lc-card .lc-stage').forEach((st,i)=>{
+   if(i===0||st.querySelector('.lc-parla'))return;const e=st.querySelector('.lc-emblem');if(!e)return;
+   let src='';if(e.tagName==='IMG')src=e.currentSrc||e.src;else{const bg=getComputedStyle(e).backgroundImage;const m=bg&&bg.match(/url\("?([^")]+)"?\)/);if(m)src=m[1];}
+   if(!src&&e.tagName.toLowerCase()==='svg'){try{src='data:image/svg+xml;charset=utf-8,'+encodeURIComponent(new XMLSerializer().serializeToString(e));}catch(x){}}
+   if(!src)return;const p=document.createElement('span');p.className='lc-parla';p.setAttribute('aria-hidden','true');
+   p.style.setProperty('--maske','url("'+src.replace(/"/g,'%22')+'")');e.after(p);
+   const r=e.getBoundingClientRect(),sr=st.getBoundingClientRect();Object.assign(p.style,{left:(r.left-sr.left)+'px',top:(r.top-sr.top)+'px',width:r.width+'px',height:r.height+'px'});
+  });
+ }
  /* ---------- Güncelleme ---------- */
  function guncelle(){
   const ev=!!document.querySelector('#app .lc-home')&&temaUygun();
@@ -86,7 +160,7 @@
   document.body.classList.toggle('lc-sahne-acik',ev);
   document.body.classList.toggle('lc-kis',m==='kis');
   document.body.classList.toggle('lc-sonbahar',m==='sonbahar');
-  if(ev)yolKartKur();
+  if(ev){yolKartKur();requestAnimationFrame(parlamaKur);}
   /* Uzun oyuncu adı (ör. Şef Kaplumbağa) kelime ortasından bölünmesin: sığana kadar yazı küçülür. */
   const ad=document.querySelector('#app .lc-home .lc-profile strong');
   if(ad){ad.style.fontSize='';const kelime=Math.max(...ad.textContent.trim().split(/\s+/).map(k=>k.length));let fs=parseFloat(getComputedStyle(ad).fontSize),i=0;
@@ -100,8 +174,10 @@
   const sira=document.querySelector('#app .lc-home .lc-grid .lc-card:nth-child(3) .lc-stage');
   if(sira&&!sira.querySelector('.lc-kursu')){const e=sira.querySelector('.lc-emblem');if(e)e.remove();sira.insertAdjacentHTML('afterbegin','<span class="lc-emblem lc-kursu" aria-hidden="true"></span>');}
   const dus=ev&&(m==='kis'||m==='sonbahar')&&hareketli()&&!document.hidden;
-  if(!dus){if(arkaYagis)arkaYagis.durdur();if(yolYagis)yolYagis.durdur();if(arka)arka.hidden=true;return;}
+  kisSesi.guncelle(ev&&m==='kis');
+  if(!dus){if(arkaYagis)arkaYagis.durdur();if(onYagis)onYagis.durdur();if(yolYagis)yolYagis.durdur();if(arka)arka.hidden=true;if(on)on.hidden=true;return;}
   arkaKur();arka.hidden=false;arkaYagis.kur(m);arkaYagis.baslat();
+  on.hidden=m!=='kis';if(m==='kis'){onYagis.kur(m);onYagis.baslat();}else onYagis.durdur();
   /* Yolculuğum kartının içinde de, yazının arkasında hafif yağış */
   const yol=document.querySelector('#app .lc-home .lc-journey');
   if(yol&&!yol.contains(yolTuval)){if(yolYagis)yolYagis.durdur();yolTuval=document.createElement('canvas');yolTuval.className='lc-yol-yagis';yolTuval.setAttribute('aria-hidden','true');yol.prepend(yolTuval);yolYagis=yagisYap(yolTuval,16);}
@@ -122,6 +198,9 @@
    b.setAttribute('aria-describedby','ayMevsimNot');
    b.insertAdjacentHTML('afterend','<p id="ayMevsimNot" class="ay-not">Yolculuğum resmi ve hava efektleri mevsime göre değişir: kışın kar, sonbaharda yaprak. Otomatik seçimde kış 15 Kasım\'da başlar. Kapalı seçilirse efektler durur.</p>');
    b.onclick=()=>{const n=SIRA[(SIRA.indexOf(tercih())+1)%SIRA.length];try{localStorage.setItem(ANAHTAR,n);}catch(e){}b.querySelector('.ay-deger').textContent=mevsimYazi();guncelle();};
+   document.getElementById('ayMevsimNot').insertAdjacentHTML('afterend',aySatir('ayKisSesi','🔔','Kış sesi',kisSesi.acik()?'Açık':'Kapalı')+'<p id="ayKisSesiNot" class="ay-not">Kışın ana sayfada hafif rüzgâr ve şömine sesi, kartlara dokununca karda adım ve ince bir çan sesi çalar. Müzikten ayrıdır.</p>');
+   const ks=document.getElementById('ayKisSesi');ks.setAttribute('aria-describedby','ayKisSesiNot');
+   ks.onclick=()=>{kisSesi.ayarla(!kisSesi.acik());ks.querySelector('.ay-deger').textContent=kisSesi.acik()?'Açık':'Kapalı';};
   }
   return s;
  };
