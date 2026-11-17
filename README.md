@@ -12,3 +12,6 @@ Bu klasörde `python3 -m http.server 8000` çalıştırıp `http://localhost:800
 - `sw.js` içindeki `CACHE` adı, her yayında elle değiştirilir; sürüm numarası `js/telif.js` içindeki `APP_SURUM` değeridir.
 - `ci/` ve `tests/`: Firebase kuralları ve arayüz testleri (yalnız `test-rekor` dalında çalışır).
 - Öğretmen notları ve denetim raporları depoda tutulmaz.
+
+## Üçüncü taraf bileşenler
+- three.js r187 (0.187.0) — MIT Lisansı, © 2010-2026 three.js authors. Dosya: `js/vendor/three.module.min.js`, lisans metni: `js/vendor/three-LICENSE.txt`.

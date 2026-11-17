@@ -1,0 +1,24 @@
+{
+ "tuval": [
+  720,
+  1280
+ ],
+ "katmanlar": {
+  "sahne-1-gokyuzu": {
+   "y": 0,
+   "h": 1280
+  },
+  "sahne-2-daglar-kale": {
+   "y": 493,
+   "h": 336
+  },
+  "sahne-3-orman": {
+   "y": 607,
+   "h": 673
+  },
+  "sahne-4-on-plan": {
+   "y": 1021,
+   "h": 259
+  }
+ }
+}
