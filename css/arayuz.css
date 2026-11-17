@@ -146,3 +146,11 @@ html body .lc-home .lc-journey-copy{padding:0 25.5% 4% 0!important}
 html body .lc-home .lc-yol-alt{white-space:normal!important;max-width:none;white-space:nowrap!important;text-align:right;line-height:1.25!important;font-size:calc(.7rem * var(--lc-textscale))!important}
 html body .lc-home .lc-yol-dugme{padding:5px 13px 6px!important;font-size:calc(.72rem * var(--lc-textscale))!important}
 @media (max-height:720px){html body .lc-home .lc-journey-copy{padding:0 28% 3% 0!important}html body .lc-home .lc-yol-alt{font-size:calc(.64rem * var(--lc-textscale))!important}html body .lc-home .lc-yol-dugme{font-size:calc(.68rem * var(--lc-textscale))!important;padding:4px 11px 5px!important}}
+/* Referans yerleşim: tabela ve taşın altında, sağ altta; tek satır alt yazı, altında düğme; sağ kenardan %9. */
+html body .lc-home .lc-journey-copy{padding:0 9% 3.2% 0!important}
+html body .lc-home .lc-yol-alt{white-space:nowrap!important;font-size:calc(.6rem * var(--lc-textscale))!important;margin:0 2px 3px 0!important}
+html body .lc-home .lc-yol-dugme{font-size:calc(.66rem * var(--lc-textscale))!important;padding:4px 12px 5px!important}
+html body .lc-home .lc-journey-copy::before{right:-4%;bottom:-6%;width:60%;height:40%}
+@media (max-height:720px){html body .lc-home .lc-journey-copy{padding:0 9% 2.5% 0!important}html body .lc-home .lc-yol-alt{font-size:calc(.56rem * var(--lc-textscale))!important}html body .lc-home .lc-yol-dugme{font-size:calc(.62rem * var(--lc-textscale))!important;padding:3px 10px 4px!important}}
+html body .lc-home .lc-journey-copy{padding:0 11% 2.2% 0!important}
+@media (max-height:720px){html body .lc-home .lc-journey{background-position:center 88%!important}html body .lc-home .lc-journey-copy{padding:0 11% 2% 0!important}}
