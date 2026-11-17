@@ -1,11 +1,7 @@
-/* © 2026 Ali Arıkoğlu. Ana sayfa canlı sahnesi: arka katman, kart yüzmesi, ödül ışığı, panda pozları. */
-#lcSahne{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;display:none;background:#e9c58f}
-body.lc-sahne-acik #lcSahne{display:block}
+/* © 2026 Ali Arıkoğlu. Ana sayfa canlılığı: mevsim yağışı, kar birikimi, kart yüzmesi, ödül ışığı, basınca yaylanma, panda pozları. */
+#lcYagis{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
 body.lc-sahne-acik #app{position:relative;z-index:1}
-.lc-sahne-durgun img{position:absolute;max-width:none;display:block}
-.lc-sahne-tuval{position:absolute;inset:0;width:100%;height:100%;opacity:0;transition:opacity .7s ease}
-#lcSahne.lc-sahne-canli .lc-sahne-tuval{opacity:1}
-#lcSahne.lc-sahne-sakin .lc-sahne-tuval{display:none}
+.lc-yol-yagis{position:absolute;inset:0;width:100%;height:100%;border-radius:20px;pointer-events:none;z-index:0}
 
 /* Kartlar sırayla, hafifçe yüzer (aynı anda değil). */
 @keyframes lc-yuz{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
@@ -14,6 +10,10 @@ body.lc-sahne-acik .lc-grid .lc-card:nth-child(2){animation-delay:-1.4s}
 body.lc-sahne-acik .lc-grid .lc-card:nth-child(3){animation-delay:-2.8s}
 body.lc-sahne-acik .lc-grid .lc-card:nth-child(4){animation-delay:-4.2s}
 
+/* Basınca küçülüp bırakınca yaylanma (yüzme hareketini bozmaz). */
+body.lc-sahne-acik .lc-home :is(.lc-card,.lc-journey,.lc-tool,.lc-profile,.lc-rank){transition:scale .22s cubic-bezier(.3,1.7,.5,1)}
+body.lc-sahne-acik .lc-home :is(.lc-card,.lc-journey,.lc-tool,.lc-profile,.lc-rank):active{scale:.96;transition-duration:.08s}
+
 /* Arma, kupa ve rozet ara sıra kısa bir ışık alır; her biri ayrı zamanda. */
 @keyframes lc-isik{0%,86%,100%{filter:drop-shadow(0 3px 2px #643b1733)}91%{filter:brightness(1.16) drop-shadow(0 0 9px #ffd77a) drop-shadow(0 3px 2px #643b1733)}}
 body.lc-sahne-acik .lc-grid .lc-emblem{animation:lc-isik 10s ease-in-out infinite}
@@ -21,9 +21,23 @@ body.lc-sahne-acik .lc-grid .lc-card:nth-child(2) .lc-emblem{animation-delay:-2s
 body.lc-sahne-acik .lc-grid .lc-card:nth-child(3) .lc-emblem{animation-delay:-5.5s}
 body.lc-sahne-acik .lc-grid .lc-card:nth-child(4) .lc-emblem{animation-delay:-8.5s}
 
+/* Kış: kartların, şeridin ve düğmelerin üst kenarında kar birikir. Yazıya binmez, dokunmayı engellemez. */
+body.lc-kis .lc-home :is(.lc-header,.lc-rank,.lc-journey,.lc-card,.lc-tool){position:relative}
+body.lc-kis .lc-home .lc-journey{overflow:visible}
+.lc-kar{position:absolute;left:7px;right:7px;top:-17px;height:24px;pointer-events:none;z-index:4;transform-origin:50% 100%;filter:drop-shadow(0 2px 1.5px #1d3a5633);animation:lc-biri 3.4s cubic-bezier(.2,.7,.3,1) var(--kar-gecikme,0s) both}
+.lc-kar svg{display:block;width:100%;height:100%;overflow:visible}
+.lc-kar-kucuk{left:3px;right:3px;top:-8px;height:13px}
+@keyframes lc-biri{0%{opacity:0;transform:translateY(5px) scaleY(.15)}35%{opacity:1}100%{opacity:1;transform:none}}
+/* Kışın soğuk, hafif mavi ışık; renk paleti bozulmaz. */
+html[data-theme=lonca] body.lc-kis{background:radial-gradient(ellipse at 50% -10%,#cfe3f233,transparent 60%),radial-gradient(ellipse at 20% 10%,#a2774770,transparent 55%),linear-gradient(120deg,#3b2a22,#6f5038 48%,#3c2a20);background-attachment:fixed}
+
 /* Panda pozları: hepsi aynı tuvalde; değişimde kayma olmaz. */
 .lc-poz-yigin{position:relative;display:block;height:100%;max-height:176px;aspect-ratio:1/1;max-width:100%}
 .lc-poz-yigin img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;opacity:0;filter:drop-shadow(0 3px 2px #643b1733)}
 .lc-poz-yigin img.on{opacity:1}
 @keyframes lc-nefes{0%,100%{transform:scale(1,1)}50%{transform:scale(1.008,1.018)}}
 body.lc-sahne-acik .lc-poz-yigin{animation:lc-nefes 3.8s ease-in-out infinite;transform-origin:50% 92%}
+
+/* Sakin mod ve "hareketi azalt": hareket yok; kar birikimi durağan ve tam görünür. */
+html[data-sakin="1"] body .lc-home :is(.lc-card,.lc-emblem,.lc-poz-yigin,.lc-kar){animation:none!important}
+@media (prefers-reduced-motion:reduce){body .lc-home :is(.lc-card,.lc-emblem,.lc-poz-yigin,.lc-kar){animation:none!important}}

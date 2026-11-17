@@ -1,150 +1,135 @@
-/* © 2026 Ali Arıkoğlu. Ana sayfa canlı sahnesi (three.js) ve Aşçı Dostu panda pozları.
-   Kartlar HTML kalır; sahne yalnız arkada süs katmanıdır. Oyun kurallarına ve kayıtlara dokunmaz.
-   Sakin mod, hareket azaltma, zayıf cihaz ya da WebGL yoksa durağan resim gösterilir. */
+/* © 2026 Ali Arıkoğlu. Ana sayfa canlılığı: mevsim katmanı (kar yağışı, kar birikimi, sonbahar yaprakları)
+   ve Aşçı Dostu panda pozları. Kartlar HTML kalır; efektler yazının arkasındadır, dokunmayı engellemez.
+   Sakin mod ve "hareketi azalt" açıkken hiçbir şey düşmez; kar birikimi durağan görünür.
+   Yeni tercih anahtarı: mesleki-mevsim (oto | kis | kapali). Mevcut kayıt anahtarlarına dokunulmaz. */
 'use strict';
 (function(){
- const KOK='assets/sahne/';
- const TUVAL={w:720,h:1280};
- const KATMAN=[ // y ve h: 720×1280 tuvalde (assets/sahne/katmanlar.json ile aynı)
-  {ad:'sahne-1-gokyuzu',y:0,h:1280,d:60},
-  {ad:'sahne-2-daglar-kale',y:493,h:336,d:40},
-  {ad:'sahne-3-orman',y:607,h:673,d:22},
-  {ad:'sahne-4-on-plan',y:1021,h:259,d:12}
- ];
- const MUM={x:648,y:1040}; // mum alevinin tuvaldeki yeri
- const FOV=40,TASMA=1.08;
- let kap=null,durgun=null,canli=null,yukleniyor=false,threeYok=false;
-
+ const ANAHTAR='mesleki-mevsim';
+ function tercih(){try{const v=localStorage.getItem(ANAHTAR);return v==='kis'||v==='kapali'?v:'oto';}catch(e){return 'oto';}}
+ /* Otomatik: 15 Kasım – Şubat sonu kış; Eylül – 14 Kasım sonbahar; diğer aylarda şimdilik efekt yok
+    (ilkbahar ve yaz görselleri gelince eklenecek). */
+ function takvimMevsimi(t){const a=t.getMonth()+1,g=t.getDate();
+  if(a===12||a===1||a===2||(a===11&&g>=15))return 'kis';
+  if(a>=9&&a<=11)return 'sonbahar';
+  return '';}
+ function mevsim(){const p=tercih();if(p==='kapali')return '';if(p==='kis')return 'kis';return takvimMevsimi(new Date());}
+ window.sahneMevsim=mevsim;
  function hareketli(){
   if(document.documentElement.dataset.sakin==='1')return false;
   try{if(matchMedia('(prefers-reduced-motion: reduce)').matches)return false;}catch(e){}
   return true;
  }
- function zayifCihaz(){
-  const m=navigator.deviceMemory,c=navigator.hardwareConcurrency;
-  return (m&&m<=2)||(c&&c<=2);
- }
  function temaUygun(){const t=document.documentElement.dataset.theme;return t==='lonca'||t==='loncakrem';}
- function yerlesim(W,H){const s=Math.max(W/TUVAL.w,H/TUVAL.h)*TASMA;return {s,ox:(W-TUVAL.w*s)/2,oy:(H-TUVAL.h*s)/2};}
 
- /* Durağan resim: katmanlar üst üste img; three yüklenene kadar da görünür. */
- function durgunKur(){
-  if(durgun)return;
-  durgun=document.createElement('div');durgun.className='lc-sahne-durgun';
-  durgun.innerHTML=KATMAN.map(k=>'<img alt="" decoding="async" src="'+KOK+k.ad+'.webp">').join('');
-  kap.appendChild(durgun);durgunYerlestir();
+ /* ---------- Yağış: kar taneleri ya da yapraklar (tek canvas, ~30 kare/sn) ---------- */
+ const YAPRAK=[1,2,3,4].map(i=>{const im=new Image();im.decoding='async';im.src='assets/sahne/yaprak-'+i+'.webp';return im;});
+ let kar=null;
+ function karTanesi(){ // önceden çizilmiş yumuşak kar tanesi
+  if(kar)return kar;kar=document.createElement('canvas');kar.width=kar.height=32;
+  const g=kar.getContext('2d'),r=g.createRadialGradient(16,16,0,16,16,16);
+  r.addColorStop(0,'rgba(255,255,255,1)');r.addColorStop(.45,'rgba(250,253,255,.85)');r.addColorStop(1,'rgba(235,245,255,0)');
+  g.fillStyle=r;g.fillRect(0,0,32,32);return kar;
  }
- function durgunYerlestir(){
-  if(!durgun)return;const W=innerWidth,H=innerHeight,{s,ox,oy}=yerlesim(W,H);
-  [...durgun.children].forEach((img,i)=>{const k=KATMAN[i];Object.assign(img.style,{left:ox+'px',top:(oy+k.y*s)+'px',width:(TUVAL.w*s)+'px',height:(k.h*s)+'px'});});
- }
-
- function kapKur(){
-  if(kap)return;
-  kap=document.createElement('div');kap.id='lcSahne';kap.setAttribute('aria-hidden','true');
-  document.body.prepend(kap);durgunKur();
-  addEventListener('resize',()=>{durgunYerlestir();if(canli)canli.boyut();});
- }
-
- async function canliKur(){
-  if(canli||yukleniyor||threeYok)return;
-  yukleniyor=true;
-  try{
-   const T=await import(new URL('js/vendor/three.module.min.js',document.baseURI).href);
-   canli=sahneYap(T);
-   if(!canli)threeYok=true;
-  }catch(e){threeYok=true;}
-  yukleniyor=false;
-  guncelle();
- }
-
- function sahneYap(T){
-  let r;
-  try{r=new T.WebGLRenderer({antialias:false,alpha:false,powerPreference:'low-power'});}catch(e){return null;}
-  if(!r.getContext())return null;
-  r.setPixelRatio(Math.min(window.devicePixelRatio||1,2));
-  r.outputColorSpace=T.SRGBColorSpace;
-  r.domElement.className='lc-sahne-tuval';
-  kap.appendChild(r.domElement);
-  const sahne=new T.Scene(),kamera=new T.PerspectiveCamera(FOV,1,0.1,200);
-  const yukle=new T.TextureLoader(),tan=Math.tan(FOV*Math.PI/360);
-  let hazir=0;
-  function doku(url){const t=yukle.load(url,()=>{hazir++;});t.colorSpace=T.SRGBColorSpace;t.generateMipmaps=false;t.minFilter=T.LinearFilter;return t;}
-  const katmanlar=KATMAN.map((k,i)=>{
-   const m=new T.Mesh(new T.PlaneGeometry(1,1),new T.MeshBasicMaterial({map:doku(KOK+k.ad+'.webp'),transparent:i>0,depthWrite:false}));
-   m.renderOrder=i;sahne.add(m);return {k,m};
-  });
-  /* Mum ışığı: sıcak, yumuşak bir hale; alev titremesi gibi parlaklığı değişir. */
-  const hc=document.createElement('canvas');hc.width=hc.height=128;
-  const g=hc.getContext('2d'),rg=g.createRadialGradient(64,64,0,64,64,64);
-  rg.addColorStop(0,'rgba(255,214,140,0.95)');rg.addColorStop(.25,'rgba(255,170,80,0.45)');rg.addColorStop(1,'rgba(255,140,40,0)');
-  g.fillStyle=rg;g.fillRect(0,0,128,128);
-  const haleDoku=new T.CanvasTexture(hc);haleDoku.colorSpace=T.SRGBColorSpace;
-  const hale=new T.Mesh(new T.PlaneGeometry(1,1),new T.MeshBasicMaterial({map:haleDoku,transparent:true,blending:T.AdditiveBlending,depthWrite:false}));
-  hale.renderOrder=10;sahne.add(hale);
-  /* Sonbahar yaprakları: farklı derinlikte düşer, döner, rüzgârla salınır. */
-  const yDoku=[1,2,3,4].map(i=>doku(KOK+'yaprak-'+i+'.webp'));
-  const yapraklar=[];
-  for(let i=0;i<9;i++){
-   const m=new T.Mesh(new T.PlaneGeometry(1,1),new T.MeshBasicMaterial({map:yDoku[i%4],transparent:true,side:T.DoubleSide,depthWrite:false}));
-   m.renderOrder=i%3===0?11:3;sahne.add(m);
-   yapraklar.push({m,d:0,x:0,y:0,hiz:0,salin:0,faz:0,don:0,boy:0});
+ function yagisYap(tuval,adet){
+  const c=tuval.getContext('2d');let W=0,H=0,olcek=1,parca=[],tur='',calis=false,id=0,son=0;
+  function boyut(){const r=tuval.getBoundingClientRect();W=r.width;H=r.height;olcek=Math.min(window.devicePixelRatio||1,2);
+   tuval.width=Math.max(1,Math.round(W*olcek));tuval.height=Math.max(1,Math.round(H*olcek));c.setTransform(olcek,0,0,olcek,0,0);}
+  function yeni(p,ilk){
+   p.x=Math.random()*W;p.y=ilk?Math.random()*H:-30;p.faz=Math.random()*6.3;
+   if(tur==='kis'){p.r=1.6+Math.random()*3.2;p.hiz=16+p.r*7+Math.random()*10;p.salin=6+Math.random()*14;p.a=.55+Math.random()*.4;}
+   else{p.r=14+Math.random()*12;p.hiz=24+Math.random()*22;p.salin=18+Math.random()*26;p.a=.85;p.don=(Math.random()-.5)*2.4;p.im=YAPRAK[(Math.random()*4)|0];}
+   return p;
   }
-  let W=1,H=1,kd=d=>2*d*tan/H;
-  function yaprakBasla(p,ilk){
-   p.d=14+Math.random()*16;const k=kd(p.d);
-   p.boy=(22+Math.random()*20)*k;p.m.scale.set(p.boy,p.boy,1);
-   p.x=(Math.random()-.5)*W*k;p.y=(ilk?(Math.random()-.5):.6)*H*k;
-   p.hiz=(26+Math.random()*24)*k;p.salin=(18+Math.random()*24)*k;p.faz=Math.random()*6.3;p.don=(Math.random()-.5)*1.6;
-   p.m.position.set(p.x,p.y,-p.d);
-  }
-  function boyut(){
-   W=innerWidth;H=innerHeight;r.setSize(W,H,false);kamera.aspect=W/H;kamera.updateProjectionMatrix();
-   const {s,ox,oy}=yerlesim(W,H);
-   katmanlar.forEach(({k,m})=>{const q=kd(k.d),w=TUVAL.w*s,h=k.h*s,cx=ox+w/2,cy=oy+k.y*s+h/2;
-    m.scale.set(w*q,h*q,1);m.position.set((cx-W/2)*q,(H/2-cy)*q,-k.d);});
-   const q=kd(11.8),hx=ox+MUM.x*s,hy=oy+MUM.y*s,hb=150*s;
-   hale.scale.set(hb*q,hb*q,1);hale.position.set((hx-W/2)*q,(H/2-hy)*q,-11.8);
-   yapraklar.forEach(p=>yaprakBasla(p,true));
-  }
-  boyut();
-  let son=0,t0=performance.now(),calis=false,id=0;
   function kare(n){
    if(!calis)return;id=requestAnimationFrame(kare);
-   if(n-son<32)return; // yaklaşık 30 kare/sn: pil ve ısınma için
-   const dt=Math.min((n-son)/1000,.1);son=n;const t=(n-t0)/1000;
-   /* Kamera nefesi: yavaş, küçük kayma; yakın katmanlar daha çok kayar (derinlik). */
-   kamera.position.set(Math.sin(t*.21)*.11,Math.sin(t*.15+1)*.06,Math.sin(t*.11)*.12);
-   const f=.62+.18*Math.sin(t*9.1)+.12*Math.sin(t*23.7+1.3)+.08*Math.sin(t*3.3);
-   hale.material.opacity=Math.max(.35,Math.min(1,f));
-   yapraklar.forEach(p=>{
-    p.y-=p.hiz*dt;p.faz+=dt*(.9+p.don*.3);
-    p.m.position.set(p.x+Math.sin(p.faz)*p.salin,p.y,-p.d);
-    p.m.rotation.set(Math.sin(p.faz*.7)*.9,Math.sin(p.faz*1.3)*1.2,p.faz*p.don);
-    if(p.y<-.62*H*kd(p.d))yaprakBasla(p,false);
-   });
-   r.render(sahne,kamera);
-   if(hazir>=KATMAN.length+4)kap.classList.add('lc-sahne-canli');
+   if(n-son<32)return;const dt=Math.min((n-son)/1000,.1);son=n;
+   c.clearRect(0,0,W,H);
+   for(const p of parca){
+    p.y+=p.hiz*dt;p.faz+=dt*(tur==='kis'?.9:1.2);
+    const x=p.x+Math.sin(p.faz)*p.salin;
+    if(tur==='kis'){c.globalAlpha=p.a;c.drawImage(karTanesi(),x-p.r*2,p.y-p.r*2,p.r*4,p.r*4);}
+    else if(p.im.complete&&p.im.naturalWidth){c.save();c.globalAlpha=p.a;c.translate(x,p.y);c.rotate(p.faz*p.don);c.scale(Math.cos(p.faz*1.3),1);c.drawImage(p.im,-p.r/2,-p.r/2,p.r,p.r);c.restore();}
+    if(p.y>H+30)yeni(p,false);
+   }
+   c.globalAlpha=1;
   }
   return {
+   kur(t){if(t===tur&&parca.length)return;tur=t;boyut();parca=Array.from({length:t==='kis'?adet:Math.ceil(adet/4)},()=>yeni({},true));},
    boyut,
    baslat(){if(calis)return;calis=true;son=0;id=requestAnimationFrame(kare);},
-   durdur(){calis=false;cancelAnimationFrame(id);}
+   durdur(){calis=false;cancelAnimationFrame(id);c.clearRect(0,0,W,H);}
   };
  }
+ let arka=null,arkaYagis=null,yolYagis=null,yolTuval=null;
+ function arkaKur(){
+  if(arka)return;arka=document.createElement('canvas');arka.id='lcYagis';arka.setAttribute('aria-hidden','true');
+  document.body.prepend(arka);arkaYagis=yagisYap(arka,46);
+  addEventListener('resize',()=>{arkaYagis.boyut();if(yolYagis)yolYagis.boyut();});
+ }
 
+ /* ---------- Kar birikimi: kartların üst kenarında, her biri biraz farklı ---------- */
+ function karSapkasi(gen,yuk,tohum){
+  let s=tohum;const rnd=()=>{s=(s*9301+49297)%233280;return s/233280;};
+  const taban=yuk-3,uc=Math.min(14,gen*.08);let d='M0,'+taban+' C'+(uc*.3)+','+(taban-5)+' '+(uc*.7)+','+(taban-9)+' '+uc+','+(taban-9);
+  let x=uc;const adim=Math.max(14,gen/9);
+  while(x<gen-uc-adim*.6){const nx=Math.min(gen-uc,x+adim*(.7+rnd()*.6)),ust=taban-7-rnd()*(yuk-11);
+   d+=' Q'+((x+nx)/2).toFixed(1)+','+ust.toFixed(1)+' '+nx.toFixed(1)+','+(taban-8+rnd()*2).toFixed(1);x=nx;}
+  d+=' C'+(gen-uc*.7)+','+(taban-9)+' '+(gen-uc*.3)+','+(taban-5)+' '+gen+','+taban;
+  /* alt kenar: kenara yapışan, yer yer hafifçe sarkan kar */
+  d+=' L'+(gen-uc*.6)+','+(yuk-.5);let y=gen-uc*.6;
+  while(y>uc*.6){const ny=Math.max(uc*.6,y-adim*(1+rnd()));const sark=rnd()<.25?2.5+rnd()*3:0;
+   d+=' Q'+((y+ny)/2).toFixed(1)+','+(yuk-.5+sark).toFixed(1)+' '+ny.toFixed(1)+','+(yuk-.5).toFixed(1);y=ny;}
+  d+=' Z';
+  return '<svg viewBox="0 0 '+gen+' '+yuk+'" preserveAspectRatio="none" aria-hidden="true" focusable="false"><defs><linearGradient id="kg'+tohum+'" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset=".6" stop-color="#f3f8fc"/><stop offset="1" stop-color="#d5e3ef"/></linearGradient></defs><path d="'+d+'" fill="url(#kg'+tohum+')" stroke="#bfd2e3" stroke-width=".6"/></svg>';
+ }
+ const KARLI='.lc-home .lc-header,.lc-home .lc-rank,.lc-home .lc-journey,.lc-home .lc-grid .lc-card,.lc-home .lc-tool';
+ function karBiriktir(acik){
+  document.querySelectorAll(KARLI).forEach((el,i)=>{
+   let k=el.querySelector(':scope>.lc-kar');
+   if(!acik){if(k)k.remove();return;}
+   if(k)return;
+   const kucuk=el.classList.contains('lc-tool'),gen=kucuk?48:200,yuk=kucuk?13:24;
+   k=document.createElement('span');k.className='lc-kar'+(kucuk?' lc-kar-kucuk':'');k.setAttribute('aria-hidden','true');
+   k.innerHTML=karSapkasi(gen,yuk,17+i*31);
+   k.style.setProperty('--kar-gecikme',(.25+i*.18).toFixed(2)+'s');
+   el.appendChild(k);
+  });
+ }
+
+ /* ---------- Güncelleme ---------- */
  function guncelle(){
   const ev=!!document.querySelector('#app .lc-home')&&temaUygun();
+  const m=ev?mevsim():'';
   document.body.classList.toggle('lc-sahne-acik',ev);
-  if(!ev){if(canli)canli.durdur();return;}
-  kapKur();
-  const canliOlsun=hareketli()&&!zayifCihaz()&&!threeYok;
-  kap.classList.toggle('lc-sahne-sakin',!canliOlsun);
-  if(!canliOlsun){if(canli)canli.durdur();kap.classList.remove('lc-sahne-canli');return;}
-  if(!canli){canliKur();return;}
-  if(document.hidden)canli.durdur();else canli.baslat();
+  document.body.classList.toggle('lc-kis',m==='kis');
+  document.body.classList.toggle('lc-sonbahar',m==='sonbahar');
+  karBiriktir(m==='kis');
+  const dus=ev&&m&&hareketli()&&!document.hidden;
+  if(!dus){if(arkaYagis)arkaYagis.durdur();if(yolYagis)yolYagis.durdur();if(arka)arka.hidden=true;return;}
+  arkaKur();arka.hidden=false;arkaYagis.kur(m);arkaYagis.baslat();
+  /* Yolculuğum kartının içinde de, yazının arkasında hafif yağış */
+  const yol=document.querySelector('#app .lc-home .lc-journey');
+  if(yol&&!yol.contains(yolTuval)){if(yolYagis)yolYagis.durdur();yolTuval=document.createElement('canvas');yolTuval.className='lc-yol-yagis';yolTuval.setAttribute('aria-hidden','true');yol.prepend(yolTuval);yolYagis=yagisYap(yolTuval,26);}
+  if(yolYagis){yolYagis.kur(m);yolYagis.baslat();}
  }
  document.addEventListener('visibilitychange',guncelle);
+
+ /* ---------- Ayarlar: Mevsim satırı (Sakin mod satırının altına) ---------- */
+ const AD={oto:'Otomatik',kis:'Kış',kapali:'Kapalı'};
+ function mevsimYazi(){const p=tercih(),m=mevsim();return p==='oto'?'Otomatik'+(m==='kis'?' (Kış)':m==='sonbahar'?' (Sonbahar)':''):AD[p];}
+ const eskiAyarlar=window.anaAyarlar;
+ if(typeof eskiAyarlar==='function')window.anaAyarlar=function(){
+  const s=eskiAyarlar.apply(this,arguments);
+  const sakin=document.getElementById('aySakin');
+  if(sakin&&!document.getElementById('ayMevsim')&&typeof aySatir==='function'){
+   sakin.insertAdjacentHTML('afterend',aySatir('ayMevsim','❄️','Mevsim',mevsimYazi()));
+   const b=document.getElementById('ayMevsim');
+   b.setAttribute('aria-describedby','ayMevsimNot');
+   b.insertAdjacentHTML('afterend','<p id="ayMevsimNot" class="ay-not">Kar yağışı, kartlarda kar birikimi ve sonbahar yaprakları. Otomatik seçimde kış 15 Kasım\'da başlar.</p>');
+   b.onclick=()=>{const sira=['oto','kis','kapali'],n=sira[(sira.indexOf(tercih())+1)%3];try{localStorage.setItem(ANAHTAR,n);}catch(e){}b.querySelector('.ay-deger').textContent=mevsimYazi();guncelle();};
+  }
+  return s;
+ };
 
  /* ---------- Aşçı Dostu panda pozları ---------- */
  const POZ=['bekliyor','goz-kirpma','mutlu','sevincli','ekranin-sagina-bakiyor','ekranin-soluna-bakiyor','saklanip-bakiyor','dusunuyor','uyukluyor','selam'];
@@ -191,7 +176,7 @@
   return eskiMutfak.apply(this,arguments);
  };
 
- /* Her ekran çiziminden sonra sahneyi ve pozları güncelle. */
+ /* Her ekran çiziminden sonra mevsim katmanını ve pozları güncelle. */
  const eskiRender=render;
  render=function(){const s=eskiRender.apply(this,arguments);guncelle();if(document.querySelector('#app .lc-home .lc-poz-yigin')&&(!pz.kart||!pz.kart.isConnected))pandaKur();return s;};
  new MutationObserver(guncelle).observe(document.documentElement,{attributes:true,attributeFilter:['data-sakin','data-theme']});
