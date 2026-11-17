@@ -162,3 +162,17 @@ html body .lc-home .lc-journey-copy{padding:0 11% 2.2% 0!important}
 #lcBuz i:nth-child(2){right:0;top:0;transform:scaleX(-1)}
 #lcBuz i:nth-child(3){left:0;bottom:0;transform:scaleY(-1)}
 #lcBuz i:nth-child(4){right:0;bottom:0;transform:scale(-1,-1)}
+/* Referansla birebir: ayrıntı düzeltmeleri */
+html body .lc-home .lc-rank .ae-serit-sonra,html body .lc-home .lc-rank .ae-serit-sonra b{font-weight:500!important}
+html body .lc-home .lc-rank .ae-serit-adlar strong{font-weight:500!important;font-size:calc(.8rem * var(--lc-textscale))!important;padding:1px 22px!important;min-width:44%;text-align:center}
+html body .lc-home .lc-journey-copy::before{display:none!important}
+html body .lc-home .lc-journey-copy{padding:0 9.5% 4.5% 0!important}
+html body .lc-home .lc-yol-alt{text-shadow:0 1px 2px #000,0 0 6px #000b!important}
+html body .lc-home .lc-nameplate{font-size:calc(clamp(1rem,4.9vw,1.42rem) * var(--lc-textscale))!important;padding:7px 10px!important}
+html body .lc-home{grid-template-rows:auto auto minmax(0,1.25fr) minmax(0,1.6fr)!important}
+@media (max-height:720px){html body .lc-home .lc-journey-copy{padding:0 9.5% 3% 0!important}}
+html body .lc-home{grid-template-rows:auto auto auto minmax(0,1fr)!important}
+html body .lc-home .lc-journey{aspect-ratio:1.6/1;height:auto;max-height:34svh;width:100%;justify-self:center}
+html body .lc-home .lc-nameplate{font-size:calc(clamp(.95rem,4.55vw,1.32rem) * var(--lc-textscale))!important}
+html body .lc-home .lc-rank .lc-rank-label{padding-right:34px;white-space:nowrap}
+@media (max-width:374px),(max-height:720px){html body .lc-home .lc-rank .lc-rank-label{font-size:calc(.86rem * var(--lc-textscale))!important;padding-right:30px}html body .lc-home .lc-journey{max-height:30svh}}
