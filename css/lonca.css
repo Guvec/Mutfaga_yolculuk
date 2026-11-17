@@ -1,5 +1,9 @@
 /* Ortak lonca kitabı: gerçek metin ve kontroller, dekor ayrı katmanda. */
 @font-face{font-family:'Lonca Hikaye';src:url('../assets/yazi/lonca-hikaye-bold.ttf') format('truetype');font-weight:700;font-display:swap}
+@font-face{font-family:'Inknut Antiqua';src:url('../assets/yazi/inknut-antiqua-latin-ext-700-normal.woff2') format('woff2');font-weight:700;font-display:swap;unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1E00-1E9F,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'Inknut Antiqua';src:url('../assets/yazi/inknut-antiqua-latin-700-normal.woff2') format('woff2');font-weight:700;font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Inknut Antiqua';src:url('../assets/yazi/inknut-antiqua-latin-ext-500-normal.woff2') format('woff2');font-weight:500;font-display:swap;unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1E00-1E9F,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'Inknut Antiqua';src:url('../assets/yazi/inknut-antiqua-latin-500-normal.woff2') format('woff2');font-weight:500;font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
 :root{--lc-ink:#142c35;--lc-gold:#b77d24;--lc-edge:#e8b852;--lc-paper:#fff0d2;--lc-shadow:#3c201747;--lc-navy:#093746;--lc-textscale:1}
 html[data-theme=lonca]{--bg:#503221;--surface:#fff0d2;--soft:#eed9b0;--text:#142c35;--muted:#4d5351;--navy:#142c35;--teal:#087e81;--teal2:#d4eddf;--line:#b77d24;--shadow:0 6px 20px #2c170d38;--ae-ink:#142c35}
 html[data-theme=lonca] body{background:radial-gradient(ellipse at 20% 10%,#a2774770,transparent 55%),linear-gradient(120deg,#3d291e,#745035 48%,#3e281d);background-attachment:fixed;color:var(--text)}
@@ -7,7 +11,7 @@ html[data-theme=lonca] #app{background:transparent}
 html[data-theme=loncakrem]{--bg:#f5dfb9;--surface:#fff6e1;--soft:#efd9ad;--text:#142c35;--muted:#4d5351;--navy:#142c35;--teal:#087e81;--teal2:#d4eddf;--line:#b77d24;--shadow:0 5px 18px #79501e30}
 html[data-theme=loncakrem] body,html[data-theme=loncakrem] #app{background:radial-gradient(ellipse at top,#fff7e6,#f2d5a1);color:var(--text)}
 html[data-yz=buyuk]{--lc-textscale:1.12}html[data-yz=cok]{--lc-textscale:1.25}
-html[data-font=hikaye] body :is(.lc-title,.lc-nameplate,.top .ttl,.ae-interior h1,.ay-bas,.ry-bas,.lc-parchment h2){font-family:'Lonca Hikaye',Georgia,serif!important;font-weight:700;letter-spacing:0}
+html[data-font=hikaye] body :is(.lc-title,.lc-nameplate,.top .ttl,.ae-interior h1,.ay-bas,.ry-bas,.lc-parchment h2){font-family:'Inknut Antiqua','Lonca Hikaye',Georgia,serif!important;font-weight:700;letter-spacing:0}
 html[data-font=sade] body :is(.lc-title,.lc-nameplate){font-family:Lexend,Arial,sans-serif!important;font-weight:650}
 html body .lc-home{display:grid;width:100%;max-width:520px;min-height:670px;height:100svh;margin-inline:auto;grid-template-columns:minmax(0,1fr);grid-template-rows:auto auto minmax(172px,.95fr) minmax(290px,1.6fr);gap:10px;padding:12px 12px max(12px,env(safe-area-inset-bottom));color:var(--lc-ink);background:transparent;box-sizing:border-box}
 .lc-home *, .lc-parchment *{box-sizing:border-box}
@@ -88,4 +92,4 @@ html[data-sakin='1'] .lc-card-open:active{transform:none}
 html body .lc-avatar{position:relative;border:0;width:52px;height:52px}
 html body .lc-avatar::after{content:"";position:absolute;inset:0;background:url('../assets/lonca/portre-halka.webp') center/100% 100% no-repeat;pointer-events:none;z-index:2}
 /* 17.11: Yolculuğum alt yazısı da hikâye yazı tipinde (sade yazı seçilince Lexend kalır). */
-html[data-font=hikaye] body .lc-journey-copy>span{font-family:'Lonca Hikaye',Georgia,serif!important;font-weight:700;letter-spacing:.01em;color:#ffe7b8;font-size:calc(.78rem * var(--lc-textscale))}
+html[data-font=hikaye] body .lc-journey-copy>span{font-family:'Inknut Antiqua','Lonca Hikaye',Georgia,serif!important;font-weight:500;letter-spacing:.01em;color:#ffe7b8;font-size:calc(.78rem * var(--lc-textscale))}

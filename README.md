@@ -15,3 +15,4 @@ Bu klasörde `python3 -m http.server 8000` çalıştırıp `http://localhost:800
 
 ## Üçüncü taraf bileşenler
 - three.js r187 (0.187.0) — MIT Lisansı, © 2010-2026 three.js authors. Dosya: `js/vendor/three.module.min.js`, lisans metni: `js/vendor/three-LICENSE.txt`.
+- Inknut Antiqua (Claus Eggers Sørensen) — SIL Open Font License 1.1. Dosyalar: `assets/yazi/inknut-antiqua-*.woff2`, lisans: `assets/yazi/inknut-antiqua-OFL.txt`.
