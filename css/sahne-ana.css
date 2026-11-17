@@ -127,3 +127,17 @@ html[data-sakin="1"] #lcYagisOn{display:none}
 
 /* 18.11: açılışta panda yerinde belirir (aşağıdan kaymaz). */
 body.lc-sahne-acik .lc-poz-yigin[data-h=giris]{animation:lc-cik .8s cubic-bezier(.2,1.2,.4,1) both,lc-dur 3.6s ease-in-out .8s infinite}
+
+/* 18.11: Yolculuğum kartında Aşçı Dostu ayrı katman (kış). */
+.lc-home .lc-journey{position:relative;overflow:hidden}
+.lc-yol-dost{position:absolute;left:22%;top:99%;height:86%;aspect-ratio:1;transform:translate(-50%,-100%);transform-origin:50% 100%;z-index:1;pointer-events:none;filter:drop-shadow(0 4px 3px #0005)}
+.lc-yol-dost img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:bottom}
+.lc-yol-dost img+img{opacity:0}
+.lc-yol-dost.sol-ayak img:first-child{opacity:0}.lc-yol-dost.sol-ayak img+img{opacity:1}
+.lc-yol-dost:not(.yuruyor){animation:lc-dost-nefes 3.4s ease-in-out infinite}
+@keyframes lc-dost-nefes{50%{scale:1.012 .99}}
+.lc-yol-izler{position:absolute;inset:0;z-index:1;pointer-events:none}
+.lc-yol-iz{position:absolute;transform:translate(-50%,-50%) rotate(-30deg);opacity:.75;filter:drop-shadow(0 1px 1px #0004)}
+.lc-home .lc-journey-copy{z-index:2}
+html[data-sakin="1"] .lc-yol-dost{animation:none}
+@media (prefers-reduced-motion:reduce){.lc-yol-dost{animation:none}}

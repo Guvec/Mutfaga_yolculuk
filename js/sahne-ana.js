@@ -85,9 +85,32 @@
  function yolKartKur(){
   const yol=document.querySelector('#app .lc-home .lc-journey');if(!yol)return;
   const m=kartMevsimi();
-  yol.style.setProperty('--lc-scene',"url('"+new URL('assets/yolculuk/kart-'+m+'.webp',document.baseURI).href+"')");
+  /* Kışın pandasız sahne + Aşçı Dostu ayrı katman; "Yolculuğa başla"ya basınca karda yürür, iz bırakır. */
+  const katman=m==='kis';
+  yol.style.setProperty('--lc-scene',"url('"+new URL('assets/yolculuk/kart-'+(katman?'kis-bos':m)+'.webp',document.baseURI).href+"')");
   yol.dataset.mevsim=m;
+  let k=yol.querySelector('.lc-yol-dost');
+  if(katman&&!k){const d=(typeof dostSecili==='function'&&dostSecili())||'panda';
+   const html=d==='panda'?'<img src="assets/harita/panda-adim-1.webp" alt=""><img src="assets/harita/panda-adim-2.webp" alt="">':'<img class="on-yuz" src="assets/ascidostum/dal-'+(d==='rabbit'?'rabbit':d)+'-sicak.webp" alt="">';
+   yol.insertAdjacentHTML('afterbegin','<span class="lc-yol-izler" aria-hidden="true"></span><span class="lc-yol-dost" aria-hidden="true">'+html+'</span>');}
+  if(!katman&&k){k.remove();const z=yol.querySelector('.lc-yol-izler');if(z)z.remove();}
  }
+ /* Yolculuğa başla: dost karda birkaç adım yürür, ardında iz kalır, sonra harita açılır. Dokununca beklemez. */
+ const eskiYolAc=window.loncaYolAc;
+ if(typeof eskiYolAc==='function')window.loncaYolAc=function(){
+  const yol=document.querySelector('#app .lc-home .lc-journey'),d=yol&&yol.querySelector('.lc-yol-dost');
+  if(!d||!hareketli()||d.classList.contains('yuruyor'))return eskiYolAc.apply(this,arguments);
+  const izler=yol.querySelector('.lc-yol-izler'),W=yol.clientWidth,H=yol.clientHeight,bas=performance.now(),sure=1400;let son=0,adim=0,bitti=false;
+  d.classList.add('yuruyor');
+  const git=()=>{if(bitti)return;bitti=true;document.removeEventListener('pointerdown',git,true);eskiYolAc();};
+  setTimeout(()=>document.addEventListener('pointerdown',git,true),120);
+  (function kare(t){if(bitti)return;const o=Math.min(1,(t-bas)/sure),e=o*(2-o);
+   const x=22+e*24,y=99-e*26,olc=1-e*.5;d.style.left=x+'%';d.style.top=y+'%';d.style.transform='translate(-50%,-100%) scale('+olc+')';
+   d.classList.toggle('sol-ayak',(((t-bas)/180)|0)%2===1);
+   if(o-son>.09&&izler){son=o;const i=document.createElement('img');i.src='assets/harita/iz.webp';i.alt='';i.className='lc-yol-iz';
+    i.style.left=(x+((adim++)%2?1.6:-1.6)*olc)+'%';i.style.top=(y-1)+'%';i.style.width=(5.5*olc)+'%';izler.appendChild(i);}
+   if(o<1)requestAnimationFrame(kare);else setTimeout(git,250);})(bas);
+ };
  /* ---------- Kış ortam sesi: rüzgâr, ara sıra esinti ve şömine çıtırtısı (kodla üretilir, dosya yok) ----------
     Ayrı tercih: mesleki-kis-sesi (varsayılan açık). Tarayıcı kuralı gereği ilk dokunuştan sonra başlar.
     Yalnız ana sayfada ve kışın çalar; sayfa gizlenince susar. Sakin modda kısıktır. */
