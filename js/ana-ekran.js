@@ -46,7 +46,7 @@
     onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();rutbeYolAc();}" aria-label="${esc('Rütbem: '+title+'. '+note)}">
    <img src="assets/rozet/${path()}-${index+1}.webp" alt="" width="96" height="96">
    <span class="ae-serit-metin"><span class="lc-rank-label">Rütbeler · ${esc(YOLLAR[path()].ad)}</span>
-    <span class="ae-serit-adlar"><strong>${esc(names[index]||current.name)}</strong>${next?`<span class="ae-serit-sonra">Sıradaki: <b>${esc(names[index+1]||next.name)}</b> ›</span>`:''}</span>
+    <span class="ae-serit-adlar"><strong>${esc(names[index]||current.name)}</strong>${next?`<span class="ae-serit-sonra">Sıradaki: <b>${esc(names[index+1]||next.name)}</b></span>`:''}</span>
     <span class="ae-progress" role="progressbar" aria-label="Sonraki rütbeye ilerleme" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${Math.round(percent)}" aria-valuetext="${esc(note)}"><span style="width:${percent}%"></span></span>
     <small class="ae-serit-sayi" aria-hidden="true">${points} / ${next?next.mp:points} Tecrübe Puanı</small>
     <small class="ae-serit-not">${esc(note)}</small>

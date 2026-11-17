@@ -112,3 +112,24 @@ html body .lc-home .lc-journey::after{left:0!important;right:0!important;top:0!i
 html body .lc-home .lc-yol-yagis{inset:2.6% 2.4%;width:auto;height:auto}
 html body .lc-home .lc-rank{padding-right:24px!important}
 @media (max-height:720px){html body .lc-home .lc-rank{padding:8px 24px 8px 12px!important}}
+
+/* 17.11 gece: referans ana sayfa tasarımına birebir yaklaştırma. */
+.lc-gizli{position:absolute!important;width:1px!important;height:1px!important;overflow:hidden!important;clip:rect(0 0 0 0)!important;white-space:nowrap!important}
+html body .lc-home .lc-journey-copy{align-items:flex-end;justify-content:flex-end;padding:0 8% 5% 0!important}
+html body .lc-home .lc-yol-alt{display:block;font:500 calc(.72rem * var(--lc-textscale))/1.3 'Inknut Antiqua','Lonca Hikaye',Georgia,serif!important;color:#fff8ea!important;opacity:1!important;text-shadow:0 1px 3px #000c,0 0 8px #0008;margin:0 4px 4px 0;white-space:nowrap}
+html body .lc-home .lc-yol-dugme{margin-top:0;padding:6px 16px 7px;font-size:calc(.78rem * var(--lc-textscale))!important}
+/* Rütbe şeridi: arma ile yazı arasında ince altın çizgi; rütbe ile "Sıradaki" arasında ayraç; sayı yok. */
+html body .lc-home .lc-rank .ae-serit>img{padding-right:10px;border-right:1.5px solid #c9933d;box-sizing:content-box}
+html body .lc-home .lc-rank .ae-serit-sayi{display:none}
+html body .lc-home .lc-rank .lc-rank-label{font-size:calc(1rem * var(--lc-textscale))!important;color:#142c35}
+html body .lc-home .lc-rank .ae-serit-adlar{flex-wrap:nowrap;align-items:center;gap:0}
+html body .lc-home .lc-rank .ae-serit-sonra{margin-left:12px;padding-left:12px!important;border-left:1.5px solid #c9933d!important;border-radius:0!important;color:#142c35;white-space:nowrap}
+html body .lc-home .lc-rank .ae-serit-adlar strong{padding:2px 18px}
+/* Aşçı Dostu kartın içinde kalır (referanstaki gibi). */
+html body .lc-home .lc-dost .lc-poz-yigin{height:100%;max-height:none;margin-top:0}
+/* Rozetler büyük, kürsü daha küçük. */
+html body .lc-home .lc-grid .lc-card:nth-child(4) .lc-emblem{transform:scale(1.26);transform-origin:50% 55%}
+html body .lc-home .lc-grid .lc-kursu{transform:scale(.92);background-position:center 70%}
+/* Alt yazı karda okunsun: yumuşak koyu hale. Profil portresi levhanın önünde, büyük. */
+html body .lc-home .lc-journey-copy::before{display:block!important;content:"";position:absolute;right:-2%;bottom:-4%;width:66%;height:62%;background:radial-gradient(closest-side at 60% 62%,#071a2a99 0,#071a2a40 55%,transparent 100%);z-index:-1;pointer-events:none}
+html body .lc-home .lc-avatar{width:62px!important;height:62px!important;margin:-6px -4px -6px -6px;z-index:3}
