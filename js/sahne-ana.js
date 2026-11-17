@@ -195,6 +195,7 @@
   if(yolYagis){yolYagis.kur(m);yolYagis.baslat();}
  }
  document.addEventListener('visibilitychange',guncelle);
+ window.sahneGuncelle=guncelle;
 
  /* ---------- Ayarlar: Mevsim satırı (Sakin mod satırının altına) ---------- */
  const AD={oto:'Otomatik',kis:'Kış',ilkbahar:'İlkbahar',yaz:'Yaz',sonbahar:'Sonbahar',kapali:'Kapalı'};

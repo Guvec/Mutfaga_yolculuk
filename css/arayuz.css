@@ -211,3 +211,6 @@ html:not([data-theme=yuksek]) body.lc-sahne-acik::before{content:"";position:fix
 html:not([data-theme=yuksek]) body.lc-sahne-acik.lc-kis::before{background:radial-gradient(ellipse at 50% 40%,transparent 45%,#0007 100%),url('../assets/arayuz/deri-kis.webp') center/320px repeat}
 /* 18.11: Yolculuğum oranı 1,8 — pandanın kepi tam görünür, tabela yazının üstünde kalır. */
 html body .lc-home .lc-journey{aspect-ratio:1.8/1!important;background-position:center 30%!important}
+/* 18.11 gece: "Yolculuğa devam et" uzun yazısı taşın üstüne binmesin — blok sağdan içeri, düğme referans ölçüsünde. */
+html body .lc-home .lc-journey-copy{padding:0 12.5% 1.2% 0!important}
+html body .lc-home .lc-journey-copy>span.lc-yol-dugme{font-size:calc(9.5px * var(--lc-textscale))!important;padding:3px 12px 4px!important}

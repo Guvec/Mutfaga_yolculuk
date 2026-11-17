@@ -1,0 +1,39 @@
+/* © 2026 Ali Arıkoğlu. Yolculuğum haritası (taslak). */
+body[data-screen=harita]{background:#10303a;overflow:hidden}
+body[data-screen=harita] #app{height:100svh;display:flex;flex-direction:column;overflow:hidden}
+.hr-sahne{flex:1;min-height:0;position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:4px 6px calc(6px + env(safe-area-inset-bottom));overflow:hidden;
+ background:radial-gradient(ellipse at 50% 40%,transparent 40%,#0008 100%),url('../assets/arayuz/deri-kis.webp') center/320px repeat}
+.hr-yonerge{margin:0 0 6px;color:#fff1d3;font:600 14px/1.3 Lexend,Arial,sans-serif;text-align:center;text-shadow:0 1px 3px #000}
+.hr-dunya,.hr-bolge{display:flex;flex-direction:column;align-items:center}
+.hr-dunya[hidden],.hr-bolge[hidden]{display:none}
+.hr-kutu{position:relative;border-radius:10px;box-shadow:0 0 0 2px #c8973f,0 0 0 4px #0b2a33,0 8px 22px #000a;overflow:hidden;transition:transform .95s cubic-bezier(.5,0,.25,1)}
+.hr-zemin{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;user-select:none;-webkit-user-drag:none}
+.hr-dunya.yakin .hr-kutu{transform:scale(3.2)}
+.hr-dunya.anlik .hr-kutu{transition:none}
+.hr-bolge.gel .hr-kutu{animation:hr-gel .7s ease-out both}
+@keyframes hr-gel{from{opacity:0;transform:scale(1.12)}to{opacity:1;transform:none}}
+.hr-etiket{position:absolute;transform:translate(-50%,-50%);border:1.5px solid #b98a3c;border-radius:999px;background:#fff3dccc;color:#142c35;padding:3px 10px;
+ font:800 12px/1.2 'Inknut Antiqua','Lonca Hikaye',Georgia,serif;white-space:nowrap;box-shadow:0 2px 4px #0005;min-height:28px;z-index:2}
+.hr-etiket.hr-ana{font-size:14px;background:linear-gradient(#18586b,#072e40);color:#fff1d3;border-color:#d7a64c;min-height:34px;padding:4px 12px}
+.hr-etiket.hr-yan{font-size:11px;font-weight:700}
+html[data-font=sade] .hr-etiket{font-family:Lexend,Arial,sans-serif}
+.hr-etiket::before{content:"";position:absolute;inset:-10px -4px}
+.hr-hedef{position:absolute;width:22%;aspect-ratio:1;transform:translate(-50%,-50%);border:0;background:transparent;border-radius:50%;z-index:1}
+.hr-hedef:focus-visible,.hr-etiket:focus-visible,.hr-durak:focus-visible{outline:3px solid #ffd77a;outline-offset:2px}
+.hr-izler{position:absolute;inset:0;pointer-events:none;z-index:2}
+.hr-iz{position:absolute;width:3.2%;min-width:9px;opacity:.85;filter:sepia(.4) brightness(.75) drop-shadow(0 1px 1px #0006);transition:opacity 1.4s}
+.hr-kutu-bolge .hr-iz{width:5%;filter:drop-shadow(0 1px 1px #0005);opacity:.9}
+.hr-iz.sol{opacity:0}
+.hr-piyon{position:absolute;width:9%;aspect-ratio:1;transform:translate(-50%,-92%);z-index:3;pointer-events:none;filter:drop-shadow(0 3px 2px #0007)}
+.hr-kutu-bolge .hr-piyon{width:17%}
+.hr-piyon img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:bottom}
+.hr-piyon img+img{opacity:0}
+.hr-piyon.yuruyor.sol-ayak img:first-child{opacity:0}.hr-piyon.yuruyor.sol-ayak img+img{opacity:1}
+.hr-piyon:not(.yuruyor){animation:hr-bekle 2.4s ease-in-out infinite;transform-origin:50% 100%}
+@keyframes hr-bekle{50%{scale:1.02 .985}}
+.hr-piyon-dost img+img{display:none}
+.hr-durak{position:absolute;width:15%;aspect-ratio:1.5;transform:translate(-50%,-50%);border:0;border-radius:50%;background:transparent;z-index:2;display:grid;place-items:center;padding:0;min-width:48px;min-height:48px}
+.hr-durak b{display:grid;place-items:center;width:30px;height:30px;border-radius:50%;background:linear-gradient(#18586b,#072e40);color:#fff1d3;border:2px solid #d7a64c;font:800 14px/1 'Inknut Antiqua',Georgia,serif;box-shadow:0 2px 4px #0006}
+.hr-bolge-ad{position:absolute;left:50%;bottom:2.5%;transform:translateX(-50%);margin:0;z-index:2;background:linear-gradient(#18586b,#072e40);color:#fff1d3;border:1.5px solid #d7a64c;border-radius:999px;padding:3px 16px;font-size:15px;white-space:nowrap;box-shadow:0 2px 5px #0007}
+html[data-sakin="1"] .hr-piyon,html[data-sakin="1"] .hr-kutu{animation:none!important;transition:none!important}
+@media (prefers-reduced-motion:reduce){.hr-piyon,.hr-kutu{animation:none!important;transition:none!important}}
