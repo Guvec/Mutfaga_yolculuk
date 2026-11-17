@@ -1,0 +1,46 @@
+/* © 2026 Ali Arıkoğlu. Ana sayfa arayüz çerçeveleri (GPT ile üretilen görseller, 17.11.2026).
+   Yaz: altın set; kış (body.lc-kis): gümüş ve karlı set. Yazılar HTML'de kalır; görseller yalnız çerçevedir.
+   --u: kış görselinde karın çerçeve üstünden taşma payı (yüzde). */
+html:is([data-theme=lonca],[data-theme=loncakrem]) body.lc-sahne-acik{background:radial-gradient(ellipse at 50% 40%,transparent 45%,#0006 100%),url('../assets/arayuz/deri-yaz.webp') center/320px repeat;background-attachment:fixed}
+html:is([data-theme=lonca],[data-theme=loncakrem]) body.lc-sahne-acik.lc-kis{background:radial-gradient(ellipse at 50% 40%,transparent 45%,#0007 100%),url('../assets/arayuz/deri-kis.webp') center/320px repeat;background-attachment:fixed}
+
+.lc-home{--g-kart:url('../assets/arayuz/kart-yaz.webp');--g-cerceve:url('../assets/arayuz/cerceve-yaz.webp');--g-serit:url('../assets/arayuz/serit-yaz.webp');--g-adlevha:url('../assets/arayuz/adlevha-yaz.webp');--g-tomar:url('../assets/arayuz/tomar-yaz.webp');--g-kurdele:url('../assets/arayuz/kurdele-yaz.webp');--g-dugme:url('../assets/arayuz/dugme-yaz.webp');
+ --u-kart:0;--u-cerceve:0;--u-serit:0;--u-adlevha:0;--u-tomar:0;--u-kurdele:0;--u-dugme:0}
+body.lc-kis .lc-home{--g-kart:url('../assets/arayuz/kart-kis.webp');--g-cerceve:url('../assets/arayuz/cerceve-kis.webp');--g-serit:url('../assets/arayuz/serit-kis.webp');--g-adlevha:url('../assets/arayuz/adlevha-kis.webp');--g-tomar:url('../assets/arayuz/tomar-kis.webp');--g-kurdele:url('../assets/arayuz/kurdele-kis.webp');--g-dugme:url('../assets/arayuz/dugme-kis.webp');
+ --u-kart:5.3;--u-cerceve:7.1;--u-serit:16.9;--u-adlevha:27;--u-tomar:32;--u-kurdele:16.8;--u-dugme:9.9}
+
+/* Ortak çerçeve kalıbı */
+html body .lc-home :is(.lc-profile,.lc-tool,.lc-rank,.lc-card,.lc-nameplate),html body .lc-home .lc-rank .ae-serit-adlar strong{position:relative;isolation:isolate;background:none!important;border:0!important;box-shadow:none!important}
+html body .lc-home :is(.lc-profile,.lc-tool,.lc-rank,.lc-card,.lc-nameplate)::before,html body .lc-home .lc-rank .ae-serit-adlar strong::before{content:"";position:absolute;inset:auto;left:0;right:0;bottom:0;top:calc(var(--u) * -1%);background:var(--g) center/100% 100% no-repeat;z-index:-1;pointer-events:none;border:0;border-radius:0;box-shadow:none;width:auto}
+.lc-home .lc-profile{--g:var(--g-adlevha);--u:var(--u-adlevha)}
+.lc-home .lc-tool{--g:var(--g-dugme);--u:var(--u-dugme)}
+.lc-home .lc-rank{--g:var(--g-serit);--u:var(--u-serit)}
+.lc-home .lc-card{--g:var(--g-kart);--u:var(--u-kart)}
+.lc-home .lc-nameplate{--g:var(--g-tomar);--u:var(--u-tomar)}
+.lc-home .lc-rank .ae-serit-adlar strong{--g:var(--g-kurdele);--u:var(--u-kurdele)}
+
+/* Üst bölüm: kutu kalkar; portre, ad levhası ve üç düğme zeminde ayrı durur. */
+html body .lc-home .lc-header{background:none!important;border:0!important;box-shadow:none!important;padding:0;gap:6px}
+html body .lc-home .lc-profile{padding:4px 22px 4px 0;margin-left:0;min-height:56px}
+html body .lc-home .lc-profile strong{color:#142c35}
+html body .lc-home .lc-avatar{margin-left:-2px;width:58px;height:58px}
+html body .lc-home .lc-tool{width:50px;height:50px;border-radius:0}
+
+/* Rütbe şeridi */
+html body .lc-home .lc-rank{padding:12px 18px 12px 14px;border-radius:0}
+html body .lc-home .lc-rank .ae-serit-adlar strong{color:#fff1d3;padding:3px 22px;border-radius:0}
+html body .lc-home .lc-rank .ae-serit-sonra{background:none!important;border:0!important;padding:0}
+
+/* Yolculuğum: sahne çerçevenin içinde, çerçeve üstte. */
+html body .lc-home .lc-journey{border:0!important;box-shadow:none!important;border-radius:7%/11%;overflow:visible;position:relative}
+html body .lc-home .lc-journey::after{content:"";position:absolute;left:-2%;right:-2%;bottom:-3%;top:calc(-3% - var(--u-cerceve) * 1.06%);background:var(--g-cerceve) center/100% 100% no-repeat;pointer-events:none;z-index:2}
+html body .lc-home .lc-journey-copy{z-index:3;padding:0 6% 9% 0}
+
+/* Kartlar */
+html body .lc-home .lc-card{border-radius:0}
+html body .lc-home .lc-knot{display:none}
+html body .lc-home .lc-card-open{padding:12px 10px 14px}
+html body .lc-home .lc-nameplate{border-radius:0;margin:0 -2px;padding:9px 16px}
+html body .lc-home .lc-nameplate::after{display:none}
+/* Kışın kar çerçevelerin üstünden taşar; öğeler arasına biraz pay. */
+body.lc-kis .lc-home{gap:16px}
