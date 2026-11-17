@@ -88,3 +88,5 @@ html[data-sakin='1'] .lc-card-open:active{transform:none}
 html body .lc-rank .ae-serit>img{width:50px!important;height:58px!important;box-sizing:border-box;padding:17px 12px 16px;object-fit:contain;background:url('../assets/lonca/rutbe-kalkan.webp') center/contain no-repeat}
 html body .lc-avatar{position:relative;border:0;width:52px;height:52px}
 html body .lc-avatar::after{content:"";position:absolute;inset:0;background:url('../assets/lonca/portre-halka.webp') center/100% 100% no-repeat;pointer-events:none;z-index:2}
+/* 17.11: Yolculuğum alt yazısı da hikâye yazı tipinde (sade yazı seçilince Lexend kalır). */
+html[data-font=hikaye] body .lc-journey-copy>span{font-family:'Lonca Hikaye',Georgia,serif!important;font-weight:700;letter-spacing:.01em;color:#ffe7b8;font-size:calc(.95rem * var(--lc-textscale))}
