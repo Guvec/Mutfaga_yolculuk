@@ -106,3 +106,9 @@ body.lc-sahne-acik .lc-home .lc-header .lc-tool:nth-child(3)::after{animation-de
 body.lc-sahne-acik .lc-home .lc-header .lc-tool:nth-child(4)::after{animation-delay:-2.8s}
 html[data-sakin="1"] body .lc-home :is(.lc-tool::after,.lc-yol-dugme){animation:none!important}
 @media (prefers-reduced-motion:reduce){body .lc-home .lc-yol-dugme,body .lc-home .lc-tool::after{animation:none!important}}
+/* Hizalama: Yolculuğum çerçevesi diğer kartlarla aynı dış kenarda; sahne çerçevenin içinde kalır. */
+html body .lc-home .lc-journey{padding:2.6% 2.4%!important;background-origin:content-box!important;background-clip:content-box!important;border-radius:0}
+html body .lc-home .lc-journey::after{left:0!important;right:0!important;top:0!important;bottom:0!important}
+html body .lc-home .lc-yol-yagis{inset:2.6% 2.4%;width:auto;height:auto}
+html body .lc-home .lc-rank{padding-right:24px!important}
+@media (max-height:720px){html body .lc-home .lc-rank{padding:8px 24px 8px 12px!important}}
