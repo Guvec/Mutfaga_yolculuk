@@ -216,3 +216,9 @@ html body .lc-home .lc-journey-copy{padding:0 12.5% 1.2% 0!important}
 html body .lc-home .lc-journey-copy>span.lc-yol-dugme{font-size:calc(9.5px * var(--lc-textscale))!important;padding:3px 12px 4px!important}
 /* 18.11: Rozetlerim öbür kartlarla aynı görsel ağırlıkta. */
 html body .lc-home .lc-grid .lc-card:nth-child(4) .lc-emblem{transform:scale(1.22)!important;transform-origin:50% 50%}
+/* 18.11: kış simgeleri — Ustalar Ligi lonca sancağı, Rozetlerim yastığı. */
+.lc-home .lc-grid :is(.lc-sancak,.lc-yastik){display:block;width:100%;height:100%;background:center 55%/contain no-repeat}
+.lc-home .lc-grid .lc-sancak{background-image:url('../assets/arayuz/sancak-kis.webp')}
+.lc-home .lc-grid .lc-yastik{background-image:url('../assets/arayuz/rozet-yastik-kis.webp')}
+html body .lc-home .lc-grid .lc-card:nth-child(2) .lc-emblem.lc-sancak{transform:scale(.9)!important;transform-origin:50% 75%}
+html body .lc-home .lc-grid .lc-card:nth-child(4) .lc-emblem.lc-yastik{transform:scale(1)!important;transform-origin:50% 60%}

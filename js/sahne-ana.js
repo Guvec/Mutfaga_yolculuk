@@ -177,6 +177,9 @@
   let buz=document.getElementById('lcBuz');
   if(!buz){buz=document.createElement('div');buz.id='lcBuz';buz.setAttribute('aria-hidden','true');buz.innerHTML='<i></i><i></i><i></i><i></i>';document.body.prepend(buz);}
   buz.hidden=!(ev&&m==='kis');
+  /* Kışın Ustalar Ligi kartında karlı lonca sancağı, Rozetlerim kartında yastık üstünde rozetler (GPT görselleri). */
+  if(m==='kis')[[2,'lc-sancak'],[4,'lc-yastik']].forEach(([n,cls])=>{const st=document.querySelector('#app .lc-home .lc-grid .lc-card:nth-child('+n+') .lc-stage');
+   if(st&&!st.querySelector('.'+cls)){const e=st.querySelector('.lc-emblem');if(e)e.remove();st.insertAdjacentHTML('afterbegin','<span class="lc-emblem '+cls+'" aria-hidden="true"></span>');}});
   /* Sıralama kartı: kupalı kürsü (mevsime göre CSS seçer). */
   const sira=document.querySelector('#app .lc-home .lc-grid .lc-card:nth-child(3) .lc-stage');
   if(sira&&!sira.querySelector('.lc-kursu')){const e=sira.querySelector('.lc-emblem');if(e)e.remove();sira.insertAdjacentHTML('afterbegin','<span class="lc-emblem lc-kursu" aria-hidden="true"></span>');}
