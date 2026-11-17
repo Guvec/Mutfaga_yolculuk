@@ -1,4 +1,7 @@
 /* © 2026 Ali Arıkoğlu. Tüm hakları saklıdır. */
+/* 17.11.2026 tek seferlik geçiş (Ali'nin kararı): kış görünümlü Lonca teması ve Hikâye yazısı varsayılan olur.
+   Yüksek Kontrast seçenler hariç, önceden başka tema/yazı seçilmiş telefonlarda bir kez uygulanır; sonra ayarlardan değiştirilebilir. Anahtar adları değişmez. */
+try{if(!localStorage.getItem('mesleki-gorunum-gecis-20261117')){if(localStorage.getItem('mesleki-tema')!=='yuksek'){localStorage.setItem('mesleki-tema','lonca');localStorage.setItem('mesleki-gece','false');}localStorage.setItem('kv_lonca_yazi',JSON.stringify('hikaye'));localStorage.setItem('mesleki-gorunum-gecis-20261117','1');}}catch(e){}
 try{var t=localStorage.getItem('mesleki-tema');if(['lonca','loncakrem','light','sepia','okyanus','orman','lavanta','seftali','yuksek','dark'].indexOf(t)<0)t=localStorage.getItem('mesleki-gece')==='true'?'dark':'lonca';document.documentElement.dataset.theme=t;document.documentElement.style.colorScheme=t==='dark'?'dark':'lonca';}catch(e){document.documentElement.dataset.theme='lonca';}
 try{var ak=localStorage.getItem('mesleki-aksan');if(['okyanus','orman','bordo','kehribar','mor'].indexOf(ak)>=0)document.documentElement.setAttribute('data-aksan',ak);}catch(e){}
 try{var yz=localStorage.getItem('mesleki-yazi');document.documentElement.setAttribute('data-yz',['normal','buyuk','cok'].indexOf(yz)>=0?yz:'normal');}catch(e){document.documentElement.setAttribute('data-yz','normal');}

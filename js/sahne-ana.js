@@ -132,7 +132,9 @@
   return '<span class="lc-poz-yigin">'+POZ.map(p=>'<img alt="" decoding="async" data-poz="'+p+'" src="assets/ascidostum/panda-poz/panda-'+p+'.webp"'+(p==='bekliyor'?' class="on"':'')+'>').join('')+'</span>';
  };
  let pz={kart:null,zaman:[],sonDokunus:0,uyku:false,gecici:false};
- function pozGoster(ad){if(!pz.kart||!pz.kart.isConnected)return;pz.kart.querySelectorAll('.lc-poz-yigin img').forEach(i=>i.classList.toggle('on',i.dataset.poz===ad));}
+ function pozGoster(ad){if(!pz.kart||!pz.kart.isConnected)return;pz.kart.querySelectorAll('.lc-poz-yigin img').forEach(i=>i.classList.toggle('on',i.dataset.poz===ad));
+  /* Matematik Canavarı gibi: her poz değişimine gövde hareketi eşlik eder (çömelme, esneme, eğilme, sıçrama). */
+  const y=pz.kart.querySelector('.lc-poz-yigin');if(y&&y.dataset.h!==ad){y.dataset.h='';void y.offsetWidth;y.dataset.h=ad;}}
  function pozTemizle(){pz.zaman.forEach(clearTimeout);pz.zaman=[];}
  function sonra(ms,f){pz.zaman.push(setTimeout(f,ms));}
  function gecici(ad,ms){pz.gecici=true;pozGoster(ad);sonra(ms,()=>{pz.gecici=false;if(!pz.uyku)pozGoster('bekliyor');});}
@@ -173,9 +175,15 @@
 
  /* Her ekran çiziminden sonra mevsim katmanını ve pozları güncelle. */
  const eskiRender=render;
- render=function(){const s=eskiRender.apply(this,arguments);guncelle();if(document.querySelector('#app .lc-home .lc-poz-yigin')&&(!pz.kart||!pz.kart.isConnected))pandaKur();return s;};
+ let oncekiEkran='';
+ function girisHareketi(){
+  const ekran=(typeof st==='object'&&st&&st.screen)||'';const ev=ekran==='home'&&!!document.querySelector('#app .lc-home');
+  if(ev&&oncekiEkran!=='home'&&hareketli()){const h=document.querySelector('#app .lc-home');h.classList.remove('lc-giris');void h.offsetWidth;h.classList.add('lc-giris');setTimeout(()=>h.classList.remove('lc-giris'),1600);}
+  oncekiEkran=ekran;
+ }
+ render=function(){const s=eskiRender.apply(this,arguments);guncelle();girisHareketi();if(document.querySelector('#app .lc-home .lc-poz-yigin')&&(!pz.kart||!pz.kart.isConnected))pandaKur();return s;};
  new MutationObserver(guncelle).observe(document.documentElement,{attributes:true,attributeFilter:['data-sakin','data-theme']});
- guncelle();pandaKur();
+ guncelle();pandaKur();girisHareketi();
 })();
 /* lonca.js ilk çizimi bu dosyadan önce yaptı; panda pozları için ana sayfa bir kez yeniden çizilir. */
 if(document.querySelector('#app .lc-home')&&!document.querySelector('#app .lc-poz-yigin')&&typeof dostSecili==='function'&&dostSecili()==='panda')render();

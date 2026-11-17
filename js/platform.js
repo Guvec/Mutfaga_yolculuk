@@ -11,7 +11,7 @@ const SUBJECTS = [
 const CONTENT = Object.create(null);
 const OLD_RENDER = render, OLD_NEWQ = newQ, OLD_START = startSession, OLD_RESOLVE = resolve;
 const OLD_QUIZ = quizHtml, OLD_ITEM = itemImg;
-VERSION='Sürüm · 17.11.2026 · v3.22.1: Ana sayfa tüm renk temalarında ve büyük yazıda doğru görünür';
+VERSION='Sürüm · 17.11.2026 · v3.23.0: Kış görünümü ve hikâye yazısı varsayılan, canlı panda hareketleri, Yolculuğum yazıları referansa göre';
 st.subject='kuver'; st.practice='learn';
 LEVELS={
   1:{name:'Basit Kuver', items:['yemek_catali','yemek_bicagi','pecete','su_bardagi']},

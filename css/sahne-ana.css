@@ -38,3 +38,59 @@ html[data-sakin="1"] body .lc-home :is(.lc-card,.lc-emblem,.lc-poz-yigin){animat
 /* Yolculuğum kartı: mevsim sahnesi, sol altta arkadan görünen panda. */
 .lc-home .lc-journey{background-size:cover;background-position:center 40%}
 
+
+/* ===== 17.11 gece: Matematik Canavarı düzeyinde hareket =====
+   Panda kumaşa dayandığı için havaya zıplamaz; tabanı yerinde kalır, gövdesi çömelir, esner, eğilir, sallanır.
+   Her poz değişimine kısa bir gövde hareketi eşlik eder, ardından nefes alma ve hafif salınma sürer. */
+.lc-poz-yigin{transform-origin:50% 94%;will-change:transform}
+.lc-poz-yigin img{transition:opacity .09s linear}
+@keyframes lc-dur{0%,100%{transform:scale(1,1) rotate(0)}25%{transform:scale(1.012,.988) rotate(-1.4deg)}50%{transform:scale(.985,1.03) rotate(0)}75%{transform:scale(1.012,.988) rotate(1.4deg)}}
+@keyframes lc-kirp{0%,100%{transform:none}50%{transform:scale(1.03,.96)}}
+@keyframes lc-bak-sag{0%{transform:none}30%{transform:translateX(3%) rotate(5deg)}70%{transform:translateX(3%) rotate(4deg)}100%{transform:none}}
+@keyframes lc-bak-sol{0%{transform:none}30%{transform:translateX(-3%) rotate(-5deg)}70%{transform:translateX(-3%) rotate(-4deg)}100%{transform:none}}
+@keyframes lc-dusun{0%{transform:none}25%{transform:rotate(-4deg) scale(.99,1.01)}60%{transform:rotate(-3deg)}100%{transform:none}}
+@keyframes lc-selam{0%{transform:none}12%{transform:scale(1.07,.9)}26%{transform:scale(.95,1.09)}38%{transform:rotate(-5deg)}52%{transform:rotate(5deg)}66%{transform:rotate(-4deg)}80%{transform:rotate(3deg)}100%{transform:none}}
+@keyframes lc-sevinc{0%{transform:none}10%{transform:scale(1.12,.86)}24%{transform:translateY(-7%) scale(.93,1.1)}36%{transform:scale(1.1,.9)}46%{transform:scale(1,1)}58%{transform:translateY(-9%) scale(.94,1.08) rotate(-3deg)}72%{transform:scale(1.1,.9) rotate(0)}84%{transform:scale(.98,1.03)}100%{transform:none}}
+@keyframes lc-mutlu{0%,100%{transform:none}20%{transform:scale(1.06,.93)}45%{transform:translateY(-4%) scale(.97,1.05)}65%{transform:scale(1.04,.96)}}
+@keyframes lc-cik{0%{transform:translateY(38%) scale(.96,1.04);opacity:.2}55%{transform:translateY(-5%) scale(.97,1.05);opacity:1}75%{transform:translateY(0) scale(1.06,.94)}100%{transform:none}}
+@keyframes lc-uyku{0%,100%{transform:translateY(2%) scale(1,1)}50%{transform:translateY(2%) scale(1.03,.97)}}
+body.lc-sahne-acik .lc-poz-yigin{animation:lc-dur 3.4s ease-in-out infinite}
+body.lc-sahne-acik .lc-poz-yigin[data-h=goz-kirpma]{animation:lc-kirp .2s ease-out,lc-dur 3.4s ease-in-out .2s infinite}
+body.lc-sahne-acik .lc-poz-yigin[data-h=ekranin-sagina-bakiyor]{animation:lc-bak-sag 1.7s ease-in-out,lc-dur 3.4s ease-in-out 1.7s infinite}
+body.lc-sahne-acik .lc-poz-yigin[data-h=ekranin-soluna-bakiyor]{animation:lc-bak-sol 1.7s ease-in-out,lc-dur 3.4s ease-in-out 1.7s infinite}
+body.lc-sahne-acik .lc-poz-yigin[data-h=dusunuyor]{animation:lc-dusun 1.8s ease-in-out,lc-dur 3.4s ease-in-out 1.8s infinite}
+body.lc-sahne-acik .lc-poz-yigin[data-h=selam]{animation:lc-selam 1.2s cubic-bezier(.3,.7,.4,1),lc-dur 3.4s ease-in-out 1.2s infinite}
+body.lc-sahne-acik .lc-poz-yigin[data-h=sevincli]{animation:lc-sevinc 1.2s cubic-bezier(.3,.7,.4,1),lc-dur 3.4s ease-in-out 1.2s infinite}
+body.lc-sahne-acik .lc-poz-yigin[data-h=mutlu]{animation:lc-mutlu 1s ease-in-out,lc-dur 3.4s ease-in-out 1s infinite}
+body.lc-sahne-acik .lc-poz-yigin[data-h=saklanip-bakiyor]{animation:lc-cik .9s cubic-bezier(.2,1.2,.4,1) both}
+body.lc-sahne-acik .lc-poz-yigin[data-h=uyukluyor]{animation:lc-uyku 4.6s ease-in-out infinite}
+.lc-home .lc-dost .lc-stage{overflow:visible}
+
+/* Ana sayfaya gelişte kartlar sırayla yaylanarak belirir; rütbe çubuğu dolar. */
+@keyframes lc-gir{0%{opacity:0;transform:translateY(14px) scale(.92)}60%{opacity:1;transform:translateY(-3px) scale(1.02)}100%{opacity:1;transform:none}}
+.lc-home.lc-giris :is(.lc-header,.lc-rank,.lc-journey,.lc-grid .lc-card){animation:lc-gir .55s cubic-bezier(.2,1.1,.4,1) both!important}
+.lc-home.lc-giris .lc-rank{animation-delay:.06s!important}
+.lc-home.lc-giris .lc-journey{animation-delay:.12s!important}
+.lc-home.lc-giris .lc-grid .lc-card:nth-child(1){animation-delay:.2s!important}
+.lc-home.lc-giris .lc-grid .lc-card:nth-child(2){animation-delay:.26s!important}
+.lc-home.lc-giris .lc-grid .lc-card:nth-child(3){animation-delay:.32s!important}
+.lc-home.lc-giris .lc-grid .lc-card:nth-child(4){animation-delay:.38s!important}
+@keyframes lc-dol{from{transform:scaleX(0)}}
+.lc-home.lc-giris .lc-rank .ae-progress>*{transform-origin:left center;animation:lc-dol .9s cubic-bezier(.3,.8,.3,1) .35s both}
+
+/* Kupa ve rozet ara sıra kısa bir hareket yapar; her biri ayrı zamanda, aynı anda değil. */
+@keyframes lc-kupa{0%,88%,100%{translate:0 0}91%{translate:0 -5px}94%{translate:0 0}97%{translate:0 -2px}}
+@keyframes lc-rozet{0%,84%,100%{rotate:0deg}88%{rotate:-6deg}92%{rotate:5deg}96%{rotate:-2deg}}
+body.lc-sahne-acik .lc-grid .lc-card:nth-child(3) .lc-kursu{animation:lc-kupa 9s ease-in-out -3s infinite,lc-isik 10s ease-in-out -5.5s infinite}
+body.lc-sahne-acik .lc-grid .lc-card:nth-child(4) .lc-stage{animation:lc-rozet 11s ease-in-out -1s infinite;transform-origin:50% 60%}
+
+/* "Yolculuğa başla" düğmesinden ara sıra ışık geçer; ok öne doğru kıpırdar. */
+@keyframes lc-parilti{0%,80%{background-position:-120% 0}96%,100%{background-position:220% 0}}
+@keyframes lc-ok{0%,82%,100%{transform:none}88%{transform:translateX(3px)}94%{transform:translateX(0)}}
+body.lc-sahne-acik .lc-home .lc-yol-dugme{position:relative;overflow:hidden}
+body.lc-sahne-acik .lc-home .lc-yol-dugme::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:linear-gradient(105deg,transparent 35%,#fff3c866 50%,transparent 65%) no-repeat;background-size:60% 100%;animation:lc-parilti 7s ease-in-out 1.5s infinite}
+body.lc-sahne-acik .lc-home .lc-yol-dugme b{display:inline-block;animation:lc-ok 7s ease-in-out 1.5s infinite}
+
+/* Sakin mod ve hareketi azalt: bu hareketlerin hiçbiri oynamaz. */
+html[data-sakin="1"] body .lc-home :is(.lc-poz-yigin,.lc-kursu,.lc-stage,.lc-yol-dugme b,.lc-yol-dugme::after,.lc-header,.lc-rank,.lc-journey,.lc-card,.ae-progress>*){animation:none!important}
+@media (prefers-reduced-motion:reduce){body .lc-home :is(.lc-poz-yigin,.lc-kursu,.lc-stage,.lc-yol-dugme b,.lc-yol-dugme::after,.lc-header,.lc-rank,.lc-journey,.lc-card,.ae-progress>*){animation:none!important}}
