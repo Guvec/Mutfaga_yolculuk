@@ -11,7 +11,7 @@ const SUBJECTS = [
 const CONTENT = Object.create(null);
 const OLD_RENDER = render, OLD_NEWQ = newQ, OLD_START = startSession, OLD_RESOLVE = resolve;
 const OLD_QUIZ = quizHtml, OLD_ITEM = itemImg;
-VERSION='Sürüm · 18.11.2026 · v3.24.1: Doğal lapa lapa kar, panda kaymıyor, Yolculuğum kartında kep tam görünüyor';
+VERSION='Sürüm · 18.11.2026 · v3.25.0: Yolculuğum haritası (taslak): panda yolda yürür, bölgeye yakınlaşır, taş duraklar; rozetler büyüdü';
 st.subject='kuver'; st.practice='learn';
 LEVELS={
   1:{name:'Basit Kuver', items:['yemek_catali','yemek_bicagi','pecete','su_bardagi']},

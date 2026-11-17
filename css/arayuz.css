@@ -214,3 +214,5 @@ html body .lc-home .lc-journey{aspect-ratio:1.8/1!important;background-position:
 /* 18.11 gece: "Yolculuğa devam et" uzun yazısı taşın üstüne binmesin — blok sağdan içeri, düğme referans ölçüsünde. */
 html body .lc-home .lc-journey-copy{padding:0 12.5% 1.2% 0!important}
 html body .lc-home .lc-journey-copy>span.lc-yol-dugme{font-size:calc(9.5px * var(--lc-textscale))!important;padding:3px 12px 4px!important}
+/* 18.11: Rozetlerim öbür kartlarla aynı görsel ağırlıkta. */
+html body .lc-home .lc-grid .lc-card:nth-child(4) .lc-emblem{transform:scale(1.22)!important;transform-origin:50% 50%}
