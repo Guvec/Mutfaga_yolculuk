@@ -7,7 +7,7 @@ html:is([data-theme=lonca],[data-theme=loncakrem]) body.lc-sahne-acik.lc-kis{bac
 .lc-home{--g-kart:url('../assets/arayuz/kart-yaz.webp');--g-cerceve:url('../assets/arayuz/cerceve-yaz.webp');--g-serit:url('../assets/arayuz/serit-yaz.webp');--g-adlevha:url('../assets/arayuz/adlevha-yaz.webp');--g-tomar:url('../assets/arayuz/tomar-yaz.webp');--g-kurdele:url('../assets/arayuz/kurdele-yaz.webp');--g-dugme:url('../assets/arayuz/dugme-yaz.webp');
  --u-kart:0;--u-cerceve:0;--u-serit:0;--u-adlevha:0;--u-tomar:0;--u-kurdele:0;--u-dugme:0}
 body.lc-kis .lc-home{--g-kart:url('../assets/arayuz/kart-kis.webp');--g-cerceve:url('../assets/arayuz/cerceve-kis.webp');--g-serit:url('../assets/arayuz/serit-kis.webp');--g-adlevha:url('../assets/arayuz/adlevha-kis.webp');--g-tomar:url('../assets/arayuz/tomar-kis.webp');--g-kurdele:url('../assets/arayuz/kurdele-kis.webp');--g-dugme:url('../assets/arayuz/dugme-kis.webp');
- --u-kart:5.3;--u-cerceve:7.1;--u-serit:16.9;--u-adlevha:27;--u-tomar:32;--u-kurdele:16.8;--u-dugme:9.9}
+ --u-kart:0;--u-cerceve:0;--u-serit:0;--u-adlevha:0;--u-tomar:0;--u-kurdele:0;--u-dugme:0}
 
 /* Ortak çerçeve kalıbı */
 html body .lc-home :is(.lc-profile,.lc-tool,.lc-rank,.lc-card,.lc-nameplate),html body .lc-home .lc-rank .ae-serit-adlar strong{position:relative;isolation:isolate;background:none!important;border:0!important;box-shadow:none!important}
@@ -43,7 +43,7 @@ html body .lc-home .lc-card-open{padding:12px 10px 14px}
 html body .lc-home .lc-nameplate{border-radius:0;margin:0 -2px;padding:9px 16px}
 html body .lc-home .lc-nameplate::after{display:none}
 /* Kışın kar çerçevelerin üstünden taşar; öğeler arasına biraz pay. */
-body.lc-kis .lc-home{gap:16px}
+body.lc-kis .lc-home{gap:10px}
 
 /* 17.11 akşam: Inknut Antiqua başlıklar; Yolculuğum yazısı küçük, sağ altta çimenin üstünde, yumuşak gölgeli, altında › oku. */
 html body .lc-home .lc-journey{background-image:var(--lc-scene)!important}
@@ -66,7 +66,7 @@ html body .lc-home .lc-dost .lc-poz-yigin{height:128%;max-height:none;margin-top
 /* Kısa telefonlar (≤ 720 px yükseklik): ana sayfa kaydırmadan sığar. */
 @media (max-height:720px){
  html body .lc-home{min-height:0;height:100svh;grid-template-rows:auto auto minmax(0,.9fr) minmax(0,1.5fr);gap:9px;padding-top:8px;padding-bottom:max(8px,env(safe-area-inset-bottom))}
- body.lc-kis .lc-home{gap:12px}
+ body.lc-kis .lc-home{gap:9px}
  html body .lc-home .lc-grid{gap:8px}
  html body .lc-home .lc-rank{padding:8px 14px 8px 12px}
  html body .lc-home .lc-rank .ae-serit>img{height:44px!important;width:44px!important}
@@ -76,3 +76,33 @@ html body .lc-home .lc-dost .lc-poz-yigin{height:128%;max-height:none;margin-top
  html body .lc-home .lc-nameplate{padding:6px 12px;font-size:calc(clamp(1rem,4.4vw,1.3rem) * var(--lc-textscale))}
  html body .lc-home .lc-card-open{padding:8px 8px 10px}
 }
+
+/* 17.11 gece: altın simgeler, kupalı kürsü, büyük armalar, Yolculuğa başla düğmesi, ilerleme sayısı. */
+html body .lc-home .lc-tool svg{display:none}
+html body .lc-home .lc-tool::after{content:"";position:absolute;inset:22%;background:center/contain no-repeat;filter:drop-shadow(0 1px 1px #0008);pointer-events:none}
+html body .lc-home .lc-header .lc-tool:nth-child(2)::after{background-image:url('../assets/arayuz/simge-nota.webp')}
+html body .lc-home .lc-header .lc-tool:nth-child(3)::after{background-image:url('../assets/arayuz/simge-arkadas.webp')}
+html body .lc-home .lc-header .lc-tool:nth-child(4)::after{background-image:url('../assets/arayuz/simge-ayar.webp')}
+html body .lc-home .lc-tool[aria-pressed=false]::after{opacity:.55}
+.lc-home .lc-kursu{display:block;width:100%;height:100%;background:url('../assets/arayuz/kursu-yaz.webp') center 60%/contain no-repeat}
+body.lc-kis .lc-home .lc-kursu{background-image:url('../assets/arayuz/kursu-kis.webp')}
+html body .lc-home .lc-grid .lc-emblem{transform:scale(1.16);transform-origin:50% 60%}
+html body .lc-home .lc-grid .lc-kursu{transform:scale(1.12)}
+html body .lc-home .lc-info{transform:none;background:radial-gradient(circle,#0b3a4a 0 33%,#d8a14a 35% 37%,#fff1ac 38% 40%,transparent 42%)!important;font-size:17px!important}
+html body .lc-home .lc-nameplate{padding-left:24px;padding-right:24px}
+/* Yolculuğa başla: altın kenarlı lacivert düğme görünümü (kartın tamamı dokunulabilir). */
+html body .lc-home .lc-journey-copy::before{display:none}
+html body .lc-home .lc-journey-copy strong{text-shadow:0 2px 6px #000,0 0 14px #000a}
+html body .lc-home .lc-yol-dugme{display:inline-flex;align-items:center;gap:6px;margin-top:6px;padding:7px 18px 8px;background:url('../assets/arayuz/uzun-dugme.webp') center/100% 100% no-repeat;color:#fff1d3;font:700 calc(.82rem * var(--lc-textscale))/1 'Inknut Antiqua','Lonca Hikaye',Georgia,serif;white-space:nowrap;text-shadow:0 1px 2px #000}
+html body .lc-home .lc-yol-dugme b{display:inline!important;position:static!important;font:700 1.2em/1 Georgia,serif!important;color:#f2c25f}
+@keyframes lc-dugme-isik{0%,88%,100%{filter:none}94%{filter:brightness(1.25) drop-shadow(0 0 6px #ffd77a)}}
+body.lc-sahne-acik .lc-home .lc-yol-dugme{animation:lc-dugme-isik 7s ease-in-out infinite}
+/* İlerleme sayısı */
+html body .lc-home .lc-rank .ae-serit-sayi{display:block;font:600 calc(.68rem * var(--lc-textscale))/1.2 Lexend,Arial,sans-serif;color:#3b3a33;text-align:right;margin-top:1px}
+/* Üst simgeler hafifçe nefes alır */
+@keyframes lc-simge{0%,100%{transform:translateY(0)}50%{transform:translateY(-1.5px)}}
+body.lc-sahne-acik .lc-home .lc-tool::after{animation:lc-simge 4.2s ease-in-out infinite}
+body.lc-sahne-acik .lc-home .lc-header .lc-tool:nth-child(3)::after{animation-delay:-1.4s}
+body.lc-sahne-acik .lc-home .lc-header .lc-tool:nth-child(4)::after{animation-delay:-2.8s}
+html[data-sakin="1"] body .lc-home :is(.lc-tool::after,.lc-yol-dugme){animation:none!important}
+@media (prefers-reduced-motion:reduce){body .lc-home .lc-yol-dugme,body .lc-home .lc-tool::after{animation:none!important}}

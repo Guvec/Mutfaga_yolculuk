@@ -87,6 +87,9 @@
   document.body.classList.toggle('lc-kis',m==='kis');
   document.body.classList.toggle('lc-sonbahar',m==='sonbahar');
   if(ev)yolKartKur();
+  /* Sıralama kartı: kupalı kürsü (mevsime göre CSS seçer). */
+  const sira=document.querySelector('#app .lc-home .lc-grid .lc-card:nth-child(3) .lc-stage');
+  if(sira&&!sira.querySelector('.lc-kursu')){const e=sira.querySelector('.lc-emblem');if(e)e.remove();sira.insertAdjacentHTML('afterbegin','<span class="lc-emblem lc-kursu" aria-hidden="true"></span>');}
   const dus=ev&&(m==='kis'||m==='sonbahar')&&hareketli()&&!document.hidden;
   if(!dus){if(arkaYagis)arkaYagis.durdur();if(yolYagis)yolYagis.durdur();if(arka)arka.hidden=true;return;}
   arkaKur();arka.hidden=false;arkaYagis.kur(m);arkaYagis.baslat();
