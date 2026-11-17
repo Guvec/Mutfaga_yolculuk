@@ -22,7 +22,7 @@
   try{if(matchMedia('(prefers-reduced-motion: reduce)').matches)return false;}catch(e){}
   return true;
  }
- function temaUygun(){const t=document.documentElement.dataset.theme;return t==='lonca'||t==='loncakrem';}
+ function temaUygun(){const t=document.documentElement.dataset.theme;return t!=='yuksek';}
 
  /* ---------- Yağış: kar taneleri ya da yapraklar (tek canvas, ~30 kare/sn) ---------- */
  const YAPRAK=[1,2,3,4].map(i=>{const im=new Image();im.decoding='async';im.src='assets/sahne/yaprak-'+i+'.webp';return im;});
@@ -87,6 +87,11 @@
   document.body.classList.toggle('lc-kis',m==='kis');
   document.body.classList.toggle('lc-sonbahar',m==='sonbahar');
   if(ev)yolKartKur();
+  /* Uzun oyuncu adı (ör. Şef Kaplumbağa) kelime ortasından bölünmesin: sığana kadar yazı küçülür. */
+  const ad=document.querySelector('#app .lc-home .lc-profile strong');
+  if(ad){ad.style.fontSize='';const kelime=Math.max(...ad.textContent.trim().split(/\s+/).map(k=>k.length));let fs=parseFloat(getComputedStyle(ad).fontSize),i=0;
+   const r=document.createRange();const tasar=()=>{r.selectNodeContents(ad);return ad.scrollWidth>ad.clientWidth+1||(typeof r.getClientRects==='function'&&r.getClientRects().length>2);};
+   while(kelime>8&&tasar()&&i++<10&&fs>13){fs-=1;ad.style.fontSize=fs+'px';}}
   /* Kış: zeminin dört köşesinde buz deseni */
   let buz=document.getElementById('lcBuz');
   if(!buz){buz=document.createElement('div');buz.id='lcBuz';buz.setAttribute('aria-hidden','true');buz.innerHTML='<i></i><i></i><i></i><i></i>';document.body.prepend(buz);}

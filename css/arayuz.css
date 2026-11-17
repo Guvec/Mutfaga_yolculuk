@@ -1,8 +1,8 @@
 /* © 2026 Ali Arıkoğlu. Ana sayfa arayüz çerçeveleri (GPT ile üretilen görseller, 17.11.2026).
    Yaz: altın set; kış (body.lc-kis): gümüş ve karlı set. Yazılar HTML'de kalır; görseller yalnız çerçevedir.
    --u: kış görselinde karın çerçeve üstünden taşma payı (yüzde). */
-html:is([data-theme=lonca],[data-theme=loncakrem]) body.lc-sahne-acik{background:radial-gradient(ellipse at 50% 40%,transparent 45%,#0006 100%),url('../assets/arayuz/deri-yaz.webp') center/320px repeat;background-attachment:fixed}
-html:is([data-theme=lonca],[data-theme=loncakrem]) body.lc-sahne-acik.lc-kis{background:radial-gradient(ellipse at 50% 40%,transparent 45%,#0007 100%),url('../assets/arayuz/deri-kis.webp') center/320px repeat;background-attachment:fixed}
+html:not([data-theme=yuksek]) body.lc-sahne-acik{background:radial-gradient(ellipse at 50% 40%,transparent 45%,#0006 100%),url('../assets/arayuz/deri-yaz.webp') center/320px repeat;background-attachment:fixed}
+html:not([data-theme=yuksek]) body.lc-sahne-acik.lc-kis{background:radial-gradient(ellipse at 50% 40%,transparent 45%,#0007 100%),url('../assets/arayuz/deri-kis.webp') center/320px repeat;background-attachment:fixed}
 
 .lc-home{--g-kart:url('../assets/arayuz/kart-yaz.webp');--g-cerceve:url('../assets/arayuz/cerceve-yaz.webp');--g-serit:url('../assets/arayuz/serit-yaz.webp');--g-adlevha:url('../assets/arayuz/adlevha-yaz.webp');--g-tomar:url('../assets/arayuz/tomar-yaz.webp');--g-kurdele:url('../assets/arayuz/kurdele-yaz.webp');--g-dugme:url('../assets/arayuz/dugme-yaz.webp');
  --u-kart:0;--u-cerceve:0;--u-serit:0;--u-adlevha:0;--u-tomar:0;--u-kurdele:0;--u-dugme:0}
@@ -176,3 +176,12 @@ html body .lc-home .lc-journey{aspect-ratio:1.6/1;height:auto;max-height:34svh;w
 html body .lc-home .lc-nameplate{font-size:calc(clamp(.95rem,4.55vw,1.32rem) * var(--lc-textscale))!important}
 html body .lc-home .lc-rank .lc-rank-label{padding-right:34px;white-space:nowrap}
 @media (max-width:374px),(max-height:720px){html body .lc-home .lc-rank .lc-rank-label{font-size:calc(.86rem * var(--lc-textscale))!important;padding-right:30px}html body .lc-home .lc-journey{max-height:30svh}}
+/* 17.11 gece: Büyük/çok büyük yazı ayarında ana sayfa taşmasın. Kart adları zaten büyük başlık; ayarla büyütülmez.
+   Rütbe şeridindeki yazılar sığmazsa alt satıra geçer, şerit uzar. */
+html:is([data-yz=buyuk],[data-yz=cok]) body .lc-home .lc-nameplate{font-size:clamp(15px,4.55vw,21px)!important}
+html:is([data-yz=buyuk],[data-yz=cok]) body .lc-home .lc-rank .lc-rank-label{white-space:normal!important;overflow-wrap:anywhere;padding-right:30px}
+html:is([data-yz=buyuk],[data-yz=cok]) body .lc-home .lc-rank :is(.ae-serit-adlar){flex-wrap:wrap!important;white-space:normal!important;min-width:0;row-gap:2px}
+html:is([data-yz=buyuk],[data-yz=cok]) body .lc-home .lc-rank .ae-serit-adlar strong{min-width:0!important}
+html:is([data-yz=buyuk],[data-yz=cok]) body .lc-home .lc-rank>*{min-width:0}
+/* Hangi renk teması seçilirse seçilsin ana sayfa onaylı tasarımla açılır (Yüksek Kontrast hariç). */
+html:not([data-theme=yuksek]) body.lc-sahne-acik #app{background:transparent!important}

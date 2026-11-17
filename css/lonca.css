@@ -21,7 +21,7 @@ html body .lc-home{display:grid;width:100%;max-width:520px;min-height:670px;heig
 .lc-header{display:flex;align-items:center;gap:4px;border-radius:26px;padding:4px 6px 4px 4px;min-width:0}
 .lc-home button{min-height:48px;cursor:pointer;font:inherit}
 .lc-profile{display:flex;align-items:center;gap:7px;flex:1;min-width:0;background:transparent;border:0;padding:0;text-align:left;color:inherit}
-.lc-profile strong{font-size:clamp(16px,4.9vw,25px);line-height:1.05;overflow-wrap:anywhere;min-width:0}
+.lc-profile strong{font-size:clamp(16px,4.9vw,25px);line-height:1.05;overflow-wrap:normal;word-break:normal;hyphens:none;min-width:0}
 .lc-avatar{height:49px;width:49px;border:2px solid var(--lc-gold);border-radius:50%;box-shadow:0 2px 3px #57351f66;overflow:hidden;flex:none;background:#f8e5be;display:grid;place-items:center}
 .lc-avatar img,.lc-avatar svg{width:100%;height:100%;object-fit:cover;display:block}
 .lc-avatar .ae-avatar-emoji{font-size:28px}.lc-tool,.lc-info{display:grid;place-items:center;background:linear-gradient(135deg,#15556c,#062534);color:#ffe8a6!important;border:2px solid #cd9a3c;box-shadow:inset 0 0 0 1px #fff0ac,0 2px 3px #3c20175c;border-radius:15px;padding:9px}
