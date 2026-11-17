@@ -27,16 +27,11 @@
  /* ---------- Yağış: kar taneleri ya da yapraklar (tek canvas, ~30 kare/sn) ---------- */
  const YAPRAK=[1,2,3,4].map(i=>{const im=new Image();im.decoding='async';im.src='assets/sahne/yaprak-'+i+'.webp';return im;});
  /* Kar taneleri: önceden çizilmiş birkaç biçim. Uzak kar küçük ve net; yakın kar iri, düzensiz "lapa" topakları. */
+ /* Kar: GPT ile üretilmiş gerçekçi kar parçaları (assets/sahne/kar). Yakında iri lapa topaklar, ortada kristal taneler, uzakta kar tozu. */
  let karlar=null;
  function karSprite(){
-  if(karlar)return karlar;karlar={net:[],lapa:[]};
-  const yap=(boy,parca,yum)=>{const cv=document.createElement('canvas');cv.width=cv.height=boy;const g=cv.getContext('2d'),m=boy/2;
-   for(let k=0;k<parca;k++){const a=Math.random()*6.283,u=k===0?0:Math.random()*boy*.2,x=m+Math.cos(a)*u,y=m+Math.sin(a)*u,r=boy*(k===0?.26:.12+Math.random()*.12);
-    const gr=g.createRadialGradient(x,y,0,x,y,r);gr.addColorStop(0,'rgba(255,255,255,.95)');gr.addColorStop(yum,'rgba(250,253,255,.75)');gr.addColorStop(1,'rgba(240,247,255,0)');g.fillStyle=gr;g.beginPath();g.arc(x,y,r,0,6.283);g.fill();}
-   return cv;};
-  for(let k=0;k<3;k++)karlar.net.push(yap(16,1,.55));
-  for(let k=0;k<6;k++)karlar.lapa.push(yap(64,6+((Math.random()*5)|0),.5));
-  return karlar;
+  if(karlar)return karlar;const yukle=(t,n)=>Array.from({length:n},(_,i)=>{const im=new Image();im.decoding='async';im.src='assets/sahne/kar/'+t+'-'+(i+1)+'.webp';return im;});
+  const toz=yukle('toz',8),kristal=yukle('kristal',8);karlar={lapa:yukle('lapa',16),net:toz.concat(toz,kristal)};return karlar;
  }
  let ruzgar=0,ruzgarHedef=0,ruzgarZaman=0;
  function yagisYap(tuval,adet,lapa){
@@ -47,7 +42,7 @@
    tuval.width=Math.max(1,Math.round(W*olcek));tuval.height=Math.max(1,Math.round(H*olcek));c.setTransform(olcek,0,0,olcek,0,0);}
   function yeni(p,ilk){
    p.x=Math.random()*W;p.y=ilk?Math.random()*H:-30;p.faz=Math.random()*6.3;
-   if(tur==='kis'){const S=karSprite();if(lapa){p.r=6+Math.random()*9;p.hiz=26+p.r*2.2+Math.random()*14;p.salin=10+Math.random()*22;p.sf=.5+Math.random()*.9;p.a=.75+Math.random()*.25;p.im=S.lapa[(Math.random()*S.lapa.length)|0];p.don=(Math.random()-.5)*1.2;p.aci=Math.random()*6.3;}else{p.r=1+Math.random()*1.8;p.hiz=14+p.r*9+Math.random()*10;p.salin=4+Math.random()*10;p.sf=.7+Math.random()*.8;p.a=.5+Math.random()*.45;p.im=S.net[(Math.random()*S.net.length)|0];p.don=0;p.aci=0;}}
+   if(tur==='kis'){const S=karSprite();if(lapa){p.r=7+Math.random()*10;p.hiz=26+p.r*2.2+Math.random()*14;p.salin=10+Math.random()*22;p.sf=.5+Math.random()*.9;p.a=.75+Math.random()*.25;p.im=S.lapa[(Math.random()*S.lapa.length)|0];p.don=(Math.random()-.5)*1.2;p.aci=Math.random()*6.3;}else{p.r=1.6+Math.random()*2.6;p.hiz=14+p.r*9+Math.random()*10;p.salin=4+Math.random()*10;p.sf=.7+Math.random()*.8;p.a=.5+Math.random()*.45;p.im=S.net[(Math.random()*S.net.length)|0];p.don=0;p.aci=0;}}
    else{p.r=14+Math.random()*12;p.hiz=24+Math.random()*22;p.salin=18+Math.random()*26;p.a=.85;p.don=(Math.random()-.5)*2.4;p.im=YAPRAK[(Math.random()*4)|0];}
    return p;
   }
@@ -62,8 +57,9 @@
     if(tur==='kis')p.x+=ruzgar*(lapa?1:.6)*dt;
     const x=p.x+Math.sin(p.faz)*p.salin+Math.sin(p.faz*2.3)*p.salin*.25;
     if(tur==='kis'){if(p.x<-40)p.x+=W+80;else if(p.x>W+40)p.x-=W+80;c.globalAlpha=p.a;
-     if(lapa){c.save();c.translate(x,p.y);c.rotate(p.aci+p.faz*p.don);c.drawImage(p.im,-p.r,-p.r,p.r*2,p.r*2);c.restore();}
-     else c.drawImage(p.im,x-p.r,p.y-p.r,p.r*2,p.r*2);}
+     if(!p.im.complete||!p.im.naturalWidth){}else{const en=p.r*2,boy=en*p.im.naturalHeight/p.im.naturalWidth;
+     if(lapa){c.save();c.translate(x,p.y);c.rotate(p.aci+p.faz*p.don);c.drawImage(p.im,-en/2,-boy/2,en,boy);c.restore();}
+     else{c.save();c.translate(x,p.y);c.rotate(p.aci+p.faz*.4);c.drawImage(p.im,-en/2,-boy/2,en,boy);c.restore();}}}
     else if(p.im.complete&&p.im.naturalWidth){c.save();c.globalAlpha=p.a;c.translate(x,p.y);c.rotate(p.faz*p.don);c.scale(Math.cos(p.faz*1.3),1);c.drawImage(p.im,-p.r/2,-p.r/2,p.r,p.r);c.restore();}
     if(p.y>H+30)yeni(p,false);
    }
