@@ -140,3 +140,9 @@ html[data-font=hikaye] body .lc-home :is(.lc-nameplate,.lc-profile strong,.lc-ra
 html body .lc-home .lc-grid .lc-card:nth-child(2) .lc-emblem{transform:none}
 html body .lc-home .lc-grid .lc-card:nth-child(4) .lc-emblem{transform:scale(1.12)!important}
 html body .lc-home .lc-grid .lc-card:nth-child(1) .lc-emblem{transform:none}
+/* Tabelalı sahneler: yazı ve düğme tabelanın solunda, yolun üstünde. */
+html body .lc-home .lc-journey-copy{padding:0 25% 4% 0!important}
+html body .lc-home .lc-journey-copy{padding:0 25.5% 4% 0!important}
+html body .lc-home .lc-yol-alt{white-space:normal!important;max-width:none;white-space:nowrap!important;text-align:right;line-height:1.25!important;font-size:calc(.7rem * var(--lc-textscale))!important}
+html body .lc-home .lc-yol-dugme{padding:5px 13px 6px!important;font-size:calc(.72rem * var(--lc-textscale))!important}
+@media (max-height:720px){html body .lc-home .lc-journey-copy{padding:0 28% 3% 0!important}html body .lc-home .lc-yol-alt{font-size:calc(.64rem * var(--lc-textscale))!important}html body .lc-home .lc-yol-dugme{font-size:calc(.68rem * var(--lc-textscale))!important;padding:4px 11px 5px!important}}
