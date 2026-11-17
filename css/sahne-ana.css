@@ -21,13 +21,6 @@ body.lc-sahne-acik .lc-grid .lc-card:nth-child(2) .lc-emblem{animation-delay:-2s
 body.lc-sahne-acik .lc-grid .lc-card:nth-child(3) .lc-emblem{animation-delay:-5.5s}
 body.lc-sahne-acik .lc-grid .lc-card:nth-child(4) .lc-emblem{animation-delay:-8.5s}
 
-/* Kış: kartların, şeridin ve düğmelerin üst kenarında kar birikir. Yazıya binmez, dokunmayı engellemez. */
-body.lc-kis .lc-home :is(.lc-header,.lc-rank,.lc-journey,.lc-card,.lc-tool){position:relative}
-body.lc-kis .lc-home .lc-journey{overflow:visible}
-.lc-kar{position:absolute;left:7px;right:7px;top:-17px;height:24px;pointer-events:none;z-index:4;transform-origin:50% 100%;filter:drop-shadow(0 2px 1.5px #1d3a5633);animation:lc-biri 3.4s cubic-bezier(.2,.7,.3,1) var(--kar-gecikme,0s) both}
-.lc-kar svg{display:block;width:100%;height:100%;overflow:visible}
-.lc-kar-kucuk{left:3px;right:3px;top:-8px;height:13px}
-@keyframes lc-biri{0%{opacity:0;transform:translateY(5px) scaleY(.15)}35%{opacity:1}100%{opacity:1;transform:none}}
 /* Kışın soğuk, hafif mavi ışık; renk paleti bozulmaz. */
 html[data-theme=lonca] body.lc-kis{background:radial-gradient(ellipse at 50% -10%,#cfe3f233,transparent 60%),radial-gradient(ellipse at 20% 10%,#a2774770,transparent 55%),linear-gradient(120deg,#3b2a22,#6f5038 48%,#3c2a20);background-attachment:fixed}
 
@@ -39,16 +32,9 @@ html[data-theme=lonca] body.lc-kis{background:radial-gradient(ellipse at 50% -10
 body.lc-sahne-acik .lc-poz-yigin{animation:lc-nefes 3.8s ease-in-out infinite;transform-origin:50% 92%}
 
 /* Sakin mod ve "hareketi azalt": hareket yok; kar birikimi durağan ve tam görünür. */
-html[data-sakin="1"] body .lc-home :is(.lc-card,.lc-emblem,.lc-poz-yigin,.lc-kar){animation:none!important}
-@media (prefers-reduced-motion:reduce){body .lc-home :is(.lc-card,.lc-emblem,.lc-poz-yigin,.lc-kar){animation:none!important}}
+html[data-sakin="1"] body .lc-home :is(.lc-card,.lc-emblem,.lc-poz-yigin){animation:none!important}
+@media (prefers-reduced-motion:reduce){body .lc-home :is(.lc-card,.lc-emblem,.lc-poz-yigin){animation:none!important}}
 
 /* Yolculuğum kartı: mevsim sahnesi, sol altta arkadan görünen panda. */
 .lc-home .lc-journey{background-size:cover;background-position:center 40%}
-.lc-yol-panda{position:absolute;left:3%;bottom:0;height:60%;aspect-ratio:500/630;z-index:1;pointer-events:none;transform-origin:50% 100%;animation:lc-yol-nefes 3.6s ease-in-out infinite;filter:drop-shadow(0 4px 4px #0006)}
-.lc-yol-panda img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:50% 100%}
-.lc-yol-panda img+img{opacity:0}
-.lc-yol-panda.adim img:first-child{opacity:0}.lc-yol-panda.adim img+img{opacity:1}
-.lc-yol-panda.adim{translate:0 -2px}
-@keyframes lc-yol-nefes{0%,100%{transform:scale(1,1)}50%{transform:scale(1.01,1.02)}}
-html[data-sakin="1"] body .lc-yol-panda{animation:none}
-@media (prefers-reduced-motion:reduce){.lc-yol-panda{animation:none}}
+

@@ -41,7 +41,7 @@
    tuval.width=Math.max(1,Math.round(W*olcek));tuval.height=Math.max(1,Math.round(H*olcek));c.setTransform(olcek,0,0,olcek,0,0);}
   function yeni(p,ilk){
    p.x=Math.random()*W;p.y=ilk?Math.random()*H:-30;p.faz=Math.random()*6.3;
-   if(tur==='kis'){p.r=1.6+Math.random()*3.2;p.hiz=16+p.r*7+Math.random()*10;p.salin=6+Math.random()*14;p.a=.55+Math.random()*.4;}
+   if(tur==='kis'){p.r=.9+Math.random()*1.7;p.hiz=14+p.r*8+Math.random()*8;p.salin=5+Math.random()*10;p.a=.45+Math.random()*.4;}
    else{p.r=14+Math.random()*12;p.hiz=24+Math.random()*22;p.salin=18+Math.random()*26;p.a=.85;p.don=(Math.random()-.5)*2.4;p.im=YAPRAK[(Math.random()*4)|0];}
    return p;
   }
@@ -68,65 +68,17 @@
  let arka=null,arkaYagis=null,yolYagis=null,yolTuval=null;
  function arkaKur(){
   if(arka)return;arka=document.createElement('canvas');arka.id='lcYagis';arka.setAttribute('aria-hidden','true');
-  document.body.prepend(arka);arkaYagis=yagisYap(arka,46);
+  document.body.prepend(arka);arkaYagis=yagisYap(arka,30);
   addEventListener('resize',()=>{arkaYagis.boyut();if(yolYagis)yolYagis.boyut();});
  }
 
- /* ---------- Kar birikimi: kartların üst kenarında, her biri biraz farklı ---------- */
- function karSapkasi(gen,yuk,tohum){
-  let s=tohum;const rnd=()=>{s=(s*9301+49297)%233280;return s/233280;};
-  const taban=yuk-3,uc=Math.min(14,gen*.08);let d='M0,'+taban+' C'+(uc*.3)+','+(taban-5)+' '+(uc*.7)+','+(taban-9)+' '+uc+','+(taban-9);
-  let x=uc;const adim=Math.max(14,gen/9);
-  while(x<gen-uc-adim*.6){const nx=Math.min(gen-uc,x+adim*(.7+rnd()*.6)),ust=taban-7-rnd()*(yuk-11);
-   d+=' Q'+((x+nx)/2).toFixed(1)+','+ust.toFixed(1)+' '+nx.toFixed(1)+','+(taban-8+rnd()*2).toFixed(1);x=nx;}
-  d+=' C'+(gen-uc*.7)+','+(taban-9)+' '+(gen-uc*.3)+','+(taban-5)+' '+gen+','+taban;
-  /* alt kenar: kenara yapışan, yer yer hafifçe sarkan kar */
-  d+=' L'+(gen-uc*.6)+','+(yuk-.5);let y=gen-uc*.6;
-  while(y>uc*.6){const ny=Math.max(uc*.6,y-adim*(1+rnd()));const sark=rnd()<.25?2.5+rnd()*3:0;
-   d+=' Q'+((y+ny)/2).toFixed(1)+','+(yuk-.5+sark).toFixed(1)+' '+ny.toFixed(1)+','+(yuk-.5).toFixed(1);y=ny;}
-  d+=' Z';
-  return '<svg viewBox="0 0 '+gen+' '+yuk+'" preserveAspectRatio="none" aria-hidden="true" focusable="false"><defs><linearGradient id="kg'+tohum+'" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset=".6" stop-color="#f3f8fc"/><stop offset="1" stop-color="#d5e3ef"/></linearGradient></defs><path d="'+d+'" fill="url(#kg'+tohum+')" stroke="#bfd2e3" stroke-width=".6"/></svg>';
- }
- const KARLI='.lc-home .lc-header,.lc-home .lc-rank,.lc-home .lc-journey,.lc-home .lc-grid .lc-card,.lc-home .lc-tool';
- function karBiriktir(acik){
-  document.querySelectorAll(KARLI).forEach((el,i)=>{
-   let k=el.querySelector(':scope>.lc-kar');
-   if(!acik){if(k)k.remove();return;}
-   if(k)return;
-   const kucuk=el.classList.contains('lc-tool'),gen=kucuk?48:200,yuk=kucuk?13:24;
-   k=document.createElement('span');k.className='lc-kar'+(kucuk?' lc-kar-kucuk':'');k.setAttribute('aria-hidden','true');
-   k.innerHTML=karSapkasi(gen,yuk,17+i*31);
-   k.style.setProperty('--kar-gecikme',(.25+i*.18).toFixed(2)+'s');
-   el.appendChild(k);
-  });
- }
-
- /* ---------- Yolculuğum kartı: mevsimin yolculuk sahnesi ve arkadan yürüyen panda ---------- */
- let adimId=0;
+ /* ---------- Yolculuğum kartı: mevsimin yolculuk sahnesi (karakterli sahneler GPT'den gelecek) ---------- */
  function yolKartKur(){
   const yol=document.querySelector('#app .lc-home .lc-journey');if(!yol)return;
   const m=kartMevsimi();
   yol.style.setProperty('--lc-scene',"url('"+new URL('assets/yolculuk/kart-'+m+'.webp',document.baseURI).href+"')");
   yol.dataset.mevsim=m;
-  const panda=typeof dostSecili==='function'&&dostSecili()==='panda';
-  let p=yol.querySelector(':scope>.lc-yol-panda');
-  if(!panda){if(p)p.remove();return;}
-  const kiyafet=m==='kis'?'kis':'yaz';
-  if(!p||p.dataset.kiyafet!==kiyafet){if(p)p.remove();p=document.createElement('span');p.className='lc-yol-panda';p.dataset.kiyafet=kiyafet;p.setAttribute('aria-hidden','true');
-   p.innerHTML='<img alt="" decoding="async" src="assets/yolculuk/panda-'+kiyafet+'-1.webp"><img alt="" decoding="async" src="assets/yolculuk/panda-'+kiyafet+'-2.webp">';
-   const kopya=yol.querySelector('.lc-journey-copy');yol.insertBefore(p,kopya);}
  }
- /* Ara sıra yerinde birkaç adım atar; sonra durur ve nefes alır. */
- function adimDongusu(){
-  clearTimeout(adimId);
-  adimId=setTimeout(function adim(){
-   const p=document.querySelector('#app .lc-yol-panda');
-   if(p&&hareketli()&&!document.hidden){let n=0;const t=setInterval(()=>{p.classList.toggle('adim',n%2===0);n++;if(n>5){clearInterval(t);p.classList.remove('adim');}},380);}
-   adimId=setTimeout(adim,6500+Math.random()*3000);
-  },2500);
- }
- adimDongusu();
-
  /* ---------- Güncelleme ---------- */
  function guncelle(){
   const ev=!!document.querySelector('#app .lc-home')&&temaUygun();
@@ -134,14 +86,13 @@
   document.body.classList.toggle('lc-sahne-acik',ev);
   document.body.classList.toggle('lc-kis',m==='kis');
   document.body.classList.toggle('lc-sonbahar',m==='sonbahar');
-  karBiriktir(m==='kis');
   if(ev)yolKartKur();
   const dus=ev&&(m==='kis'||m==='sonbahar')&&hareketli()&&!document.hidden;
   if(!dus){if(arkaYagis)arkaYagis.durdur();if(yolYagis)yolYagis.durdur();if(arka)arka.hidden=true;return;}
   arkaKur();arka.hidden=false;arkaYagis.kur(m);arkaYagis.baslat();
   /* Yolculuğum kartının içinde de, yazının arkasında hafif yağış */
   const yol=document.querySelector('#app .lc-home .lc-journey');
-  if(yol&&!yol.contains(yolTuval)){if(yolYagis)yolYagis.durdur();yolTuval=document.createElement('canvas');yolTuval.className='lc-yol-yagis';yolTuval.setAttribute('aria-hidden','true');yol.prepend(yolTuval);yolYagis=yagisYap(yolTuval,26);}
+  if(yol&&!yol.contains(yolTuval)){if(yolYagis)yolYagis.durdur();yolTuval=document.createElement('canvas');yolTuval.className='lc-yol-yagis';yolTuval.setAttribute('aria-hidden','true');yol.prepend(yolTuval);yolYagis=yagisYap(yolTuval,16);}
   if(yolYagis){yolYagis.kur(m);yolYagis.baslat();}
  }
  document.addEventListener('visibilitychange',guncelle);
