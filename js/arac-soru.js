@@ -15,6 +15,10 @@ function asAd(c){return c?(c.ad||c.text||c.id+' seçeneği'):'';}
 function asResim(c){return c?(c.image||c.ornek||''):'';}
 /* Kart biçimi: kaşık-çatal-bıçak uzun ve dar, fincan-bardak uzun, tabaklar kare kartta. */
 function asBicim(q){const im=q.choices.map(c=>c.image||'');if(im.every(x=>/\/baharat\//.test(x)))return ' bh';if(im.every(x=>/\/boy\/(kasik|catal|bicak)-/.test(x)))return ' uzun';if(im.every(x=>/\/boy\/(fincan|bardak)-/.test(x)))return ' uzun kap';return '';}
+/* 18.11: GPT'nin soru ekranı parçaları (assets/soru-ekrani). Şimdilik yalnız Mutfak Araçları ve kış (Lonca) temasında;
+   karsız parçalar gelince öbür temalara da açılacak. */
+function asYeni(){return st.subject==='mutfak-araclari'&&document.documentElement.dataset.theme==='lonca';}
+function asyUst(){return '<div class="asy-ust"><button type="button" class="asy-geri" onclick="back()" aria-label="Geri"></button><div class="asy-baslik"><span>'+esc(subjectName())+'</span></div><button type="button" class="asy-dur" onclick="footMenu()" aria-label="Duraklat: mola ver ya da bitir"'+((st.done&&st.op==='mcq')||st.kDone?' disabled':'')+'></button></div>';}
 function asIleri(){asTemizle();if(st.screen==='quiz'&&asKonu()&&st.done&&!st.kDone)nextQ();}
 
 const AS_ANSWER=answer;
@@ -44,9 +48,13 @@ contentQuizHTML=function(){
  if(!asKonu()||!st.q||st.kDone)return AS_QUIZ();
  const q=st.q,done=st.done,pick=st.asPick;
  const say=(st.contentIndex||1),top=(st.contentItems||[]).length||1,barTop=q.tekrar?top:top-(st.asTurN||0);
- let h=topBar(subjectName()+' · '+(q.group||'Sorular'))+'<div class="wrap as">';
- h+='<div class="as-bar" aria-hidden="true"><i style="width:'+Math.min(100,Math.round(100*(say-(done?0:1))/barTop))+'%"></i></div>';
- if(q.tekrar){const ilk=top-st.asTurN;h+='<p class="as-tur" role="status">🔁 Tekrar turu: yanlış yaptığın sorular bir kez daha geliyor.</p><div class="as-durum"><span>Tekrar '+(say-ilk)+' / '+st.asTurN+'</span><span>Bu turda doğru: '+(st.asTurOk||0)+'</span></div>';}
+ const yeni=asYeni(),oran=Math.min(100,Math.round(100*(say-(done?0:1))/barTop));
+ let h=yeni?asyUst():topBar(subjectName()+' · '+(q.group||'Sorular'));
+ h+='<div class="wrap as'+(yeni?' asy':'')+'">';
+ if(yeni&&!q.tekrar)h+='<div class="asy-ilerleme"><span>Soru '+say+' / '+(top-(st.asTurN||0))+'</span><span class="asy-oluk" aria-hidden="true"><i style="width:'+oran+'%"></i></span><span>Doğru: '+st.sess.ok+'</span></div>';
+ else h+='<div class="as-bar" aria-hidden="true"><i style="width:'+oran+'%"></i></div>';
+ if(yeni&&!q.tekrar){}
+ else if(q.tekrar){const ilk=top-st.asTurN;h+='<p class="as-tur" role="status">🔁 Tekrar turu: yanlış yaptığın sorular bir kez daha geliyor.</p><div class="as-durum"><span>Tekrar '+(say-ilk)+' / '+st.asTurN+'</span><span>Bu turda doğru: '+(st.asTurOk||0)+'</span></div>';}
  else h+='<div class="as-durum"><span>Soru '+say+' / '+(top-(st.asTurN||0))+'</span><span>Doğru: '+st.sess.ok+'</span></div>';
  const okunan=q.prompt+(q.choices.some(c=>c.image)?' Seçenekler fotoğraflıdır: A, B, C ve D.':' '+q.choices.map(c=>c.id+', '+asAd(c)).join('. ')+'.');
  h+='<div class="as-kok"><p>'+mcqPromptHTML(q)+'</p>'+(typeof sesDugme==='function'?sesDugme(okunan,'Soruyu dinle'):'')+'</div>';
@@ -56,7 +64,7 @@ contentQuizHTML=function(){
  q.choices.forEach(c=>{
   let cls='as-k';
   if(done){if(c.id===q.correct)cls+=' ok';else if(c.id===pick)cls+=' yan';else cls+=' sonuk';}
-  h+='<button type="button" class="'+cls+'" data-choice="'+esc(c.id)+'"'+(done?' disabled':'')+' aria-label="'+esc(c.id+(resimli?' seçeneği':', '+asAd(c)))+'"><em>'+esc(c.id)+'</em>';
+  h+='<button type="button" class="'+cls+'" data-choice="'+esc(c.id)+'"'+(done?' disabled':'')+' aria-label="'+esc(c.id+(resimli?' seçeneği':', '+asAd(c)))+'"><em>'+esc(c.id)+'</em>'+(yeni?'<span class="asy-cerceve" aria-hidden="true"></span>':'');
   if(resimli)h+='<span class="as-ol"><img src="'+esc(c.image)+'" alt=""></span>'+(done?'<span class="as-ad">'+esc(asAd(c))+'</span>':'');
   else h+='<span class="as-metin">'+esc(c.text)+'</span>';
   h+='</button>';

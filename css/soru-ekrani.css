@@ -1,0 +1,50 @@
+/* © 2026 Ali Arıkoğlu. Tüm hakları saklıdır. */
+/* 18.11: Mutfak Araçları soru ekranı — GPT'nin ayrı parçaları (assets/soru-ekrani), kış (Lonca) temasında.
+   Paneller 9 dilimli (border-image) ölçeklenir; köşe süsleri gerilmez. Yazıların hepsi oyundan gelir. */
+body:has(.wrap.as.asy){background:#0d2b2c url(../assets/soru-ekrani/arka-plan.jpg) center/cover no-repeat fixed}
+main:has(> .wrap.as.asy){background:transparent}
+
+/* Üst sıra: geri · konu başlığı · duraklat */
+.asy-ust{flex:none;display:flex;align-items:center;gap:6px;padding:calc(6px + env(safe-area-inset-top)) 8px 2px}
+.asy-geri,.asy-dur{flex:none;width:48px;height:48px;padding:0;border:0;background:center/contain no-repeat;cursor:pointer;border-radius:12px}
+.asy-geri{background-image:url(../assets/soru-ekrani/geri-dugmesi.png)}
+.asy-dur{background-image:url(../assets/soru-ekrani/duraklat-dugmesi.png)}
+.asy-dur:disabled{opacity:.55;cursor:default}
+.asy-geri:focus-visible,.asy-dur:focus-visible{outline:3px solid #7fe3d8;outline-offset:2px}
+.asy-baslik{flex:1;min-width:0;height:48px;display:grid;place-items:center;background:url(../assets/soru-ekrani/baslik-paneli.png) center/100% 100% no-repeat}
+.asy-baslik span{color:#f8ecd2;font-family:Lexend,Tahoma,Arial,sans-serif;font-weight:700;font-size:17px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:72%}
+
+/* İlerleme paneli: uçlar korunur, ortadaki oluk esner. Turkuaz dolgu gerçek orana göre kırpılır. */
+.wrap.as.asy .asy-ilerleme{flex:none;position:relative;display:flex;align-items:center;justify-content:space-between;height:44px;margin:4px 0 6px;
+ border-style:solid;border-width:0 92px;border-image:url(../assets/soru-ekrani/ilerleme-paneli.png) 0 210 fill / 0 92px stretch;box-sizing:border-box;color:#f8ecd2;font-weight:700;font-size:14px}
+.asy-ilerleme > span:first-child{position:absolute;left:-80px;width:84px;white-space:nowrap}
+.asy-ilerleme > span:last-child{position:absolute;right:-80px;width:84px;text-align:right;white-space:nowrap}
+.asy-oluk{position:absolute;left:4px;right:4px;top:50%;height:10px;transform:translateY(-50%);border-radius:6px;overflow:hidden}
+.asy-oluk i{display:block;height:100%;background:url(../assets/soru-ekrani/ilerleme-dolgusu.png) left center/auto 100% no-repeat;border-radius:6px;transition:width .3s;min-width:0}
+
+/* Soru parşömeni: köşe süsleri ve kar korunur, iç yüzey esner. */
+.wrap.as.asy .as-kok{background:none;box-shadow:none;border-radius:0;margin:2px 0 8px;padding:6px 8px;min-height:96px;align-items:center;
+ border-style:solid;border-width:22px 24px;border-image:url(../assets/soru-ekrani/soru-paneli.png) 80 90 fill / 22px 24px stretch;box-sizing:border-box}
+.wrap.as.asy .as-kok p{font-family:Lexend,Tahoma,Arial,sans-serif;font-weight:700;font-size:19px;line-height:1.3;color:#1d2321;text-align:center}
+.wrap.as.asy .as-kok .spk{flex:none;width:48px;height:48px;padding:0;border:0;border-radius:50%;font-size:0;color:transparent;background:url(../assets/soru-ekrani/ses-dugmesi.png) center/contain no-repeat;box-shadow:none}
+
+/* Dört seçenek: beyaz kart, üstünde işlemeli altın çerçeve. Fotoğraf kırpılmadan sığar. */
+.wrap.as.asy .as-grid:not(.metin){gap:10px}
+.wrap.as.asy .as-grid:not(.metin) .as-k{border:0;border-radius:16px;background:#fff;box-shadow:0 4px 10px rgba(0,0,0,.35);overflow:visible}
+.asy-cerceve{position:absolute;inset:-3px;pointer-events:none;z-index:3;border-style:solid;border-width:18px;border-image:url(../assets/soru-ekrani/secenek-cerceve.png) 70 / 18px stretch}
+.wrap.as.asy .as-grid:not(.metin):not(.bh) .as-ol{inset:14px 12px 12px 12px}
+.wrap.as.asy .as-grid:not(.metin) .as-k em{z-index:4;left:4px;top:4px;width:40px;height:40px;border-radius:50%;background:url(../assets/soru-ekrani/harf-rozeti.png) center/contain no-repeat;color:#1d2321;font-family:'Inknut Antiqua',Georgia,serif;font-weight:700;font-size:19px;line-height:1}
+.wrap.as.asy .as-grid:not(.metin) .as-k.done .as-ol,.wrap.as.asy .as-grid:not(.metin) .as-k.ok .as-ol,.wrap.as.asy .as-grid:not(.metin) .as-k.yan .as-ol,.wrap.as.asy .as-grid:not(.metin) .as-k.sonuk .as-ol{bottom:36px}
+.wrap.as.asy .as-grid:not(.metin) .as-ad{z-index:4;left:8px;right:8px;bottom:8px;border-radius:0 0 10px 10px;border-top:0}
+/* Cevaptan sonra: doğru yeşil, seçilen yanlış turuncu ışık; renk yanında ✓ / ✗ ve ad da görünür. */
+.wrap.as.asy .as-k.ok{box-shadow:0 0 0 4px #3fae6a,0 0 18px 4px rgba(63,174,106,.7)}
+.wrap.as.asy .as-k.yan{box-shadow:0 0 0 4px #e0803a,0 0 18px 4px rgba(224,128,58,.7)}
+.wrap.as.asy .as-k.ok em{background-image:none;background:#3fae6a;color:#fff}
+.wrap.as.asy .as-k.yan em{background-image:none;background:#e0803a;color:#fff}
+.wrap.as.asy .as-k.sonuk{opacity:.6}
+.wrap.as.asy .as-k:focus-visible{outline:3px solid #7fe3d8;outline-offset:3px}
+
+/* Duraklat üst sırada; alttaki yuvarlak düğme ve onun boşluğu bu ekranda yok. */
+.wrap.as.asy .foot-dur{display:none}
+main:has(> .wrap.as.asy) > .wrap.as.asy{padding-top:0;padding-bottom:calc(8px + env(safe-area-inset-bottom))}
+@media (prefers-reduced-motion:reduce){.asy-oluk i{transition:none}}

@@ -916,7 +916,7 @@
     }
    ],
    "correct": "A",
-   "explanation": "Pasta bu küçük çatalla yenir. Geniş dış dişi pastayı küçük parçalara ayırır.",
+   "explanation": "Pasta çatalıyla pasta yenir. Geniş dış dişi pastayı küçük parçalara ayırmayı kolaylaştırır.",
    "equivalenceKey": "ma-t-tatli-catali",
    "realSize": true,
    "group": "Çatal, bıçak ve kaşıklar",
@@ -1168,7 +1168,7 @@
     }
    ],
    "correct": "B",
-   "explanation": "Ortak tabaktaki et bu büyük çatalla konuğun tabağına alınır. İki uzun dişi vardır.",
+   "explanation": "Servis çatalı, ortak tabaktaki yiyeceği yemek tabağına almak için kullanılır. Dişleri uzundur.",
    "equivalenceKey": "ma-t-servis-catali",
    "realSize": true,
    "group": "Çatal, bıçak ve kaşıklar",
@@ -1252,7 +1252,7 @@
     }
    ],
    "correct": "C",
-   "explanation": "Serviste kullanılan temiz bezdir. Sıcak tabağı tutmak ve takımları parlatmak için ayrı litolar kullanılır.",
+   "explanation": "Lito bezi serviste kullanılır. Sıcak tabak tutmak ve takımları parlatmak için farklı, temiz litolar ayrılır.",
    "equivalenceKey": "ma-t-lito-bezi",
    "realSize": false,
    "group": "Servis araçları",
@@ -1294,7 +1294,7 @@
     }
    ],
    "correct": "C",
-   "explanation": "Tuz, karabiber, yağ ve sirke masada bu takımla sunulur. Bu örnek takımda tuzluk, biberlik, yağlık ve sirkelik bulunur.",
+   "explanation": "Tuz, karabiber, yağ ve sirke masada bu takımla sunulur. Takımda tuzluk, biberlik, yağlık ve sirkelik bulunur.",
    "equivalenceKey": "ma-t-menaj-takimi",
    "realSize": false,
    "group": "Servis araçları",
@@ -2008,7 +2008,7 @@
     }
    ],
    "correct": "D",
-   "explanation": "Sıcak tencere, tava ve tepsi masaya ya da tezgâha bu altlığın üstüne konur. Görseldeki model çeliktir.",
+   "explanation": "Sıcak tencere, tava ve tepsi masada ya da tezgâhta bu altlığın üstünde durur. Altlık, yüzeyi sıcaktan korur.",
    "equivalenceKey": "ma-t-nihale",
    "realSize": false,
    "group": "Pişirme kapları ve tavalar",
@@ -3058,7 +3058,7 @@
     }
    ],
    "correct": "D",
-   "explanation": "Su ve süt gibi sıvılar bu çizgili kapla mililitre olarak ölçülür.",
+   "explanation": "Ölçü kabı, su ve süt gibi sıvıları ölçmek için kullanılır. Üzerindeki ölçü çizgileri miktarı gösterir.",
    "equivalenceKey": "ma-t-olcu-kabi",
    "realSize": false,
    "group": "Ölçme, süzme, aktarma ve kontrol araçları",
@@ -3068,7 +3068,7 @@
   },
   {
    "id": "ma-t-72",
-   "prompt": "Ölçü kaşıkları hangisidir?",
+   "prompt": "Ölçü kaşıkları hangi görseldedir?",
    "choices": [
     {
      "id": "A",
@@ -3100,7 +3100,7 @@
     }
    ],
    "correct": "C",
-   "explanation": "Baharat ve kabartma tozu gibi küçük miktarlar bu farklı boydaki kaşıklarla ölçülür. Tarifte gram yazıyorsa terazi kullanılır.",
+   "explanation": "Ölçü kaşıkları, tarifte kaşıkla belirtilen küçük miktarları ölçmek için kullanılır. Gramla verilen miktarlar mutfak terazisiyle tartılır.",
    "equivalenceKey": "ma-t-olcu-kasiklari",
    "realSize": false,
    "group": "Ölçme, süzme, aktarma ve kontrol araçları",
@@ -3184,7 +3184,7 @@
     }
    ],
    "correct": "C",
-   "explanation": "Haşlanan makarnanın ve yıkanan sebzenin suyu bu büyük, delikli kapta süzülür. Tezgâhta kendi başına durur.",
+   "explanation": "Ayaklı süzgeç, makarna ve sebzelerin suyunu süzer. Sıcak makarnanın suyunu öğretmen süzer.",
    "equivalenceKey": "ma-t-ayakli-suzgec",
    "realSize": false,
    "group": "Ölçme, süzme, aktarma ve kontrol araçları",
@@ -3478,7 +3478,7 @@
     }
    ],
    "correct": "D",
-   "explanation": "Limon ve portakalın suyu bu araçla çıkarılır. Görseldeki model camdır.",
+   "explanation": "Limon sıkacağı, limonun suyunu çıkarmak için kullanılır.",
    "equivalenceKey": "ma-t-limon-sikacagi",
    "realSize": false,
    "group": "Ölçme, süzme, aktarma ve kontrol araçları",
@@ -3782,7 +3782,7 @@
   },
   {
    "id": "ma-t-89",
-   "prompt": "Sıkma torbası ve krema duyu hangisidir?",
+   "prompt": "Sıkma torbası ve krema duyu hangi görseldedir?",
    "choices": [
     {
      "id": "A",
@@ -3814,7 +3814,7 @@
     }
    ],
    "correct": "C",
-   "explanation": "Krema torbaya doldurulur ve uçtaki duydan şekil verilerek sıkılır.",
+   "explanation": "Krema torbaya doldurulur. Torbanın ucundaki duy, sıkılan kremaya şekil verir.",
    "equivalenceKey": "ma-t-sikma-torbasi-ve-krema-duyu",
    "realSize": false,
    "group": "Hamur ve tatlı araçları",
@@ -3898,7 +3898,7 @@
     }
    ],
    "correct": "A",
-   "explanation": "Fırın tepsisine serilir; hamurun yapışmasını önler. Bir kez kullanılıp atılır; kullanıldıkça tükendiği için gereçtir.",
+   "explanation": "Pişirme kâğıdı fırın tepsisine serilir. Yiyeceğin tepsiye yapışmasını önler.",
    "equivalenceKey": "ma-t-pisirme-kagidi",
    "realSize": false,
    "group": "Hamur ve tatlı araçları",
@@ -4024,7 +4024,7 @@
     }
    ],
    "correct": "A",
-   "explanation": "Tencere ve tavadaki yemekler bunun üstünde pişirilir. Atölyedeki ocak tüplü gazla çalışır; bazı mutfaklarda elektrikli ocak kullanılır.",
+   "explanation": "Ocak, tencere ve tavadaki yemekleri pişirmek için kullanılır.",
    "equivalenceKey": "ma-t-ocak",
    "realSize": false,
    "group": "Pişirme ve ısıtma cihazları",
@@ -4192,7 +4192,7 @@
     }
    ],
    "correct": "A",
-   "explanation": "Yemek bu cihazda kısa sürede ısıtılır. Mikrodalga ile ısıtılan yemeğin üstü kızarmaz.",
+   "explanation": "Mikrodalga fırın yemeği kısa sürede ısıtır. Yalnız mikrodalga işlevi kullanıldığında yemeğin üstü kızarmaz.",
    "equivalenceKey": "ma-t-mikrodalga-firin",
    "realSize": false,
    "group": "Pişirme ve ısıtma cihazları",
@@ -4612,7 +4612,7 @@
     }
    ],
    "correct": "A",
-   "explanation": "Yiyecek hazırlamak, saklamak ve sunmak için kullanılan çelik kaptır. Uygun ölçüdeki GN raflarına ve yuvalarına yerleşir.",
+   "explanation": "Gastronorm küvet, yiyecek hazırlamak, saklamak ve servis etmek için kullanılan bir kaptır.",
    "equivalenceKey": "ma-t-gastronorm-gn-kuvet",
    "realSize": false,
    "group": "Saklama araçları ve artan yemek",
@@ -4990,7 +4990,7 @@
     }
    ],
    "correct": "C",
-   "explanation": "İncedir ve bir kez kullanılır. Görev değişince ya da yırtılınca değiştirilir.",
+   "explanation": "Tek kullanımlık eldiven, bir görev için kullanılır. Kirlenince, yırtılınca veya görev değişince yenilenir.",
    "equivalenceKey": "ma-t-tek-kullanimlik-eldiven",
    "realSize": false,
    "group": "Koruyucular",
@@ -5125,134 +5125,8 @@
    "choiceOrder": false
   },
   {
-   "id": "ma-r-tatli-kasigi",
-   "prompt": "Sütlaç ve muhallebi tatlı kaşığıyla yenir. Aşağıdakilerden hangisi tatlı kaşığıdır?",
-   "choices": [
-    {
-     "id": "A",
-     "text": "",
-     "image": "assets/mutfak-araclari/boy/kasik-cay-kasigi.jpg",
-     "alt": "Seçenek A",
-     "ad": "Çay kaşığı"
-    },
-    {
-     "id": "B",
-     "text": "",
-     "image": "assets/mutfak-araclari/boy/kasik-corba-kasigi.jpg",
-     "alt": "Seçenek B",
-     "ad": "Çorba kaşığı"
-    },
-    {
-     "id": "C",
-     "text": "",
-     "image": "assets/mutfak-araclari/boy/kasik-servis-kasigi.jpg",
-     "alt": "Seçenek C",
-     "ad": "Servis kaşığı"
-    },
-    {
-     "id": "D",
-     "text": "",
-     "image": "assets/mutfak-araclari/boy/kasik-tatli-kasigi.jpg",
-     "alt": "Seçenek D",
-     "ad": "Tatlı kaşığı"
-    }
-   ],
-   "correct": "D",
-   "explanation": "Çorba kaşığından küçük, çay kaşığından büyüktür.",
-   "equivalenceKey": "ma-r-tatli-kasigi",
-   "group": "Çatal, bıçak ve kaşıklar",
-   "chapter": 1,
-   "kalip": "ters",
-   "choiceOrder": false,
-   "realSize": true
-  },
-  {
-   "id": "ma-r-servis-kasigi",
-   "prompt": "Ortak kaptaki yiyecek servis kaşığıyla konuğun tabağına alınır. Aşağıdakilerden hangisi servis kaşığıdır?",
-   "choices": [
-    {
-     "id": "A",
-     "text": "",
-     "image": "assets/mutfak-araclari/boy/kasik-corba-kasigi.jpg",
-     "alt": "Seçenek A",
-     "ad": "Çorba kaşığı"
-    },
-    {
-     "id": "B",
-     "text": "",
-     "image": "assets/mutfak-araclari/boy/kasik-servis-kasigi.jpg",
-     "alt": "Seçenek B",
-     "ad": "Servis kaşığı"
-    },
-    {
-     "id": "C",
-     "text": "",
-     "image": "assets/mutfak-araclari/boy/kasik-tatli-kasigi.jpg",
-     "alt": "Seçenek C",
-     "ad": "Tatlı kaşığı"
-    },
-    {
-     "id": "D",
-     "text": "",
-     "image": "assets/mutfak-araclari/boy/kasik-cay-kasigi.jpg",
-     "alt": "Seçenek D",
-     "ad": "Çay kaşığı"
-    }
-   ],
-   "correct": "B",
-   "explanation": "Bu kaşıkların en büyüğüdür; ağzı geniş ve derindir.",
-   "equivalenceKey": "ma-r-servis-kasigi",
-   "group": "Çatal, bıçak ve kaşıklar",
-   "chapter": 1,
-   "kalip": "ters",
-   "choiceOrder": false,
-   "realSize": true
-  },
-  {
-   "id": "ma-r-cay-kasigi",
-   "prompt": "Çaydaki şeker çay kaşığıyla karıştırılır. Aşağıdakilerden hangisi çay kaşığıdır?",
-   "choices": [
-    {
-     "id": "A",
-     "text": "",
-     "image": "assets/mutfak-araclari/boy/kasik-servis-kasigi.jpg",
-     "alt": "Seçenek A",
-     "ad": "Servis kaşığı"
-    },
-    {
-     "id": "B",
-     "text": "",
-     "image": "assets/mutfak-araclari/boy/kasik-tatli-kasigi.jpg",
-     "alt": "Seçenek B",
-     "ad": "Tatlı kaşığı"
-    },
-    {
-     "id": "C",
-     "text": "",
-     "image": "assets/mutfak-araclari/boy/kasik-cay-kasigi.jpg",
-     "alt": "Seçenek C",
-     "ad": "Çay kaşığı"
-    },
-    {
-     "id": "D",
-     "text": "",
-     "image": "assets/mutfak-araclari/boy/kasik-corba-kasigi.jpg",
-     "alt": "Seçenek D",
-     "ad": "Çorba kaşığı"
-    }
-   ],
-   "correct": "C",
-   "explanation": "Bu kaşıkların en küçüğüdür; sapı incedir.",
-   "equivalenceKey": "ma-r-cay-kasigi",
-   "group": "Çatal, bıçak ve kaşıklar",
-   "chapter": 1,
-   "kalip": "ters",
-   "choiceOrder": false,
-   "realSize": true
-  },
-  {
    "id": "ma-r-corba-kasigi",
-   "prompt": "Çorba kaşığının ağzı geniş ve derindir. Aşağıdakilerden hangisi çorba kaşığıdır?",
+   "prompt": "Tatlı kaşığından büyük, servis kaşığından küçük olan kaşık hangisidir?",
    "choices": [
     {
      "id": "A",
@@ -5284,7 +5158,7 @@
     }
    ],
    "correct": "D",
-   "explanation": "Servis kaşığından küçük, tatlı kaşığından büyüktür.",
+   "explanation": "Çorba kaşığıdır. Çorba bu kaşıkla içilir.",
    "equivalenceKey": "ma-r-corba-kasigi",
    "group": "Çatal, bıçak ve kaşıklar",
    "chapter": 1,
@@ -5294,7 +5168,7 @@
   },
   {
    "id": "ma-r-kahvalti-catali",
-   "prompt": "Peynir ve domates gibi kahvaltılıklar kahvaltı çatalıyla yenir. Aşağıdakilerden hangisi kahvaltı çatalıdır?",
+   "prompt": "Ana yemek çatalından küçük olan dört dişli çatal hangisidir?",
    "choices": [
     {
      "id": "A",
@@ -5326,7 +5200,7 @@
     }
    ],
    "correct": "C",
-   "explanation": "Ana yemek çatalından küçük, pasta çatalından büyüktür.",
+   "explanation": "Kahvaltı çatalıdır. Peynir ve domates gibi kahvaltılıklar bu çatalla yenir.",
    "equivalenceKey": "ma-r-kahvalti-catali",
    "group": "Çatal, bıçak ve kaşıklar",
    "chapter": 1,
@@ -5420,7 +5294,7 @@
   },
   {
    "id": "ma-r-ana-yemek-catali",
-   "prompt": "Ana yemek çatalı kuverde tabağın solunda yer alır. Aşağıdakilerden hangisi ana yemek çatalıdır?",
+   "prompt": "Kahvaltı çatalından büyük olan dört dişli çatal hangisidir?",
    "choices": [
     {
      "id": "A",
@@ -5452,7 +5326,7 @@
     }
    ],
    "correct": "A",
-   "explanation": "Bu sofra çatallarının en uzunudur; ana yemek bu çatalla yenir.",
+   "explanation": "Ana yemek çatalıdır. Ana yemek bu çatalla yenir; kuverde tabağın solunda yer alır.",
    "equivalenceKey": "ma-r-ana-yemek-catali",
    "group": "Çatal, bıçak ve kaşıklar",
    "chapter": 1,
@@ -5462,7 +5336,7 @@
   },
   {
    "id": "ma-r-kahvalti-bicagi",
-   "prompt": "Kahvaltılıklar kahvaltı bıçağıyla kesilir. Aşağıdakilerden hangisi kahvaltı bıçağıdır?",
+   "prompt": "Ana yemek bıçağından daha kısa ve dar olan bıçak hangisidir?",
    "choices": [
     {
      "id": "A",
@@ -5494,7 +5368,7 @@
     }
    ],
    "correct": "D",
-   "explanation": "Ana yemek bıçağından kısadır. Tereyağı bıçağından farklı olarak keser.",
+   "explanation": "Kahvaltı bıçağıdır. Kahvaltılıklar bu bıçakla kesilir.",
    "equivalenceKey": "ma-r-kahvalti-bicagi",
    "group": "Çatal, bıçak ve kaşıklar",
    "chapter": 1,
@@ -5504,7 +5378,7 @@
   },
   {
    "id": "ma-r-ekmek-bicagi",
-   "prompt": "Ağzı belirgin tırtıklı olan bıçak hangisidir?",
+   "prompt": "Keskin kenarı belirgin biçimde tırtıklı olan bıçak hangisidir?",
    "choices": [
     {
      "id": "A",
@@ -5546,7 +5420,7 @@
   },
   {
    "id": "ma-r-tereyagi-bicagi",
-   "prompt": "Ağzı geniş, ucu yuvarlak olan kısa bıçak hangisidir?",
+   "prompt": "Kısa, ucu yuvarlak ve sürme yüzeyi geniş olan bıçak hangisidir?",
    "choices": [
     {
      "id": "A",
@@ -5588,7 +5462,7 @@
   },
   {
    "id": "ma-r-ana-yemek-bicagi",
-   "prompt": "Ana yemekteki et ve sebze ana yemek bıçağıyla kesilir. Aşağıdakilerden hangisi ana yemek bıçağıdır?",
+   "prompt": "Kahvaltı bıçağından uzun, ekmek bıçağından kısa olan bıçak hangisidir?",
    "choices": [
     {
      "id": "A",
@@ -5620,7 +5494,7 @@
     }
    ],
    "correct": "B",
-   "explanation": "Kahvaltı bıçağından uzundur; ağzı hafif tırtıklıdır.",
+   "explanation": "Ana yemek bıçağıdır. Ana yemekteki et ve sebze bu bıçakla kesilir.",
    "equivalenceKey": "ma-r-ana-yemek-bicagi",
    "group": "Çatal, bıçak ve kaşıklar",
    "chapter": 1,
@@ -5630,7 +5504,7 @@
   },
   {
    "id": "ma-r-kupa",
-   "prompt": "Tabağı olmayan, büyük kulplu kap hangisidir?",
+   "prompt": "Büyük, kulplu ve genellikle tabaksız kullanılan kap hangisidir?",
    "choices": [
     {
      "id": "A",
@@ -5662,7 +5536,7 @@
     }
    ],
    "correct": "A",
-   "explanation": "Kupadır. Sıcak ve soğuk içecekler bu kapta sunulur.",
+   "explanation": "Kupa büyük ve kulplu bir içecek kabıdır. Genellikle tabaksız kullanılır.",
    "equivalenceKey": "ma-r-kupa",
    "group": "Bardaklar ve fincanlar",
    "chapter": 1,
@@ -5672,7 +5546,7 @@
   },
   {
    "id": "ma-r-turk-kahvesi-fincani",
-   "prompt": "Türk kahvesi fincanının yanında bir bardak su verilir. Aşağıdakilerden hangisi Türk kahvesi fincanıdır?",
+   "prompt": "Çay ve kahve fincanından daha küçük olan kulplu kap hangisidir?",
    "choices": [
     {
      "id": "A",
@@ -5704,7 +5578,7 @@
     }
    ],
    "correct": "C",
-   "explanation": "Küçük ve kulpludur; küçük tabağıyla sunulur.",
+   "explanation": "Türk kahvesi fincanıdır. Yanında bir bardak su verilir.",
    "equivalenceKey": "ma-r-turk-kahvesi-fincani",
    "group": "Bardaklar ve fincanlar",
    "chapter": 1,
@@ -5714,7 +5588,7 @@
   },
   {
    "id": "ma-r-cay-bardagi",
-   "prompt": "İnce belli, cam bardak hangisidir?",
+   "prompt": "İnce belli cam bardak hangisidir?",
    "choices": [
     {
      "id": "A",
@@ -5756,7 +5630,7 @@
   },
   {
    "id": "ma-r-fincan",
-   "prompt": "Sütlü kahve ve bitki çayı çay ve kahve fincanında sunulur. Aşağıdakilerden hangisi çay ve kahve fincanıdır?",
+   "prompt": "Kupadan küçük, Türk kahvesi fincanından büyük olan kulplu kap hangisidir?",
    "choices": [
     {
      "id": "A",
@@ -5788,7 +5662,7 @@
     }
    ],
    "correct": "B",
-   "explanation": "Kupadan küçük, Türk kahvesi fincanından büyüktür; tabağıyla sunulur.",
+   "explanation": "Çay ve kahve fincanıdır. Sütlü kahve ve bitki çayı bu fincanda, tabağıyla sunulur.",
    "equivalenceKey": "ma-r-fincan",
    "group": "Bardaklar ve fincanlar",
    "chapter": 1,
@@ -5798,7 +5672,7 @@
   },
   {
    "id": "ma-r-tatli-tabagi",
-   "prompt": "Pasta ve tatlı, tatlı tabağında sunulur. Aşağıdakilerden hangisi tatlı tabağıdır?",
+   "prompt": "Ana yemek tabağından daha küçük olan düz tabak hangisidir?",
    "choices": [
     {
      "id": "A",
@@ -5830,7 +5704,7 @@
     }
    ],
    "correct": "B",
-   "explanation": "Ana yemek tabağından küçük bir düz tabaktır.",
+   "explanation": "Tatlı tabağıdır. Pasta ve tatlı bu tabakta sunulur.",
    "equivalenceKey": "ma-r-tatli-tabagi",
    "group": "Tabaklar ve kâseler",
    "chapter": 1,
@@ -5882,7 +5756,7 @@
   },
   {
    "id": "ma-r-ana-yemek-tabagi",
-   "prompt": "Ana yemek tabağı kuverde konuğun tam önünde yer alır. Aşağıdakilerden hangisi ana yemek tabağıdır?",
+   "prompt": "Tatlı tabağından daha büyük olan düz tabak hangisidir?",
    "choices": [
     {
      "id": "A",
@@ -5914,7 +5788,7 @@
     }
    ],
    "correct": "B",
-   "explanation": "Tatlı tabağından büyük bir düz tabaktır.",
+   "explanation": "Ana yemek tabağıdır. Kuverde konuğun tam önünde yer alır.",
    "equivalenceKey": "ma-r-ana-yemek-tabagi",
    "group": "Tabaklar ve kâseler",
    "chapter": 1,
@@ -5924,7 +5798,7 @@
   },
   {
    "id": "ma-r-corba-tabagi",
-   "prompt": "Çorba tabağının ortası derin, kenarı dardır. Aşağıdakilerden hangisi çorba tabağıdır?",
+   "prompt": "Ortası derin, kenarı dar olan tabak hangisidir?",
    "choices": [
     {
      "id": "A",
@@ -5956,7 +5830,7 @@
     }
    ],
    "correct": "A",
-   "explanation": "Çorba ve sulu yemekler bu tabakta sunulur.",
+   "explanation": "Çorba tabağının ortası derin, kenarı dardır. Çorba bu tabakta sunulur.",
    "equivalenceKey": "ma-r-corba-tabagi",
    "group": "Tabaklar ve kâseler",
    "chapter": 1,
@@ -5966,7 +5840,7 @@
   },
   {
    "id": "ma-d-01",
-   "prompt": "Konuğa mantı servis edilecek. Hangi tabak kullanılır?",
+   "prompt": "Mantı servis etmek için hangi tabak kullanılır?",
    "choices": [
     {
      "id": "A",
@@ -5998,7 +5872,7 @@
     }
    ],
    "correct": "B",
-   "explanation": "Makarna tabağının geniş kenarı ve çukur ortası, hamur işini sosuyla birlikte taşır.",
+   "explanation": "Mantı, ortası çukur olan makarna tabağında sunulur.",
    "equivalenceKey": "ma-d-01",
    "realSize": true,
    "group": "Tabaklar ve kâseler",
@@ -6008,7 +5882,7 @@
   },
   {
    "id": "ma-d-02",
-   "prompt": "Konuğa ezogelin çorbası servis edilecek. Hangi tabak kullanılır?",
+   "prompt": "Ezogelin çorbası servis etmek için hangi tabak kullanılır?",
    "choices": [
     {
      "id": "A",
@@ -6050,7 +5924,7 @@
   },
   {
    "id": "ma-d-03",
-   "prompt": "Konuğa köfte ve pilav servis edilecek. Hangi tabak kullanılır?",
+   "prompt": "Köfte ve pilav hangi tabakta servis edilir?",
    "choices": [
     {
      "id": "A",
@@ -6092,7 +5966,7 @@
   },
   {
    "id": "ma-d-04",
-   "prompt": "Konuğa bir dilim pasta servis edilecek. Hangi tabak kullanılır?",
+   "prompt": "Bir dilim pasta hangi tabakta servis edilir?",
    "choices": [
     {
      "id": "A",
@@ -6134,7 +6008,7 @@
   },
   {
    "id": "ma-d-05",
-   "prompt": "Kuver kurulurken ekmek için yer ayrılacak. Hangi tabak kullanılır?",
+   "prompt": "Sofrada ekmek hangi tabakta sunulur?",
    "choices": [
     {
      "id": "A",
@@ -6176,7 +6050,7 @@
   },
   {
    "id": "ma-d-06",
-   "prompt": "Masaya ortak çoban salatası servis edilecek. Hangi kap kullanılır?",
+   "prompt": "Birkaç kişilik çoban salatası hangi kapta servis edilir?",
    "choices": [
     {
      "id": "A",
@@ -6218,7 +6092,7 @@
   },
   {
    "id": "ma-d-07",
-   "prompt": "Konuğa tek kişilik hoşaf servis edilecek. Hangi kap kullanılır?",
+   "prompt": "Bir kişilik hoşaf hangi kapta servis edilir?",
    "choices": [
     {
      "id": "A",
@@ -6260,7 +6134,7 @@
   },
   {
    "id": "ma-d-08",
-   "prompt": "Kahvaltıda konuğa bal servis edilecek. Hangi kap kullanılır?",
+   "prompt": "Kahvaltıda bal hangi kapta servis edilir?",
    "choices": [
     {
      "id": "A",
@@ -6302,7 +6176,7 @@
   },
   {
    "id": "ma-d-09",
-   "prompt": "Kuver kurulurken su için yer ayrılacak. Hangi bardak kullanılır?",
+   "prompt": "Sofrada su servisi için hangi bardak kullanılır?",
    "choices": [
     {
      "id": "A",
@@ -6344,7 +6218,7 @@
   },
   {
    "id": "ma-d-10",
-   "prompt": "Konuğa meyve suyu servis edilecek. Hangi bardak kullanılır?",
+   "prompt": "Meyve suyu servis etmek için hangi bardak kullanılır?",
    "choices": [
     {
      "id": "A",
@@ -6386,7 +6260,7 @@
   },
   {
    "id": "ma-d-11",
-   "prompt": "Masadaki konuklara ayran dağıtılacak. Ayran masaya hangi kapla getirilir?",
+   "prompt": "Bardaklara doldurulacak ayran masaya hangi kapla getirilir?",
    "choices": [
     {
      "id": "A",
@@ -6428,39 +6302,39 @@
   },
   {
    "id": "ma-d-12",
-   "prompt": "Konuğa demlenmiş çay servis edilecek. Hangi kap kullanılır?",
+   "prompt": "Çay servisi için hangi bardak kullanılır?",
    "choices": [
     {
      "id": "A",
      "text": "",
-     "image": "assets/mutfak-araclari/boy/fincan-cay-bardagi.jpg",
+     "image": "assets/mutfak-araclari/boy/bardak-su-bardagi.jpg",
      "alt": "Seçenek A",
-     "ad": "Çay bardağı"
+     "ad": "Su bardağı"
     },
     {
      "id": "B",
      "text": "",
-     "image": "assets/mutfak-araclari/boy/fincan-fincan.jpg",
+     "image": "assets/mutfak-araclari/boy/bardak-cay-bardagi.jpg",
      "alt": "Seçenek B",
-     "ad": "Çay ve kahve fincanı"
+     "ad": "Çay bardağı"
     },
     {
      "id": "C",
      "text": "",
-     "image": "assets/mutfak-araclari/boy/fincan-turk-kahvesi-fincani.jpg",
+     "image": "assets/mutfak-araclari/boy/bardak-mesrubat-bardagi.jpg",
      "alt": "Seçenek C",
-     "ad": "Türk kahvesi fincanı"
+     "ad": "Meşrubat bardağı"
     },
     {
      "id": "D",
      "text": "",
-     "image": "assets/mutfak-araclari/boy/fincan-kupa.jpg",
+     "image": "assets/mutfak-araclari/boy/bardak-kupa.jpg",
      "alt": "Seçenek D",
      "ad": "Kupa"
     }
    ],
-   "correct": "A",
-   "explanation": "Çay, ince belli çay bardağında tabağıyla sunulur.",
+   "correct": "B",
+   "explanation": "Çay, ince belli çay bardağında ve tabağıyla sunulur.",
    "equivalenceKey": "ma-d-12",
    "realSize": true,
    "group": "Bardaklar ve fincanlar",
@@ -6470,7 +6344,7 @@
   },
   {
    "id": "ma-d-13",
-   "prompt": "Konuğa yanında bir bardak su ile kahve servis edilecek. Hangi kap kullanılır?",
+   "prompt": "Türk kahvesi hangi fincanda servis edilir?",
    "choices": [
     {
      "id": "A",
@@ -6502,7 +6376,7 @@
     }
    ],
    "correct": "B",
-   "explanation": "Türk kahvesi, Türk kahvesi fincanında tabağıyla sunulur.",
+   "explanation": "Türk kahvesi, küçük Türk kahvesi fincanında servis edilir. Yanında su sunulabilir.",
    "equivalenceKey": "ma-d-13",
    "realSize": true,
    "group": "Bardaklar ve fincanlar",
@@ -6512,7 +6386,7 @@
   },
   {
    "id": "ma-d-14",
-   "prompt": "Konuğa sütlü kahve tabağıyla servis edilecek. Hangi kap kullanılır?",
+   "prompt": "Sütlü kahve hangi fincanda servis edilir?",
    "choices": [
     {
      "id": "A",
@@ -6544,7 +6418,7 @@
     }
    ],
    "correct": "C",
-   "explanation": "Sütlü kahve orta boy fincanda, tabağıyla sunulur. Kupa çoğunlukla tabaksızdır.",
+   "explanation": "Sütlü kahve, çay ve kahve fincanında sunulur. Fincan, fincan tabağıyla birlikte servis edilir.",
    "equivalenceKey": "ma-d-14",
    "realSize": true,
    "group": "Bardaklar ve fincanlar",
@@ -6554,7 +6428,7 @@
   },
   {
    "id": "ma-d-15",
-   "prompt": "Konuğa tabaksız sıcak süt verilecek. Hangi kap kullanılır?",
+   "prompt": "Sıcak süt için kullanılan büyük, kulplu kap hangisidir?",
    "choices": [
     {
      "id": "A",
@@ -6586,7 +6460,7 @@
     }
    ],
    "correct": "A",
-   "explanation": "Kupa büyük ve kulpludur. Çoğunlukla tabaksız kullanılır.",
+   "explanation": "Sıcak süt kupayla sunulur. Kupa genellikle tabaksız kullanılır.",
    "equivalenceKey": "ma-d-15",
    "realSize": true,
    "group": "Bardaklar ve fincanlar",
@@ -6596,7 +6470,7 @@
   },
   {
    "id": "ma-d-16",
-   "prompt": "Konuk mercimek çorbası içecek. Hangi kaşık kullanılır?",
+   "prompt": "Mercimek çorbası içmek için hangi kaşık kullanılır?",
    "choices": [
     {
      "id": "A",
@@ -6638,7 +6512,7 @@
   },
   {
    "id": "ma-d-17",
-   "prompt": "Konuk sütlaç yiyecek. Hangi kaşık kullanılır?",
+   "prompt": "Sütlaç yemek için hangi kaşık kullanılır?",
    "choices": [
     {
      "id": "A",
@@ -6680,7 +6554,7 @@
   },
   {
    "id": "ma-d-18",
-   "prompt": "Konuk çayına şeker attı. Şekeri karıştırmak için hangi kaşık kullanılır?",
+   "prompt": "Çaydaki şekeri karıştırmak için hangi kaşık kullanılır?",
    "choices": [
     {
      "id": "A",
@@ -6722,7 +6596,7 @@
   },
   {
    "id": "ma-d-19",
-   "prompt": "Pilav ortak kaptan konukların tabağına alınacak. Hangi kaşık kullanılır?",
+   "prompt": "Pilavı servis kabından yemek tabağına almak için hangi kaşık kullanılır?",
    "choices": [
     {
      "id": "A",
@@ -6764,7 +6638,7 @@
   },
   {
    "id": "ma-d-20",
-   "prompt": "Konuk ızgara köfte ve pilav yiyecek. Hangi çatal kullanılır?",
+   "prompt": "Köfte ve pilav yemek için hangi çatal kullanılır?",
    "choices": [
     {
      "id": "A",
@@ -6806,7 +6680,7 @@
   },
   {
    "id": "ma-d-21",
-   "prompt": "Sabah masasında konuk beyaz peynir ve domates yiyecek. Hangi çatal kullanılır?",
+   "prompt": "Kahvaltıda peynir ve domates yemek için hangi çatal kullanılır?",
    "choices": [
     {
      "id": "A",
@@ -6848,7 +6722,7 @@
   },
   {
    "id": "ma-d-22",
-   "prompt": "Konuk bir dilim kremalı kek yiyecek. Hangi çatal kullanılır?",
+   "prompt": "Kremalı kek yemek için hangi çatal kullanılır?",
    "choices": [
     {
      "id": "A",
@@ -6890,7 +6764,7 @@
   },
   {
    "id": "ma-d-23",
-   "prompt": "Ortak tabaktaki et dilimleri konukların tabağına alınacak. Hangi çatal kullanılır?",
+   "prompt": "Et dilimlerini servis tabağından yemek tabağına almak için hangi çatal kullanılır?",
    "choices": [
     {
      "id": "A",
@@ -6932,7 +6806,7 @@
   },
   {
    "id": "ma-d-24",
-   "prompt": "Konuk tabağındaki bifteği kesecek. Hangi bıçak kullanılır?",
+   "prompt": "Sofrada biftek kesmek için hangi bıçak kullanılır?",
    "choices": [
     {
      "id": "A",
@@ -6964,7 +6838,7 @@
     }
    ],
    "correct": "C",
-   "explanation": "Ana yemekteki et, uzun ve hafif tırtıklı ana yemek bıçağıyla kesilir.",
+   "explanation": "Sofrada biftek, ana yemek bıçağıyla kesilir.",
    "equivalenceKey": "ma-d-24",
    "realSize": true,
    "group": "1. Bölüm · Bölüm sonu",
@@ -6974,7 +6848,7 @@
   },
   {
    "id": "ma-d-25",
-   "prompt": "Konuk ekmeğine tereyağı sürecek. Hangi bıçak kullanılır?",
+   "prompt": "Ekmeğe tereyağı sürmek için hangi bıçak kullanılır?",
    "choices": [
     {
      "id": "A",
@@ -7016,7 +6890,7 @@
   },
   {
    "id": "ma-d-26",
-   "prompt": "Somun ezilmeden dilimlenecek. Hangi bıçak kullanılır?",
+   "prompt": "Ekmeği ezmeden dilimlemek için hangi bıçak kullanılır?",
    "choices": [
     {
      "id": "A",
@@ -7058,7 +6932,7 @@
   },
   {
    "id": "ma-d-27",
-   "prompt": "Soğan ve havuç küp küp doğranacak. Hangi bıçak kullanılır?",
+   "prompt": "Soğan ve havucu küp küp doğramak için hangi bıçak kullanılır?",
    "choices": [
     {
      "id": "A",
@@ -7100,7 +6974,7 @@
   },
   {
    "id": "ma-d-28",
-   "prompt": "Öğretmen haşlanan makarnanın suyunu süzecek. Hangi araç kullanılır?",
+   "prompt": "Öğretmen makarnanın tamamını dökerek suyunu süzecek. Hangi araç kullanılır?",
    "choices": [
     {
      "id": "A",
@@ -7132,7 +7006,7 @@
     }
    ],
    "correct": "C",
-   "explanation": "Makarnanın tamamı büyük, delikli ayaklı süzgece dökülür. Sıcak suyu öğretmen döker; öğrenci buhardan uzak durur.",
+   "explanation": "Ayaklı süzgeç makarnanın suyunu süzer. Sıcak makarnayı ve suyu süzgece öğretmen döker; öğrenci buhardan uzak durur.",
    "equivalenceKey": "ma-d-28",
    "realSize": false,
    "group": "2. Bölüm · Bölüm sonu",
@@ -7142,7 +7016,7 @@
   },
   {
    "id": "ma-d-29",
-   "prompt": "Çorba tencereden kâseye alınacak. Hangi araç kullanılır?",
+   "prompt": "Çorbayı tencereden kâseye koymak için hangisi kullanılır?",
    "choices": [
     {
      "id": "A",
@@ -7184,7 +7058,7 @@
   },
   {
    "id": "ma-d-30",
-   "prompt": "Haşlanmış patates püre hâline getirilecek. Hangi araç kullanılır?",
+   "prompt": "Haşlanmış patatesi ezip püre yapmak için hangisi kullanılır?",
    "choices": [
     {
      "id": "A",
@@ -7216,7 +7090,7 @@
     }
    ],
    "correct": "D",
-   "explanation": "Patates ezici, haşlanmış yumru sebzeyi püre yapar.",
+   "explanation": "Patates ezici, haşlanmış patatesi püre yapmak için kullanılır.",
    "equivalenceKey": "ma-d-30",
    "realSize": false,
    "group": "2. Bölüm · Bölüm sonu",
@@ -7226,28 +7100,28 @@
   },
   {
    "id": "ma-d-31",
-   "prompt": "Kekin üstüne krema yayılacak. Hangi araç kullanılır?",
+   "prompt": "Kekin üstüne kremayı düzgünce yaymak için hangisi kullanılır?",
    "choices": [
     {
      "id": "A",
      "text": "",
-     "image": "assets/mutfak-araclari/guncel-065.jpg",
+     "image": "assets/mutfak-araclari/guncel-063.jpg",
      "alt": "Seçenek A",
-     "ad": "Çevirme spatulası"
+     "ad": "Çırpma teli"
     },
     {
      "id": "B",
      "text": "",
-     "image": "assets/mutfak-araclari/guncel-086.jpg",
+     "image": "assets/mutfak-araclari/guncel-089.jpg",
      "alt": "Seçenek B",
-     "ad": "Hamur kazıyıcı"
+     "ad": "Sıkma torbası ve krema duyu"
     },
     {
      "id": "C",
      "text": "",
-     "image": "assets/mutfak-araclari/guncel-066.jpg",
+     "image": "assets/mutfak-araclari/guncel-088.jpg",
      "alt": "Seçenek C",
-     "ad": "Silikon sıyırma spatulası"
+     "ad": "Kurabiye kalıbı"
     },
     {
      "id": "D",
@@ -7258,7 +7132,7 @@
     }
    ],
    "correct": "D",
-   "explanation": "Pasta spatulası sert ve düzdür. Kremayı yayar, yüzeyi düzeltir.",
+   "explanation": "Pasta spatulasının düz yüzeyi, kekin üzerine kremayı düzgünce yaymayı kolaylaştırır.",
    "equivalenceKey": "ma-d-31",
    "realSize": false,
    "group": "2. Bölüm · Bölüm sonu",
@@ -7268,7 +7142,7 @@
   },
   {
    "id": "ma-d-32",
-   "prompt": "Tavadaki köfte ters yüz edilecek. Hangi araç kullanılır?",
+   "prompt": "Tavada pişen köfteyi çevirmek için hangisi kullanılır?",
    "choices": [
     {
      "id": "A",
@@ -7280,23 +7154,23 @@
     {
      "id": "B",
      "text": "",
-     "image": "assets/mutfak-araclari/guncel-066.jpg",
+     "image": "assets/mutfak-araclari/guncel-063.jpg",
      "alt": "Seçenek B",
-     "ad": "Silikon sıyırma spatulası"
+     "ad": "Çırpma teli"
     },
     {
      "id": "C",
      "text": "",
-     "image": "assets/mutfak-araclari/guncel-090.jpg",
+     "image": "assets/mutfak-araclari/guncel-078.jpg",
      "alt": "Seçenek C",
-     "ad": "Pasta spatulası"
+     "ad": "Kepçe"
     },
     {
      "id": "D",
      "text": "",
-     "image": "assets/mutfak-araclari/guncel-067.jpg",
+     "image": "assets/mutfak-araclari/guncel-086.jpg",
      "alt": "Seçenek D",
-     "ad": "Kaşık spatula"
+     "ad": "Hamur kazıyıcı"
     }
    ],
    "correct": "A",
@@ -7310,7 +7184,7 @@
   },
   {
    "id": "ma-d-33",
-   "prompt": "Karıştırma kabının içinde kalan kek hamuru toplanacak. Hangi araç kullanılır?",
+   "prompt": "Kabın kenarlarında kalan kek hamurunu sıyırmak için hangisi kullanılır?",
    "choices": [
     {
      "id": "A",
@@ -7322,9 +7196,9 @@
     {
      "id": "B",
      "text": "",
-     "image": "assets/mutfak-araclari/guncel-086.jpg",
+     "image": "assets/mutfak-araclari/guncel-063.jpg",
      "alt": "Seçenek B",
-     "ad": "Hamur kazıyıcı"
+     "ad": "Çırpma teli"
     },
     {
      "id": "C",
@@ -7336,13 +7210,13 @@
     {
      "id": "D",
      "text": "",
-     "image": "assets/mutfak-araclari/guncel-090.jpg",
+     "image": "assets/mutfak-araclari/guncel-077.jpg",
      "alt": "Seçenek D",
-     "ad": "Pasta spatulası"
+     "ad": "Kevgir"
     }
    ],
    "correct": "C",
-   "explanation": "Silikon sıyırma spatulası esnektir; kabın kenarına uyar ve hamuru toplamayı kolaylaştırır.",
+   "explanation": "Silikon sıyırma spatulasının esnek ucu kabın kenarlarına uyar ve kalan hamuru toplamayı kolaylaştırır.",
    "equivalenceKey": "ma-d-33",
    "realSize": false,
    "group": "2. Bölüm · Bölüm sonu",
@@ -7352,7 +7226,7 @@
   },
   {
    "id": "ma-d-34",
-   "prompt": "Kurabiye hamuru açılacak. Hangi araç kullanılır?",
+   "prompt": "Kurabiye hamurunu açmak için hangisi kullanılır?",
    "choices": [
     {
      "id": "A",
@@ -7394,7 +7268,7 @@
   },
   {
    "id": "ma-d-35",
-   "prompt": "Kek yapılacak; undaki topaklar ayrılacak. Hangi araç kullanılır?",
+   "prompt": "Undaki topakları ayırmak için hangisi kullanılır?",
    "choices": [
     {
      "id": "A",
@@ -7436,7 +7310,7 @@
   },
   {
    "id": "ma-d-36",
-   "prompt": "Tarif için 250 gram şeker ölçülecek. Hangi araç kullanılır?",
+   "prompt": "250 gram şeker tartmak için hangisi kullanılır?",
    "choices": [
     {
      "id": "A",
@@ -7468,7 +7342,7 @@
     }
    ],
    "correct": "A",
-   "explanation": "Gram ölçüsü mutfak terazisiyle tartılır.",
+   "explanation": "Şeker, mutfak terazisiyle gram olarak tartılır.",
    "equivalenceKey": "ma-d-36",
    "realSize": false,
    "group": "2. Bölüm · Bölüm sonu",
@@ -7478,7 +7352,7 @@
   },
   {
    "id": "ma-d-37",
-   "prompt": "Tarif için 200 ml süt ölçülecek. Hangi araç kullanılır?",
+   "prompt": "200 mililitre süt ölçmek için hangisi kullanılır?",
    "choices": [
     {
      "id": "A",
@@ -7510,7 +7384,7 @@
     }
    ],
    "correct": "B",
-   "explanation": "Ölçü kabının üzerindeki çizgiler mililitreyi gösterir.",
+   "explanation": "Ölçü kabının üzerindeki çizgiler sıvının miktarını mililitre olarak gösterir.",
    "equivalenceKey": "ma-d-37",
    "realSize": false,
    "group": "2. Bölüm · Bölüm sonu",
@@ -7520,7 +7394,7 @@
   },
   {
    "id": "ma-d-38",
-   "prompt": "Pişen tavuğun iç sıcaklığı ölçülecek. Hangi araç kullanılır?",
+   "prompt": "Tavuğun iç sıcaklığını ölçmek için hangisi kullanılır?",
    "choices": [
     {
      "id": "A",
@@ -7562,7 +7436,7 @@
   },
   {
    "id": "ma-d-39",
-   "prompt": "Fırından çıkan kurabiyeler soğutulacak. Hangi araç kullanılır?",
+   "prompt": "Fırından çıkan kurabiyeleri soğutmak için hangisi kullanılır?",
    "choices": [
     {
      "id": "A",
@@ -7594,7 +7468,7 @@
     }
    ],
    "correct": "C",
-   "explanation": "Soğutma telinin boşluklarından hava geçer; kurabiyenin altında nem birikmesi azalır.",
+   "explanation": "Soğutma teli kurabiyelerin altından hava geçmesini sağlar. Böylece kurabiyeler soğurken altlarında nem birikmesi azalır.",
    "equivalenceKey": "ma-d-39",
    "realSize": false,
    "group": "2. Bölüm · Bölüm sonu",
@@ -7604,7 +7478,7 @@
   },
   {
    "id": "ma-d-40",
-   "prompt": "Yumurta beyazı elle köpürtülecek. Hangi araç kullanılır?",
+   "prompt": "Yumurta beyazını elektrik kullanmadan çırpmak için hangisi kullanılır?",
    "choices": [
     {
      "id": "A",
@@ -7636,7 +7510,7 @@
     }
    ],
    "correct": "B",
-   "explanation": "Çırpma telinin ince çubukları karışıma hava katar.",
+   "explanation": "Çırpma teliyle yumurta beyazı elektrik kullanmadan çırpılır.",
    "equivalenceKey": "ma-d-40",
    "realSize": false,
    "group": "2. Bölüm · Bölüm sonu",
@@ -7646,14 +7520,14 @@
   },
   {
    "id": "ma-d-41",
-   "prompt": "Sıcak tencere tezgâha bırakılacak. Tencerenin altında hangi araç kullanılır?",
+   "prompt": "Tezgâhı sıcak tencereden korumak için hangisi kullanılır?",
    "choices": [
     {
      "id": "A",
      "text": "",
-     "image": "assets/mutfak-araclari/guncel-092.jpg",
+     "image": "assets/mutfak-araclari/guncel-091.jpg",
      "alt": "Seçenek A",
-     "ad": "Silikon pişirme matı"
+     "ad": "Pişirme kâğıdı"
     },
     {
      "id": "B",
@@ -7672,13 +7546,13 @@
     {
      "id": "D",
      "text": "",
-     "image": "assets/mutfak-araclari/guncel-093.jpg",
+     "image": "assets/mutfak-araclari/guncel-073.jpg",
      "alt": "Seçenek D",
-     "ad": "Soğutma teli"
+     "ad": "Un eleği"
     }
    ],
    "correct": "C",
-   "explanation": "Nihale sıcak tencerenin altına konur; tezgâhı sıcaktan korur.",
+   "explanation": "Nihale, sıcak tencerenin altında kullanılan koruyucu altlıktır. Tezgâhı sıcak kaptan korur.",
    "equivalenceKey": "ma-d-41",
    "realSize": false,
    "group": "3. Bölüm · Bölüm sonu",
@@ -7688,7 +7562,7 @@
   },
   {
    "id": "ma-d-42",
-   "prompt": "Bir sandviç iki sıcak plaka arasında ısıtılacak. Hangi cihaz kullanılır?",
+   "prompt": "Sandviçi iki sıcak plaka arasında kızartmak için hangi cihaz kullanılır?",
    "choices": [
     {
      "id": "A",
@@ -7730,7 +7604,7 @@
   },
   {
    "id": "ma-d-43",
-   "prompt": "Hemen pişirilecek donmuş köfte kısa sürede çözdürülecek. Hangi cihaz kullanılır?",
+   "prompt": "Hemen pişirilecek donmuş köfteyi kısa sürede çözdürmek için hangi cihaz kullanılır?",
    "choices": [
     {
      "id": "A",
@@ -7762,7 +7636,7 @@
     }
    ],
    "correct": "A",
-   "explanation": "Mikrodalga fırının çözdürme programı kullanılır. Çözdürülen çiğ et ve tavuk hemen pişirilir.",
+   "explanation": "Öğretmen, mikrodalga fırının çözdürme programını kullanır. Bu yöntemle çözdürülen köfte bekletilmeden pişirilir.",
    "equivalenceKey": "ma-d-43",
    "realSize": false,
    "group": "3. Bölüm · Bölüm sonu",
@@ -7772,7 +7646,7 @@
   },
   {
    "id": "ma-d-44",
-   "prompt": "Artan yemek buzdolabında saklanacak. Hangi kap kullanılır?",
+   "prompt": "Artan yemek buzdolabına hangi kapla yerleştirilir?",
    "choices": [
     {
      "id": "A",
@@ -7798,13 +7672,13 @@
     {
      "id": "D",
      "text": "",
-     "image": "assets/mutfak-araclari/guncel-043.jpg",
+     "image": "assets/mutfak-araclari/guncel-009.jpg",
      "alt": "Seçenek D",
-     "ad": "Cam fırın kabı"
+     "ad": "Salata kâsesi"
     }
    ],
    "correct": "C",
-   "explanation": "Artan yemek kapaklı saklama kabında, buzdolabında saklanır.",
+   "explanation": "Kapaklı saklama kabı yiyeceği kurumaktan ve dış etkenlerden korur. Kap, kapağı kapatılarak buzdolabına yerleştirilir.",
    "equivalenceKey": "ma-d-44",
    "realSize": false,
    "group": "3. Bölüm · Bölüm sonu",
@@ -7814,7 +7688,7 @@
   },
   {
    "id": "ma-d-45",
-   "prompt": "Elde yıkanan tabakların suyu süzülecek. Hangi araç kullanılır?",
+   "prompt": "Yıkanan tabaklar, suları süzülsün diye hangisine yerleştirilir?",
    "choices": [
     {
      "id": "A",
@@ -7846,7 +7720,7 @@
     }
    ],
    "correct": "D",
-   "explanation": "Kurulama rafında tabakların suyu süzülür, tabaklar kurur.",
+   "explanation": "Yıkanan tabaklar kurulama rafına yerleştirilir. Suları süzülür ve tabaklar havada kurur.",
    "equivalenceKey": "ma-d-45",
    "realSize": false,
    "group": "3. Bölüm · Bölüm sonu",
@@ -7856,7 +7730,7 @@
   },
   {
    "id": "ma-d-46",
-   "prompt": "Fırından sıcak tepsi çıkarılacak. Ele ne giyilir?",
+   "prompt": "Sıcak tepsiyi tutarken hangi eldiven kullanılır?",
    "choices": [
     {
      "id": "A",
@@ -7888,7 +7762,7 @@
     }
    ],
    "correct": "B",
-   "explanation": "Fırın eldiveni eli ve bileği sıcaktan korur. Eldiven kuru ve sağlam olmalıdır.",
+   "explanation": "Fırın eldiveni, sıcak tepsiyi tutarken eli ve bileği korur. Kuru ve sağlam olmalıdır.",
    "equivalenceKey": "ma-d-46",
    "realSize": false,
    "group": "3. Bölüm · Bölüm sonu",
@@ -7898,7 +7772,7 @@
   },
   {
    "id": "ma-d-47",
-   "prompt": "Salata hazırlanırken yiyeceğe elle dokunulacak. Ele ne giyilir?",
+   "prompt": "Salata hazırlarken hangi eldiven kullanılır?",
    "choices": [
     {
      "id": "A",
@@ -7930,7 +7804,7 @@
     }
    ],
    "correct": "B",
-   "explanation": "Tek kullanımlık eldiven elden yiyeceğe mikrop geçmesini azaltır. Eller yıkandıktan sonra giyilir; görev değişince değiştirilir.",
+   "explanation": "Yiyecekle çalışmaya uygun tek kullanımlık eldiven kullanılır. Takmadan önce eller yıkanır; kirlenince, yırtılınca veya görev değişince eldiven yenilenir.",
    "equivalenceKey": "ma-d-47",
    "realSize": false,
    "group": "3. Bölüm · Bölüm sonu",
@@ -7940,7 +7814,7 @@
   },
   {
    "id": "ma-d-48",
-   "prompt": "Bulaşık elde yıkanacak. Ele ne giyilir?",
+   "prompt": "Bulaşık yıkarken elleri korumak için hangisi kullanılır?",
    "choices": [
     {
      "id": "A",
@@ -7972,7 +7846,7 @@
     }
    ],
    "correct": "C",
-   "explanation": "Bulaşık eldiveni kalındır; eli deterjandan korur.",
+   "explanation": "Bulaşık eldiveni, bulaşık yıkarken elleri deterjanla doğrudan temastan korur.",
    "equivalenceKey": "ma-d-48",
    "realSize": false,
    "group": "3. Bölüm · Bölüm sonu",
@@ -7982,7 +7856,7 @@
   },
   {
    "id": "ma-d-49",
-   "prompt": "Mutfağa girmeden önce saç örtülecek. Hangi koruyucu kullanılır?",
+   "prompt": "Saçların yiyeceğe düşmesini önlemek için hangisi kullanılır?",
    "choices": [
     {
      "id": "A",
@@ -8024,7 +7898,7 @@
   },
   {
    "id": "ma-b-01",
-   "prompt": "Aşağıdakilerden hangisi kaşıkların en küçüğüdür?",
+   "prompt": "Bu kaşıkların en küçüğü hangisidir?",
    "choices": [
     {
      "id": "A",
@@ -8066,7 +7940,7 @@
   },
   {
    "id": "ma-b-02",
-   "prompt": "Aşağıdakilerden hangisi kaşıkların en büyüğüdür?",
+   "prompt": "Bu kaşıkların en büyüğü hangisidir?",
    "choices": [
     {
      "id": "A",
@@ -8150,7 +8024,7 @@
   },
   {
    "id": "ma-b-04",
-   "prompt": "Aşağıdakilerden hangisi çatalların en küçüğüdür?",
+   "prompt": "Bu çatalların en küçüğü hangisidir?",
    "choices": [
     {
      "id": "A",
@@ -8234,7 +8108,7 @@
   },
   {
    "id": "ma-b-06",
-   "prompt": "Aşağıdaki tabaklardan hangisi en büyüğüdür?",
+   "prompt": "Bu tabakların en büyüğü hangisidir?",
    "choices": [
     {
      "id": "A",
@@ -8276,7 +8150,7 @@
   },
   {
    "id": "ma-b-07",
-   "prompt": "Aşağıdaki kaplardan hangisi en küçüğüdür?",
+   "prompt": "Bu kapların en küçüğü hangisidir?",
    "choices": [
     {
      "id": "A",
@@ -11878,5 +11752,5 @@
   "v10: Kullanım amacı yalnız biçimden belirlenemeyen kartlarda kullanım bilgisi sorunun parçasıdır. Bunların puanı, yalnız görselden bağımsız tanıma olarak yorumlanmaz.",
   "v10: Metal takımlar ve tabaklarda fotoğraf çerçevesi korunur. Büyütme mutlak santimetre ölçüsü vermez; kullanım bilgisi ve takım içindeki göreli ölçek birlikte ele alınır."
  ],
- "revision": "arac-2026-11-14"
+ "revision": "arac-2026-11-18"
 }
