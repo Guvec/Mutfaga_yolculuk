@@ -222,8 +222,7 @@ html body .lc-home .lc-grid .lc-card:nth-child(4) .lc-emblem{transform:scale(1.2
 .lc-home .lc-grid .lc-yastik{background-image:url('../assets/arayuz/rozet-yastik-kis.webp')}
 html body .lc-home .lc-grid .lc-card:nth-child(2) .lc-emblem.lc-sancak{transform:scale(.9)!important;transform-origin:50% 75%}
 html body .lc-home .lc-grid .lc-card:nth-child(4) .lc-emblem.lc-yastik{transform:scale(1)!important;transform-origin:50% 60%}
-/* 18.11 sabah (Ali): bilgi düğmesi küçük görünür (dokunma alanı 48 px kalır); rütbe şeridi biraz daralır; kart görselleri büyür. */
-html body .lc-home .lc-info{background:radial-gradient(circle,#0b3a4a 0 29%,#d8a14a 31% 33%,#fff1ac 34% 36%,transparent 38%)!important;font-size:15px!important}
+/* 18.11 sabah: rütbe şeridi biraz daralır. Bilgi düğmesi eski hâlinde (Ali). */
 html body .lc-home .lc-rank{padding-top:5px!important;padding-bottom:5px!important}
 html body .lc-home .lc-rank img{max-height:58px}
 /* Yolculuğum alt yazıları: altta koyu lacivert degrade, yazı karın üstünde okunur. */
