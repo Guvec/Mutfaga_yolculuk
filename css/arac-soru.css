@@ -80,3 +80,16 @@
 .opt.secildi::after{content:"✓ Seçimin";position:absolute;right:10px;top:50%;transform:translateY(-50%);font-size:.8em;font-weight:800;padding:2px 8px;border-radius:999px;background:var(--teal,#0e5e61);color:#fff}
 .hs-dugme[hidden]{display:none!important}
 .ys-hediye{font-size:64px;line-height:1;text-align:center;animation:asama-pop .6s ease-out}
+/* 18.11: Soru ekranı görselleri büyük — dört seçenek ekranın kalan yüksekliğini doldurur, kaydırma yok, altta başka öğe yok. */
+main:has(> .wrap.as){display:flex;flex-direction:column;height:100dvh;overflow:hidden}
+main:has(> .wrap.as) > .wrap.as{flex:1;min-height:0;display:flex;flex-direction:column;padding-bottom:calc(66px + env(safe-area-inset-bottom))}
+.wrap.as .as-bar,.wrap.as .as-durum,.wrap.as .as-kok,.wrap.as .as-sira,.wrap.as .as-tur{flex:none}
+.wrap.as .as-durum{color:#fdf6e8;margin:6px 2px}
+.wrap.as .as-kok{margin:4px 0 10px;padding:12px 14px}
+.wrap.as .saved{display:none}
+.wrap.as .as-grid:not(.metin){flex:1;min-height:0;width:100%;grid-template-rows:1fr 1fr;gap:10px}
+.wrap.as .as-grid:not(.metin) .as-k{aspect-ratio:auto;height:auto;min-height:0}
+.wrap.as .as-grid:not(.metin):not(.bh) .as-ol{inset:6px;align-items:center}
+.wrap.as .as-grid:not(.metin) .as-ol img{mix-blend-mode:multiply}
+.wrap.as .as-grid:not(.metin) .as-k em{width:30px;height:30px;font-size:17px;left:6px;top:6px;border-radius:9px;background:rgba(231,238,223,.92)}
+.wrap.as .as-grid:not(.metin) .as-ad{height:30px;line-height:30px;background:rgba(246,248,241,.94)}

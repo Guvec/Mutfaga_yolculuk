@@ -958,7 +958,7 @@
     }
    ],
    "correct": "B",
-   "explanation": "Ekmeğe tereyağı ve reçel bu bıçakla sürülür. Kısadır, ucu yuvarlaktır ve keskin değildir.",
+   "explanation": "Ekmeğe tereyağı ve reçel bu bıçakla sürülür. Kısadır, ağzı geniştir; ucu yuvarlaktır ve keskin değildir.",
    "equivalenceKey": "ma-t-tereyagi-bicagi",
    "realSize": true,
    "group": "Çatal, bıçak ve kaşıklar",
@@ -5336,7 +5336,7 @@
   },
   {
    "id": "ma-r-servis-catali",
-   "prompt": "Ortak tabaktaki et servis çatalıyla konuğun tabağına alınır. Aşağıdakilerden hangisi servis çatalıdır?",
+   "prompt": "İki uzun dişi olan çatal hangisidir?",
    "choices": [
     {
      "id": "A",
@@ -5368,7 +5368,7 @@
     }
    ],
    "correct": "C",
-   "explanation": "İki uzun dişi vardır.",
+   "explanation": "Servis çatalıdır. Ortak tabaktaki et bu çatalla konuğun tabağına alınır.",
    "equivalenceKey": "ma-r-servis-catali",
    "group": "Çatal, bıçak ve kaşıklar",
    "chapter": 1,
@@ -5378,7 +5378,7 @@
   },
   {
    "id": "ma-r-tatli-catali",
-   "prompt": "Pasta çatalının geniş dış dişi pastayı küçük parçalara ayırır. Aşağıdakilerden hangisi pasta çatalıdır?",
+   "prompt": "Dış dişlerinden biri geniş olan çatal hangisidir?",
    "choices": [
     {
      "id": "A",
@@ -5410,7 +5410,7 @@
     }
    ],
    "correct": "A",
-   "explanation": "Üç dişi vardır; dış dişlerden biri geniştir.",
+   "explanation": "Pasta çatalıdır. Geniş dış dişi pastayı küçük parçalara ayırır.",
    "equivalenceKey": "ma-r-tatli-catali",
    "group": "Çatal, bıçak ve kaşıklar",
    "chapter": 1,
@@ -5504,7 +5504,7 @@
   },
   {
    "id": "ma-r-ekmek-bicagi",
-   "prompt": "Ekmek bıçağının tırtıklı ağzı ekmeği ezmeden keser. Aşağıdakilerden hangisi ekmek bıçağıdır?",
+   "prompt": "Ağzı belirgin tırtıklı olan bıçak hangisidir?",
    "choices": [
     {
      "id": "A",
@@ -5536,7 +5536,7 @@
     }
    ],
    "correct": "A",
-   "explanation": "Uzun bir bıçaktır; ağzı belirgin tırtıklıdır.",
+   "explanation": "Ekmek bıçağıdır. Tırtıklı ağzı ekmeği ezmeden keser.",
    "equivalenceKey": "ma-r-ekmek-bicagi",
    "group": "Çatal, bıçak ve kaşıklar",
    "chapter": 1,
@@ -5546,7 +5546,7 @@
   },
   {
    "id": "ma-r-tereyagi-bicagi",
-   "prompt": "Ekmeğe tereyağı ve reçel tereyağı bıçağıyla sürülür. Aşağıdakilerden hangisi tereyağı bıçağıdır?",
+   "prompt": "Ağzı geniş, ucu yuvarlak olan kısa bıçak hangisidir?",
    "choices": [
     {
      "id": "A",
@@ -5578,7 +5578,7 @@
     }
    ],
    "correct": "C",
-   "explanation": "Kısadır, ucu yuvarlaktır ve keskin değildir.",
+   "explanation": "Tereyağı bıçağıdır. Ekmeğe tereyağı ve reçel bununla sürülür; keskin değildir.",
    "equivalenceKey": "ma-r-tereyagi-bicagi",
    "group": "Çatal, bıçak ve kaşıklar",
    "chapter": 1,
@@ -5630,7 +5630,7 @@
   },
   {
    "id": "ma-r-kupa",
-   "prompt": "Sıcak ve soğuk içecekler kupada, çoğunlukla tabaksız sunulur. Aşağıdakilerden hangisi kupadır?",
+   "prompt": "Tabağı olmayan, büyük kulplu kap hangisidir?",
    "choices": [
     {
      "id": "A",
@@ -5662,7 +5662,7 @@
     }
    ],
    "correct": "A",
-   "explanation": "Büyük ve kulplu bir kaptır.",
+   "explanation": "Kupadır. Sıcak ve soğuk içecekler bu kapta sunulur.",
    "equivalenceKey": "ma-r-kupa",
    "group": "Bardaklar ve fincanlar",
    "chapter": 1,
@@ -5714,7 +5714,7 @@
   },
   {
    "id": "ma-r-cay-bardagi",
-   "prompt": "Çay bardağı ince belli, küçük cam bardaktır. Aşağıdakilerden hangisi çay bardağıdır?",
+   "prompt": "İnce belli, cam bardak hangisidir?",
    "choices": [
     {
      "id": "A",
@@ -5746,7 +5746,7 @@
     }
    ],
    "correct": "A",
-   "explanation": "Tabağıyla sunulur.",
+   "explanation": "Çay bardağıdır. Tabağıyla sunulur.",
    "equivalenceKey": "ma-r-cay-bardagi",
    "group": "Bardaklar ve fincanlar",
    "chapter": 1,
@@ -5840,7 +5840,7 @@
   },
   {
    "id": "ma-r-makarna-tabagi",
-   "prompt": "Makarna tabağının kenarı geniş, ortası çukurdur. Aşağıdakilerden hangisi makarna tabağıdır?",
+   "prompt": "Kenarı geniş, ortası çukur olan tabak hangisidir?",
    "choices": [
     {
      "id": "A",
@@ -5872,7 +5872,7 @@
     }
    ],
    "correct": "D",
-   "explanation": "Makarna ve mantı bu tabakta sunulur.",
+   "explanation": "Makarna tabağıdır. Makarna ve mantı bu tabakta sunulur.",
    "equivalenceKey": "ma-r-makarna-tabagi",
    "group": "Tabaklar ve kâseler",
    "chapter": 1,
@@ -6470,7 +6470,7 @@
   },
   {
    "id": "ma-d-13",
-   "prompt": "Konuğa Türk kahvesi servis edilecek. Hangi kap kullanılır?",
+   "prompt": "Konuğa yanında bir bardak su ile kahve servis edilecek. Hangi kap kullanılır?",
    "choices": [
     {
      "id": "A",
@@ -6554,7 +6554,7 @@
   },
   {
    "id": "ma-d-15",
-   "prompt": "Konuğa büyük bir kapta sıcak süt verilecek, tabak kullanılmayacak. Hangi kap kullanılır?",
+   "prompt": "Konuğa tabaksız sıcak süt verilecek. Hangi kap kullanılır?",
    "choices": [
     {
      "id": "A",
@@ -6848,7 +6848,7 @@
   },
   {
    "id": "ma-d-22",
-   "prompt": "Konuk bir dilim yaş pasta yiyecek. Hangi çatal kullanılır?",
+   "prompt": "Konuk bir dilim kremalı kek yiyecek. Hangi çatal kullanılır?",
    "choices": [
     {
      "id": "A",
@@ -7730,7 +7730,7 @@
   },
   {
    "id": "ma-d-43",
-   "prompt": "Donmuş yiyecek kısa sürede çözdürülecek. Hangi cihaz kullanılır?",
+   "prompt": "Hemen pişirilecek donmuş köfte kısa sürede çözdürülecek. Hangi cihaz kullanılır?",
    "choices": [
     {
      "id": "A",
@@ -8056,7 +8056,7 @@
     }
    ],
    "correct": "B",
-   "explanation": "Çay kaşığı en küçük kaşıktır.",
+   "explanation": "Bu dört kaşık arasında en küçüğü çay kaşığıdır.",
    "equivalenceKey": "ma-b-01",
    "realSize": true,
    "group": "1. Bölüm · Bölüm sonu",
@@ -8098,7 +8098,7 @@
     }
    ],
    "correct": "C",
-   "explanation": "Servis kaşığı sofra kaşıklarının hepsinden büyüktür.",
+   "explanation": "Bu dört kaşık arasında en büyüğü servis kaşığıdır. Ortak kaptan yiyecek almak için kullanılır.",
    "equivalenceKey": "ma-b-02",
    "realSize": true,
    "group": "1. Bölüm · Bölüm sonu",
@@ -8234,7 +8234,7 @@
   },
   {
    "id": "ma-b-06",
-   "prompt": "Aşağıdaki düz tabaklardan hangisi en büyüğüdür?",
+   "prompt": "Aşağıdaki tabaklardan hangisi en büyüğüdür?",
    "choices": [
     {
      "id": "A",
@@ -8266,7 +8266,7 @@
     }
    ],
    "correct": "D",
-   "explanation": "Ana yemek tabağı en büyük düz tabaktır.",
+   "explanation": "Bu dört tabak arasında en büyüğü ana yemek tabağıdır.",
    "equivalenceKey": "ma-b-06",
    "realSize": true,
    "group": "1. Bölüm · Bölüm sonu",
@@ -8308,7 +8308,7 @@
     }
    ],
    "correct": "B",
-   "explanation": "Türk kahvesi fincanı kulplu kapların en küçüğüdür.",
+   "explanation": "Bu dört kap arasında en küçüğü Türk kahvesi fincanıdır.",
    "equivalenceKey": "ma-b-07",
    "realSize": true,
    "group": "1. Bölüm · Bölüm sonu",
