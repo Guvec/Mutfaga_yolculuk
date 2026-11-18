@@ -95,3 +95,5 @@ html body .lc-avatar{position:relative;border:0;width:52px;height:52px}
 html body .lc-avatar::after{content:"";position:absolute;inset:0;background:url('../assets/lonca/portre-halka.webp') center/100% 100% no-repeat;pointer-events:none;z-index:2}
 /* 17.11: Yolculuğum alt yazısı da hikâye yazı tipinde (sade yazı seçilince Lexend kalır). */
 html[data-font=hikaye] body .lc-journey-copy>span{font-family:'Inknut Antiqua','Lonca Hikaye',Georgia,serif!important;font-weight:500;letter-spacing:.01em;color:#ffe7b8;font-size:calc(.78rem * var(--lc-textscale))}
+/* 18.11: Hikâye yazısı (Inknut Antiqua) bütün menü başlıklarında; soru ekranlarında (oyun-ekrani) sorular ve seçenekler Lexend kalır. */
+html[data-font=hikaye] body:not(.oyun-ekrani) :is(#app,#ov,.modal) :is(h1,h2,h3,summary>b,.top .ttl,.card>h3){font-family:'Inknut Antiqua','Lonca Hikaye',Georgia,serif!important;font-weight:700;letter-spacing:0;line-height:1.25}
