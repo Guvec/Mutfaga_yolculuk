@@ -222,3 +222,11 @@ html body .lc-home .lc-grid .lc-card:nth-child(4) .lc-emblem{transform:scale(1.2
 .lc-home .lc-grid .lc-yastik{background-image:url('../assets/arayuz/rozet-yastik-kis.webp')}
 html body .lc-home .lc-grid .lc-card:nth-child(2) .lc-emblem.lc-sancak{transform:scale(.9)!important;transform-origin:50% 75%}
 html body .lc-home .lc-grid .lc-card:nth-child(4) .lc-emblem.lc-yastik{transform:scale(1)!important;transform-origin:50% 60%}
+/* 18.11 sabah (Ali): bilgi düğmesi küçük görünür (dokunma alanı 48 px kalır); rütbe şeridi biraz daralır; kart görselleri büyür. */
+html body .lc-home .lc-info{background:radial-gradient(circle,#0b3a4a 0 24%,#d8a14a 26% 28%,#fff1ac 29% 31%,transparent 33%)!important;font-size:12px!important}
+html body .lc-home .lc-rank{padding-top:5px!important;padding-bottom:5px!important}
+html body .lc-home .lc-rank img{max-height:58px}
+html body .lc-home .lc-grid .lc-card:nth-child(1) .lc-poz-yigin{transform:scale(1.08);transform-origin:50% 92%}
+html body .lc-home .lc-grid .lc-card:nth-child(2) .lc-emblem.lc-sancak{transform:scale(1.04)!important;transform-origin:50% 70%}
+html body .lc-home .lc-grid .lc-card:nth-child(3) .lc-kursu{transform:scale(1.04)!important;transform-origin:50% 75%}
+html body .lc-home .lc-grid .lc-card:nth-child(4) .lc-emblem.lc-yastik{transform:scale(1.16)!important;transform-origin:50% 62%}
