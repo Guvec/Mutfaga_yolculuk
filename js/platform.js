@@ -11,7 +11,7 @@ const SUBJECTS = [
 const CONTENT = Object.create(null);
 const OLD_RENDER = render, OLD_NEWQ = newQ, OLD_START = startSession, OLD_RESOLVE = resolve;
 const OLD_QUIZ = quizHtml, OLD_ITEM = itemImg;
-VERSION='Sürüm · 18.11.2026 · v3.26.0: Gerçekçi kar, kış sancağı ve rozet yastığı, Yolculuğum kamera hareketi, haritada yeni dostlar';
+VERSION='Sürüm · 18.11.2026 · v3.26.1: Haftalık yarış 145 soru düzeltmesi, Rozetlerim doğru bölümü açar, menü başlıklarında hikâye yazısı';
 st.subject='kuver'; st.practice='learn';
 LEVELS={
   1:{name:'Basit Kuver', items:['yemek_catali','yemek_bicagi','pecete','su_bardagi']},
