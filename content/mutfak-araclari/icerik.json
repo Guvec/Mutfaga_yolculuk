@@ -5252,7 +5252,7 @@
   },
   {
    "id": "ma-r-corba-kasigi",
-   "prompt": "Çorba kaşığının ağzı geniş ve derindir. Aşağıdakilerden hangisi çorba kaşığıdır?",
+   "prompt": "Servis kaşığından küçük, tatlı kaşığından büyük olan kaşık hangisidir?",
    "choices": [
     {
      "id": "A",
@@ -5284,7 +5284,7 @@
     }
    ],
    "correct": "D",
-   "explanation": "Servis kaşığından küçük, tatlı kaşığından büyüktür.",
+   "explanation": "Çorba kaşığıdır. Çorba bu kaşıkla içilir.",
    "equivalenceKey": "ma-r-corba-kasigi",
    "group": "Çatal, bıçak ve kaşıklar",
    "chapter": 1,
@@ -5294,7 +5294,7 @@
   },
   {
    "id": "ma-r-kahvalti-catali",
-   "prompt": "Peynir ve domates gibi kahvaltılıklar kahvaltı çatalıyla yenir. Aşağıdakilerden hangisi kahvaltı çatalıdır?",
+   "prompt": "Ana yemek çatalından küçük, dört dişli çatal hangisidir?",
    "choices": [
     {
      "id": "A",
@@ -5326,7 +5326,7 @@
     }
    ],
    "correct": "C",
-   "explanation": "Ana yemek çatalından küçük, pasta çatalından büyüktür.",
+   "explanation": "Kahvaltı çatalıdır. Peynir ve domates gibi kahvaltılıklar bu çatalla yenir.",
    "equivalenceKey": "ma-r-kahvalti-catali",
    "group": "Çatal, bıçak ve kaşıklar",
    "chapter": 1,
@@ -5420,7 +5420,7 @@
   },
   {
    "id": "ma-r-ana-yemek-catali",
-   "prompt": "Ana yemek çatalı kuverde tabağın solunda yer alır. Aşağıdakilerden hangisi ana yemek çatalıdır?",
+   "prompt": "Kahvaltı çatalından büyük, dört dişli çatal hangisidir?",
    "choices": [
     {
      "id": "A",
@@ -5452,7 +5452,7 @@
     }
    ],
    "correct": "A",
-   "explanation": "Bu sofra çatallarının en uzunudur; ana yemek bu çatalla yenir.",
+   "explanation": "Ana yemek çatalıdır. Ana yemek bu çatalla yenir; kuverde tabağın solunda yer alır.",
    "equivalenceKey": "ma-r-ana-yemek-catali",
    "group": "Çatal, bıçak ve kaşıklar",
    "chapter": 1,
@@ -5462,7 +5462,7 @@
   },
   {
    "id": "ma-r-kahvalti-bicagi",
-   "prompt": "Kahvaltılıklar kahvaltı bıçağıyla kesilir. Aşağıdakilerden hangisi kahvaltı bıçağıdır?",
+   "prompt": "Ana yemek bıçağından kısa, ağzı dar bıçak hangisidir?",
    "choices": [
     {
      "id": "A",
@@ -5494,7 +5494,7 @@
     }
    ],
    "correct": "D",
-   "explanation": "Ana yemek bıçağından kısadır. Tereyağı bıçağından farklı olarak keser.",
+   "explanation": "Kahvaltı bıçağıdır. Kahvaltılıklar bu bıçakla kesilir.",
    "equivalenceKey": "ma-r-kahvalti-bicagi",
    "group": "Çatal, bıçak ve kaşıklar",
    "chapter": 1,
@@ -5588,7 +5588,7 @@
   },
   {
    "id": "ma-r-ana-yemek-bicagi",
-   "prompt": "Ana yemekteki et ve sebze ana yemek bıçağıyla kesilir. Aşağıdakilerden hangisi ana yemek bıçağıdır?",
+   "prompt": "Kahvaltı bıçağından uzun, ekmek bıçağından kısa olan bıçak hangisidir?",
    "choices": [
     {
      "id": "A",
@@ -5620,7 +5620,7 @@
     }
    ],
    "correct": "B",
-   "explanation": "Kahvaltı bıçağından uzundur; ağzı hafif tırtıklıdır.",
+   "explanation": "Ana yemek bıçağıdır. Ana yemekteki et ve sebze bu bıçakla kesilir.",
    "equivalenceKey": "ma-r-ana-yemek-bicagi",
    "group": "Çatal, bıçak ve kaşıklar",
    "chapter": 1,
@@ -5672,7 +5672,7 @@
   },
   {
    "id": "ma-r-turk-kahvesi-fincani",
-   "prompt": "Türk kahvesi fincanının yanında bir bardak su verilir. Aşağıdakilerden hangisi Türk kahvesi fincanıdır?",
+   "prompt": "Çay ve kahve fincanından küçük, kulplu kap hangisidir?",
    "choices": [
     {
      "id": "A",
@@ -5704,7 +5704,7 @@
     }
    ],
    "correct": "C",
-   "explanation": "Küçük ve kulpludur; küçük tabağıyla sunulur.",
+   "explanation": "Türk kahvesi fincanıdır. Yanında bir bardak su verilir.",
    "equivalenceKey": "ma-r-turk-kahvesi-fincani",
    "group": "Bardaklar ve fincanlar",
    "chapter": 1,
@@ -5756,7 +5756,7 @@
   },
   {
    "id": "ma-r-fincan",
-   "prompt": "Sütlü kahve ve bitki çayı çay ve kahve fincanında sunulur. Aşağıdakilerden hangisi çay ve kahve fincanıdır?",
+   "prompt": "Kupadan küçük, Türk kahvesi fincanından büyük olan kulplu kap hangisidir?",
    "choices": [
     {
      "id": "A",
@@ -5788,7 +5788,7 @@
     }
    ],
    "correct": "B",
-   "explanation": "Kupadan küçük, Türk kahvesi fincanından büyüktür; tabağıyla sunulur.",
+   "explanation": "Çay ve kahve fincanıdır. Sütlü kahve ve bitki çayı bu fincanda, tabağıyla sunulur.",
    "equivalenceKey": "ma-r-fincan",
    "group": "Bardaklar ve fincanlar",
    "chapter": 1,
@@ -5798,7 +5798,7 @@
   },
   {
    "id": "ma-r-tatli-tabagi",
-   "prompt": "Pasta ve tatlı, tatlı tabağında sunulur. Aşağıdakilerden hangisi tatlı tabağıdır?",
+   "prompt": "Ana yemek tabağından küçük, düz tabak hangisidir?",
    "choices": [
     {
      "id": "A",
@@ -5830,7 +5830,7 @@
     }
    ],
    "correct": "B",
-   "explanation": "Ana yemek tabağından küçük bir düz tabaktır.",
+   "explanation": "Tatlı tabağıdır. Pasta ve tatlı bu tabakta sunulur.",
    "equivalenceKey": "ma-r-tatli-tabagi",
    "group": "Tabaklar ve kâseler",
    "chapter": 1,
@@ -5882,7 +5882,7 @@
   },
   {
    "id": "ma-r-ana-yemek-tabagi",
-   "prompt": "Ana yemek tabağı kuverde konuğun tam önünde yer alır. Aşağıdakilerden hangisi ana yemek tabağıdır?",
+   "prompt": "Tatlı tabağından büyük, düz tabak hangisidir?",
    "choices": [
     {
      "id": "A",
@@ -5914,7 +5914,7 @@
     }
    ],
    "correct": "B",
-   "explanation": "Tatlı tabağından büyük bir düz tabaktır.",
+   "explanation": "Ana yemek tabağıdır. Kuverde konuğun tam önünde yer alır.",
    "equivalenceKey": "ma-r-ana-yemek-tabagi",
    "group": "Tabaklar ve kâseler",
    "chapter": 1,
