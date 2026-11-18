@@ -28,7 +28,7 @@ function ico(k){return '<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" 
   const box=ayAc('<button class="lc-close" type="button" aria-label="Kapat" onclick="closeModal()">×</button><h2 class="lc-title">Profilim</h2><div class="lc-profile-portrait">'+portrait()+'</div><h3 class="lc-title">'+esc(name)+'</h3>'+(st.guest?'<p>Misafir oturumunda sonuçlar kaydedilmez.</p>':'<section id="profileCode" aria-live="polite"></section>')+'<div class="row"><button class="btn" type="button" onclick="closeModal();hesabimAc()">Hesabım</button><button class="btn pri" type="button" onclick="closeModal()">Kapat</button></div>','Profilim');
   box.classList.add('lc-parchment');if(!st.guest)profilKodGuncelle(true);box.querySelector('.lc-close').focus();
  };
- window.loncaRozetAc=function(){rutbeYolAc();requestAnimationFrame(()=>document.querySelector('.ry-bas')?.scrollIntoView({block:'start'}));};
+ window.loncaRozetAc=function(){rutbeYolAc();requestAnimationFrame(()=>{const d=document.querySelector('.ry-rozetler');if(d){d.open=true;d.scrollIntoView({block:'start'});}else document.querySelector('.ry-bas')?.scrollIntoView({block:'start'});});};
  function yollar(){return topBar('Yolculuğum')+'<div class="wrap lc-path-page"><h1 class="lc-title">Hikâyen hangi yoldan ilerlesin?</h1><p>Meslek alanını seç.</p><div class="lc-path-choices">'+[['sicak','Sıcak Mutfak'],['pasta','Pastacılık'],['servis','Servis']].map(([id,ad])=>'<button type="button" class="lc-paper lc-path" onclick="anaYol(\''+id+'\')"><img src="assets/ascidostum/dal-'+dostSecili()+'-'+id+'.webp" alt=""><strong class="lc-title">'+ad+'</strong><span aria-hidden="true">›</span></button>').join('')+'</div></div>';}
  window.loncaBilgi=function(k,automatic){
   if(!INFO[k]||st.modalOpen)return;

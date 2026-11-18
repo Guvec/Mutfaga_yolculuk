@@ -51,8 +51,8 @@ function haftaFinish(){
  if(h.ranked){mine.attempts[h.week]=(mine.attempts[h.week]||0)+1;mine.bestDur=mine.bestDur||{};const ob=mine.best[h.week]||0,od=mine.bestDur[h.week];
   if(score>ob||(score===ob&&h.durOk&&(!od||h.dur<od))){mine.best[h.week]=score;if(h.durOk)mine.bestDur[h.week]=h.dur;else delete mine.bestDur[h.week];}
   all[h.pid]=mine;lsSet('haftalik',all);
-  if(typeof rutbeComplete==='function')rutbeComplete({id:h.id,table:'haftalik',correct:score,total:100,weekly:true,week:h.week});
-  const p=rkProf(h.pid);if(p.status==='in'){const q=rkQueue();q.push({qid:rkRandomId(),pid:h.pid,board:'haftalik',period:'hafta',name:rkName(st.prof),correct:score,gen:p.gen,at:Date.now(),sess:h.id,week:h.week,meta:{game:'haftalik',scope:'butun',total:100,contentVersion:h.version,week:h.week,...(h.durOk?{dur:h.dur}:{})}});lsSet('rk_queue',q);rkFlush(h.id);}
+  if(typeof rutbeComplete==='function')rutbeComplete({id:h.id,table:'haftalik',correct:score,total:HAFTA_AYAR.n,weekly:true,week:h.week});
+  const p=rkProf(h.pid);if(p.status==='in'){const q=rkQueue();q.push({qid:rkRandomId(),pid:h.pid,board:'haftalik',period:'hafta',name:rkName(st.prof),correct:score,gen:p.gen,at:Date.now(),sess:h.id,week:h.week,meta:{game:'haftalik',scope:'butun',total:HAFTA_AYAR.n,contentVersion:h.version,week:h.week,...(h.durOk?{dur:h.dur}:{})}});lsSet('rk_queue',q);rkFlush(h.id);}
  }
  haftaSave();go('haftaover');
 }
