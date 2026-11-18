@@ -5126,33 +5126,35 @@
   },
   {
    "id": "ma-r-tatli-kasigi",
-   "prompt": "Sarı çerçeve içindeki kaşığın adı nedir?",
-   "image": "assets/mutfak-araclari/boy/sira-kasik-tatli-kasigi.jpg",
-   "imageAlt": "Gerçek boy oranıyla yan yana dizilmiş dört araç; biri sarı çerçeve içinde.",
+   "prompt": "Sütlaç ve muhallebi tatlı kaşığıyla yenir. Aşağıdakilerden hangisi tatlı kaşığıdır?",
    "choices": [
     {
      "id": "A",
-     "text": "Çay kaşığı",
-     "ad": "Çay kaşığı",
-     "ornek": "assets/mutfak-araclari/boy/kasik-cay-kasigi.jpg"
+     "text": "",
+     "image": "assets/mutfak-araclari/boy/kasik-cay-kasigi.jpg",
+     "alt": "Seçenek A",
+     "ad": "Çay kaşığı"
     },
     {
      "id": "B",
-     "text": "Çorba kaşığı",
-     "ad": "Çorba kaşığı",
-     "ornek": "assets/mutfak-araclari/boy/kasik-corba-kasigi.jpg"
+     "text": "",
+     "image": "assets/mutfak-araclari/boy/kasik-corba-kasigi.jpg",
+     "alt": "Seçenek B",
+     "ad": "Çorba kaşığı"
     },
     {
      "id": "C",
-     "text": "Servis kaşığı",
-     "ad": "Servis kaşığı",
-     "ornek": "assets/mutfak-araclari/boy/kasik-servis-kasigi.jpg"
+     "text": "",
+     "image": "assets/mutfak-araclari/boy/kasik-servis-kasigi.jpg",
+     "alt": "Seçenek C",
+     "ad": "Servis kaşığı"
     },
     {
      "id": "D",
-     "text": "Tatlı kaşığı",
-     "ad": "Tatlı kaşığı",
-     "ornek": "assets/mutfak-araclari/boy/kasik-tatli-kasigi.jpg"
+     "text": "",
+     "image": "assets/mutfak-araclari/boy/kasik-tatli-kasigi.jpg",
+     "alt": "Seçenek D",
+     "ad": "Tatlı kaşığı"
     }
    ],
    "correct": "D",
@@ -5161,388 +5163,418 @@
    "group": "Çatal, bıçak ve kaşıklar",
    "chapter": 1,
    "kalip": "ters",
-   "choiceOrder": false
+   "choiceOrder": false,
+   "realSize": true
   },
   {
    "id": "ma-r-servis-kasigi",
-   "prompt": "Sarı çerçeve içindeki kaşığın adı nedir?",
-   "image": "assets/mutfak-araclari/boy/sira-kasik-servis-kasigi.jpg",
-   "imageAlt": "Gerçek boy oranıyla yan yana dizilmiş dört araç; biri sarı çerçeve içinde.",
+   "prompt": "Ortak kaptaki yiyecek servis kaşığıyla konuğun tabağına alınır. Aşağıdakilerden hangisi servis kaşığıdır?",
    "choices": [
     {
      "id": "A",
-     "text": "Çorba kaşığı",
-     "ad": "Çorba kaşığı",
-     "ornek": "assets/mutfak-araclari/boy/kasik-corba-kasigi.jpg"
+     "text": "",
+     "image": "assets/mutfak-araclari/boy/kasik-corba-kasigi.jpg",
+     "alt": "Seçenek A",
+     "ad": "Çorba kaşığı"
     },
     {
      "id": "B",
-     "text": "Servis kaşığı",
-     "ad": "Servis kaşığı",
-     "ornek": "assets/mutfak-araclari/boy/kasik-servis-kasigi.jpg"
+     "text": "",
+     "image": "assets/mutfak-araclari/boy/kasik-servis-kasigi.jpg",
+     "alt": "Seçenek B",
+     "ad": "Servis kaşığı"
     },
     {
      "id": "C",
-     "text": "Tatlı kaşığı",
-     "ad": "Tatlı kaşığı",
-     "ornek": "assets/mutfak-araclari/boy/kasik-tatli-kasigi.jpg"
+     "text": "",
+     "image": "assets/mutfak-araclari/boy/kasik-tatli-kasigi.jpg",
+     "alt": "Seçenek C",
+     "ad": "Tatlı kaşığı"
     },
     {
      "id": "D",
-     "text": "Çay kaşığı",
-     "ad": "Çay kaşığı",
-     "ornek": "assets/mutfak-araclari/boy/kasik-cay-kasigi.jpg"
+     "text": "",
+     "image": "assets/mutfak-araclari/boy/kasik-cay-kasigi.jpg",
+     "alt": "Seçenek D",
+     "ad": "Çay kaşığı"
     }
    ],
    "correct": "B",
-   "explanation": "Sofra kaşıklarının hepsinden büyüktür. Ağzı geniş ve derindir.",
+   "explanation": "Bu kaşıkların en büyüğüdür; ağzı geniş ve derindir.",
    "equivalenceKey": "ma-r-servis-kasigi",
    "group": "Çatal, bıçak ve kaşıklar",
    "chapter": 1,
    "kalip": "ters",
-   "choiceOrder": false
+   "choiceOrder": false,
+   "realSize": true
   },
   {
    "id": "ma-r-cay-kasigi",
-   "prompt": "Sarı çerçeve içindeki kaşığın adı nedir?",
-   "image": "assets/mutfak-araclari/boy/sira-kasik-cay-kasigi.jpg",
-   "imageAlt": "Gerçek boy oranıyla yan yana dizilmiş dört araç; biri sarı çerçeve içinde.",
+   "prompt": "Çaydaki şeker çay kaşığıyla karıştırılır. Aşağıdakilerden hangisi çay kaşığıdır?",
    "choices": [
     {
      "id": "A",
-     "text": "Servis kaşığı",
-     "ad": "Servis kaşığı",
-     "ornek": "assets/mutfak-araclari/boy/kasik-servis-kasigi.jpg"
+     "text": "",
+     "image": "assets/mutfak-araclari/boy/kasik-servis-kasigi.jpg",
+     "alt": "Seçenek A",
+     "ad": "Servis kaşığı"
     },
     {
      "id": "B",
-     "text": "Tatlı kaşığı",
-     "ad": "Tatlı kaşığı",
-     "ornek": "assets/mutfak-araclari/boy/kasik-tatli-kasigi.jpg"
+     "text": "",
+     "image": "assets/mutfak-araclari/boy/kasik-tatli-kasigi.jpg",
+     "alt": "Seçenek B",
+     "ad": "Tatlı kaşığı"
     },
     {
      "id": "C",
-     "text": "Çay kaşığı",
-     "ad": "Çay kaşığı",
-     "ornek": "assets/mutfak-araclari/boy/kasik-cay-kasigi.jpg"
+     "text": "",
+     "image": "assets/mutfak-araclari/boy/kasik-cay-kasigi.jpg",
+     "alt": "Seçenek C",
+     "ad": "Çay kaşığı"
     },
     {
      "id": "D",
-     "text": "Çorba kaşığı",
-     "ad": "Çorba kaşığı",
-     "ornek": "assets/mutfak-araclari/boy/kasik-corba-kasigi.jpg"
+     "text": "",
+     "image": "assets/mutfak-araclari/boy/kasik-corba-kasigi.jpg",
+     "alt": "Seçenek D",
+     "ad": "Çorba kaşığı"
     }
    ],
    "correct": "C",
-   "explanation": "Kaşıkların en küçüğüdür. Sapı incedir.",
+   "explanation": "Bu kaşıkların en küçüğüdür; sapı incedir.",
    "equivalenceKey": "ma-r-cay-kasigi",
    "group": "Çatal, bıçak ve kaşıklar",
    "chapter": 1,
    "kalip": "ters",
-   "choiceOrder": false
+   "choiceOrder": false,
+   "realSize": true
   },
   {
    "id": "ma-r-corba-kasigi",
-   "prompt": "Sarı çerçeve içindeki kaşığın adı nedir?",
-   "image": "assets/mutfak-araclari/boy/sira-kasik-corba-kasigi.jpg",
-   "imageAlt": "Gerçek boy oranıyla yan yana dizilmiş dört araç; biri sarı çerçeve içinde.",
+   "prompt": "Çorba kaşığının ağzı geniş ve derindir. Aşağıdakilerden hangisi çorba kaşığıdır?",
    "choices": [
     {
      "id": "A",
-     "text": "Tatlı kaşığı",
-     "ad": "Tatlı kaşığı",
-     "ornek": "assets/mutfak-araclari/boy/kasik-tatli-kasigi.jpg"
+     "text": "",
+     "image": "assets/mutfak-araclari/boy/kasik-tatli-kasigi.jpg",
+     "alt": "Seçenek A",
+     "ad": "Tatlı kaşığı"
     },
     {
      "id": "B",
-     "text": "Servis kaşığı",
-     "ad": "Servis kaşığı",
-     "ornek": "assets/mutfak-araclari/boy/kasik-servis-kasigi.jpg"
+     "text": "",
+     "image": "assets/mutfak-araclari/boy/kasik-servis-kasigi.jpg",
+     "alt": "Seçenek B",
+     "ad": "Servis kaşığı"
     },
     {
      "id": "C",
-     "text": "Çay kaşığı",
-     "ad": "Çay kaşığı",
-     "ornek": "assets/mutfak-araclari/boy/kasik-cay-kasigi.jpg"
+     "text": "",
+     "image": "assets/mutfak-araclari/boy/kasik-cay-kasigi.jpg",
+     "alt": "Seçenek C",
+     "ad": "Çay kaşığı"
     },
     {
      "id": "D",
-     "text": "Çorba kaşığı",
-     "ad": "Çorba kaşığı",
-     "ornek": "assets/mutfak-araclari/boy/kasik-corba-kasigi.jpg"
+     "text": "",
+     "image": "assets/mutfak-araclari/boy/kasik-corba-kasigi.jpg",
+     "alt": "Seçenek D",
+     "ad": "Çorba kaşığı"
     }
    ],
    "correct": "D",
-   "explanation": "Sofra kaşıklarının en büyüğüdür. Ağzı geniş ve derindir.",
+   "explanation": "Servis kaşığından küçük, tatlı kaşığından büyüktür.",
    "equivalenceKey": "ma-r-corba-kasigi",
    "group": "Çatal, bıçak ve kaşıklar",
    "chapter": 1,
    "kalip": "ters",
-   "choiceOrder": false
+   "choiceOrder": false,
+   "realSize": true
   },
   {
    "id": "ma-r-kahvalti-catali",
-   "prompt": "Sarı çerçeve içindeki çatalın adı nedir?",
-   "image": "assets/mutfak-araclari/boy/sira-catal-kahvalti-catali.jpg",
-   "imageAlt": "Gerçek boy oranıyla yan yana dizilmiş dört araç; biri sarı çerçeve içinde.",
+   "prompt": "Peynir ve domates gibi kahvaltılıklar kahvaltı çatalıyla yenir. Aşağıdakilerden hangisi kahvaltı çatalıdır?",
    "choices": [
     {
      "id": "A",
-     "text": "Pasta çatalı",
-     "ad": "Pasta çatalı",
-     "ornek": "assets/mutfak-araclari/boy/catal-tatli-catali.jpg"
+     "text": "",
+     "image": "assets/mutfak-araclari/boy/catal-tatli-catali.jpg",
+     "alt": "Seçenek A",
+     "ad": "Pasta çatalı"
     },
     {
      "id": "B",
-     "text": "Ana yemek çatalı",
-     "ad": "Ana yemek çatalı",
-     "ornek": "assets/mutfak-araclari/boy/catal-ana-yemek-catali.jpg"
+     "text": "",
+     "image": "assets/mutfak-araclari/boy/catal-ana-yemek-catali.jpg",
+     "alt": "Seçenek B",
+     "ad": "Ana yemek çatalı"
     },
     {
      "id": "C",
-     "text": "Kahvaltı çatalı",
-     "ad": "Kahvaltı çatalı",
-     "ornek": "assets/mutfak-araclari/boy/catal-kahvalti-catali.jpg"
+     "text": "",
+     "image": "assets/mutfak-araclari/boy/catal-kahvalti-catali.jpg",
+     "alt": "Seçenek C",
+     "ad": "Kahvaltı çatalı"
     },
     {
      "id": "D",
-     "text": "Servis çatalı",
-     "ad": "Servis çatalı",
-     "ornek": "assets/mutfak-araclari/boy/catal-servis-catali.jpg"
+     "text": "",
+     "image": "assets/mutfak-araclari/boy/catal-servis-catali.jpg",
+     "alt": "Seçenek D",
+     "ad": "Servis çatalı"
     }
    ],
    "correct": "C",
-   "explanation": "Ana yemek çatalına göre küçük, pasta çatalına göre büyüktür.",
+   "explanation": "Ana yemek çatalından küçük, pasta çatalından büyüktür.",
    "equivalenceKey": "ma-r-kahvalti-catali",
    "group": "Çatal, bıçak ve kaşıklar",
    "chapter": 1,
    "kalip": "ters",
-   "choiceOrder": false
+   "choiceOrder": false,
+   "realSize": true
   },
   {
    "id": "ma-r-servis-catali",
-   "prompt": "Sarı çerçeve içindeki çatalın adı nedir?",
-   "image": "assets/mutfak-araclari/boy/sira-catal-servis-catali.jpg",
-   "imageAlt": "Gerçek boy oranıyla yan yana dizilmiş dört araç; biri sarı çerçeve içinde.",
+   "prompt": "Ortak tabaktaki et servis çatalıyla konuğun tabağına alınır. Aşağıdakilerden hangisi servis çatalıdır?",
    "choices": [
     {
      "id": "A",
-     "text": "Kahvaltı çatalı",
-     "ad": "Kahvaltı çatalı",
-     "ornek": "assets/mutfak-araclari/boy/catal-kahvalti-catali.jpg"
+     "text": "",
+     "image": "assets/mutfak-araclari/boy/catal-kahvalti-catali.jpg",
+     "alt": "Seçenek A",
+     "ad": "Kahvaltı çatalı"
     },
     {
      "id": "B",
-     "text": "Pasta çatalı",
-     "ad": "Pasta çatalı",
-     "ornek": "assets/mutfak-araclari/boy/catal-tatli-catali.jpg"
+     "text": "",
+     "image": "assets/mutfak-araclari/boy/catal-tatli-catali.jpg",
+     "alt": "Seçenek B",
+     "ad": "Pasta çatalı"
     },
     {
      "id": "C",
-     "text": "Servis çatalı",
-     "ad": "Servis çatalı",
-     "ornek": "assets/mutfak-araclari/boy/catal-servis-catali.jpg"
+     "text": "",
+     "image": "assets/mutfak-araclari/boy/catal-servis-catali.jpg",
+     "alt": "Seçenek C",
+     "ad": "Servis çatalı"
     },
     {
      "id": "D",
-     "text": "Ana yemek çatalı",
-     "ad": "Ana yemek çatalı",
-     "ornek": "assets/mutfak-araclari/boy/catal-ana-yemek-catali.jpg"
+     "text": "",
+     "image": "assets/mutfak-araclari/boy/catal-ana-yemek-catali.jpg",
+     "alt": "Seçenek D",
+     "ad": "Ana yemek çatalı"
     }
    ],
    "correct": "C",
-   "explanation": "Sofra çatallarından büyüktür. İki uzun dişi vardır.",
+   "explanation": "İki uzun dişi vardır.",
    "equivalenceKey": "ma-r-servis-catali",
    "group": "Çatal, bıçak ve kaşıklar",
    "chapter": 1,
    "kalip": "ters",
-   "choiceOrder": false
+   "choiceOrder": false,
+   "realSize": true
   },
   {
    "id": "ma-r-tatli-catali",
-   "prompt": "Sarı çerçeve içindeki çatalın adı nedir?",
-   "image": "assets/mutfak-araclari/boy/sira-catal-tatli-catali.jpg",
-   "imageAlt": "Gerçek boy oranıyla yan yana dizilmiş dört araç; biri sarı çerçeve içinde.",
+   "prompt": "Pasta çatalının geniş dış dişi pastayı küçük parçalara ayırır. Aşağıdakilerden hangisi pasta çatalıdır?",
    "choices": [
     {
      "id": "A",
-     "text": "Pasta çatalı",
-     "ad": "Pasta çatalı",
-     "ornek": "assets/mutfak-araclari/boy/catal-tatli-catali.jpg"
+     "text": "",
+     "image": "assets/mutfak-araclari/boy/catal-tatli-catali.jpg",
+     "alt": "Seçenek A",
+     "ad": "Pasta çatalı"
     },
     {
      "id": "B",
-     "text": "Servis çatalı",
-     "ad": "Servis çatalı",
-     "ornek": "assets/mutfak-araclari/boy/catal-servis-catali.jpg"
+     "text": "",
+     "image": "assets/mutfak-araclari/boy/catal-servis-catali.jpg",
+     "alt": "Seçenek B",
+     "ad": "Servis çatalı"
     },
     {
      "id": "C",
-     "text": "Ana yemek çatalı",
-     "ad": "Ana yemek çatalı",
-     "ornek": "assets/mutfak-araclari/boy/catal-ana-yemek-catali.jpg"
+     "text": "",
+     "image": "assets/mutfak-araclari/boy/catal-ana-yemek-catali.jpg",
+     "alt": "Seçenek C",
+     "ad": "Ana yemek çatalı"
     },
     {
      "id": "D",
-     "text": "Kahvaltı çatalı",
-     "ad": "Kahvaltı çatalı",
-     "ornek": "assets/mutfak-araclari/boy/catal-kahvalti-catali.jpg"
+     "text": "",
+     "image": "assets/mutfak-araclari/boy/catal-kahvalti-catali.jpg",
+     "alt": "Seçenek D",
+     "ad": "Kahvaltı çatalı"
     }
    ],
    "correct": "A",
-   "explanation": "Pasta çatalının geniş dış dişi pastayı küçük parçalara ayırır.",
+   "explanation": "Üç dişi vardır; dış dişlerden biri geniştir.",
    "equivalenceKey": "ma-r-tatli-catali",
    "group": "Çatal, bıçak ve kaşıklar",
    "chapter": 1,
    "kalip": "ters",
-   "choiceOrder": false
+   "choiceOrder": false,
+   "realSize": true
   },
   {
    "id": "ma-r-ana-yemek-catali",
-   "prompt": "Sarı çerçeve içindeki çatalın adı nedir?",
-   "image": "assets/mutfak-araclari/boy/sira-catal-ana-yemek-catali.jpg",
-   "imageAlt": "Gerçek boy oranıyla yan yana dizilmiş dört araç; biri sarı çerçeve içinde.",
+   "prompt": "Ana yemek çatalı kuverde tabağın solunda yer alır. Aşağıdakilerden hangisi ana yemek çatalıdır?",
    "choices": [
     {
      "id": "A",
-     "text": "Ana yemek çatalı",
-     "ad": "Ana yemek çatalı",
-     "ornek": "assets/mutfak-araclari/boy/catal-ana-yemek-catali.jpg"
+     "text": "",
+     "image": "assets/mutfak-araclari/boy/catal-ana-yemek-catali.jpg",
+     "alt": "Seçenek A",
+     "ad": "Ana yemek çatalı"
     },
     {
      "id": "B",
-     "text": "Kahvaltı çatalı",
-     "ad": "Kahvaltı çatalı",
-     "ornek": "assets/mutfak-araclari/boy/catal-kahvalti-catali.jpg"
+     "text": "",
+     "image": "assets/mutfak-araclari/boy/catal-kahvalti-catali.jpg",
+     "alt": "Seçenek B",
+     "ad": "Kahvaltı çatalı"
     },
     {
      "id": "C",
-     "text": "Pasta çatalı",
-     "ad": "Pasta çatalı",
-     "ornek": "assets/mutfak-araclari/boy/catal-tatli-catali.jpg"
+     "text": "",
+     "image": "assets/mutfak-araclari/boy/catal-tatli-catali.jpg",
+     "alt": "Seçenek C",
+     "ad": "Pasta çatalı"
     },
     {
      "id": "D",
-     "text": "Servis çatalı",
-     "ad": "Servis çatalı",
-     "ornek": "assets/mutfak-araclari/boy/catal-servis-catali.jpg"
+     "text": "",
+     "image": "assets/mutfak-araclari/boy/catal-servis-catali.jpg",
+     "alt": "Seçenek D",
+     "ad": "Servis çatalı"
     }
    ],
    "correct": "A",
-   "explanation": "Sofra çatallarının en büyüğüdür. Kahvaltı çatalından uzundur.",
+   "explanation": "Bu sofra çatallarının en uzunudur; ana yemek bu çatalla yenir.",
    "equivalenceKey": "ma-r-ana-yemek-catali",
    "group": "Çatal, bıçak ve kaşıklar",
    "chapter": 1,
    "kalip": "ters",
-   "choiceOrder": false
+   "choiceOrder": false,
+   "realSize": true
   },
   {
    "id": "ma-r-kahvalti-bicagi",
-   "prompt": "Sarı çerçeve içindeki bıçağın adı nedir?",
-   "image": "assets/mutfak-araclari/boy/sira-bicak-kahvalti-bicagi.jpg",
-   "imageAlt": "Gerçek boy oranıyla yan yana dizilmiş dört araç; biri sarı çerçeve içinde.",
+   "prompt": "Kahvaltılıklar kahvaltı bıçağıyla kesilir. Aşağıdakilerden hangisi kahvaltı bıçağıdır?",
    "choices": [
     {
      "id": "A",
-     "text": "Tereyağı bıçağı",
-     "ad": "Tereyağı bıçağı",
-     "ornek": "assets/mutfak-araclari/boy/bicak-tereyagi-bicagi.jpg"
+     "text": "",
+     "image": "assets/mutfak-araclari/boy/bicak-tereyagi-bicagi.jpg",
+     "alt": "Seçenek A",
+     "ad": "Tereyağı bıçağı"
     },
     {
      "id": "B",
-     "text": "Ana yemek bıçağı",
-     "ad": "Ana yemek bıçağı",
-     "ornek": "assets/mutfak-araclari/boy/bicak-ana-yemek-bicagi.jpg"
+     "text": "",
+     "image": "assets/mutfak-araclari/boy/bicak-ana-yemek-bicagi.jpg",
+     "alt": "Seçenek B",
+     "ad": "Ana yemek bıçağı"
     },
     {
      "id": "C",
-     "text": "Ekmek bıçağı",
-     "ad": "Ekmek bıçağı",
-     "ornek": "assets/mutfak-araclari/boy/bicak-ekmek-bicagi.jpg"
+     "text": "",
+     "image": "assets/mutfak-araclari/boy/bicak-ekmek-bicagi.jpg",
+     "alt": "Seçenek C",
+     "ad": "Ekmek bıçağı"
     },
     {
      "id": "D",
-     "text": "Kahvaltı bıçağı",
-     "ad": "Kahvaltı bıçağı",
-     "ornek": "assets/mutfak-araclari/boy/bicak-kahvalti-bicagi.jpg"
+     "text": "",
+     "image": "assets/mutfak-araclari/boy/bicak-kahvalti-bicagi.jpg",
+     "alt": "Seçenek D",
+     "ad": "Kahvaltı bıçağı"
     }
    ],
    "correct": "D",
-   "explanation": "Ana yemek bıçağından kısadır. Tereyağı bıçağı gibi küt değildir, keser.",
+   "explanation": "Ana yemek bıçağından kısadır. Tereyağı bıçağından farklı olarak keser.",
    "equivalenceKey": "ma-r-kahvalti-bicagi",
    "group": "Çatal, bıçak ve kaşıklar",
    "chapter": 1,
    "kalip": "ters",
-   "choiceOrder": false
+   "choiceOrder": false,
+   "realSize": true
   },
   {
    "id": "ma-r-ekmek-bicagi",
-   "prompt": "Sarı çerçeve içindeki bıçağın adı nedir?",
-   "image": "assets/mutfak-araclari/boy/sira-bicak-ekmek-bicagi.jpg",
-   "imageAlt": "Gerçek boy oranıyla yan yana dizilmiş dört araç; biri sarı çerçeve içinde.",
+   "prompt": "Ekmek bıçağının tırtıklı ağzı ekmeği ezmeden keser. Aşağıdakilerden hangisi ekmek bıçağıdır?",
    "choices": [
     {
      "id": "A",
-     "text": "Ekmek bıçağı",
-     "ad": "Ekmek bıçağı",
-     "ornek": "assets/mutfak-araclari/boy/bicak-ekmek-bicagi.jpg"
+     "text": "",
+     "image": "assets/mutfak-araclari/boy/bicak-ekmek-bicagi.jpg",
+     "alt": "Seçenek A",
+     "ad": "Ekmek bıçağı"
     },
     {
      "id": "B",
-     "text": "Tereyağı bıçağı",
-     "ad": "Tereyağı bıçağı",
-     "ornek": "assets/mutfak-araclari/boy/bicak-tereyagi-bicagi.jpg"
+     "text": "",
+     "image": "assets/mutfak-araclari/boy/bicak-tereyagi-bicagi.jpg",
+     "alt": "Seçenek B",
+     "ad": "Tereyağı bıçağı"
     },
     {
      "id": "C",
-     "text": "Ana yemek bıçağı",
-     "ad": "Ana yemek bıçağı",
-     "ornek": "assets/mutfak-araclari/boy/bicak-ana-yemek-bicagi.jpg"
+     "text": "",
+     "image": "assets/mutfak-araclari/boy/bicak-ana-yemek-bicagi.jpg",
+     "alt": "Seçenek C",
+     "ad": "Ana yemek bıçağı"
     },
     {
      "id": "D",
-     "text": "Kahvaltı bıçağı",
-     "ad": "Kahvaltı bıçağı",
-     "ornek": "assets/mutfak-araclari/boy/bicak-kahvalti-bicagi.jpg"
+     "text": "",
+     "image": "assets/mutfak-araclari/boy/bicak-kahvalti-bicagi.jpg",
+     "alt": "Seçenek D",
+     "ad": "Kahvaltı bıçağı"
     }
    ],
    "correct": "A",
-   "explanation": "Sofra bıçaklarından çok uzundur. Ağzı belirgin tırtıklıdır.",
+   "explanation": "Uzun bir bıçaktır; ağzı belirgin tırtıklıdır.",
    "equivalenceKey": "ma-r-ekmek-bicagi",
    "group": "Çatal, bıçak ve kaşıklar",
    "chapter": 1,
    "kalip": "ters",
-   "choiceOrder": false
+   "choiceOrder": false,
+   "realSize": true
   },
   {
    "id": "ma-r-tereyagi-bicagi",
-   "prompt": "Sarı çerçeve içindeki bıçağın adı nedir?",
-   "image": "assets/mutfak-araclari/boy/sira-bicak-tereyagi-bicagi.jpg",
-   "imageAlt": "Gerçek boy oranıyla yan yana dizilmiş dört araç; biri sarı çerçeve içinde.",
+   "prompt": "Ekmeğe tereyağı ve reçel tereyağı bıçağıyla sürülür. Aşağıdakilerden hangisi tereyağı bıçağıdır?",
    "choices": [
     {
      "id": "A",
-     "text": "Ana yemek bıçağı",
-     "ad": "Ana yemek bıçağı",
-     "ornek": "assets/mutfak-araclari/boy/bicak-ana-yemek-bicagi.jpg"
+     "text": "",
+     "image": "assets/mutfak-araclari/boy/bicak-ana-yemek-bicagi.jpg",
+     "alt": "Seçenek A",
+     "ad": "Ana yemek bıçağı"
     },
     {
      "id": "B",
-     "text": "Ekmek bıçağı",
-     "ad": "Ekmek bıçağı",
-     "ornek": "assets/mutfak-araclari/boy/bicak-ekmek-bicagi.jpg"
+     "text": "",
+     "image": "assets/mutfak-araclari/boy/bicak-ekmek-bicagi.jpg",
+     "alt": "Seçenek B",
+     "ad": "Ekmek bıçağı"
     },
     {
      "id": "C",
-     "text": "Tereyağı bıçağı",
-     "ad": "Tereyağı bıçağı",
-     "ornek": "assets/mutfak-araclari/boy/bicak-tereyagi-bicagi.jpg"
+     "text": "",
+     "image": "assets/mutfak-araclari/boy/bicak-tereyagi-bicagi.jpg",
+     "alt": "Seçenek C",
+     "ad": "Tereyağı bıçağı"
     },
     {
      "id": "D",
-     "text": "Kahvaltı bıçağı",
-     "ad": "Kahvaltı bıçağı",
-     "ornek": "assets/mutfak-araclari/boy/bicak-kahvalti-bicagi.jpg"
+     "text": "",
+     "image": "assets/mutfak-araclari/boy/bicak-kahvalti-bicagi.jpg",
+     "alt": "Seçenek D",
+     "ad": "Kahvaltı bıçağı"
     }
    ],
    "correct": "C",
@@ -5551,358 +5583,386 @@
    "group": "Çatal, bıçak ve kaşıklar",
    "chapter": 1,
    "kalip": "ters",
-   "choiceOrder": false
+   "choiceOrder": false,
+   "realSize": true
   },
   {
    "id": "ma-r-ana-yemek-bicagi",
-   "prompt": "Sarı çerçeve içindeki bıçağın adı nedir?",
-   "image": "assets/mutfak-araclari/boy/sira-bicak-ana-yemek-bicagi.jpg",
-   "imageAlt": "Gerçek boy oranıyla yan yana dizilmiş dört araç; biri sarı çerçeve içinde.",
+   "prompt": "Ana yemekteki et ve sebze ana yemek bıçağıyla kesilir. Aşağıdakilerden hangisi ana yemek bıçağıdır?",
    "choices": [
     {
      "id": "A",
-     "text": "Tereyağı bıçağı",
-     "ad": "Tereyağı bıçağı",
-     "ornek": "assets/mutfak-araclari/boy/bicak-tereyagi-bicagi.jpg"
+     "text": "",
+     "image": "assets/mutfak-araclari/boy/bicak-tereyagi-bicagi.jpg",
+     "alt": "Seçenek A",
+     "ad": "Tereyağı bıçağı"
     },
     {
      "id": "B",
-     "text": "Ana yemek bıçağı",
-     "ad": "Ana yemek bıçağı",
-     "ornek": "assets/mutfak-araclari/boy/bicak-ana-yemek-bicagi.jpg"
+     "text": "",
+     "image": "assets/mutfak-araclari/boy/bicak-ana-yemek-bicagi.jpg",
+     "alt": "Seçenek B",
+     "ad": "Ana yemek bıçağı"
     },
     {
      "id": "C",
-     "text": "Ekmek bıçağı",
-     "ad": "Ekmek bıçağı",
-     "ornek": "assets/mutfak-araclari/boy/bicak-ekmek-bicagi.jpg"
+     "text": "",
+     "image": "assets/mutfak-araclari/boy/bicak-ekmek-bicagi.jpg",
+     "alt": "Seçenek C",
+     "ad": "Ekmek bıçağı"
     },
     {
      "id": "D",
-     "text": "Kahvaltı bıçağı",
-     "ad": "Kahvaltı bıçağı",
-     "ornek": "assets/mutfak-araclari/boy/bicak-kahvalti-bicagi.jpg"
+     "text": "",
+     "image": "assets/mutfak-araclari/boy/bicak-kahvalti-bicagi.jpg",
+     "alt": "Seçenek D",
+     "ad": "Kahvaltı bıçağı"
     }
    ],
    "correct": "B",
-   "explanation": "Sofra bıçaklarının en uzunudur. Ağzı hafif tırtıklıdır.",
+   "explanation": "Kahvaltı bıçağından uzundur; ağzı hafif tırtıklıdır.",
    "equivalenceKey": "ma-r-ana-yemek-bicagi",
    "group": "Çatal, bıçak ve kaşıklar",
    "chapter": 1,
    "kalip": "ters",
-   "choiceOrder": false
+   "choiceOrder": false,
+   "realSize": true
   },
   {
    "id": "ma-r-kupa",
-   "prompt": "Sarı çerçeve içindeki kabın adı nedir?",
-   "image": "assets/mutfak-araclari/boy/sira-fincan-kupa.jpg",
-   "imageAlt": "Gerçek boy oranıyla yan yana dizilmiş dört araç; biri sarı çerçeve içinde.",
+   "prompt": "Sıcak ve soğuk içecekler kupada, çoğunlukla tabaksız sunulur. Aşağıdakilerden hangisi kupadır?",
    "choices": [
     {
      "id": "A",
-     "text": "Kupa",
-     "ad": "Kupa",
-     "ornek": "assets/mutfak-araclari/boy/fincan-kupa.jpg"
+     "text": "",
+     "image": "assets/mutfak-araclari/boy/fincan-kupa.jpg",
+     "alt": "Seçenek A",
+     "ad": "Kupa"
     },
     {
      "id": "B",
-     "text": "Çay ve kahve fincanı",
-     "ad": "Çay ve kahve fincanı",
-     "ornek": "assets/mutfak-araclari/boy/fincan-fincan.jpg"
+     "text": "",
+     "image": "assets/mutfak-araclari/boy/fincan-fincan.jpg",
+     "alt": "Seçenek B",
+     "ad": "Çay ve kahve fincanı"
     },
     {
      "id": "C",
-     "text": "Çay bardağı",
-     "ad": "Çay bardağı",
-     "ornek": "assets/mutfak-araclari/boy/fincan-cay-bardagi.jpg"
+     "text": "",
+     "image": "assets/mutfak-araclari/boy/fincan-cay-bardagi.jpg",
+     "alt": "Seçenek C",
+     "ad": "Çay bardağı"
     },
     {
      "id": "D",
-     "text": "Türk kahvesi fincanı",
-     "ad": "Türk kahvesi fincanı",
-     "ornek": "assets/mutfak-araclari/boy/fincan-turk-kahvesi-fincani.jpg"
+     "text": "",
+     "image": "assets/mutfak-araclari/boy/fincan-turk-kahvesi-fincani.jpg",
+     "alt": "Seçenek D",
+     "ad": "Türk kahvesi fincanı"
     }
    ],
    "correct": "A",
-   "explanation": "Çay ve kahve fincanından büyüktür. Çoğunlukla tabaksız kullanılır.",
+   "explanation": "Büyük ve kulplu bir kaptır.",
    "equivalenceKey": "ma-r-kupa",
    "group": "Bardaklar ve fincanlar",
    "chapter": 1,
    "kalip": "ters",
-   "choiceOrder": false
+   "choiceOrder": false,
+   "realSize": true
   },
   {
    "id": "ma-r-turk-kahvesi-fincani",
-   "prompt": "Sarı çerçeve içindeki kabın adı nedir?",
-   "image": "assets/mutfak-araclari/boy/sira-fincan-turk-kahvesi-fincani.jpg",
-   "imageAlt": "Gerçek boy oranıyla yan yana dizilmiş dört araç; biri sarı çerçeve içinde.",
+   "prompt": "Türk kahvesi fincanının yanında bir bardak su verilir. Aşağıdakilerden hangisi Türk kahvesi fincanıdır?",
    "choices": [
     {
      "id": "A",
-     "text": "Çay ve kahve fincanı",
-     "ad": "Çay ve kahve fincanı",
-     "ornek": "assets/mutfak-araclari/boy/fincan-fincan.jpg"
+     "text": "",
+     "image": "assets/mutfak-araclari/boy/fincan-fincan.jpg",
+     "alt": "Seçenek A",
+     "ad": "Çay ve kahve fincanı"
     },
     {
      "id": "B",
-     "text": "Kupa",
-     "ad": "Kupa",
-     "ornek": "assets/mutfak-araclari/boy/fincan-kupa.jpg"
+     "text": "",
+     "image": "assets/mutfak-araclari/boy/fincan-kupa.jpg",
+     "alt": "Seçenek B",
+     "ad": "Kupa"
     },
     {
      "id": "C",
-     "text": "Türk kahvesi fincanı",
-     "ad": "Türk kahvesi fincanı",
-     "ornek": "assets/mutfak-araclari/boy/fincan-turk-kahvesi-fincani.jpg"
+     "text": "",
+     "image": "assets/mutfak-araclari/boy/fincan-turk-kahvesi-fincani.jpg",
+     "alt": "Seçenek C",
+     "ad": "Türk kahvesi fincanı"
     },
     {
      "id": "D",
-     "text": "Çay bardağı",
-     "ad": "Çay bardağı",
-     "ornek": "assets/mutfak-araclari/boy/fincan-cay-bardagi.jpg"
+     "text": "",
+     "image": "assets/mutfak-araclari/boy/fincan-cay-bardagi.jpg",
+     "alt": "Seçenek D",
+     "ad": "Çay bardağı"
     }
    ],
    "correct": "C",
-   "explanation": "Kulplu kapların en küçüğüdür. Küçük tabağıyla sunulur.",
+   "explanation": "Küçük ve kulpludur; küçük tabağıyla sunulur.",
    "equivalenceKey": "ma-r-turk-kahvesi-fincani",
    "group": "Bardaklar ve fincanlar",
    "chapter": 1,
    "kalip": "ters",
-   "choiceOrder": false
+   "choiceOrder": false,
+   "realSize": true
   },
   {
    "id": "ma-r-cay-bardagi",
-   "prompt": "Sarı çerçeve içindeki kabın adı nedir?",
-   "image": "assets/mutfak-araclari/boy/sira-fincan-cay-bardagi.jpg",
-   "imageAlt": "Gerçek boy oranıyla yan yana dizilmiş dört araç; biri sarı çerçeve içinde.",
+   "prompt": "Çay bardağı ince belli, küçük cam bardaktır. Aşağıdakilerden hangisi çay bardağıdır?",
    "choices": [
     {
      "id": "A",
-     "text": "Çay bardağı",
-     "ad": "Çay bardağı",
-     "ornek": "assets/mutfak-araclari/boy/fincan-cay-bardagi.jpg"
+     "text": "",
+     "image": "assets/mutfak-araclari/boy/fincan-cay-bardagi.jpg",
+     "alt": "Seçenek A",
+     "ad": "Çay bardağı"
     },
     {
      "id": "B",
-     "text": "Kupa",
-     "ad": "Kupa",
-     "ornek": "assets/mutfak-araclari/boy/fincan-kupa.jpg"
+     "text": "",
+     "image": "assets/mutfak-araclari/boy/fincan-kupa.jpg",
+     "alt": "Seçenek B",
+     "ad": "Kupa"
     },
     {
      "id": "C",
-     "text": "Çay ve kahve fincanı",
-     "ad": "Çay ve kahve fincanı",
-     "ornek": "assets/mutfak-araclari/boy/fincan-fincan.jpg"
+     "text": "",
+     "image": "assets/mutfak-araclari/boy/fincan-fincan.jpg",
+     "alt": "Seçenek C",
+     "ad": "Çay ve kahve fincanı"
     },
     {
      "id": "D",
-     "text": "Türk kahvesi fincanı",
-     "ad": "Türk kahvesi fincanı",
-     "ornek": "assets/mutfak-araclari/boy/fincan-turk-kahvesi-fincani.jpg"
+     "text": "",
+     "image": "assets/mutfak-araclari/boy/fincan-turk-kahvesi-fincani.jpg",
+     "alt": "Seçenek D",
+     "ad": "Türk kahvesi fincanı"
     }
    ],
    "correct": "A",
-   "explanation": "İnce belli, küçük cam bardaktır. Tabağıyla sunulur.",
+   "explanation": "Tabağıyla sunulur.",
    "equivalenceKey": "ma-r-cay-bardagi",
    "group": "Bardaklar ve fincanlar",
    "chapter": 1,
    "kalip": "ters",
-   "choiceOrder": false
+   "choiceOrder": false,
+   "realSize": true
   },
   {
    "id": "ma-r-fincan",
-   "prompt": "Sarı çerçeve içindeki kabın adı nedir?",
-   "image": "assets/mutfak-araclari/boy/sira-fincan-fincan.jpg",
-   "imageAlt": "Gerçek boy oranıyla yan yana dizilmiş dört araç; biri sarı çerçeve içinde.",
+   "prompt": "Sütlü kahve ve bitki çayı çay ve kahve fincanında sunulur. Aşağıdakilerden hangisi çay ve kahve fincanıdır?",
    "choices": [
     {
      "id": "A",
-     "text": "Kupa",
-     "ad": "Kupa",
-     "ornek": "assets/mutfak-araclari/boy/fincan-kupa.jpg"
+     "text": "",
+     "image": "assets/mutfak-araclari/boy/fincan-kupa.jpg",
+     "alt": "Seçenek A",
+     "ad": "Kupa"
     },
     {
      "id": "B",
-     "text": "Çay ve kahve fincanı",
-     "ad": "Çay ve kahve fincanı",
-     "ornek": "assets/mutfak-araclari/boy/fincan-fincan.jpg"
+     "text": "",
+     "image": "assets/mutfak-araclari/boy/fincan-fincan.jpg",
+     "alt": "Seçenek B",
+     "ad": "Çay ve kahve fincanı"
     },
     {
      "id": "C",
-     "text": "Çay bardağı",
-     "ad": "Çay bardağı",
-     "ornek": "assets/mutfak-araclari/boy/fincan-cay-bardagi.jpg"
+     "text": "",
+     "image": "assets/mutfak-araclari/boy/fincan-cay-bardagi.jpg",
+     "alt": "Seçenek C",
+     "ad": "Çay bardağı"
     },
     {
      "id": "D",
-     "text": "Türk kahvesi fincanı",
-     "ad": "Türk kahvesi fincanı",
-     "ornek": "assets/mutfak-araclari/boy/fincan-turk-kahvesi-fincani.jpg"
+     "text": "",
+     "image": "assets/mutfak-araclari/boy/fincan-turk-kahvesi-fincani.jpg",
+     "alt": "Seçenek D",
+     "ad": "Türk kahvesi fincanı"
     }
    ],
    "correct": "B",
-   "explanation": "Kupadan küçük, Türk kahvesi fincanından büyüktür. Tabağıyla sunulur.",
+   "explanation": "Kupadan küçük, Türk kahvesi fincanından büyüktür; tabağıyla sunulur.",
    "equivalenceKey": "ma-r-fincan",
    "group": "Bardaklar ve fincanlar",
    "chapter": 1,
    "kalip": "ters",
-   "choiceOrder": false
+   "choiceOrder": false,
+   "realSize": true
   },
   {
    "id": "ma-r-tatli-tabagi",
-   "prompt": "Sarı çerçeve içindeki tabağın adı nedir?",
-   "image": "assets/mutfak-araclari/boy/sira-tabak-tatli-tabagi.jpg",
-   "imageAlt": "Gerçek boy oranıyla yan yana dizilmiş dört araç; biri sarı çerçeve içinde.",
+   "prompt": "Pasta ve tatlı, tatlı tabağında sunulur. Aşağıdakilerden hangisi tatlı tabağıdır?",
    "choices": [
     {
      "id": "A",
-     "text": "Ana yemek tabağı",
-     "ad": "Ana yemek tabağı",
-     "ornek": "assets/mutfak-araclari/boy/tabak-ana-yemek-tabagi.jpg"
+     "text": "",
+     "image": "assets/mutfak-araclari/boy/tabak-ana-yemek-tabagi.jpg",
+     "alt": "Seçenek A",
+     "ad": "Ana yemek tabağı"
     },
     {
      "id": "B",
-     "text": "Tatlı tabağı",
-     "ad": "Tatlı tabağı",
-     "ornek": "assets/mutfak-araclari/boy/tabak-tatli-tabagi.jpg"
+     "text": "",
+     "image": "assets/mutfak-araclari/boy/tabak-tatli-tabagi.jpg",
+     "alt": "Seçenek B",
+     "ad": "Tatlı tabağı"
     },
     {
      "id": "C",
-     "text": "Çorba tabağı",
-     "ad": "Çorba tabağı",
-     "ornek": "assets/mutfak-araclari/boy/tabak-corba-tabagi.jpg"
+     "text": "",
+     "image": "assets/mutfak-araclari/boy/tabak-corba-tabagi.jpg",
+     "alt": "Seçenek C",
+     "ad": "Çorba tabağı"
     },
     {
      "id": "D",
-     "text": "Makarna tabağı",
-     "ad": "Makarna tabağı",
-     "ornek": "assets/mutfak-araclari/boy/tabak-makarna-tabagi.jpg"
+     "text": "",
+     "image": "assets/mutfak-araclari/boy/tabak-makarna-tabagi.jpg",
+     "alt": "Seçenek D",
+     "ad": "Makarna tabağı"
     }
    ],
    "correct": "B",
-   "explanation": "Ana yemek tabağından küçük, ekmek tabağından büyüktür.",
+   "explanation": "Ana yemek tabağından küçük bir düz tabaktır.",
    "equivalenceKey": "ma-r-tatli-tabagi",
    "group": "Tabaklar ve kâseler",
    "chapter": 1,
    "kalip": "ters",
-   "choiceOrder": false
+   "choiceOrder": false,
+   "realSize": true
   },
   {
    "id": "ma-r-makarna-tabagi",
-   "prompt": "Sarı çerçeve içindeki tabağın adı nedir?",
-   "image": "assets/mutfak-araclari/boy/sira-tabak-makarna-tabagi.jpg",
-   "imageAlt": "Gerçek boy oranıyla yan yana dizilmiş dört araç; biri sarı çerçeve içinde.",
+   "prompt": "Makarna tabağının kenarı geniş, ortası çukurdur. Aşağıdakilerden hangisi makarna tabağıdır?",
    "choices": [
     {
      "id": "A",
-     "text": "Çorba tabağı",
-     "ad": "Çorba tabağı",
-     "ornek": "assets/mutfak-araclari/boy/tabak-corba-tabagi.jpg"
+     "text": "",
+     "image": "assets/mutfak-araclari/boy/tabak-corba-tabagi.jpg",
+     "alt": "Seçenek A",
+     "ad": "Çorba tabağı"
     },
     {
      "id": "B",
-     "text": "Tatlı tabağı",
-     "ad": "Tatlı tabağı",
-     "ornek": "assets/mutfak-araclari/boy/tabak-tatli-tabagi.jpg"
+     "text": "",
+     "image": "assets/mutfak-araclari/boy/tabak-tatli-tabagi.jpg",
+     "alt": "Seçenek B",
+     "ad": "Tatlı tabağı"
     },
     {
      "id": "C",
-     "text": "Ana yemek tabağı",
-     "ad": "Ana yemek tabağı",
-     "ornek": "assets/mutfak-araclari/boy/tabak-ana-yemek-tabagi.jpg"
+     "text": "",
+     "image": "assets/mutfak-araclari/boy/tabak-ana-yemek-tabagi.jpg",
+     "alt": "Seçenek C",
+     "ad": "Ana yemek tabağı"
     },
     {
      "id": "D",
-     "text": "Makarna tabağı",
-     "ad": "Makarna tabağı",
-     "ornek": "assets/mutfak-araclari/boy/tabak-makarna-tabagi.jpg"
+     "text": "",
+     "image": "assets/mutfak-araclari/boy/tabak-makarna-tabagi.jpg",
+     "alt": "Seçenek D",
+     "ad": "Makarna tabağı"
     }
    ],
    "correct": "D",
-   "explanation": "Çorba tabağına göre kenarı daha geniş ve düzdür.",
+   "explanation": "Makarna ve mantı bu tabakta sunulur.",
    "equivalenceKey": "ma-r-makarna-tabagi",
    "group": "Tabaklar ve kâseler",
    "chapter": 1,
    "kalip": "ters",
-   "choiceOrder": false
+   "choiceOrder": false,
+   "realSize": true
   },
   {
    "id": "ma-r-ana-yemek-tabagi",
-   "prompt": "Sarı çerçeve içindeki tabağın adı nedir?",
-   "image": "assets/mutfak-araclari/boy/sira-tabak-ana-yemek-tabagi.jpg",
-   "imageAlt": "Gerçek boy oranıyla yan yana dizilmiş dört araç; biri sarı çerçeve içinde.",
+   "prompt": "Ana yemek tabağı kuverde konuğun tam önünde yer alır. Aşağıdakilerden hangisi ana yemek tabağıdır?",
    "choices": [
     {
      "id": "A",
-     "text": "Makarna tabağı",
-     "ad": "Makarna tabağı",
-     "ornek": "assets/mutfak-araclari/boy/tabak-makarna-tabagi.jpg"
+     "text": "",
+     "image": "assets/mutfak-araclari/boy/tabak-makarna-tabagi.jpg",
+     "alt": "Seçenek A",
+     "ad": "Makarna tabağı"
     },
     {
      "id": "B",
-     "text": "Ana yemek tabağı",
-     "ad": "Ana yemek tabağı",
-     "ornek": "assets/mutfak-araclari/boy/tabak-ana-yemek-tabagi.jpg"
+     "text": "",
+     "image": "assets/mutfak-araclari/boy/tabak-ana-yemek-tabagi.jpg",
+     "alt": "Seçenek B",
+     "ad": "Ana yemek tabağı"
     },
     {
      "id": "C",
-     "text": "Çorba tabağı",
-     "ad": "Çorba tabağı",
-     "ornek": "assets/mutfak-araclari/boy/tabak-corba-tabagi.jpg"
+     "text": "",
+     "image": "assets/mutfak-araclari/boy/tabak-corba-tabagi.jpg",
+     "alt": "Seçenek C",
+     "ad": "Çorba tabağı"
     },
     {
      "id": "D",
-     "text": "Tatlı tabağı",
-     "ad": "Tatlı tabağı",
-     "ornek": "assets/mutfak-araclari/boy/tabak-tatli-tabagi.jpg"
+     "text": "",
+     "image": "assets/mutfak-araclari/boy/tabak-tatli-tabagi.jpg",
+     "alt": "Seçenek D",
+     "ad": "Tatlı tabağı"
     }
    ],
    "correct": "B",
-   "explanation": "Tatlı tabağından büyüktür. Yemek doğrudan bu tabakta servis edilir.",
+   "explanation": "Tatlı tabağından büyük bir düz tabaktır.",
    "equivalenceKey": "ma-r-ana-yemek-tabagi",
    "group": "Tabaklar ve kâseler",
    "chapter": 1,
    "kalip": "ters",
-   "choiceOrder": false
+   "choiceOrder": false,
+   "realSize": true
   },
   {
    "id": "ma-r-corba-tabagi",
-   "prompt": "Sarı çerçeve içindeki tabağın adı nedir?",
-   "image": "assets/mutfak-araclari/boy/sira-tabak-corba-tabagi.jpg",
-   "imageAlt": "Gerçek boy oranıyla yan yana dizilmiş dört araç; biri sarı çerçeve içinde.",
+   "prompt": "Çorba tabağının ortası derin, kenarı dardır. Aşağıdakilerden hangisi çorba tabağıdır?",
    "choices": [
     {
      "id": "A",
-     "text": "Çorba tabağı",
-     "ad": "Çorba tabağı",
-     "ornek": "assets/mutfak-araclari/boy/tabak-corba-tabagi.jpg"
+     "text": "",
+     "image": "assets/mutfak-araclari/boy/tabak-corba-tabagi.jpg",
+     "alt": "Seçenek A",
+     "ad": "Çorba tabağı"
     },
     {
      "id": "B",
-     "text": "Ana yemek tabağı",
-     "ad": "Ana yemek tabağı",
-     "ornek": "assets/mutfak-araclari/boy/tabak-ana-yemek-tabagi.jpg"
+     "text": "",
+     "image": "assets/mutfak-araclari/boy/tabak-ana-yemek-tabagi.jpg",
+     "alt": "Seçenek B",
+     "ad": "Ana yemek tabağı"
     },
     {
      "id": "C",
-     "text": "Makarna tabağı",
-     "ad": "Makarna tabağı",
-     "ornek": "assets/mutfak-araclari/boy/tabak-makarna-tabagi.jpg"
+     "text": "",
+     "image": "assets/mutfak-araclari/boy/tabak-makarna-tabagi.jpg",
+     "alt": "Seçenek C",
+     "ad": "Makarna tabağı"
     },
     {
      "id": "D",
-     "text": "Tatlı tabağı",
-     "ad": "Tatlı tabağı",
-     "ornek": "assets/mutfak-araclari/boy/tabak-tatli-tabagi.jpg"
+     "text": "",
+     "image": "assets/mutfak-araclari/boy/tabak-tatli-tabagi.jpg",
+     "alt": "Seçenek D",
+     "ad": "Tatlı tabağı"
     }
    ],
    "correct": "A",
-   "explanation": "Makarna tabağına göre kenarı dar, ortası daha derindir. Çorba kâsesine göre büyüktür.",
+   "explanation": "Çorba ve sulu yemekler bu tabakta sunulur.",
    "equivalenceKey": "ma-r-corba-tabagi",
    "group": "Tabaklar ve kâseler",
    "chapter": 1,
    "kalip": "ters",
-   "choiceOrder": false
+   "choiceOrder": false,
+   "realSize": true
   },
   {
    "id": "ma-d-01",

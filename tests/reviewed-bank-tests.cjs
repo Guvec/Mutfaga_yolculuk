@@ -13,6 +13,6 @@ for(let seed=0;seed<100;seed++){
 assert.equal(data['mutfak-araclari'].matches.find(m=>m.id==='guncel-010').answer,'Kahvaltılık kâse');
 assert.equal(data['mutfak-araclari'].matches.filter(m=>m.comparison).length,24);
 const img=model.buildQuestions(data['mutfak-araclari'],{subject:'mutfak-araclari',kind:'bilgi',n:500,pool:true},42).find(q=>/^ma-r-/.test(q.id));
-assert(img&&img.image,'görselden ad sorusu yarışta sıra görselini korur');
+assert(img&&img.choices.length===4&&img.choices.every(c=>c.image),'bilgi + dört görselli seçenek yarışta korunur');
 for(const q of data['mutfak-araclari'].questions){const ad=q.choices.map(c=>c.ad);assert(!(ad.includes('Tatlı tabağı')&&ad.includes('Ekmek tabağı')),'boyu yakın tabaklar aynı soruda: '+q.id);}
 console.log('PASS: Mutfak Araçları 198 + Bulaşık stable IDs, answer keys and media; ordered choices; 200 text pools and 100 mixed sessions without equivalent repeats; 24 target cards.');
