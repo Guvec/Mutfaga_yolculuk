@@ -223,10 +223,8 @@ html body .lc-home .lc-grid .lc-card:nth-child(4) .lc-emblem{transform:scale(1.2
 html body .lc-home .lc-grid .lc-card:nth-child(2) .lc-emblem.lc-sancak{transform:scale(.9)!important;transform-origin:50% 75%}
 html body .lc-home .lc-grid .lc-card:nth-child(4) .lc-emblem.lc-yastik{transform:scale(1)!important;transform-origin:50% 60%}
 /* 18.11 sabah (Ali): bilgi düğmesi küçük görünür (dokunma alanı 48 px kalır); rütbe şeridi biraz daralır; kart görselleri büyür. */
-html body .lc-home .lc-info{background:radial-gradient(circle,#0b3a4a 0 24%,#d8a14a 26% 28%,#fff1ac 29% 31%,transparent 33%)!important;font-size:12px!important}
+html body .lc-home .lc-info{background:radial-gradient(circle,#0b3a4a 0 29%,#d8a14a 31% 33%,#fff1ac 34% 36%,transparent 38%)!important;font-size:15px!important}
 html body .lc-home .lc-rank{padding-top:5px!important;padding-bottom:5px!important}
 html body .lc-home .lc-rank img{max-height:58px}
-html body .lc-home .lc-grid .lc-card:nth-child(1) .lc-poz-yigin{transform:scale(1.08);transform-origin:50% 92%}
-html body .lc-home .lc-grid .lc-card:nth-child(2) .lc-emblem.lc-sancak{transform:scale(1.04)!important;transform-origin:50% 70%}
-html body .lc-home .lc-grid .lc-card:nth-child(3) .lc-kursu{transform:scale(1.04)!important;transform-origin:50% 75%}
-html body .lc-home .lc-grid .lc-card:nth-child(4) .lc-emblem.lc-yastik{transform:scale(1.16)!important;transform-origin:50% 62%}
+/* Yolculuğum alt yazıları: altta koyu lacivert degrade, yazı karın üstünde okunur. */
+html body .lc-home .lc-journey::before{content:"";position:absolute;left:0;right:0;bottom:0;height:42%;z-index:1;pointer-events:none;border-radius:inherit;background:linear-gradient(to top,#0b2742d9 0%,#0b274288 45%,transparent 100%)}
