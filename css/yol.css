@@ -210,3 +210,82 @@ body[data-screen=yolum] #app:has(.yh-sayfa){display:flex;flex-direction:column;h
 /* Özellik → görsel sorusu: kök iki cümledir, daha küçük ve sola yaslı yazılır. */
 .yol-soru-satir .yol-soru.oz{font-size:17px;line-height:1.3;text-align:left}
 @media(max-height:700px){.yol-soru-satir .yol-soru.oz{font-size:16px;line-height:1.25}}
+
+/* Baharat haritası · kış sahnesi ve lonca arayüzü. */
+body:has(#app .yh-baharat),
+#app:has(.yh-baharat){background:#f7efe7}
+.yh-baharat-sahne{
+ position:relative;isolation:isolate;width:100%;max-width:470px;margin:0 auto;
+ height:clamp(144px,30dvh,250px);flex:none;
+}
+.yh-baharat-kis{
+ position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 53%;
+ -webkit-mask-image:linear-gradient(#000 74%,transparent);mask-image:linear-gradient(#000 74%,transparent);
+}
+#app:has(.yh-baharat) .yol-bar{
+ width:calc(100% - 22px);max-width:448px;margin:8px auto 0;padding:0 5px;min-height:49px;
+ gap:4px;background:linear-gradient(#fcf6f0,#f4e7d9);border:1px solid #fffcf7;
+ border-radius:26px;box-shadow:0 2px 5px #46270e2e;color:#102544;
+}
+#app:has(.yh-baharat) .yol-bar button{
+ min-width:48px;min-height:48px;border:0;background:transparent;color:#102544;
+}
+#app:has(.yh-baharat) .yol-sure-bos{display:none}
+#app:has(.yh-baharat) .yol-ev-btn{order:2}
+#app:has(.yh-baharat) .yol-bar-ttl{order:1;text-align:left;border-inline-start:1px solid #b5823e;padding-inline-start:10px}
+#app:has(.yh-baharat) .yol-bar-ttl b,
+.yh-baharat .yh-etap-bas h2{
+ color:#102544;font-family:Georgia,serif!important;font-weight:700;
+}
+#app:has(.yh-baharat) .yol-bar-ttl b{font-size:clamp(1.1rem,5vw,1.42rem)}
+#app:has(.yh-baharat) .yol-bar-ttl span{color:#514638}
+.yh-baharat{
+ --muted:#514638;--navy:#102544;
+ max-width:470px;padding:6px 11px max(10px,env(safe-area-inset-bottom));
+}
+.yh-baharat :is(.yol-kart,.yh-alt-k){
+ background:linear-gradient(145deg,#fcf6ef 0%,#f6eade 100%);
+ border:1px solid #fff9f2;color:#102544;
+ box-shadow:inset 0 0 0 1px #ead6c3,0 2px 4px #46270e24;
+}
+.yh-baharat .yh-devam{padding:9px 10px;gap:5px 8px}
+.yh-baharat .yh-devam > div:first-child{grid-column:1;grid-row:1}
+.yh-baharat .yh-devam .yh-say{grid-column:2;grid-row:1;align-self:end;text-align:right;font-size:.875rem}
+.yh-baharat .yh-devam .yol-ilerleme{grid-row:2;height:7px;border:1px solid #d7b997;background:#eee0d2}
+.yh-baharat .yh-devam .yol-btn{
+ grid-column:1/-1;grid-row:3;width:100%;min-height:48px;border-radius:25px;
+ background:linear-gradient(#214679 0%,#102544 84%);color:#fff7ed;border:1px solid #b67b2c;
+ box-shadow:inset 0 0 0 1px #f5d696,0 2px 4px #2c190d24;
+}
+.yh-baharat .yol-ilerleme i{min-width:0;background:#1b3d66}
+.yh-baharat .yh-etap{flex:none!important;padding:8px}
+.yh-baharat .yh-etap-bas{grid-template-columns:minmax(48px,1fr) minmax(0,1.25fr) minmax(48px,1fr);gap:4px}
+.yh-baharat .yh-etap-bas h2 small{color:#514638}
+.yh-baharat .yh-ok{
+ width:100%;min-width:48px;min-height:48px;padding:3px;
+ font:inherit;font-size:.875rem;font-weight:700;
+ background:#fbf4ec;color:#102544;border:1px solid #c5a178;border-radius:24px;overflow-wrap:anywhere;
+}
+.yh-baharat .yh-izgara{grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:auto;gap:5px}
+.yh-baharat .yh-kutu{
+ min-height:53px;padding:4px;background:linear-gradient(#fff9f3,#f5e9dd);
+ border:1px solid #d8bfa5;color:#102544;box-shadow:0 2px 3px #46270e16;
+}
+.yh-baharat .yh-kutu:last-child{grid-column:1/-1;min-height:49px}
+.yh-baharat .yh-kutu i{display:none}
+.yh-baharat .yh-kutu.simdi{
+ border:1px solid #a8752a;background:linear-gradient(#fff8ed,#f1e1cb);
+ box-shadow:inset 0 0 0 1px #f9e4bc;color:#102544;
+}
+.yh-baharat .yh-kutu.simdi small{color:#514638}
+.yh-baharat .yh-kutu.bitti{border-color:#748566;background:#edf0e7}
+.yh-baharat .yh-ok:disabled,.yh-baharat .yh-alt-k:disabled,.yh-baharat .yh-kutu.kilit{
+ background:#f3e9df;color:#514638;opacity:1;box-shadow:none;border-color:#e3cfbd;
+}
+.yh-baharat .yh-kutu small,.yh-baharat .yh-alt-k{overflow-wrap:anywhere}
+.yh-baharat .yh-alt{margin-top:0!important}
+.yh-baharat .yh-alt-k.kilit{opacity:1;border-color:#c5a178;box-shadow:none}
+@media(max-height:700px){
+ .yh-baharat-sahne{height:clamp(120px,25dvh,174px)}
+ .yh-baharat{gap:6px}
+}

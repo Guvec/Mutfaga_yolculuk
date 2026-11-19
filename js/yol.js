@@ -427,7 +427,7 @@ function yolumHTMLEski(){
   else h+='<section class="yol-kart yol-etap" aria-label="Etap '+e+'">'+bas+'<div class="yol-liste">'+nodes.map(n=>yolDugum(n,plan,s,sira,sonBiten&&n.id===sonBiten.id)).join('')+'</div></section>';
  }
  if(gelecek.length)h+='<div class="yol-kart yol-kilit-kart"><span class="yol-ik" aria-hidden="true">🔒</span><span class="yol-dugum-ad"><b>Etap '+gelecek[0]+(gelecek.length>1?' – Etap '+gelecek[gelecek.length-1]:'')+'</b><small>Kilitli · önceki etap bitince açılır</small></span></div>';
- h+='<div class="yol-kart yol-kilit-kart"><span class="yol-ik" aria-hidden="true">🔒</span><span class="yol-dugum-ad"><b>Büyük Tur · 75 soru</b><small>'+(sira?'Kilitli · tüm etaplar bitince açılır':'Çok yakında')+'</small></span></div>';
+ h+='<div class="yol-kart yol-kilit-kart"><span class="yol-ik" aria-hidden="true">🔒</span><span class="yol-dugum-ad"><b>Büyük Tur · 75 soru</b><small>'+(YOL_AYAR.subject==='baharat'?'Yakında':sira?'Kilitli · tüm etaplar bitince açılır':'Çok yakında')+'</small></span></div>';
  const bitenler=plan.filter(n=>n.tur==='bolum'&&s.done[n.id]);
  h+='<section class="yol-kart" aria-label="Serbest Çalışma"><h2>Serbest Çalışma</h2><p>Bitirdiğin bölümleri istediğin biçimde çalış. Kilidi ve puanı etkilemez.</p>'+(bitenler.length?'<div class="yol-serbest">'+bitenler.map(n=>'<button type="button" class="yol-btn ikinci" onclick="yolSerbestAc(\''+n.id+'\')">Etap '+n.etap+' · Bölüm '+n.no+'</button>').join('')+'</div>':'<p class="yol-not">İlk bölümü bitirince burası açılır.</p>')+'</section></div>';
  return h;
@@ -556,7 +556,16 @@ back=function(){
    arasında geçilir); altta Tekrar Çalışması, Serbest Çalışma ve Büyük Tur. Serbest Çalışma ve biten bölümün
    "Öğrendiklerim"i iç içe açılır (geri tuşu bir önceki katmana döner). */
 const YH={etap:null,gorunum:'harita'};
-window.yolEtapGit=function(d){const plan=yolPlan();if(!plan)return;const E=[...new Set(plan.map(n=>n.etap))];const i=E.indexOf(YH.etap);YH.etap=E[Math.max(0,Math.min(E.length-1,i+d))];render();};
+window.yolEtapGit=function(d){
+ const plan=yolPlan();if(!plan)return;
+ const E=[...new Set(plan.map(n=>n.etap))],i=E.indexOf(YH.etap);
+ const klavye=YOL_AYAR.subject==='baharat'&&document.activeElement?.matches('.yh-baharat .yh-ok:focus-visible');
+ YH.etap=E[Math.max(0,Math.min(E.length-1,i+d))];render();
+ if(klavye){
+  const once=document.querySelector('.yh-baharat .yh-ok[data-yon="'+d+'"]:not(:disabled)');
+  (once||document.querySelector('.yh-baharat .yh-ok:not(:disabled)'))?.focus();
+ }
+};
 window.yolGorunum=function(g){YH.gorunum=g;render();};
 function yolKutu(n,plan,s,sira,serbest){
  const i=plan.indexOf(n),acik=yolAcik(plan,s,i),bitti=!!s.done[n.id],son=n.tur==='son',ad=son?'Etap sonu':'Bölüm '+n.no;
@@ -574,9 +583,13 @@ function yolumHTML(){
  const s=yolS(),sira=yolSiradaki(plan,s),ogr=yolOgrenilen(plan,s),top=yolToplam(plan),tk=yolTkSayi(),nes=yolK().nesne;
  const E=[...new Set(plan.map(n=>n.etap))];
  if(YH.etap==null||!E.includes(YH.etap))YH.etap=sira?sira.etap:E[E.length-1];
- const serbest=YH.gorunum==='serbest',e=YH.etap,ei=E.indexOf(e),nodes=plan.filter(n=>n.etap===e);
+ const serbest=YH.gorunum==='serbest',baharat=YOL_AYAR.subject==='baharat';
+ const e=YH.etap,ei=E.indexOf(e),nodes=plan.filter(n=>n.etap===e);
  const bol=nodes.filter(n=>n.tur==='bolum'),etapAcik=nodes.some(n=>yolAcik(plan,s,plan.indexOf(n)))||bol.some(n=>s.done[n.id]);
- let h=yolBar(serbest?'Serbest Çalışma':'Yolculuğum',yolKonuAdi(),'back()',false)+'<div class="yol-sayfa yh-sayfa">';
+ const ust=yolBar(serbest?'Serbest Çalışma':baharat?'Baharat Yolculuğu':'Yolculuğum',baharat&&!serbest?'':yolKonuAdi(),'back()',false);
+ const kisSahnesi='<img class="yh-baharat-kis" src="assets/baharat/kis-baharat-yolculugu.webp" width="1050" height="700" alt="">';
+ let h=(baharat&&!serbest?'<div class="yh-baharat-sahne">'+kisSahnesi+ust+'</div>':ust)+
+  '<div class="yol-sayfa yh-sayfa'+(baharat?' yh-baharat':'')+'">';
  if(serbest)h+='<p class="yh-not">Bitirdiğin bölümü seç. Kilidi ve puanı etkilemez.</p>';
  else{
   h+='<section class="yol-kart yh-devam" aria-label="Kaldığın yer">';
@@ -585,16 +598,16 @@ function yolumHTML(){
   h+='<p class="yh-say"><b>'+ogr+' / '+top+'</b> '+yolK().nesneBelirtme+' öğrendin</p><div class="yol-ilerleme" role="progressbar" aria-valuemin="0" aria-valuemax="'+top+'" aria-valuenow="'+ogr+'" aria-label="Öğrenilen '+nes+' sayısı"><i style="width:'+(top?Math.round(100*ogr/top):0)+'%"></i></div></section>';
  }
  h+='<section class="yol-kart yh-etap" aria-label="Etap '+e+'"><div class="yh-etap-bas">'+
-  '<button type="button" class="yh-ok" onclick="yolEtapGit(-1)" aria-label="Önceki etap"'+(ei<=0?' disabled':'')+'>‹</button>'+
+  '<button type="button" class="yh-ok" onclick="yolEtapGit(-1)" aria-label="Önceki etap"'+(ei<=0?' disabled':'')+(baharat?' data-yon="-1">Önceki':'>‹')+'</button>'+
   '<h2>Etap '+e+' <small>/ '+E.length+'</small>'+(nodes.every(n=>s.done[n.id])?' <span class="yol-ok" aria-label="tamamlandı">✓</span>':'')+'</h2>'+
-  '<button type="button" class="yh-ok" onclick="yolEtapGit(1)" aria-label="Sonraki etap"'+(ei>=E.length-1?' disabled':'')+'>›</button></div>'+
+  '<button type="button" class="yh-ok" onclick="yolEtapGit(1)" aria-label="Sonraki etap"'+(ei>=E.length-1?' disabled':'')+(baharat?' data-yon="1">Sonraki':'>›')+'</button></div>'+
   (etapAcik||serbest?'<div class="yh-izgara">'+nodes.map(n=>yolKutu(n,plan,s,sira,serbest)).join('')+'</div>':
    '<div class="yh-kapali"><span aria-hidden="true">🔒</span><b>Etap '+e+' kilitli</b><small>Önceki etap bitince açılır.</small></div>')+'</section>';
  if(!serbest){
   h+='<nav class="yh-alt" aria-label="Diğer çalışmalar">'+
    '<button type="button" class="yh-alt-k" onclick="yolTekrarBaslat()"'+(tk?'':' disabled')+'><b>↻ Tekrar</b><small>'+(tk?tk+' '+nes+' bekliyor':'Şimdilik yok')+'</small></button>'+
    '<button type="button" class="yh-alt-k" onclick="yolGorunum(\'serbest\')"'+(plan.some(n=>n.tur==='bolum'&&s.done[n.id])?'':' disabled')+'><b>Serbest Çalışma</b><small>Bitenleri çalış</small></button>'+
-   '<div class="yh-alt-k kilit"><b>🔒 Büyük Tur</b><small>'+(sira?'Tüm etaplar bitince':'Çok yakında')+'</small></div></nav>';
+   '<div class="yh-alt-k kilit"><b>'+(baharat?'Büyük Tur':'🔒 Büyük Tur')+'</b><small>'+(baharat?'Yakında':sira?'Tüm etaplar bitince':'Çok yakında')+'</small></div></nav>';
  }
  return h+'</div>';
 }
