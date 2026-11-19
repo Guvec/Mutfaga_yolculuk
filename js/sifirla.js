@@ -1,44 +1,131 @@
 /* © 2026 Ali Arıkoğlu. Tüm hakları saklıdır. */
-/* Tam sıfırlama (10.11.2026): bütün öğrenciler sıfır profille başlasın.
-   Her cihazda bir kez çalışır. Silinenler: profiller, rütbe, ödül/rozet, geçmiş, rekorlar, bölüm ilerlemesi, haftalık durum.
-   Kalanlar: ses, tema ve müzik ayarları.
-   Eski veri bu cihazda gizli yedeğe (yedek_2026_11) alınır.
-   Bulut temizliği, kuralı değiştirmeden, uygulamanın kendi profil silme yoluyla yapılır:
-   rkForgetProfile -> sıralama satırları silinir; adSync -> oyun adı rezervasyonu bırakılır ve arkadaş kayıtları (arkWipe) temizlenir.
-   İnternet yoksa işler sonraki açılışta ya da internet gelince sürer. */
-(function(){
- const SURUM='2026-11-10-tam';
- const SIL=['rutbe','rutbe_dal','records','odul','rk_best','rk_win','rk_pek','rk_oyun','rk_setting','arena_devam','arena_odul','arena_pek','haftalik','yol_ma','yol_bh','rk_queue','kaptan_onbellek','kaptan_onbellek2'];
- const YEDEK_EK=['profiles','rk_ids','ark_id','ad_map','sonProfil'];
- function yerel(){
-  if(ls('sifirlama',null)===SURUM)return;
-  const yedek=ls('yedek_2026_11',{}),isimler=(ls('profiles',[])||[]).slice();
-  let veriVar=isimler.length>0;
-  SIL.concat(YEDEK_EK).forEach(k=>{const v=ls(k,null);if(v===null||v===undefined)return;if(yedek[k]===undefined)yedek[k]=v;});
-  SIL.forEach(k=>{const v=ls(k,null);if(v&&typeof v==='object'&&Object.keys(v).length&&!/^kaptan/.test(k))veriVar=true;});
-  if(Object.keys(yedek).length)lsSet('yedek_2026_11',yedek);
-  /* Önce bulut işleri için profil başına mevcut silme yolu (sıralama kaydı + kimlik), sonra yerel temizlik. */
-  isimler.forEach(n=>{try{if(typeof rkForgetProfile==='function')rkForgetProfile(n);}catch(e){}});
-  lsSet('profiles',[]);lsSet('sonProfil',null);
-  SIL.forEach(k=>{lsSet(k,(k==='rk_queue'||k==='records')?[]:{});});
-  lsSet('sifirlama',SURUM);
-  lsSet('sifirla_bekleyen',[]);
-  try{if(typeof st!=='undefined'){st.prof=null;st.guest=false;}}catch(e){}
-  if(veriVar)lsSet('sifirla_haber',true);
-  if(typeof adSync==='function')setTimeout(adSync,600);
- }
- function haber(){
-  if(!ls('sifirla_haber',false))return;
-  if(typeof st==='undefined'||st.modalOpen||!['home','profiles','welcome','giris'].includes(st.screen))return;
-  const ov=document.getElementById('ov');if(!ov)return;
-  lsSet('sifirla_haber',false);
-  if(typeof pauseT==='function')pauseT();
-  st.modalOpen=true;ov.className='on';
-  ov.innerHTML='<div class="modal" role="dialog" aria-modal="true" aria-labelledby="sfT"><h2 id="sfT">Yeni başlangıç</h2><p>Site çok yenilendi. Herkes adil başlasın diye profiller, puanlar, rütbeler ve sıralamalar sıfırlandı.</p><p>Yeni bir karakterle baştan başlıyorsun.</p><button class="btn" id="sfTamam" type="button">Tamam</button></div>';
-  const b=document.getElementById('sfTamam');if(b){b.onclick=function(){if(typeof closeModal==='function')closeModal();else{ov.className='';ov.innerHTML='';st.modalOpen=false;}if(typeof render==='function')render();};b.focus();}
- }
- yerel();
- try{render();}catch(e){}
- const prev=render;render=function(){const r=prev.apply(this,arguments);setTimeout(haber,350);return r;};
- setTimeout(()=>{try{haber();}catch(e){}},900);
+(function () {
+  'use strict';
+
+  const APP_RESET = 1;
+  const SURUM = 'kv_app_reset';
+  const BEKLEYEN_EKRAN = 'kv_app_reset_ekran';
+  const ILERLEME = new Set([
+    'profiles', 'sonProfil', 'ad_map', 'ad_yeni', 'ark_id',
+    'rutbe', 'rutbe_dal', 'sv_baz', 'odul', 'records', 'yanlislarim',
+    'rk_ids', 'rk_best', 'rk_win', 'rk_pek', 'rk_oyun', 'rk_setting', 'rk_queue',
+    'arena_devam', 'arena_odul', 'arena_pek', 'arena_rekor', 'haftalik',
+    'ana_dost', 'ana_yol', 'dost_secim', 'dost_gorev', 'dost_migrated', 'dost_migrated_pid',
+    'yol_ma', 'yol_bh', 'yol_bl', 'yol_tk_ma', 'yol_tk_bh', 'yol_tk_bl',
+    'pastacilik_ilk_v1', 'baharat_rafi_v1', 'lezzet_tezgah', 'mola', 'yedek_2026_11',
+  ]);
+  const ESKI_ISARETLER = ['kv_sifirla_bekleyen', 'kv_sifirla_haber'];
+  const SEKME_DEVAMI = ['yr_devam', 'yr_menu_profil'];
+  const BOS = new Set([null, '', '[]', '{}', 'null', 'false', '""']);
+
+  function kayitHaritasi(anahtar) {
+    try {
+      const kayit = JSON.parse(localStorage.getItem(anahtar));
+      if (kayit && typeof kayit === 'object' && !Array.isArray(kayit)) return kayit;
+    } catch (e) {}
+    return {};
+  }
+
+  function eskiTemizlikleriKoru() {
+    // Önceden talep edilen hesap ve sıralama silme işlemleri kendi akışlarında devam eder.
+    const profiller = kayitHaritasi('kv_rk_prof');
+    const eskiTemizlikler = kayitHaritasi('kv_rk_clean');
+    const bekleyen = Object.entries(profiller).filter(([pid, profil]) =>
+      profil && (profil.pendingDelete === true ||
+        (['out', 'deleted'].includes(profil.status) && eskiTemizlikler[pid]?.length))
+    );
+    const temizlenecek = bekleyen.filter(([pid]) => Array.isArray(eskiTemizlikler[pid]))
+      .map(([pid]) => [pid, eskiTemizlikler[pid]]);
+    for (const [anahtar, kayitlar] of [['kv_rk_prof', bekleyen], ['kv_rk_clean', temizlenecek]]) {
+      if (kayitlar.length) localStorage.setItem(anahtar, JSON.stringify(Object.fromEntries(kayitlar)));
+      else localStorage.removeItem(anahtar);
+    }
+  }
+
+  function sekmeyiSifirla(numara) {
+    if (sessionStorage.getItem(SURUM) === numara) return;
+    for (const anahtar of SEKME_DEVAMI) sessionStorage.removeItem(anahtar);
+    sessionStorage.setItem(SURUM, numara);
+  }
+
+  function yerelSifirla() {
+    const numara = String(APP_RESET);
+    try {
+      if (localStorage.getItem(SURUM) === numara) {
+        sekmeyiSifirla(numara);
+        return;
+      }
+      const anahtarlar = Object.keys(localStorage).filter(anahtar => {
+        if (!anahtar.startsWith('kv_')) return false;
+        const ad = anahtar.slice(3);
+        return ILERLEME.has(ad) || ad.startsWith('ana_son_konu_') || ad.startsWith('dost_gorunum_');
+      });
+      const eskiVeriVar = anahtarlar.some(anahtar => !BOS.has(localStorage.getItem(anahtar))) ||
+        SEKME_DEVAMI.some(anahtar => !BOS.has(sessionStorage.getItem(anahtar)));
+      if (eskiVeriVar) localStorage.setItem(BEKLEYEN_EKRAN, numara);
+      eskiTemizlikleriKoru();
+      for (const anahtar of anahtarlar) localStorage.removeItem(anahtar);
+      for (const anahtar of ESKI_ISARETLER) localStorage.removeItem(anahtar);
+      // Önbellekten açılan önceki sürüm eski bulut temizliğini yeniden başlatmasın.
+      localStorage.setItem('kv_sifirlama', JSON.stringify('2026-11-10-tam'));
+      sekmeyiSifirla(numara);
+      localStorage.setItem(SURUM, numara);
+    } catch (e) {
+      // Depolama tekrar kullanılabilir olduğunda açılışta işlem yeniden denenir.
+    }
+  }
+
+  function ekranBekliyor() {
+    try {
+      const numara = String(APP_RESET);
+      return localStorage.getItem(SURUM) === numara && localStorage.getItem(BEKLEYEN_EKRAN) === numara;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  function ekraniGoster() {
+    if (!ekranBekliyor() || st.modalOpen || typeof adOpen !== 'function' ||
+        (typeof ysKapiGerekli === 'function' && ysKapiGerekli()) ||
+        (typeof YS !== 'undefined' && YS.acik) ||
+        document.getElementById('yerelSifirlama')) return false;
+
+    const ekran = document.createElement('dialog');
+    ekran.id = 'yerelSifirlama';
+    ekran.className = 'modal';
+    ekran.setAttribute('aria-labelledby', 'sifirlamaBaslik');
+    ekran.setAttribute('aria-describedby', 'sifirlamaAciklama');
+    ekran.style.cssText = 'top:max(16px,env(safe-area-inset-top));margin:0 auto;width:calc(100% - 32px);max-height:calc(100dvh - 32px);overflow:auto;border:0';
+    ekran.innerHTML = '<h2 id="sifirlamaBaslik">Bu cihazda yeni başlangıç</h2>' +
+      '<p id="sifirlamaAciklama">Bu cihazdaki profilin, puanların, rütben, rozetlerin, kişisel rekorların ve arkadaş listen sıfırlandı.</p>' +
+      '<button type="button" class="btn pri" style="min-height:48px" autofocus>Profil seç</button>' +
+      '<p>İnternetteki eski sıralama kayıtları duruyor.</p>';
+    document.body.appendChild(ekran);
+
+    function profilSec() {
+      try { localStorage.removeItem(BEKLEYEN_EKRAN); } catch (e) {}
+      ekran.close();
+      ekran.remove();
+      if (st.screen !== 'pedit') adOpen(-1, 'home');
+    }
+
+    ekran.querySelector('button').addEventListener('click', profilSec);
+    ekran.addEventListener('cancel', event => {
+      event.preventDefault();
+      profilSec();
+    });
+    ekran.showModal();
+    return true;
+  }
+
+  yerelSifirla();
+  document.addEventListener('DOMContentLoaded', () => {
+    if (!ekranBekliyor() || ekraniGoster() || typeof render !== 'function') return;
+    const oncekiRender = render;
+    render = function () {
+      const sonuc = oncekiRender.apply(this, arguments);
+      if (ekraniGoster()) render = oncekiRender;
+      return sonuc;
+    };
+  }, {once: true});
 })();

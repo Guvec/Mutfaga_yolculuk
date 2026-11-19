@@ -228,18 +228,69 @@ html body .lc-home .lc-rank img{max-height:58px}
 /* Yolculuğum alt yazıları: altta koyu lacivert degrade, yazı karın üstünde okunur. */
 html body .lc-home .lc-journey::before{content:"";position:absolute;left:0;right:0;bottom:0;height:42%;z-index:1;pointer-events:none;border-radius:inherit;background:linear-gradient(to top,#0b2742d9 0%,#0b274288 45%,transparent 100%)}
 
-/* Yolculuğum kış sahnesi: 2,25:1 görsel ve mevcut çerçevenin iç payı. */
-html:not([data-theme=yuksek]) body .lc-home .lc-journey[data-mevsim=kis] {
-  --lc-kis-gorsel: url('../assets/yolculuk/kart-kis-lonca-gunduz-yansima.webp');
-  aspect-ratio: 2.1 / 1 !important;
-  background-color: #25445b;
-  background-image: var(--lc-kis-gorsel) !important;
-  background-repeat: no-repeat;
-  background-size: 100% auto;
-  background-position: center;
+.lc-kis-yol-etiket {
+  display: none;
 }
 
-html:is([data-theme=dark], [data-theme=lonca]) body .lc-home .lc-journey[data-mevsim=kis] {
-  --lc-kis-gorsel: url('../assets/yolculuk/kart-kis-lonca-gece.webp');
-  background-color: #16293a;
+/* Kış sahnesi, kendi altın çerçevesi ve yazılı levhalarıyla karta tam oturur. */
+html:not([data-theme=yuksek]) body.lc-sahne-acik .lc-home .lc-journey[data-mevsim=kis] {
+  --lc-kis-gorsel: url('../assets/yolculuk/kart-kis-levha-gunduz.webp');
+  --lc-fener-parlama: .17;
+  aspect-ratio: 2064 / 918 !important;
+  max-height: none;
+  padding: 0 !important;
+  overflow: hidden;
+  isolation: isolate;
+  background: var(--lc-kis-gorsel) center / 100% 100% no-repeat #102734 !important;
+  animation: none !important;
+}
+
+html:is([data-theme=dark], [data-theme=lonca]) body.lc-sahne-acik .lc-home .lc-journey[data-mevsim=kis] {
+  --lc-kis-gorsel: url('../assets/yolculuk/kart-kis-levha-aksam.webp');
+  --lc-fener-parlama: .44;
+}
+
+html:not([data-theme=yuksek]) body.lc-sahne-acik .lc-home .lc-journey[data-mevsim=kis]::after,
+html:not([data-theme=yuksek]) body.lc-sahne-acik .lc-home .lc-journey[data-mevsim=kis] .lc-journey-copy {
+  display: none !important;
+}
+
+html:not([data-theme=yuksek]) body.lc-sahne-acik .lc-home .lc-journey[data-mevsim=kis] .lc-kis-yol-etiket {
+  display: block;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+html:not([data-theme=yuksek]) body.lc-sahne-acik .lc-home .lc-journey[data-mevsim=kis]:focus-visible {
+  outline: 3px solid #ffdb8f;
+  outline-offset: 2px;
+}
+
+/* Fener ışığı kısa süre güçlenir ve levhanın sağ ucunda yumuşak biçimde söner. */
+html:not([data-theme=yuksek]) body.lc-sahne-acik .lc-home .lc-journey[data-mevsim=kis]::before {
+  inset: 0;
+  height: auto;
+  background: radial-gradient(ellipse 12% 16% at 88% 71%, #ffc071 0%, #ed912934 60%, transparent 100%);
+  mix-blend-mode: screen;
+  opacity: 0;
+  animation: lc-levha-feneri 7s ease-in-out infinite;
+}
+
+@keyframes lc-levha-feneri {
+  0%, 72%, 100% { opacity: 0; }
+  84% { opacity: var(--lc-fener-parlama); }
+}
+
+html[data-sakin="1"] body.lc-sahne-acik .lc-home .lc-journey[data-mevsim=kis]::before {
+  animation: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html body.lc-sahne-acik .lc-home .lc-journey[data-mevsim=kis]::before {
+    animation: none !important;
+  }
 }
