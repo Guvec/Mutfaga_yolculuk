@@ -19,7 +19,7 @@ const FAKE=`window.REKOR_FAKE=(()=>{const prof={},rows={};let uid='u-cihaz';cons
  try{
   await require('./helpers/sound-choice.cjs')(page);await page.goto('http://127.0.0.1:'+server.address().port);await page.waitForFunction(()=>typeof CONTENT!=='undefined'&&CONTENT.baharat&&CONTENT['mutfak-araclari']);
   const kep=await page.evaluate(()=>{const rows=[{pid:'a',name:'Bir',correct:10,rank:3},{pid:'b',name:'İki',correct:10},{pid:'c',name:'Üç',correct:8,rank:2}];const host=document.createElement('div');host.innerHTML=rkRowsHTML(rows,'bh-e1','genel',10);const li=host.querySelectorAll('li');return {hats:[...li].map(x=>x.querySelectorAll('.rk-hat').length),rank:[...li].map(x=>x.querySelector('.rutbe-small')?.textContent||'')};});
-  assert.deepEqual(kep.hats,[1,1,0]);assert(kep.rank[0].includes('Aşçı'));assert.equal(kep.rank[1],'');assert(kep.rank[2].includes('Aşçı Yardımcısı'));ok('Kep eşit birincilerin hepsinde; rank olmayan satırda simge yok');
+  assert.deepEqual(kep.hats,[1,1,0]);assert.deepEqual(kep.rank,['Aşçı Yardımcısı','','Çırak']);ok('Kep eşit birincilerde; sıralama ana rütbe adını yıldızsız gösterir');
   const T=await page.evaluate(()=>RK_TERM+'~');
   const W=await page.evaluate(()=>rkWeekNo());
   // Bütün tabloların içerik sayıları kurallardaki sınırlarla aynı olmalı.

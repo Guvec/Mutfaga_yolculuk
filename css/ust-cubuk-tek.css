@@ -9,5 +9,6 @@ body .top.uc .who{order:4!important;flex:none!important;max-width:none!important
 body .top.uc .uc-geri,body .top.uc .uc-ev,body .top.uc .ses-ac,body .top.uc .uc-profil{flex:none!important;width:44px!important;min-width:44px!important;max-width:44px!important;height:44px!important;min-height:44px!important;padding:0!important;display:grid!important;place-items:center;border-radius:12px!important;font-size:20px!important;line-height:1!important;box-sizing:border-box}
 body .top.uc .uc-geri{font-size:24px!important;font-weight:900}
 body .top.uc .uc-ev,body .top.uc .uc-geri{border:1.5px solid transparent!important;background:transparent!important}
+body .top.uc:has(+ :is(.ry,.ry-rozetler)) .uc-ev{border:2px solid var(--navy)!important;background:var(--surface)!important;color:var(--navy)}
 body .top.uc .uc-profil{border-radius:50%!important;border:1.5px solid var(--line,#d8d2c2)!important;background:var(--surface,#fff)!important;font-size:22px!important;overflow:hidden;white-space:nowrap}
 html.lig body .top.uc .uc-profil,html.lig body .top.uc .ses-ac{border-color:#ffffff66!important;background:#ffffff14!important;color:#fff!important}

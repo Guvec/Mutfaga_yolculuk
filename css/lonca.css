@@ -60,7 +60,7 @@ html body :is(button,a,input,select):focus-visible{outline:3px solid #0b8c9b;out
 .lc-card-open:active{transform:translateY(-2px)}
 .lc-card-open:active .lc-emblem{filter:drop-shadow(0 0 6px #e9bd69)}
 /* All existing menus share the same parchment/material system in the two new themes. */
-html:is([data-theme=lonca],[data-theme=loncakrem]) body :is(.card,.ae-paper,.menu-btn,.set-card,.phone-sheet,.race-ranks li,.ry-yol>li,.lig-hero,.yr-card,.ar-card){background:radial-gradient(ellipse at 40% 25%,#fff7e5,#ffedcd 80%,#ead0a0);color:#142c35;border:1px solid #bf8a37;box-shadow:inset 0 0 0 2px #fff1c1,0 3px 8px #3c201727;border-radius:16px}
+html:is([data-theme=lonca],[data-theme=loncakrem]) body :is(.card,.ae-paper,.menu-btn,.set-card,.phone-sheet,.race-ranks li,.ry-yol>li,.ry-roz-kart,.lig-hero,.yr-card,.ar-card){background:radial-gradient(ellipse at 40% 25%,#fff7e5,#ffedcd 80%,#ead0a0);color:#142c35;border:1px solid #bf8a37;box-shadow:inset 0 0 0 2px #fff1c1,0 3px 8px #3c201727;border-radius:16px}
 html:is([data-theme=lonca],[data-theme=loncakrem]) body :is(.top,.ae-interior-head,.dost-head){background:linear-gradient(#fff5de,#edd0a0);color:#142c35;border-bottom:2px solid #c08e3e;box-shadow:0 2px 7px #32180d33}
 html:is([data-theme=lonca],[data-theme=loncakrem]) body :is(h1,h2,h3,.ttl,.sub,.note,.ay-ad,.ay-deger){color:#142c35}
 html:is([data-theme=lonca],[data-theme=loncakrem]) body :is(input,select,textarea){background:#fff9ee;color:#142c35;border-color:#ad7b30}

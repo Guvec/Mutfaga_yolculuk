@@ -13,6 +13,7 @@ const PAKET_RENDER=render,PAKET_BACK=back;
 render=function(){
  const app=document.getElementById('app');if(!app)return;
  if(st.screen==='rutbe'){app.innerHTML=rutbeHTML();return;}
+ if(st.screen==='rozetler'){app.innerHTML=rozetlerHTML();return;}
  if(st.screen==='haftamenu'){app.innerHTML=haftaMenuHTML();return;}
  if(st.screen==='haftaplay'){app.innerHTML=haftaPlayHTML();return;}
  if(st.screen==='haftaover'){app.innerHTML=haftaOverHTML();return;}
@@ -23,6 +24,6 @@ render=function(){
  if(st.screen==='home'){const wrap=app.querySelector('.design-wrap')||app.querySelector('.wrap');if(wrap){wrap.insertAdjacentHTML('beforeend',rkHomeHTML());}}
  if(['board','quiz','summary','spicereview'].includes(st.screen)&&st.sess&&rkSessionDone()){const b=rkBoardForSession();if(b){const w=app.querySelector('.wrap')||app.querySelector('.quiz .side');if(w)w.insertAdjacentHTML('beforeend',rkInlineHTML(b.id,'genel'));}}
 };
-back=function(){if(['rutbe','haftamenu','haftaover'].includes(st.screen)){go('home');return;}if(st.screen==='haftaplay'){haftaSave();haftaOpen();return;}if(st.screen==='rkpre'){const from=RK_PRE&&RK_PRE.from;RK_PRE=null;go(from||'home');return;}PAKET_BACK();};
+back=function(){if(st.screen==='rozetler'){go(ROZETLER_DONUS);return;}if(['rutbe','haftamenu','haftaover'].includes(st.screen)){go('home');return;}if(st.screen==='haftaplay'){haftaSave();haftaOpen();return;}if(st.screen==='rkpre'){const from=RK_PRE&&RK_PRE.from;RK_PRE=null;go(from||'home');return;}PAKET_BACK();};
 const PAKET_RANKLOAD=rkLoadRows;rkLoadRows=async function(){if(RK.view.board==='haftalik')RK.view.period='hafta';return PAKET_RANKLOAD();};
 render();

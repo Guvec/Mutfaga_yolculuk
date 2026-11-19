@@ -8,7 +8,7 @@ const w=dom.window,run=s=>w.eval(s);
 await new Promise(r=>setTimeout(r,50));assert.deepEqual(errors,[]);
 run(`lsSet('profiles',['Test']);lsSet('ad_map',{'Test':{e:0,n:0,c:false}});st.prof='Test';st.guest=false;RK.backend={ensureProfile:async()=>({status:'in',gen:0}),list:async()=>[],submit:async()=>({written:true}),removeRow:async()=>{}};`);
 run("go('home')");assert(w.document.body.textContent.includes('Haftalık Mutfak Yarışması'));assert(w.document.body.textContent.includes('Rütbem ve Rozetlerim'));
-run("go('rutbe')");assert(w.document.body.textContent.includes('Çırak'));assert(w.document.body.textContent.includes('Henüz kazanılmadı'));
+run("go('rutbe')");assert(w.document.body.textContent.includes('Çırak'));run('rozetlerAc()');assert(w.document.querySelector('.ry-roz-kilit[aria-controls="ryRozetAyrinti"]'));
 run("haftaOpen()");await run('haftaStart()');assert.equal(run('HAFTA.qs.length'),25);assert.equal(run('HAFTA.ranked'),true);
 for(let i=0;i<25;i++){run(`haftaAnswer(HAFTA.qs[HAFTA.k].choices.findIndex(c=>c.id===HAFTA.qs[HAFTA.k].correct))`);if(i===4){run('haftaBreak()');assert(run('HAFTA.paused'));run('haftaResume()');}run('haftaNext()');}
 assert.equal(run('HAFTA.score'),25);assert.equal(run('haftaState()[haftaPid()].attempts[rkWeekNo()]'),1);assert.equal(run('rutbeState(haftaPid()).mp'),10);

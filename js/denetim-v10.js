@@ -15,15 +15,22 @@ const V10_ANSWER=answer,V10_STATS=statsHtml,V10_QUIZ=quizHtml,V10_TABLE=tableHtm
 answer=function(value){
  if(st.practice!=='check'||!['kur','ad'].includes(st.op))return V10_ANSWER(value);
  if(st.done||!st.q||st.inBreak||st.modalOpen)return;
+ if(st.op==='ad'){
+  if(Number.isInteger(value)&&st.q.opts[value])soruSec(value);
+  return;
+ }
+ if(!LEVELS[st.lvl].items.includes(value))return;
+ kuverKontrolYanitiKaydet(value);
+ st.lastRes={cls:'',head:'Yanıtın kaydedildi.',text:'Sonraki parçaya geç. Sonuçlar çalışma bitince açılır.'};render();
+};
+function kuverKontrolYanitiKaydet(value){
  const q=st.q,right=st.op==='kur'?value===q.key:value===q.ans;
- if(st.op==='ad'&&(!Number.isInteger(value)||!q.opts[value]))return;
- if(st.op==='kur'&&!LEVELS[st.lvl].items.includes(value))return;
  const seconds=tStop();st.done=true;st.res=right?1:0;st.tries=0;st.wrong=[];
  if(right){st.sess.ok++;st.sess.s+=10;}else st.sess.bad++;
  if(st.op==='kur')st.placed[q.key]=true;
  st.sess.qs.push({q:st.op==='kur'?ITEMS[q.key].AD+' için yer seçimi':'Öne çıkan kuver parçasının adı',a:st.op==='kur'?PLACE_LABEL[q.key]:ITEMS[q.key].AD,r:st.res,s:seconds,selectedAnswer:st.op==='kur'?PLACE_LABEL[value]:ITEMS[q.opts[value]].AD,firstAnswer:st.op==='kur'?PLACE_LABEL[value]:ITEMS[q.opts[value]].AD,attemptCount:1,hintUsed:false,assessment:true,prompt:q.key});
- st.lastRes={cls:'',head:'Yanıtın kaydedildi.',text:'Sonraki parçaya geç. Sonuçlar çalışma bitince açılır.'};saveProgress();render();
-};
+ saveProgress();
+}
 statsHtml=function(){if(st.practice==='check'&&st.screen!=='summary'&&st.sess)return '<div class="stats"><span class="chip">Yanıtlanan '+st.sess.qs.length+'</span></div>';return V10_STATS();};
 tableHtml=function(){if(st.practice==='check'&&st.op==='kur'&&st.done&&!st.kDone){const previous=st.done;st.done=false;const html=V10_TABLE();st.done=previous;return html;}return V10_TABLE();};
 quizHtml=function(){let html=V10_QUIZ();if(st.practice==='check'&&['kur','ad'].includes(st.op))html=html.replace(/class="opt right"/g,'class="opt"');return html;};

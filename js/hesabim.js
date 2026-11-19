@@ -6,7 +6,7 @@ const HS_YZ=[['normal','Normal'],['buyuk','Büyük'],['cok','Çok büyük']];
 function hsTema(){return {light:'Aydınlık',sepia:'Sepya',okyanus:'Okyanus',orman:'Orman',lavanta:'Lavanta',seftali:'Şeftali',yuksek:'Yüksek kontrast',dark:'Gece'}[document.documentElement.dataset.theme]||'Aydınlık';}
 function hsYz(){return document.documentElement.getAttribute('data-yz')||'normal';}
 function hsRutbe(){
- try{if(st.guest||!st.prof||typeof rutbeState!=='function')return '';const s=rutbeState(rkPid(st.prof,true)),r=s.rank||1;return rutbeAd(r-1)+' · '+s.mp+' puan';}catch(e){return '';}
+ try{if(st.guest||!st.prof||typeof rutbeState!=='function')return '';const s=rutbeState(rkPid(st.prof,true));return rutbeAdHTML(Rutbe.progress(s.mp).current,s.dal)+' · '+s.mp+' puan';}catch(e){return '';}
 }
 /* 14.11 akşam (onaylı yapı): Hesabım tek ekran liste. Yazı boyutu, sesli okuma ve tema Ayarlar'a taşındı (tekrar kalktı);
    arkadaş gizliliği açılır bölümde. */
@@ -15,7 +15,7 @@ function hesabimHTML(){
  const guest=st.guest||!st.prof,name=guest?'Misafir':st.prof;
  const index=guest?-1:profiles().indexOf(st.prof);
  let h=topBar('Hesabım')+'<div class="wrap hesabim hs-yeni">';
- h+='<section class="hs-kimlik"><span class="hs-simge" aria-hidden="true">'+(typeof ucSimge==='function'?ucSimge(name):'👤')+'</span><span><b>'+esc(name)+'</b><small>'+(guest?'Misafir oturumunda sonuçlar kaydedilmez.':esc(hsRutbe()))+'</small></span></section>';
+ h+='<section class="hs-kimlik"><span class="hs-simge" aria-hidden="true">'+(typeof ucSimge==='function'?ucSimge(name):'👤')+'</span><span><b>'+esc(name)+'</b><small>'+(guest?'Misafir oturumunda sonuçlar kaydedilmez.':hsRutbe())+'</small></span></section>';
  if(!guest){
   h+='<section id="profileCode" aria-live="polite"><h3>Oyuncu kodun</h3>'+(FR.ready&&FR.prof===st.prof?'<strong style="font-size:1.5em;letter-spacing:.12em">'+esc(FR.pid)+'</strong><div class="row"><button class="btn" onclick="frCopy()">Kopyala</button><button class="btn" onclick="frShare()">Paylaş</button></div>':'<p>'+esc(FR.error||'Oyuncu kodun hazırlanıyor…')+'</p><button class="btn" onclick="profilKodGuncelle(true)">Yeniden dene</button>')+'</section>';
   h+='<p class="ay-grup">Karakterim</p><div class="ay-liste">'+

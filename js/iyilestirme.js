@@ -7,16 +7,45 @@ msgHtml=function(){let h=U_MSG();if(st.lastRes&&st.lastRes.detail&&!(st.practice
 const U_ANSWER=answer;
 answer=function(v){
  if(st.op!=='mcq'||st.practice!=='check')return U_ANSWER(v);
- if(st.done||!st.q||st.inBreak||st.modalOpen)return;sesSus();const q=st.q,c=q.choices.find(x=>x.id===v);if(!c)return;const right=v===q.correct;
+ if(st.q?.choices.some(c=>c.id===v))soruSec(v);
+};
+function coktanSecmeliKontrolYanitiKaydet(v){
+ sesSus();const q=st.q,c=q.choices.find(x=>x.id===v),right=v===q.correct;
  q.responses=[{answer:v,text:c.text||c.id+' seçeneği',at:Math.round(elapsed()*10)/10,correct:right}];st.done=true;st.res=right?1:0;const secs=tStop();
  if(right){st.sess.ok++;st.sess.s+=10;}else st.sess.bad++;
  st.sess.qs.push({q:q.prompt,a:q.correctText,r:st.res,s:secs,selectedAnswer:c.text||c.id+' seçeneği',firstAnswer:c.text||c.id+' seçeneği',attempts:q.responses,attemptCount:1,hintUsed:false,assessment:true,explanation:q.explanation||'',source:q.source});
- st.lastRes={cls:'',head:'Yanıtın kaydedildi.',text:'Sonraki soruya geçebilirsin. Açıklamalar çalışma bitince açılacak.'};saveProgress();render();
-};
+ saveProgress();
+}
+function soruOnayiBekleniyor(){
+ return st.screen==='quiz'&&st.practice==='check'&&['ad','mcq'].includes(st.op)&&!!st.q&&!st.done&&!st.kDone;
+}
+function soruSeciminiGoster(){
+ const devam=document.querySelector('#app .soru-devam');if(!devam)return;
+ const secim=st.q.bekleyenYanit;
+ const secenekler=document.querySelectorAll('#app .soru-secenegi');
+ secenekler.forEach((dugme,i)=>{
+  const secili=secim===(st.op==='ad'?i:dugme.dataset.choice);
+  dugme.setAttribute('aria-pressed',String(secili));
+ });
+ devam.disabled=secim==null;
+}
+function soruSec(v){
+ if(!soruOnayiBekleniyor()||st.inBreak||st.modalOpen)return;
+ st.q.bekleyenYanit=v;
+ soruSeciminiGoster();
+}
 const U_RESOLVE=resolve;
 resolve=function(r){U_RESOLVE(r);if(st.op!=='kur'&&st.op!=='ad'&&st.sess.qs.length){st.sess.qs.at(-1).explanation=st.q.explanation||'';saveProgress();}};
 const U_NEXT=nextQ;
-nextQ=function(){sesSus();U_NEXT();};
+nextQ=function(){
+ if(soruOnayiBekleniyor()){
+  const v=st.q.bekleyenYanit;
+  if(v==null||st.inBreak||st.modalOpen)return;
+  if(typeof asKonu==='function'&&asKonu())return asYanitiKaydet(v);
+  if(st.op==='ad')kuverKontrolYanitiKaydet(v);else coktanSecmeliKontrolYanitiKaydet(v);
+ }
+ sesSus();U_NEXT();
+};
 const U_CLOSE=closeModal;
 closeModal=function(){sesSus();U_CLOSE();};
 const U_FINISH=finish;
@@ -41,6 +70,17 @@ function resultText(q){return q.r===null?'Yanıtlanmadı':q.r===1?'İlk denemede
 function extraReport(){const s=st.sess;return '<section class="card audit-report"><h2>Yanıt ayrıntıları</h2><p>Yanıtlanan: '+(s.completed??s.qs.length)+' / '+(s.total||s.qs.length)+' · Yanıtlanmayan: '+(s.unanswered||0)+'</p><p>Etkin çalışma süresi: '+fmtDur(s.duration??s.qs.reduce((n,x)=>n+(Number(x.s)||0),0))+'</p><p>Görseli adıyla eşleştirmek, '+(st.subject==='baharat'?'gerçek ürünü':'gerçek aracı')+' bağımsız ve güvenli kullanabildiğini tek başına göstermez.</p><div class="report-scroll"><table><thead><tr><th>Görsel / soru</th><th>Öğrencinin ilk yanıtı</th><th>Son yanıtı</th><th>Doğru yanıt</th><th>Deneme</th><th>Sonuç</th></tr></thead><tbody>'+s.qs.map(q=>'<tr><td>'+esc(q.q)+'</td><td>'+esc(q.firstAnswer||q.selectedAnswer||'—')+'</td><td>'+esc(q.selectedAnswer||'—')+'</td><td>'+esc(q.a)+'</td><td>'+(q.attemptCount??'—')+'</td><td>'+resultText(q)+'</td></tr>').join('')+'</tbody></table></div>'+s.qs.filter(q=>q.explanation).map(q=>'<details><summary>'+esc(q.q)+'</summary><p>'+esc(q.explanation)+'</p>'+sesDugme(q.explanation)+'</details>').join('')+'<p class="note">Tahta eşleştirmesinde yalnız toplam etkin süre kullanılır. Kart başına bağımsız yanıt süresi hesaplanmaz.</p></section>';}
 const U_RENDER=render;
 render=function(){U_RENDER();const app=document.getElementById('app');if(!app)return;
+ if(soruOnayiBekleniyor()){
+  const duraklat=document.querySelector('#app .foot-dur');
+  if(duraklat){
+   duraklat.insertAdjacentHTML('beforebegin','<div class="soru-onay"><p class="soru-secim-ipucu">Bir seçenek seç</p><button type="button" class="btn pri soru-devam" onclick="nextQ()" disabled>Devam</button></div>');
+   document.querySelectorAll(st.op==='ad'?'#app .quiz .opts .opt':'#app [data-choice]').forEach(dugme=>{
+    dugme.classList.add('soru-secenegi');
+    dugme.insertAdjacentHTML('afterbegin','<span class="soru-isaret" aria-hidden="true">✓</span>');
+   });
+   soruSeciminiGoster();
+  }
+ }
  if(st.screen==='summary')app.insertAdjacentHTML('beforeend',extraReport());
 };
 const U_BACK=back;

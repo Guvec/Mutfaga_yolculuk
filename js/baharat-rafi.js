@@ -36,7 +36,7 @@ const BaharatRafi=(function(){
  }
  function odul(y){
   if(!profil()||typeof rutbeComplete!=='function')return;
-  try{rutbeComplete({id:'bh-kutu-'+K.no,table:'bh-kutu-'+K.no,correct:8,total:8,ilerleme:true,puan:RUTBE_AYAR.yolBolum+(y===3?3:0),dal:'sicak'});}catch(e){}
+  try{rutbeComplete({id:'bh-kutu-'+K.no,table:'bh-kutu-'+K.no,correct:8,total:8,ilerleme:true,puan:RUTBE_AYAR.yolBolum+(y===3?3:0)});}catch(e){}
  }
 /* ---- İçerik (öğretmen onaylı: Kutu 1 14.11 00:31, Kutu 2–4 14.11 03:24) ---- */
 const B={
@@ -79,6 +79,8 @@ const KUTULAR=[
  {no:3,ids:['sumak','zencefil','vanilya','corekotu'],yemek:[{ad:'Soğan salatası',bah:'sumak',ip:'Soğan salatasına sumak serpilir.',sekil:'tabak'},{ad:'Muhallebi',bah:'vanilya',ip:'Muhallebiye vanilya konur.',sekil:'kase'}]},
  {no:4,ids:['maydanoz','nane','dereotu','roka'],yemek:[{ad:'Limonata',bah:'nane',ip:'Limonataya taze nane konur.',sekil:'bardak'},{ad:'Zeytinyağlı enginar',bah:'dereotu',ip:'Zeytinyağlı enginara dereotu konur.',sekil:'tabak'}]}
 ];
+function kavanozSayisi(kutular){return kutular.reduce((toplam,kutu)=>toplam+kutu.ids.length,0);}
+const RAF_KAVANOZLARI=kavanozSayisi(KUTULAR);
 let K=KUTULAR[0],IDS=K.ids,YEMEK=K.yemek;
 /* ---- Durum ---- */
 let S;
@@ -206,9 +208,9 @@ function sonCiz(){
  const y=S.yanlis===0?3:S.yanlis<=2?2:1;S.altin=y===3;
  const once=kayit();const rekor=S.puan>(once.puan||0);
  if(!S.odul){S.odul=true;odul(y);siralama(S.puan,once);kaydet({...kayit(),yildiz:Math.max(y,once.yildiz||0),puan:Math.max(S.puan,once.puan||0),oynama:(once.oynama||0)+1,yanlislar:S.yanlisIds.slice()});}
- const toplam=KUTULAR.filter(k=>kayit(k.no).yildiz).length*4,sonrakiK=KUTULAR[K.no];
+ const toplam=kavanozSayisi(KUTULAR.filter(k=>kayit(k.no).yildiz)),sonrakiK=KUTULAR[K.no];
  cerceve('Kutu '+K.no+' tamam',`${rafHTML()}<div class="son"><div class="yildizlar">${'★'.repeat(y)}<span class="bos">${'★'.repeat(3-y)}</span></div>
- <div class="kart"><b>${S.puan} puan</b>${rekor&&once.puan?' · Yeni rekorun!':''}<br>En iyin: ${Math.max(S.puan,once.puan||0)} puan · Baharat Rafı: ${toplam} / 96 kavanoz${y===3?'<br>Hatasız kutu! Kavanoz kapakları altın oldu.':''}</div>
+ <div class="kart"><b>${S.puan} puan</b>${rekor&&once.puan?' · Yeni rekorun!':''}<br>En iyin: ${Math.max(S.puan,once.puan||0)} puan · Baharat Rafı: ${toplam} / ${RAF_KAVANOZLARI} kavanoz${y===3?'<br>Hatasız kutu! Kavanoz kapakları altın oldu.':''}</div>
  <div class="kart" id="br-sira" hidden style="font-weight:bold"></div>
  ${sonrakiK?`<div class="kart">Kutu ${sonrakiK.no} açıldı: 4 yeni baharat seni bekliyor<div class="bugu"><i>?</i><i>?</i><i>?</i><i>?</i></div></div>`:'<div class="kart">Yeni kutular yakında rafa gelecek.</div>'}
  ${y<3?'<div style="font-size:15px">3 yıldız için kutuyu hatasız bitir.</div>':''}
@@ -217,8 +219,8 @@ function sonCiz(){
 }
 /* Raf: kutu listesi. Kutu, öncekini bitirince açılır. */
 function listeCiz(){
- const toplam=KUTULAR.filter(k=>kayit(k.no).yildiz).length*4;
- cerceve('Baharat Rafı',`<div class="raf-liste"><div class="kart raf-ozet"><b>${toplam} / 96 kavanoz</b><span>Her kutuda 4 baharat · 8 soru</span></div>
+ const toplam=kavanozSayisi(KUTULAR.filter(k=>kayit(k.no).yildiz));
+ cerceve('Baharat Rafı',`<div class="raf-liste"><div class="kart raf-ozet"><b>${toplam} / ${RAF_KAVANOZLARI} kavanoz</b><span>Her kutuda 4 baharat · 8 soru</span></div>
  ${KUTULAR.map(k=>{const r=kayit(k.no),acik=acikMi(k.no),y=r.yildiz||0;
   return `<button class="kutu-kart${acik?'':' kilitli'}" ${acik?`onclick="BaharatRafi._kutu(${k.no})"`:'aria-disabled="true"'}>
    <span class="kutu-no">Kutu ${k.no}</span>

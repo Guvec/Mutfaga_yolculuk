@@ -11,7 +11,7 @@ const SUBJECTS = [
 const CONTENT = Object.create(null);
 const OLD_RENDER = render, OLD_NEWQ = newQ, OLD_START = startSession, OLD_RESOLVE = resolve;
 const OLD_QUIZ = quizHtml, OLD_ITEM = itemImg;
-VERSION='Sürüm · 18.11.2026 · v3.28.0: Mutfak araçları soruları doğal Türkçeyle yenilendi; yeni soru ekranı (kış teması)';
+VERSION='Sürüm · 19.11.2026 · v3.28.1: Soru seçimi, Baharat Rafı, Rütbe Yolu ve Rozetlerim güncellendi.';
 st.subject='kuver'; st.practice='learn';
 LEVELS={
   1:{name:'Basit Kuver', items:['yemek_catali','yemek_bicagi','pecete','su_bardagi']},

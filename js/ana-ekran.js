@@ -6,9 +6,6 @@
  let pendingSubject=null,pendingYol=null;
  function art(k,cls){const c=crops[k];return '<svg class="ae-art '+(cls||'')+'" viewBox="0 0 '+c[2]+' '+c[3]+'" aria-hidden="true" focusable="false"><svg width="'+c[2]+'" height="'+c[3]+'" viewBox="'+c.join(' ')+'" overflow="hidden"><image href="'+ART+'" width="1094" height="1438"/></svg></svg>';}
  function path(){const y=ls('ana_yol','sicak');return y==='pasta'?'pasta':y==='servis'?'servis':'sicak';}
- /* Dala özel rütbe adları (13.11): her dalın kendi puanı ve rütbesi vardır (rutbe-ui.js rutbeDalState). */
- function rutbeAdlari(){return RUTBE_DAL_AD[path()]||RUTBE_DAL_AD.sicak;}
- window.anaRutbeAdlari=rutbeAdlari;
  function foto(id,cls='ae-art'){return '<img class="'+cls+'" src="assets/ascidostum/'+id+'.webp" alt="">';}
  function dalArt(id){return foto('dal-'+GIRIS.character+'-'+id);}
  /* 14.11: Arkadaşın simgesi kendi adından bulunur (oyun adı emojiyle başlar ya da karakter listesinde vardır); bulunamazsa 🙂 yerine baş harf. */
@@ -33,23 +30,20 @@
  window.anaProfilGorsel=function(){return profileArt(st.prof);};
  function rankHTML(ust){
   const pid=st.prof&&!st.guest?rkPid(st.prof,false):null;
-  const state=pid?rutbeState(pid):{mp:0,rank:1};
-  const ranks=RUTBE_AYAR.ranks;
-  const index=Math.max(0,Math.min(ranks.length-1,(state.rank||1)-1));
-  const current=ranks[index],next=ranks[index+1],points=state.mp||0;
-  const remaining=next?Math.max(0,next.mp-points):0;
-  const percent=next?Math.max(0,Math.min(100,100*(points-current.mp)/(next.mp-current.mp))):100;
-  const names=rutbeAdlari(),title=(names[index]||current.name)+(next?' → '+(names[index+1]||next.name):'');
-  const note=next?(names[index+1]||next.name)+' olmak için '+remaining+' puan':'En yüksek öğrenci rütbesi';
-  rankHTML.title=title;
-  return `<div class="ae-serit${ust?' ae-serit-ust':''}" data-dal="${path()}" role="button" tabindex="0" onclick="rutbeYolAc()"
-    onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();rutbeYolAc();}" aria-label="${esc('Rütbem: '+title+'. '+note)}">
-   <img src="assets/rozet/${path()}-${index+1}.webp" alt="" width="96" height="96">
-   <span class="ae-serit-metin"><span class="lc-rank-label">Rütbeler • ${esc(YOLLAR[path()].ad)}</span>
-    <span class="ae-serit-adlar"><strong>${esc(names[index]||current.name)}</strong>${next?`<span class="ae-serit-sonra">Sıradaki: <b>${esc(names[index+1]||next.name)}</b></span>`:''}</span>
-    <span class="ae-progress" role="progressbar" aria-label="Sonraki rütbeye ilerleme" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${Math.round(percent)}" aria-valuetext="${esc(note)}"><span style="width:${percent}%"></span></span>
+  const dal=path(),points=pid?rutbeDalState(pid,dal).mp:0;
+  const {current,next}=Rutbe.progress(points);
+  const percent=next?100*(points-current.mp)/(next.mp-current.mp):100;
+  const suffix=next?' olmak için '+(next.mp-points)+' puan':'';
+  const note=next?rutbeAdHTML(next,dal)+suffix:'En yüksek öğrenci rütbesi';
+  const spokenNote=next?Rutbe.rankText(next,dal,true)+suffix:note;
+  return `<div class="ae-serit${ust?' ae-serit-ust':''}" data-dal="${dal}" role="button" tabindex="0" onclick="rutbeYolAc()"
+    onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();rutbeYolAc();}" aria-label="${esc('Rütbem: '+Rutbe.rankText(current,dal,true)+'. '+spokenNote)}">
+   <img src="${rutbeRozetYolu(dal,current.rank)}" alt="" width="96" height="96">
+   <span class="ae-serit-metin"><span class="lc-rank-label">Rütbeler • ${esc(YOLLAR[dal].ad)}</span>
+    <span class="ae-serit-adlar"><strong>${rutbeAdHTML(current,dal)}</strong>${next?`<span class="ae-serit-sonra">Sıradaki: <b>${rutbeAdHTML(next,dal)}</b></span>`:''}</span>
+    <span class="ae-progress" role="progressbar" aria-label="Sonraki rütbeye ilerleme" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${Math.round(percent)}" aria-valuetext="${esc(spokenNote)}"><span style="width:${percent}%"></span></span>
     <small class="ae-serit-sayi" aria-hidden="true">${points} / ${next?next.mp:points} Tecrübe Puanı</small>
-    <small class="ae-serit-not">${esc(note)}</small>
+    <small class="ae-serit-not">${note}</small>
    </span>
   </div>`;
  }

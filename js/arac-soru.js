@@ -25,8 +25,13 @@ const AS_ANSWER=answer;
 answer=function(v){
  if(!asKonu())return AS_ANSWER(v);
  if(st.done||!st.q||st.inBreak||st.modalOpen)return;
+ if(!asCh(v))return;
+ if(soruOnayiBekleniyor())return soruSec(v);
+ asYanitiKaydet(v);
+};
+function asYanitiKaydet(v){
  if(typeof sesSus==='function')sesSus();
- const q=st.q,c=asCh(v);if(!c)return;
+ const q=st.q,c=asCh(v);
  const right=v===q.correct,secs=tStop(),cc=asCh(q.correct);
  q.responses=[{answer:v,text:asAd(c),at:Math.round(elapsed()*10)/10,correct:right}];
  st.done=true;st.res=right?1:0;st.asPick=v;st.lastRes=null;
@@ -37,7 +42,7 @@ answer=function(v){
  if(typeof sesCal==='function')sesCal(right?'yerlesti':'tekrarDene');
  saveProgress();render();
  asTemizle();AS.t=setTimeout(asIleri,right?1500:6000);
-};
+}
 const AS_NEXT=nextQ;
 nextQ=function(){asTemizle();AS_NEXT();};
 const AS_GO=go;

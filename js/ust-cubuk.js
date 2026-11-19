@@ -7,8 +7,13 @@ function ucSimge(ad){const s=String(ad||'').trim();if(!s)return '👤';try{if(ty
 function ucDuzenle(){
  document.querySelectorAll('#app .top').forEach(t=>{
   if(t.dataset.uc)return;t.dataset.uc='1';t.classList.add('uc');
+  const rutbeEkrani=t.nextElementSibling?.matches('.ry,.ry-rozetler');
   t.querySelectorAll('.back').forEach(b=>{
-   if(b.classList.contains('home-shortcut')){b.textContent='🏠';b.setAttribute('aria-label','Ana sayfa');b.title='Ana sayfa';b.classList.add('uc-ev');}
+   if(b.classList.contains('home-shortcut')){
+    if(rutbeEkrani)b.innerHTML='<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8M5 10v10h14V10M10 20v-6h4v6"/></svg>';
+    else b.textContent='🏠';
+    b.setAttribute('aria-label','Ana sayfa');b.title='Ana sayfa';b.classList.add('uc-ev');
+   }
    else if(/Geri/.test(b.textContent)){b.textContent='←';b.setAttribute('aria-label','Geri');b.title='Geri';b.classList.add('uc-geri');}
   });
   const p=t.querySelector('.who .profile-self');

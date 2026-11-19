@@ -193,22 +193,18 @@ const PastacilikIlk = (() => {
  function rank() {
   const pid = st.prof && !st.guest ? rkPid(st.prof, false) : null;
   const points = pid ? rutbeDalState(pid, 'pasta').mp : 0;
-  const ranks = RUTBE_AYAR.ranks;
-  const index = ranks.reduce((last, item, i) => points >= item.mp ? i : last, 0);
-  const next = ranks[index + 1];
-  return {index, points, next};
+  return {points, ...Rutbe.progress(points)};
  }
- function badge(index) {
-  return `<img src="assets/rozet/pasta-${index + 1}.webp" alt="" width="66" height="66">`;
+ function badge(step) {
+  return `<img src="${rutbeRozetYolu('pasta',step.rank)}" alt="" width="66" height="66">`;
  }
  function rankPanel() {
-  const {index, points, next} = rank();
-  const floor = RUTBE_AYAR.ranks[index].mp;
-  return `<section class="pi-rank pi-panel">${badge(index)}<div>
-   <strong>${RUTBE_DAL_AD.pasta[index]}</strong>
+  const {current, points, next} = rank();
+  return `<section class="pi-rank pi-panel">${badge(current)}<div>
+   <strong>${rutbeAdHTML(current,'pasta')}</strong>
    ${next ? `<p>${points} / ${next.mp} puan</p>
-    <progress value="${points - floor}" max="${next.mp - floor}" aria-label="Sonraki rütbeye ilerleme"></progress>
-    <p>Sonraki rütbe: ${RUTBE_DAL_AD.pasta[index + 1]}</p>` : `<p>${points} puan</p>`}
+    <progress value="${points - current.mp}" max="${next.mp - current.mp}" aria-label="Sonraki rütbeye ilerleme"></progress>
+    <p>Sonraki rütbe: ${rutbeAdHTML(next,'pasta')}</p>` : `<p>${points} puan</p>`}
    </div></section>`;
  }
  function entry() {
@@ -216,25 +212,24 @@ const PastacilikIlk = (() => {
    button('Tezgâh seni bekliyor','start') + button('Ustalık Yolum','rank','pi-secondary');
  }
  function rankList() {
-  const {index, points, next} = rank();
-  const floor = RUTBE_AYAR.ranks[index].mp;
-  const place = ['Kendi tezgâhın','Kendi istasyonun','Kendi bölümün','Kendi pastanen açılır','Pastanen en üst seviyede'];
-  return heading('Ustalık Yolum') + `<section class="pi-panel pi-yol-hero">${badge(index)}<div>
-    <strong>${RUTBE_DAL_AD.pasta[index]}</strong>
+  const {index, current, points, next} = rank();
+  const place = ['Kendi tezgâhın','Kendi istasyonun','Kendi bölümün','Kendi pastanen açılır','Kendi pastanen','Pastanen en üst seviyede'];
+  return heading('Ustalık Yolum') + `<section class="pi-panel pi-yol-hero">${badge(current)}<div>
+    <strong>${rutbeAdHTML(current,'pasta')}</strong>
     ${next ? `<p>${points} / ${next.mp} puan</p>
-     <progress value="${points - floor}" max="${next.mp - floor}" aria-label="Sonraki rütbeye ilerleme"></progress>
-     <p>${RUTBE_DAL_AD.pasta[index + 1]} için ${next.mp - points} puan kaldı.</p>` : `<p>${points} puan</p><p>En yüksek rütbedesin.</p>`}
+     <progress value="${points - current.mp}" max="${next.mp - current.mp}" aria-label="Sonraki rütbeye ilerleme"></progress>
+     <p>${rutbeAdHTML(next,'pasta')} için ${next.mp - points} puan kaldı.</p>` : `<p>${points} puan</p><p>En yüksek rütbedesin.</p>`}
    </div></section>
-   <ol class="pi-yol">${RUTBE_AYAR.ranks.map((item, i) =>
-   `<li class="pi-panel ${i < index ? 'pi-yol-ok' : i === index ? 'pi-yol-now' : 'pi-yol-lock'}" ${i === index ? 'aria-current="step"' : ''}>${badge(i)}
-    <div><strong>${RUTBE_DAL_AD.pasta[i]}</strong><p>${place[i]}</p></div>
+   <ol class="pi-yol">${Rutbe.steps.map((item, i) =>
+   `<li class="pi-panel ${i < index ? 'pi-yol-ok' : i === index ? 'pi-yol-now' : 'pi-yol-lock'}" ${i === index ? 'aria-current="step"' : ''}>${badge(item)}
+    <div><strong>${rutbeAdHTML(item,'pasta')}</strong><p>${place[item.rank - 1]}</p></div>
     <span>${i < index ? '✓ Kazanıldı' : i === index ? 'Buradasın' : item.mp + ' puan'}</span></li>`).join('')}</ol>`;
  }
  function award() {
   if (st.guest || !st.prof || typeof rutbeComplete !== 'function') return;
   const id = 'yol-pasta-malzeme-' + (lesson + 1);
   const result = rutbeComplete({id, table:id, correct:order.length, total:order.length,
-   ilerleme:true, puan:RUTBE_AYAR.yolBolum + (state.fast ? fastBonus : 0), dal:'pasta'});
+   ilerleme:true, puan:RUTBE_AYAR.yolBolum + (state.fast ? fastBonus : 0)});
   state.earned = result?.gain || 0;
  }
  function startClock() {
@@ -311,11 +306,11 @@ const PastacilikIlk = (() => {
    button('Devam et','continue');
  }
  function done() {
-  const {index} = rank();
+  const {current} = rank();
   return heading('Güzel bir adım attın!') + scene('alkis','','pi-quiz-scene') +
-   `<h3 class="pi-done-title">Tanışılan gereçler</h3><div class="pi-options pi-learned">${ids.map(id =>
+   `<h3 class="pi-done-title">Öğrendiğin malzemeler</h3><div class="pi-options pi-learned">${ids.map(id =>
     `<figure class="pi-panel">${image(id)}<figcaption>${materials[id].name}</figcaption></figure>`).join('')}</div>
-   <div class="pi-rank pi-panel">${badge(index)}<div><strong>${RUTBE_DAL_AD.pasta[index]}</strong><p>${Number.isInteger(state.earned) && state.earned > 0 ? '+' + state.earned + ' Pastacılık puanı' : 'Ustalık yolun devam ediyor.'}</p></div></div>` +
+   <div class="pi-rank pi-panel">${badge(current)}<div><strong>${rutbeAdHTML(current,'pasta')}</strong><p>${Number.isInteger(state.earned) && state.earned > 0 ? '+' + state.earned + ' Pastacılık puanı' : 'Ustalık yolun devam ediyor.'}</p></div></div>` +
    (lesson < lessons.length - 1 ? button('Yeni gereçleri keşfet','next-lesson') : '') +
    button('Pastacılığa dön','return','pi-secondary');
  }
