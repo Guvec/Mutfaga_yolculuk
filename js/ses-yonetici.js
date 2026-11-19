@@ -24,7 +24,7 @@ function sesCal(ad){
  },true);
 
  /* Sayaçlı ekranlar: giriş sesi, sonra 2 ve 1'de sayaç, oyun başlarken "başla". */
- var GIRIS={racecount:'gong',dintro:'kilicCek',aintro:null,cvplay:null},SAYAC={racecount:1,dintro:1,aintro:1};
+ var GIRIS={racecount:'gong',dintro:'kilicCek',aintro:'kilicCek',cvplay:null},SAYAC={racecount:1,dintro:1,aintro:1};
  var OYUN={raceplay:1,dplay:1,aplay:1};
  var onceki=null,oncekiSayi=null,oyuncu=0,geriDonus=false,sessizGecis=false;
  function sonra(){
