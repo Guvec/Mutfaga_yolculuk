@@ -17,15 +17,57 @@
  function mevsim(){const p=tercih();if(p==='kapali')return '';if(p!=='oto')return p;return takvimMevsimi(new Date());}
  function kartMevsimi(){return mevsim()||takvimMevsimi(new Date());}
  window.sahneMevsim=mevsim;
+ const hareketTercihi=window.matchMedia?.('(prefers-reduced-motion: reduce)');
  function hareketli(){
-  if(document.documentElement.dataset.sakin==='1')return false;
-  try{if(matchMedia('(prefers-reduced-motion: reduce)').matches)return false;}catch(e){}
-  return true;
+  return document.documentElement.dataset.sakin!=='1'&&!hareketTercihi?.matches;
  }
  function temaUygun(){const t=document.documentElement.dataset.theme;return t!=='yuksek';}
 
+ const HAVA_AD={oto:'Otomatik',acik:'Açık',yagmur:'Hafif yağmur'};
+ const HAVA_ANAHTARI='mesleki-hava';
+ const YAGMUR_SESI_ANAHTARI='mesleki-yagmur-sesi';
+ function havaTercihi(){
+  try{
+   const deger=localStorage.getItem(HAVA_ANAHTARI);
+   if(Object.prototype.hasOwnProperty.call(HAVA_AD,deger))return deger;
+  }catch(e){}
+  return 'oto';
+ }
+ function yagmurSesiAcik(){
+  try{return localStorage.getItem(YAGMUR_SESI_ANAHTARI)==='acik';}catch(e){return false;}
+ }
+ let yagmurSesi=null,yagmurIstegi=false;
+ function yagmurSesiGuncelle(){
+  if(!yagmurIstegi||document.hidden||document.documentElement.dataset.sakin==='1'||!yagmurSesiAcik()){
+   yagmurSesi?.pause();
+   return;
+  }
+  if(!yagmurSesi){
+   yagmurSesi=new Audio(new URL('assets/sahne/hafif-yagmur.mp3',document.baseURI).href);
+   yagmurSesi.loop=true;
+   yagmurSesi.preload='none';
+  }
+  if(!yagmurSesi.paused)return;
+  yagmurSesi.play().catch(()=>{/* İlk kullanıcı etkileşiminde yeniden denenir. */});
+ }
+ for(const olay of ['pointerup','keydown']){
+  document.addEventListener(olay,yagmurSesiGuncelle,{passive:true});
+ }
+
  /* ---------- Yağış: kar taneleri ya da yapraklar (tek canvas, ~30 kare/sn) ---------- */
  const YAPRAK=[1,2,3,4].map(i=>{const im=new Image();im.decoding='async';im.src='assets/sahne/yaprak-'+i+'.webp';return im;});
+ let yagmurParcalari;
+ function yagmurSprite(){
+  if(!yagmurParcalari){
+   yagmurParcalari=[1,2,3,4].map(sira=>{
+    const im=new Image();
+    im.decoding='async';
+    im.src='assets/sahne/yagmur/damla-'+sira+'.webp';
+    return im;
+   });
+  }
+  return yagmurParcalari;
+ }
  /* Kar taneleri: önceden çizilmiş birkaç biçim. Uzak kar küçük ve net; yakın kar iri, düzensiz "lapa" topakları. */
  /* Kar: GPT ile üretilmiş gerçekçi kar parçaları (assets/sahne/kar). Yakında iri lapa topaklar, ortada kristal taneler, uzakta kar tozu. */
  let karlar=null;
@@ -42,14 +84,54 @@
    tuval.width=Math.max(1,Math.round(W*olcek));tuval.height=Math.max(1,Math.round(H*olcek));c.setTransform(olcek,0,0,olcek,0,0);}
   function yeni(p,ilk){
    p.x=Math.random()*W;p.y=ilk?Math.random()*H:-30;p.faz=Math.random()*6.3;
+   if(tur==='yagmur'){
+    const yakin=Math.random();
+    p.hiz=125+yakin*230;
+    p.uzunluk=4+yakin*9;
+    p.a=.11+yakin*.25;
+    p.kalinlik=.55+yakin*.55;
+    p.im=yagmurSprite()[Math.floor(Math.random()*4)];
+    return p;
+   }
    if(tur==='kis'){const S=karSprite();if(lapa){p.r=7+Math.random()*10;p.hiz=26+p.r*2.2+Math.random()*14;p.salin=10+Math.random()*22;p.sf=.5+Math.random()*.9;p.a=.75+Math.random()*.25;p.im=S.lapa[(Math.random()*S.lapa.length)|0];p.don=(Math.random()-.5)*1.2;p.aci=Math.random()*6.3;}else{p.r=1.6+Math.random()*2.6;p.hiz=14+p.r*9+Math.random()*10;p.salin=4+Math.random()*10;p.sf=.7+Math.random()*.8;p.a=.5+Math.random()*.45;p.im=S.net[(Math.random()*S.net.length)|0];p.don=0;p.aci=0;}}
    else{p.r=14+Math.random()*12;p.hiz=24+Math.random()*22;p.salin=18+Math.random()*26;p.a=.85;p.don=(Math.random()-.5)*2.4;p.im=YAPRAK[(Math.random()*4)|0];}
    return p;
   }
+  function yagmurCiz(dt,zaman){
+   // Aynı esintiye uyan, uzaklıkları farklı damlalar.
+   const egim=.13+Math.sin(zaman/1800)*.045;
+   const aci=-Math.atan(egim);
+   c.strokeStyle='#d4e4f2';
+   for(const p of parca){
+    p.x+=p.hiz*dt*egim;
+    p.y+=p.hiz*dt;
+    if(p.x>W+15)p.x=-15;
+    if(p.y>H+15)yeni(p,false);
+    if(p.im.complete&&p.im.naturalWidth){
+     const genislik=Math.max(.7,p.uzunluk*p.im.naturalWidth/p.im.naturalHeight);
+     c.save();
+     c.globalAlpha=Math.min(.8,p.a*2.15);
+     c.translate(p.x,p.y);
+     c.rotate(aci);
+     c.drawImage(p.im,-genislik/2,-p.uzunluk,genislik,p.uzunluk);
+     c.restore();
+     continue;
+    }
+    // Görsel henüz yüklenmediyse hafif bir çizgi göster.
+    c.globalAlpha=p.a;
+    c.lineWidth=p.kalinlik;
+    c.beginPath();
+    c.moveTo(p.x-p.uzunluk*egim,p.y-p.uzunluk);
+    c.lineTo(p.x,p.y);
+    c.stroke();
+   }
+   c.globalAlpha=1;
+  }
   function kare(n){
    if(!calis)return;id=requestAnimationFrame(kare);
-   if(n-son<32)return;const dt=Math.min((n-son)/1000,.1);son=n;
+   if(n-son<32)return;const dt=son?Math.min((n-son)/1000,.1):0;son=n;
    c.clearRect(0,0,W,H);
+   if(tur==='yagmur'){yagmurCiz(dt,n);return;}
    if(n>ruzgarZaman){ruzgarHedef=(Math.random()<.35?(Math.random()<.5?-1:1)*(18+Math.random()*26):(Math.random()-.5)*10);ruzgarZaman=n+6000+Math.random()*8000;}
    ruzgar+=(ruzgarHedef-ruzgar)*Math.min(1,dt*.6);
    for(const p of parca){
@@ -66,7 +148,12 @@
    c.globalAlpha=1;
   }
   return {
-   kur(t){if(t===tur&&parca.length)return;tur=t;boyut();parca=Array.from({length:t==='kis'?adet:Math.ceil(adet/4)},()=>yeni({},true));},
+   kur(t){
+    if(t===tur&&parca.length)return;
+    tur=t;boyut();
+    const sayi=t==='yagmur'?Math.max(18,Math.min(44,Math.round(W*H/2300))):t==='kis'?adet:Math.ceil(adet/4);
+    parca=Array.from({length:sayi},()=>yeni({},true));
+   },
    boyut,
    baslat(){if(calis)return;calis=true;son=0;id=requestAnimationFrame(kare);},
    durdur(){calis=false;cancelAnimationFrame(id);c.clearRect(0,0,W,H);}
@@ -78,7 +165,7 @@
   document.body.prepend(arka);arkaYagis=yagisYap(arka,70);
   /* Ön katman: iri, lapa lapa kar kartların ve yazıların önünden de geçer; dokunmayı engellemez. */
   on=document.createElement('canvas');on.id='lcYagisOn';on.setAttribute('aria-hidden','true');document.body.appendChild(on);onYagis=yagisYap(on,34,true);
-  addEventListener('resize',()=>{arkaYagis.boyut();onYagis.boyut();if(yolYagis)yolYagis.boyut();});
+  addEventListener('resize',()=>{arkaYagis.boyut();onYagis.boyut();});
  }
 
  /* ---------- Yolculuğum kartı: mevsimin yolculuk sahnesi (karakterli sahneler GPT'den gelecek) ---------- */
@@ -187,6 +274,8 @@
  function guncelle(){
   const ev=!!document.querySelector('#app .lc-home')&&temaUygun();
   const m=ev?mevsim():'';
+  const hava=havaTercihi();
+  const yagis=hava==='oto'?m:hava;
   document.body.classList.toggle('lc-sahne-acik',ev);
   document.body.classList.toggle('lc-kis',m==='kis');
   document.body.classList.toggle('lc-sonbahar',m==='sonbahar');
@@ -206,17 +295,33 @@
   /* Sıralama kartı: kupalı kürsü (mevsime göre CSS seçer). */
   const sira=document.querySelector('#app .lc-home .lc-grid .lc-card:nth-child(3) .lc-stage');
   if(sira&&!sira.querySelector('.lc-kursu')){const e=sira.querySelector('.lc-emblem');if(e)e.remove();sira.insertAdjacentHTML('afterbegin','<span class="lc-emblem lc-kursu" aria-hidden="true"></span>');}
-  const dus=ev&&(m==='kis'||m==='sonbahar')&&hareketli()&&!document.hidden;
-  kisSesi.guncelle(ev&&m==='kis');
-  if(!dus){if(arkaYagis)arkaYagis.durdur();if(onYagis)onYagis.durdur();if(yolYagis)yolYagis.durdur();if(arka)arka.hidden=true;if(on)on.hidden=true;return;}
-  arkaKur();arka.hidden=false;arkaYagis.kur(m);arkaYagis.baslat();
-  on.hidden=m!=='kis';if(m==='kis'){onYagis.kur(m);onYagis.baslat();}else onYagis.durdur();
+  const canlandir=ev&&hareketli()&&!document.hidden;
+  const mevsimYagisi=canlandir&&(yagis==='kis'||yagis==='sonbahar');
+  kisSesi.guncelle(ev&&yagis==='kis');
+  yagmurIstegi=ev&&yagis==='yagmur';
+  yagmurSesiGuncelle();
+  if(mevsimYagisi){
+   arkaKur();
+   arka.hidden=false;
+   arkaYagis.kur(yagis);arkaYagis.baslat();
+   on.hidden=yagis!=='kis';
+   if(yagis==='kis'){onYagis.kur(yagis);onYagis.baslat();}else onYagis.durdur();
+  }else{
+   if(arka){arkaYagis.durdur();arka.hidden=true;}
+   if(on){onYagis.durdur();on.hidden=true;}
+  }
+  if(!canlandir||(!mevsimYagisi&&yagis!=='yagmur')){
+   yolYagis?.durdur();
+   return;
+  }
   /* Yolculuğum kartının içinde de, yazının arkasında hafif yağış */
   const yol=document.querySelector('#app .lc-home .lc-journey');
   if(yol&&!yol.contains(yolTuval)){if(yolYagis)yolYagis.durdur();yolTuval=document.createElement('canvas');yolTuval.className='lc-yol-yagis';yolTuval.setAttribute('aria-hidden','true');yol.prepend(yolTuval);yolYagis=yagisYap(yolTuval,16);}
-  if(yolYagis){yolYagis.kur(m);yolYagis.baslat();}
+  if(yolYagis){yolYagis.kur(yagis);yolYagis.baslat();}
  }
  document.addEventListener('visibilitychange',guncelle);
+ hareketTercihi?.addEventListener?.('change',guncelle);
+ addEventListener('resize',()=>{if(yolYagis)yolYagis.boyut();});
  window.sahneGuncelle=guncelle;
 
  /* ---------- Ayarlar: Mevsim satırı (Sakin mod satırının altına) ---------- */
@@ -230,11 +335,36 @@
    sakin.insertAdjacentHTML('afterend',aySatir('ayMevsim','❄️','Mevsim',mevsimYazi()));
    const b=document.getElementById('ayMevsim');
    b.setAttribute('aria-describedby','ayMevsimNot');
-   b.insertAdjacentHTML('afterend','<p id="ayMevsimNot" class="ay-not">Yolculuğum resmi ve hava efektleri mevsime göre değişir: kışın kar, sonbaharda yaprak. Otomatik seçimde kış 15 Kasım\'da başlar. Kapalı seçilirse efektler durur.</p>');
+   b.insertAdjacentHTML('afterend','<p id="ayMevsimNot" class="ay-not">Yolculuğum resmi mevsime göre değişir. Otomatik seçimde kış 15 Kasım\'da başlar. Kapalı seçilirse mevsim efektleri durur.</p>');
    b.onclick=()=>{const n=SIRA[(SIRA.indexOf(tercih())+1)%SIRA.length];try{localStorage.setItem(ANAHTAR,n);}catch(e){}b.querySelector('.ay-deger').textContent=mevsimYazi();guncelle();};
    document.getElementById('ayMevsimNot').insertAdjacentHTML('afterend',aySatir('ayKisSesi','🔔','Kış sesi',kisSesi.acik()?'Açık':'Kapalı')+'<p id="ayKisSesiNot" class="ay-not">Kışın ana sayfada hafif rüzgâr ve şömine sesi, kartlara dokununca karda adım ve ince bir çan sesi çalar. Müzikten ayrıdır.</p>');
    const ks=document.getElementById('ayKisSesi');ks.setAttribute('aria-describedby','ayKisSesiNot');
    ks.onclick=()=>{kisSesi.ayarla(!kisSesi.acik());ks.querySelector('.ay-deger').textContent=kisSesi.acik()?'Açık':'Kapalı';};
+   document.getElementById('ayKisSesiNot').insertAdjacentHTML('afterend',
+    aySatir('ayHava','🌦️','Hava',HAVA_AD[havaTercihi()])+
+    '<p id="ayHavaNot" class="ay-not">Otomatik, mevsimi izler. Açık, yağışı durdurur. Hafif yağmur, Yolculuğum sahnesinde görünür.</p>'+
+    aySatir('ayYagmurSesi','🌧️','Yağmur sesi',yagmurSesiAcik()?'Açık':'Kapalı'));
+   const hb=document.getElementById('ayHava');
+   hb.setAttribute('aria-describedby','ayHavaNot');
+   hb.onclick=()=>{
+    const secenekler=Object.keys(HAVA_AD);
+    const secim=secenekler[(secenekler.indexOf(havaTercihi())+1)%secenekler.length];
+    try{localStorage.setItem(HAVA_ANAHTARI,secim);}catch(e){}
+    hb.querySelector('.ay-deger').textContent=HAVA_AD[havaTercihi()];
+    guncelle();
+   };
+   const yb=document.getElementById('ayYagmurSesi');
+   const sesiGoster=()=>{
+    const acik=yagmurSesiAcik();
+    yb.setAttribute('aria-pressed',String(acik));
+    yb.querySelector('.ay-deger').textContent=acik?'Açık':'Kapalı';
+   };
+   sesiGoster();
+   yb.onclick=()=>{
+    try{localStorage.setItem(YAGMUR_SESI_ANAHTARI,yagmurSesiAcik()?'kapali':'acik');}catch(e){}
+    sesiGoster();
+    yagmurSesiGuncelle();
+   };
   }
   return s;
  };

@@ -227,3 +227,19 @@ html body .lc-home .lc-rank{padding-top:5px!important;padding-bottom:5px!importa
 html body .lc-home .lc-rank img{max-height:58px}
 /* Yolculuğum alt yazıları: altta koyu lacivert degrade, yazı karın üstünde okunur. */
 html body .lc-home .lc-journey::before{content:"";position:absolute;left:0;right:0;bottom:0;height:42%;z-index:1;pointer-events:none;border-radius:inherit;background:linear-gradient(to top,#0b2742d9 0%,#0b274288 45%,transparent 100%)}
+
+/* Yolculuğum kış sahnesi: 2,25:1 görsel ve mevcut çerçevenin iç payı. */
+html:not([data-theme=yuksek]) body .lc-home .lc-journey[data-mevsim=kis] {
+  --lc-kis-gorsel: url('../assets/yolculuk/kart-kis-lonca-gunduz-yansima.webp');
+  aspect-ratio: 2.1 / 1 !important;
+  background-color: #25445b;
+  background-image: var(--lc-kis-gorsel) !important;
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+  background-position: center;
+}
+
+html:is([data-theme=dark], [data-theme=lonca]) body .lc-home .lc-journey[data-mevsim=kis] {
+  --lc-kis-gorsel: url('../assets/yolculuk/kart-kis-lonca-gece.webp');
+  background-color: #16293a;
+}
