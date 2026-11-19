@@ -11,6 +11,7 @@
  /* 14.11: Arkadaşın simgesi kendi adından bulunur (oyun adı emojiyle başlar ya da karakter listesinde vardır); bulunamazsa 🙂 yerine baş harf. */
  function arkadasSimge(nick){
   const n=String(nick||'').trim(),ilk=n.split(' ')[0];
+  const portre=adPortreHTML(n,'ae-avatar-art');if(portre)return portre;
   if(/\p{Extended_Pictographic}/u.test(ilk))return '<span class="ae-avatar-emoji" aria-hidden="true">'+esc(ilk)+'</span>';
   const ad=n.replace(/\s*#\d+$/,'');
   if(typeof AD_KAR!=='undefined'){const k=AD_KAR.find(x=>ad===x[1]||ad.endsWith(' '+x[1])||ad===x[1].split(' ').pop());if(k)return '<span class="ae-avatar-emoji" aria-hidden="true">'+esc(k[0])+'</span>';}

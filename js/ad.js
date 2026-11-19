@@ -159,6 +159,14 @@ async function adAuto(){
 /* Oyun adı bir kez değiştirilebilir: değiştirilince bilgide d=1 olur ve ad sabit kalır (telefondaki kayıt; sunucu denetimi ayrı adım). */
 function adSabit(p){const m=adInfo(p);return !!(m&&m.d);}
 function adBase(e){const k=AD_KAR[e];return k&&k[3]!==undefined?k[3]:e;}
+const AD_CIVCIV_FIGUR=AD_KAR.findIndex(k=>k[1]==='Huzurlu Civciv');
+const AD_CIVCIV_ADLAR=new Set(adFigur(AD_CIVCIV_FIGUR).map(e=>AD_KAR[e][1].toLocaleLowerCase('tr')));
+function adCivcivAd(nick){return String(nick||'').trim().replace(/^🐥\s*/u,'');}
+function adPortreHTML(adVeyaFigur,sinif){
+ const civciv=typeof adVeyaFigur==='number'?adBase(adVeyaFigur)===AD_CIVCIV_FIGUR:
+  AD_CIVCIV_ADLAR.has(adCivcivAd(adVeyaFigur).replace(/\s*#\d+$/,'').trim().replace(/\s+/g,' ').toLocaleLowerCase('tr'));
+ return civciv?'<img class="'+sinif+'" src="assets/ascidostum/civciv.webp" alt="" width="64" height="64">':'';
+}
 function adOpen(i,ret){
  if(i>=0&&adSabit(profiles()[i])){adToast('Oyun adın sabit: değiştirme hakkını kullandın.');return;}
  const p=i>=0?profiles()[i]:null,m=p?adInfo(p):null,e=m?m.e:adRndKitchen();
@@ -172,8 +180,8 @@ function adFigurler(cat){
 function adGrid(){
  const P=st.pe;
  return adFigurler(P.cat).map(j=>{
-  const x=AD_KAR[j],on=j===P.b;
-  return '<button type="button" class="'+(on?'on':'')+'" aria-pressed="'+on+'" data-e="'+j+'" onclick="adSet('+j+')"><span>'+x[0]+'</span>'+esc(x[1])+'</button>';
+  const x=AD_KAR[j],on=j===P.b,baslik=j===AD_CIVCIV_FIGUR?'Civciv':x[1];
+  return '<button type="button" class="'+(on?'on':'')+'" aria-pressed="'+on+'" data-e="'+j+'" onclick="adSet('+j+')">'+(adPortreHTML(j,'ad-figur-portre')||'<span>'+x[0]+'</span>')+esc(baslik)+'</button>';
  }).join('')||'<p>Bu grupta seçilebilecek karakter kalmadı.</p>';
 }
 function adTabs(){const P=st.pe;return adTabOrder().map(j=>{const c=AD_KAT[j],k=c.indexOf(' ');return '<button type="button" class="'+(j===P.cat?'on':'')+'" aria-pressed="'+(j===P.cat)+'" data-cat="'+j+'" onclick="adCat('+j+')"><span>'+c.slice(0,k)+'</span>'+esc(c.slice(k+1))+'</button>';}).join('');}
@@ -195,14 +203,25 @@ function adAdayAdlar(b){
 function adBosAdlar(b){
  return adAdayAdlar(b).filter(j=>st.pe.av[j]!==false);
 }
+function adKendiCivcivAdi(P){
+ const kendi=P.b===AD_CIVCIV_FIGUR&&P.i>=0?adInfo(profiles()[P.i]):null;
+ return kendi&&adBase(kendi.e)===AD_CIVCIV_FIGUR?kendi:null;
+}
 function adAdlar(){
- const P=st.pe,free=adBosAdlar(P.b);
- if(free.length)return free.map(j=>{const on=j===P.e;
-  return '<button type="button" class="'+(on?'on':'')+'" aria-pressed="'+on+'" data-e="'+j+'" onclick="adPick('+j+')">'+esc(adSecimAdi(j))+'</button>';}).join('');
+ const P=st.pe,free=adBosAdlar(P.b),kendi=adKendiCivcivAdi(P);
+ const adlar=P.b===AD_CIVCIV_FIGUR?[...new Set([P.b,...(kendi?[kendi.e]:[]),...free])]:free;
+ const kartlar=adlar.map(j=>{
+  const kendiAdi=j===kendi?.e,secilebilir=kendiAdi||free.includes(j),on=j===P.e&&secilebilir;
+  const ad=kendiAdi?AD_KAR[j][1]+(kendi.n?' #'+kendi.n:''):adSecimAdi(j);
+  const durum=kendiAdi?'Şu anki adın':secilebilir?'':P.ayrilan&&!P.ayrilan.has(j)?'Ad ayırma sınırı dolu':'Dolu';
+  return '<button type="button" class="'+(on?'on':'')+'" aria-pressed="'+on+'" data-e="'+j+'" onclick="adPick('+j+')"'+
+   (secilebilir?'':' disabled')+'>'+esc(ad)+(durum?'<small>'+durum+'</small>':'')+'</button>';
+ }).join('');
+ if(free.length)return kartlar;
  const bilgi=P.ayrilan?'<p>Bu cihazda 10 ad ayrılmış. Bu karakter için kullanılabilir bir ad yok.</p>'
   :'<p>Bu karakterin adları dolu. Başka bir karakter seçebilirsin.</p>';
  const aranabilir=navigator.onLine&&adFigurler().some(j=>j!==P.b&&adBosAdlar(j).length);
- return bilgi+(aranabilir?'<button type="button" onclick="adCheck()">Boş ad ara</button>':'');
+ return kartlar+bilgi+(aranabilir?'<button type="button" onclick="adCheck(true)">Boş ad ara</button>':'');
 }
 function adYenile(){
  const P=st.pe;if(!P)return;
@@ -222,8 +241,12 @@ function adSet(v){
  if(own&&adBase(own.e)===v)P.e=own.e;
  adCheck();
 }
-function adPick(e){const P=st.pe;if(!P||P.busy||!adBosAdlar(P.b).includes(e))return;P.e=e;adYenile();}
-function adPrev(){const P=st.pe;return '<span class="ad-av" style="background:'+adCol(P.e)+'">'+AD_KAR[P.e][0]+'</span><span class="ad-pn">'+esc(adSecimAdi(P.e))+'<small id="pe-st" role="status">'+adStTxt()+'</small></span>';}
+function adPick(e){
+ const P=st.pe;if(!P||P.busy)return;
+ if(!adBosAdlar(P.b).includes(e)&&adKendiCivcivAdi(P)?.e!==e)return;
+ P.e=e;adYenile();
+}
+function adPrev(){const P=st.pe;return '<span class="ad-av" style="background:'+adCol(P.e)+'">'+(adPortreHTML(P.e,'ad-figur-portre')||AD_KAR[P.e][0])+'</span><span class="ad-pn">'+esc(adSecimAdi(P.e))+'<small id="pe-st" role="status">'+adStTxt()+'</small></span>';}
 function adStTxt(){
  const P=st.pe,p=P.i>=0?profiles()[P.i]:null,m=p?adInfo(p):null;
  if(m&&m.e===P.e)return 'Şu anki adın';
@@ -240,7 +263,7 @@ async function adFigurAdlariniDogrula(t,b){
   return [j,!s.exists()||s.data().u===t.uid];
  }));
 }
-function adCheck(){
+function adCheck(alternatifAra=false){
  const P=st.pe;if(!P)return;
  const b=P.b,kontrol=++P.kontrol;
  const guncel=()=>st.screen==='pedit'&&st.pe===P&&P.kontrol===kontrol;
@@ -257,7 +280,7 @@ function adCheck(){
    if(!guncel())return;
    for(const [j,bos] of secili)P.av[j]=bos;
    const own=P.i>=0?adInfo(profiles()[P.i]):null;
-   if(!adBosAdlar(b).length&&own?.e!==P.e&&!P.busy){
+   if(!adBosAdlar(b).length&&own?.e!==P.e&&!P.busy&&(b!==AD_CIVCIV_FIGUR||alternatifAra)){
     // Önce aynı grupta, sonra diğer kategorilerde en çok üç figürü dene.
     const diger=adFigurler().filter(j=>AD_KAR[j][2]!==P.cat);
     const alternatifler=adFigurler(P.cat).concat(diger)
@@ -311,7 +334,10 @@ render=function(){
  if(st.screen==='profiles'){
   const inp=document.getElementById('pname');
   if(inp){const card=inp.closest('.card');if(card)card.innerHTML='<b>Yeni profil</b><p class="note" style="margin:4px 0 10px">Adını yazmazsın; hazır karakterlerden birini seçersin.</p><button class="btn pri" onclick="adOpen(-1,\'profiles\')">➕ Yeni profil</button>';}
-  document.querySelectorAll('.prof').forEach((row,i)=>{const del=row.querySelector('.del');if(!del||row.querySelector('.ad-edit,.ad-lock'))return;
+  document.querySelectorAll('.prof').forEach((row,i)=>{
+   const nick=profiles()[i],portre=adPortreHTML(nick,'ad-kayitli-portre'),ad=row.querySelector('.menu-btn b');
+   if(portre&&ad){ad.textContent=adCivcivAd(nick);ad.insertAdjacentHTML('afterbegin',portre);}
+   const del=row.querySelector('.del');if(!del||row.querySelector('.ad-edit,.ad-lock'))return;
    if(adSabit(profiles()[i]))del.insertAdjacentHTML('beforebegin','<span class="ad-lock" role="img" aria-label="Oyun adı sabit">🔒</span>');
    else del.insertAdjacentHTML('beforebegin','<button class="del ad-edit" aria-label="Oyun adını bir kez değiştir" onclick="adOpen('+i+',\'profiles\')">✏️</button>');});
   setTimeout(adSync,0);

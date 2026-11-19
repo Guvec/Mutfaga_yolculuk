@@ -114,8 +114,9 @@ function frBody(){
  h+='<h2>👫 Arkadaşların ('+FR.list.length+')</h2>';
  if(!FR.list.length)h+='<p class="sub center">Henüz arkadaşın yok. Arkadaşının kodunu yazıp ekle.</p>';
  FR.list.slice().sort((a,b)=>(frOnline(b)?1:0)-(frOnline(a)?1:0)||String(FR.nick[a]).localeCompare(String(FR.nick[b]),'tr')).forEach(o=>{
-  const on=frOnline(o);
-  h+='<div class="ark-row"><span>'+(on?'🟢':'⚪')+' <b>'+esc(FR.nick[o]||'…')+'</b><br><small>'+(on?'çevrim içi':'en son '+frAgo(o))+'</small></span><span><button class="mini" onclick="frCall(\''+o+'\')">⚔️ Çağır</button> <button class="mini" aria-label="Engelle" onclick="frEngelle(\''+o+'\')">🚫</button> <button class="mini" aria-label="Arkadaşlıktan çıkar" onclick="frDel(\''+o+'\',1)">🗑</button></span></div>';
+  const on=frOnline(o),nick=FR.nick[o]||'…',portre=adPortreHTML(nick,'ark-profil-portre');
+  const ad=(on?'🟢':'⚪')+' <b>'+esc(portre?adCivcivAd(nick):nick)+'</b><br><small>'+(on?'çevrim içi':'en son '+frAgo(o))+'</small>';
+  h+='<div class="ark-row">'+(portre?'<span class="ark-portreli-ad">'+portre+'<span>'+ad+'</span></span>':'<span>'+ad+'</span>')+'<span><button class="mini" onclick="frCall(\''+o+'\')">⚔️ Çağır</button> <button class="mini" aria-label="Engelle" onclick="frEngelle(\''+o+'\')">🚫</button> <button class="mini" aria-label="Arkadaşlıktan çıkar" onclick="frDel(\''+o+'\',1)">🗑</button></span></div>';
  });
  if(FR.out.length){h+='<h2>⏳ Gönderdiğin istekler</h2>';FR.out.forEach(o=>{h+='<div class="ark-row"><span>'+esc(FR.nick[o]||'…')+'<br><small>kabul bekleniyor</small></span><span><button class="mini" onclick="frDel(\''+o+'\',0)">İptal</button></span></div>';});}
  return h;
