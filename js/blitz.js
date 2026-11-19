@@ -9,7 +9,7 @@ const BZ={SURE:120000,CIFT:20000,tm:null,TAKIM:[{ad:'Ateş Takımı',ikon:'🔥'
 function bzTur(r){const m=/^(blitz|takim)-/.exec((r&&r.rev)||'');return m?m[1]:'';}
 function bzOn(){return !!(YR.room&&YR.room.mode==='race'&&bzTur(YR.room));}
 function bzTakimMi(){return bzOn()&&bzTur(YR.room)==='takim';}
-function bzAd(t){return t==='takim'?'2’ye 2 Takım':'Blitz';}
+function bzAd(t){return t==='takim'?'İkili Maç':'Sipariş Koşusu';}
 /* Oda sürümü: tür ön eki eklenir; katılan telefon aynı hesabı odadaki rev'den yapar. */
 {const O=yrRoomRev;yrRoomRev=function(c){const r=O(c),t=c.bz||bzTur(c);return t&&c.mode==='race'?(t+'-'+r.replace(/^rooms2-/,'')).slice(0,40):r;};}
 /* Takımlar: oyuncu kimlikleri oda tohumuyla karıştırılır; her telefonda aynı sonuç. */
@@ -28,9 +28,9 @@ function bzKur(tur){
 }
 {const O=yrCreateOpen;yrCreateOpen=function(mode){delete YR.cfg.bz;return O.apply(this,arguments);};}
 /* ---------- lobi ---------- */
-{const O=lbTur;lbTur=function(r){const t=r.mode==='race'&&bzTur(r);return t==='takim'?'👥 2’ye 2':t==='blitz'?'⏱ Blitz':O(r);};}
+{const O=lbTur;lbTur=function(r){const t=r.mode==='race'&&bzTur(r);return t==='takim'?'👥 '+bzAd(t):t==='blitz'?'⏱ '+bzAd(t):O(r);};}
 {const O=lbCap;lbCap=function(r){return r.mode==='race'&&bzTur(r)==='takim'?4:O(r);};}
-{const O=yrStartNeden;yrStartNeden=function(){if(bzTakimMi()&&YR.room.status==='lobby'&&YR.players.length!==4)return '2’ye 2 için tam 4 oyuncu gerekir (şu an '+YR.players.length+').';return O.apply(this,arguments);};}
+{const O=yrStartNeden;yrStartNeden=function(){if(bzTakimMi()&&YR.room.status==='lobby'&&YR.players.length!==4)return 'İkili Maç için tam 4 oyuncu gerekir (şu an '+YR.players.length+').';return O.apply(this,arguments);};}
 {const O=yrStart;yrStart=function(){if(bzTakimMi()&&YR.players.length!==4)return;return O.apply(this,arguments);};}
 function bzTakimHTML(){
  const t=bzTakimlar(),me=yrMe();
@@ -136,8 +136,8 @@ window.bzRovans=function(){const t=bzTur(YR.room);yrLeaveNow();bzKur(t);};
 /* ---------- Hızlı Şef ---------- */
 const HS_MODLAR=[
  {id:'duel',ikon:'⚔️',ad:'1’e 1',not:'İki kişi · 20 soru · önce doğru basan alır'},
- {id:'takim',ikon:'👥',ad:'2’ye 2',not:'Dört kişi, iki takım · 120 saniye'},
- {id:'blitz',ikon:'⏱',ad:'Blitz',not:'2–8 kişi · 120 saniye · son 20 sn çift puan'},
+ {id:'takim',ikon:'👥',ad:bzAd('takim'),not:'Dört kişi, iki takım · 120 saniye'},
+ {id:'blitz',ikon:'⏱',ad:bzAd('blitz'),not:'2–8 kişi · 120 saniye · son 20 sn çift puan'},
  {id:'arena',ikon:'🏟',ad:'Er Meydanı',not:'3–10 kişi · 12 yanlışta biter'}
 ];
 function hsUygun(id,r){

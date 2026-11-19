@@ -49,7 +49,7 @@ yrMenuHTML=function(){
   return h+'<section class="card lb-sifre"><h2>Bu oda şifreli</h2><p>Oda kodu: <b>'+esc(LB.sifre.code)+'</b>. Şifreyi odayı kuran arkadaşından öğren.</p><input id="lbSifre" class="inp" inputmode="numeric" pattern="[0-9]*" maxlength="4" autocomplete="off" aria-label="4 rakamlı şifre" placeholder="• • • •" onkeydown="if(event.key===\'Enter\')lbSifreGonder()"><div class="row"><button class="btn" onclick="lbSifreIptal()">Vazgeç</button><button class="btn pri" onclick="lbSifreGonder()"'+(YR.busy?' disabled':'')+'>Odaya gir</button></div>'+yrErr()+'</section></div>';
  }
  h+='<div class="lb-eylem">'+
-  '<button class="btn pri lb-hizli" onclick="lbHizli()"'+(cfg?'':' disabled')+(YR.busy?' disabled':'')+'><span class="lb-hizli-ikon" aria-hidden="true">👨‍🍳</span><span class="lb-hizli-yazi"><b>Hızlı Şef</b><small>1’e 1 · 2’ye 2 · Blitz · Er Meydanı</small></span><span class="lb-hizli-ok" aria-hidden="true">›</span></button>'+
+  '<button class="btn pri lb-hizli" onclick="lbHizli()"'+(cfg?'':' disabled')+(YR.busy?' disabled':'')+'><span class="lb-hizli-ikon" aria-hidden="true">👨‍🍳</span><span class="lb-hizli-yazi"><b>Hızlı Şef</b><small>1’e 1 · İkili Maç · Sipariş Koşusu · Er Meydanı</small></span><span class="lb-hizli-ok" aria-hidden="true">›</span></button>'+
   '<button class="btn pri lb-m lb-m-duel" onclick="yrCreateOpen(\'duel\')"'+(cfg?'':' disabled')+'>⚔️ Kapışma kur</button>'+
   '<button class="btn pri lb-m lb-m-arena" onclick="yrCreateOpen(\'arena\')"'+(cfg?'':' disabled')+'>🏟 Er Meydanı kur</button>'+
   '<button class="btn lb-m2" onclick="lbKodAc()" aria-expanded="'+LB.kod+'"'+(cfg?'':' disabled')+'>🔑 Kodla gir</button>'+

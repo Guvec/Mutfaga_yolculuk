@@ -6,8 +6,8 @@
 'use strict';
 const LM_MODLAR=[
  {id:'duel',ikon:'⚔️',ad:'1’e 1',kisa:'2 kişi · 20 soru'},
- {id:'takim',ikon:'👥',ad:'2’ye 2',kisa:'4 kişi · 120 sn'},
- {id:'blitz',ikon:'⏱',ad:'Blitz',kisa:'2–8 kişi · 120 sn'},
+ {id:'takim',ikon:'👥',ad:bzAd('takim'),kisa:'4 kişi · 120 sn'},
+ {id:'blitz',ikon:'⏱',ad:bzAd('blitz'),kisa:'2–8 kişi · 120 sn'},
  {id:'arena',ikon:'🏟',ad:'Er Meydanı',kisa:'3–10 kişi · 12 yanlış'}
 ];
 function lmAcikSay(id){return (LB.liste||[]).filter(r=>hsUygun(id,r)).length;}
