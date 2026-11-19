@@ -8,6 +8,8 @@
      node tools/dilara-uret.cjs --kuru --liste eksik.json         # üretmeden sayı ve karakter göster
      --max-karakter 30000   # toplam karakter üst sınırı (kredi korumak için)
      --model eleven_flash_v2_5   # daha ucuz model (kredi oranı ElevenLabs'te doğrulanmalı)
+   Metinler cümlelere bölünerek üretilir (uygulama da cümle cümle çalar); aynı cümle tek kez üretilir.
+   Kredi biterse yeniden çalıştırmak yeterli: var olan klipler atlanır, yeni hesabın anahtarıyla kalan yerden devam edilir.
    --liste: metin dizisi içeren JSON (uygulamadaki "Ses ayarları > Listeyi kopyala" çıktısı) ya da satır başına bir metin içeren .txt
    Var olan klipler atlanır. Çıktı: audio/dilara/<özet>.mp3 ve audio/dilara/manifest.json */
 const fs=require('fs'),path=require('path'),vm=require('vm');
@@ -23,7 +25,7 @@ function oku(f){const s=fs.readFileSync(f,'utf8');if(f.endsWith('.json'))return 
  const limit=Number(arg('--limit'))||Infinity,kuru=!!arg('--kuru');
  const man=fs.existsSync(mf)?JSON.parse(fs.readFileSync(mf,'utf8')):{v:1,ses:'Dilara',klip:{}};
  const ham=oku(lf),islenen=new Map();
- ham.forEach(m=>{const t=ctx.sesMetin(m);if(t)islenen.set(ctx.dilHash(t),t);});
+ ham.forEach(m=>{const t=ctx.sesMetin(m);if(t)ctx.dilCumleler(t).forEach(c=>islenen.set(ctx.dilHash(c),c));});
  const yapilacak=[...islenen].filter(([h])=>!man.klip[h]||!fs.existsSync(path.join(dizin,h+'.mp3')));
  const mk=Number(arg('--max-karakter'))||Infinity;let top=0;
  const sec=yapilacak.slice(0,limit).filter(([,t])=>{if(top+t.length>mk)return false;top+=t.length;return true;}),kar=sec.reduce((a,[,t])=>a+t.length,0);

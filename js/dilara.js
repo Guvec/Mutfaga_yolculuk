@@ -1,6 +1,7 @@
 /* © 2026 Ali Arıkoğlu. Tüm hakları saklıdır. */
 /* Dilara sesi: hazır klip varsa o çalınır, yoksa cihazın Türkçe sesi kesintisiz devam eder.
-   Klipler audio/dilara/manifest.json içinde listelenir. Eksik metinler cihazda kaydedilir (eksik ses listesi). */
+   Klipler audio/dilara/manifest.json içinde listelenir. Eksik metinler cihazda kaydedilir (eksik ses listesi).
+   Uzun metin cümle cümle (gerekirse virgüllü parçalar hâlinde) ayrı kliplerle okunur; aynı cümle her yerde tek kayıtla kullanılır. */
 'use strict';
 var DIL={mod:ls('sesMotor','dilara'),man:null,yuk:null,blob:{},eksik:[]};
 try{DIL.eksik=JSON.parse(localStorage.getItem('dilaraEksik')||'[]');if(!Array.isArray(DIL.eksik))DIL.eksik=[];}catch(e){DIL.eksik=[];}
@@ -21,16 +22,34 @@ function dilKlip(h){
   var k=Object.keys(DIL.blob);if(k.length>40)delete DIL.blob[k[0]];
   return DIL.blob[h]=URL.createObjectURL(b);});
 }
-function dilCal(h,req,metin,yedek){
+/* Metnin klip planı: önce metnin tamamı, sonra cümleler, cümle yoksa virgüllü parçalar.
+   Bir parça bile eksikse plan boş döner; metin baştan sona cihaz sesiyle okunur (iki ses karışmaz). */
+function dilPlan(t,man){
+ var h=dilHash(t);if(man[h])return {hs:[h],eksik:[]};
+ var hs=[],eksik=[];
+ dilCumleler(t).forEach(function(c){
+  var hc=dilHash(c);if(man[hc]){hs.push(hc);return;}
+  var ps=dilVirgul(c),hp=ps.map(dilHash);
+  if(hp.length&&hp.every(function(x){return man[x];})){hs.push.apply(hs,hp);return;}
+  eksik.push(c);
+ });
+ return eksik.length?{hs:[],eksik:eksik}:{hs:hs,eksik:[]};
+}
+function dilCal(hs,req,yedek){
  SES.klipBekle=true;
- dilKlip(h).then(function(url){
+ /* Bütün parçalar önce indirilir, sonra arka arkaya çalınır: cümle aralarında bekleme olmaz. */
+ Promise.all(hs.map(dilKlip)).then(function(urls){
   SES.klipBekle=false;if(req.token!==SES.token)return;
-  var a=new Audio(url);SES.klip=a;
-  var rate=Number(SES.rate);a.playbackRate=Number.isFinite(rate)?Math.max(0.8,Math.min(1.1,rate)):1;
-  a.onended=function(){if(SES.klip===a)SES.klip=null;};
-  a.onerror=function(){if(SES.klip===a)SES.klip=null;if(req.token===SES.token)yedek();};
-  var p=a.play();if(p&&p.catch)p.catch(function(e){if(SES.klip===a)SES.klip=null;if(req.token!==SES.token)return;
-   if(e&&e.name==='NotAllowedError')sesYedek(req.text,'Ses başlatılamadı. Dinle düğmesine yeniden dokun.');else yedek();});
+  var rate=Number(SES.rate);rate=Number.isFinite(rate)?Math.max(0.8,Math.min(1.1,rate)):1;
+  (function sira(i){
+   if(req.token!==SES.token)return;
+   if(i>=urls.length){SES.klip=null;return;}
+   var a=new Audio(urls[i]);SES.klip=a;a.playbackRate=rate;
+   a.onended=function(){if(SES.klip===a)sira(i+1);};
+   a.onerror=function(){if(SES.klip===a)SES.klip=null;if(req.token===SES.token&&i===0)yedek();};
+   var p=a.play();if(p&&p.catch)p.catch(function(e){if(SES.klip===a)SES.klip=null;if(req.token!==SES.token)return;
+    if(e&&e.name==='NotAllowedError')sesYedek(req.text,'Ses başlatılamadı. Dinle düğmesine yeniden dokun.');else if(i===0)yedek();});
+  })(0);
  }).catch(function(){SES.klipBekle=false;if(req.token===SES.token)yedek();});
 }
 var DIL_SUS=sesSus;
@@ -45,10 +64,10 @@ sesSoyle=function(metin){
  var t=sesMetin(metin);if(!t)return;
  var man=DIL.man;
  if(!man){dilManifest();return DIL_SOYLE(metin);}/* liste henüz gelmediyse cihaz sesi, kesintisiz */
- var h=dilHash(t);
- if(!man[h]){dilEksikEkle(t);return DIL_SOYLE(metin);}
+ var plan=dilPlan(t,man);
+ if(!plan.hs.length){plan.eksik.forEach(dilEksikEkle);return DIL_SOYLE(metin);}
  sesSus();var req={text:t,token:SES.token};
- dilCal(h,req,metin,function(){if(req.token!==SES.token)return;DIL_SOYLE(metin);});
+ dilCal(plan.hs,req,function(){if(req.token!==SES.token)return;DIL_SOYLE(metin);});
 };
 function dilEksikKopyala(){
  var s=JSON.stringify(DIL.eksik,null,1);
