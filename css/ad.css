@@ -29,6 +29,7 @@ body:has(#app .ad-secim){background:#f5ebe2}
  color:var(--ad-lacivert);font:700 1.3em/1.15 Georgia,serif;
 }
 .ad-secim :is(h2,.ad-secim-ust,.ad-secim-ust span){font-family:Georgia,serif!important}
+.ad-secim #pe-baslik:focus{outline:none}
 .ad-secim h2::before,.ad-secim h2::after{content:"";width:32px;height:1px;background:var(--ad-altin)}
 .ad-gruplar{
  display:grid;grid-template-columns:1fr 1fr;border:1px solid #ead8c9;border-radius:26px;
@@ -78,6 +79,13 @@ body:has(#app .ad-secim){background:#f5ebe2}
 .ad-secim .ad-ana-dugme{min-height:48px;width:100%;border-radius:24px;font:inherit;font-weight:800}
 .ad-secim #pe-pv,.ad-secim .ad-yenileme-bilgi{margin:0;text-align:center;font-size:.85em}
 .ad-secim #pe-pv:empty,.ad-secim #pe-sayfa:empty{display:none}
+@media (max-height:700px){
+ .ad-secim .ad-parsomen{gap:4px;padding-block:5px 8px}
+ .ad-kis-mutfagi{height:clamp(42px,8dvh,56px)}
+ .ad-secim .ad-grid:not(.ad-adlar) button{min-height:80px}
+ .ad-secim .ad-grid .ad-secim-resmi,.ad-secim .ad-grid .ad-secim-emoji{width:48px;height:48px}
+ .ad-secim .ad-grid .ad-secim-emoji{font-size:29px}
+}
 @media (min-height:780px){
  .ad-secim .ad-parsomen{gap:9px}
  .ad-secim .ad-grid:not(.ad-adlar) button{min-height:118px}
