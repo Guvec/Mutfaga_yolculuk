@@ -7,9 +7,22 @@
  const ANAHTAR='mesleki-mevsim';
  const SIRA=['oto','kis','ilkbahar','yaz','sonbahar','kapali'];
  const YOL_ISIGI='yolculuk_isigi';
+ const SAATLI_GORUNUM='yolculuk_saatli_gorunum';
+ const DINAMIK_HAVA='yolculuk_dinamik_hava';
  function yolIsigiTercihi(){
   const secim=ls(YOL_ISIGI,'oto');
   return secim==='gunduz'||secim==='gece'?secim:'oto';
+ }
+ function saatliGorunum(){return ls(SAATLI_GORUNUM,false)===true;}
+ function dinamikHava(){return ls(DINAMIK_HAVA,false)===true;}
+ function yolGorunumu(m,simdi){
+  if(saatliGorunum()){
+   const saat=simdi.getHours();
+   return saat>=7&&saat<19?'gunduz':'gece';
+  }
+  const isik=yolIsigiTercihi();
+  if(isik!=='oto')return isik;
+  return m==='kis'?(['dark','lonca'].includes(document.documentElement.dataset.theme)?'gece':'gunduz'):'';
  }
  function tercih(){try{const v=localStorage.getItem(ANAHTAR);return SIRA.includes(v)?v:'oto';}catch(e){return 'oto';}}
  /* Otomatik: 15 Kasım – Şubat sonu kış; Mart – Mayıs ilkbahar; Haziran – Ağustos yaz; Eylül – 14 Kasım sonbahar. */
@@ -40,6 +53,18 @@
  }
  function yagmurSesiAcik(){
   try{return localStorage.getItem(YAGMUR_SESI_ANAHTARI)==='acik';}catch(e){return false;}
+ }
+ const KIS_HAVA_DONGUSU=['kis','sulu-kar','yagmur','acik','kis','sulu-kar'];
+ const DIGER_HAVA_DONGUSU=['acik','acik','yagmur','acik','yagmur','acik'];
+ function sahneYagisi(m,gorunum,simdi){
+  if(dinamikHava()){
+   if(!m)return '';
+   const dongu=m==='kis'||gorunum?KIS_HAVA_DONGUSU:DIGER_HAVA_DONGUSU;
+   const dakika=simdi.getHours()*60+simdi.getMinutes();
+   return dongu[Math.floor(dakika/8)%dongu.length];
+  }
+  const hava=havaTercihi();
+  return hava==='oto'?m:hava;
  }
  let yagmurSesi=null,yagmurIstegi=false;
  function yagmurSesiGuncelle(){
@@ -89,7 +114,7 @@
    tuval.width=Math.max(1,Math.round(W*olcek));tuval.height=Math.max(1,Math.round(H*olcek));c.setTransform(olcek,0,0,olcek,0,0);}
   function yeni(p,ilk){
    p.x=Math.random()*W;p.y=ilk?Math.random()*H:-30;p.faz=Math.random()*6.3;
-   if(tur==='yagmur'){
+   if(p.tur==='yagmur'){
     const yakin=Math.random();
     p.hiz=125+yakin*230;
     p.uzunluk=4+yakin*9;
@@ -98,52 +123,48 @@
     p.im=yagmurSprite()[Math.floor(Math.random()*4)];
     return p;
    }
-   if(tur==='kis'){const S=karSprite();if(lapa){p.r=7+Math.random()*10;p.hiz=26+p.r*2.2+Math.random()*14;p.salin=10+Math.random()*22;p.sf=.5+Math.random()*.9;p.a=.75+Math.random()*.25;p.im=S.lapa[(Math.random()*S.lapa.length)|0];p.don=(Math.random()-.5)*1.2;p.aci=Math.random()*6.3;}else{p.r=1.6+Math.random()*2.6;p.hiz=14+p.r*9+Math.random()*10;p.salin=4+Math.random()*10;p.sf=.7+Math.random()*.8;p.a=.5+Math.random()*.45;p.im=S.net[(Math.random()*S.net.length)|0];p.don=0;p.aci=0;}}
+   if(p.tur==='kis'){const S=karSprite();if(lapa){p.r=7+Math.random()*10;p.hiz=26+p.r*2.2+Math.random()*14;p.salin=10+Math.random()*22;p.sf=.5+Math.random()*.9;p.a=.75+Math.random()*.25;p.im=S.lapa[(Math.random()*S.lapa.length)|0];p.don=(Math.random()-.5)*1.2;p.aci=Math.random()*6.3;}else{p.r=1.6+Math.random()*2.6;p.hiz=14+p.r*9+Math.random()*10;p.salin=4+Math.random()*10;p.sf=.7+Math.random()*.8;p.a=.5+Math.random()*.45;p.im=S.net[(Math.random()*S.net.length)|0];p.don=0;p.aci=0;}}
    else{p.r=14+Math.random()*12;p.hiz=24+Math.random()*22;p.salin=18+Math.random()*26;p.a=.85;p.don=(Math.random()-.5)*2.4;p.im=YAPRAK[(Math.random()*4)|0];}
    return p;
   }
-  function yagmurCiz(dt,zaman){
-   // Aynı esintiye uyan, uzaklıkları farklı damlalar.
-   const egim=.13+Math.sin(zaman/1800)*.045;
-   const aci=-Math.atan(egim);
-   c.strokeStyle='#d4e4f2';
-   for(const p of parca){
-    p.x+=p.hiz*dt*egim;
-    p.y+=p.hiz*dt;
-    if(p.x>W+15)p.x=-15;
-    if(p.y>H+15)yeni(p,false);
-    if(p.im.complete&&p.im.naturalWidth){
-     const genislik=Math.max(.7,p.uzunluk*p.im.naturalWidth/p.im.naturalHeight);
-     c.save();
-     c.globalAlpha=Math.min(.8,p.a*2.15);
-     c.translate(p.x,p.y);
-     c.rotate(aci);
-     c.drawImage(p.im,-genislik/2,-p.uzunluk,genislik,p.uzunluk);
-     c.restore();
-     continue;
-    }
-    // Görsel henüz yüklenmediyse hafif bir çizgi göster.
-    c.globalAlpha=p.a;
-    c.lineWidth=p.kalinlik;
-    c.beginPath();
-    c.moveTo(p.x-p.uzunluk*egim,p.y-p.uzunluk);
-    c.lineTo(p.x,p.y);
-    c.stroke();
+  function yagmurCiz(p,dt,egim){
+   p.x+=p.hiz*dt*egim;
+   p.y+=p.hiz*dt;
+   if(p.x>W+15)p.x=-15;
+   if(p.y>H+15)yeni(p,false);
+   if(p.im.complete&&p.im.naturalWidth){
+    const genislik=Math.max(.7,p.uzunluk*p.im.naturalWidth/p.im.naturalHeight);
+    c.save();
+    c.globalAlpha=Math.min(.8,p.a*2.15);
+    c.translate(p.x,p.y);
+    c.rotate(-Math.atan(egim));
+    c.drawImage(p.im,-genislik/2,-p.uzunluk,genislik,p.uzunluk);
+    c.restore();
+    return;
    }
-   c.globalAlpha=1;
+   // Görsel henüz yüklenmediyse hafif bir çizgi göster.
+   c.strokeStyle='#d4e4f2';
+   c.globalAlpha=p.a;
+   c.lineWidth=p.kalinlik;
+   c.beginPath();
+   c.moveTo(p.x-p.uzunluk*egim,p.y-p.uzunluk);
+   c.lineTo(p.x,p.y);
+   c.stroke();
   }
   function kare(n){
    if(!calis)return;id=requestAnimationFrame(kare);
    if(n-son<32)return;const dt=son?Math.min((n-son)/1000,.1):0;son=n;
    c.clearRect(0,0,W,H);
-   if(tur==='yagmur'){yagmurCiz(dt,n);return;}
+   const egim=.13+Math.sin(n/1800)*.045;
    if(n>ruzgarZaman){ruzgarHedef=(Math.random()<.35?(Math.random()<.5?-1:1)*(18+Math.random()*26):(Math.random()-.5)*10);ruzgarZaman=n+6000+Math.random()*8000;}
    ruzgar+=(ruzgarHedef-ruzgar)*Math.min(1,dt*.6);
    for(const p of parca){
-    p.y+=p.hiz*dt;p.faz+=dt*(tur==='kis'?p.sf:1.2);
-    if(tur==='kis')p.x+=ruzgar*(lapa?1:.6)*dt;
+    if(p.tur==='yagmur'){yagmurCiz(p,dt,egim);continue;}
+    const kar=p.tur==='kis';
+    p.y+=p.hiz*dt;p.faz+=dt*(kar?p.sf:1.2);
+    if(kar)p.x+=ruzgar*(lapa?1:.6)*dt;
     const x=p.x+Math.sin(p.faz)*p.salin+Math.sin(p.faz*2.3)*p.salin*.25;
-    if(tur==='kis'){if(p.x<-40)p.x+=W+80;else if(p.x>W+40)p.x-=W+80;c.globalAlpha=p.a;
+    if(kar){if(p.x<-40)p.x+=W+80;else if(p.x>W+40)p.x-=W+80;c.globalAlpha=p.a;
      if(!p.im.complete||!p.im.naturalWidth){}else{const en=p.r*2,boy=en*p.im.naturalHeight/p.im.naturalWidth;
      if(lapa){c.save();c.translate(x,p.y);c.rotate(p.aci+p.faz*p.don);c.drawImage(p.im,-en/2,-boy/2,en,boy);c.restore();}
      else{c.save();c.translate(x,p.y);c.rotate(p.aci+p.faz*.4);c.drawImage(p.im,-en/2,-boy/2,en,boy);c.restore();}}}
@@ -156,8 +177,15 @@
    kur(t){
     if(t===tur&&parca.length)return;
     tur=t;boyut();
-    const sayi=t==='yagmur'?Math.max(18,Math.min(44,Math.round(W*H/2300))):t==='kis'?adet:Math.ceil(adet/4);
-    parca=Array.from({length:sayi},()=>yeni({},true));
+    const yagmurAdedi=Math.max(18,Math.min(44,Math.round(W*H/2300)));
+    let sayi=Math.ceil(adet/4);
+    if(t==='kis')sayi=adet;
+    if(t==='yagmur')sayi=yagmurAdedi;
+    if(t==='sulu-kar')sayi=Math.ceil((adet+yagmurAdedi)/2);
+    parca=Array.from({length:sayi},(_,i)=>{
+     const parcaTuru=t==='sulu-kar'?(i<Math.ceil(adet/2)?'kis':'yagmur'):t;
+     return yeni({tur:parcaTuru},true);
+    });
    },
    boyut,
    baslat(){if(calis)return;calis=true;son=0;id=requestAnimationFrame(kare);},
@@ -174,17 +202,16 @@
  }
 
  /* ---------- Yolculuğum kartı: mevsimin yolculuk sahnesi (karakterli sahneler GPT'den gelecek) ---------- */
- function yolKartKur(){
+ function yolKartKur(m,gorunum){
   const yol=document.querySelector('#app .lc-home .lc-journey');if(!yol)return;
-  const m=kartMevsimi();
   /* Kışın pandasız sahne + Aşçı Dostu ayrı katman; "Yolculuğa başla"ya basınca karda yürür, iz bırakır. */
   const katman=false; /* 18.11: yürüyüş doğal durmadı (Ali); pandalı sahne geri geldi, sahne yavaşça kıpırdar. */
   yol.style.setProperty('--lc-scene',"url('"+new URL('assets/yolculuk/kart-'+(katman?'kis-bos':m)+'.webp',document.baseURI).href+"')");
   yol.dataset.mevsim=m;
-  const isik=yolIsigiTercihi();
-  if(isik!=='oto')yol.dataset.yolIsigi=isik;
-  else if(m==='kis')yol.dataset.yolIsigi=['dark','lonca'].includes(document.documentElement.dataset.theme)?'gece':'gunduz';
+  const oranDegisti=Boolean(yol.dataset.yolIsigi)!==Boolean(gorunum);
+  if(gorunum)yol.dataset.yolIsigi=gorunum;
   else delete yol.dataset.yolIsigi;
+  if(oranDegisti&&yol.contains(yolTuval))yolYagis?.boyut();
   let k=yol.querySelector('.lc-yol-dost');
   if(katman&&!k){const d=(typeof dostSecili==='function'&&dostSecili())||'panda';
    const html=d==='panda'?'<img src="assets/harita/panda-adim-1.webp" alt=""><img src="assets/harita/panda-adim-2.webp" alt="">':'<img class="on-yuz" src="assets/ascidostum/dal-'+(d==='rabbit'?'rabbit':d)+'-sicak.webp" alt="">';
@@ -280,15 +307,19 @@
   });
  }
  /* ---------- Güncelleme ---------- */
+ let sonGorunum='',sonYagis='';
  function guncelle(){
   const ev=!!document.querySelector('#app .lc-home')&&temaUygun();
   const m=ev?mevsim():'';
-  const hava=havaTercihi();
-  const yagis=hava==='oto'?m:hava;
+  const simdi=new Date(),kartMevsimiSimdi=kartMevsimi();
+  const gorunum=yolGorunumu(kartMevsimiSimdi,simdi);
+  const yagis=sahneYagisi(m,gorunum,simdi);
+  sonGorunum=gorunum;
+  sonYagis=yagis;
   document.body.classList.toggle('lc-sahne-acik',ev);
   document.body.classList.toggle('lc-kis',m==='kis');
   document.body.classList.toggle('lc-sonbahar',m==='sonbahar');
-  if(ev){yolKartKur();requestAnimationFrame(parlamaKur);}
+  if(ev){yolKartKur(kartMevsimiSimdi,gorunum);requestAnimationFrame(parlamaKur);}
   /* Uzun oyuncu adı (ör. Şef Kaplumbağa) kelime ortasından bölünmesin: sığana kadar yazı küçülür. */
   const ad=document.querySelector('#app .lc-home .lc-profile strong');
   if(ad){ad.style.fontSize='';const kelime=Math.max(...ad.textContent.trim().split(/\s+/).map(k=>k.length));let fs=parseFloat(getComputedStyle(ad).fontSize),i=0;
@@ -307,7 +338,8 @@
   const canlandir=ev&&hareketli()&&!document.hidden;
   const mevsimYagisi=canlandir&&(yagis==='kis'||yagis==='sonbahar');
   kisSesi.guncelle(ev&&yagis==='kis');
-  yagmurIstegi=ev&&yagis==='yagmur';
+  const yagmurlu=yagis==='yagmur'||yagis==='sulu-kar';
+  yagmurIstegi=ev&&yagmurlu;
   yagmurSesiGuncelle();
   if(mevsimYagisi){
    arkaKur();
@@ -319,7 +351,7 @@
    if(arka){arkaYagis.durdur();arka.hidden=true;}
    if(on){onYagis.durdur();on.hidden=true;}
   }
-  if(!canlandir||(!mevsimYagisi&&yagis!=='yagmur')){
+  if(!canlandir||(!mevsimYagisi&&!yagmurlu)){
    yolYagis?.durdur();
    return;
   }
@@ -332,10 +364,33 @@
  hareketTercihi?.addEventListener?.('change',guncelle);
  addEventListener('resize',()=>{if(yolYagis)yolYagis.boyut();});
  window.sahneGuncelle=guncelle;
+ // Saat veya yağış değiştiğinde açık ana sayfayı yeniden yüklemeden güncelle.
+ setInterval(()=>{
+  if(document.hidden||(!saatliGorunum()&&!dinamikHava())||
+     !document.body.classList.contains('lc-sahne-acik'))return;
+  const simdi=new Date(),gorunum=yolGorunumu(kartMevsimi(),simdi);
+  if(gorunum!==sonGorunum||sahneYagisi(mevsim(),gorunum,simdi)!==sonYagis)guncelle();
+ },15000);
 
  /* ---------- Ayarlar: Mevsim satırı (Sakin mod satırının altına) ---------- */
  const AD={oto:'Otomatik',kis:'Kış',ilkbahar:'İlkbahar',yaz:'Yaz',sonbahar:'Sonbahar',kapali:'Kapalı'};
  function mevsimYazi(){const p=tercih(),m=mevsim();return p==='oto'?'Otomatik ('+AD[m]+')':AD[p];}
+ function tercihDugmesi(id,anahtar,tercihAcik,elleSecim,notId){
+  const dugme=document.getElementById(id);
+  const goster=()=>{
+   const acik=tercihAcik();
+   dugme.setAttribute('aria-pressed',String(acik));
+   dugme.querySelector('.ay-deger').textContent=acik?'Açık':'Kapalı';
+   elleSecim.disabled=acik;
+  };
+  dugme.setAttribute('aria-describedby',notId);
+  dugme.onclick=()=>{
+   lsSet(anahtar,!tercihAcik());
+   goster();
+   guncelle();
+  };
+  goster();
+ }
  const eskiAyarlar=window.anaAyarlar;
  if(typeof eskiAyarlar==='function')window.anaAyarlar=function(){
   const s=eskiAyarlar.apply(this,arguments);
@@ -350,9 +405,12 @@
     '<div class="ay-yol-isigi"><label for="ayYolIsigi">Yolculuğum görünümü</label>'+
     '<select id="ayYolIsigi" aria-describedby="ayYolIsigiNot"><option value="oto">Mevsime göre</option>'+
     '<option value="gunduz">Gündüz</option><option value="gece">Gece</option></select>'+
-    '<p id="ayYolIsigiNot" class="ay-not">Gündüz ve Gece, kış köyünü gösterir.</p></div>');
+    '<p id="ayYolIsigiNot" class="ay-not">Gündüz ve Gece, kış köyünü gösterir.</p></div>'+
+    aySatir('aySaatliGorunum','🕒','Saate göre gündüz ve gece','')+
+    '<p id="aySaatliGorunumNot" class="ay-not">Cihaz saatiyle 07.00’de gündüze, 19.00’da geceye geçer. Kapalıyken elle seçim yapılabilir.</p>');
    const gorunum=document.getElementById('ayYolIsigi');
    gorunum.value=yolIsigiTercihi();
+   tercihDugmesi('aySaatliGorunum',SAATLI_GORUNUM,saatliGorunum,gorunum,'aySaatliGorunumNot');
    gorunum.onchange=()=>{
     lsSet(YOL_ISIGI,gorunum.value);
     gorunum.value=yolIsigiTercihi();
@@ -364,9 +422,12 @@
    document.getElementById('ayKisSesiNot').insertAdjacentHTML('afterend',
     aySatir('ayHava','🌦️','Hava',HAVA_AD[havaTercihi()])+
     '<p id="ayHavaNot" class="ay-not">Otomatik, mevsimi izler. Açık, yağışı durdurur. Hafif yağmur, Yolculuğum sahnesinde görünür.</p>'+
+    aySatir('ayDinamikHava','🌦️','Dinamik hava','')+
+    '<p id="ayDinamikHavaNot" class="ay-not">Kış köyünde hava 8 dakikada bir değişir. Kar, yağmur, karla karışık yağmur ve açık hava sırayla gelir.</p>'+
     aySatir('ayYagmurSesi','🌧️','Yağmur sesi',yagmurSesiAcik()?'Açık':'Kapalı'));
    const hb=document.getElementById('ayHava');
    hb.setAttribute('aria-describedby','ayHavaNot');
+   tercihDugmesi('ayDinamikHava',DINAMIK_HAVA,dinamikHava,hb,'ayDinamikHavaNot');
    hb.onclick=()=>{
     const secenekler=Object.keys(HAVA_AD);
     const secim=secenekler[(secenekler.indexOf(havaTercihi())+1)%secenekler.length];

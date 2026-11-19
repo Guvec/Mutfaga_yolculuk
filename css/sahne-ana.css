@@ -146,3 +146,6 @@ html[data-sakin="1"] .lc-yol-dost{animation:none}
 body.lc-sahne-acik .lc-home .lc-journey{animation:lc-sahne-kamera 24s ease-in-out infinite}
 html[data-sakin="1"] body .lc-home .lc-journey{animation:none!important}
 @media (prefers-reduced-motion:reduce){body .lc-home .lc-journey{animation:none!important}}
+
+/* Kış köyünde yağış görselin önünde, düğme metninin dışında kalır. */
+.lc-journey[data-yol-isigi] .lc-yol-yagis{bottom:auto;height:auto;aspect-ratio:var(--lc-kis-oran);z-index:3}
