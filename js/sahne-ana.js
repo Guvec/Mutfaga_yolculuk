@@ -6,6 +6,11 @@
 (function(){
  const ANAHTAR='mesleki-mevsim';
  const SIRA=['oto','kis','ilkbahar','yaz','sonbahar','kapali'];
+ const YOL_ISIGI='yolculuk_isigi';
+ function yolIsigiTercihi(){
+  const secim=ls(YOL_ISIGI,'oto');
+  return secim==='gunduz'||secim==='gece'?secim:'oto';
+ }
  function tercih(){try{const v=localStorage.getItem(ANAHTAR);return SIRA.includes(v)?v:'oto';}catch(e){return 'oto';}}
  /* Otomatik: 15 Kasım – Şubat sonu kış; Mart – Mayıs ilkbahar; Haziran – Ağustos yaz; Eylül – 14 Kasım sonbahar. */
  function takvimMevsimi(t){const a=t.getMonth()+1,g=t.getDate();
@@ -176,6 +181,10 @@
   const katman=false; /* 18.11: yürüyüş doğal durmadı (Ali); pandalı sahne geri geldi, sahne yavaşça kıpırdar. */
   yol.style.setProperty('--lc-scene',"url('"+new URL('assets/yolculuk/kart-'+(katman?'kis-bos':m)+'.webp',document.baseURI).href+"')");
   yol.dataset.mevsim=m;
+  const isik=yolIsigiTercihi();
+  if(isik!=='oto')yol.dataset.yolIsigi=isik;
+  else if(m==='kis')yol.dataset.yolIsigi=['dark','lonca'].includes(document.documentElement.dataset.theme)?'gece':'gunduz';
+  else delete yol.dataset.yolIsigi;
   let k=yol.querySelector('.lc-yol-dost');
   if(katman&&!k){const d=(typeof dostSecili==='function'&&dostSecili())||'panda';
    const html=d==='panda'?'<img src="assets/harita/panda-adim-1.webp" alt=""><img src="assets/harita/panda-adim-2.webp" alt="">':'<img class="on-yuz" src="assets/ascidostum/dal-'+(d==='rabbit'?'rabbit':d)+'-sicak.webp" alt="">';
@@ -337,6 +346,18 @@
    b.setAttribute('aria-describedby','ayMevsimNot');
    b.insertAdjacentHTML('afterend','<p id="ayMevsimNot" class="ay-not">Yolculuğum resmi mevsime göre değişir. Otomatik seçimde kış 15 Kasım\'da başlar. Kapalı seçilirse mevsim efektleri durur.</p>');
    b.onclick=()=>{const n=SIRA[(SIRA.indexOf(tercih())+1)%SIRA.length];try{localStorage.setItem(ANAHTAR,n);}catch(e){}b.querySelector('.ay-deger').textContent=mevsimYazi();guncelle();};
+   b.insertAdjacentHTML('beforebegin',
+    '<div class="ay-yol-isigi"><label for="ayYolIsigi">Yolculuğum görünümü</label>'+
+    '<select id="ayYolIsigi" aria-describedby="ayYolIsigiNot"><option value="oto">Mevsime göre</option>'+
+    '<option value="gunduz">Gündüz</option><option value="gece">Gece</option></select>'+
+    '<p id="ayYolIsigiNot" class="ay-not">Gündüz ve Gece, kış köyünü gösterir.</p></div>');
+   const gorunum=document.getElementById('ayYolIsigi');
+   gorunum.value=yolIsigiTercihi();
+   gorunum.onchange=()=>{
+    lsSet(YOL_ISIGI,gorunum.value);
+    gorunum.value=yolIsigiTercihi();
+    guncelle();
+   };
    document.getElementById('ayMevsimNot').insertAdjacentHTML('afterend',aySatir('ayKisSesi','🔔','Kış sesi',kisSesi.acik()?'Açık':'Kapalı')+'<p id="ayKisSesiNot" class="ay-not">Kışın ana sayfada hafif rüzgâr ve şömine sesi, kartlara dokununca karda adım ve ince bir çan sesi çalar. Müzikten ayrıdır.</p>');
    const ks=document.getElementById('ayKisSesi');ks.setAttribute('aria-describedby','ayKisSesiNot');
    ks.onclick=()=>{kisSesi.ayarla(!kisSesi.acik());ks.querySelector('.ay-deger').textContent=kisSesi.acik()?'Açık':'Kapalı';};

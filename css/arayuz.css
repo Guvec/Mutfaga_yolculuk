@@ -232,49 +232,83 @@ html body .lc-home .lc-journey::before{content:"";position:absolute;left:0;right
   display: none;
 }
 
-/* Kış sahnesi, kendi altın çerçevesi ve yazılı levhalarıyla karta tam oturur. */
-html:not([data-theme=yuksek]) body.lc-sahne-acik .lc-home .lc-journey[data-mevsim=kis] {
-  --lc-kis-gorsel: url('../assets/yolculuk/kart-kis-levha-gunduz.webp');
+.ay-yol-isigi {
+  display: grid;
+  gap: 6px;
+  padding: 10px 12px 8px;
+  border-block-start: 1px solid var(--line, #d8d2c2);
+}
+.ay-yol-isigi select {
+  min-height: 48px;
+  width: 100%;
+  font: inherit;
+}
+.ay-yol-isigi .ay-not {
+  padding: 0;
+}
+
+/* Kış köyünün altında okunaklı düğme metni yer alır. */
+html:not([data-theme=yuksek]) body.lc-sahne-acik .lc-home .lc-journey[data-yol-isigi] {
+  --lc-kis-gorsel: url('../assets/yolculuk/kart-kis-koyu-gunduz.webp');
+  --lc-kis-oran: 1909 / 824;
   --lc-fener-parlama: .17;
-  aspect-ratio: 2064 / 918 !important;
+  display: flex;
+  flex-direction: column;
+  aspect-ratio: auto !important;
   max-height: none;
   padding: 0 !important;
   overflow: hidden;
   isolation: isolate;
-  background: var(--lc-kis-gorsel) center / 100% 100% no-repeat #102734 !important;
+  background: #102734 !important;
   animation: none !important;
 }
 
-html:is([data-theme=dark], [data-theme=lonca]) body.lc-sahne-acik .lc-home .lc-journey[data-mevsim=kis] {
-  --lc-kis-gorsel: url('../assets/yolculuk/kart-kis-levha-aksam.webp');
+html:not([data-theme=yuksek]) body.lc-sahne-acik .lc-home .lc-journey[data-yol-isigi=gece] {
+  --lc-kis-gorsel: url('../assets/yolculuk/kart-kis-koyu-gece.webp');
+  --lc-kis-oran: 1908 / 824;
   --lc-fener-parlama: .44;
 }
 
-html:not([data-theme=yuksek]) body.lc-sahne-acik .lc-home .lc-journey[data-mevsim=kis]::after,
-html:not([data-theme=yuksek]) body.lc-sahne-acik .lc-home .lc-journey[data-mevsim=kis] .lc-journey-copy {
+html:not([data-theme=yuksek]) body.lc-sahne-acik .lc-home .lc-journey[data-yol-isigi]::after {
+  order: -1;
+  position: static;
+  width: 100%;
+  aspect-ratio: var(--lc-kis-oran);
+  background: var(--lc-kis-gorsel) center / contain no-repeat;
+  border-radius: inherit;
+}
+
+html:not([data-theme=yuksek]) body.lc-sahne-acik .lc-home .lc-journey[data-yol-isigi] .lc-journey-copy {
   display: none !important;
 }
 
-html:not([data-theme=yuksek]) body.lc-sahne-acik .lc-home .lc-journey[data-mevsim=kis] .lc-kis-yol-etiket {
-  display: block;
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-  clip-path: inset(50%);
-  white-space: nowrap;
+html:not([data-theme=yuksek]) body.lc-sahne-acik .lc-home .lc-journey[data-yol-isigi] .lc-kis-yol-etiket {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  width: 100%;
+  min-height: 48px;
+  align-items: center;
+  justify-content: center;
+  gap: .45em;
+  padding: .35em .8em;
+  font-size: calc(1rem * var(--lc-textscale));
+  line-height: 1.35;
+  color: #fff0d2;
+  text-align: center;
 }
 
-html:not([data-theme=yuksek]) body.lc-sahne-acik .lc-home .lc-journey[data-mevsim=kis]:focus-visible {
+html:not([data-theme=yuksek]) body.lc-sahne-acik .lc-home .lc-journey[data-yol-isigi]:focus-visible {
   outline: 3px solid #ffdb8f;
   outline-offset: 2px;
 }
 
 /* Fener ışığı kısa süre güçlenir ve levhanın sağ ucunda yumuşak biçimde söner. */
-html:not([data-theme=yuksek]) body.lc-sahne-acik .lc-home .lc-journey[data-mevsim=kis]::before {
-  inset: 0;
+html:not([data-theme=yuksek]) body.lc-sahne-acik .lc-home .lc-journey[data-yol-isigi]::before {
+  inset: 0 0 auto;
   height: auto;
-  background: radial-gradient(ellipse 12% 16% at 88% 71%, #ffc071 0%, #ed912934 60%, transparent 100%);
+  aspect-ratio: var(--lc-kis-oran);
+  background: radial-gradient(ellipse 10% 16% at 92% 55%, #ffc071 0%, #ed912934 60%, transparent 100%);
   mix-blend-mode: screen;
   opacity: 0;
   animation: lc-levha-feneri 7s ease-in-out infinite;
@@ -285,12 +319,12 @@ html:not([data-theme=yuksek]) body.lc-sahne-acik .lc-home .lc-journey[data-mevsi
   84% { opacity: var(--lc-fener-parlama); }
 }
 
-html[data-sakin="1"] body.lc-sahne-acik .lc-home .lc-journey[data-mevsim=kis]::before {
+html[data-sakin="1"] body.lc-sahne-acik .lc-home .lc-journey[data-yol-isigi]::before {
   animation: none !important;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  html body.lc-sahne-acik .lc-home .lc-journey[data-mevsim=kis]::before {
+  html body.lc-sahne-acik .lc-home .lc-journey[data-yol-isigi]::before {
     animation: none !important;
   }
 }
