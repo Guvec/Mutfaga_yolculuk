@@ -5,8 +5,17 @@
 'use strict';
 const AD_RENK=['#7048e8','#ec4899','#10b981','#f59e0b','#3b82f6','#ef4444','#14b8a6','#f97316'];
 const AD_STATE={busy:false};
+const AD_KOTA=10;
 function adMake(e,n){return AD_KAR[e][0]+' '+AD_KAR[e][1]+(n?' #'+n:'');}
 function adMap(){return ls('ad_map',{});}
+function adSifirlamaAdlari(){
+ const adlar=ls('app_reset_adlar',[]);
+ return Array.isArray(adlar)?adlar:[];
+}
+function adSifirlamaAdiniKullan(ad){
+ const adlar=adSifirlamaAdlari();
+ if(adlar.includes(ad))lsSet('app_reset_adlar',adlar.filter(a=>a!==ad));
+}
 function adInfo(p){const m=adMap()[p];return m&&AD_KAR[m.e]?m:null;}
 function adEmo(p){const m=adInfo(p);return m?AD_KAR[m.e][0]:'🙂';}
 function adRest(p){const m=adInfo(p);return m?AD_KAR[m.e][1]+(m.n?' #'+m.n:''):p;}
@@ -15,6 +24,23 @@ function adKey(e,n){return e+'_'+n;}
 function adRnd(a,b){return a+Math.floor(Math.random()*(b-a+1));}
 function adToast(m){let t=document.getElementById('toast');if(!t){t=document.createElement('div');t.id='toast';t.setAttribute('role','status');document.body.appendChild(t);}t.textContent=m;t.style.opacity=1;clearTimeout(adToast.t);adToast.t=setTimeout(()=>{t.style.opacity=0;},2600);}
 async function adFb(){const t=yrService();await t.connect();return t;}
+async function adAyrilmisAdlar(t){
+ const fb=t.sdk,d=await fb.getDoc(fb.doc(t.db,'nmSahip',t.uid));
+ const ks=d.exists()?d.data().ks:null;
+ return Array.isArray(ks)?ks:[];
+}
+
+/* Kota doluysa yalnız bu hesaba önceden ayrılmış, başka bir yerel profilin kullanmadığı adlar seçilebilir. */
+function adKotaSecenekleri(ks,self){
+ const yerel=new Set(profiles().filter(p=>p!==self)),sonuc=new Map();
+ for(const k of ks){
+  if(typeof k!=='string'||!/^\d{1,4}_\d{1,4}$/.test(k))continue;
+  const [e,n]=k.split('_').map(Number);
+  if(!AD_KAR[e]||adKapali(e)||yerel.has(adMake(e,n)))continue;
+  if(!sonuc.has(e)||n===0)sonuc.set(e,n);
+ }
+ return sonuc;
+}
 
 /* Karakteri ayır: yalnız numarasız (eski numaralı kayıt için istenen numara). Başkasındaysa null döner. İnternet yoksa sonra doğrulanır. */
 async function adClaim(e,want,self){
@@ -26,9 +52,9 @@ async function adClaim(e,want,self){
   try{
    /* Cihaz başına ayrılan adlar nmSahip/{uid} listesinde (en çok 10). Ad ile liste aynı işlemde yazılır. */
    const k=adKey(e,w),sr=fb.doc(t.db,'nmSahip',t.uid);
-   let ks=[];try{const d=await fb.getDoc(sr);if(d.exists()&&Array.isArray(d.data().ks))ks=d.data().ks;}catch(x){}
+   let ks=[];try{ks=await adAyrilmisAdlar(t);}catch(x){}
    const b=fb.writeBatch(t.db);
-   if(!ks.includes(k)){if(ks.length>=10)return null;b.set(sr,{ks:ks.concat([k])});}
+   if(!ks.includes(k)){if(ks.length>=AD_KOTA)return null;b.set(sr,{ks:ks.concat([k])});}
    b.set(fb.doc(t.db,'nm',k),{u:t.uid,t:Date.now()});await b.commit();return {e,n:w,c:true};}
   catch(er){if(er&&er.code==='permission-denied')return null;throw er;}
  }catch(x){return {e,n:w,c:false};}
@@ -36,6 +62,15 @@ async function adClaim(e,want,self){
 function adKaristir(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=adRnd(0,i);const t=a[i];a[i]=a[j];a[j]=t;}return a;}
 /* Boş bir karakter bul: önce mutfak karakterleri, sonra havuzun geri kalanı. Hepsi doluysa null. */
 async function adClaimAny(self){
+ if(navigator.onLine){
+  try{
+   const ks=await adAyrilmisAdlar(await adFb());
+   if(ks.length>=AD_KOTA){
+    for(const [e,n] of adKotaSecenekleri(ks,self)){const r=await adClaim(e,n,self);if(r)return r;}
+    return null;
+   }
+  }catch(x){}
+ }
  const mut=[],dig=[];AD_KAR.forEach((x,j)=>{if(adKapali(j))return;(x[2]===adKitchen()?mut:dig).push(j);});
  for(const e of adKaristir(mut).concat(adKaristir(dig).slice(0,60))){const r=await adClaim(e,0,self);if(r)return r;}
  return null;
@@ -57,7 +92,7 @@ function adRename(o,nw,info){
   if(wasChar){const ids=rkIds();if(ids[o]){ids[nw]=ids[o];delete ids[o];lsSet('rk_ids',ids);}}
   else if(typeof rkForgetProfile==='function')rkForgetProfile(o);
  }
- const m=adMap();delete m[o];m[nw]=info;lsSet('ad_map',m);
+ const m=adMap();delete m[o];m[nw]=info;lsSet('ad_map',m);adSifirlamaAdiniKullan(nw);
  /* Adla anahtarlanan bütün yerel kayıtlar (yolculuk, rütbe, ödül, rekor, pastacılık vb.) yeni ada taşınır; yoksa ad değişince ilerleme boş görünür. */
  try{for(let x=0;x<localStorage.length;x++){const k=localStorage.key(x);if(!k||k.indexOf(PRE)!==0)continue;const kk=k.slice(PRE.length);if(['ad_map','rk_ids','profiles','records'].includes(kk))continue;
    if(kk==='ana_son_konu_'+o){const v=ls(kk,null);if(v!==null&&ls('ana_son_konu_'+nw,null)===null)lsSet('ana_son_konu_'+nw,v);continue;}
@@ -80,8 +115,8 @@ function adMigrate(){
 async function adSync(){
  if(AD_STATE.busy||!navigator.onLine)return;AD_STATE.busy=true;let changed=false;
  try{
-  const map=adMap(),profs=profiles();
-  for(const k of Object.keys(map)){if(profs.indexOf(k)<0){const m=map[k];delete map[k];lsSet('ad_map',map);changed=true;await adRelease(m);if(typeof arkWipe==='function')await arkWipe(k);}}
+  const map=adMap(),profs=profiles(),korunan=new Set(adSifirlamaAdlari());
+  for(const k of Object.keys(map)){if(profs.indexOf(k)<0&&!korunan.has(k)){const m=map[k];delete map[k];lsSet('ad_map',map);changed=true;await adRelease(m);if(typeof arkWipe==='function')await arkWipe(k);}}
   const todo=profiles().filter(p=>{const m=adMap()[p];return !m||!m.c;});
   for(const p of todo){
    if(profiles().indexOf(p)<0)continue;
@@ -116,7 +151,7 @@ async function adAuto(){
  try{
   const r=(await adClaimAny(null))||{e:adRndKitchen(),n:0,c:false},nw=adMake(r.e,r.n),l=profiles();
   if(l.indexOf(nw)<0){l.push(nw);if(!lsSet('profiles',l)){adToast('Kayıt yapılamadı: tarayıcı depolaması kapalı olabilir');return;}}
-  const x=adMap();x[nw]=r;lsSet('ad_map',x);
+  const x=adMap();x[nw]=r;lsSet('ad_map',x);adSifirlamaAdiniKullan(nw);
   const q=ls('ad_yeni',[]).filter(v=>v!==nw);q.push(nw);lsSet('ad_yeni',q);
   pickProfile(nw);adAsk(nw);
  }finally{AD_STATE.auto=false;}
@@ -127,27 +162,56 @@ function adBase(e){const k=AD_KAR[e];return k&&k[3]!==undefined?k[3]:e;}
 function adOpen(i,ret){
  if(i>=0&&adSabit(profiles()[i])){adToast('Oyun adın sabit: değiştirme hakkını kullandın.');return;}
  const p=i>=0?profiles()[i]:null,m=p?adInfo(p):null,e=m?m.e:adRndKitchen();
- st.pe={i,e,b:adBase(e),cat:AD_KAR[e][2],ret:ret||'profiles',busy:false,av:{}};go('pedit');adCheck();
+ st.pe={i,e,b:adBase(e),cat:AD_KAR[e][2],ret:ret||'profiles',busy:false,av:{},kontrol:0};go('pedit');adCheck();
 }
-function adGrid(){const P=st.pe;let h='';AD_KAR.forEach((x,j)=>{if(j<AD_BASE&&x[2]===P.cat&&adBosAdlar(j).length)h+='<button type="button" class="'+(j===P.b?'on':'')+'" aria-pressed="'+(j===P.b)+'" data-e="'+j+'" onclick="adSet('+j+')"><span>'+x[0]+'</span>'+esc(x[1])+'</button>';});return h||'<p>Bu grupta seçilebilecek karakter kalmadı.</p>';}
-function adTabs(){const P=st.pe;return adTabOrder().map(j=>{const c=AD_KAT[j],k=c.indexOf(' ');return '<button type="button" class="'+(j===P.cat?'on':'')+'" aria-pressed="'+(j===P.cat)+'" onclick="adCat('+j+')"><span>'+c.slice(0,k)+'</span>'+esc(c.slice(k+1))+'</button>';}).join('');}
-function adCat(c){const P=st.pe;if(!P||P.busy)return;P.cat=c;const t=document.getElementById('pe-tab');if(t)t.innerHTML=adTabs();const g=document.getElementById('pe-em');if(g)g.innerHTML=adGrid();}
-/* Seçilen figürün kullanılabilir adları. */
+function adFigurler(cat){
+ const figurler=[];
+ for(let j=0;j<AD_BASE;j++)if(!adKapali(j)&&(cat===undefined||AD_KAR[j][2]===cat))figurler.push(j);
+ return figurler;
+}
+function adGrid(){
+ const P=st.pe;
+ return adFigurler(P.cat).map(j=>{
+  const x=AD_KAR[j],on=j===P.b;
+  return '<button type="button" class="'+(on?'on':'')+'" aria-pressed="'+on+'" data-e="'+j+'" onclick="adSet('+j+')"><span>'+x[0]+'</span>'+esc(x[1])+'</button>';
+ }).join('')||'<p>Bu grupta seçilebilecek karakter kalmadı.</p>';
+}
+function adTabs(){const P=st.pe;return adTabOrder().map(j=>{const c=AD_KAT[j],k=c.indexOf(' ');return '<button type="button" class="'+(j===P.cat?'on':'')+'" aria-pressed="'+(j===P.cat)+'" data-cat="'+j+'" onclick="adCat('+j+')"><span>'+c.slice(0,k)+'</span>'+esc(c.slice(k+1))+'</button>';}).join('');}
+function adCat(c){
+ const P=st.pe;if(!P||P.busy||P.cat===c)return;
+ const figurler=adFigurler(c),b=figurler.find(j=>adBosAdlar(j).length)??figurler[0];
+ if(b===undefined)return;
+ P.cat=c;
+ adSet(b);
+}
 function adFigur(b){return [b].concat(AD_VAR[b]||[]);}
-function adBosAdlar(b){
+function adSecimNo(e){return st.pe.ayrilan?.get(e)??0;}
+function adSecimAdi(e){const n=adSecimNo(e);return AD_KAR[e][1]+(n?' #'+n:'');}
+function adAdayAdlar(b){
  const P=st.pe,own=P.i>=0?adInfo(profiles()[P.i]):null,local=new Set(profiles());
- return adFigur(b).filter(j=>!adKapali(j)&&own?.e!==j&&P.av[j]!==false&&!local.has(adMake(j,0)));
+ return adFigur(b).filter(j=>!adKapali(j)&&own?.e!==j&&!local.has(adMake(j,adSecimNo(j)))&&
+  (!P.ayrilan||P.ayrilan.has(j)));
+}
+function adBosAdlar(b){
+ return adAdayAdlar(b).filter(j=>st.pe.av[j]!==false);
 }
 function adAdlar(){
  const P=st.pe,free=adBosAdlar(P.b);
- return free.map(j=>{const on=j===P.e;
-  return '<button type="button" class="'+(on?'on':'')+'" aria-pressed="'+on+'" data-e="'+j+'" onclick="adPick('+j+')">'+esc(AD_KAR[j][1])+'</button>';}).join('')||'<p>Bu karakter için boş ad kalmadı.</p>';
+ if(free.length)return free.map(j=>{const on=j===P.e;
+  return '<button type="button" class="'+(on?'on':'')+'" aria-pressed="'+on+'" data-e="'+j+'" onclick="adPick('+j+')">'+esc(adSecimAdi(j))+'</button>';}).join('');
+ const bilgi=P.ayrilan?'<p>Bu cihazda 10 ad ayrılmış. Bu karakter için kullanılabilir bir ad yok.</p>'
+  :'<p>Bu karakterin adları dolu. Başka bir karakter seçebilirsin.</p>';
+ const aranabilir=navigator.onLine&&adFigurler().some(j=>j!==P.b&&adBosAdlar(j).length);
+ return bilgi+(aranabilir?'<button type="button" onclick="adCheck()">Boş ad ara</button>':'');
 }
 function adYenile(){
  const P=st.pe;if(!P)return;
  const free=adBosAdlar(P.b),own=P.i>=0?adInfo(profiles()[P.i]):null;
  if(free.length&&!free.includes(P.e)&&own?.e!==P.e)P.e=free[0];
  const b=document.getElementById('pe-go');if(b&&!P.busy)b.disabled=!free.includes(P.e)&&own?.e!==P.e;
+ const t=document.getElementById('pe-tab');if(t)for(const secme of t.querySelectorAll('[data-cat]')){
+  const on=Number(secme.dataset.cat)===P.cat;secme.classList.toggle('on',on);secme.setAttribute('aria-pressed',String(on));
+ }
  const g=document.getElementById('pe-em');if(g){const old=document.activeElement?.getAttribute('data-e'),had=g.contains(document.activeElement);g.innerHTML=adGrid();if(had&&old)g.querySelector('[data-e="'+old+'"]')?.focus();}
  const a=document.getElementById('pe-ad');if(a)a.innerHTML=adAdlar();
  const pv=document.getElementById('pe-pv');if(pv)pv.innerHTML=adPrev();
@@ -156,34 +220,58 @@ function adSet(v){
  const P=st.pe;if(!P||P.busy)return;P.b=v;P.e=v;
  const own=P.i>=0?adInfo(profiles()[P.i]):null;
  if(own&&adBase(own.e)===v)P.e=own.e;
- const g=document.getElementById('pe-em');if(g)[].forEach.call(g.children,b=>{const on=+b.getAttribute('data-e')===v;b.className=on?'on':'';b.setAttribute('aria-pressed',String(on));});
- adYenile();adCheck();
+ adCheck();
 }
 function adPick(e){const P=st.pe;if(!P||P.busy||!adBosAdlar(P.b).includes(e))return;P.e=e;adYenile();}
-function adPrev(){const P=st.pe;return '<span class="ad-av" style="background:'+adCol(P.e)+'">'+AD_KAR[P.e][0]+'</span><span class="ad-pn">'+esc(AD_KAR[P.e][1])+'<small id="pe-st" role="status">'+adStTxt()+'</small></span>';}
+function adPrev(){const P=st.pe;return '<span class="ad-av" style="background:'+adCol(P.e)+'">'+AD_KAR[P.e][0]+'</span><span class="ad-pn">'+esc(adSecimAdi(P.e))+'<small id="pe-st" role="status">'+adStTxt()+'</small></span>';}
 function adStTxt(){
  const P=st.pe,p=P.i>=0?profiles()[P.i]:null,m=p?adInfo(p):null;
  if(m&&m.e===P.e)return 'Şu anki adın';
+ if(P.ayrilan&&!P.ayrilan.has(P.e))return 'Bu cihazda ad ayırma sınırı dolu';
  const a=P.av[P.e];
- if(a===undefined)return navigator.onLine?'Bakılıyor…':'İnternet yok: ad sonra doğrulanır';
+ if(!navigator.onLine)return 'İnternet yok: ad sonra doğrulanır';
+ if(a===undefined)return P.kontrolYok?'Ad şu an doğrulanamadı':'Bakılıyor…';
  return a?'✨ Bu ad boş, yalnız senin olur':'Bu ad alınmış, başka birini seç';
 }
-/* Figürün tüm adlarının boş olup olmadığına bakar (en çok 8 okuma). */
+async function adFigurAdlariniDogrula(t,b){
+ const sd=t.sdk;
+ return Promise.all(adAdayAdlar(b).map(async j=>{
+  const s=await sd.getDoc(sd.doc(t.db,'nm',adKey(j,adSecimNo(j))));
+  return [j,!s.exists()||s.data().u===t.uid];
+ }));
+}
 function adCheck(){
- const P=st.pe;if(!P)return;const b=P.b,self=P.i>=0?profiles()[P.i]:null;
+ const P=st.pe;if(!P)return;
+ const b=P.b,kontrol=++P.kontrol;
+ const guncel=()=>st.screen==='pedit'&&st.pe===P&&P.kontrol===kontrol;
  clearTimeout(P.tm);
- const loc=profiles().filter(x=>x!==self);
- adFigur(b).forEach(j=>{if(loc.indexOf(adMake(j,0))>=0)P.av[j]=false;});
+ P.kontrolYok=false;
+ if(!navigator.onLine)P.ayrilan=null;
  adYenile();if(!navigator.onLine)return;
  P.tm=setTimeout(async()=>{
-  try{const t=await adFb(),sd=t.sdk;
-   await Promise.all(adFigur(b).map(async j=>{
-    if(P.av[j]===false&&loc.indexOf(adMake(j,0))>=0)return;
-    const s=await sd.getDoc(sd.doc(t.db,'nm',adKey(j,0)));
-    P.av[j]=!s.exists()||(s.data().u===t.uid&&loc.indexOf(adMake(j,0))<0);
-   }));
-   if(st.pe!==P||P.b!==b)return;adYenile();
-  }catch(e){}
+  try{
+   const t=await adFb(),ks=await adAyrilmisAdlar(t);
+   if(!guncel())return;
+   P.ayrilan=ks.length>=AD_KOTA?adKotaSecenekleri(ks,P.i>=0?profiles()[P.i]:null):null;
+   const secili=await adFigurAdlariniDogrula(t,b);
+   if(!guncel())return;
+   for(const [j,bos] of secili)P.av[j]=bos;
+   const own=P.i>=0?adInfo(profiles()[P.i]):null;
+   if(!adBosAdlar(b).length&&own?.e!==P.e&&!P.busy){
+    // Önce aynı grupta, sonra diğer kategorilerde en çok üç figürü dene.
+    const diger=adFigurler().filter(j=>AD_KAR[j][2]!==P.cat);
+    const alternatifler=adFigurler(P.cat).concat(diger)
+     .filter(j=>j!==b&&adBosAdlar(j).length).slice(0,3);
+    for(const figur of alternatifler){
+     const uygunluk=await adFigurAdlariniDogrula(t,figur);
+     if(!guncel())return;
+     for(const [j,bos] of uygunluk)P.av[j]=bos;
+     const [ad]=adBosAdlar(figur);
+     if(ad!==undefined&&!P.busy){P.b=figur;P.e=ad;P.cat=AD_KAR[figur][2];break;}
+    }
+   }
+   adYenile();
+  }catch(e){if(guncel()){P.kontrolYok=true;adYenile();}}
  },250);
 }
 async function adSave(){
@@ -193,15 +281,15 @@ async function adSave(){
  if(old&&om&&om.e===P.e){go(P.ret);return;}
  if(!adBosAdlar(adBase(P.e)).includes(P.e)){adToast('Bu ad alınmış. Başka birini seç.');return;}
  P.busy=true;if(b){b.disabled=true;b.textContent='⏳ Ad ayrılıyor…';}
- const r=await adClaim(P.e,0,old);P.busy=false;
- if(!r){P.av[P.e]=false;if(b){b.disabled=false;b.textContent=old?'💾 Kaydet':'✅ Profili Oluştur';}adYenile();adToast('Bu ad az önce başkası tarafından alındı. Başka birini seç.');return;}
+ const r=await adClaim(P.e,adSecimNo(P.e),old);P.busy=false;
+ if(!r){P.av[P.e]=false;if(b){b.disabled=false;b.textContent=old?'💾 Kaydet':'✅ Profili Oluştur';}adCheck();adToast('Bu ad ayrılamadı. Başka bir ad seçebilirsin.');return;}
  if(old)r.d=1;/* değiştirme hakkı kullanıldı: ad artık sabit */
  const nw=adMake(r.e,r.n);
  if(old){adRename(old,nw,r);adRelease(om);adDone(old);adToast('Yeni adın: '+nw);go(P.ret);}
  else{
   const l=profiles();l.push(nw);
   if(!lsSet('profiles',l)){adToast('Kayıt yapılamadı: tarayıcı depolaması kapalı olabilir');return;}
-  const x=adMap();x[nw]=r;lsSet('ad_map',x);
+  const x=adMap();x[nw]=r;lsSet('ad_map',x);adSifirlamaAdiniKullan(nw);
   pickProfile(nw);adToast('Hoş geldin, '+nw);
  }
 }
@@ -232,7 +320,7 @@ render=function(){
 };
 back=function(){if(st.screen==='pedit'){go(st.pe&&st.pe.ret||'profiles');return;}AD_BACK();};
 createProfile=function(){adOpen(-1,'profiles');};
-window.addEventListener('online',()=>{adSync();});
+window.addEventListener('online',()=>{if(st.screen==='pedit'&&st.pe)adCheck();adSync();});
 
 /* Uygulamayı paylaş: telefonun paylaşma menüsü; yoksa bağlantı kopyalanır. */
 async function uygulamaPaylas(){

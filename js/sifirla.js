@@ -6,13 +6,13 @@
   const SURUM = 'kv_app_reset';
   const BEKLEYEN_EKRAN = 'kv_app_reset_ekran';
   const ILERLEME = new Set([
-    'profiles', 'sonProfil', 'ad_map', 'ad_yeni', 'ark_id',
+    'profiles', 'sonProfil',
     'rutbe', 'rutbe_dal', 'sv_baz', 'odul', 'records', 'yanlislarim',
     'rk_ids', 'rk_best', 'rk_win', 'rk_pek', 'rk_oyun', 'rk_setting', 'rk_queue',
     'arena_devam', 'arena_odul', 'arena_pek', 'arena_rekor', 'haftalik',
-    'ana_dost', 'ana_yol', 'dost_secim', 'dost_gorev', 'dost_migrated', 'dost_migrated_pid',
+    'dost_gorev',
     'yol_ma', 'yol_bh', 'yol_bl', 'yol_tk_ma', 'yol_tk_bh', 'yol_tk_bl',
-    'pastacilik_ilk_v1', 'baharat_rafi_v1', 'lezzet_tezgah', 'mola', 'yedek_2026_11',
+    'pastacilik_ilk_v1', 'baharat_rafi_v1', 'lezzet_tezgah', 'yedek_2026_11',
   ]);
   const ESKI_ISARETLER = ['kv_sifirla_bekleyen', 'kv_sifirla_haber'];
   const SEKME_DEVAMI = ['yr_devam', 'yr_menu_profil'];
@@ -42,6 +42,18 @@
     }
   }
 
+  function adRezervasyonlariniKoru() {
+    let profiller, korunanlar;
+    try { profiller = JSON.parse(localStorage.getItem('kv_profiles')); } catch (e) {}
+    try { korunanlar = JSON.parse(localStorage.getItem('kv_app_reset_adlar')); } catch (e) {}
+    if (!Array.isArray(profiller)) return;
+    const adlar = kayitHaritasi('kv_ad_map');
+    const ayrilan = profiller.filter(ad => Object.hasOwn(adlar, ad));
+    if (!ayrilan.length) return;
+    const eski = Array.isArray(korunanlar) ? korunanlar : [];
+    localStorage.setItem('kv_app_reset_adlar', JSON.stringify([...new Set([...eski, ...ayrilan])]));
+  }
+
   function sekmeyiSifirla(numara) {
     if (sessionStorage.getItem(SURUM) === numara) return;
     for (const anahtar of SEKME_DEVAMI) sessionStorage.removeItem(anahtar);
@@ -58,11 +70,12 @@
       const anahtarlar = Object.keys(localStorage).filter(anahtar => {
         if (!anahtar.startsWith('kv_')) return false;
         const ad = anahtar.slice(3);
-        return ILERLEME.has(ad) || ad.startsWith('ana_son_konu_') || ad.startsWith('dost_gorunum_');
+        return ILERLEME.has(ad) || ad.startsWith('ana_son_konu_');
       });
       const eskiVeriVar = anahtarlar.some(anahtar => !BOS.has(localStorage.getItem(anahtar))) ||
         SEKME_DEVAMI.some(anahtar => !BOS.has(sessionStorage.getItem(anahtar)));
       if (eskiVeriVar) localStorage.setItem(BEKLEYEN_EKRAN, numara);
+      adRezervasyonlariniKoru();
       eskiTemizlikleriKoru();
       for (const anahtar of anahtarlar) localStorage.removeItem(anahtar);
       for (const anahtar of ESKI_ISARETLER) localStorage.removeItem(anahtar);
@@ -97,7 +110,7 @@
     ekran.setAttribute('aria-describedby', 'sifirlamaAciklama');
     ekran.style.cssText = 'top:max(16px,env(safe-area-inset-top));margin:0 auto;width:calc(100% - 32px);max-height:calc(100dvh - 32px);overflow:auto;border:0';
     ekran.innerHTML = '<h2 id="sifirlamaBaslik">Bu cihazda yeni başlangıç</h2>' +
-      '<p id="sifirlamaAciklama">Bu cihazdaki profilin, puanların, rütben, rozetlerin, kişisel rekorların ve arkadaş listen sıfırlandı.</p>' +
+      '<p id="sifirlamaAciklama">Bu cihazdaki profilin, puanların, rütben, rozetlerin, kişisel rekorların sıfırlandı.</p>' +
       '<button type="button" class="btn pri" style="min-height:48px" autofocus>Profil seç</button>' +
       '<p>İnternetteki eski sıralama kayıtları duruyor.</p>';
     document.body.appendChild(ekran);
