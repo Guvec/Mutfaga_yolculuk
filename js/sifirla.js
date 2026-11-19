@@ -2,11 +2,13 @@
 (function () {
   'use strict';
 
-  const APP_RESET = 1;
+  const APP_RESET = 2;
   const SURUM = 'kv_app_reset';
   const BEKLEYEN_EKRAN = 'kv_app_reset_ekran';
   const ILERLEME = new Set([
     'profiles', 'sonProfil',
+    // 2. sıfırlama (19.11.2026): oyun adı seçimleri de herkes için baştan başlar.
+    'ad_map', 'ad_yeni', 'app_reset_adlar',
     'rutbe', 'rutbe_dal', 'sv_baz', 'odul', 'records', 'yanlislarim',
     'rk_ids', 'rk_best', 'rk_win', 'rk_pek', 'rk_oyun', 'rk_setting', 'rk_queue',
     'arena_devam', 'arena_odul', 'arena_pek', 'arena_rekor', 'haftalik',
@@ -75,7 +77,8 @@
       const eskiVeriVar = anahtarlar.some(anahtar => !BOS.has(localStorage.getItem(anahtar))) ||
         SEKME_DEVAMI.some(anahtar => !BOS.has(sessionStorage.getItem(anahtar)));
       if (eskiVeriVar) localStorage.setItem(BEKLEYEN_EKRAN, numara);
-      adRezervasyonlariniKoru();
+      // 1. sıfırlamada adlar korunuyordu; 2. sıfırlamadan itibaren ad kayıtları da silinir.
+      if (APP_RESET < 2) adRezervasyonlariniKoru();
       eskiTemizlikleriKoru();
       for (const anahtar of anahtarlar) localStorage.removeItem(anahtar);
       for (const anahtar of ESKI_ISARETLER) localStorage.removeItem(anahtar);
