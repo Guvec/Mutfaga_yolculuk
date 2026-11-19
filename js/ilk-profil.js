@@ -17,14 +17,16 @@ function ipAc(){if(ipGerekli()&&st.screen!=='pedit')adOpen(-1,'home');}
 const IP_GO=go;
 go=function(s){if(s!=='pedit'&&s!=='profiles'&&ipGerekli()){ipAc();return;}IP_GO(s);};
 if(typeof ysBasla==='function'){const IP_YS=ysBasla;ysBasla=function(){IP_YS.apply(this,arguments);setTimeout(ipAc,0);};}
-/* İlk ad seçiminde ekran başlığı ve açıklama */
-const IP_EDIT=typeof adEditHTML==='function'?adEditHTML:null;
-if(IP_EDIT)adEditHTML=function(){
- let h=IP_EDIT();
- if(st.pe&&st.pe.i<0&&profiles().length===0){
-  h=h.replace('➕ Yeni Profil','👋 Hoş geldin!').replace('<div class="wrap">','<div class="wrap"><p class="card ip-hosgeldin"><b>Önce oyun adını seç.</b> Oyunda ve sıralamada bu adla görüneceksin. İstersen adını sonra bir kez değiştirebilirsin.</p>');
+/* Ana sayfayı çizen katman da dahil, kayıtlı profili kullanmadan önce ad havuzunu denetle. */
+const IP_RENDER=render;
+render=function(){
+ const yenile=adYenilemeEkraniGerekli();
+ if(yenile){
+  adEditor(profiles().indexOf(st.prof),st.screen);
+  st.screen='pedit';
  }
- return h;
+ const sonuc=IP_RENDER.apply(this,arguments);
+ if(yenile){window.scrollTo(0,0);document.getElementById('pe-baslik')?.focus();}
+ return sonuc;
 };
-setTimeout(ipAc,0);
-/* © 2026 Ali Arıkoğlu. Tüm hakları saklıdır. */
+setTimeout(()=>{if(adYenilemeEkraniGerekli())render();else ipAc();},0);

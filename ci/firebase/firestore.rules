@@ -206,7 +206,7 @@ service cloud.firestore {
    function total() { let b = rkParts(table)[1]; return b in rkBoards() ? rkBoards()[b] : (b.matches('^ayar-cv-.*') ? int(b.split('-')[6]) : 999); }
    function shape(d) {
     return d.keys().hasAll(['name','correct','term','version','gen']) && d.keys().hasOnly(['name','correct','term','version','gen','rank','game','scope','total','contentVersion','week','dur'])
-     && (!('rank' in d) || (d.rank is int && d.rank >= 1 && d.rank <= 5))
+     && (!('rank' in d) || (d.rank is int && d.rank >= 1 && d.rank <= 6))
      && (rkParts(table)[1] == 'haftalik'
        ? (d.keys().hasAll(['game','scope','total','contentVersion','week']) && d.game == 'haftalik' && d.scope == 'butun' && d.total == 145 && d.contentVersion is string && d.contentVersion.matches('^hafta-[0-9]{1,2}-scope2-[0-9]{1,10}$') && d.week is int && rkParts(table)[2] == 'w' + string(d.week))
        : !d.keys().hasAny(['game','scope','total','contentVersion','week']))
@@ -278,6 +278,34 @@ service cloud.firestore {
      || ('c' in request.resource.data && request.resource.data.c is string
          && request.resource.data.ks.toSet() == resource.data.ks.toSet().difference([request.resource.data.c].toSet())
          && !existsAfter(/databases/$(database)/documents/nm/$(request.resource.data.c))));
+   allow delete: if signed() && request.auth.uid == uid;
+  }
+
+  /* Yeniden seçimden sonra ayrılan adlar ve hesap başına kota. */
+  match /nmV2/{k} {
+   allow get: if signed();
+   allow list: if false;
+   allow create: if signed() && k.matches('^[0-9]{1,4}_[0-9]{1,4}$')
+    && request.resource.data.keys().hasOnly(['u','t']) && request.resource.data.keys().hasAll(['u','t'])
+    && request.resource.data.u == request.auth.uid && request.resource.data.t is int
+    && existsAfter(/databases/$(database)/documents/nmSahipV2/$(request.auth.uid))
+    && getAfter(/databases/$(database)/documents/nmSahipV2/$(request.auth.uid)).data.ks.hasAny([k]);
+   allow update: if signed() && resource.data.u == request.auth.uid
+    && request.resource.data.keys().hasOnly(['u','t']) && request.resource.data.u == request.auth.uid && request.resource.data.t is int;
+   allow delete: if signed() && resource.data.u == request.auth.uid;
+  }
+  match /nmSahipV2/{uid} {
+   allow get: if signed() && request.auth.uid == uid;
+   allow list: if false;
+   allow create: if signed() && request.auth.uid == uid
+    && request.resource.data.keys().hasOnly(['ks']) && request.resource.data.ks is list && request.resource.data.ks.size() <= 10;
+   /* Liste büyüyebilir (en çok 10). Bir ad listeden yalnız o adın rezervasyonu silinmişse çıkarılabilir (c = çıkarılan ad). */
+   allow update: if signed() && request.auth.uid == uid
+    && request.resource.data.keys().hasOnly(['ks','c']) && request.resource.data.ks is list && request.resource.data.ks.size() <= 10
+    && (request.resource.data.ks.hasAll(resource.data.ks)
+     || ('c' in request.resource.data && request.resource.data.c is string
+         && request.resource.data.ks.toSet() == resource.data.ks.toSet().difference([request.resource.data.c].toSet())
+         && !existsAfter(/databases/$(database)/documents/nmV2/$(request.resource.data.c))));
    allow delete: if signed() && request.auth.uid == uid;
   }
 

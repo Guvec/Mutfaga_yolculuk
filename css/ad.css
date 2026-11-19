@@ -1,21 +1,90 @@
 /* © 2026 Ali Arıkoğlu. Tüm hakları saklıdır. */
 /* Oyun adı (karakter) seçimi ve arkadaşlar */
-.ad-prev{display:flex;align-items:center;gap:14px;position:sticky;top:0;z-index:2}
-.ad-av{width:64px;height:64px;border-radius:50%;font-size:38px;display:flex;align-items:center;justify-content:center;flex:none}
-.ad-pn{display:flex;flex-direction:column;font-size:22px;font-weight:800}
-.ad-pn small{font-size:15px;font-weight:500;color:var(--muted);margin-top:3px}
-.ad-tab{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin:6px 0 12px}
-.ad-tab button{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;min-height:60px;padding:4px 2px;border:2px solid var(--line);background:var(--surface,#fff);color:var(--navy);border-radius:12px;font-size:13px;font-weight:600;line-height:1.15}
-.ad-tab button span{font-size:24px;line-height:1}
 .ad-lock{display:inline-flex;align-items:center;padding:0 10px;font-size:20px}
-.ad-tab button:first-child{grid-column:1/-1;flex-direction:row;gap:8px;min-height:52px;font-size:16px;font-weight:800}
-.ad-tab button.on{background:var(--teal);border-color:var(--teal);color:#fff}
-.ad-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:4px 0 16px}
-.ad-grid button{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;min-height:92px;border:2px solid var(--line);background:var(--surface,#fff);color:var(--navy);border-radius:14px;padding:8px 4px;font-size:14px;font-weight:600;line-height:1.2}
-.ad-grid button span{font-size:34px;line-height:1}
-.ad-grid button.on{border-color:var(--teal);box-shadow:inset 0 0 0 2px var(--teal)}
+body:has(#app .ad-secim){background:#f5ebe2}
+.ad-secim{
+ max-width:470px;padding:max(6px,env(safe-area-inset-top)) max(8px,env(safe-area-inset-right))
+ max(8px,env(safe-area-inset-bottom)) max(8px,env(safe-area-inset-left));
+}
+.ad-secim .ad-parsomen{
+ --ad-kagit:#f9f1e9;--ad-lacivert:#102544;--ad-altin:#ad701d;
+ display:grid;gap:6px;padding:6px 9px 10px;background:var(--ad-kagit);color:var(--ad-lacivert);
+ border:1px solid #e9d5c5;border-radius:20px;box-shadow:0 3px 10px #2c160c22;
+}
+.ad-secim-ust{
+ display:flex;gap:10px;align-items:center;min-height:48px;padding:0 10px 0 0;
+ border:1px solid #fff;border-radius:26px;box-shadow:0 2px 4px #46270e2a;
+ color:var(--ad-lacivert);font:700 1.25em/1.1 Georgia,serif;
+}
+.ad-secim-ust button{
+ width:48px;min-height:48px;background:none;border:0;color:inherit;
+ font:700 32px/1 Arial,sans-serif;
+}
+.ad-secim-ust span{padding-inline-start:10px;border-inline-start:1px solid var(--ad-altin)}
+.ad-kis-mutfagi{
+ display:block;width:100%;height:clamp(48px,10dvh,90px);object-fit:cover;object-position:center 55%;border-radius:14px;
+}
+.ad-secim h2{
+ display:flex;align-items:center;justify-content:center;gap:10px;margin:0;text-align:center;
+ color:var(--ad-lacivert);font:700 1.3em/1.15 Georgia,serif;
+}
+.ad-secim :is(h2,.ad-secim-ust,.ad-secim-ust span){font-family:Georgia,serif!important}
+.ad-secim h2::before,.ad-secim h2::after{content:"";width:32px;height:1px;background:var(--ad-altin)}
+.ad-gruplar{
+ display:grid;grid-template-columns:1fr 1fr;border:1px solid #ead8c9;border-radius:26px;
+ box-shadow:0 2px 4px #46270e25;
+}
+.ad-gruplar button,.ad-secim select,.ad-secim .ad-grid button,.ad-sayfalama button{
+ min-height:48px;background:#fbf4ec;color:var(--ad-lacivert);border:1px solid #e3cfc0;
+ border-radius:14px;font:inherit;
+}
+.ad-gruplar button{border-radius:25px;font-weight:700}
+.ad-secim select{justify-self:end;width:auto;max-width:100%;padding:0 6px;background:transparent}
+.ad-gruplar button.on,.ad-secim .ad-ana-dugme{
+ background:linear-gradient(#1b3d66,#102544);color:#fff7ed;border:2px solid var(--ad-altin);
+ box-shadow:inset 0 0 0 1px #f1cb88;
+}
+.ad-secim .ad-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;margin:0}
+.ad-secim .ad-grid button{
+ min-height:100px;display:grid;align-content:center;justify-items:center;gap:3px;padding:5px;
+ background:linear-gradient(#fbf5ee,#f5e9dd);box-shadow:0 2px 3px #46270e24;
+ line-height:1.15;font-weight:700;overflow-wrap:anywhere;
+}
+.ad-secim .ad-grid button.on{border:2px solid var(--ad-altin);box-shadow:0 1px 3px #46270e33}
+.ad-resim-yuvasi{position:relative;display:block}
+.ad-secim-resmi,.ad-secim-emoji{
+ display:grid;place-items:center;width:62px;height:62px;margin:auto;border-radius:50%;object-fit:cover;
+}
+.ad-secim-emoji{border:2px solid var(--ad-altin);font-size:36px;background:#f1e1ce}
+.ad-onay-isareti,.ad-ad-isaret{
+ display:grid;place-items:center;width:24px;height:24px;border:1px solid #786e64;border-radius:50%;
+}
+.ad-onay-isareti,.on .ad-ad-isaret{background:var(--ad-lacivert);border-color:var(--ad-altin);color:#fff}
+.ad-onay-isareti{position:absolute;right:-4px;bottom:-2px}
+.ad-isim-portresi :is(.ad-secim-resmi,.ad-secim-emoji){width:clamp(76px,13dvh,114px);height:clamp(76px,13dvh,114px)}
+.ad-secim .ad-adlar{grid-template-columns:1fr}
+.ad-secim .ad-adlar button{
+ min-height:53px;display:flex;align-items:center;justify-content:space-between;padding:6px 12px;text-align:left;
+}
+.ad-ad-isaret{flex:none}
+.ad-ad-metin small{display:block;margin-top:3px;font-size:.8em;font-weight:500}
+.ad-secim .ad-grid button:disabled,.ad-sayfalama button:disabled,.ad-secim .ad-ana-dugme:disabled{
+ background:#eaded2;color:#4c4336;opacity:1;box-shadow:none;
+}
+.ad-sayfalama{
+ display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);
+ align-items:center;gap:5px;text-align:center;font-size:.875em;
+}
+.ad-secim .ad-ana-dugme{min-height:48px;width:100%;border-radius:24px;font:inherit;font-weight:800}
+.ad-secim #pe-pv,.ad-secim .ad-yenileme-bilgi{margin:0;text-align:center;font-size:.85em}
+.ad-secim #pe-pv:empty,.ad-secim #pe-sayfa:empty{display:none}
+@media (min-height:780px){
+ .ad-secim .ad-parsomen{gap:9px}
+ .ad-secim .ad-grid:not(.ad-adlar) button{min-height:118px}
+ .ad-secim .ad-grid .ad-secim-resmi,.ad-secim .ad-grid .ad-secim-emoji{width:76px;height:76px}
+}
 #toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);max-width:88vw;background:#123;color:#fff;border-radius:12px;padding:10px 16px;font-size:15px;opacity:0;transition:opacity .25s;z-index:80;pointer-events:none;text-align:center}
-@media(max-width:360px){.ad-tab{grid-template-columns:repeat(4,1fr)}}
+
 /* Arkadaşlar */
 .ark-box{text-align:center}
 .ark-code{font-size:30px;letter-spacing:3px;font-weight:800;margin:6px 0}
@@ -26,15 +95,8 @@
 .ark-live{padding:10px 12px}
 .ark-lvh{font-weight:700;margin-bottom:4px}
 .mini{border:2px solid var(--teal);background:var(--surface,#fff);color:var(--navy);border-radius:10px;padding:6px 10px;min-height:40px;font-weight:700}
-/* Ödüller */
-.ad-adlar{grid-template-columns:repeat(2,1fr)}
-.ad-adlar button{min-height:56px;font-size:16px;font-weight:700}
-.ad-adlar button:disabled{opacity:.5;background:var(--bg,#f3f4f6)}
-.ad-adlar button small{display:block;font-size:13px;font-weight:600}
-
 /* Huzurlu Civciv: mevcut portreyi seçim kartı, kayıtlı profil ve arkadaş satırında kullan. */
 .ad-figur-portre{display:block;width:60px;height:60px;object-fit:cover;border-radius:10px}
-.ad-av .ad-figur-portre{width:100%;height:100%;border-radius:inherit}
 .ad-kayitli-portre{width:42px;height:42px;object-fit:cover;border-radius:50%;vertical-align:middle;margin-inline-end:8px}
 .ark-portreli-ad{display:flex;align-items:center;gap:8px;min-width:0}
 .ark-portreli-ad>span{min-width:0;overflow-wrap:anywhere}

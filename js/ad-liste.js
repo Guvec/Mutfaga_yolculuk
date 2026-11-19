@@ -27,7 +27,12 @@ var AD_BASE=AD_KAR.length,AD_VAR=[];
  }
 })();
 
+/* Onaylı Kaplan adı, eski karakter numaraları değişmeden eklenir. */
+AD_VAR[3].push(AD_KAR.length);
+AD_KAR.push(['🐯','Cesur Kaplan',0,3]);
+
 /* Kapatılan adlar (13.11): bu adlar ve bunlardan türeyen sıfatlı adlar artık seçilemez. Sıra ve numaralar değişmez, kayıtlar yerinde durur.
    Bu adı daha önce almış profil açılışta rastgele bir mutfak adına taşınır. */
 var AD_KAPALI_ADLAR={'Tatlı Hamster':1,'Sihirli Tekboynuz':1,'Büyülü Yıldız Tozu':1,'Neşeli Dönme Dolap':1,'Şakacı Hayalet':1,'Gizemli Ufo':1,'Uzakdoğu Kalesi':1,'Acı Biber':1,'Gürleyen Motosiklet':1,'Kükreyen Dinozor':1,'Devirici Bowling':1,'Vuruşçu Beyzbol':1,'Atak Ragbi':1,'Keskin Kartal':1,'Güçlü Kasırga':1,'Parlayan Alev':1,'Vızvız Mobilet':1,'Klik Kamera':1,'Tıkır Çark':1,'Uzun Yol Tırı':1,'Kutulu Meyve Suyu':1,'Tonton Ayıcık':1,'Fışkıran Fıskiye':1,'Şanslı Uğurböceği':1};
-function adKapali(e){var k=AD_KAR[e];if(!k)return false;if(AD_KAPALI_ADLAR[k[1]])return true;var b=k[3]!==undefined?AD_KAR[k[3]]:null;return !!(b&&AD_KAPALI_ADLAR[b[1]]);}
+var AD_UYGUN_OLMAYAN_SOZCUK=/(?:^|\s)(?:kurnaz|şişko|salak|aptal|deli|kör|sağır|çirkin|korkak|tembel|top)(?:\s|$)/u;
+function adKapali(e){var k=AD_KAR[e];if(!k)return false;if(AD_KAPALI_ADLAR[k[1]]||AD_UYGUN_OLMAYAN_SOZCUK.test(k[1].toLocaleLowerCase('tr')))return true;var b=k[3]!==undefined?AD_KAR[k[3]]:null;return !!(b&&AD_KAPALI_ADLAR[b[1]]);}

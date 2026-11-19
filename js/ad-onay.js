@@ -17,8 +17,8 @@
   }
   adSave=async function(){
     try{
-      var P=st.pe,old=P&&P.i>=0?profiles()[P.i]:null;
-      if(old&&!adSabit(old)){
+      var P=st.pe,old=P&&P.p;
+      if(old&&!P.yenileme&&!P.busy&&!P.dogrulaniyor&&P.e!==null&&!adSabit(old)){
         var om=adInfo(old);
         if(om&&om.e!==P.e&&P.av&&P.av[P.e]!==false){
           var ek=(AD_KAR[om.e]||[])[0]||'',yk=(AD_KAR[P.e]||[])[0]||'';
