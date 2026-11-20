@@ -328,7 +328,7 @@
   /* Kış: zeminin dört köşesinde buz deseni */
   let buz=document.getElementById('lcBuz');
   if(!buz){buz=document.createElement('div');buz.id='lcBuz';buz.setAttribute('aria-hidden','true');buz.innerHTML='<i></i><i></i><i></i><i></i>';document.body.prepend(buz);}
-  buz.hidden=!(ev&&m==='kis');
+  buz.hidden=!(ev&&(m==='kis'||document.documentElement.dataset.anaGorunum==='ceviz'));
   /* Kışın Ustalar Ligi kartında karlı lonca sancağı, Rozetlerim kartında yastık üstünde rozetler (GPT görselleri). */
   if(m==='kis')[[2,'lc-sancak'],[4,'lc-yastik']].forEach(([n,cls])=>{const st=document.querySelector('#app .lc-home .lc-grid .lc-card:nth-child('+n+') .lc-stage');
    if(st&&!st.querySelector('.'+cls)){const e=st.querySelector('.lc-emblem');if(e)e.remove();st.insertAdjacentHTML('afterbegin','<span class="lc-emblem '+cls+'" aria-hidden="true"></span>');}});

@@ -4,6 +4,13 @@
    Çalışma geçmişim ve Kılavuz (Hesabım), Sesi dene/Durdur (Okuyan ses sayfasında). Ses, müzik ve efekt: 🎧 Ses paneli. */
 'use strict';
 const AY_TEMA={lonca:'Lonca Gecesi',loncakrem:'Lonca Işığı',light:'Aydınlık',sepia:'Sepya',okyanus:'Okyanus',orman:'Orman',lavanta:'Lavanta',seftali:'Şeftali',yuksek:'Yüksek kontrast',dark:'Gece'};
+const AY_ANA_GORUNUM='ana_sayfa_gorunumu';
+function ayAnaGorunumUygula(){
+ const secim=ls(AY_ANA_GORUNUM,'klasik')==='ceviz'?'ceviz':'klasik';
+ document.documentElement.dataset.anaGorunum=secim;
+ return secim;
+}
+ayAnaGorunumUygula();
 const AY_YZ=['normal','buyuk','cok'],AY_YZN={normal:'Normal',buyuk:'Büyük',cok:'Çok büyük'};
 function ayAc(html,label){
  if(typeof sesSus==='function')sesSus();try{modalFocus=document.activeElement;}catch(e){}
@@ -19,7 +26,10 @@ window.anaAyarlar=function(){
  const sakin=typeof sakinAcik==='function'&&sakinAcik();
  const box=ayAc('<h2 class="ay-bas">⚙️ Ayarlar</h2>'+
   '<p class="ay-grup">Görünüm</p><div class="ay-liste">'+
-   aySatir('ayTema','🎨','Tema',ayTema())+aySatir('ayYz','🔠','Yazı boyutu',ayYz())+
+   aySatir('ayTema','🎨','Tema',ayTema())+
+   '<div class="ay-yol-isigi"><label for="ayAnaGorunum">Ana sayfa görünümü</label>'+
+   '<select id="ayAnaGorunum"><option value="klasik">Klasik</option><option value="ceviz">Ceviz ve Altın</option></select></div>'+
+   aySatir('ayYz','🔠','Yazı boyutu',ayYz())+
    (typeof aksanHTML==='function'?'<div class="ay-satir ay-aksan"><span class="ay-ikon" aria-hidden="true">🖌️</span>'+aksanHTML()+'</div>':'')+
    aySatir('aySakin','🌙','Sakin mod',sakin?'Açık':'Kapalı')+'</div>'+
   '<p class="ay-grup">Ses</p><div class="ay-liste">'+
@@ -32,6 +42,13 @@ window.anaAyarlar=function(){
   '<button type="button" class="btn pri ay-kapat" onclick="closeModal()">Kapat</button>','Ayarlar');
  const $=id=>box.querySelector('#'+id),deg=(id,v)=>{const e=$(id);if(e)e.querySelector('.ay-deger').textContent=v;};
  $('ayTema').onclick=()=>{temaDegistir();deg('ayTema',ayTema());};
+ const anaGorunum=$('ayAnaGorunum');
+ anaGorunum.value=ayAnaGorunumUygula();
+ anaGorunum.onchange=()=>{
+  lsSet(AY_ANA_GORUNUM,anaGorunum.value);
+  anaGorunum.value=ayAnaGorunumUygula();
+  if(typeof sahneGuncelle==='function')sahneGuncelle();
+ };
  $('ayYz').onclick=()=>{const now=document.documentElement.getAttribute('data-yz')||'normal',nx=AY_YZ[(AY_YZ.indexOf(now)+1)%AY_YZ.length];document.documentElement.setAttribute('data-yz',nx);try{localStorage.setItem('mesleki-yazi',nx);}catch(e){}deg('ayYz',ayYz());};
  $('aySakin').onclick=()=>{if(typeof sakinDegistir==='function')sakinDegistir();deg('aySakin',sakinAcik()?'Açık':'Kapalı');};
  box.querySelectorAll('.aksan-sw button').forEach(b=>{b.onclick=()=>aksanUygula(b.dataset.a);});
