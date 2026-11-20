@@ -1,0 +1,250 @@
+/* © 2026 Ali Arıkoğlu. Ana sayfanın Ceviz ve Altın görünümü. */
+.ae-serit-kalan,
+.ae-serit-sonra-rozet {
+  display: none;
+}
+html[data-ana-gorunum=ceviz]:not([data-theme=yuksek]) body.lc-sahne-acik {
+  background: #492c21 !important;
+}
+html[data-ana-gorunum=ceviz]:not([data-theme=yuksek]) body.lc-sahne-acik::before {
+  background: radial-gradient(ellipse at 50% 24%, #a06c4130, #26140f66),
+    linear-gradient(#3d292448, #3d292448), url('../assets/arayuz/deri-yaz.webp') center / 320px repeat;
+}
+html[data-ana-gorunum=ceviz]:not([data-theme=yuksek]) #lcBuz i:nth-child(n+3) {
+  width: min(32vw, 172px);
+  opacity: .97;
+}
+html[data-ana-gorunum=ceviz]:not([data-theme=yuksek]) body.lc-sahne-acik .lc-home {
+  --ceviz-krem: radial-gradient(ellipse at 46% 24%, #fae8cc 0%, #efd3ae 73%, #d9ac7e 100%);
+  --ceviz-kenar: inset 0 0 0 1px #8b531e, inset 0 0 0 2px #eabd77,
+    inset 0 0 0 3px #fff0bd, inset 0 0 0 4px #ae7132, 0 2px 5px #2d150d85;
+  --lc-ink: #362117;
+  width: min(100%, 700px, 108svh);
+  max-width: none;
+  height: 100svh;
+  min-height: 0;
+  grid-template-rows: auto auto auto minmax(0, 1fr) !important;
+  gap: clamp(6px, 1.8vw, 12px);
+  padding: max(8px, env(safe-area-inset-top)) 8px max(8px, env(safe-area-inset-bottom));
+}
+html[data-ana-gorunum=ceviz]:not([data-theme=yuksek]) body.lc-sahne-acik .lc-home .lc-header,
+html[data-ana-gorunum=ceviz]:not([data-theme=yuksek]) body.lc-sahne-acik .lc-home .lc-rank::before,
+html[data-ana-gorunum=ceviz]:not([data-theme=yuksek]) body.lc-sahne-acik .lc-home .lc-card::before {
+  background: var(--ceviz-krem) !important;
+  border-radius: 18px;
+  box-shadow: var(--ceviz-kenar) !important;
+}
+html[data-ana-gorunum=ceviz]:not([data-theme=yuksek]) body .lc-home .lc-header {
+  gap: 0;
+  padding: 0 4px;
+}
+html[data-ana-gorunum=ceviz]:not([data-theme=yuksek]) body .lc-home .lc-profile {
+  min-height: 50px;
+  padding: 2px 4px;
+  gap: 2px;
+}
+html[data-ana-gorunum=ceviz]:not([data-theme=yuksek]) body .lc-home .lc-profile strong {
+  color: #5b3523;
+  font-size: clamp(13px, 3.55vw, 23px);
+  line-height: 1.25;
+  padding-left: 4px !important;
+}
+html[data-ana-gorunum=ceviz]:not([data-theme=yuksek]) body .lc-home .lc-avatar {
+  width: clamp(42px, 12vw, 60px);
+  height: auto;
+  aspect-ratio: 1;
+}
+html[data-ana-gorunum=ceviz]:not([data-theme=yuksek]) body .lc-home .lc-profile::before,
+html[data-ana-gorunum=ceviz]:not([data-theme=yuksek]) body .lc-home .lc-nameplate::before {
+  content: none;
+}
+html[data-ana-gorunum=ceviz]:not([data-theme=yuksek]) body .lc-home .lc-header .lc-tool {
+  width: clamp(44px, 12vw, 60px);
+  height: 48px;
+}
+html[data-ana-gorunum=ceviz]:not([data-theme=yuksek]) body .lc-home .lc-tool::before {
+  inset: 12px auto 12px 0;
+  width: 1px;
+  background: linear-gradient(#bc8846, #8e5627, #d79b55);
+}
+html[data-ana-gorunum=ceviz]:not([data-theme=yuksek]) body .lc-home .lc-header .lc-tool::after {
+  inset: 21% !important;
+  animation: none;
+}
+html[data-ana-gorunum=ceviz]:not([data-theme=yuksek]) body .lc-home .lc-header .lc-tool:nth-child(2)::after {
+  inset: 17% 13% !important;
+  background-image: url('../assets/arayuz/ceviz-nota.webp');
+}
+html[data-ana-gorunum=ceviz]:not([data-theme=yuksek]) body .lc-home .lc-header .lc-tool:nth-child(3)::after {
+  inset: 13% 6% !important;
+  background-image: url('../assets/arayuz/ceviz-arkadaslar.webp');
+}
+html[data-ana-gorunum=ceviz]:not([data-theme=yuksek]) body .lc-home .lc-header .lc-tool:nth-child(4)::after {
+  inset: 17% 13% !important;
+  background-image: url('../assets/arayuz/ceviz-ayar.webp');
+}
+html[data-ana-gorunum=ceviz]:not([data-theme=yuksek]) body .lc-home .lc-rank {
+  padding: 6px 12px !important;
+}
+html[data-ana-gorunum=ceviz]:not([data-theme=yuksek]) body .lc-home .lc-rank .ae-serit {
+  min-height: 56px;
+}
+html[data-ana-gorunum=ceviz]:not([data-theme=yuksek]) body .lc-home .lc-rank .ae-serit-metin {
+  grid-template-columns: minmax(0, 1fr) auto;
+}
+html[data-ana-gorunum=ceviz]:not([data-theme=yuksek]) body .lc-home .lc-rank :is(.lc-rank-label, .ae-serit-adlar, .ae-progress) {
+  grid-column: 1 / -1;
+}
+html[data-ana-gorunum=ceviz]:not([data-theme=yuksek]) body .lc-home .lc-rank .lc-rank-label {
+  padding-right: 0;
+  color: #46291b;
+  font-size: calc(clamp(.77rem, 3.2vw, 1.05rem) * var(--lc-textscale)) !important;
+}
+html[data-ana-gorunum=ceviz]:not([data-theme=yuksek]) body .lc-home .lc-rank .ae-serit-sonra {
+  display: flex;
+  align-items: center;
+  column-gap: 5px;
+  min-width: 0;
+  margin-left: 6px;
+  padding-left: 6px !important;
+  color: #492b1d;
+  white-space: normal;
+}
+html[data-ana-gorunum=ceviz]:not([data-theme=yuksek]) body .lc-home .lc-rank .ae-serit-sonra-ad {
+  display: none;
+}
+html[data-ana-gorunum=ceviz]:not([data-theme=yuksek]) body .lc-home .lc-rank .ae-serit-sonra-rozet {
+  display: block;
+  flex: 0 0 20px;
+  width: 20px;
+  height: 22px;
+  object-fit: contain;
+}
+html[data-ana-gorunum=ceviz]:not([data-theme=yuksek]) body .lc-home .lc-rank .ae-serit-sonra::before {
+  content: "";
+  order: 1;
+  flex: 0 0 8px;
+  height: 12px;
+  background: url('../assets/arayuz/ceviz-rutbe-oku.webp') center / contain no-repeat;
+}
+html[data-ana-gorunum=ceviz]:not([data-theme=yuksek]) body .lc-home .lc-rank .ae-serit-sonra b {
+  order: 2;
+  min-width: 0;
+  color: #603823;
+}
+html[data-ana-gorunum=ceviz]:not([data-theme=yuksek]) body .lc-home .lc-rank .ae-serit-adlar strong {
+  min-width: 0;
+  padding: 1px 9px !important;
+}
+html[data-ana-gorunum=ceviz]:not([data-theme=yuksek]) body .lc-home .lc-rank .ae-serit-adlar strong::before {
+  background: linear-gradient(#65412d, #321c13);
+  border: 1px solid #99632d;
+  border-radius: 6px;
+  box-shadow: inset 0 0 0 1px #d7ad69;
+}
+html[data-ana-gorunum=ceviz]:not([data-theme=yuksek]) body .lc-home .lc-rank .ae-progress {
+  background: linear-gradient(#c19771, #edcead);
+  border-color: #ab804e;
+}
+html[data-ana-gorunum=ceviz]:not([data-theme=yuksek]) body .lc-home .lc-rank .ae-progress > span {
+  background: linear-gradient(#98623f, #562e1d 85%);
+  box-shadow: inset 0 1px #c18d59;
+}
+html[data-ana-gorunum=ceviz]:not([data-theme=yuksek]) body .lc-home .lc-rank :is(.ae-serit-sayi, .ae-serit-kalan) {
+  display: block;
+  margin-top: 1px;
+  color: #58351f;
+  font: 600 calc(.68rem * var(--lc-textscale)) / 1.2 Lexend, Arial, sans-serif;
+  text-align: left;
+  text-transform: lowercase;
+}
+html[data-ana-gorunum=ceviz]:not([data-theme=yuksek]) body .lc-home .lc-rank .ae-serit-kalan {
+  text-align: right;
+}
+html[data-ana-gorunum=ceviz]:not([data-theme=yuksek]) body.lc-sahne-acik .lc-home .lc-journey[data-yol-isigi] {
+  --lc-kis-gorsel: url('../assets/yolculuk/ceviz-kis-gunduz.webp');
+  --lc-kis-oran: 981 / 303;
+  border-radius: 18px;
+}
+html[data-ana-gorunum=ceviz]:not([data-theme=yuksek]) body.lc-sahne-acik .lc-home .lc-journey[data-yol-isigi=gece] {
+  --lc-kis-gorsel: url('../assets/yolculuk/ceviz-kis-gece.webp');
+  --lc-kis-oran: 981 / 303;
+}
+html[data-ana-gorunum=ceviz]:not([data-theme=yuksek]) body.lc-sahne-acik .lc-home .lc-journey[data-yol-isigi]::after {
+  inset: 0;
+  background-size: cover;
+  box-shadow: var(--ceviz-kenar);
+}
+html[data-ana-gorunum=ceviz]:not([data-theme=yuksek]) body.lc-sahne-acik .lc-home .lc-grid {
+  gap: clamp(6px, 1.8vw, 12px);
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+}
+html[data-ana-gorunum=ceviz]:not([data-theme=yuksek]) body .lc-home .lc-card {
+  overflow: visible;
+}
+html[data-ana-gorunum=ceviz]:not([data-theme=yuksek]) body .lc-home .lc-card::after {
+  content: "";
+  position: absolute;
+  width: min(18%, 48px);
+  aspect-ratio: 2 / 1;
+  top: -1px;
+  left: 0;
+  z-index: 3;
+  background: url('../assets/arayuz/ceviz-kar.webp') left top / contain no-repeat;
+  pointer-events: none;
+}
+html[data-ana-gorunum=ceviz]:not([data-theme=yuksek]) body .lc-home .lc-card-open {
+  padding: 7px 5px 9px !important;
+}
+html[data-ana-gorunum=ceviz]:not([data-theme=yuksek]) body .lc-home .lc-nameplate {
+  padding: 3px 1px 0 !important;
+  font-size: calc(clamp(.88rem, 4.2vw, 1.45rem) * var(--lc-textscale)) !important;
+  white-space: normal;
+}
+html[data-ana-gorunum=ceviz]:not([data-theme=yuksek]) body .lc-home .lc-info {
+  color: #462817 !important;
+  background: none !important;
+  isolation: isolate;
+}
+html[data-ana-gorunum=ceviz]:not([data-theme=yuksek]) body .lc-home .lc-info::before,
+html[data-ana-gorunum=ceviz]:not([data-theme=yuksek]) body .lc-home .lc-info::after {
+  content: "";
+  position: absolute;
+  inset: 9px 11px;
+  z-index: -1;
+  clip-path: polygon(0 0, 100% 0, 100% 70%, 50% 100%, 0 70%);
+  border-radius: 4px;
+  background: linear-gradient(135deg, #fff0be, #805024);
+}
+html[data-ana-gorunum=ceviz]:not([data-theme=yuksek]) body .lc-home .lc-info::after {
+  inset: 11px 13px 12px;
+  background: linear-gradient(145deg, #fff3d8, #dcb57d);
+}
+html[data-ana-gorunum=ceviz]:not([data-theme=yuksek]) body .lc-home .lc-grid .lc-card .lc-emblem {
+  transform: none !important;
+}
+html[data-ana-gorunum=ceviz]:not([data-theme=yuksek]) body .lc-home .lc-dost .lc-poz-yigin {
+  background: url('../assets/arayuz/ceviz-panda.webp') center bottom / contain no-repeat;
+  animation: none !important;
+}
+html[data-ana-gorunum=ceviz]:not([data-theme=yuksek]) body .lc-home .lc-dost .lc-poz-yigin img {
+  opacity: 0;
+}
+html[data-ana-gorunum=ceviz]:not([data-theme=yuksek]) body .lc-home .lc-grid .lc-kursu {
+  background-image: url('../assets/arayuz/ceviz-kupa.webp');
+}
+html[data-ana-gorunum=ceviz]:not([data-theme=yuksek]) body .lc-home .lc-grid .lc-card:nth-child(2) .lc-emblem {
+  background: url('../assets/arayuz/ceviz-sancak.webp') center / contain no-repeat;
+}
+html[data-ana-gorunum=ceviz]:not([data-theme=yuksek]) body .lc-home .lc-grid .lc-card:nth-child(4) .lc-emblem {
+  background: url('../assets/arayuz/ceviz-rozet.webp') center / contain no-repeat;
+}
+html[data-ana-gorunum=ceviz]:not([data-theme=yuksek]) body .lc-home .lc-grid .lc-card:is(:nth-child(2), :nth-child(4)) .lc-emblem > svg {
+  display: none;
+}
+html[data-ana-gorunum=ceviz]:not([data-theme=yuksek]) body.lc-sahne-acik .lc-home:has(.lc-onboard),
+html[data-ana-gorunum=ceviz]:not([data-theme=yuksek])[data-yz]:not([data-yz=normal]) body.lc-sahne-acik .lc-home {
+  height: auto;
+  min-height: 100svh;
+  grid-template-rows: auto auto auto minmax(220px, 1fr) !important;
+}
