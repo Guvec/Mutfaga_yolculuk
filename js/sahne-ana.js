@@ -204,6 +204,11 @@
  /* ---------- Yolculuğum kartı: mevsimin yolculuk sahnesi (karakterli sahneler GPT'den gelecek) ---------- */
  function yolKartKur(m,gorunum){
   const yol=document.querySelector('#app .lc-home .lc-journey');if(!yol)return;
+  const baykus=yol.parentElement.querySelector('.lh-baykus');
+  if(baykus){
+   baykus.disabled=!hareketli();
+   if(baykus.disabled){baykus.hidden=false;baykus.classList.remove('ucuyor');}
+  }
   /* Kışın pandasız sahne + Aşçı Dostu ayrı katman; "Yolculuğa başla"ya basınca karda yürür, iz bırakır. */
   const katman=false; /* 18.11: yürüyüş doğal durmadı (Ali); pandalı sahne geri geldi, sahne yavaşça kıpırdar. */
   yol.style.setProperty('--lc-scene',"url('"+new URL('assets/yolculuk/kart-'+(katman?'kis-bos':m)+'.webp',document.baseURI).href+"')");
@@ -218,6 +223,17 @@
    yol.insertAdjacentHTML('afterbegin','<span class="lc-yol-izler" aria-hidden="true"></span><span class="lc-yol-dost" aria-hidden="true">'+html+'</span>');}
   if(!katman&&k){k.remove();const z=yol.querySelector('.lc-yol-izler');if(z)z.remove();}
  }
+ window.sahneBaykusUcur=function(dugme){
+  if(!hareketli()||dugme.classList.contains('ucuyor'))return;
+  dugme.classList.add('ucuyor');
+  dugme.onanimationend=olay=>{
+   if(olay.target!==dugme||olay.animationName!=='lh-ucus')return;
+   if(document.activeElement===dugme)dugme.parentElement.querySelector('.lc-journey').focus();
+   dugme.hidden=true;
+   dugme.classList.remove('ucuyor');
+   dugme.onanimationend=null;
+  };
+ };
  /* Yolculuğa başla: dost karda birkaç adım yürür, ardında iz kalır, sonra harita açılır. Dokununca beklemez. */
  const eskiYolAc=window.loncaYolAc;
  if(typeof eskiYolAc==='function')window.loncaYolAc=function(){
@@ -405,7 +421,7 @@
     '<div class="ay-yol-isigi"><label for="ayYolIsigi">Yolculuğum görünümü</label>'+
     '<select id="ayYolIsigi" aria-describedby="ayYolIsigiNot"><option value="oto">Mevsime göre</option>'+
     '<option value="gunduz">Gündüz</option><option value="gece">Gece</option></select>'+
-    '<p id="ayYolIsigiNot" class="ay-not">Gündüz ve Gece, kış köyünü gösterir.</p></div>'+
+    '<p id="ayYolIsigiNot" class="ay-not">Gündüz ve Gece, yolculuk sahnesinin ışığını değiştirir.</p></div>'+
     aySatir('aySaatliGorunum','🕒','Saate göre gündüz ve gece','')+
     '<p id="aySaatliGorunumNot" class="ay-not">Cihaz saatiyle 07.00’de gündüze, 19.00’da geceye geçer. Kapalıyken elle seçim yapılabilir.</p>');
    const gorunum=document.getElementById('ayYolIsigi');

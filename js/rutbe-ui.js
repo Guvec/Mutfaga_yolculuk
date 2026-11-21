@@ -39,6 +39,12 @@ function rutbeAdHTML(step,dal){
  return '<span aria-hidden="true">'+ad+' <span class="ry-yildizlar">'+'★'.repeat(step.stars)+'</span></span>'+
   '<span class="sr-only">'+esc(Rutbe.rankText(step,dal,true))+'</span>';
 }
+function rutbeYoluAdHTML(step,dal){
+ const ad=rutbeAdHTML(step,dal);
+ if(!step.stars)return ad;
+ return '<span class="lh-kademe-eski">'+ad+'</span><span class="lh-kademe">'+
+  esc(Rutbe.name(step.rank,dal))+' <small>'+step.stars+'. kademe</small></span>';
+}
 /* Altıncı rütbe için aynı dalın mevcut son görseli kullanılır. */
 function rutbeRozetYolu(dal,rank){return 'assets/rozet/'+dal+'-'+Math.min(rank,5)+'.webp';}
 function rutbeAll(){return ls('rutbe',{});}
@@ -153,10 +159,10 @@ function rutbeHTML(){
  const text=Rutbe.rankText(current,dal,true)+'. '+d.mp+' puan. '+(next?Rutbe.rankText(next,dal,true)+' için '+(next.mp-d.mp)+' puan kaldı.':'En yüksek rütbedesin.');
  let h=topBar('Rütbe Yolu')+'<div class="wrap ry">';
  h+='<div class="yr-chips ry-dallar" role="tablist" aria-label="Dal">'+RUTBE_DALLAR.map(x=>'<button type="button" role="tab" class="yr-chip'+(x===dal?' on':'')+'" aria-selected="'+(x===dal)+'" onclick="rutbeYolDal(\''+x+'\')">'+RUTBE_AYAR.dallar[x].baslik+'</button>').join('')+'</div>';
- h+='<section class="card ry-ust">'+rozet(current.rank).replace('width="64" height="64"','width="104" height="104"')+'<div><h1>'+rutbeAdHTML(current,dal)+'</h1>'+(next?'<p>Sıradaki: <b>'+rutbeAdHTML(next,dal)+'</b></p><progress value="'+(d.mp-current.mp)+'" max="'+(next.mp-current.mp)+'" aria-label="Sonraki rütbeye ilerleme"></progress><p class="sub">'+d.mp+' / '+next.mp+' puan</p>':'<p>En yüksek rütbedesin. '+d.mp+' puan</p>')+sesDugme(text,'Rütbeni dinle')+'</div></section>';
+ h+='<section class="card ry-ust">'+rozet(current.rank).replace('width="64" height="64"','width="104" height="104"')+'<div><h1>'+rutbeYoluAdHTML(current,dal)+'</h1>'+(next?'<p>Sıradaki: <b>'+rutbeYoluAdHTML(next,dal)+'</b></p><progress value="'+(d.mp-current.mp)+'" max="'+(next.mp-current.mp)+'" aria-label="Sonraki rütbeye ilerleme"></progress><p class="sub">'+d.mp+' / '+next.mp+' puan</p>':'<p>En yüksek rütbedesin. '+d.mp+' puan</p>')+sesDugme(text,'Rütbeni dinle')+'</div></section>';
  const kodlar=Object.keys(RUTBE_ROZET),toplam=kodlar.filter(k=>g.badges?.[k]).length;
  h+='<button type="button" class="ry-rozet-gecis" onclick="rozetlerAc()"><span aria-hidden="true">🏅</span><b class="lc-title">Rozetlerim</b><span class="ay-deger">'+toplam+' / '+kodlar.length+'</span><span class="ay-ok" aria-hidden="true">›</span></button>';
- h+='<ol class="ry-yol ry-serit">'+Rutbe.steps.map((step,k)=>{const cls=k<index?'ok':k===index?'simdi':'kilit';return '<li class="ry-'+cls+'"'+(k===index?' aria-current="step"':'')+'>'+rozet(step.rank)+'<div><strong>'+rutbeAdHTML(step,dal)+'</strong><small>'+(k<index?'Kazanıldı':k===index?'Şu anki rütbe':(k===index+1?'Sıradaki · ':'')+step.mp+' puan')+'</small></div><span aria-hidden="true">'+(k<index?'✓':k===index?'●':'🔒')+'</span></li>';}).join('')+'</ol>';
+ h+='<ol class="ry-yol ry-serit">'+Rutbe.steps.map((step,k)=>{const cls=k<index?'ok':k===index?'simdi':'kilit';return '<li class="ry-'+cls+'"'+(k===index?' aria-current="step"':'')+'>'+rozet(step.rank)+'<div><strong>'+rutbeYoluAdHTML(step,dal)+'</strong><small>'+(k<index?'Kazanıldı':k===index?'Şu anki rütbe':(k===index+1?'Sıradaki · ':'')+step.mp+' puan')+'</small></div><span aria-hidden="true">'+(k<index?'✓':k===index?'●':'🔒')+'</span></li>';}).join('')+'</ol>';
  return h+'</div>';
 }
 function rutbeAssessment(){const s=st.sess;if(!s||s.rutbeDone||s.unranked||s.practice==='pek'||!rkSessionDone())return;s.rutbeDone=true;const b=rkBoardForSession()||(st.op==='match'&&st.board&&!st.board.variant&&RK_SUBJ[st.subject]?rkBoard(RK_SUBJ[st.subject]+'-e'+st.contentSet):st.op==='kur'?rkBoard(st.lvl===3?'kv-tabldot':st.lvl===1?'kv-basit':''):st.op==='mcq'?RK_BOARDS.find(b=>b.kind==='mcq'&&b.subject===st.subject&&b.group===st.mcqGroup):null);if(!b)return;rutbeComplete({id:'s-'+s.id,table:s.total&&s.total!==b.total?b.id+'|'+s.total:b.id,subject:b.subject,correct:s.ok,total:s.total||b.total,scope:'tek'});}

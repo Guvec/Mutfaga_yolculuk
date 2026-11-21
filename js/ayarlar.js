@@ -5,12 +5,23 @@
 'use strict';
 const AY_TEMA={lonca:'Lonca Gecesi',loncakrem:'Lonca Işığı',light:'Aydınlık',sepia:'Sepya',okyanus:'Okyanus',orman:'Orman',lavanta:'Lavanta',seftali:'Şeftali',yuksek:'Yüksek kontrast',dark:'Gece'};
 const AY_ANA_GORUNUM='ana_sayfa_gorunumu';
+const AY_HAN_RENGI='lonca_hani_rengi';
+const AY_HAN_RENKLERI={bakir:'Bakır Turuncusu',acikahve:'Acı Kahve',espresso:'Espresso'};
 function ayAnaGorunumUygula(){
- const secim=ls(AY_ANA_GORUNUM,'klasik')==='ceviz'?'ceviz':'klasik';
- document.documentElement.dataset.anaGorunum=secim;
+ const secili=ls(AY_ANA_GORUNUM,'klasik');
+ const secim=['klasik','ceviz','han'].includes(secili)?secili:'klasik';
+ const renk=ls(AY_HAN_RENGI,'bakir');
+ const kok=document.documentElement;
+ kok.dataset.anaGorunum=secim;
+ kok.dataset.hanRengi=Object.hasOwn(AY_HAN_RENKLERI,renk)?renk:'bakir';
  return secim;
 }
 ayAnaGorunumUygula();
+function ayHanRenkleri(){
+ const palet='<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 3a9 9 0 1 0 0 18h1a1.8 1.8 0 0 0 1.2-3.2 1.8 1.8 0 0 1 1.2-3.2H18a3 3 0 0 0 3-3.2A9 9 0 0 0 12 3Z"/><circle cx="7.5" cy="12" r=".8"/><circle cx="10" cy="7.5" r=".8"/><circle cx="15" cy="7.5" r=".8"/></svg>';
+ return '<fieldset id="ayHanRenkleri" class="ay-han-renkleri" hidden><legend>'+palet+' Lonca Hanı rengi</legend>'+
+  Object.entries(AY_HAN_RENKLERI).map(([id,ad])=>'<label><input type="radio" name="han-rengi" value="'+id+'"><span class="ay-han-ornek" data-renk="'+id+'" aria-hidden="true">'+palet+'</span><span>'+ad+'</span></label>').join('')+'</fieldset>';
+}
 const AY_YZ=['normal','buyuk','cok'],AY_YZN={normal:'Normal',buyuk:'Büyük',cok:'Çok büyük'};
 function ayAc(html,label){
  if(typeof sesSus==='function')sesSus();try{modalFocus=document.activeElement;}catch(e){}
@@ -27,8 +38,8 @@ window.anaAyarlar=function(){
  const box=ayAc('<h2 class="ay-bas">⚙️ Ayarlar</h2>'+
   '<p class="ay-grup">Görünüm</p><div class="ay-liste">'+
    aySatir('ayTema','🎨','Tema',ayTema())+
-   '<div class="ay-yol-isigi"><label for="ayAnaGorunum">Ana sayfa görünümü</label>'+
-   '<select id="ayAnaGorunum"><option value="klasik">Klasik</option><option value="ceviz">Ceviz ve Altın</option></select></div>'+
+   '<div class="ay-yol-isigi"><label for="ayAnaGorunum">Oyun görünümü</label>'+
+   '<select id="ayAnaGorunum"><option value="klasik">Klasik</option><option value="ceviz">Ceviz ve Altın</option><option value="han">Lonca Hanı</option></select></div>'+ayHanRenkleri()+
    aySatir('ayYz','🔠','Yazı boyutu',ayYz())+
    (typeof aksanHTML==='function'?'<div class="ay-satir ay-aksan"><span class="ay-ikon" aria-hidden="true">🖌️</span>'+aksanHTML()+'</div>':'')+
    aySatir('aySakin','🌙','Sakin mod',sakin?'Açık':'Kapalı')+'</div>'+
@@ -43,14 +54,29 @@ window.anaAyarlar=function(){
  const $=id=>box.querySelector('#'+id),deg=(id,v)=>{const e=$(id);if(e)e.querySelector('.ay-deger').textContent=v;};
  $('ayTema').onclick=()=>{temaDegistir();deg('ayTema',ayTema());};
  const anaGorunum=$('ayAnaGorunum');
- anaGorunum.value=ayAnaGorunumUygula();
+ const renkler=$('ayHanRenkleri');
+ function gorunumGoster(){
+  anaGorunum.value=ayAnaGorunumUygula();
+  renkler.hidden=anaGorunum.value!=='han';
+  for(const radyo of renkler.querySelectorAll('input'))radyo.checked=radyo.value===document.documentElement.dataset.hanRengi;
+ }
+ gorunumGoster();
  anaGorunum.onchange=()=>{
   lsSet(AY_ANA_GORUNUM,anaGorunum.value);
-  anaGorunum.value=ayAnaGorunumUygula();
+  gorunumGoster();
   if(typeof sahneGuncelle==='function')sahneGuncelle();
  };
+ renkler.onchange=e=>{
+  if(e.target.name!=='han-rengi'||!e.target.checked)return;
+  lsSet(AY_HAN_RENGI,e.target.value);
+  ayAnaGorunumUygula();
+ };
  $('ayYz').onclick=()=>{const now=document.documentElement.getAttribute('data-yz')||'normal',nx=AY_YZ[(AY_YZ.indexOf(now)+1)%AY_YZ.length];document.documentElement.setAttribute('data-yz',nx);try{localStorage.setItem('mesleki-yazi',nx);}catch(e){}deg('ayYz',ayYz());};
- $('aySakin').onclick=()=>{if(typeof sakinDegistir==='function')sakinDegistir();deg('aySakin',sakinAcik()?'Açık':'Kapalı');};
+ $('aySakin').onclick=()=>{
+  if(typeof sakinDegistir==='function')sakinDegistir();
+  deg('aySakin',sakinAcik()?'Açık':'Kapalı');
+  if(typeof sahneGuncelle==='function')sahneGuncelle();
+ };
  box.querySelectorAll('.aksan-sw button').forEach(b=>{b.onclick=()=>aksanUygula(b.dataset.a);});
  $('aySes').onclick=()=>{closeModal();hsAc();};
  $('ayOkuyan').onclick=()=>ayOkuyan();

@@ -37,11 +37,16 @@
   const suffix=next?' olmak için '+(next.mp-points)+' puan':'';
   const note=next?rutbeAdHTML(next,dal)+suffix:'En yüksek öğrenci rütbesi';
   const spokenNote=next?Rutbe.rankText(next,dal,true)+suffix:note;
+  const hanAdlar=ust?`<span class="lh-rank-flow">
+    <span class="lh-rank-step"><small>Şu an</small><b>${esc(Rutbe.name(current.rank,dal))}</b></span>
+    ${next?`<span class="lh-rank-arrow" aria-hidden="true"></span><span class="lh-rank-step"><small>Sıradaki</small><b>${esc(Rutbe.name(next.rank,dal))}</b></span>`:''}
+   </span>`:'';
   return `<div class="ae-serit${ust?' ae-serit-ust':''}" data-dal="${dal}" role="button" tabindex="0" onclick="rutbeYolAc()"
     onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();rutbeYolAc();}" aria-label="${esc('Rütbem: '+Rutbe.rankText(current,dal,true)+'. '+spokenNote)}">
    <img src="${rutbeRozetYolu(dal,current.rank)}" alt="" width="96" height="96">
    <span class="ae-serit-metin"><span class="lc-rank-label">Rütbeler • ${esc(YOLLAR[dal].ad)}</span>
     <span class="ae-serit-adlar"><strong>${rutbeAdHTML(current,dal)}</strong>${next?`<span class="ae-serit-sonra"><span class="ae-serit-sonra-ad">Sıradaki: </span>${ust?`<img class="ae-serit-sonra-rozet" src="${rutbeRozetYolu(dal,next.rank)}" alt="" width="96" height="96">`:''}<b>${rutbeAdHTML(next,dal)}</b></span>`:''}</span>
+    ${hanAdlar}
     <span class="ae-progress" role="progressbar" aria-label="Sonraki rütbeye ilerleme" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${Math.round(percent)}" aria-valuetext="${esc(spokenNote)}"><span style="width:${percent}%"></span></span>
     <small class="ae-serit-sayi" aria-hidden="true">${points} / ${next?next.mp:points} Tecrübe Puanı</small>
     ${ust&&next?`<small class="ae-serit-kalan" aria-hidden="true">${next.mp-points} puan kaldı</small>`:''}
